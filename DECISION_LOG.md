@@ -124,3 +124,52 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 0C entry appended.
 
 **Not created in this sprint:** public content pages, index.md, route content files, templates, CSS, JS, scripts, GitHub Actions, package.json, dependencies, site/ output. No routes were published. No sitemap or navigation state was changed. No claims or sources were added.
+
+---
+
+### 2026-05-15 — Sprint 0D: Validator Skeleton Established
+
+**Decision:** Create safe placeholder validator files aligned with the 11 Quality Gates and route/source/claim/multilingual governance requirements.
+
+**Rationale:** Before a build system exists, the validator surface area must be reserved in code. Validators need to exist as named, documented files so that future build-system integration has stable entry points. Each validator documents what it will enforce without claiming to enforce it yet. Placeholder behavior (print warning, exit 0) prevents false failures in CI stubs while making the non-enforcement status explicit and undeniable.
+
+**Doctrine reference:** `doctrine/QUALITY_GATE.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/SECURITY_POLICY.md`
+
+**Sprint 0D constraints (all observed):**
+- Validators are intentionally non-enforcing at this stage.
+- No build system was created.
+- No GitHub Actions workflows were created.
+- No dependencies were added.
+- No package.json was created.
+- No public pages were created.
+- No routes were modified.
+- No claim files were modified.
+- No source registry was modified.
+- No content directories were modified.
+- README.md was not modified.
+- Placeholder validators must not be treated as proof of launch readiness.
+
+**Files created:**
+
+- `scripts/validators/README.md` — validator directory governance document.
+- `scripts/validators/validate_all.py` — orchestrator; runs all validators in Quality Gate order.
+- `scripts/validators/validate_links.py` — future Gate 01 + Gate 08 (links and orphans).
+- `scripts/validators/validate_content.py` — future Gate 02 + Gate 09 (content quality).
+- `scripts/validators/validate_indexation.py` — future Gate 03 (sitemap and indexation).
+- `scripts/validators/validate_sources.py` — future Gate 04 (source registry).
+- `scripts/validators/validate_claims.py` — future Gate 04 + blocked-claim patterns.
+- `scripts/validators/validate_seo.py` — future Gate 05 (SEO compliance).
+- `scripts/validators/validate_security.py` — future Gate 06 (security posture).
+- `scripts/validators/validate_accessibility.py` — future Gate 07 (accessibility).
+- `scripts/validators/validate_routes.py` — future route registry governance.
+- `scripts/validators/validate_schema.py` — future structured data (JSON-LD) checks.
+- `scripts/validators/validate_hreflang.py` — future Gate 11 (hreflang correctness).
+- `scripts/validators/validate_translations.py` — future Gate 11 (translation integrity).
+- `scripts/validators/validate_language_routes.py` — future Gate 11 (language routes).
+- `scripts/validators/validate_supply_chain.py` — future supply chain security checks.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 0D entry appended.
+
+**Not created in this sprint:** build system, GitHub Actions, package.json, dependencies, templates, CSS, JS, HTML pages, site/ output, frontend UI.
