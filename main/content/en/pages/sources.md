@@ -1,5 +1,5 @@
 ---
-route_id: en-sources
+route_id: sources
 language: en
 status: draft
 publication_status: non_public
@@ -69,6 +69,14 @@ Pages in `main/content/en/pages/` with `publication_status: non_public` are inte
 - Not treated as evidence for any claim on any other page.
 
 The existence of a draft page does not mean the asset has published the claims it contains.
+
+---
+
+## Planned Internal Links
+
+- `what_is_bisulfid` — Bisulfid as the central term
+- `glossary` — governed sulfur terminology glossary
+- `home` — return to gateway
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-route_id: en-home
+route_id: home
 language: en
 status: draft
 publication_status: non_public
@@ -73,13 +73,14 @@ It is not yet active. The data skeleton exists in `main/data/ontology/`. The map
 
 The following route IDs represent planned internal navigation targets. Links will be generated from routes.json only after each route reaches `status: published`.
 
-- `en-what-is-bisulfid` — definition of Bisulfid as the central term
-- `en-bisulfid-vs-bisulfide` — The Missing Letter explained
-- `en-sulfid-vs-sulfide` — broader German/English spelling pattern
-- `en-sources` — source discipline and registry governance
-- `en-acquire` — strategic acquisition surface
-- `en-glossary` — planned term glossary (future sprint)
-- `en-term-bisulfid` — term record: bisulfid (future sprint)
+- `what_is_sulfur` — introduction to sulfur as element and industrial compound
+- `what_is_bisulfid` — definition of Bisulfid as the central term
+- `bisulfid_vs_bisulfide` — The Missing Letter explained
+- `sulfid_vs_sulfide` — broader German/English spelling pattern
+- `industrial_sulfur_systems` — industrial context and supply chain layer
+- `glossary` — governed sulfur terminology glossary
+- `sources` — source discipline and registry governance
+- `acquire` — strategic acquisition surface
 
 ---
 

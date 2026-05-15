@@ -1,5 +1,5 @@
 ---
-route_id: en-acquire
+route_id: acquire
 language: en
 status: draft
 publication_status: non_public
@@ -87,6 +87,14 @@ Enquiries are evaluated based on alignment with the asset's architecture and int
 Acquisition enquiries: **agent@sohadot.com**
 
 Please include a brief description of the intended use case and the acquiring entity's relevant background.
+
+---
+
+## Planned Internal Links
+
+- `home` — return to gateway
+- `what_is_bisulfid` — Bisulfid as the central term
+- `industrial_sulfur_systems` — industrial context and supply chain layer
 
 ---
 

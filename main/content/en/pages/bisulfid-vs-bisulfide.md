@@ -1,5 +1,5 @@
 ---
-route_id: en-bisulfid-vs-bisulfide
+route_id: bisulfid_vs_bisulfide
 language: en
 status: draft
 publication_status: non_public
@@ -61,10 +61,12 @@ It is an architectural statement: the asset exists at the boundary, and the boun
 
 ## Planned Internal Links
 
-- `en-what-is-bisulfid` — Bisulfid as the central term
-- `en-sulfid-vs-sulfide` — the broader German/English spelling pattern
-- `en-glossary` — full term glossary (future sprint)
-- `en-sources` — source discipline and registry governance
+- `what_is_bisulfid` — Bisulfid as the central term
+- `sulfid_vs_sulfide` — the broader German/English spelling pattern
+- `german_english_chemical_terms` — German-English chemical nomenclature context
+- `bisulfide_hydrosulfide_sulfide` — bisulfide, hydrosulfide, and sulfide disambiguation
+- `glossary` — full term glossary
+- `sources` — source discipline and registry governance
 
 ---
 

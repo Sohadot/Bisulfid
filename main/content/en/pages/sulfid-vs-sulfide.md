@@ -1,5 +1,5 @@
 ---
-route_id: en-sulfid-vs-sulfide
+route_id: sulfid_vs_sulfide
 language: en
 status: draft
 publication_status: non_public
@@ -56,8 +56,11 @@ Until those sources are registered and approved, this page remains `status: draf
 
 ## Planned Internal Links
 
-- `en-bisulfid-vs-bisulfide` — The Missing Letter explained
-- `en-german-english-chemical-terms` — planned future page on German/English chemical terminology (future sprint)
+- `bisulfid_vs_bisulfide` — The Missing Letter explained
+- `what_is_bisulfid` — Bisulfid as the central term
+- `german_english_chemical_terms` — German-English chemical nomenclature context
+- `glossary` — full term glossary
+- `sources` — source discipline and registry governance
 
 ---
 
