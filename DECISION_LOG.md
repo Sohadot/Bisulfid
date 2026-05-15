@@ -351,3 +351,63 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 2B entry appended.
 
 **Not modified in this sprint:** routes.json, sitemap_policy.json, navigation.json, source_registry.json, claim files, root README.md, templates, scripts, doctrine files, ontology files, data registries.
+
+---
+
+### 2026-05-15 — Sprint 2C: Route Content Paths Aligned
+
+**Decision:** Update all 21 `content_file` paths in `routes.json` to point to the governed `main/content/en/pages/` directory structure. Correct the `home` route to point to `index.md` rather than the non-existent `home.md`.
+
+**Rationale:** Sprint 0B created `routes.json` with `content_file` paths pointing to `main/content/en/*.md`. Sprint 0C established `main/content/en/pages/` as the governed directory for English page drafts. Sprint 2 created draft files in `pages/`. This path mismatch was identified in Sprint 2B and recorded as an infrastructure issue. Sprint 2C resolves it. No route status, indexation, sitemap, navigation, or governance state was changed — only the `content_file` field values.
+
+**Doctrine reference:** `doctrine/PROJECT_DOCTRINE.md`
+
+**Sprint 2C constraints (all observed):**
+- No route was published.
+- No route `status` value was changed.
+- No route `indexable` value was changed.
+- No route `in_sitemap` value was changed.
+- No route `in_navigation` value was changed.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- source_registry.json was not modified.
+- Claim files were not modified.
+- No new content pages were created.
+- No generated HTML route pages were created.
+- Templates were not modified.
+- Root README.md was not modified.
+
+**Path corrections (all 21 routes):**
+
+- `home`: `main/content/en/home.md` → `main/content/en/pages/index.md`
+- `what_is_sulfur`: `main/content/en/what-is-sulfur.md` → `main/content/en/pages/what-is-sulfur.md`
+- `sulfur_compounds`: `main/content/en/sulfur-compounds.md` → `main/content/en/pages/sulfur-compounds.md`
+- `sulfur_uses`: `main/content/en/sulfur-uses.md` → `main/content/en/pages/sulfur-uses.md`
+- `what_is_bisulfid`: `main/content/en/what-is-bisulfid.md` → `main/content/en/pages/what-is-bisulfid.md`
+- `bisulfid_vs_bisulfide`: `main/content/en/bisulfid-vs-bisulfide.md` → `main/content/en/pages/bisulfid-vs-bisulfide.md`
+- `sulfid_vs_sulfide`: `main/content/en/sulfid-vs-sulfide.md` → `main/content/en/pages/sulfid-vs-sulfide.md`
+- `bisulfide_hydrosulfide_sulfide`: `main/content/en/bisulfide-hydrosulfide-sulfide.md` → `main/content/en/pages/bisulfide-hydrosulfide-sulfide.md`
+- `sodium_bisulfide`: `main/content/en/sodium-bisulfide.md` → `main/content/en/pages/sodium-bisulfide.md`
+- `disulfide_bonds`: `main/content/en/disulfide-bonds.md` → `main/content/en/pages/disulfide-bonds.md`
+- `industrial_sulfur_systems`: `main/content/en/industrial-sulfur-systems.md` → `main/content/en/pages/industrial-sulfur-systems.md`
+- `sulfur_safety_context`: `main/content/en/sulfur-safety-context.md` → `main/content/en/pages/sulfur-safety-context.md`
+- `hydrogen_sulfide_risk`: `main/content/en/hydrogen-sulfide-risk.md` → `main/content/en/pages/hydrogen-sulfide-risk.md`
+- `sds_and_sulfur_terms`: `main/content/en/sds-and-sulfur-terms.md` → `main/content/en/pages/sds-and-sulfur-terms.md`
+- `protein_disulfide_structure`: `main/content/en/protein-disulfide-structure.md` → `main/content/en/pages/protein-disulfide-structure.md`
+- `molybdenum_disulfide`: `main/content/en/molybdenum-disulfide.md` → `main/content/en/pages/molybdenum-disulfide.md`
+- `german_english_chemical_terms`: `main/content/en/german-english-chemical-terms.md` → `main/content/en/pages/german-english-chemical-terms.md`
+- `glossary`: `main/content/en/glossary.md` → `main/content/en/pages/glossary.md`
+- `sources`: `main/content/en/sources.md` → `main/content/en/pages/sources.md`
+- `newsletter`: `main/content/en/newsletter.md` → `main/content/en/pages/newsletter.md`
+- `acquire`: `main/content/en/acquire.md` → `main/content/en/pages/acquire.md`
+
+**Files created:**
+
+- `main/data/ROUTE_CONTENT_PATH_ALIGNMENT_REPORT.md` — alignment report documenting issue, corrections, and governance state.
+
+**Files updated:**
+
+- `main/data/routes.json` — all 21 `content_file` paths corrected.
+- `DECISION_LOG.md` — Sprint 2C entry appended.
+
+**Not modified in this sprint:** route status values, indexation state, sitemap state, navigation state, sitemap_policy.json, navigation.json, source_registry.json, claim files, content draft pages, templates, scripts, doctrine files, ontology files, root README.md.
