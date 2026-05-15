@@ -1,0 +1,7 @@
+{
+  "inline_js_allowed_in_production": false,
+  "external_scripts_allowed": false,
+  "csp_required_before_launch": true,
+  "secrets_allowed_in_repo": false,
+  "dependency_policy": "standard-library-only-until-approved"
+}

@@ -1,0 +1,21 @@
+<!-- SKELETON TEMPLATE — not production UI. -->
+<!--
+  term_page.html — Term record template for bisulfid.com
+  Used for ontology-governed term pages (e.g., /bisulfid/, /bisulfide/, /hydrosulfide/).
+  Content requires source-verified ontology claims locked in source_registry.json.
+  Do not generate pages from this template until route status is published
+  and all Quality Gate conditions pass.
+-->
+
+<!-- SLOT: Term heading (h1) -->
+<!-- SLOT: Definition block (source-verified claim) -->
+<!-- SLOT: Related terms block (driven from term_edges.json) -->
+<!-- SLOT: Disambiguation notice (if term has a not_same_as edge in term_edges.json) -->
+
+<!-- PARTIAL: source_bar.html -->
+{{source_bar}}
+
+<!-- PARTIAL: internal_links.html -->
+{{internal_links}}
+
+<!-- No inline JS. No external scripts. No tracking. -->
