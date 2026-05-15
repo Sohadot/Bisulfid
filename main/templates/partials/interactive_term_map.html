@@ -1,0 +1,30 @@
+<!-- SKELETON TEMPLATE — not production UI. -->
+<!--
+  partials/interactive_term_map.html — Interactive Term Map partial for bisulfid.com
+
+  This partial will be data-driven from the following ontology files:
+    - main/data/ontology/sulfur_terms.json    (14 terms; center_node: bisulfid)
+    - main/data/ontology/spatial_nodes.json   (11 nodes: center, inner_orbit, outer_orbit, disambiguation)
+    - main/data/ontology/term_edges.json      (12 edges: spelling_boundary, chemical_family, etc.)
+
+  Planned visual structure:
+    Center node:  bisulfid
+    Inner orbit:  bisulfide, sulfid, sulfide, hydrosulfide, sodium_bisulfide
+    Outer orbit:  hydrogen_sulfide, disulfide, molybdenum_disulfide, sodium_hydrosulfide
+    Disambiguation (boundary marker only, not a content node): bisulfite_disambiguation
+
+  Implementation constraints (doctrine/SECURITY_POLICY.md):
+    - No inline JS in production.
+    - prefers-reduced-motion must be respected.
+    - Custom cursor must have a CSS fallback.
+    - Particle system must be disabled or simplified on mobile.
+    - JS-disabled fallback: static term list must render without JS.
+
+  This partial must not be generated until all displayed term nodes have status: published
+  and all source_ids are locked in source_registry.json.
+-->
+<div class="term-map-placeholder" aria-label="Interactive Term Map">
+  <!-- FUTURE: SVG or canvas-based interactive term map driven by ontology data -->
+  <!-- FUTURE: Static term list fallback for JS-disabled browsers -->
+  <!-- STATUS: All ontology nodes are planned — term map not generated -->
+</div>
