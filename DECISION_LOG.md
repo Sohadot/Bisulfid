@@ -124,3 +124,114 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 0C entry appended.
 
 **Not created in this sprint:** public content pages, index.md, route content files, templates, CSS, JS, scripts, GitHub Actions, package.json, dependencies, site/ output. No routes were published. No sitemap or navigation state was changed. No claims or sources were added.
+
+---
+
+### 2026-05-15 — Sprint 0D: Validator Skeleton Established
+
+**Decision:** Create safe placeholder validator files aligned with the 11 Quality Gates and route/source/claim/multilingual governance requirements.
+
+**Rationale:** Before a build system exists, the validator surface area must be reserved in code. Validators need to exist as named, documented files so that future build-system integration has stable entry points. Each validator documents what it will enforce without claiming to enforce it yet. Placeholder behavior (print warning, exit 0) prevents false failures in CI stubs while making the non-enforcement status explicit and undeniable.
+
+**Doctrine reference:** `doctrine/QUALITY_GATE.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/SECURITY_POLICY.md`
+
+**Sprint 0D constraints (all observed):**
+- Validators are intentionally non-enforcing at this stage.
+- No build system was created.
+- No GitHub Actions workflows were created.
+- No dependencies were added.
+- No package.json was created.
+- No public pages were created.
+- No routes were modified.
+- No claim files were modified.
+- No source registry was modified.
+- No content directories were modified.
+- README.md was not modified.
+- Placeholder validators must not be treated as proof of launch readiness.
+
+**Files created:**
+
+- `scripts/validators/README.md` — validator directory governance document.
+- `scripts/validators/validate_all.py` — orchestrator; runs all validators in Quality Gate order.
+- `scripts/validators/validate_links.py` — future Gate 01 + Gate 08 (links and orphans).
+- `scripts/validators/validate_content.py` — future Gate 02 + Gate 09 (content quality).
+- `scripts/validators/validate_indexation.py` — future Gate 03 (sitemap and indexation).
+- `scripts/validators/validate_sources.py` — future Gate 04 (source registry).
+- `scripts/validators/validate_claims.py` — future Gate 04 + blocked-claim patterns.
+- `scripts/validators/validate_seo.py` — future Gate 05 (SEO compliance).
+- `scripts/validators/validate_security.py` — future Gate 06 (security posture).
+- `scripts/validators/validate_accessibility.py` — future Gate 07 (accessibility).
+- `scripts/validators/validate_routes.py` — future route registry governance.
+- `scripts/validators/validate_schema.py` — future structured data (JSON-LD) checks.
+- `scripts/validators/validate_hreflang.py` — future Gate 11 (hreflang correctness).
+- `scripts/validators/validate_translations.py` — future Gate 11 (translation integrity).
+- `scripts/validators/validate_language_routes.py` — future Gate 11 (language routes).
+- `scripts/validators/validate_supply_chain.py` — future supply chain security checks.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 0D entry appended.
+
+**Not created in this sprint:** build system, GitHub Actions, package.json, dependencies, templates, CSS, JS, HTML pages, site/ output, frontend UI.
+
+---
+
+### 2026-05-15 — Sprint 1: Static Build Skeleton Established
+
+**Decision:** Create a minimal standard-library-only static build system skeleton.
+
+**Rationale:** The governance layer (doctrine, data, content skeleton, validators) is in place. The next layer is the technical build mechanism. The build system must exist as a skeleton before any content or UI can be assembled. Creating the skeleton at this stage reserves the build contract: routes.json governs what gets generated; no planned route produces output; prelaunch robots and sitemap policies are enforced from day one. No dependencies are introduced. No public pages are generated. The build system is not launch-ready at this stage.
+
+**Doctrine reference:** `doctrine/QUALITY_GATE.md`, `doctrine/SECURITY_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`
+
+**Sprint 1 constraints (all observed):**
+- Python standard library only. No external dependencies.
+- No package.json. No requirements.txt with packages.
+- No GitHub Actions. No deployment workflow.
+- No Cloudflare config.
+- No routes marked published.
+- No routes set indexable: true.
+- No routes set in_sitemap: true.
+- No claim files modified.
+- No source entries added.
+- No real content pages created.
+- No visual UI, advanced CSS, animations, or JavaScript.
+- README.md not modified.
+- build.py generates 0 public pages (all routes are planned).
+- sitemap.xml contains 0 URLs.
+- robots.txt blocks all indexing (prelaunch policy).
+
+**Files created:**
+
+- `main/config/site.json` — site identity and status configuration.
+- `main/config/build.json` — build system configuration.
+- `main/config/seo.json` — SEO policy configuration.
+- `main/config/security.json` — security policy configuration.
+- `main/config/navigation.json` — navigation registry (inactive, no items).
+- `main/templates/base.html` — base layout skeleton.
+- `main/templates/home.html` — homepage skeleton.
+- `main/templates/reference_page.html` — reference page skeleton.
+- `main/templates/term_page.html` — term record page skeleton.
+- `main/templates/glossary.html` — glossary page skeleton.
+- `main/templates/newsletter.html` — newsletter page skeleton.
+- `main/templates/acquire.html` — acquire page skeleton.
+- `main/templates/partials/head.html` — \<head\> partial skeleton.
+- `main/templates/partials/nav.html` — navigation partial skeleton (inactive).
+- `main/templates/partials/footer.html` — footer partial skeleton.
+- `main/templates/partials/hreflang.html` — hreflang partial skeleton (inactive).
+- `main/templates/partials/internal_links.html` — internal link block skeleton.
+- `main/templates/partials/source_bar.html` — source attribution bar skeleton.
+- `main/templates/partials/safety_notice.html` — safety notice partial skeleton.
+- `main/templates/partials/interactive_term_map.html` — Interactive Term Map partial skeleton (data-driven from ontology files).
+- `scripts/build.py` — static build orchestrator; generates site/build-status.json only.
+- `scripts/generate_sitemap.py` — prelaunch sitemap generator; 0 URLs.
+- `scripts/generate_robots.py` — prelaunch robots.txt generator; full Disallow.
+- `scripts/serve.py` — local development server using http.server.
+- `scripts/README.md` — build scripts documentation.
+- `site/.gitkeep` — reserves site/ output directory.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 0D and Sprint 1 entries appended.
+
+**Not created in this sprint:** real content pages, GitHub Actions, deployment workflows, Cloudflare config, package.json, CSS files, JavaScript files, advanced UI, site HTML output, published routes, active sitemap entries.
