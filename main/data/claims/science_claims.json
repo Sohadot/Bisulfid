@@ -4,5 +4,39 @@
   "governed_by": "doctrine/SOURCE_POLICY.md",
   "status": "inactive",
   "rule": "No science claim may be published without a verified source entry in source_registry.json. All claims in this file remain draft or pending_source until sources are locked.",
-  "claims": []
+  "claims": [
+    {
+      "claim_id": "CLM-SCI-001",
+      "claim_type": "chemical_identity",
+      "status": "pending_review",
+      "statement": "PubChem (NIH) has a compound record for Hydrosulfide (CID 5047209).",
+      "source_ids": ["SRC-PUBCHEM-HYDROSULFIDE"],
+      "related_terms": ["hydrosulfide"],
+      "related_routes": ["bisulfide_hydrosulfide_sulfide"],
+      "last_reviewed": "2026-05-15",
+      "notes": "Government scientific database confirmation of Hydrosulfide as a registered compound. CID is candidate — verify against PubChem before source-locking."
+    },
+    {
+      "claim_id": "CLM-SCI-002",
+      "claim_type": "chemical_identity",
+      "status": "pending_review",
+      "statement": "PubChem (NIH) has a compound record for Sodium hydrosulfide (NaHS, CID 28015).",
+      "source_ids": ["SRC-PUBCHEM-SODIUM-HYDROSULFIDE"],
+      "related_terms": ["sodium_hydrosulfide", "sodium_bisulfide"],
+      "related_routes": ["sodium_bisulfide"],
+      "last_reviewed": "2026-05-15",
+      "notes": "Government scientific database confirmation of Sodium hydrosulfide as a registered compound. CID is candidate — verify against PubChem before source-locking. Supports the naming relationship between sodium hydrosulfide and sodium bisulfide."
+    },
+    {
+      "claim_id": "CLM-SCI-003",
+      "claim_type": "chemical_identity",
+      "status": "pending_review",
+      "statement": "The NIST Chemistry WebBook has an entry for Hydrogen sulfide (H2S, CAS 7783-06-4).",
+      "source_ids": ["SRC-NIST-HYDROGEN-SULFIDE"],
+      "related_terms": ["hydrogen_sulfide"],
+      "related_routes": ["hydrogen_sulfide_risk"],
+      "last_reviewed": "2026-05-15",
+      "notes": "Government scientific database confirmation of Hydrogen sulfide as a registered compound with NIST data. Supports the hydrogen_sulfide term record. Safety content governance applies to any future published claims from this source."
+    }
+  ]
 }

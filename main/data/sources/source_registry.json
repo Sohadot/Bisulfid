@@ -21,5 +21,103 @@
     "medical_claims_without_qualified_source",
     "chemical_handling_instructions"
   ],
-  "sources": []
+  "sources": [
+    {
+      "source_id": "SRC-MW-BISULFIDE",
+      "category": "authoritative_dictionary",
+      "publisher": "Merriam-Webster",
+      "title": "bisulfide",
+      "url": "https://www.merriam-webster.com/dictionary/bisulfide",
+      "language": "en",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-15",
+      "notes": "Merriam-Webster dictionary entry for 'bisulfide'. Establishes English-language lexical existence of the term."
+    },
+    {
+      "source_id": "SRC-MW-SULFIDE",
+      "category": "authoritative_dictionary",
+      "publisher": "Merriam-Webster",
+      "title": "sulfide",
+      "url": "https://www.merriam-webster.com/dictionary/sulfide",
+      "language": "en",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-15",
+      "notes": "Merriam-Webster dictionary entry for 'sulfide'. Establishes English-language lexical existence of the parent chemical family term."
+    },
+    {
+      "source_id": "SRC-MW-BISULFITE",
+      "category": "authoritative_dictionary",
+      "publisher": "Merriam-Webster",
+      "title": "bisulfite",
+      "url": "https://www.merriam-webster.com/dictionary/bisulfite",
+      "language": "en",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-15",
+      "notes": "Merriam-Webster dictionary entry for 'bisulfite'. Supports disambiguation: bisulfite is a distinct compound from bisulfide. Required for bisulfite_disambiguation term record."
+    },
+    {
+      "source_id": "SRC-DUDEN-SULFID",
+      "category": "authoritative_dictionary",
+      "publisher": "Duden",
+      "title": "Sulfid",
+      "url": "https://www.duden.de/rechtschreibung/Sulfid",
+      "language": "de",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-15",
+      "notes": "Duden dictionary entry for 'Sulfid'. Establishes German-language lexical existence of the -id suffix form. Supports the sulfid term record and the German-English spelling boundary thesis."
+    },
+    {
+      "source_id": "SRC-IUPAC-HYDROSULFIDES",
+      "category": "chemical_nomenclature_standard",
+      "publisher": "IUPAC Gold Book",
+      "title": "hydrosulfides",
+      "url": "https://goldbook.iupac.org/terms/view/H02910",
+      "doi": "10.1351/goldbook.H02910",
+      "language": "en",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-15",
+      "notes": "IUPAC Gold Book entry for hydrosulfides. Authoritative chemical nomenclature standard establishing the hydrosulfide term and its relationship to bisulfide chemistry."
+    },
+    {
+      "source_id": "SRC-PUBCHEM-HYDROSULFIDE",
+      "category": "government_scientific_database",
+      "publisher": "PubChem / NIH",
+      "title": "Hydrosulfide",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/compound/Hydrosulfide",
+      "language": "en",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-15",
+      "notes": "PubChem (NIH) compound record for Hydrosulfide. Government scientific database entry supporting chemical identity claim."
+    },
+    {
+      "source_id": "SRC-PUBCHEM-SODIUM-HYDROSULFIDE",
+      "category": "government_scientific_database",
+      "publisher": "PubChem / NIH",
+      "title": "Sodium hydrosulfide",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/compound/Sodium-hydrosulfide",
+      "language": "en",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-15",
+      "notes": "PubChem (NIH) compound record for Sodium hydrosulfide (NaHS). Supports both sodium_hydrosulfide and sodium_bisulfide term records as candidate synonym/identity source."
+    },
+    {
+      "source_id": "SRC-NIST-HYDROGEN-SULFIDE",
+      "category": "government_scientific_database",
+      "publisher": "NIST Chemistry WebBook",
+      "title": "Hydrogen sulfide",
+      "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7783064&Mask=10",
+      "language": "en",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-15",
+      "notes": "NIST Chemistry WebBook entry for Hydrogen sulfide (H2S, CAS 7783-06-4). Government scientific database supporting hydrogen_sulfide term record."
+    }
+  ]
 }

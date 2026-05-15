@@ -411,3 +411,73 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 2C entry appended.
 
 **Not modified in this sprint:** route status values, indexation state, sitemap state, navigation state, sitemap_policy.json, navigation.json, source_registry.json, claim files, content draft pages, templates, scripts, doctrine files, ontology files, root README.md.
+
+---
+
+### 2026-05-15 — Sprint 3: Source Registry Seeded
+
+**Decision:** Seed the first real source entries into `source_registry.json`, assign candidate `source_ids` to eight ontology terms in `sulfur_terms.json`, and register five terminology claims and three science claims in the claim registries. All claims remain `pending_review`. No claim is approved.
+
+**Rationale:** The source registry must be populated before any claim can progress toward publication. Sprint 3 seeds authoritative dictionary, chemical nomenclature standard, and government scientific database sources that correspond to the terminology and chemical identity claims most central to the bisulfid.com domain thesis. All sources are `seeded` and `candidate` — none are final or permanently approved. No [SOURCE REQUIRED] markers were removed from draft content pages. No route was published. This sprint establishes the first layer of the three-layer source discipline: source_registry.json → claim registries → content pages.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 3 constraints (all observed):**
+- No route was published.
+- No route status, indexable, in_sitemap, or in_navigation value was changed.
+- No claim was approved. All claims remain pending_review.
+- No [SOURCE REQUIRED] marker was removed from any content page.
+- No content pages were created or modified.
+- All source entries carry status: seeded and source_lock_status: candidate.
+- All ontology term statuses remain planned.
+- No term was marked verified or published.
+- market_claims.json was not modified.
+- safety_claims.json was not modified.
+- industry_claims.json was not modified.
+- acquisition_claims.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- routes.json was not modified.
+- root README.md was not modified.
+- templates were not modified.
+- scripts were not modified.
+- No market statistics were added.
+- No Gulf, Morocco, or China production or trade data was added.
+- No acquisition-target company claims were added.
+- No dependencies were added.
+- No GitHub Actions were created.
+- No HTML output was created.
+- This sprint does not constitute publication readiness.
+
+**Sources seeded (8):**
+
+- `SRC-MW-BISULFIDE` — authoritative_dictionary — Merriam-Webster — bisulfide
+- `SRC-MW-SULFIDE` — authoritative_dictionary — Merriam-Webster — sulfide
+- `SRC-MW-BISULFITE` — authoritative_dictionary — Merriam-Webster — bisulfite
+- `SRC-DUDEN-SULFID` — authoritative_dictionary — Duden — Sulfid
+- `SRC-IUPAC-HYDROSULFIDES` — chemical_nomenclature_standard — IUPAC Gold Book — hydrosulfides
+- `SRC-PUBCHEM-HYDROSULFIDE` — government_scientific_database — PubChem / NIH — Hydrosulfide
+- `SRC-PUBCHEM-SODIUM-HYDROSULFIDE` — government_scientific_database — PubChem / NIH — Sodium hydrosulfide
+- `SRC-NIST-HYDROGEN-SULFIDE` — government_scientific_database — NIST Chemistry WebBook — Hydrogen sulfide
+
+**Terminology claims registered (5):** CLM-TERM-001 through CLM-TERM-005, all pending_review.
+
+**Science claims registered (3):** CLM-SCI-001 through CLM-SCI-003, all pending_review.
+
+**Ontology terms receiving candidate source_ids (8):** bisulfide, sulfide, sulfid, bisulfite_disambiguation, hydrosulfide, sodium_hydrosulfide, sodium_bisulfide, hydrogen_sulfide.
+
+**Terms with no source_ids this sprint (6):** bisulfid (center node — highest priority for next source sprint), disulfide, disulfid, molybdenum_disulfide, molybdenum_disulfide_mos2, sulfur.
+
+**Files created:**
+
+- `main/data/SOURCE_REGISTRY_SEED_REPORT.md` — seed report documenting sources, claims, term mappings, gaps, and publication state.
+
+**Files updated:**
+
+- `main/data/sources/source_registry.json` — 8 sources added.
+- `main/data/claims/terminology_claims.json` — 5 pending_review claims added.
+- `main/data/claims/science_claims.json` — 3 pending_review claims added.
+- `main/data/ontology/sulfur_terms.json` — candidate source_ids added to 8 terms.
+- `DECISION_LOG.md` — Sprint 3 entry appended.
+
+**Not modified in this sprint:** routes.json, sitemap_policy.json, navigation.json, market_claims.json, safety_claims.json, industry_claims.json, acquisition_claims.json, content draft pages, templates, scripts, doctrine files, root README.md.
