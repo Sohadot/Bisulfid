@@ -232,6 +232,6 @@ Each entry includes:
 
 **Files updated:**
 
-- `DECISION_LOG.md` — Sprint 0D and Sprint 1 entries appended.
+- `DECISION_LOG.md` — Sprint 1 entry appended.
 
 **Not created in this sprint:** real content pages, GitHub Actions, deployment workflows, Cloudflare config, package.json, CSS files, JavaScript files, advanced UI, site HTML output, published routes, active sitemap entries.
