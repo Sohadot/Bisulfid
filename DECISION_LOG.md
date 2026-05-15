@@ -42,3 +42,37 @@ Each entry includes:
 - `main/data/languages.json` — machine-readable language registry.
 
 **Not created in this sprint:** frontend UI, HTML, CSS, JS, images, GitHub Actions, scripts, package.json, CURSOR_RULES.md, generated site output, placeholder content pages.
+
+---
+
+### 2026-05-15 — Sprint 0B: Data Skeleton and Route Governance Established
+
+**Decision:** Create planned route, ontology, source, claim, sitemap, hreflang, translation, and internal-link registries.
+
+**Rationale:** Before content or UI work can begin, the data governance skeleton must exist. Routes, ontology terms, and claim categories must be registered in a planned or inactive state so that content creation has a governed framework to operate within. No routes were published. No sitemap entries were activated. No claims were approved. No sources were fabricated.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/MULTILINGUAL_POLICY.md`
+
+**Files created:**
+
+- `main/data/routes.json` — planned EN v1 route registry (21 routes, all planned, none published).
+- `main/data/hreflang_groups.json` — empty hreflang group registry, inactive.
+- `main/data/translation_registry.json` — empty translation registry, inactive.
+- `main/data/internal_links.json` — planned internal link graph (route_id references only, not raw URLs).
+- `main/data/sitemap_policy.json` — sitemap governance policy, inactive, no active URLs.
+- `main/data/ontology/sulfur_terms.json` — governed ontology skeleton with 14 terms, all planned.
+- `main/data/ontology/spatial_nodes.json` — Interactive Term Map node registry, 11 nodes, all planned.
+- `main/data/ontology/term_edges.json` — semantic edge registry, 12 edges, all planned, no sources locked.
+- `main/data/sources/source_registry.json` — source registry structure established, no sources added.
+- `main/data/claims/terminology_claims.json` — empty claim registry, inactive.
+- `main/data/claims/science_claims.json` — empty claim registry, inactive.
+- `main/data/claims/industry_claims.json` — empty claim registry, inactive.
+- `main/data/claims/safety_claims.json` — empty claim registry, inactive, blocked patterns defined.
+- `main/data/claims/market_claims.json` — empty claim registry, inactive, blocked patterns defined.
+- `main/data/claims/acquisition_claims.json` — empty claim registry, inactive.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 0B entry appended.
+
+**Not created in this sprint:** HTML pages, markdown content pages, templates, CSS, JS, scripts, GitHub Actions, package.json, dependencies, site/ output, placeholder content.

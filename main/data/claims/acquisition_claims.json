@@ -1,0 +1,8 @@
+{
+  "version": "0.1.0",
+  "site": "bisulfid.com",
+  "governed_by": "doctrine/SOURCE_POLICY.md",
+  "status": "inactive",
+  "rule": "Public acquisition claims must describe asset value without naming specific companies as targets. No acquisition claim may imply or name a specific buyer. All claims remain draft or pending_source until sources are locked.",
+  "claims": []
+}

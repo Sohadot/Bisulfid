@@ -1,0 +1,25 @@
+{
+  "version": "0.1.0",
+  "site": "bisulfid.com",
+  "governed_by": "doctrine/SOURCE_POLICY.md",
+  "status": "inactive",
+  "rule": "No source entry = no published claim. Sources are added to this registry only when verified. No placeholder or fabricated URLs are permitted.",
+  "source_categories": [
+    "authoritative_dictionary",
+    "chemical_nomenclature_standard",
+    "government_scientific_database",
+    "regulatory_body",
+    "peer_reviewed_journal",
+    "industry_publication",
+    "market_report"
+  ],
+  "blocked_source_uses": [
+    "bisulfite_data_as_bisulfide_data",
+    "market_statistics_without_verified_source",
+    "AI_summary_as_source",
+    "safety_thresholds_as_advice",
+    "medical_claims_without_qualified_source",
+    "chemical_handling_instructions"
+  ],
+  "sources": []
+}
