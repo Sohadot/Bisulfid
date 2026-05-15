@@ -173,3 +173,69 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 0D entry appended.
 
 **Not created in this sprint:** build system, GitHub Actions, package.json, dependencies, templates, CSS, JS, HTML pages, site/ output, frontend UI.
+
+---
+
+### 2026-05-15 — Sprint 1: Static Build Skeleton Established
+
+**Decision:** Create a minimal Python-stdlib-only static build skeleton: config layer, template skeletons, build scripts, and sitemap/robots generators. Zero public pages are generated. All routes remain in `planned` state.
+
+**Rationale:** A governed build system must exist before any content can be placed into production. The build skeleton establishes the machinery — config, templates, scripts — without activating any route, publishing any page, or enabling any indexation. The prelaunch posture (full robots.txt disallow, zero-URL sitemap, `noindex` SEO config) is enforced at the script level, not merely declared. This sprint creates the assembly line, not the product.
+
+**Doctrine reference:** `doctrine/QUALITY_GATE.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/SECURITY_POLICY.md`
+
+**Sprint 1 constraints (all observed):**
+- Python standard library only. No external dependencies.
+- No package.json created.
+- No GitHub Actions workflows created.
+- No deployment config created.
+- No Cloudflare config created.
+- No routes marked published.
+- No routes marked indexable.
+- No routes marked in_sitemap.
+- No routes.json modified.
+- No claim files modified.
+- No source registry modified.
+- No content directories modified.
+- No real content pages created.
+- No inline JS in any template.
+- No external scripts referenced.
+- No tracking of any kind.
+- No visual UI, advanced CSS, or animations.
+- All templates carry skeleton disclaimer comment.
+- Placeholder validators must not be treated as proof of launch readiness.
+
+**Files created:**
+
+- `main/config/build.json` — build orchestrator config; `publish_planned_routes: false`, `generate_only_published_routes: true`.
+- `main/config/seo.json` — SEO governance config; `default_robots: "noindex, nofollow"`.
+- `main/config/security.json` — security policy config; inline JS and external scripts disallowed.
+- `main/config/navigation.json` — navigation config; status inactive, items empty.
+- `main/config/site.json` — site identity config; status prelaunch.
+- `main/templates/base.html` — base layout skeleton; no inline JS, no external scripts.
+- `main/templates/home.html` — home page skeleton.
+- `main/templates/term.html` — term record page skeleton.
+- `main/templates/category.html` — category page skeleton.
+- `main/templates/language_index.html` — language index page skeleton.
+- `main/templates/404.html` — 404 error page skeleton.
+- `main/templates/robots.txt` — robots.txt template (prelaunch: full disallow).
+- `main/templates/partials/header.html` — header partial skeleton.
+- `main/templates/partials/footer.html` — footer partial skeleton.
+- `main/templates/partials/nav.html` — navigation partial skeleton (inactive).
+- `main/templates/partials/breadcrumb.html` — breadcrumb partial skeleton.
+- `main/templates/partials/hreflang_block.html` — hreflang link block partial.
+- `main/templates/partials/structured_data.html` — JSON-LD structured data partial skeleton.
+- `main/templates/partials/disclaimer_block.html` — disclaimer block partial skeleton.
+- `main/templates/partials/interactive_term_map.html` — Interactive Term Map partial; documents data sources and JS-disabled fallback.
+- `scripts/build.py` — build orchestrator; loads config and routes; generates `site/build-status.json` only; 0 public pages.
+- `scripts/generate_robots.py` — generates `site/robots.txt`; prelaunch full-disallow policy.
+- `scripts/generate_sitemap.py` — generates `site/sitemap.xml`; filters published+indexable+in_sitemap; 0 URLs pass.
+- `scripts/generate_placeholders.py` — generates placeholder HTML skeletons for planned routes (dev/review use only; no public output).
+- `scripts/README.md` — scripts directory governance document.
+- `site/.gitkeep` — reserves site/ output directory.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 1 entry appended.
+
+**Not created in this sprint:** public content pages, real index.html, published routes, sitemap URLs, GitHub Actions, package.json, external dependencies, deployment config, Cloudflare config, visual UI, animations, inline JS, external scripts, tracking.
