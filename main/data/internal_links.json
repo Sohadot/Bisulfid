@@ -1,0 +1,114 @@
+{
+  "version": "0.1.0",
+  "site": "bisulfid.com",
+  "governed_by": "doctrine/PROJECT_DOCTRINE.md",
+  "status": "planned",
+  "rule": "No internal link becomes public unless both source and target routes are published and pass link validation.",
+  "link_groups": [
+    {
+      "from_route_id": "home",
+      "status": "planned",
+      "intended_links": ["what_is_sulfur", "what_is_bisulfid", "bisulfid_vs_bisulfide", "industrial_sulfur_systems", "glossary", "acquire"]
+    },
+    {
+      "from_route_id": "what_is_sulfur",
+      "status": "planned",
+      "intended_links": ["sulfur_compounds", "sulfur_uses", "what_is_bisulfid", "glossary"]
+    },
+    {
+      "from_route_id": "sulfur_compounds",
+      "status": "planned",
+      "intended_links": ["what_is_sulfur", "sulfur_uses", "what_is_bisulfid", "sodium_bisulfide", "glossary"]
+    },
+    {
+      "from_route_id": "sulfur_uses",
+      "status": "planned",
+      "intended_links": ["what_is_sulfur", "sulfur_compounds", "industrial_sulfur_systems", "sodium_bisulfide", "glossary"]
+    },
+    {
+      "from_route_id": "what_is_bisulfid",
+      "status": "planned",
+      "intended_links": ["bisulfid_vs_bisulfide", "sulfid_vs_sulfide", "bisulfide_hydrosulfide_sulfide", "german_english_chemical_terms", "glossary", "sources"]
+    },
+    {
+      "from_route_id": "bisulfid_vs_bisulfide",
+      "status": "planned",
+      "intended_links": ["what_is_bisulfid", "sulfid_vs_sulfide", "german_english_chemical_terms", "bisulfide_hydrosulfide_sulfide", "glossary", "sources"]
+    },
+    {
+      "from_route_id": "sulfid_vs_sulfide",
+      "status": "planned",
+      "intended_links": ["bisulfid_vs_bisulfide", "what_is_bisulfid", "german_english_chemical_terms", "glossary", "sources"]
+    },
+    {
+      "from_route_id": "bisulfide_hydrosulfide_sulfide",
+      "status": "planned",
+      "intended_links": ["what_is_bisulfid", "sodium_bisulfide", "sulfur_safety_context", "glossary", "sources"]
+    },
+    {
+      "from_route_id": "sodium_bisulfide",
+      "status": "planned",
+      "intended_links": ["bisulfide_hydrosulfide_sulfide", "industrial_sulfur_systems", "sulfur_safety_context", "glossary", "sources", "acquire"]
+    },
+    {
+      "from_route_id": "disulfide_bonds",
+      "status": "planned",
+      "intended_links": ["protein_disulfide_structure", "molybdenum_disulfide", "industrial_sulfur_systems", "glossary", "sources"]
+    },
+    {
+      "from_route_id": "industrial_sulfur_systems",
+      "status": "planned",
+      "intended_links": ["sodium_bisulfide", "sulfur_safety_context", "disulfide_bonds", "glossary", "sources", "acquire"]
+    },
+    {
+      "from_route_id": "sulfur_safety_context",
+      "status": "planned",
+      "intended_links": ["hydrogen_sulfide_risk", "sds_and_sulfur_terms", "sodium_bisulfide", "glossary", "sources"]
+    },
+    {
+      "from_route_id": "hydrogen_sulfide_risk",
+      "status": "planned",
+      "intended_links": ["sulfur_safety_context", "sds_and_sulfur_terms", "sodium_bisulfide", "glossary", "sources"]
+    },
+    {
+      "from_route_id": "sds_and_sulfur_terms",
+      "status": "planned",
+      "intended_links": ["sulfur_safety_context", "hydrogen_sulfide_risk", "what_is_bisulfid", "glossary", "sources"]
+    },
+    {
+      "from_route_id": "protein_disulfide_structure",
+      "status": "planned",
+      "intended_links": ["disulfide_bonds", "molybdenum_disulfide", "glossary", "sources"]
+    },
+    {
+      "from_route_id": "molybdenum_disulfide",
+      "status": "planned",
+      "intended_links": ["disulfide_bonds", "protein_disulfide_structure", "industrial_sulfur_systems", "glossary", "sources"]
+    },
+    {
+      "from_route_id": "german_english_chemical_terms",
+      "status": "planned",
+      "intended_links": ["what_is_bisulfid", "bisulfid_vs_bisulfide", "sulfid_vs_sulfide", "glossary", "sources"]
+    },
+    {
+      "from_route_id": "glossary",
+      "status": "planned",
+      "intended_links": ["what_is_bisulfid", "bisulfid_vs_bisulfide", "sulfid_vs_sulfide", "bisulfide_hydrosulfide_sulfide", "sodium_bisulfide", "disulfide_bonds", "molybdenum_disulfide", "sources"]
+    },
+    {
+      "from_route_id": "sources",
+      "status": "planned",
+      "intended_links": ["what_is_bisulfid", "glossary", "home"]
+    },
+    {
+      "from_route_id": "newsletter",
+      "status": "planned",
+      "intended_links": ["home", "acquire"]
+    },
+    {
+      "from_route_id": "acquire",
+      "status": "planned",
+      "intended_links": ["home", "what_is_bisulfid", "industrial_sulfur_systems"]
+    }
+  ]
+}

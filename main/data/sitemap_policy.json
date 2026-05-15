@@ -1,0 +1,22 @@
+{
+  "version": "0.1.0",
+  "site": "bisulfid.com",
+  "governed_by": "doctrine/PROJECT_DOCTRINE.md",
+  "status": "inactive",
+  "rule": "Sitemap may include only published, indexable routes that pass Quality Gate.",
+  "urls": [],
+  "policy": {
+    "default_changefreq": "monthly",
+    "lastmod_policy": "Set to the date of last verified content review, not the build date. Build date must not be used as lastmod.",
+    "hreflang_sitemap_note": "Hreflang alternates are included in the sitemap only for published, active language routes with verified hreflang groups. Unpublished language routes must not appear in sitemap hreflang entries.",
+    "exclusion_rules": [
+      "Routes with status 'planned' are excluded from sitemap.",
+      "Routes with status 'draft' are excluded from sitemap.",
+      "Routes with status 'inactive' are excluded from sitemap.",
+      "Routes with in_sitemap: false are excluded from sitemap.",
+      "Routes with indexable: false are excluded from sitemap.",
+      "Routes that have not passed the Quality Gate are excluded from sitemap.",
+      "Unpublished language alternate routes are excluded from hreflang sitemap entries."
+    ]
+  }
+}

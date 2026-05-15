@@ -1,0 +1,9 @@
+{
+  "version": "0.1.0",
+  "site": "bisulfid.com",
+  "governed_by": "doctrine/MULTILINGUAL_POLICY.md",
+  "status": "inactive",
+  "rule": "No translation may be published until reviewed, source-aligned, assigned to a valid hreflang group, and checked against the claim registry.",
+  "language_priority": ["en", "de", "ar", "zh", "ja", "fr", "es"],
+  "translations": []
+}

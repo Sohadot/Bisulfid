@@ -1,0 +1,8 @@
+{
+  "version": "0.1.0",
+  "site": "bisulfid.com",
+  "governed_by": "doctrine/MULTILINGUAL_POLICY.md",
+  "status": "inactive",
+  "rule": "No hreflang group becomes active until at least two reviewed, source-aligned, published language routes exist and pass the Quality Gate.",
+  "groups": []
+}
