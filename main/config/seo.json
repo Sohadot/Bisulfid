@@ -1,0 +1,7 @@
+{
+  "default_robots": "noindex, nofollow",
+  "canonical_required": true,
+  "hreflang_required_when_translated": true,
+  "meta_keywords_allowed": false,
+  "sitemap_policy_file": "main/data/sitemap_policy.json"
+}

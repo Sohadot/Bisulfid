@@ -1,0 +1,10 @@
+{
+  "output_dir": "site",
+  "routes_file": "main/data/routes.json",
+  "content_root": "main/content",
+  "templates_root": "main/templates",
+  "build_status": "skeleton",
+  "publish_planned_routes": false,
+  "generate_only_published_routes": true,
+  "allow_placeholder_pages": false
+}
