@@ -291,3 +291,63 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 2 entry appended.
 
 **Not created in this sprint:** HTML output, published pages, sitemap entries, navigation items, source entries, approved claims, GitHub Actions, dependencies, package.json, route modifications.
+
+---
+
+### 2026-05-15 — Sprint 2B: English Draft Alignment Review Completed
+
+**Decision:** Review and align all six English source-layer draft pages against route governance, internal link planning, ontology, source discipline, and acquisition discipline. Make minimal corrections only.
+
+**Rationale:** The Sprint 2 drafts contained a systematic route ID format error: all six pages used `en-*` prefixed, hyphen-separated route IDs (e.g., `en-home`, `en-what-is-bisulfid`) rather than the IDs defined in `routes.json` (e.g., `home`, `what_is_bisulfid`). This would prevent the build system from matching content files to their routes. Additional issues included incomplete planned link sections and a reference to a nonexistent route. All corrections were minimal and did not alter content, remove [SOURCE REQUIRED] markers, or change any governance state.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 2B constraints (all observed):**
+- No new pages created.
+- No route was published.
+- No sitemap or navigation state was changed.
+- No claims were approved.
+- No sources were added.
+- No [SOURCE REQUIRED] markers removed.
+- All pages remain `status: draft` and `publication_status: non_public`.
+- All pages remain `indexable: false` and `in_sitemap: false`.
+- routes.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- source_registry.json was not modified.
+- Claim files were not modified.
+- root README.md was not modified.
+- No HTML output was created.
+- No dependencies were added.
+- No GitHub Actions were created.
+
+**Issues corrected:**
+
+- All six pages: `route_id` corrected from `en-*` format to `routes.json` format (e.g., `en-home` → `home`, `en-what-is-bisulfid` → `what_is_bisulfid`).
+- All inline route references: corrected to use `routes.json` format throughout.
+- `index.md`: removed reference to `en-term-bisulfid` (no corresponding route in routes.json); added `what_is_sulfur` and `industrial_sulfur_systems` to planned link section.
+- `what-is-bisulfid.md`: added `bisulfide_hydrosulfide_sulfide` and `german_english_chemical_terms` to planned link section.
+- `bisulfid-vs-bisulfide.md`: added `german_english_chemical_terms` and `bisulfide_hydrosulfide_sulfide` to planned link section.
+- `sulfid-vs-sulfide.md`: added `what_is_bisulfid`, `glossary`, and `sources` to planned link section.
+- `sources.md`: added planned link section (`what_is_bisulfid`, `glossary`, `home`).
+- `acquire.md`: added planned link section (`home`, `what_is_bisulfid`, `industrial_sulfur_systems`).
+
+**Infrastructure note recorded:**
+
+`routes.json` `content_file` fields point to `main/content/en/*.md` while actual files are in `main/content/en/pages/*.md`. This path discrepancy requires resolution in a future sprint.
+
+**Files created:**
+
+- `main/content/en/DRAFT_ALIGNMENT_REPORT.md` — full alignment review report.
+
+**Files updated:**
+
+- `main/content/en/pages/index.md` — route_id corrected; link intent aligned.
+- `main/content/en/pages/what-is-bisulfid.md` — route_id corrected; link intent aligned.
+- `main/content/en/pages/bisulfid-vs-bisulfide.md` — route_id corrected; link intent aligned.
+- `main/content/en/pages/sulfid-vs-sulfide.md` — route_id corrected; link intent aligned.
+- `main/content/en/pages/sources.md` — route_id corrected; planned link section added.
+- `main/content/en/pages/acquire.md` — route_id corrected; planned link section added.
+- `DECISION_LOG.md` — Sprint 2B entry appended.
+
+**Not modified in this sprint:** routes.json, sitemap_policy.json, navigation.json, source_registry.json, claim files, root README.md, templates, scripts, doctrine files, ontology files, data registries.

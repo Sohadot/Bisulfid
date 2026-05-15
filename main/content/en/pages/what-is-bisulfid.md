@@ -1,5 +1,5 @@
 ---
-route_id: en-what-is-bisulfid
+route_id: what_is_bisulfid
 language: en
 status: draft
 publication_status: non_public
@@ -49,7 +49,7 @@ Confusion between these two is a documented pattern in informal usage. This asse
 
 ## German-Form Spelling Boundary
 
-The spelling Bisulfid — without the final E — marks the boundary between the English and German chemical naming conventions for this compound family. This boundary is explained in detail in the planned page `en-bisulfid-vs-bisulfide`.
+The spelling Bisulfid — without the final E — marks the boundary between the English and German chemical naming conventions for this compound family. This boundary is explained in detail in the planned page `bisulfid_vs_bisulfide`.
 
 ---
 
@@ -69,10 +69,12 @@ No claim on this page is approved for publication until corresponding entries ex
 
 ## Planned Internal Links
 
-- `en-bisulfid-vs-bisulfide` — The Missing Letter explained
-- `en-sulfid-vs-sulfide` — broader spelling pattern
-- `en-glossary` — full term glossary (future sprint)
-- `en-sources` — source discipline
+- `bisulfid_vs_bisulfide` — The Missing Letter explained
+- `sulfid_vs_sulfide` — broader spelling pattern
+- `bisulfide_hydrosulfide_sulfide` — bisulfide, hydrosulfide, and sulfide disambiguation
+- `german_english_chemical_terms` — German-English chemical nomenclature context
+- `glossary` — full term glossary
+- `sources` — source discipline
 
 ---
 
