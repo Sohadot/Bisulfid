@@ -76,3 +76,51 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 0B entry appended.
 
 **Not created in this sprint:** HTML pages, markdown content pages, templates, CSS, JS, scripts, GitHub Actions, package.json, dependencies, site/ output, placeholder content.
+
+---
+
+### 2026-05-15 — Sprint 0C: Multilingual Content Skeleton Established
+
+**Decision:** Create the governed multilingual content directory structure for EN, DE, AR, ZH, JA, FR, and ES, plus shared disclaimer, source-note, and canonical-claim folders.
+
+**Rationale:** Before any content work begins, the directory structure must exist in a governed state. Content directories make clear where files belong, what layer each language occupies, and that file presence is not the same as publication. The shared disclaimer folder establishes a controlled location for site-wide governance fragments that must be attached to pages before any route may pass the Quality Gate.
+
+**Doctrine reference:** `doctrine/MULTILINGUAL_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`
+
+**Files created:**
+
+- `main/content/README.md` — content directory governance document.
+- `main/content/en/pages/.gitkeep`
+- `main/content/en/term-records/.gitkeep`
+- `main/content/en/fragments/.gitkeep`
+- `main/content/de/pages/.gitkeep`
+- `main/content/de/term-records/.gitkeep`
+- `main/content/de/fragments/.gitkeep`
+- `main/content/ar/pages/.gitkeep`
+- `main/content/ar/term-records/.gitkeep`
+- `main/content/ar/fragments/.gitkeep`
+- `main/content/zh/pages/.gitkeep`
+- `main/content/zh/term-records/.gitkeep`
+- `main/content/zh/fragments/.gitkeep`
+- `main/content/ja/pages/.gitkeep`
+- `main/content/ja/term-records/.gitkeep`
+- `main/content/ja/fragments/.gitkeep`
+- `main/content/fr/pages/.gitkeep`
+- `main/content/fr/term-records/.gitkeep`
+- `main/content/fr/fragments/.gitkeep`
+- `main/content/es/pages/.gitkeep`
+- `main/content/es/term-records/.gitkeep`
+- `main/content/es/fragments/.gitkeep`
+- `main/content/shared/canonical-claims/.gitkeep`
+- `main/content/shared/source-notes/.gitkeep`
+- `main/content/shared/disclaimers/editorial-disclaimer.md` — draft, not attached to any route.
+- `main/content/shared/disclaimers/safety-disclaimer.md` — draft, not attached to any route.
+- `main/content/shared/disclaimers/translation-disclaimer.md` — draft, not attached to any route.
+- `main/content/shared/disclaimers/sponsorship-disclaimer.md` — draft, not attached to any route.
+- `main/content/shared/disclaimers/acquisition-disclaimer.md` — draft, not attached to any route.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 0C entry appended.
+
+**Not created in this sprint:** public content pages, index.md, route content files, templates, CSS, JS, scripts, GitHub Actions, package.json, dependencies, site/ output. No routes were published. No sitemap or navigation state was changed. No claims or sources were added.
