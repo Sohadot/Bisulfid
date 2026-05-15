@@ -1,0 +1,15 @@
+{
+  "version": "0.1.0",
+  "site": "bisulfid.com",
+  "governed_by": "doctrine/SOURCE_POLICY.md",
+  "status": "inactive",
+  "rule": "No market claim may be published without a verified source entry with publisher, date, and methodology in source_registry.json. All claims remain draft or pending_source until sources are locked.",
+  "blocked_claim_patterns": [
+    "unsourced market size",
+    "unsourced CAGR",
+    "unsourced production share",
+    "bisulfite market data used as bisulfide market data",
+    "company acquisition targeting"
+  ],
+  "claims": []
+}

@@ -1,0 +1,14 @@
+{
+  "version": "0.1.0",
+  "site": "bisulfid.com",
+  "governed_by": "doctrine/SOURCE_POLICY.md",
+  "status": "inactive",
+  "rule": "No safety claim may be published without a verified source entry in source_registry.json. Safety content is published as context only, not prescriptive advice. All claims remain draft or pending_source until sources are locked.",
+  "blocked_claim_patterns": [
+    "handling instructions",
+    "exposure thresholds as advice",
+    "emergency response instructions",
+    "dosage or medical advice"
+  ],
+  "claims": []
+}

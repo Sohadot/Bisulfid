@@ -1,0 +1,141 @@
+{
+  "version": "0.1.0",
+  "site": "bisulfid.com",
+  "governed_by": "doctrine/PROJECT_DOCTRINE.md",
+  "status": "planned",
+  "rule": "Edges represent planned semantic relationships between terms. No edge may be rendered as a factual claim in production without source validation.",
+  "edges": [
+    {
+      "edge_id": "bisulfid_bisulfide_spelling_boundary",
+      "from": "bisulfid",
+      "to": "bisulfide",
+      "relationship_type": "spelling_boundary",
+      "status": "planned",
+      "explanation": "Bisulfid (German) and bisulfide (English) are separated by the single letter E removed under German chemical nomenclature conventions. This spelling boundary is the conceptual foundation of bisulfid.com.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "medium"
+    },
+    {
+      "edge_id": "bisulfid_sulfid_german_english_boundary",
+      "from": "bisulfid",
+      "to": "sulfid",
+      "relationship_type": "german_english_boundary",
+      "status": "planned",
+      "explanation": "Bisulfid and Sulfid share the German chemical compression pattern: English -ide endings become German -id endings. Sulfide to Sulfid parallels Bisulfide to Bisulfid.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "low"
+    },
+    {
+      "edge_id": "bisulfide_sulfide_chemical_family",
+      "from": "bisulfide",
+      "to": "sulfide",
+      "relationship_type": "chemical_family",
+      "status": "planned",
+      "explanation": "Bisulfide is a member of the broader sulfide chemical family. The exact chemical relationship requires source validation before assertion.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "medium"
+    },
+    {
+      "edge_id": "bisulfide_hydrosulfide_chemical_family",
+      "from": "bisulfide",
+      "to": "hydrosulfide",
+      "relationship_type": "chemical_family",
+      "status": "planned",
+      "explanation": "Bisulfide and hydrosulfide are related chemical terms. Whether they are synonymous in some contexts requires source validation.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "medium"
+    },
+    {
+      "edge_id": "bisulfide_sodium_bisulfide_industrial_context",
+      "from": "bisulfide",
+      "to": "sodium_bisulfide",
+      "relationship_type": "industrial_context",
+      "status": "planned",
+      "explanation": "Sodium bisulfide is a key industrial compound in the bisulfide chemical family, used in mining, water treatment, and other industrial applications.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "high"
+    },
+    {
+      "edge_id": "sodium_bisulfide_sodium_hydrosulfide_chemical_family",
+      "from": "sodium_bisulfide",
+      "to": "sodium_hydrosulfide",
+      "relationship_type": "chemical_family",
+      "status": "planned",
+      "explanation": "Sodium bisulfide and sodium hydrosulfide are related names for NaHS. Whether they refer to the same compound and the naming conventions require source validation.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "high"
+    },
+    {
+      "edge_id": "bisulfide_hydrogen_sulfide_safety_disambiguation",
+      "from": "bisulfide",
+      "to": "hydrogen_sulfide",
+      "relationship_type": "safety_disambiguation",
+      "status": "planned",
+      "explanation": "Hydrogen sulfide (H2S) is chemically related to bisulfide chemistry but has a distinct and acute hazard profile. The safety context must not conflate bisulfide safety with H2S safety.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "high"
+    },
+    {
+      "edge_id": "bisulfide_bisulfite_not_same_as",
+      "from": "bisulfide",
+      "to": "bisulfite_disambiguation",
+      "relationship_type": "not_same_as",
+      "status": "planned",
+      "explanation": "Bisulfide and bisulfite are distinct chemical species. Bisulfite data must never be used as bisulfide data. This edge exists to enforce that boundary.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "medium"
+    },
+    {
+      "edge_id": "bisulfid_bisulfite_not_same_as",
+      "from": "bisulfid",
+      "to": "bisulfite_disambiguation",
+      "relationship_type": "not_same_as",
+      "status": "planned",
+      "explanation": "Bisulfid (German form) refers to bisulfide, not bisulfite. This edge reinforces the disambiguation at the center node level.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "medium"
+    },
+    {
+      "edge_id": "sulfide_disulfide_future_materials_context",
+      "from": "sulfide",
+      "to": "disulfide",
+      "relationship_type": "future_materials_context",
+      "status": "planned",
+      "explanation": "Disulfide is a related structural class within sulfide chemistry, with relevance to advanced materials, biochemistry, and future materials research.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "low"
+    },
+    {
+      "edge_id": "disulfide_molybdenum_disulfide_future_materials_context",
+      "from": "disulfide",
+      "to": "molybdenum_disulfide",
+      "relationship_type": "future_materials_context",
+      "status": "planned",
+      "explanation": "Molybdenum disulfide (MoS2) is a key industrial and advanced materials compound in the disulfide family, used in lubricants and electronics.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "low"
+    },
+    {
+      "edge_id": "sulfid_sulfide_german_english_boundary",
+      "from": "sulfid",
+      "to": "sulfide",
+      "relationship_type": "german_english_boundary",
+      "status": "planned",
+      "explanation": "Sulfid (German) and sulfide (English) represent the same German-English chemical compression boundary as bisulfid and bisulfide. This edge supports the asset's core linguistic argument.",
+      "source_required": true,
+      "source_ids": [],
+      "risk_level": "low"
+    }
+  ]
+}
