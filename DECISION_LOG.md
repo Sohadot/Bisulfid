@@ -239,3 +239,55 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 1 entry appended.
 
 **Not created in this sprint:** public content pages, real index.html, published routes, sitemap URLs, GitHub Actions, package.json, external dependencies, deployment config, Cloudflare config, visual UI, animations, inline JS, external scripts, tracking.
+
+---
+
+### 2026-05-15 — Sprint 2: English Source Drafts Established
+
+**Decision:** Create the first non-public English source-layer draft pages for the homepage, Bisulfid definition, spelling boundary, German-English sulfur terminology, source discipline, and strategic acquisition surface.
+
+**Rationale:** Before any route can be considered for publication, draft content must exist in a governed state. Draft pages establish what each route will say, identify which claims require source-locking, and provide reviewable material for the source registry population sprint. Draft presence is not publication — no route was published, no claim was approved, no source was added.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 2 constraints (all observed):**
+- No route was published.
+- No sitemap or navigation state was changed.
+- No claims were approved.
+- No sources were added.
+- No fake source citations were included.
+- No external links were included as verified.
+- No numerical market claims were stated as verified.
+- No specific companies were named as acquisition targets.
+- No chemical handling instructions were included.
+- No medical or therapeutic advice was included.
+- No safety thresholds were included.
+- Bisulfid and bisulfite were not conflated.
+- routes.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- source_registry.json was not modified.
+- Claim files were not modified.
+- README.md was not modified.
+- No HTML output was created.
+- No dependencies were added.
+- No GitHub Actions were created.
+- All draft pages carry `status: draft` and `publication_status: non_public`.
+- All draft pages carry `indexable: false` and `in_sitemap: false`.
+- Claims requiring source-locking are marked `[SOURCE REQUIRED]` inline.
+
+**Files created:**
+
+- `main/content/en/README.md` — English source layer governance document.
+- `main/content/en/pages/index.md` — homepage draft; Global Sovereign Sulfur Intelligence Gateway positioning; six strategic layers; language architecture; Interactive Term Map as planned future interface; link intent by route_id.
+- `main/content/en/pages/what-is-bisulfid.md` — defines Bisulfid as the central term; domain thesis vs chemical definition; center-node position; disambiguation from bisulfite; German-form spelling boundary.
+- `main/content/en/pages/bisulfid-vs-bisulfide.md` — The Missing Letter; bisulfide→bisulfid; English vs German spelling boundary; E is not missing; asset architecture.
+- `main/content/en/pages/sulfid-vs-sulfide.md` — broader -id/-ide suffix pattern; Oxide/Oxid and Chloride/Chlorid examples (all [SOURCE REQUIRED]); supports German identity layer.
+- `main/content/en/pages/sources.md` — source discipline; no source entry = no published claim; blocked source types; registry not yet populated; draft content is not public evidence.
+- `main/content/en/pages/acquire.md` — strategic acquisition surface; what a buyer acquires; no price; no urgency; no named targets; contact agent@sohadot.com.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 2 entry appended.
+
+**Not created in this sprint:** HTML output, published pages, sitemap entries, navigation items, source entries, approved claims, GitHub Actions, dependencies, package.json, route modifications.
