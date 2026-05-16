@@ -739,3 +739,58 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 4A entry appended.
 
 **Not modified in this sprint:** routes.json, sitemap_policy.json, navigation.json, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json, ontology files, content draft pages, templates, scripts, doctrine files, root README.md.
+
+---
+
+### 2026-05-16 — Sprint 4B: Formal German Nomenclature Source Search Completed
+
+**Decision:** Evaluate stronger German nomenclature sources for the `-id` pattern behind the `sulfid_vs_sulfide` draft and document the source-category gap for academic teaching and textbook/book-chapter materials.
+
+**Summary:** Sprint 4B evaluated stronger German nomenclature sources for the -id pattern behind the sulfid-vs-sulfide draft. No sources were added because the evaluated German academic teaching and book/chapter sources do not fit an existing governed source category without inventing or stretching the registry taxonomy. No formal German suffix rule was claimed. No claims were approved. No routes were published. No content pages were modified. The sulfid-vs-sulfide draft remains non-public until source-locking and claim approval are completed.
+
+**Rationale:** Sprint 4A established lexical candidate support for `Sulfid`, `Oxid`, and `Chlorid`, but did not close the formal German nomenclature gap. Sprint 4B searched for stronger German support and found potentially useful academic or teaching sources, but the current source registry categories do not include academic teaching PDFs, textbook chapters, or book chapters as governed source types unless they qualify as formal chemical nomenclature standards or peer-reviewed journals. No new category was created.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4B constraints (all observed):**
+- source_registry.json was not modified.
+- No unsupported source category was invented.
+- No source was added, so no source was marked final, locked, approved, verified, or public-ready.
+- terminology_claims.json was not modified.
+- No claim was approved.
+- Claim registries remain inactive.
+- No market_claims, safety_claims, science_claims, industry_claims, or acquisition_claims files were modified.
+- sulfur_terms.json was not modified.
+- routes.json was not modified.
+- All routes remain planned.
+- No route has indexable: true or in_sitemap: true.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- No content pages were modified.
+- No [SOURCE REQUIRED] markers were removed.
+- No generated HTML pages were created.
+- No dependencies or workflows were created.
+- Root README.md was not modified.
+- No Wikipedia or AI summary sources were used as sources.
+- No market data, Gulf data, Morocco data, China data, production data, trade data, CAGR data, or market-share data was added.
+- No acquisition-target company claims were added.
+- This sprint does not constitute publication readiness.
+
+**Sources evaluated but not added:**
+
+- `SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR` — academic/teaching PDF; category not currently governed.
+- `SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN` — university teaching PDF; category not currently governed.
+- `SRC-SPRINGER-JANDER-ANORGANISCHE-NOMENKLATUR-ID` — book/chapter or textbook material; category not currently governed.
+- `SRC-IUPAC-BRIEF-GUIDE-INORGANIC-2005` — English IUPAC nomenclature context only; not distinct German suffix-rule authority beyond the Sprint 4A IUPAC context source.
+
+**Claims added:** None.
+
+**Files created:**
+
+- `main/data/GERMAN_NOMENCLATURE_SOURCE_SEARCH_REPORT.md` — Sprint 4B source-search report documenting evaluated sources, category gap, formal-source status, and publication readiness.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 4B entry appended.
+
+**Not modified in this sprint:** source_registry.json, terminology_claims.json, routes.json, sitemap_policy.json, navigation.json, ontology files, content draft pages, templates, scripts, doctrine files, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
