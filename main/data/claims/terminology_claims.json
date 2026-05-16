@@ -125,6 +125,89 @@
       "risk_level": "medium",
       "last_reviewed": "2026-05-16",
       "notes": "Candidate usage claim only. Not approved for publication. Stronger source-locking required before removing source-required markers."
+    },
+    {
+      "claim_id": "CLM-TERM-OXID-001",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "Duden records Oxid as a German lexical entry.",
+      "source_ids": ["SRC-DUDEN-OXID"],
+      "related_terms": ["oxid", "oxide"],
+      "related_routes": ["sulfid_vs_sulfide", "german_english_chemical_terms"],
+      "allowed_pages": ["sulfid_vs_sulfide", "german_english_chemical_terms"],
+      "prohibited_uses": [
+        "formal nomenclature authority",
+        "universal suffix rule",
+        "market claims",
+        "safety instructions",
+        "medical claims",
+        "industrial procurement claims"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-05-16",
+      "notes": "Candidate lexical support only. Does not approve a universal German -ide to -id rule."
+    },
+    {
+      "claim_id": "CLM-TERM-CHLORID-001",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "Duden records Chlorid as a German lexical entry.",
+      "source_ids": ["SRC-DUDEN-CHLORID"],
+      "related_terms": ["chlorid", "chloride"],
+      "related_routes": ["sulfid_vs_sulfide", "german_english_chemical_terms"],
+      "allowed_pages": ["sulfid_vs_sulfide", "german_english_chemical_terms"],
+      "prohibited_uses": [
+        "formal nomenclature authority",
+        "universal suffix rule",
+        "market claims",
+        "safety instructions",
+        "medical claims",
+        "industrial procurement claims"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-05-16",
+      "notes": "Candidate lexical support only. Does not approve a universal German -ide to -id rule."
+    },
+    {
+      "claim_id": "CLM-TERM-GERMAN-ID-PATTERN-001",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "Duden lexical entries for Sulfid, Oxid, and Chlorid provide candidate support for presenting these German -id forms as a cautious lexical comparison set.",
+      "source_ids": ["SRC-DUDEN-SULFID", "SRC-DUDEN-OXID", "SRC-DUDEN-CHLORID"],
+      "related_terms": ["sulfid", "sulfide", "oxid", "oxide", "chlorid", "chloride"],
+      "related_routes": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "allowed_pages": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "prohibited_uses": [
+        "formal DIN rule",
+        "formal IUPAC German rule",
+        "universal suffix transformation claim",
+        "market claims",
+        "safety instructions",
+        "medical claims"
+      ],
+      "risk_level": "medium",
+      "last_reviewed": "2026-05-16",
+      "notes": "This claim may support a cautious lexical comparison only. Stronger nomenclature or educational source required before public wording can state a general rule."
+    },
+    {
+      "claim_id": "CLM-TERM-ENGLISH-IDE-CONTEXT-001",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "IUPAC inorganic nomenclature material provides English-language context for -ide naming in inorganic chemistry where directly supported.",
+      "source_ids": ["SRC-IUPAC-INORGANIC-NOMENCLATURE-1971"],
+      "related_terms": ["sulfide", "chloride", "bisulfide"],
+      "related_routes": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "allowed_pages": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "prohibited_uses": [
+        "German spelling authority",
+        "German suffix compression rule",
+        "market claims",
+        "safety instructions",
+        "medical claims"
+      ],
+      "risk_level": "medium",
+      "last_reviewed": "2026-05-16",
+      "notes": "English nomenclature context only. Not a German source."
     }
   ]
 }

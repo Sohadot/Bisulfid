@@ -134,6 +134,93 @@
       "notes": "Duden dictionary entry for 'Sulfid'. Establishes German-language lexical existence of the -id suffix form. Supports the sulfid term record and the German-English spelling boundary thesis."
     },
     {
+      "source_id": "SRC-DUDEN-OXID",
+      "category": "authoritative_dictionary",
+      "publisher": "Duden",
+      "title": "Oxid — Rechtschreibung, Bedeutung, Definition, Herkunft",
+      "url": "https://www.duden.de/rechtschreibung/Oxid",
+      "language": "de",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-16",
+      "use_for": [
+        "German lexical entry for Oxid",
+        "candidate support that Oxid is a German chemical-language form",
+        "cautious example in the Oxide/Oxid spelling comparison"
+      ],
+      "do_not_use_for": [
+        "formal German chemical nomenclature standard",
+        "universal suffix transformation rule",
+        "market data",
+        "safety advice",
+        "industrial usage claims",
+        "medical claims"
+      ],
+      "risk_notes": [
+        "Dictionary source only; supports lexical form, not formal nomenclature authority.",
+        "Do not use alone to claim a universal German -ide to -id rule."
+      ],
+      "notes": "Duden dictionary entry for 'Oxid'. Candidate lexical support only for cautious German-English spelling comparison."
+    },
+    {
+      "source_id": "SRC-DUDEN-CHLORID",
+      "category": "authoritative_dictionary",
+      "publisher": "Duden",
+      "title": "Chlorid — Rechtschreibung, Bedeutung, Definition, Herkunft",
+      "url": "https://www.duden.de/rechtschreibung/Chlorid",
+      "language": "de",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-16",
+      "use_for": [
+        "German lexical entry for Chlorid",
+        "candidate support that Chlorid is a German chemical-language form",
+        "cautious example in the Chloride/Chlorid spelling comparison"
+      ],
+      "do_not_use_for": [
+        "formal German chemical nomenclature standard",
+        "universal suffix transformation rule",
+        "market data",
+        "safety advice",
+        "industrial usage claims",
+        "medical claims"
+      ],
+      "risk_notes": [
+        "Dictionary source only; supports lexical form, not formal nomenclature authority.",
+        "Do not use alone to claim a universal German -ide to -id rule."
+      ],
+      "notes": "Duden dictionary entry for 'Chlorid'. Candidate lexical support only for cautious German-English spelling comparison."
+    },
+    {
+      "source_id": "SRC-IUPAC-INORGANIC-NOMENCLATURE-1971",
+      "category": "chemical_nomenclature_standard",
+      "publisher": "IUPAC / Pure and Applied Chemistry",
+      "title": "Nomenclature of Inorganic Chemistry",
+      "url": "https://publications.iupac.org/pac/pdf/1971/pdf/2801x0001.pdf",
+      "language": "en",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-16",
+      "use_for": [
+        "English inorganic nomenclature context",
+        "cautious support for English -ide naming context where directly stated",
+        "comparison context for English terms such as chloride and sulfide"
+      ],
+      "do_not_use_for": [
+        "German -id spelling rule",
+        "German nomenclature authority",
+        "market data",
+        "safety advice",
+        "industrial usage claims",
+        "medical claims"
+      ],
+      "risk_notes": [
+        "Historical IUPAC nomenclature source; useful for English nomenclature context only.",
+        "Must not be used to prove German spelling compression."
+      ],
+      "notes": "IUPAC inorganic nomenclature material. Candidate English nomenclature context only; not a German-language suffix authority."
+    },
+    {
       "source_id": "SRC-IUPAC-HYDROSULFIDES",
       "category": "chemical_nomenclature_standard",
       "publisher": "IUPAC Gold Book",

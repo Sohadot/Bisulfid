@@ -678,3 +678,64 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 3D entry appended.
 
 **Not modified in this sprint:** source_registry.json, routes.json, sitemap_policy.json, navigation.json, claim registries, ontology files, templates, scripts, doctrine files, root README.md. No other content pages were modified.
+
+---
+
+### 2026-05-16 — Sprint 4A: German Suffix Pattern Candidate Sources Added
+
+**Decision:** Add candidate lexical source support for German `Oxid` and `Chlorid`, align those sources with existing `Sulfid` support as a cautious German `-id` lexical comparison set, and add English IUPAC nomenclature context as candidate support only.
+
+**Summary:** Sprint 4A added candidate lexical source support for German Oxid and Chlorid and aligned these with existing Sulfid support as a cautious German -id lexical comparison set. No formal German suffix rule was claimed. No claims were approved. No routes were published. No content pages were modified. The sulfid-vs-sulfide draft remains blocked until stronger nomenclature source-locking is completed.
+
+**Rationale:** Sprint 3C identified `sulfid_vs_sulfide` as the most blocked draft page because its Oxide/Oxid and Chloride/Chlorid examples lacked registered source and claim support. Duden dictionary entries can support individual German lexical forms, but not a formal chemical nomenclature rule. The IUPAC 1971 source can provide English `-ide` nomenclature context only and cannot prove a German suffix-compression rule.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4A constraints (all observed):**
+- No route was published.
+- No route status, indexable, in_sitemap, or in_navigation value was changed.
+- routes.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- No claim was approved. All new claims remain pending_review.
+- Claim registries remain inactive.
+- No [SOURCE REQUIRED] marker was removed from any content page.
+- No content pages were created or modified.
+- No ontology term was marked verified.
+- No market_claims, safety_claims, science_claims, industry_claims, or acquisition_claims files were modified.
+- No market data was added.
+- No Gulf, Morocco, China, production, trade, CAGR, or market-share data was added.
+- No acquisition-target company claims were added.
+- Root README.md was not modified.
+- Templates were not modified.
+- No generated HTML route pages were created.
+- No dependencies were added.
+- No GitHub Actions workflows were created.
+- No Wikipedia or AI summary sources were used.
+- No formal German suffix rule source was found.
+- This sprint does not constitute publication readiness.
+
+**Sources added (3):**
+
+- `SRC-DUDEN-OXID` — authoritative_dictionary — Duden — Oxid.
+- `SRC-DUDEN-CHLORID` — authoritative_dictionary — Duden — Chlorid.
+- `SRC-IUPAC-INORGANIC-NOMENCLATURE-1971` — chemical_nomenclature_standard — IUPAC / Pure and Applied Chemistry — Nomenclature of Inorganic Chemistry.
+
+**Terminology claims added (4):**
+
+- `CLM-TERM-OXID-001` — pending_review lexical claim for Oxid.
+- `CLM-TERM-CHLORID-001` — pending_review lexical claim for Chlorid.
+- `CLM-TERM-GERMAN-ID-PATTERN-001` — pending_review cautious lexical comparison-set claim for Sulfid, Oxid, and Chlorid.
+- `CLM-TERM-ENGLISH-IDE-CONTEXT-001` — pending_review English -ide nomenclature context claim.
+
+**Files created:**
+
+- `main/data/SULFID_SUFFIX_SOURCE_REPORT.md` — Sprint 4A source report and publication readiness conclusion.
+
+**Files updated:**
+
+- `main/data/sources/source_registry.json` — Duden Oxid, Duden Chlorid, and IUPAC 1971 candidate sources added.
+- `main/data/claims/terminology_claims.json` — four pending_review terminology claims added.
+- `DECISION_LOG.md` — Sprint 4A entry appended.
+
+**Not modified in this sprint:** routes.json, sitemap_policy.json, navigation.json, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json, ontology files, content draft pages, templates, scripts, doctrine files, root README.md.
