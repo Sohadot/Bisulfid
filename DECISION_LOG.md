@@ -1051,3 +1051,48 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 4G entry appended.
 
 **Not modified in this sprint:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, source_registry.json, terminology_claims.json, sulfur_terms.json, content pages, templates, scripts, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
+---
+
+### 2026-05-16 — German-English Chemical Terms Non-Public Draft Created
+
+**Decision:** Create the missing English draft page for `german_english_chemical_terms` as a terminology-control file aligned with Sprint 4G route/content path findings, without changing route metadata, link registries, or claim state.
+
+**Summary:** Sprint 4H created the missing non-public English draft for `german_english_chemical_terms` at `main/content/en/pages/german-english-chemical-terms.md`. The route remains planned, indexable remains false, sitemap inclusion remains false, and the draft is not publication-ready. No claims were approved. No source entries were modified. No routes or internal links were changed. [SOURCE REQUIRED] markers remain in place.
+
+**Rationale:** Sprint 4G diagnosed a missing `content_file` at the governed path while `routes.json` already pointed to it. Adding the draft file closes that gap for future source-locking and Quality Gate work. The page is explicitly non-public, cautious, and marked with [SOURCE REQUIRED] where factual support is not yet approved; academic teaching sources are not conflated with DIN or official German IUPAC authority, and no universal English-to-German suffix rule is asserted as fact.
+
+**Doctrine reference:** `doctrine/PROJECT_DOCTRINE.md`, `doctrine/MULTILINGUAL_POLICY.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4H constraints (all observed):**
+- `main/content/en/pages/german-english-chemical-terms.md` was created with required frontmatter.
+- routes.json was not modified.
+- internal_links.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- hreflang_groups.json was not modified.
+- translation_registry.json was not modified.
+- source_registry.json was not modified.
+- terminology_claims.json was not modified.
+- sulfur_terms.json was not modified.
+- No [SOURCE REQUIRED] markers were removed from any page.
+- No claim was approved.
+- Claim registries remain inactive.
+- All routes remain planned.
+- No route has indexable: true or in_sitemap: true.
+- No generated HTML pages were created.
+- No dependencies or workflows were created.
+- Root README.md was not modified.
+- No market, safety, medical, procurement, handling, or acquisition claims were added.
+- This sprint does not constitute publication readiness.
+
+**Files created:**
+
+- `main/content/en/pages/german-english-chemical-terms.md` — non-public terminology-control draft for `german_english_chemical_terms`.
+- `main/data/GERMAN_ENGLISH_TERMS_DRAFT_CREATION_REPORT.md` — sprint record and remaining blockers.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 4H entry appended.
+
+**Not modified in this sprint:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, source_registry.json, terminology_claims.json, sulfur_terms.json, templates, scripts, other content draft pages (except the new file listed above), root README.md, package files, workflows, generated output, ontology files, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
