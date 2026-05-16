@@ -32,6 +32,22 @@
       "status": "seeded",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-05-15",
+      "use_for": [
+        "English lexical entry for bisulfide",
+        "cautious terminology and spelling context",
+        "first-known-use or etymology context only if directly supported by the source"
+      ],
+      "do_not_use_for": [
+        "chemical safety",
+        "industrial usage",
+        "market data",
+        "medical claims",
+        "German terminology"
+      ],
+      "risk_notes": [
+        "Dictionary source only; not a chemical safety, regulatory, industrial, or market authority.",
+        "Do not use to validate handling, procurement, exposure, medical, or market claims."
+      ],
       "notes": "Merriam-Webster dictionary entry for 'bisulfide'. Establishes English-language lexical existence of the term."
     },
     {
@@ -44,6 +60,21 @@
       "status": "seeded",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-05-15",
+      "use_for": [
+        "English lexical entry for sulfide",
+        "cautious terminology and spelling context",
+        "first-known-use or etymology context only if directly supported by the source"
+      ],
+      "do_not_use_for": [
+        "chemical safety",
+        "industrial usage",
+        "market data",
+        "medical claims"
+      ],
+      "risk_notes": [
+        "Dictionary source only; not a chemical safety, regulatory, industrial, or market authority.",
+        "Do not use to validate handling, procurement, exposure, medical, or market claims."
+      ],
       "notes": "Merriam-Webster dictionary entry for 'sulfide'. Establishes English-language lexical existence of the parent chemical family term."
     },
     {
@@ -56,6 +87,22 @@
       "status": "seeded",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-05-15",
+      "use_for": [
+        "English lexical entry for bisulfite",
+        "disambiguation between bisulfite and bisulfide",
+        "evidence that bisulfite is a separate lexical entry from bisulfide"
+      ],
+      "do_not_use_for": [
+        "bisulfide chemistry",
+        "bisulfide market data",
+        "chemical safety",
+        "industrial conclusions",
+        "medical claims"
+      ],
+      "risk_notes": [
+        "Use only for disambiguation.",
+        "Must never be used as evidence for bisulfide, hydrosulfide, or sulfide claims."
+      ],
       "notes": "Merriam-Webster dictionary entry for 'bisulfite'. Supports disambiguation: bisulfite is a distinct compound from bisulfide. Required for bisulfite_disambiguation term record."
     },
     {
@@ -68,6 +115,22 @@
       "status": "seeded",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-05-15",
+      "use_for": [
+        "German spelling confirmation for Sulfid",
+        "German-language term identity",
+        "linguistic support for the German identity layer"
+      ],
+      "do_not_use_for": [
+        "English bisulfide claims",
+        "market data",
+        "chemical safety",
+        "industrial usage claims",
+        "medical claims"
+      ],
+      "risk_notes": [
+        "German dictionary source only; not a chemical safety, industrial, or market authority.",
+        "Supports linguistic identity, not industrial proof."
+      ],
       "notes": "Duden dictionary entry for 'Sulfid'. Establishes German-language lexical existence of the -id suffix form. Supports the sulfid term record and the German-English spelling boundary thesis."
     },
     {
@@ -81,6 +144,22 @@
       "status": "seeded",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-05-15",
+      "use_for": [
+        "controlled nomenclature context for hydrosulfides",
+        "source-locked explanation of IUPAC terminology context",
+        "terminology relationship between hydrosulfide/hydrosulfides where directly supported"
+      ],
+      "do_not_use_for": [
+        "market data",
+        "safety instructions",
+        "medical claims",
+        "unsupported industrial use claims",
+        "procurement advice"
+      ],
+      "risk_notes": [
+        "Nomenclature source only.",
+        "Do not convert nomenclature context into safety, medical, industrial, or market claims."
+      ],
       "notes": "IUPAC Gold Book entry for hydrosulfides. Authoritative chemical nomenclature standard establishing the hydrosulfide term and its relationship to bisulfide chemistry."
     },
     {
@@ -93,6 +172,22 @@
       "status": "seeded",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-05-15",
+      "use_for": [
+        "chemical identity context for hydrosulfide",
+        "formula or database identity where directly supported by PubChem",
+        "candidate support for HS- identity references"
+      ],
+      "do_not_use_for": [
+        "public handling instructions",
+        "medical advice",
+        "market data",
+        "exposure thresholds as advice",
+        "procurement language"
+      ],
+      "risk_notes": [
+        "Database identity source; not a substitute for safety guidance or regulatory advice.",
+        "Do not use hazard fields, if present, as prescriptive handling instructions."
+      ],
       "notes": "PubChem (NIH) compound record for Hydrosulfide. Government scientific database entry supporting chemical identity claim."
     },
     {
@@ -105,6 +200,22 @@
       "status": "seeded",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-05-15",
+      "use_for": [
+        "chemical identity context for sodium hydrosulfide / NaHS",
+        "formula or database identity where directly supported by PubChem",
+        "synonym context only if directly supported by PubChem fields"
+      ],
+      "do_not_use_for": [
+        "procurement advice",
+        "handling instructions",
+        "safety thresholds as advice",
+        "market data",
+        "final sodium bisulfide equivalence without additional source-locking"
+      ],
+      "risk_notes": [
+        "Candidate support only for sodium hydrosulfide / NaHS identity.",
+        "Mapping to sodium bisulfide remains candidate and requires dedicated source review before publication."
+      ],
       "notes": "PubChem (NIH) compound record for Sodium hydrosulfide (NaHS). Supports both sodium_hydrosulfide and sodium_bisulfide term records as candidate synonym/identity source."
     },
     {
@@ -117,6 +228,21 @@
       "status": "seeded",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-05-15",
+      "use_for": [
+        "chemical identity context for hydrogen sulfide",
+        "formula and molecular identity where directly supported by NIST"
+      ],
+      "do_not_use_for": [
+        "safety advice",
+        "exposure thresholds",
+        "emergency response",
+        "market data",
+        "medical claims"
+      ],
+      "risk_notes": [
+        "Chemistry database source; not a safety guidance source.",
+        "Do not use to generate handling or emergency advice."
+      ],
       "notes": "NIST Chemistry WebBook entry for Hydrogen sulfide (H2S, CAS 7783-06-4). Government scientific database supporting hydrogen_sulfide term record."
     }
   ]

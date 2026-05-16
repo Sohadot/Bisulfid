@@ -481,3 +481,34 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 3 entry appended.
 
 **Not modified in this sprint:** routes.json, sitemap_policy.json, navigation.json, market_claims.json, safety_claims.json, industry_claims.json, acquisition_claims.json, content draft pages, templates, scripts, doctrine files, root README.md.
+
+---
+
+### 2026-05-16 — Sprint 3 Patch: Source Governance Fields Completed
+
+**Decision:** Add structured `use_for`, `do_not_use_for`, and `risk_notes` fields to all eight seeded source entries in `source_registry.json`.
+
+**Summary:** Sprint 3 patch added structured use_for, do_not_use_for, and risk_notes fields to all seeded source entries, preserving candidate status and non-public claim state.
+
+**Rationale:** Pre-merge review identified that the source schema required three structured governance fields per entry. The original Sprint 3 commit used a single freeform `notes` field. This patch adds the three required fields as arrays of strings to all 8 entries. The `notes` field was retained alongside the new structured fields. No source status, claim status, ontology term status, routes, content pages, or publication state was changed.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`
+
+**Patch constraints (all observed):**
+- Only `main/data/sources/source_registry.json` and `DECISION_LOG.md` were modified.
+- No claim files were modified.
+- No ontology files were modified.
+- No routes were modified.
+- No content pages were modified.
+- All source entries retain `status: seeded`.
+- All source entries retain `source_lock_status: candidate`.
+- No new sources were added.
+- No sources were removed.
+- No claim was approved.
+- No public route or sitemap state was changed.
+- No dependencies, workflows, generated output, or README modifications.
+
+**Files updated:**
+
+- `main/data/sources/source_registry.json` — `use_for`, `do_not_use_for`, and `risk_notes` arrays added to all 8 source entries.
+- `DECISION_LOG.md` — Sprint 3 patch entry appended.
