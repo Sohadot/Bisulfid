@@ -1192,3 +1192,48 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 4J entry appended.
 
 **Not modified in this sprint:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, source_registry.json, terminology_claims.json, sulfur_terms.json, templates, scripts, other existing content draft pages (except the three new files listed above), root README.md, package files, workflows, generated output, ontology files, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
+---
+
+### 2026-05-16 — Terminology Reference Spine Batch 1 Completion Patch
+
+**Decision:** Close Sprint 4J pre-merge acceptance gaps by expanding terminology spine draft coverage and report inventory accounting without publishing routes, changing registries, or removing [SOURCE REQUIRED] markers.
+
+**Summary:** This patch completed the Sprint 4J reference-spine acceptance gaps by expanding the glossary term coverage, strengthening the sulfur compound scope map, preserving the bisulfite disambiguation boundary in the bisulfide/hydrosulfide/sulfide draft, and completing the Sprint 4J report with the remaining missing draft count. No routes were published. No claims were approved. No registries or route records were modified. [SOURCE REQUIRED] markers remain in place.
+
+**Rationale:** Initial batch 4J drafts met governance scope but lacked full controlled-term tables, explicit scope-map sections, dedicated non-claim and registry-status sections on the disambiguation page, bisulfite separation language, and explicit 14/3/11 missing-draft accounting in the sprint report.
+
+**Doctrine reference:** `doctrine/PROJECT_DOCTRINE.md`, `doctrine/MULTILINGUAL_POLICY.md`, `doctrine/QUALITY_GATE.md`
+
+**Patch constraints (all observed):**
+- Only the three spine drafts, `TERMINOLOGY_REFERENCE_SPINE_BATCH_1_REPORT.md`, and `DECISION_LOG.md` were edited for this patch.
+- routes.json was not modified.
+- internal_links.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- hreflang_groups.json was not modified.
+- translation_registry.json was not modified.
+- source_registry.json was not modified.
+- terminology_claims.json was not modified.
+- sulfur_terms.json was not modified.
+- No [SOURCE REQUIRED] markers were removed from any page.
+- No claim was approved.
+- Claim registries remain inactive.
+- All routes remain planned.
+- No route has indexable: true or in_sitemap: true.
+- No generated HTML pages were created.
+- No dependencies or workflows were created.
+- Root README.md was not modified.
+- No market, safety-handling, medical, procurement, production, trade, CAGR, market-share, or acquisition-target content was added.
+- No raw URLs or publication-assuming links were added.
+- This patch does not constitute publication readiness.
+
+**Files updated:**
+
+- `main/content/en/pages/glossary.md` — expanded controlled term table and distinction rules.
+- `main/content/en/pages/sulfur-compounds.md` — expanded terminology groups and teaching vs authority section.
+- `main/content/en/pages/bisulfide-hydrosulfide-sulfide.md` — bisulfite boundary; what this page does not claim; source and claim status.
+- `main/data/TERMINOLOGY_REFERENCE_SPINE_BATCH_1_REPORT.md` — spine vs generic framing; 11 remaining missing drafts; blockers; no publication recommendation.
+- `DECISION_LOG.md` — this patch entry appended.
+
+**Not modified in this patch:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, source_registry.json, terminology_claims.json, sulfur_terms.json, templates, other content draft pages outside the three spine files above, root README.md, package files, workflows, generated output, ontology files, claim data JSON beyond those listed, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
