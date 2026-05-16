@@ -842,3 +842,53 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 4C entry appended.
 
 **Not modified in this sprint:** SOURCE_POLICY.md, source_registry.json, terminology_claims.json, routes.json, sitemap_policy.json, navigation.json, ontology files, content draft pages, templates, scripts, doctrine files, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
+---
+
+### 2026-05-16 — Sprint 4D: Controlled Academic Teaching Source Category Implemented
+
+**Decision:** Implement a narrow governed source category named `academic_teaching_reference`.
+
+**Summary:** Sprint 4D implemented a narrow governed source category named academic_teaching_reference. The category is candidate-only and may support source-search review or cautious educational terminology context, but it cannot serve as formal nomenclature authority, cannot approve claims alone, cannot publish routes, and cannot remove [SOURCE REQUIRED] markers by itself. No source entries were added. No claims were added or approved. No routes were published. No content pages were modified.
+
+**Rationale:** Sprint 4B identified useful German academic/teaching/book sources that did not fit existing source categories, and Sprint 4C recommended a narrow controlled category rather than a broad educational catch-all. Sprint 4D implements the category-level governance needed before any future sprint evaluates specific academic teaching sources.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4D constraints (all observed):**
+- SOURCE_POLICY.md was modified only to add the governed `academic_teaching_reference` category and its constraints.
+- source_registry.json remains valid JSON.
+- `academic_teaching_reference` was added to the governed source categories.
+- No source entries were added.
+- No existing source entry status was changed.
+- No source was marked final, locked, approved, verified, or public-ready.
+- terminology_claims.json was not modified.
+- No claim entries were added.
+- No claim was approved.
+- Claim registries remain inactive.
+- routes.json was not modified.
+- All routes remain planned.
+- No route has indexable: true or in_sitemap: true.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- sulfur_terms.json was not modified.
+- No content pages were modified.
+- No [SOURCE REQUIRED] markers were removed.
+- No generated HTML pages were created.
+- No dependencies or workflows were created.
+- Root README.md was not modified.
+- No market data or acquisition-target company claims were added.
+- No actual FH Münster, Rostock, Springer/Jander, or other source entries were added.
+- This sprint does not constitute publication readiness.
+
+**Files created:**
+
+- `main/data/ACADEMIC_SOURCE_CATEGORY_IMPLEMENTATION_REPORT.md` — implementation report for the controlled academic teaching source category.
+
+**Files updated:**
+
+- `doctrine/SOURCE_POLICY.md` — `academic_teaching_reference` added as a governed candidate-only category with constraints.
+- `main/data/sources/source_registry.json` — `academic_teaching_reference` added to `source_categories`; no source entries added.
+- `DECISION_LOG.md` — Sprint 4D entry appended.
+
+**Not modified in this sprint:** terminology_claims.json, routes.json, sitemap_policy.json, navigation.json, ontology files, content draft pages, templates, scripts, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.

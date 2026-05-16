@@ -11,7 +11,8 @@
     "regulatory_body",
     "peer_reviewed_journal",
     "industry_publication",
-    "market_report"
+    "market_report",
+    "academic_teaching_reference"
   ],
   "blocked_source_uses": [
     "bisulfite_data_as_bisulfide_data",
