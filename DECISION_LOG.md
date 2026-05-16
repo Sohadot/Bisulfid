@@ -794,3 +794,51 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 4B entry appended.
 
 **Not modified in this sprint:** source_registry.json, terminology_claims.json, routes.json, sitemap_policy.json, navigation.json, ontology files, content draft pages, templates, scripts, doctrine files, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
+---
+
+### 2026-05-16 — Sprint 4C: Source Category Governance Expansion Reviewed
+
+**Decision:** Review whether Bisulfid should later expand its source governance system to include academic teaching references, textbook references, or technical educational references.
+
+**Summary:** Sprint 4C reviewed whether Bisulfid should expand its source governance system to include academic teaching references, textbook references, or technical educational references. No source category was added. No source was added. No claim was added or approved. No route was published. No content page was modified. The sprint produced a governance review report to guide a future implementation decision.
+
+**Rationale:** Sprint 4B identified useful German academic/teaching/book sources for the `-id` nomenclature pattern, but those sources were not added because current source categories do not govern those source types. Sprint 4C evaluates whether a future controlled category could preserve useful instructional evidence without weakening source discipline or treating teaching material as formal nomenclature authority.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4C constraints (all observed):**
+- `SOURCE_CATEGORY_GOVERNANCE_REVIEW.md` was created.
+- SOURCE_POLICY.md was not modified.
+- source_registry.json was not modified.
+- No source category was added.
+- No source entries were added.
+- terminology_claims.json was not modified.
+- No claim entries were added.
+- No claim was approved.
+- Claim registries remain inactive.
+- routes.json was not modified.
+- All routes remain planned.
+- No route has indexable: true or in_sitemap: true.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- sulfur_terms.json was not modified.
+- No content pages were modified.
+- No [SOURCE REQUIRED] markers were removed.
+- No generated HTML pages were created.
+- No dependencies or workflows were created.
+- Root README.md was not modified.
+- No market data or acquisition-target company claims were added.
+- This sprint does not constitute publication readiness.
+
+**Recommendation:** Add no category in Sprint 4C. Consider a future narrow `academic_teaching_reference` category, with a separate `textbook_reference` category or sub-scope only if explicit safeguards are implemented first. Any such category should remain candidate-only by default and should not approve claims alone or prove formal nomenclature authority.
+
+**Files created:**
+
+- `main/data/SOURCE_CATEGORY_GOVERNANCE_REVIEW.md` — governance review report for possible future source category expansion.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 4C entry appended.
+
+**Not modified in this sprint:** SOURCE_POLICY.md, source_registry.json, terminology_claims.json, routes.json, sitemap_policy.json, navigation.json, ontology files, content draft pages, templates, scripts, doctrine files, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
