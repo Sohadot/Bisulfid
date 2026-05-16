@@ -595,7 +595,7 @@ Each entry includes:
 - No claim uses out-of-scope source material (no market data, safety advice, medical claims, or bisulfite data used as bisulfide data).
 - No ontology term is marked verified.
 - bisulfid center node remains planned with candidate source support only.
-- sources.md contains a stale statement ("The source registry is not populated yet") — correction deferred to a future content update sprint.
+- sources.md contains a stale statement (“The source registry is not populated yet”) — correction deferred to a future content update sprint.
 - sulfid_vs_sulfide is the most heavily blocked page: three distinct source gaps with no registered claims covering Oxide/Oxid or Chloride/Chlorid examples or a formal suffix-pattern nomenclature standard.
 
 **Rationale:** A governance alignment review was required before any claim approval sprint can proceed. Claims missing `allowed_pages`, `prohibited_uses`, and `risk_level` cannot be safely approved or scoped to pages. Correcting the structural inconsistency in this sprint ensures the claim registries are in a state where future approval decisions can be made against a complete schema.
@@ -634,3 +634,47 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 3C entry appended.
 
 **Not modified in this sprint:** routes.json, sitemap_policy.json, navigation.json, source_registry.json, ontology/sulfur_terms.json, market_claims.json, safety_claims.json, industry_claims.json, acquisition_claims.json, content draft pages, templates, scripts, doctrine files, root README.md.
+
+---
+
+### 2026-05-16 — Sprint 3D: Sources Page Draft Statement Corrected
+
+**Decision:** Correct a stale statement in `main/content/en/pages/sources.md` that said “The source registry is not populated yet.” after Sprint 3 and Sprint 3B had populated the registry with seeded candidate sources.
+
+**Summary:** Sprint 3D corrected a stale non-public draft statement in sources.md after the source registry gained seeded candidate sources. The page now distinguishes candidate source entries from approved publication claims. No route was published. No claim was approved. No sitemap, navigation, source registry, or claim registry state changed.
+
+**Rationale:** Sprint 3C’s `SOURCE_CLAIM_ALIGNMENT_REPORT.md` explicitly flagged the statement as inaccurate following the source seeding work of Sprint 3 and Sprint 3B. Leaving a factually incorrect description of the source registry in a governed draft page creates an internal inconsistency that must be resolved before any publication sprint proceeds.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`
+
+**Sprint 3D constraints (all observed):**
+- No route was published.
+- No route status, indexable, in_sitemap, or in_navigation value was changed.
+- No claim was approved.
+- No [SOURCE REQUIRED] marker was removed.
+- No other content pages were modified.
+- source_registry.json was not modified.
+- ontology/sulfur_terms.json was not modified.
+- routes.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- market_claims.json was not modified.
+- safety_claims.json was not modified.
+- industry_claims.json was not modified.
+- science_claims.json was not modified.
+- terminology_claims.json was not modified.
+- acquisition_claims.json was not modified.
+- root README.md was not modified.
+- No dependencies, workflows, or generated output were created.
+- This sprint does not constitute publication readiness.
+
+**Files created:**
+
+- `main/data/SOURCES_PAGE_DRAFT_CORRECTION_REPORT.md` — correction report.
+
+**Files updated:**
+
+- `main/content/en/pages/sources.md` — “Current Registry Status” section rewritten; stale statement removed; new wording distinguishes candidate sources from approved claims.
+- `DECISION_LOG.md` — Sprint 3D entry appended.
+
+**Not modified in this sprint:** source_registry.json, routes.json, sitemap_policy.json, navigation.json, claim registries, ontology files, templates, scripts, doctrine files, root README.md. No other content pages were modified.

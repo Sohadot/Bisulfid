@@ -26,11 +26,19 @@ Every factual claim that appears on a public-facing page of bisulfid.com must ha
 
 ## Current Registry Status
 
-The source registry is not populated yet.
+The source registry now contains seeded candidate sources. These sources are not final publication locks. They remain governed by SOURCE_POLICY.md, claim review, and Quality Gate enforcement. No claim is approved for publication merely because a candidate source exists.
 
-`main/data/sources/source_registry.json` exists as a governed structure but contains no source entries. Draft content across the site contains `[SOURCE REQUIRED]` markers where claims await source-locking.
+`main/data/sources/source_registry.json` currently holds seeded candidate entries across authoritative dictionaries, a chemical nomenclature standard, government scientific databases, and one industry publication. All entries carry `status: seeded` and `source_lock_status: candidate`. None are final.
 
-Draft content is not public evidence. The existence of a draft page does not mean the claims on that page are verified, approved, or ready for publication.
+**Candidate source entries are not the same as approved claims.** A source appearing in the registry means it has been identified and evaluated. It does not mean the claims associated with that source are approved for publication.
+
+**Source registry presence does not make a page publishable.** Each draft page requires corresponding approved claims, route status updates, Quality Gate passage, and an explicit publication decision — none of which have occurred.
+
+**Claims remain pending_review unless explicitly approved.** All registered terminology and science claims carry `status: pending_review`. No claim has been approved. No claim may appear on a published page without an explicit approval decision recorded in the claim registry.
+
+**[SOURCE REQUIRED] markers remain until source-locking review.** Draft content pages across the site retain `[SOURCE REQUIRED]` markers where claims await source-locking. The presence of candidate sources in the registry does not automatically remove these markers. Markers are removed only after claims are explicitly approved.
+
+**Draft content remains non-public.** The existence of seeded candidate sources and pending claims does not alter the publication status of any draft page.
 
 ---
 
