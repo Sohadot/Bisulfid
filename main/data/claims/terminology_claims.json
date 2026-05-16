@@ -13,6 +13,15 @@
       "source_ids": ["SRC-MW-BISULFIDE"],
       "related_terms": ["bisulfide", "bisulfid"],
       "related_routes": ["bisulfid_vs_bisulfide", "what_is_bisulfid"],
+      "allowed_pages": ["bisulfid_vs_bisulfide", "what_is_bisulfid", "glossary"],
+      "prohibited_uses": [
+        "chemical safety",
+        "industrial usage",
+        "market data",
+        "medical claims",
+        "German terminology claims"
+      ],
+      "risk_level": "low",
       "last_reviewed": "2026-05-15",
       "notes": "Establishes English-language lexical existence of 'bisulfide'. Supports spelling boundary thesis."
     },
@@ -24,6 +33,14 @@
       "source_ids": ["SRC-MW-SULFIDE"],
       "related_terms": ["sulfide", "sulfid"],
       "related_routes": ["sulfid_vs_sulfide", "what_is_bisulfid"],
+      "allowed_pages": ["sulfid_vs_sulfide", "what_is_bisulfid", "glossary"],
+      "prohibited_uses": [
+        "chemical safety",
+        "industrial usage",
+        "market data",
+        "medical claims"
+      ],
+      "risk_level": "low",
       "last_reviewed": "2026-05-15",
       "notes": "Establishes English-language lexical existence of 'sulfide'. Supports the broader -ide/-id suffix pattern discussion."
     },
@@ -35,6 +52,15 @@
       "source_ids": ["SRC-DUDEN-SULFID"],
       "related_terms": ["sulfid", "sulfide"],
       "related_routes": ["sulfid_vs_sulfide", "german_english_chemical_terms"],
+      "allowed_pages": ["sulfid_vs_sulfide", "german_english_chemical_terms", "glossary"],
+      "prohibited_uses": [
+        "English bisulfide claims",
+        "chemical safety",
+        "industrial usage claims",
+        "market data",
+        "medical claims"
+      ],
+      "risk_level": "low",
       "last_reviewed": "2026-05-15",
       "notes": "Establishes German-language lexical existence of 'Sulfid' in an authoritative German dictionary. Supports the -id suffix form as a documented German-language standard."
     },
@@ -46,6 +72,16 @@
       "source_ids": ["SRC-MW-BISULFITE"],
       "related_terms": ["bisulfite_disambiguation"],
       "related_routes": ["what_is_bisulfid", "bisulfid_vs_bisulfide"],
+      "allowed_pages": ["what_is_bisulfid", "bisulfid_vs_bisulfide", "glossary"],
+      "prohibited_uses": [
+        "bisulfide chemistry",
+        "bisulfide market data",
+        "chemical safety",
+        "industrial conclusions",
+        "medical claims",
+        "using bisulfite data as bisulfide data"
+      ],
+      "risk_level": "medium",
       "last_reviewed": "2026-05-15",
       "notes": "Supports the core disambiguation rule: bisulfite is NOT bisulfide. Bisulfite data must never be used as bisulfide data."
     },
@@ -57,6 +93,15 @@
       "source_ids": ["SRC-IUPAC-HYDROSULFIDES"],
       "related_terms": ["hydrosulfide", "bisulfide"],
       "related_routes": ["bisulfide_hydrosulfide_sulfide", "what_is_bisulfid"],
+      "allowed_pages": ["bisulfide_hydrosulfide_sulfide", "what_is_bisulfid", "glossary"],
+      "prohibited_uses": [
+        "market data",
+        "safety instructions",
+        "medical claims",
+        "unsupported industrial use claims",
+        "procurement advice"
+      ],
+      "risk_level": "low",
       "last_reviewed": "2026-05-15",
       "notes": "Establishes IUPAC nomenclature authority for the hydrosulfide term. Supports the naming relationship between hydrosulfide and bisulfide."
     },
