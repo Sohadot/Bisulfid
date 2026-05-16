@@ -1096,3 +1096,51 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 4H entry appended.
 
 **Not modified in this sprint:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, source_registry.json, terminology_claims.json, sulfur_terms.json, templates, scripts, other content draft pages (except the new file listed above), root README.md, package files, workflows, generated output, ontology files, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
+---
+
+### 2026-05-16 — English Draft Inventory Reviewed
+
+**Decision:** Map all planned English routes to draft file presence, content-directory inventory, and internal link dependencies without creating or editing drafts or changing route metadata.
+
+**Summary:** Sprint 4I reviewed the English planned route inventory and mapped routes to existing draft content files. The sprint identified which planned English routes already have drafts, which routes remain missing drafts, and which routes should be prioritized in future draft-creation sprints. No content pages were created or modified. No routes were published. No claims were approved. [SOURCE REQUIRED] markers remain in place.
+
+**Rationale:** Sprint 4G framed a broader route/content inventory gap beyond `german_english_chemical_terms`. Sprint 4H created that one missing draft; remaining English routes still lack `content_file` bodies. A consolidated table and link-demand view reduces ad hoc planning risk and keeps prioritization explicit while routes stay `planned` and non-indexable.
+
+**Doctrine reference:** `doctrine/PROJECT_DOCTRINE.md`, `doctrine/MULTILINGUAL_POLICY.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4I constraints (all observed):**
+- `ENGLISH_DRAFT_INVENTORY_REVIEW.md` was created.
+- routes.json was not modified.
+- internal_links.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- hreflang_groups.json was not modified.
+- translation_registry.json was not modified.
+- source_registry.json was not modified.
+- terminology_claims.json was not modified.
+- sulfur_terms.json was not modified.
+- No content pages were created.
+- No content pages were modified.
+- No [SOURCE REQUIRED] markers were removed.
+- No claim was approved.
+- Claim registries remain inactive.
+- All routes remain planned.
+- No route has indexable: true or in_sitemap: true.
+- No generated HTML pages were created.
+- No dependencies or workflows were created.
+- Root README.md was not modified.
+- No market, safety, medical, procurement, handling, or acquisition claims were added.
+- This sprint does not constitute publication readiness.
+
+**Finding (English):** 21 `language: en` routes; 7 draft-backed; 14 missing `content_file`. Highest planned link demand among missing routes targets `glossary` (18 referring link groups), then `sodium_bisulfide` (7), `industrial_sulfur_systems` (6), and `sulfur_safety_context` (5). `newsletter` has no incoming planned internal link targets.
+
+**Files created:**
+
+- `main/data/ENGLISH_DRAFT_INVENTORY_REVIEW.md` — English planned-route draft inventory and prioritization notes.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 4I entry appended.
+
+**Not modified in this sprint:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, source_registry.json, terminology_claims.json, sulfur_terms.json, content pages, templates, scripts, root README.md, package files, workflows, generated output, ontology files, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
