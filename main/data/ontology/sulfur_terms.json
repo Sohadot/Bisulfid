@@ -35,7 +35,7 @@
       "not_to_be_confused_with": ["bisulfite_disambiguation"],
       "public_page": "/bisulfid-vs-bisulfide/",
       "source_required": true,
-      "source_ids": [],
+      "source_ids": ["SRC-MW-BISULFIDE"],
       "risk_level": "medium",
       "spatial_node": "bisulfide_inner",
       "notes": "English-form spelling. Planned reference term. Relationship to bisulfid is the spelling boundary that defines the asset."
@@ -52,7 +52,7 @@
       "not_to_be_confused_with": ["bisulfite_disambiguation"],
       "public_page": "/sulfid-vs-sulfide/",
       "source_required": true,
-      "source_ids": [],
+      "source_ids": ["SRC-DUDEN-SULFID"],
       "risk_level": "low",
       "spatial_node": "sulfid_inner",
       "notes": "German-form spelling of sulfide. Demonstrates the chemical compression pattern: Sulfide to Sulfid."
@@ -69,7 +69,7 @@
       "not_to_be_confused_with": ["bisulfite_disambiguation"],
       "public_page": "/sulfid-vs-sulfide/",
       "source_required": true,
-      "source_ids": [],
+      "source_ids": ["SRC-MW-SULFIDE"],
       "risk_level": "low",
       "spatial_node": "sulfide_inner",
       "notes": "English-form spelling. Broad chemical family term. Planned reference term."
@@ -86,7 +86,7 @@
       "not_to_be_confused_with": ["bisulfite_disambiguation"],
       "public_page": "/bisulfide-hydrosulfide-sulfide/",
       "source_required": true,
-      "source_ids": [],
+      "source_ids": ["SRC-IUPAC-HYDROSULFIDES", "SRC-PUBCHEM-HYDROSULFIDE"],
       "risk_level": "medium",
       "spatial_node": "hydrosulfide_inner",
       "notes": "Planned reference term. Chemical relationship to bisulfide requires source validation. Used in industrial procurement naming."
@@ -103,7 +103,7 @@
       "not_to_be_confused_with": ["bisulfite_disambiguation"],
       "public_page": "/hydrogen-sulfide-risk/",
       "source_required": true,
-      "source_ids": [],
+      "source_ids": ["SRC-NIST-HYDROGEN-SULFIDE"],
       "risk_level": "high",
       "spatial_node": "hydrogen_sulfide_outer",
       "notes": "Planned reference term. High risk designation. Safety content governance applies. No prescriptive safety thresholds may be published without source validation."
@@ -120,10 +120,10 @@
       "not_to_be_confused_with": ["bisulfite_disambiguation"],
       "public_page": "/sodium-bisulfide/",
       "source_required": true,
-      "source_ids": [],
+      "source_ids": ["SRC-PUBCHEM-SODIUM-HYDROSULFIDE"],
       "risk_level": "high",
       "spatial_node": "sodium_bisulfide_inner",
-      "notes": "Planned reference term. High risk: industrial chemical. Safety governance applies. No handling instructions permitted."
+      "notes": "Planned reference term. High risk: industrial chemical. Safety governance applies. No handling instructions permitted. Candidate source supports synonym/identity relationship with sodium hydrosulfide."
     },
     {
       "term_id": "sodium_hydrosulfide",
@@ -137,7 +137,7 @@
       "not_to_be_confused_with": ["bisulfite_disambiguation"],
       "public_page": "/sodium-bisulfide/",
       "source_required": true,
-      "source_ids": [],
+      "source_ids": ["SRC-PUBCHEM-SODIUM-HYDROSULFIDE"],
       "risk_level": "high",
       "spatial_node": "sodium_hydrosulfide_outer",
       "notes": "Planned reference term. Alternative IUPAC-preferred name for sodium bisulfide. Naming relationship requires source validation."
@@ -222,7 +222,7 @@
       "not_to_be_confused_with": ["bisulfid", "bisulfide", "sulfide", "hydrosulfide"],
       "public_page": null,
       "source_required": true,
-      "source_ids": [],
+      "source_ids": ["SRC-MW-BISULFITE"],
       "risk_level": "medium",
       "spatial_node": "bisulfite_disambiguation",
       "notes": "Disambiguation term only. Bisulfite is NOT bisulfide. This node exists to prevent conflation. Bisulfite data must never be used as bisulfide data."

@@ -4,5 +4,61 @@
   "governed_by": "doctrine/SOURCE_POLICY.md",
   "status": "inactive",
   "rule": "No terminology claim may be published without a verified source entry in source_registry.json. All claims in this file remain draft or pending_source until sources are locked.",
-  "claims": []
+  "claims": [
+    {
+      "claim_id": "CLM-TERM-001",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "The English term 'bisulfide' has a lexical entry in Merriam-Webster.",
+      "source_ids": ["SRC-MW-BISULFIDE"],
+      "related_terms": ["bisulfide", "bisulfid"],
+      "related_routes": ["bisulfid_vs_bisulfide", "what_is_bisulfid"],
+      "last_reviewed": "2026-05-15",
+      "notes": "Establishes English-language lexical existence of 'bisulfide'. Supports spelling boundary thesis."
+    },
+    {
+      "claim_id": "CLM-TERM-002",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "The English term 'sulfide' has a lexical entry in Merriam-Webster.",
+      "source_ids": ["SRC-MW-SULFIDE"],
+      "related_terms": ["sulfide", "sulfid"],
+      "related_routes": ["sulfid_vs_sulfide", "what_is_bisulfid"],
+      "last_reviewed": "2026-05-15",
+      "notes": "Establishes English-language lexical existence of 'sulfide'. Supports the broader -ide/-id suffix pattern discussion."
+    },
+    {
+      "claim_id": "CLM-TERM-003",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "The German term 'Sulfid' has a lexical entry in Duden.",
+      "source_ids": ["SRC-DUDEN-SULFID"],
+      "related_terms": ["sulfid", "sulfide"],
+      "related_routes": ["sulfid_vs_sulfide", "german_english_chemical_terms"],
+      "last_reviewed": "2026-05-15",
+      "notes": "Establishes German-language lexical existence of 'Sulfid' in an authoritative German dictionary. Supports the -id suffix form as a documented German-language standard."
+    },
+    {
+      "claim_id": "CLM-TERM-004",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "The term 'bisulfite' refers to a distinct compound from 'bisulfide', as confirmed by a separate Merriam-Webster entry.",
+      "source_ids": ["SRC-MW-BISULFITE"],
+      "related_terms": ["bisulfite_disambiguation"],
+      "related_routes": ["what_is_bisulfid", "bisulfid_vs_bisulfide"],
+      "last_reviewed": "2026-05-15",
+      "notes": "Supports the core disambiguation rule: bisulfite is NOT bisulfide. Bisulfite data must never be used as bisulfide data."
+    },
+    {
+      "claim_id": "CLM-TERM-005",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "The term 'hydrosulfides' has an entry in the IUPAC Gold Book chemical nomenclature standard.",
+      "source_ids": ["SRC-IUPAC-HYDROSULFIDES"],
+      "related_terms": ["hydrosulfide", "bisulfide"],
+      "related_routes": ["bisulfide_hydrosulfide_sulfide", "what_is_bisulfid"],
+      "last_reviewed": "2026-05-15",
+      "notes": "Establishes IUPAC nomenclature authority for the hydrosulfide term. Supports the naming relationship between hydrosulfide and bisulfide."
+    }
+  ]
 }
