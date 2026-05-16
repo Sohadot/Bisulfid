@@ -957,3 +957,49 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 4E entry appended.
 
 **Not modified in this sprint:** SOURCE_POLICY.md, routes.json, sitemap_policy.json, navigation.json, ontology files, content draft pages, templates, scripts, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
+---
+
+### 2026-05-16 — Sprint 4F: Academic Source Claim Boundaries Reviewed
+
+**Decision:** Review and document the claim boundaries of the registered `academic_teaching_reference` sources before any claim approval, source-locking, content edit, or publication decision.
+
+**Summary:** Sprint 4F reviewed the claim boundaries of the newly registered academic_teaching_reference sources. The sprint documented what FH Münster and Universität Rostock may support as candidate academic teaching context, and what they cannot support without stronger formal authority. No claims were approved. No source entries were modified. No routes were published. No content pages were modified. [SOURCE REQUIRED] markers remain in place.
+
+**Rationale:** Sprint 4E added candidate academic teaching references and a pending-review claim. Before any future source-locking or content sprint, the project needs an explicit boundary record stating that these sources can support cautious educational context only, not formal DIN, official German IUPAC, GDCh, route publication, ontology verification, or marker removal.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4F constraints (all observed):**
+- `ACADEMIC_SOURCE_CLAIM_BOUNDARY_REPORT.md` was created.
+- SOURCE_POLICY.md was not modified.
+- source_registry.json was not modified.
+- terminology_claims.json was not modified.
+- No source entries were added.
+- No source entries were modified.
+- No claim entries were added.
+- No claim was approved.
+- Claim registries remain inactive.
+- routes.json was not modified.
+- All routes remain planned.
+- No route has indexable: true or in_sitemap: true.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- sulfur_terms.json was not modified.
+- No content pages were modified.
+- No [SOURCE REQUIRED] markers were removed.
+- No generated HTML pages were created.
+- No dependencies or workflows were created.
+- Root README.md was not modified.
+- No market, safety, medical, procurement, handling, or acquisition claims were added.
+- This sprint does not constitute publication readiness.
+
+**Files created:**
+
+- `main/data/ACADEMIC_SOURCE_CLAIM_BOUNDARY_REPORT.md` — boundary report for academic teaching sources and `CLM-TERM-GERMAN-ID-ACADEMIC-001`.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 4F entry appended.
+
+**Not modified in this sprint:** SOURCE_POLICY.md, source_registry.json, terminology_claims.json, routes.json, sitemap_policy.json, navigation.json, ontology files, content draft pages, templates, scripts, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
