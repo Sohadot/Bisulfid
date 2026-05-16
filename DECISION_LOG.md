@@ -512,3 +512,67 @@ Each entry includes:
 
 - `main/data/sources/source_registry.json` — `use_for`, `do_not_use_for`, and `risk_notes` arrays added to all 8 source entries.
 - `DECISION_LOG.md` — Sprint 3 patch entry appended.
+
+---
+
+### 2026-05-16 — Sprint 3B: Bisulfid Center Node Candidate Source Added
+
+**Decision:** Add candidate source support for the `bisulfid` center node in `source_registry.json`, assign that source to `bisulfid.source_ids` in `sulfur_terms.json`, register a corresponding pending_review terminology claim, and document the sprint in `BISULFID_CENTER_SOURCE_REPORT.md`.
+
+**Summary:** Sprint 3B addressed the highest-priority Sprint 3 source gap by adding candidate source support for the bisulfid center node. The source support is limited to German technical usage and does not make the center node verified. No routes were published. No claims were approved. No sitemap, navigation, content, market, safety, or acquisition state was changed. The center node still requires stronger source-locking before publication.
+
+**Rationale:** The `bisulfid` center node is the conceptual and linguistic anchor of bisulfid.com. Sprint 3 explicitly flagged it as the highest-priority remaining source gap. No authoritative dictionary, nomenclature standard, or government scientific database entry directly under the term 'Bisulfid' was identified for seeding in this sprint. The Badger Meter German-language technical page was identified as the strongest currently available candidate source: it directly uses 'Bisulfid und Schwefelwasserstoff' in a German water-quality monitoring context. It was added as an `industry_publication` source with strict use limitations. The center node remains `planned` and requires a stronger tier-1 source before any publication pathway opens.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 3B constraints (all observed):**
+- No route was published.
+- No route status, indexable, in_sitemap, or in_navigation value was changed.
+- No claim was approved. All claims remain pending_review.
+- No [SOURCE REQUIRED] marker was removed from any content page.
+- No content pages were created or modified.
+- New source entry carries status: seeded and source_lock_status: candidate.
+- bisulfid term status remains planned.
+- bisulfid was not marked verified.
+- market_claims.json was not modified.
+- safety_claims.json was not modified.
+- science_claims.json was not modified.
+- industry_claims.json was not modified.
+- acquisition_claims.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- routes.json was not modified.
+- root README.md was not modified.
+- templates were not modified.
+- scripts were not modified.
+- No market data was added.
+- No Gulf, Morocco, or China production or trade data was added.
+- No acquisition-target company claims were added.
+- No dependencies were added.
+- No GitHub Actions were created.
+- No HTML output was created.
+- No Wikipedia or AI summary sources were used.
+- This sprint does not constitute publication readiness.
+
+**Source added (1):**
+
+- `SRC-BADGER-BISULFID-H2S` — industry_publication — Badger Meter — Messung von Bisulfid und Schwefelwasserstoff im Wasser
+
+**Ontology update:** `bisulfid.source_ids` updated from `[]` to `["SRC-BADGER-BISULFID-H2S"]`. Status remains `planned`.
+
+**Terminology claim added (1):** CLM-TERM-BISULFID-001, pending_review, candidate usage only.
+
+**Remaining gap:** Bisulfid center node still requires a tier-1 source (Duden 'Bisulfid' entry, IUPAC direct entry, German regulatory database, or peer-reviewed academic reference) before the center node can be considered for source-locking.
+
+**Files created:**
+
+- `main/data/BISULFID_CENTER_SOURCE_REPORT.md` — source evaluation report for the bisulfid center node.
+
+**Files updated:**
+
+- `main/data/sources/source_registry.json` — SRC-BADGER-BISULFID-H2S added.
+- `main/data/ontology/sulfur_terms.json` — bisulfid.source_ids updated; notes updated.
+- `main/data/claims/terminology_claims.json` — CLM-TERM-BISULFID-001 added, pending_review.
+- `DECISION_LOG.md` — Sprint 3B entry appended.
+
+**Not modified in this sprint:** routes.json, sitemap_policy.json, navigation.json, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json, content draft pages, templates, scripts, doctrine files, root README.md.

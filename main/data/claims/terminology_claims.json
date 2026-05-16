@@ -59,6 +59,27 @@
       "related_routes": ["bisulfide_hydrosulfide_sulfide", "what_is_bisulfid"],
       "last_reviewed": "2026-05-15",
       "notes": "Establishes IUPAC nomenclature authority for the hydrosulfide term. Supports the naming relationship between hydrosulfide and bisulfide."
+    },
+    {
+      "claim_id": "CLM-TERM-BISULFID-001",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "Bisulfid appears as a German technical usage term in sulfur/water-quality monitoring context.",
+      "source_ids": ["SRC-BADGER-BISULFID-H2S"],
+      "related_terms": ["bisulfid", "bisulfide"],
+      "related_routes": ["what_is_bisulfid", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "allowed_pages": ["what_is_bisulfid", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "prohibited_uses": [
+        "formal nomenclature authority",
+        "safety instructions",
+        "market claims",
+        "medical claims",
+        "industrial procurement claims",
+        "public proof of preferred German IUPAC spelling"
+      ],
+      "risk_level": "medium",
+      "last_reviewed": "2026-05-16",
+      "notes": "Candidate usage claim only. Not approved for publication. Stronger source-locking required before removing source-required markers."
     }
   ]
 }
