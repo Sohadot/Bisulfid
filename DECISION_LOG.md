@@ -1286,3 +1286,41 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 4K entry appended.
 
 **Not modified in this sprint:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, `main/data/sources/source_registry.json`, terminology_claims.json, sulfur_terms.json, all English and other content draft pages, templates, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
+---
+
+### 2026-05-16 — Core Term Drafts Batch 2 Sprint Record (Route Targets Absent)
+
+**Decision:** Execute Sprint 4L pre-flight against `main/data/routes.json` before drafting core term pages; do not create orphan `content_file` bodies when `route_id` records are missing.
+
+**Summary:** Sprint 4L targeted non-public English core term drafts for `bisulfid`, `sulfid`, and `hydrosulfide`, but pre-flight review found **none** of those `route_id` values in `routes.json`. Per project rules, no `bisulfid.md`, `sulfid.md`, or `hydrosulfide.md` files were added. The sprint created `CORE_TERM_DRAFTS_BATCH_2_REPORT.md` documenting the blocker, nearest existing related routes (`what_is_bisulfid`, `sulfid_vs_sulfide`, `bisulfide_hydrosulfide_sulfide`), and recommended follow-up. **Remaining missing English draft count stays 11** (unchanged from post–Sprint 4J). No routes were published. No claims were approved. No source entries, route records, internal links, sitemap policy, navigation, hreflang, translation registry, ontology, or claim registries were modified. `[SOURCE REQUIRED]` markers on existing pages remain unchanged.
+
+**Rationale:** Core term drafts must map 1:1 to authoritative `content_file` paths in `routes.json`. Inventing routes or orphan markdown files would break inventory integrity and violate Sprint 4L constraints.
+
+**Doctrine reference:** `doctrine/PROJECT_DOCTRINE.md`, `doctrine/MULTILINGUAL_POLICY.md`, `doctrine/SOURCE_POLICY.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4L validation (observed where applicable):**
+
+- Target `route_id` values `bisulfid`, `sulfid`, and `hydrosulfide` **do not** exist in `routes.json` — **blocker recorded**; no page files created for those names.
+- All **existing** routes remain `status: planned`, `language: en` where declared, `indexable: false`, `in_sitemap: false` — verified on read of `routes.json`; **no edits** made.
+- **No** new content pages created; **no** existing content pages modified.
+- **No** `[SOURCE REQUIRED]` markers removed from any file.
+- **No** raw URLs or publication-assuming links added by this sprint.
+- `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json` — **not modified**.
+- No claim has `status: approved`; claim registries remain **inactive**.
+- No generated HTML pages, dependencies, workflows, package files, deployment configs, or Cloudflare configs created.
+- Root `README.md` **not modified**.
+- `main/data/CORE_TERM_DRAFTS_BATCH_2_REPORT.md` exists; states remaining missing draft count **11** after this sprint; **8** is the modeled count only if all three target routes had existed and all three drafts had been created.
+- `DECISION_LOG.md` updated with this entry.
+- This sprint does **not** recommend publication.
+
+**Files created:**
+
+- `main/data/CORE_TERM_DRAFTS_BATCH_2_REPORT.md` — Sprint 4L record; pre-flight route absence; next steps.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — this entry appended.
+
+**Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, all existing content draft pages, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
