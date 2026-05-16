@@ -244,6 +244,38 @@
         "Do not use to generate handling or emergency advice."
       ],
       "notes": "NIST Chemistry WebBook entry for Hydrogen sulfide (H2S, CAS 7783-06-4). Government scientific database supporting hydrogen_sulfide term record."
+    },
+    {
+      "source_id": "SRC-BADGER-BISULFID-H2S",
+      "category": "industry_publication",
+      "publisher": "Badger Meter",
+      "title": "Messung von Bisulfid und Schwefelwasserstoff im Wasser",
+      "url": "https://www.badgermeter.com/de-de/parameter-zur-uberwachung-der-wasserqualitat/hs-h2s/",
+      "language": "de",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-16",
+      "use_for": [
+        "candidate German technical usage of the term Bisulfid",
+        "candidate support for Bisulfid appearing in a German water-quality / sulfur-monitoring context",
+        "candidate context connecting Bisulfid with HS- / H₂S terminology where directly stated by the source"
+      ],
+      "do_not_use_for": [
+        "formal German nomenclature standard",
+        "market data",
+        "safety advice",
+        "exposure thresholds",
+        "handling instructions",
+        "medical claims",
+        "proof that Bisulfid is the preferred German IUPAC form",
+        "final equivalence between Bisulfid and hydrosulfide without additional source-locking"
+      ],
+      "risk_notes": [
+        "Commercial technical source only; not a dictionary, IUPAC source, regulatory source, or government scientific database.",
+        "Can support observed German technical usage, but not final terminology authority.",
+        "Any safety or monitoring content on the page must not be turned into public safety advice."
+      ],
+      "notes": "Badger Meter German-language technical page on measuring Bisulfid and Schwefelwasserstoff (HS⁻ / H₂S) in water. Supports observed German technical usage of the term Bisulfid in a water-quality monitoring context. Highest-category source available for bisulfid center node at sprint 3B; stronger authoritative source (dictionary, nomenclature standard, regulatory database) still required."
     }
   ]
 }
