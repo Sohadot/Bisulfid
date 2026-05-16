@@ -208,6 +208,34 @@
       "risk_level": "medium",
       "last_reviewed": "2026-05-16",
       "notes": "English nomenclature context only. Not a German source."
+    },
+    {
+      "claim_id": "CLM-TERM-GERMAN-ID-ACADEMIC-001",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "Selected German academic teaching references describe or illustrate the -id ending in inorganic nomenclature contexts, supporting cautious draft review of forms such as Chlorid, Oxid, and Sulfid.",
+      "source_ids": [
+        "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR",
+        "SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN"
+      ],
+      "related_terms": ["chlorid", "chloride", "oxid", "oxide", "sulfid", "sulfide"],
+      "related_routes": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "allowed_pages": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "prohibited_uses": [
+        "formal DIN rule",
+        "official German IUPAC rule",
+        "universal suffix transformation claim",
+        "claim approval by itself",
+        "market claims",
+        "safety instructions",
+        "medical claims",
+        "industrial procurement claims",
+        "acquisition claims",
+        "route publication"
+      ],
+      "risk_level": "medium",
+      "last_reviewed": "2026-05-16",
+      "notes": "Candidate academic teaching support only. This claim does not approve public wording that states a formal German suffix rule."
     }
   ]
 }

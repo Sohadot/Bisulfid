@@ -364,6 +364,78 @@
         "Any safety or monitoring content on the page must not be turned into public safety advice."
       ],
       "notes": "Badger Meter German-language technical page on measuring Bisulfid and Schwefelwasserstoff (HS⁻ / H₂S) in water. Supports observed German technical usage of the term Bisulfid in a water-quality monitoring context. Highest-category source available for bisulfid center node at sprint 3B; stronger authoritative source (dictionary, nomenclature standard, regulatory database) still required."
+    },
+    {
+      "source_id": "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR",
+      "category": "academic_teaching_reference",
+      "publisher": "FH Münster",
+      "title": "Anorganische Nomenklatur",
+      "url": "https://www-backend.fh-muenster.de/ciw/downloads-ciw/personenprofile/juestel/wissenswertes/chemie/Anorganische-Nomenklatur.pdf",
+      "language": "de",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-16",
+      "use_for": [
+        "candidate academic teaching support for German inorganic nomenclature context",
+        "candidate support for cautious explanation of -id endings where directly stated",
+        "source-search support for sulfid_vs_sulfide and german_english_chemical_terms drafts"
+      ],
+      "do_not_use_for": [
+        "formal DIN rule",
+        "official German IUPAC authority",
+        "universal suffix transformation claim",
+        "final claim approval by itself",
+        "market data",
+        "safety advice",
+        "medical claims",
+        "industrial procurement claims",
+        "acquisition claims",
+        "removal of [SOURCE REQUIRED] markers by itself",
+        "route publication by itself"
+      ],
+      "risk_notes": [
+        "Academic teaching reference only.",
+        "Candidate support only; not formal nomenclature authority.",
+        "Must be paired with stronger authority before any public formal rule claim.",
+        "Must not be used for market, safety, medical, procurement, or acquisition claims."
+      ],
+      "notes": "FH Münster German-language teaching/reference PDF for inorganic nomenclature. Candidate academic teaching support only for cautious review of German -id endings where directly stated."
+    },
+    {
+      "source_id": "SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN",
+      "category": "academic_teaching_reference",
+      "publisher": "Universität Rostock",
+      "title": "Materialdesign / Nomenklatur",
+      "url": "https://www.lkv.uni-rostock.de/storages/uni-rostock/Alle_MNF/Chemie_Koeckerling/Materialdesign_12_Nomenklatur.pdf",
+      "language": "de",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-16",
+      "use_for": [
+        "candidate academic teaching support for German inorganic nomenclature context",
+        "candidate support for cautious explanation of -id endings where directly stated",
+        "source-search support for sulfid_vs_sulfide and german_english_chemical_terms drafts"
+      ],
+      "do_not_use_for": [
+        "formal DIN rule",
+        "official German IUPAC authority",
+        "universal suffix transformation claim",
+        "final claim approval by itself",
+        "market data",
+        "safety advice",
+        "medical claims",
+        "industrial procurement claims",
+        "acquisition claims",
+        "removal of [SOURCE REQUIRED] markers by itself",
+        "route publication by itself"
+      ],
+      "risk_notes": [
+        "Academic teaching reference only.",
+        "Candidate support only; not formal nomenclature authority.",
+        "Must be paired with stronger authority before any public formal rule claim.",
+        "Must not be used for market, safety, medical, procurement, or acquisition claims."
+      ],
+      "notes": "Universität Rostock German-language teaching PDF for nomenclature. Candidate academic teaching support only for cautious review of German -id anion examples where directly stated."
     }
   ]
 }

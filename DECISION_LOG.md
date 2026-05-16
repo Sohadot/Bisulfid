@@ -892,3 +892,68 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 4D entry appended.
 
 **Not modified in this sprint:** terminology_claims.json, routes.json, sitemap_policy.json, navigation.json, ontology files, content draft pages, templates, scripts, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
+---
+
+### 2026-05-16 — Sprint 4E: Academic Teaching Candidate Sources Registered
+
+**Decision:** Register selected German academic teaching references under the governed `academic_teaching_reference` category.
+
+**Summary:** Sprint 4E registered candidate academic teaching references under the newly governed academic_teaching_reference category where permitted by SOURCE_POLICY.md. The sources may support draft/source-search review and cautious educational terminology context only. They do not establish formal nomenclature authority, do not approve claims alone, do not publish routes, and do not remove [SOURCE REQUIRED] markers by themselves. No claims were approved. No routes were published. No content pages were modified.
+
+**Rationale:** Sprint 4D created a narrow candidate-only category for university and academic instructional chemistry sources. Sprint 4E applies that category to FH Münster and Universität Rostock teaching references while leaving Springer/Jander unregistered because publisher-hosted textbook/book-chapter material is not clearly governed by the current category.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4E constraints (all observed):**
+- source_registry.json remains valid JSON.
+- All newly added source entries use `category: academic_teaching_reference`.
+- Every new source has `status: seeded` and `source_lock_status: candidate`.
+- Every new source has `use_for`, `do_not_use_for`, and `risk_notes` arrays.
+- No new source is marked final, locked, approved, verified, or public-ready.
+- No source outside the governed category boundary was added.
+- Springer/Jander was not added because SOURCE_POLICY.md does not clearly govern textbook/book-chapter sources under `academic_teaching_reference`.
+- terminology_claims.json remains valid JSON.
+- New claims are status: pending_review only.
+- No claim was approved.
+- Claim registry remains inactive.
+- market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, and acquisition_claims.json were not modified.
+- SOURCE_POLICY.md was not modified.
+- sulfur_terms.json was not modified.
+- routes.json was not modified.
+- All routes remain planned.
+- No route has indexable: true or in_sitemap: true.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- No content pages were modified.
+- No [SOURCE REQUIRED] markers were removed.
+- No generated HTML pages were created.
+- No dependencies or workflows were created.
+- Root README.md was not modified.
+- No market, safety, medical, procurement, handling, Gulf, Morocco, China, production, trade, CAGR, market-share, or acquisition-target claims were added.
+- This sprint does not constitute publication readiness.
+
+**Sources added (2):**
+
+- `SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR` — academic_teaching_reference — FH Münster — Anorganische Nomenklatur.
+- `SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN` — academic_teaching_reference — Universität Rostock — Materialdesign / Nomenklatur.
+
+**Sources evaluated but not added:**
+
+- `SRC-SPRINGER-JANDER-ANORGANISCHE-NOMENKLATUR-ID` — not registered because textbook/book-chapter material is not clearly governed by the current `academic_teaching_reference` category.
+
+**Claims added (1):**
+
+- `CLM-TERM-GERMAN-ID-ACADEMIC-001` — pending_review candidate academic teaching support only.
+
+**Files created:**
+
+- `main/data/ACADEMIC_TEACHING_SOURCE_REGISTRATION_REPORT.md` — Sprint 4E source registration report.
+
+**Files updated:**
+
+- `main/data/sources/source_registry.json` — two academic teaching candidate source entries added.
+- `main/data/claims/terminology_claims.json` — one pending_review terminology claim added.
+- `DECISION_LOG.md` — Sprint 4E entry appended.
+
+**Not modified in this sprint:** SOURCE_POLICY.md, routes.json, sitemap_policy.json, navigation.json, ontology files, content draft pages, templates, scripts, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
