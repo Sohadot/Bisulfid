@@ -13,6 +13,15 @@
       "source_ids": ["SRC-PUBCHEM-HYDROSULFIDE"],
       "related_terms": ["hydrosulfide"],
       "related_routes": ["bisulfide_hydrosulfide_sulfide"],
+      "allowed_pages": ["bisulfide_hydrosulfide_sulfide", "glossary"],
+      "prohibited_uses": [
+        "public handling instructions",
+        "medical advice",
+        "market data",
+        "exposure thresholds as advice",
+        "procurement language"
+      ],
+      "risk_level": "low",
       "last_reviewed": "2026-05-15",
       "notes": "Government scientific database confirmation of Hydrosulfide as a registered compound. CID is candidate — verify against PubChem before source-locking."
     },
@@ -24,6 +33,15 @@
       "source_ids": ["SRC-PUBCHEM-SODIUM-HYDROSULFIDE"],
       "related_terms": ["sodium_hydrosulfide", "sodium_bisulfide"],
       "related_routes": ["sodium_bisulfide"],
+      "allowed_pages": ["sodium_bisulfide", "glossary"],
+      "prohibited_uses": [
+        "procurement advice",
+        "handling instructions",
+        "safety thresholds as advice",
+        "market data",
+        "final sodium bisulfide equivalence without additional source-locking"
+      ],
+      "risk_level": "medium",
       "last_reviewed": "2026-05-15",
       "notes": "Government scientific database confirmation of Sodium hydrosulfide as a registered compound. CID is candidate — verify against PubChem before source-locking. Supports the naming relationship between sodium hydrosulfide and sodium bisulfide."
     },
@@ -35,6 +53,15 @@
       "source_ids": ["SRC-NIST-HYDROGEN-SULFIDE"],
       "related_terms": ["hydrogen_sulfide"],
       "related_routes": ["hydrogen_sulfide_risk"],
+      "allowed_pages": ["hydrogen_sulfide_risk", "glossary"],
+      "prohibited_uses": [
+        "safety advice",
+        "exposure thresholds",
+        "emergency response",
+        "market data",
+        "medical claims"
+      ],
+      "risk_level": "high",
       "last_reviewed": "2026-05-15",
       "notes": "Government scientific database confirmation of Hydrogen sulfide as a registered compound with NIST data. Supports the hydrogen_sulfide term record. Safety content governance applies to any future published claims from this source."
     }

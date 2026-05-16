@@ -576,3 +576,61 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 3B entry appended.
 
 **Not modified in this sprint:** routes.json, sitemap_policy.json, navigation.json, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json, content draft pages, templates, scripts, doctrine files, root README.md.
+
+---
+
+### 2026-05-16 — Sprint 3C: Source-to-Claim Governance Alignment Completed
+
+**Decision:** Review the seeded source registry, pending terminology claims, pending science claims, ontology source mappings, and English draft pages. Produce a source-to-claim alignment report. Correct structural inconsistencies in claim entries.
+
+**Summary:** Sprint 3C reviewed the seeded source registry, pending terminology claims, pending science claims, ontology source mappings, and English draft pages. The sprint produced a source-to-claim alignment report. No claims were approved. No routes were published. No sitemap or navigation state was changed. No content pages were modified. No market, safety, acquisition, or industrial data was added.
+
+**Structural corrections made:**
+- `main/data/claims/terminology_claims.json`: CLM-TERM-001 through CLM-TERM-005 were missing three governance fields (`allowed_pages`, `prohibited_uses`, `risk_level`) present in CLM-TERM-BISULFID-001. These fields were added to all five claims. No claim status was changed.
+- `main/data/claims/science_claims.json`: CLM-SCI-001 through CLM-SCI-003 were missing the same three governance fields. These fields were added to all three claims. No claim status was changed.
+
+**Key findings:**
+- All 9 source entries confirmed complete with required fields and appropriate scope.
+- 6 terminology claims and 3 science claims all remain pending_review.
+- No claim uses out-of-scope source material (no market data, safety advice, medical claims, or bisulfite data used as bisulfide data).
+- No ontology term is marked verified.
+- bisulfid center node remains planned with candidate source support only.
+- sources.md contains a stale statement ("The source registry is not populated yet") — correction deferred to a future content update sprint.
+- sulfid_vs_sulfide is the most heavily blocked page: three distinct source gaps with no registered claims covering Oxide/Oxid or Chloride/Chlorid examples or a formal suffix-pattern nomenclature standard.
+
+**Rationale:** A governance alignment review was required before any claim approval sprint can proceed. Claims missing `allowed_pages`, `prohibited_uses`, and `risk_level` cannot be safely approved or scoped to pages. Correcting the structural inconsistency in this sprint ensures the claim registries are in a state where future approval decisions can be made against a complete schema.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 3C constraints (all observed):**
+- No route was published.
+- No route status, indexable, in_sitemap, or in_navigation value was changed.
+- No claim was approved. All claims remain pending_review.
+- Claim registries remain inactive.
+- No [SOURCE REQUIRED] marker was removed from any content page.
+- No content pages were created or modified.
+- source_registry.json was not modified.
+- ontology/sulfur_terms.json was not modified.
+- routes.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- market_claims.json was not modified.
+- safety_claims.json was not modified.
+- industry_claims.json was not modified.
+- acquisition_claims.json was not modified.
+- root README.md was not modified.
+- No dependencies, workflows, or generated output were created.
+- No Wikipedia or AI summary sources were used.
+- This sprint does not constitute publication readiness.
+
+**Files created:**
+
+- `main/data/SOURCE_CLAIM_ALIGNMENT_REPORT.md` — source-to-claim alignment report.
+
+**Files updated:**
+
+- `main/data/claims/terminology_claims.json` — `allowed_pages`, `prohibited_uses`, `risk_level` added to CLM-TERM-001 through CLM-TERM-005.
+- `main/data/claims/science_claims.json` — `allowed_pages`, `prohibited_uses`, `risk_level` added to CLM-SCI-001 through CLM-SCI-003.
+- `DECISION_LOG.md` — Sprint 3C entry appended.
+
+**Not modified in this sprint:** routes.json, sitemap_policy.json, navigation.json, source_registry.json, ontology/sulfur_terms.json, market_claims.json, safety_claims.json, industry_claims.json, acquisition_claims.json, content draft pages, templates, scripts, doctrine files, root README.md.
