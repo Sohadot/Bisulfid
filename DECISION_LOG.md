@@ -1237,3 +1237,52 @@ Each entry includes:
 - `DECISION_LOG.md` — this patch entry appended.
 
 **Not modified in this patch:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, source_registry.json, terminology_claims.json, sulfur_terms.json, templates, other content draft pages outside the three spine files above, root README.md, package files, workflows, generated output, ontology files, claim data JSON beyond those listed, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
+---
+
+### 2026-05-16 — Terminology Reference Spine Boundaries Reviewed
+
+**Decision:** Read-only boundary review of the first terminology reference spine (`glossary`, `sulfur_compounds`, `bisulfide_hydrosulfide_sulfide`) after Sprint 4J, without creating or modifying content pages or changing route or registry state.
+
+**Summary:** Sprint 4K reviewed the first non-public terminology reference spine created in Sprint 4J. The review confirmed the glossary, sulfur_compounds, and bisulfide_hydrosulfide_sulfide drafts remain non-public reference infrastructure and not publication-ready content. The sprint documented claim boundaries, source boundaries, bisulfite disambiguation boundaries, and future internal reference roles. No content pages were created or modified. No claims were approved. No routes were published. [SOURCE REQUIRED] markers remain in place.
+
+**Rationale:** Before expanding the English draft inventory (11 routes still missing `content_file` bodies), the project needs a recorded check that spine copy stays within terminology governance, does not imply approved claims, and does not drift into generic chemistry, safety, or market content.
+
+**Doctrine reference:** `doctrine/PROJECT_DOCTRINE.md`, `doctrine/MULTILINGUAL_POLICY.md`, `doctrine/SOURCE_POLICY.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4K constraints (all observed):**
+- `TERMINOLOGY_REFERENCE_SPINE_BOUNDARY_REVIEW.md` was created.
+- routes.json was not modified.
+- internal_links.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- hreflang_groups.json was not modified.
+- translation_registry.json was not modified.
+- source_registry.json was not modified (path: `main/data/sources/source_registry.json` on disk).
+- terminology_claims.json was not modified.
+- sulfur_terms.json was not modified.
+- No content pages were created.
+- No content pages were modified.
+- No [SOURCE REQUIRED] markers were removed.
+- No claim was approved.
+- Claim registries remain inactive.
+- All routes remain planned.
+- No route has indexable: true or in_sitemap: true.
+- No generated HTML pages were created.
+- No dependencies or workflows were created.
+- Root README.md was not modified.
+- No market, safety, medical, procurement, acquisition, production, or trade content was added.
+- No raw URLs or publication-assuming links were added by this sprint.
+- This sprint does not constitute publication readiness.
+
+**Finding:** Spine drafts align with terminology-first infrastructure roles; bisulfite boundary and teaching-vs-authority separation are preserved in copy; registries remain unchanged and inactive for approval work.
+
+**Files created:**
+
+- `main/data/TERMINOLOGY_REFERENCE_SPINE_BOUNDARY_REVIEW.md` — boundary review record for the first terminology reference spine.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 4K entry appended.
+
+**Not modified in this sprint:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, `main/data/sources/source_registry.json`, terminology_claims.json, sulfur_terms.json, all English and other content draft pages, templates, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
