@@ -1144,3 +1144,51 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 4I entry appended.
 
 **Not modified in this sprint:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, source_registry.json, terminology_claims.json, sulfur_terms.json, content pages, templates, scripts, root README.md, package files, workflows, generated output, ontology files, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
+---
+
+### 2026-05-16 — Terminology Reference Spine Batch 1 Established
+
+**Decision:** Create the first batch of non-public English drafts for the terminology reference spine (`glossary`, `sulfur_compounds`, `bisulfide_hydrosulfide_sulfide`) as internal reference infrastructure without changing route metadata, link registries, or claim state.
+
+**Summary:** Sprint 4J added governed draft bodies at the exact `content_file` paths declared in `routes.json` for `glossary`, `sulfur_compounds`, and `bisulfide_hydrosulfide_sulfide`. The drafts function as a terminology chamber scaffold, a sulfur-compound scope map, and a bisulfide/hydrosulfide/sulfide disambiguation authority file. All remain non-public, non-indexable, not sitemap-listed, and not publication-ready. No routes were published. No claims were approved. No registries were modified. [SOURCE REQUIRED] markers remain on all relevant drafts and were not removed from other pages.
+
+**Rationale:** Sprint 4I showed heavy planned internal-link demand on `glossary` and related terminology routes. Establishing these three drafts closes the highest-priority missing-body gap for the terminology spine while keeping strict separation from safety handling, market data, and publication workflows.
+
+**Doctrine reference:** `doctrine/PROJECT_DOCTRINE.md`, `doctrine/MULTILINGUAL_POLICY.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4J constraints (all observed):**
+- Three target `content_file` drafts created with required frontmatter; paths verified against `routes.json`; no pre-existing files overwritten.
+- routes.json was not modified.
+- internal_links.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- hreflang_groups.json was not modified.
+- translation_registry.json was not modified.
+- source_registry.json was not modified.
+- terminology_claims.json was not modified.
+- sulfur_terms.json was not modified.
+- No [SOURCE REQUIRED] markers were removed from any page.
+- No claim was approved.
+- Claim registries remain inactive.
+- All routes remain planned.
+- No route has indexable: true or in_sitemap: true.
+- No generated HTML pages were created.
+- No dependencies or workflows were created.
+- Root README.md was not modified.
+- No market, safety-handling, medical, procurement, or acquisition-target content was added.
+- No raw URLs or publication-assuming links were added.
+- This sprint does not constitute publication readiness.
+
+**Files created:**
+
+- `main/content/en/pages/glossary.md` — controlled terminology chamber draft.
+- `main/content/en/pages/sulfur-compounds.md` — sulfur terminology scope map draft.
+- `main/content/en/pages/bisulfide-hydrosulfide-sulfide.md` — disambiguation authority draft.
+- `main/data/TERMINOLOGY_REFERENCE_SPINE_BATCH_1_REPORT.md` — sprint record.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 4J entry appended.
+
+**Not modified in this sprint:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, source_registry.json, terminology_claims.json, sulfur_terms.json, templates, scripts, other existing content draft pages (except the three new files listed above), root README.md, package files, workflows, generated output, ontology files, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
