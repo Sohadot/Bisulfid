@@ -25,6 +25,15 @@ Every factual claim requires a verified entry in:
 - Peer-reviewed journals.
 - Industry publications with named publisher and date.
 - Market reports with verified publisher, date, and methodology.
+- Academic teaching references (`academic_teaching_reference`) produced by a recognized university, academic department, instructor, or educational chemistry program for teaching or instructional purposes.
+
+### Academic Teaching Reference Constraints
+
+`academic_teaching_reference` is a governed candidate-only category for educational or academic teaching sources. It may support candidate terminology context, source-search support, draft-page review support, cautious educational explanation where directly stated, and identification of terms requiring stronger source-locking.
+
+It is not formal nomenclature authority, not regulatory authority, and not a chemical nomenclature standard. It cannot approve claims alone, cannot remove `[SOURCE REQUIRED]` markers alone, and cannot publish routes alone. It must remain candidate unless paired with stronger authority for any public claim that sounds formal, normative, regulatory, medical, safety-related, market-related, or procurement-related.
+
+This category is forbidden for market data, safety advice, medical claims, industrial procurement claims, acquisition claims, formal rule claims, DIN rule claims, official IUPAC German rule claims, and universal suffix transformation claims.
 
 ---
 
