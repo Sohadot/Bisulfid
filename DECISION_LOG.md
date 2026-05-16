@@ -1003,3 +1003,51 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 4F entry appended.
 
 **Not modified in this sprint:** SOURCE_POLICY.md, source_registry.json, terminology_claims.json, routes.json, sitemap_policy.json, navigation.json, ontology files, content draft pages, templates, scripts, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
+---
+
+### 2026-05-16 — Sprint 4G: German-English Chemical Terms Draft Path Reviewed
+
+**Decision:** Review the missing German-English chemical terms draft path and route/content alignment state without creating content or changing route governance.
+
+**Summary:** Sprint 4G reviewed the missing German-English chemical terms draft path identified in Sprint 4F. The sprint diagnosed the route/content alignment state without creating the missing page, modifying routes, publishing any route, approving claims, or removing [SOURCE REQUIRED] markers. The result will guide a future content-alignment sprint.
+
+**Rationale:** `routes.json` contains a planned `german_english_chemical_terms` route pointing to `main/content/en/pages/german-english-chemical-terms.md`, but the content file does not exist. Internal links reference the route by `route_id`, and the route remains planned and non-public. The review also found that this is part of a broader planned-route/content inventory gap, not a unique missing page.
+
+**Doctrine reference:** `doctrine/PROJECT_DOCTRINE.md`, `doctrine/MULTILINGUAL_POLICY.md`, `doctrine/QUALITY_GATE.md`
+
+**Sprint 4G constraints (all observed):**
+- `GERMAN_ENGLISH_TERMS_DRAFT_PATH_REVIEW.md` was created.
+- routes.json was not modified.
+- internal_links.json was not modified.
+- sitemap_policy.json was not modified.
+- navigation.json was not modified.
+- hreflang_groups.json was not modified.
+- translation_registry.json was not modified.
+- source_registry.json was not modified.
+- terminology_claims.json was not modified.
+- sulfur_terms.json was not modified.
+- No content pages were created.
+- No content pages were modified.
+- `main/content/en/pages/german-english-chemical-terms.md` was not created.
+- No [SOURCE REQUIRED] markers were removed.
+- No claim was approved.
+- Claim registries remain inactive.
+- All routes remain planned.
+- No route has indexable: true or in_sitemap: true.
+- No generated HTML pages were created.
+- No dependencies or workflows were created.
+- Root README.md was not modified.
+- This sprint does not constitute publication readiness.
+
+**Finding:** `german_english_chemical_terms` is a planned route with a valid expected content path, but the draft file is missing. It is one of multiple planned English routes without content drafts.
+
+**Files created:**
+
+- `main/data/GERMAN_ENGLISH_TERMS_DRAFT_PATH_REVIEW.md` — diagnostic route/content path review for `german_english_chemical_terms`.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 4G entry appended.
+
+**Not modified in this sprint:** routes.json, internal_links.json, sitemap_policy.json, navigation.json, hreflang_groups.json, translation_registry.json, source_registry.json, terminology_claims.json, sulfur_terms.json, content pages, templates, scripts, root README.md, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
