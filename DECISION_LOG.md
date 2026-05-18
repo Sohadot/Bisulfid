@@ -1401,3 +1401,43 @@ Each entry includes:
 
 **Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `main/data/CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md`, `main/data/SOVEREIGN_REFERENCE_CORPUS_ARCHITECTURE.md`, `main/data/CORPUS_EXPANSION_MODEL.md`, `main/data/CORPUS_LAUNCH_THRESHOLD.md`, all content draft pages, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
 
+---
+
+### 2026-05-18 — Launch Cohort Implementation Batch 1 Planned
+
+**Decision:** Record Sprint **5C** as a **planning and implementation-readiness** sprint that defines **Batch 1** (**55** proposed `route_id` concepts: **44** English, **11** German) for later controlled routing and drafting—**without** registering new routes, **without** creating or modifying content pages, and **without** publication.
+
+**Summary:** Sprint **5C** converted the Sprint **5A**/ **5B** launch-cohort architecture and quality review into a disciplined first implementation batch. The sprint did **not** create routes, did **not** create content pages, did **not** publish any route, and did **not** approve any claim. The selected batch prioritizes source-governed terminology, German–English chemical language, disambiguation authority, corpus methodology, source/nomenclature governance, and controlled reference infrastructure while deferring weak, mirrored, utility, or insufficiently governed concepts (`newsletter` / `acquire`, `ar` / `zh` / `ja` mirrors, high-risk safety substance pages in this batch, and broad DE term grids). Deliverables: `LAUNCH_COHORT_IMPLEMENTATION_BATCH_1.md`, `ROUTE_IMPLEMENTATION_READINESS_MATRIX.md`, `SPRINT_5C_ROUTE_SELECTION_RATIONALE.md`.
+
+**Rationale:** A 307-row blueprint is necessary but insufficient; a **55-route** governed slice proves editorial depth, citation discipline, and linking density before scaling toward the **300-page** minimum launch cohort—without lowering the threshold or recommending public launch.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/MULTILINGUAL_POLICY.md`, `doctrine/QUALITY_GATE.md`, `doctrine/PROJECT_DOCTRINE.md`; Sprint **5A**/**5B** corpus documentation.
+
+**Sprint 5C validation (observed where applicable):**
+
+- `main/data/LAUNCH_COHORT_IMPLEMENTATION_BATCH_1.md` exists; **55** proposed concepts (within **40–55** batch intent stated in 5B as a range; Batch 1 lands at **55** as the upper disciplined bound).
+- `main/data/ROUTE_IMPLEMENTATION_READINESS_MATRIX.md` exists; all **55** rows classified.
+- `main/data/SPRINT_5C_ROUTE_SELECTION_RATIONALE.md` exists.
+- `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json` — **not modified** (this sprint).
+- **No** `main/content/**` pages created or modified.
+- **No** `[SOURCE REQUIRED]` markers removed.
+- No claim has `status: approved`; claim registries remain **inactive**.
+- All existing routes remain `status: planned`; **no** `indexable: true` or `in_sitemap: true` changes from this sprint (no `routes.json` edits).
+- **No** generated HTML pages, dependencies, workflows, package files, deployment configs, or Cloudflare configs created.
+- Root `README.md` **not modified**.
+- `DECISION_LOG.md` updated with this entry.
+
+**Publication readiness:** **Not ready for publication** (strategy/planning sprint only).
+
+**Files created:**
+
+- `main/data/LAUNCH_COHORT_IMPLEMENTATION_BATCH_1.md` — Batch 1 roster, governance logic, and full per-concept specifications.
+- `main/data/ROUTE_IMPLEMENTATION_READINESS_MATRIX.md` — readiness classification and next actions for each concept.
+- `main/data/SPRINT_5C_ROUTE_SELECTION_RATIONALE.md` — selection thesis and exclusions.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5C entry appended.
+
+**Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `main/data/CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md`, `main/data/SOVEREIGN_REFERENCE_CORPUS_ARCHITECTURE.md`, `main/data/CORPUS_EXPANSION_MODEL.md`, `main/data/CORPUS_LAUNCH_THRESHOLD.md`, `main/data/LAUNCH_COHORT_BLUEPRINT_QUALITY_REVIEW.md`, `main/data/LAUNCH_COHORT_REFINEMENT_RECOMMENDATIONS.md`, all content draft pages, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
