@@ -1479,3 +1479,44 @@ Each entry includes:
 
 **Not modified in this sprint:** `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `main/data/LAUNCH_COHORT_IMPLEMENTATION_BATCH_1.md`, `main/data/ROUTE_IMPLEMENTATION_READINESS_MATRIX.md`, `main/data/SPRINT_5C_ROUTE_SELECTION_RATIONALE.md`, `main/data/CORPUS_LAUNCH_THRESHOLD.md`, all existing content draft pages, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
 
+---
+
+### 2026-05-21 — Batch 1A Non-Public Drafts Created
+
+**Decision:** Create **non-public** Markdown drafts for the **five** Sprint **5D** Batch **1A** `route_id` records—matching **`routes.json`** `content_file` paths—without changing route publication state, registries, or the internal link graph.
+
+**Summary:** Sprint **5E** added draft bodies for `corpus_methodology_overview`, `internal_linking_discipline`, `quality_gate_public_explainer`, `de_method_corpus_map`, and `de_method_translator_playbook`. Drafts support sovereign corpus **methodology**, **internal linking discipline**, **Quality Gate** explanation, and **German** methodology layers. **No** routes were published. **No** `routes.json` fields were edited. **No** `internal_links.json` changes. **No** claims were approved. **No** source, sitemap, navigation, or ontology registries were modified. **`[SOURCE REQUIRED]`** markers remain where claims are not yet registry-backed.
+
+**Rationale:** Route shells from Sprint **5D** require reviewable text while keeping all assets **planned**, **non-indexable**, and **non-sitemap** until Quality Gate and source/claim work catch up.
+
+**Doctrine reference:** `doctrine/QUALITY_GATE.md`, `doctrine/SOURCE_POLICY.md`, `doctrine/PROJECT_DOCTRINE.md`.
+
+**Sprint 5E validation (observed where applicable):**
+
+- Five target `content_file` paths exist with YAML frontmatter: `route_id`, `status: draft`, `publication_status: non_public`, `indexable: false`, `in_sitemap: false`, language fields aligned with `routes.json`.
+- Draft bodies state **non-public** / **not publication-ready** posture; include **`[SOURCE REQUIRED]`** where appropriate; do **not** claim source-locking complete; do **not** approve claims; use **route_id** plain references only (**no** raw URLs; **no** markdown links assuming publication).
+- German drafts (`de_method_corpus_map`, `de_method_translator_playbook`) are written in **German**; do **not** assert DIN or official German IUPAC authority.
+- `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json` — **not modified**.
+- No claim has `status: approved`; claim registries remain **inactive**.
+- All routes remain `status: planned`; **no** `indexable: true` or `in_sitemap: true` introduced.
+- **No** generated HTML, dependencies, workflows, package files, deployment configs, or Cloudflare configs created.
+- Root `README.md` **not modified**.
+- `main/data/BATCH_1A_NON_PUBLIC_DRAFT_CREATION_REPORT.md` created.
+- `DECISION_LOG.md` updated with this entry.
+
+**Publication readiness:** **Not public launch**; drafts are **inventory for review** only.
+
+**Files created:**
+
+- `main/content/en/pages/corpus-methodology.md`
+- `main/content/en/pages/internal-linking-discipline.md`
+- `main/content/en/pages/quality-gate.md`
+- `main/content/de/pages/corpus-map.md`
+- `main/content/de/pages/translator-playbook.md`
+- `main/data/BATCH_1A_NON_PUBLIC_DRAFT_CREATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5E entry appended.
+
+**Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json. **Pre-existing** content draft pages (every file other than the five new Batch 1A targets above) — **not modified**.
