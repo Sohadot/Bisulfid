@@ -1364,3 +1364,40 @@ Each entry includes:
 
 **Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, all content draft pages, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
 
+---
+
+### 2026-05-19 — Launch Cohort Blueprint Quality Reviewed
+
+**Decision:** Record a **blueprint-only quality review** of the **307** proposed launch-cohort concepts from Sprint **5A**; **do not** treat the raw blueprint as **launch-cohort-ready** without refinement.
+
+**Summary:** Sprint **5B** evaluated `CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md` against sovereign-grade doctrine: thesis fit, anti-thin / anti-generic posture, source and claim risk, multilingual discipline (controlled terminology vs translation spam), duplicate/merge needs, and utility pages vs reference pages. Findings are recorded in **`LAUNCH_COHORT_BLUEPRINT_QUALITY_REVIEW.md`** and **`LAUNCH_COHORT_REFINEMENT_RECOMMENDATIONS.md`**. **No** routes were created. **No** content pages were created or modified. **No** claims were approved. **No** registries (`routes.json`, `internal_links.json`, sitemap/navigation, source/claim/ontology JSON) were modified. **No** public HTML, dependencies, or workflows were added.
+
+**Rationale:** A 307-row scaffold is necessary but **not sufficient** for a sovereign first launch; **EN+DE** must lead, **ar/zh/ja** bulk mirrors should **defer**, **H₂S** and **MoS₂/WS₂** concepts should **merge**, and **newsletter/acquire** must be **excluded from the 300 reference-page** cohort accounting.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/MULTILINGUAL_POLICY.md`, `doctrine/QUALITY_GATE.md`; corpus docs from Sprint 5A.
+
+**Sprint 5B validation (observed where applicable):**
+
+- `main/data/LAUNCH_COHORT_BLUEPRINT_QUALITY_REVIEW.md` created.
+- `main/data/LAUNCH_COHORT_REFINEMENT_RECOMMENDATIONS.md` created.
+- `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json` — **not modified**.
+- **No** `main/content/**` changes.
+- **No** `[SOURCE REQUIRED]` markers removed.
+- No claim has `status: approved`; claim registries remain **inactive**.
+- All routes remain `status: planned`; **no** `indexable: true` or `in_sitemap: true` changes.
+- Root `README.md` **not modified**.
+- `DECISION_LOG.md` updated with this entry.
+
+**Publication readiness:** **Not ready for publication** (review/reporting sprint only).
+
+**Files created:**
+
+- `main/data/LAUNCH_COHORT_BLUEPRINT_QUALITY_REVIEW.md` — methodology, classification, strengths/risks, multilingual and source/claim assessment, launch-cohort-ready verdict (**no**), refinement prerequisites.
+- `main/data/LAUNCH_COHORT_REFINEMENT_RECOMMENDATIONS.md` — keep/revise/merge/defer/reject lists, first implementation batch size (**40–55** routes recommended), Sprint **5C** options.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5B entry appended.
+
+**Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `main/data/CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md`, `main/data/SOVEREIGN_REFERENCE_CORPUS_ARCHITECTURE.md`, `main/data/CORPUS_EXPANSION_MODEL.md`, `main/data/CORPUS_LAUNCH_THRESHOLD.md`, all content draft pages, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
