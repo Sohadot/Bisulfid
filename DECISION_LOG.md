@@ -1324,3 +1324,43 @@ Each entry includes:
 
 **Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, all existing content draft pages, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
 
+---
+
+### 2026-05-18 — Sovereign Reference Corpus Architecture Established
+
+**Decision:** Record Bisulfid.com as a **large, sovereign-grade, multilingual chemical-language reference corpus** with **300 governed pages** as the **minimum public launch threshold**, not the final ambition, and scale horizons toward **500 / 1,000 / 3,000+** pages only under strict quality gates.
+
+**Summary:** Sprint **5A** established long-term corpus architecture and launch-cohort blueprint documentation. The sprint defined the difference between **minimum public launch cohort**, **long-term reference corpus**, and **full authority system**; specified multilingual layers (English spine, German identity, Arabic, Chinese, Japanese technical references); documented expansion rules, anti-thin and anti-generic discipline, and launch thresholds. **CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md** lists **307** proposed page concepts (blueprint only—**not** added to `routes.json`). **No** routes were published. **No** content pages were created or modified. **No** claims were approved. **No** registry files (`routes.json`, `internal_links.json`, sitemap/navigation, source or claim registries, ontology) were modified. **No** public HTML or dependencies were added.
+
+**Rationale:** The owner rejects weak visibility and generic chemistry sites; reference trust requires doctrine-first scaling and a planned path to a **large** corpus—not a stop at 300 pages.
+
+**Doctrine reference:** `doctrine/PROJECT_DOCTRINE.md`, `doctrine/SOURCE_POLICY.md`, `doctrine/QUALITY_GATE.md`, `doctrine/MULTILINGUAL_POLICY.md`
+
+**Sprint 5A validation (observed where applicable):**
+
+- `main/data/SOVEREIGN_REFERENCE_CORPUS_ARCHITECTURE.md` created; states **300 pages** = **minimum launch cohort**, **not** the final goal.
+- `main/data/CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md` created; **≥ 300** proposed concepts (**307** rows).
+- `main/data/CORPUS_EXPANSION_MODEL.md` created; defines expansion beyond 300 pages with strict gates.
+- `main/data/CORPUS_LAUNCH_THRESHOLD.md` created; minimum threshold and no-publication conditions.
+- `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json` — **not modified** (this sprint).
+- **No** content under `main/content/` created or modified.
+- **No** `[SOURCE REQUIRED]` markers removed.
+- No claim has `status: approved`; claim registries remain **inactive**.
+- All routes remain `status: planned`; **no** `indexable: true` or `in_sitemap: true`.
+- **No** generated HTML pages, workflows, package files, deployment configs, or Cloudflare configs created.
+- Root `README.md` **not modified**.
+- `DECISION_LOG.md` updated with this entry.
+
+**Files created:**
+
+- `main/data/SOVEREIGN_REFERENCE_CORPUS_ARCHITECTURE.md` — corpus thesis, layers, categories, multilingual model, authority standard, risks, next sprint.
+- `main/data/CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md` — launch cohort blueprint table (**307** concepts).
+- `main/data/CORPUS_EXPANSION_MODEL.md` — expansion horizons and governance rules.
+- `main/data/CORPUS_LAUNCH_THRESHOLD.md` — launch and no-go gates.
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5A entry appended.
+
+**Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, all content draft pages, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
