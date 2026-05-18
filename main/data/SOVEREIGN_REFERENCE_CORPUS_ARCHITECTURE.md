@@ -147,29 +147,6 @@ Bisulfid.com must remain **usable as serious reference infrastructure** by:
 
 Reference discipline is enforced through **SOURCE_POLICY**, **claim registries**, **ontology alignment**, and **Quality Gate** publication—never through volume alone.
 
-## Academic and reference authority standard
-
-Bisulfid.com must remain **usable as serious reference infrastructure** by:
-
-- chemists,
-- chemical industry professionals,
-- technical translators,
-- terminology editors,
-- compliance and documentation teams,
-- economists and industrial analysts (for **language, classification, and documentary framing**—not counterfeit “market intelligence”).
-
-**Out of scope by design — the corpus must not become:**
-
-- a safety manual or emergency playbook,
-- a medical or therapeutic resource,
-- a procurement guide or vendor directory,
-- a market report (CAGR, share, price forecasts) without governed methodology,
-- a casual education blog,
-- a low-quality AI-generated glossary,
-- a mass page generator that prizes count over source-backed claims.
-
-Reference discipline is enforced through **SOURCE_POLICY**, **claim registries**, **ontology alignment**, and **Quality Gate** publication—never through volume alone.
-
 ## Source and claim governance model (summary)
 
 - **Sources:** `main/data/sources/source_registry.json` is the gate for factual public copy (`doctrine/SOURCE_POLICY.md`).
