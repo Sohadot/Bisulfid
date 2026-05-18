@@ -1441,3 +1441,41 @@ Each entry includes:
 
 **Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `main/data/CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md`, `main/data/SOVEREIGN_REFERENCE_CORPUS_ARCHITECTURE.md`, `main/data/CORPUS_EXPANSION_MODEL.md`, `main/data/CORPUS_LAUNCH_THRESHOLD.md`, `main/data/LAUNCH_COHORT_BLUEPRINT_QUALITY_REVIEW.md`, `main/data/LAUNCH_COHORT_REFINEMENT_RECOMMENDATIONS.md`, all content draft pages, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
 
+---
+
+### 2026-05-20 — Ready Route Planning Batch 1A Added
+
+**Decision:** Register the Sprint **5C** **`ready_for_route_planning`** slice (**7** concepts) in `routes.json` as **`planned`**, non-indexable, non-sitemap routes—**without** duplicating pre-existing `route_id`s and **without** creating `content_file` bodies.
+
+**Summary:** Sprint **5D** added **five** new route records (`corpus_methodology_overview`, `internal_linking_discipline`, `quality_gate_public_explainer`, `de_method_corpus_map`, `de_method_translator_playbook`). **`home`** and **`sources`** were **already** in `routes.json`; no duplicate rows were inserted (documented in `ROUTE_PLANNING_BATCH_1A_REPORT.md`). The sprint did **not** create or modify content pages, did **not** modify `internal_links.json`, did **not** publish routes, did **not** approve claims, and did **not** alter source, claim, sitemap, navigation, or ontology registries. The remaining Sprint **5C** concepts remain outside `routes.json` until source mapping, claim-boundary review, merge/scope refinement, or later-phase governance is completed.
+
+**Rationale:** Execute Batch **1A** as a **route-planning-only** increment that matches the readiness matrix’s lowest-friction cohort while keeping the **300-page** launch threshold and Quality Gate doctrine unchanged.
+
+**Doctrine reference:** `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`, `doctrine/SOURCE_POLICY.md`; Sprint **5C** planning documents.
+
+**Sprint 5D validation (observed where applicable):**
+
+- `main/data/ROUTE_IMPLEMENTATION_READINESS_MATRIX.md` lists exactly **7** `ready_for_route_planning` concepts; **no** concepts from other buckets were added.
+- `main/data/routes.json` parses as valid JSON; **26** route records total (**21** prior + **5** new).
+- Every **new** route: `status: planned`, `indexable: false`, `in_sitemap: false`.
+- `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json` — **not modified**.
+- **No** `main/content/**` files created or modified.
+- No claim has `status: approved`; claim registries remain **inactive** (no edits this sprint).
+- **No** generated HTML, dependencies, workflows, package files, deployment configs, or Cloudflare configs created.
+- Root `README.md` **not modified**.
+- `main/data/ROUTE_PLANNING_BATCH_1A_REPORT.md` created.
+- `DECISION_LOG.md` updated with this entry.
+
+**Publication readiness:** **Not public launch**; all routes remain **planned** and non-sitemap.
+
+**Files created:**
+
+- `main/data/ROUTE_PLANNING_BATCH_1A_REPORT.md` — Batch 1A scope, sources, adds vs skips, confirmations, deferred cohort counts.
+
+**Files updated:**
+
+- `main/data/routes.json` — **five** new planned route records.
+- `DECISION_LOG.md` — Sprint 5D entry appended.
+
+**Not modified in this sprint:** `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `main/data/LAUNCH_COHORT_IMPLEMENTATION_BATCH_1.md`, `main/data/ROUTE_IMPLEMENTATION_READINESS_MATRIX.md`, `main/data/SPRINT_5C_ROUTE_SELECTION_RATIONALE.md`, `main/data/CORPUS_LAUNCH_THRESHOLD.md`, all existing content draft pages, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json.
+
