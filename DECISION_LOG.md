@@ -1520,3 +1520,38 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5E entry appended.
 
 **Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, templates, root `README.md`, package files, workflows, generated output, market_claims.json, safety_claims.json, science_claims.json, industry_claims.json, acquisition_claims.json. **Pre-existing** content draft pages (every file other than the five new Batch 1A targets above) — **not modified**.
+
+---
+
+### 2026-05-22 — Batch 1A Source and Claim Boundaries Reviewed
+
+**Decision:** Record a **report-only** governance review of the five Batch **1A** non-public methodology drafts against source policy, claim boundaries, German authority constraints, internal-link readiness, and publication blockers—**without** mutating content, routes, or registries.
+
+**Summary:** Sprint **5F** reviewed `corpus_methodology_overview`, `internal_linking_discipline`, `quality_gate_public_explainer`, `de_method_corpus_map`, and `de_method_translator_playbook` for source requirements, claim boundaries, German terminology authority boundaries, internal-link readiness, and publication blockers. **No** content pages were modified. **No** routes were published. **No** claims were approved. **No** registries were modified. **`[SOURCE REQUIRED]`** markers remain in place.
+
+**Rationale:** Batch **1A** drafts are review inventory; explicit boundary mapping prevents premature publication, marker stripping, or linking batches that assume public eligibility.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/QUALITY_GATE.md`, `doctrine/PROJECT_DOCTRINE.md`.
+
+**Sprint 5F validation (observed where applicable):**
+
+- `main/data/BATCH_1A_SOURCE_CLAIM_BOUNDARY_REVIEW.md` exists and documents reviewed files, per-page assessments, German boundary review, blocker matrix, and **not ready for publication** conclusion.
+- `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/sources/source_registry.json`, `main/data/claims/terminology_claims.json`, `main/data/ontology/sulfur_terms.json` — **not modified**.
+- **No** `main/content/**` files modified; **no** `[SOURCE REQUIRED]` markers removed.
+- No claim has `status: approved`; claim registries remain **inactive**.
+- All routes remain `status: planned`; **no** `indexable: true` or `in_sitemap: true` introduced.
+- **No** generated HTML, dependencies, workflows, package files, deployment configs, or Cloudflare configs created.
+- Root `README.md` **not modified**.
+- `DECISION_LOG.md` updated with this entry.
+
+**Publication readiness:** **Not ready for publication**; **not** public launch.
+
+**Files created:**
+
+- `main/data/BATCH_1A_SOURCE_CLAIM_BOUNDARY_REVIEW.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5F entry appended.
+
+**Not modified in this sprint:** All content pages, `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, templates, root `README.md`, package files, workflows, generated output.
