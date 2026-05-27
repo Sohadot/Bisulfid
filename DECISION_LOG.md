@@ -1745,3 +1745,43 @@ Each entry includes:
 - `DECISION_LOG.md` — corrective entry appended.
 
 **Not modified in this patch:** `main/data/routes.json`, `scripts/validate_route_registry_l0.py`, `main/data/ROUTE_REGISTRATION_WAVE_1_MANIFEST.md`, `main/data/ROUTE_REGISTRY_L0_VALIDATION_REPORT.md`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, all `main/content/**` pages, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-27 — Draft Production Wave 1 Created
+
+**Decision:** Create the **first large wave** of **non-public draft pages** for selected low-risk planned routes under the **500-page sovereign launch program** and automation control doctrine.
+
+**Summary:** Sprint **5J** created **50** non-public Markdown drafts at exact `routes.json` `content_file` paths (draft-backed routes: **18 → 68**). Created `scripts/validate_content_drafts_l0.py`, `DRAFT_PRODUCTION_WAVE_1_MANIFEST.md`, `DRAFT_PRODUCTION_WAVE_1_REPORT.md`, and `CONTENT_DRAFTS_L0_VALIDATION_REPORT.md`. **No** routes were published. **`routes.json` was not modified.** All created drafts remain `non_public`, non-indexable, out of sitemap, and not publication-ready. **No** claims were approved. **No** internal links, source registries, claim registries, sitemap, navigation, generated HTML, dependencies, workflows, or root README files were modified.
+
+**Rationale:** Sprint **5I-B** registered 100 new routes; Sprint **5I-A** defines draft production as stage S2 (40–60 drafts per wave). Controlled draft bodies must precede publication, source-locking, and claim approval.
+
+**Doctrine reference:** `CORPUS_PRODUCTION_WAVE_MODEL.md`, `CORPUS_AUTOMATION_CONTROL_LAYER.md`, `CORPUS_AUTOMATION_WAVE_PROTOCOL.md`, `FIVE_HUNDRED_PAGE_SOVEREIGN_LAUNCH_PROGRAM.md`.
+
+**Sprint 5J validation:**
+
+- **50** non-public drafts created (target 40–60 met).
+- Every draft matches an existing `route_id` and exact `content_file` path; **no overwrites**.
+- Required frontmatter, non-public notices, and `[SOURCE REQUIRED]` markers present.
+- No raw URLs or markdown links to unpublished routes.
+- `routes.json`, registries, and pre-existing draft pages (except new wave targets) governance posture unchanged.
+- L0 content validation **PASS**.
+- All routes remain `planned`; no claim approved; registries inactive.
+
+**Publication readiness:** **Not ready for publication**. Draft review and source/claim work required.
+
+**Recommended next sprint:** Draft production wave 2 (next 40–60 drafts) or route registration wave 2.
+
+**Files created:**
+
+- **50** draft Markdown files under `main/content/en/pages/` and `main/content/de/pages/`
+- `scripts/validate_content_drafts_l0.py`
+- `main/data/DRAFT_PRODUCTION_WAVE_1_MANIFEST.md`
+- `main/data/DRAFT_PRODUCTION_WAVE_1_REPORT.md`
+- `main/data/CONTENT_DRAFTS_L0_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5J entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
