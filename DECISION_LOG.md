@@ -1720,3 +1720,28 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5I-B entry appended.
 
 **Not modified in this sprint:** `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, templates, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-27 — Route Registration Wave 1 Report Corrected
+
+**Decision:** Correct the Sprint **5I-B** route registration report so audit documentation explicitly records the `routes.json` modification and the intentional **30 English / 70 German** wave split.
+
+**Summary:** This patch corrected `ROUTE_REGISTRATION_WAVE_1_REPORT.md` by explicitly stating that **`main/data/routes.json` was modified** in Sprint 5I-B to add **100** planned route records (26 → **126** total) and by documenting why the wave is **German-heavy**. Bisulfid.com’s strategic identity depends on **German lexical and terminology boundaries** while **English remains the global base layer** through EN terminology, disambiguation, governance, and index infrastructure routes. Arabic, Chinese, and Japanese routes remain deferred until EN/DE spine and hreflang/translation governance are stronger. **No** routes were changed. **No** content pages were created. **No** routes were published. **No** claims were approved. **No** registries, validator, generated output, dependencies, workflows, or root README files were modified.
+
+**Rationale:** Post-merge verification (Sprint 5I-B) passed registry and governance checks but identified two documentation gaps: the report did not explicitly name `routes.json` as a modified artifact, and it did not explain the German-heavy language split. This patch closes those gaps without altering registry state.
+
+**Sprint 5I-B report-correction validation:**
+
+- Only `ROUTE_REGISTRATION_WAVE_1_REPORT.md` and `DECISION_LOG.md` changed.
+- Report explicitly states `routes.json` was modified; **100** new planned records; count **26 → 126**.
+- Report explains **30 EN / 70 DE** split and German-heavy strategic rationale; preserves EN as global base layer.
+- Report does not imply `routes.json` was unmodified.
+- `routes.json`, validator, manifest, validation report, content, registries — **not modified**.
+
+**Files updated:**
+
+- `main/data/ROUTE_REGISTRATION_WAVE_1_REPORT.md` — registry modification statement and German-heavy rationale added.
+- `DECISION_LOG.md` — corrective entry appended.
+
+**Not modified in this patch:** `main/data/routes.json`, `scripts/validate_route_registry_l0.py`, `main/data/ROUTE_REGISTRATION_WAVE_1_MANIFEST.md`, `main/data/ROUTE_REGISTRY_L0_VALIDATION_REPORT.md`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, all `main/content/**` pages, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.

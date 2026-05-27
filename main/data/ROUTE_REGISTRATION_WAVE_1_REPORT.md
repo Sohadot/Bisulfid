@@ -38,6 +38,25 @@ This sprint executes **Stage S1 — Route registration** per `CORPUS_AUTOMATION_
 
 ---
 
+## Files modified by Sprint 5I-B
+
+Sprint **5I-B intentionally modified** the route registry:
+
+| File | Change |
+| --- | --- |
+| `main/data/routes.json` | **Modified** — 100 new **planned** route records added |
+
+**Registry outcome:**
+
+- **100** new planned route records were added to `routes.json`.
+- Route count changed from **26** to **126**.
+- **No** content pages were created in this sprint.
+- **No** routes were published; all new records remain `status: planned`, non-indexable, and out of sitemap/navigation.
+
+No other registry, content, workflow, or dependency files were modified in Sprint 5I-B.
+
+---
+
 ## Files reviewed
 
 - `main/data/CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md`
@@ -89,6 +108,28 @@ See `ROUTE_REGISTRATION_WAVE_1_MANIFEST.md` for full category table. Summary: **
 | --- | ---: |
 | `en` | 30 |
 | `de` | 70 |
+
+### German-heavy wave rationale (30 EN / 70 DE)
+
+The **30 English / 70 German** split is **intentional**, not an accidental imbalance.
+
+**Why the wave is German-heavy:**
+
+- **Bisulfid.com has a German lexical and naming identity.** The asset thesis centers on German chemical language (`Bisulfid`, `Sulfid`, `-id`/`-ide` boundaries) as a sovereign terminology layer, not as a secondary translation locale.
+- **The German layer is strategically central.** Wave 1 registers DE lexical records, DE disambiguation walls, DE methodology/reference routes, and DE gateway mirrors because German terminology sovereignty must be established before multilingual expansion can be governed safely.
+- **German lexical/boundary routes support the German–English chemical-language bridge.** Routes such as `de_bridge_en_de_suffix`, `de_dis_bisulfid_bisulfite`, and the DE terminology spine directly reinforce the DE/EN boundary work that defines the asset.
+- **The German-heavy wave strengthens terminology sovereignty, source-boundary work, and future multilingual authority.** Registering DE routes now creates the governed foundation for hreflang wiring, translator playbooks, and controlled expansion without translation spam.
+
+**English remains the global base layer:**
+
+- The **30 English routes** preserve EN as the international reference spine: terminology records (`bisulfid`, `sulfid`, `hydrosulfide`, `sulfate_terminology`), disambiguation authority (`en_dis_*`), source governance (`nomenclature_governance_overview`, `citation_discipline_primer`), and index/map infrastructure (`en_index_*`).
+- English is not deprioritized; it holds the **global base layer** while German holds the **lexical identity layer** in this wave.
+
+**Multilingual deferral (ar/zh/ja):**
+
+- The German-heavy split **does not mean ar/zh/ja are ignored.** Arabic, Chinese, and Japanese mirror routes remain **deferred** until the EN/DE spine, hreflang policy, and translation governance are stronger—per Sprint 5I-B charter and blueprint gating (`non_public_until_hreflang_wiring`).
+
+See also `ROUTE_REGISTRATION_WAVE_1_MANIFEST.md` for the parallel language-distribution table.
 
 ---
 
