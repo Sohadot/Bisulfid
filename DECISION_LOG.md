@@ -1555,3 +1555,46 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5F entry appended.
 
 **Not modified in this sprint:** All content pages, `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, templates, root `README.md`, package files, workflows, generated output.
+
+---
+
+### 2026-05-27 — Batch 1B Existing Planned Route Drafts Created
+
+**Decision:** Create the next controlled batch of **non-public draft pages** from **existing planned routes** in `routes.json`—increasing real corpus inventory without publishing routes, modifying route state, or mutating governance registries.
+
+**Summary:** Sprint **5G** created non-public drafts for `what_is_sulfur`, `disulfide_bonds`, and `protein_disulfide_structure`—the full set of **safe eligible** planned routes whose `content_file` paths did not yet exist. **Eight** other missing routes were skipped (safety, industrial/procurement, substance operations, utility). **No** routes were published. **No** claims were approved. **No** registries were modified. **`[SOURCE REQUIRED]`** markers remain in all created and pre-existing drafts.
+
+**Rationale:** Move Bisulfid.com from planning into **controlled corpus production** while preserving sovereign-grade discipline. Only **3** of **11** missing registered routes met low-risk eligibility; target range 8–12 could not be met without adding new routes (out of scope) or drafting high-risk pages (forbidden).
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `doctrine/QUALITY_GATE.md`, `doctrine/PROJECT_DOCTRINE.md`.
+
+**Sprint 5G validation (observed where applicable):**
+
+- All selected `route_id` values pre-existed in `routes.json`; **no** new route records added.
+- Every created `content_file` matches the exact path in `routes.json`; **no** existing file overwritten.
+- Every created draft has matching frontmatter: `status: draft`, `publication_status: non_public`, `indexable: false`, `in_sitemap: false`.
+- Every created draft states non-public / not publication-ready posture; includes **`[SOURCE REQUIRED]`** where factual support is pending.
+- **No** draft claims source-locking complete; **no** draft approves or implies claim approval; **no** raw URLs or markdown links assuming publication.
+- **No** market, safety handling, medical, procurement, production, trade, CAGR, market-share, or acquisition-target content in created drafts.
+- `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/sources/source_registry.json`, `main/data/claims/terminology_claims.json`, `main/data/ontology/sulfur_terms.json` — **not modified**.
+- No claim has `status: approved`; claim registries remain **inactive**.
+- All routes remain `status: planned`; **no** `indexable: true` or `in_sitemap: true`.
+- **No** generated HTML, dependencies, workflows, or root `README.md` changes.
+- `main/data/BATCH_1B_EXISTING_ROUTE_DRAFT_CREATION_REPORT.md` created; `DECISION_LOG.md` updated.
+
+**Publication readiness:** **Not ready for publication**; **not** public launch.
+
+**Draft-backed route count:** **18** of **26** registered routes now have draft bodies (**3** created this sprint).
+
+**Files created:**
+
+- `main/content/en/pages/what-is-sulfur.md`
+- `main/content/en/pages/disulfide-bonds.md`
+- `main/content/en/pages/protein-disulfide-structure.md`
+- `main/data/BATCH_1B_EXISTING_ROUTE_DRAFT_CREATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5G entry appended.
+
+**Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, templates, root `README.md`, package files, workflows, generated output, **pre-existing** content draft pages (every file other than the three Batch 1B targets above).
