@@ -2,7 +2,7 @@
 
 ## Why this sprint exists
 
-Sprint **5A** records Bisulfid.com’s strategic correction: the product is **not** “ship ~300 pages and stop.” The asset is a **large, trusted, academically disciplined, source-governed, multilingual chemical-language reference corpus** aligned to sovereign-grade doctrine. This sprint is **architecture and corpus doctrine only**: it produces planning documents and updates the decision log. **No** corpus pages are drafted here. **No** routes publish. **No** registries change.
+Sprint **5A** records Bisulfid.com’s strategic correction: the product is **not** “ship a small page count and stop.” Sprint **5H** (May 2026) **raises the minimum public launch threshold from 300 to 500 governed pages**—still a floor, not a destination. The asset is a **large, trusted, academically disciplined, source-governed, multilingual chemical-language reference corpus** aligned to sovereign-grade doctrine, intended to scale to **1,000+** and eventually **3,000+** pages when quality gates hold. Architecture sprints produce planning documents and decision-log records. **No** corpus pages are drafted in architecture-only sprints. **No** routes publish. **No** registries change.
 
 ## Why weak visibility and placeholder launches are rejected
 
@@ -15,17 +15,17 @@ The owner rejects:
 
 Those patterns destroy **trust** with chemists, translators, editors, compliance users, and analysts—the core audiences who require **reference integrity** over traffic gimmicks.
 
-## 300 pages: minimum launch cohort, not final goal
+## 500 pages: minimum launch cohort, not final goal
 
 Three distinct concepts must not be conflated:
 
 | Concept | Definition |
 | --- | --- |
-| **Minimum public launch cohort** | The **first** public surface Bisulfid.com may show once **≥ 300** pages each meet full launch thresholds (`CORPUS_LAUNCH_THRESHOLD.md`). This is a **floor**, not a destination. |
-| **Long-term reference corpus** | The **expandable** body of governed pages intended to grow to **500**, **1,000**, and **3,000+** pages across languages while **strict quality gates** remain in force (`CORPUS_EXPANSION_MODEL.md`). |
-| **Full authority system** | The **complete** interplay of `routes`, `sources`, **claims**, **ontology**, **multilingual** alignment, **internal links**, and **Quality Gate**—such that public copy is always traceable to registered authority and corpus roles. |
+| **Minimum public launch cohort** | The **first** public surface Bisulfid.com may show once **≥ 500** pages each meet full launch thresholds (`CORPUS_LAUNCH_THRESHOLD.md`). This is a **floor**, not a destination. **300 pages is no longer the launch threshold** (Sprint 5H correction). |
+| **Long-term reference corpus** | The **expandable** body of governed pages intended to grow to **1,000+** and eventually **3,000+** pages across languages while **strict quality gates** remain in force (`CORPUS_EXPANSION_MODEL.md`). **500 pages is not the final goal.** |
+| **Full authority system** | The **complete** interplay of `routes`, `sources`, **claims**, **ontology**, **multilingual** alignment, **internal links**, **SEO metadata**, **technical/security validation**, and **Quality Gate**—such that public copy is always traceable to registered authority and corpus roles. |
 
-**Explicit statement:** **300 governed pages is the minimum first-launch threshold. The long-term corpus must be designed to scale far beyond 300 pages while preserving sovereign-grade quality.**
+**Explicit statement:** **500 governed pages is the minimum first public launch threshold (Sprint 5H). The long-term corpus must be designed to scale to 1,000+ and eventually 3,000+ pages while preserving sovereign-grade quality. Growth is allowed only under strict source, claim, technical, SEO, internal-linking, and quality gates.**
 
 ## Strategic corpus thesis
 
@@ -117,7 +117,7 @@ Each category below specifies purpose, audience, claims, sources, prohibitions, 
 
 - Each language layer uses SOURCE_POLICY categories valid for that page’s claims; **no language skips** the registry.
 
-**Scaling beyond 300 without translation spam**
+**Scaling beyond 500 without translation spam**
 
 - Hub-and-spoke cluster limits,
 - Batch caps and audits (`CORPUS_EXPANSION_MODEL.md`),
@@ -172,7 +172,7 @@ Stages:
 
 ## Batch creation strategy
 
-- Work in **vertical slices** (e.g., DE terminology batch, AR hub batch), not horizontal “300 thin stubs.”
+- Work in **vertical slices** (e.g., DE terminology batch, AR hub batch), not horizontal “500 thin stubs.”
 - Each batch ends with **sampled audit** and **link-graph check**.
 - High-risk routes batched separately with specialist review.
 
@@ -191,7 +191,7 @@ Stages:
 
 ## Launch strategy
 
-- **No public launch** until `CORPUS_LAUNCH_THRESHOLD.md` is satisfied at **≥ 300** pages.
+- **No public launch** until `CORPUS_LAUNCH_THRESHOLD.md` is satisfied at **≥ 500** pages.
 - Launch is **authority-first**; SEO tactics subordinate to doctrine.
 
 ## Risks
@@ -199,8 +199,8 @@ Stages:
 | Risk | Mitigation |
 | --- | --- |
 | Launching early | Reputational collapse with professional users; maintain hard no-go conditions. |
-| 300 weak pages | Same as failure; enforce anti-thin + marker + claim gates. |
-| Scaling past 300 without governance | Translation spam, registry drift; use expansion caps, pruning, audits. |
+| 500 weak pages | Same as failure; enforce anti-thin + marker + claim gates. |
+| Scaling past 500 without governance | Translation spam, registry drift; use expansion caps, pruning, audits. |
 | Safety drift | Keep safety pages non-manual; repeated compliance review. |
 
 ## Why no routes were published (Sprint 5A)
@@ -214,7 +214,9 @@ Corpus drafting is intentionally deferred. This sprint establishes **what** must
 ## Artifacts produced (Sprint 5A)
 
 - `SOVEREIGN_REFERENCE_CORPUS_ARCHITECTURE.md` (this file)
-- `CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md` — **≥ 300** proposed page concepts (**blueprint only**)
+- `CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md` — **≥ 500** proposed page concepts (**blueprint only**; expanded Sprint 5H)
+- `FIVE_HUNDRED_PAGE_SOVEREIGN_LAUNCH_PROGRAM.md` — production program (Sprint 5H)
+- `CORPUS_PRODUCTION_WAVE_MODEL.md` — wave-based production model (Sprint 5H)
 - `CORPUS_EXPANSION_MODEL.md`
 - `CORPUS_LAUNCH_THRESHOLD.md`
 - `DECISION_LOG.md` — sprint record appended

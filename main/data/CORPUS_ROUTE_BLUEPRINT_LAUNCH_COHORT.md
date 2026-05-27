@@ -1,10 +1,11 @@
-# Corpus Route Blueprint — Launch Cohort (Sprint 5A)
+# Corpus Route Blueprint — Launch Cohort (Sprint 5A, revised Sprint 5H)
 
 ## Charter
 
-This document lists **proposed** page concepts for the **minimum public launch cohort** (300+ governed pages) and aligned multilingual expansion. It is a **blueprint only**: **no** `routes.json` edits were made in Sprint 5A; **no** `content_file` bodies were created; **no** publication occurred.
+This document lists **proposed** page concepts for the **minimum public launch cohort** (**≥ 500 governed pages** as of Sprint 5H) and aligned multilingual expansion. It is a **blueprint only**: **no** `routes.json` edits were made in Sprint 5A or 5H; **no** `content_file` bodies were created in those sprints; **no** publication occurred.
 
-- **300 governed pages** = minimum first-launch threshold, **not** the final corpus size.
+- **500 governed pages** = minimum first-launch threshold (Sprint 5H upgrade from 300), **not** the final corpus size.
+- **300 pages is no longer sufficient** for the owner’s sovereign-grade launch standard.
 - Each row is a **planning record** with a declared corpus role, source posture, risk, eligibility, linking cluster, and priority.
 
 ## Column definitions
@@ -334,6 +335,286 @@ This document lists **proposed** page concepts for the **minimum public launch c
 | ja_core_biogenic_lang | /ja/terminology/biogenic-sulfur-language/ | ja | core_terminology | Biogenic vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
 | ja_core_vapor_pressure_lang | /ja/terminology/vapor-pressure-language/ | ja | core_terminology | Vapor pressure language only | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
 
-## Blueprint row count
+## Blueprint row count (Sprint 5A original table)
 
-**Total proposed concepts:** 307
+**Total proposed concepts (Sprint 5A table below):** 307
+
+---
+
+## Sprint 5H — 500-page standard and insufficiency of 307 concepts
+
+The Sprint **5A** blueprint table contains **307** proposed reference page concepts. Under the Sprint **5H** strategic correction, **307 is insufficient** for the minimum **500-page sovereign launch cohort**.
+
+| Gap | Detail |
+| --- | --- |
+| **Shortfall** | 500 − 307 = **193** concepts minimum required beyond the original table |
+| **Owner standard** | First public launch requires **≥ 500** real governed pages (`CORPUS_LAUNCH_THRESHOLD.md`) |
+| **This sprint** | Adds expansion register below; **does not** register routes in `routes.json` |
+
+---
+
+## 500-page launch cohort — layer allocation (planning)
+
+| Strategic layer | Target pages | Notes |
+| --- | ---: | --- |
+| English global base layer | 95 | Gateway, EN spine, EN core terminology |
+| German–English terminology layer | 55 | Bridge, orthography, crosswalk |
+| German authority & lexical boundary layer | 70 | DE records, DE methodology |
+| Arabic technical reference layer | 45 | AR hub + terminology |
+| Chinese technical reference layer | 45 | ZH hub + terminology |
+| Japanese technical reference layer | 45 | JP hub + precision language |
+| Compound-family records | 40 | Sulfide, oxo-anion, organosulfur classes |
+| Disambiguation authority pages | 25 | Triads, bisulfite wall, near-miss |
+| Source & nomenclature governance | 20 | Citation, teaching boundary, policy |
+| Methodology / reference system | 15 | Corpus ops, linking, Quality Gate |
+| Index / map pages | 15 | Multilingual maps, cluster indexes |
+| Industrial/economic interpretation (no market drift) | 20 | Document/process vocabulary |
+| Documentation/compliance language (no legal/safety advice) | 10 | SDS-term framing, compliance language |
+| **Total minimum launch cohort** | **500** | Floor for first public launch |
+
+---
+
+## Sprint 5H expansion register (193 additional concepts)
+
+The following **193** proposed concepts extend the Sprint 5A table to **500** total blueprint rows. **None** are in `routes.json` until a future route-registration wave.
+
+### EN terminology & compound-family expansion (+50)
+
+| proposed_route_id | proposed_path | language | corpus_category | page_role | source_requirement_level | claim_risk_level | public_launch_eligibility | internal_linking_cluster | priority_level |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| en_term_sulfate_salts | /terminology/sulfate-salts/ | en | core_terminology | Sulfate salt naming vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfite_salts | /terminology/sulfite-salts/ | en | core_terminology | Sulfite salt naming vocabulary | strict_registry | medium | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_thiosulfate_salts | /terminology/thiosulfate-salts/ | en | core_terminology | Thiosulfate salt naming | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_polysulfide_salts | /terminology/polysulfide-salts/ | en | core_terminology | Polysulfide salt vocabulary | strict_registry | medium | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_alkyl_sulfides | /terminology/alkyl-sulfides/ | en | core_terminology | Alkyl sulfide class language | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_aryl_sulfides | /terminology/aryl-sulfides/ | en | core_terminology | Aryl sulfide class language | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_thioethers | /terminology/thioethers/ | en | core_terminology | Thioether naming vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_thiols | /terminology/thiols/ | en | core_terminology | Thiol mercaptan naming | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfenyl | /terminology/sulfenyl/ | en | core_terminology | Sulfenyl group vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfinyl | /terminology/sulfinyl/ | en | core_terminology | Sulfinyl group vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfonyl | /terminology/sulfonyl/ | en | core_terminology | Sulfonyl group vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfate_esters | /terminology/sulfate-esters/ | en | core_terminology | Sulfate ester naming | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfonate_esters | /terminology/sulfonate-esters/ | en | core_terminology | Sulfonate ester naming | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfur_dioxide | /terminology/sulfur-dioxide/ | en | core_terminology | SO2 terminology non-operational | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfur_trioxide | /terminology/sulfur-trioxide/ | en | core_terminology | SO3 terminology non-operational | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfuric_acid | /terminology/sulfuric-acid/ | en | core_terminology | Sulfuric acid naming vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_fuming_sulfuric | /terminology/fuming-sulfuric-acid/ | en | core_terminology | Oleum fuming acid language | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_hydrogen_sulfide_aq | /terminology/hydrogen-sulfide-aqueous/ | en | core_terminology | Aqueous H2S naming non-manual | strict_registry | high | deferred_high_risk_review | terminology_spine | P2 |
+| en_term_sulfide_minerals_index | /terminology/sulfide-minerals-index/ | en | index_map | Index of sulfide mineral vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_nickel_sulfides | /terminology/nickel-sulfides/ | en | core_terminology | Nickel sulfide mineral vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_cobalt_sulfides | /terminology/cobalt-sulfides/ | en | core_terminology | Cobalt sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_manganese_sulfides | /terminology/manganese-sulfides/ | en | core_terminology | Manganese sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_mercury_sulfides | /terminology/mercury-sulfides/ | en | core_terminology | Cinnabar etc vocabulary | strict_registry | medium | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_lead_sulfides | /terminology/lead-sulfides/ | en | core_terminology | Galena family vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_zinc_sulfides | /terminology/zinc-sulfides/ | en | core_terminology | Sphalerite family vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_copper_sulfides_extended | /terminology/copper-sulfides-extended/ | en | core_terminology | Extended chalcocite covellite vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_iron_sulfides_extended | /terminology/iron-sulfides-extended/ | en | core_terminology | Extended pyrite marcasite vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_antimony_sulfides | /terminology/antimony-sulfides/ | en | core_terminology | Stibnite family vocabulary | strict_registry | medium | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_arsenic_sulfides | /terminology/arsenic-sulfides/ | en | core_terminology | Orpiment realgar vocabulary | strict_registry | medium | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_molybdenum_sulfides | /terminology/molybdenum-sulfides/ | en | core_terminology | MoS2 MoS3 vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_tungsten_sulfides | /terminology/tungsten-sulfides/ | en | core_terminology | WS2 vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_tin_sulfides_extended | /terminology/tin-sulfides-extended/ | en | core_terminology | Tin sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_silver_sulfides | /terminology/silver-sulfides/ | en | core_terminology | Argentite vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_gold_sulfides | /terminology/gold-sulfides/ | en | core_terminology | Gold sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_selenium_sulfides | /terminology/selenium-sulfides/ | en | core_terminology | Selenium sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_tellurium_sulfides | /terminology/tellurium-sulfides/ | en | core_terminology | Tellurium sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_phosphorus_sulfides | /terminology/phosphorus-sulfides/ | en | core_terminology | Phosphorus sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_boron_sulfides | /terminology/boron-sulfides/ | en | core_terminology | Boron sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_ammonium_sulfides | /terminology/ammonium-sulfides/ | en | core_terminology | Ammonium sulfide salt vocabulary | strict_registry | medium | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_calcium_sulfides | /terminology/calcium-sulfides/ | en | core_terminology | Calcium sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_barium_sulfides | /terminology/barium-sulfides/ | en | core_terminology | Barium sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_strontium_sulfides | /terminology/strontium-sulfides/ | en | core_terminology | Strontium sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_lithium_sulfides | /terminology/lithium-sulfides/ | en | core_terminology | Lithium sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_potassium_sulfides | /terminology/potassium-sulfides/ | en | core_terminology | Potassium sulfide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfur_nitrogen_compounds | /terminology/sulfur-nitrogen-compounds/ | en | core_terminology | Sulfur-nitrogen class vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfur_halogens | /terminology/sulfur-halogen-compounds/ | en | core_terminology | Sulfur halide vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfur_oxygen_halides | /terminology/sulfur-oxyhalides/ | en | core_terminology | Thionyl sulfuryl vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfoximines | /terminology/sulfoximines/ | en | core_terminology | Sulfoximine class vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfilimines | /terminology/sulfilimines/ | en | core_terminology | Sulfilimine class vocabulary | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+| en_term_sulfur_carbon_bonds | /terminology/sulfur-carbon-bond-language/ | en | core_terminology | S-C bond terminology | strict_registry | low | eligible_after_full_source_lock | terminology_spine | P2 |
+
+### DE authority & lexical boundary expansion (+35)
+
+| proposed_route_id | proposed_path | language | corpus_category | page_role | source_requirement_level | claim_risk_level | public_launch_eligibility | internal_linking_cluster | priority_level |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| de_term_bisulfit | /de/terminology/bisulfit/ | de | core_terminology | Bisulfit DE terminology record | strict_registry | medium | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_disulfit | /de/terminology/disulfit/ | de | core_terminology | Disulfit DE terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_polysulfid | /de/terminology/polysulfid/ | de | core_terminology | Polysulfid DE terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_sulfat | /de/terminology/sulfat/ | de | core_terminology | Sulfat DE terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_sulfit | /de/terminology/sulfit/ | de | core_terminology | Sulfit DE terminology | strict_registry | medium | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_thiosulfat | /de/terminology/thiosulfat/ | de | core_terminology | Thiosulfat DE terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_schwefelsaeure | /de/terminology/schwefelsaeure/ | de | core_terminology | Schwefelsäure vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_schwefelwasserstoff | /de/terminology/schwefelwasserstoff/ | de | core_terminology | H2S DE naming non-manual | strict_registry | high | deferred_high_risk_review | multilingual_de | P2 |
+| de_term_natriumsulfid | /de/terminology/natriumsulfid/ | de | core_terminology | Natriumsulfid vocabulary | strict_registry | medium | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_eisensulfid | /de/terminology/eisensulfid/ | de | core_terminology | Eisensulfid mineral vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_kupfersulfid | /de/terminology/kupfersulfid/ | de | core_terminology | Kupfersulfid vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_zinksulfid | /de/terminology/zinksulfid/ | de | core_terminology | Zinksulfid vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_bleisulfid | /de/terminology/bleisulfid/ | de | core_terminology | Bleisulfid vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_molybdaensulfid | /de/terminology/molybdansulfid/ | de | core_terminology | MoS2 DE vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_wolframsulfid | /de/terminology/wolframsulfid/ | de | core_terminology | WS2 DE vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_kohlenstoffdisulfid | /de/terminology/kohlenstoffdisulfid/ | de | core_terminology | CS2 DE vocabulary | strict_registry | medium | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_mercaptan | /de/terminology/mercaptan/ | de | core_terminology | Mercaptan/thiol DE vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_sulfonyl | /de/terminology/sulfonyl/ | de | core_terminology | Sulfonyl DE vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_sulfoxid | /de/terminology/sulfoxid/ | de | core_terminology | Sulfoxid DE vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_term_sulfonsaeure | /de/terminology/sulfonsaeure/ | de | core_terminology | Sulfonsäure class DE | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_gov_claim_boundary | /de/reference/claim-boundary/ | de | source_governance | DE claim boundary explainer | strict_registry | low | non_public_until_editorial_signoff | multilingual_de | P2 |
+| de_gov_source_locking | /de/reference/source-locking/ | de | source_governance | DE source-locking primer | strict_registry | low | non_public_until_editorial_signoff | multilingual_de | P2 |
+| de_method_editorial_standards | /de/reference/editorial-standards/ | de | methodology_reference | DE editorial standards | governance_meta | low | non_public_until_editorial_signoff | multilingual_de | P2 |
+| de_index_terminology_map | /de/reference/terminology-map/ | de | index_map | DE terminology cluster map | governance_meta | low | non_public_until_hreflang_wiring | multilingual_de | P2 |
+| de_index_disambiguation_map | /de/reference/disambiguation-map/ | de | index_map | DE disambiguation index | governance_meta | low | non_public_until_hreflang_wiring | multilingual_de | P2 |
+| de_industrial_claus_vocab | /de/industrial/claus-vocabulary/ | de | industrial_economic_interpretation | Claus SRU DE document language | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P2 |
+| de_industrial_fgd_vocab | /de/industrial/fgd-vocabulary/ | de | industrial_economic_interpretation | FGD DE document language | strict_registry | medium | eligible_after_full_source_lock | multilingual_de | P2 |
+| de_industrial_supply_doc | /de/industrial/supply-document-language/ | de | industrial_economic_interpretation | Supply doc DE vocabulary no stats | strict_registry | medium | eligible_after_full_source_lock | multilingual_de | P2 |
+| de_compliance_sds_terms | /de/compliance/sds-term-language/ | de | documentation_compliance | SDS DE term language non-manual | strict_registry | high | deferred_high_risk_review | multilingual_de | P2 |
+| de_compliance_regulatory_lang | /de/compliance/regulatory-language/ | de | documentation_compliance | Regulatory language framing only | strict_registry | medium | eligible_after_full_source_lock | multilingual_de | P2 |
+| de_dis_bisulfid_bisulfite | /de/reference/bisulfid-bisulfit-wall/ | de | disambiguation_authority | Bisulfid vs Bisulfit DE wall | strict_registry | medium | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_dis_sulfid_sulfat | /de/reference/sulfid-sulfat-boundary/ | de | disambiguation_authority | Sulfid vs Sulfat boundary | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P2 |
+| de_dis_hydrosulfid | /de/reference/hydrosulfid-boundary/ | de | disambiguation_authority | Hydrosulfid naming boundary | strict_registry | medium | eligible_after_full_source_lock | multilingual_de | P2 |
+| de_bridge_en_de_suffix | /de/reference/suffix-bridge/ | de | de_en_chemical_language | -id/-ide suffix bridge DE | strict_registry | low | eligible_after_full_source_lock | multilingual_de | P1 |
+| de_bridge_iupac_de | /de/reference/iupac-de-boundary/ | de | de_en_chemical_language | IUPAC DE boundary non-normative | strict_registry | medium | eligible_after_full_source_lock | multilingual_de | P1 |
+
+### Arabic technical reference expansion (+30)
+
+| proposed_route_id | proposed_path | language | corpus_category | page_role | source_requirement_level | claim_risk_level | public_launch_eligibility | internal_linking_cluster | priority_level |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ar_hub_terminology | /ar/reference/terminology-hub/ | ar | index_map | AR terminology hub | governance_meta | low | non_public_until_hreflang_wiring | multilingual_ar | P1 |
+| ar_core_sulfide | /ar/terminology/sulfide/ | ar | core_terminology | Sulfide AR terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_core_bisulfide | /ar/terminology/bisulfide/ | ar | core_terminology | Bisulfide AR terminology | strict_registry | medium | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_core_hydrosulfide | /ar/terminology/hydrosulfide/ | ar | core_terminology | Hydrosulfide AR terminology | strict_registry | medium | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_core_disulfide | /ar/terminology/disulfide/ | ar | core_terminology | Disulfide AR terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_core_sulfate | /ar/terminology/sulfate/ | ar | core_terminology | Sulfate AR terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_core_sulfite | /ar/terminology/sulfite/ | ar | core_terminology | Sulfite AR terminology | strict_registry | medium | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_core_hydrogen_sulfide | /ar/terminology/hydrogen-sulfide/ | ar | core_terminology | H2S AR naming non-manual | strict_registry | high | deferred_high_risk_review | multilingual_ar | P2 |
+| ar_core_elemental_sulfur | /ar/terminology/elemental-sulfur/ | ar | core_terminology | Elemental sulfur AR | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_core_sulfuric_acid | /ar/terminology/sulfuric-acid/ | ar | core_terminology | Sulfuric acid AR vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_core_iron_sulfide | /ar/terminology/iron-sulfide/ | ar | core_terminology | Iron sulfide AR vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_core_copper_sulfide | /ar/terminology/copper-sulfide/ | ar | core_terminology | Copper sulfide AR vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_core_zinc_sulfide | /ar/terminology/zinc-sulfide/ | ar | core_terminology | Zinc sulfide AR vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_core_mos2 | /ar/terminology/molybdenum-disulfide/ | ar | core_terminology | MoS2 AR vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_gov_source_policy | /ar/reference/source-policy/ | ar | source_governance | AR source policy face | strict_registry | low | non_public_until_editorial_signoff | multilingual_ar | P2 |
+| ar_gov_nomenclature | /ar/reference/nomenclature/ | ar | source_governance | AR nomenclature discipline | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P2 |
+| ar_method_translator | /ar/reference/translator-playbook/ | ar | methodology_reference | AR translator playbook | strict_registry | low | non_public_until_editorial_signoff | multilingual_ar | P2 |
+| ar_index_corpus_map | /ar/reference/corpus-map/ | ar | index_map | AR corpus map | governance_meta | low | non_public_until_hreflang_wiring | multilingual_ar | P2 |
+| ar_industrial_claus | /ar/industrial/claus-vocabulary/ | ar | industrial_economic_interpretation | Claus AR document language | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P2 |
+| ar_industrial_sour_gas | /ar/industrial/sour-gas-language/ | ar | industrial_economic_interpretation | Sour gas AR vocabulary non-operational | strict_registry | high | deferred_high_risk_review | multilingual_ar | P2 |
+| ar_industrial_refinery | /ar/industrial/refinery-sulfur-language/ | ar | industrial_economic_interpretation | Refinery sulfur doc language | strict_registry | medium | eligible_after_full_source_lock | multilingual_ar | P2 |
+| ar_dis_bisulfite_wall | /ar/reference/bisulfite-wall/ | ar | disambiguation_authority | Bisulfite wall AR | strict_registry | medium | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_dis_sulfide_sulfite | /ar/reference/sulfide-sulfite-boundary/ | ar | disambiguation_authority | Sulfide sulfite AR boundary | strict_registry | medium | eligible_after_full_source_lock | multilingual_ar | P2 |
+| ar_bridge_en_ar | /ar/reference/en-ar-bridge/ | ar | multilingual_terminology_control | EN-AR terminology bridge | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_bridge_de_ar | /ar/reference/de-ar-bridge/ | ar | multilingual_terminology_control | DE-AR terminology bridge | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P2 |
+| ar_compliance_sds_lang | /ar/compliance/sds-term-language/ | ar | documentation_compliance | SDS AR term language non-manual | strict_registry | high | deferred_high_risk_review | multilingual_ar | P2 |
+| ar_compliance_trade_docs | /ar/compliance/trade-document-language/ | ar | documentation_compliance | Trade doc AR vocabulary no stats | strict_registry | medium | eligible_after_full_source_lock | multilingual_ar | P2 |
+| ar_nav_reference_index | /ar/reference/navigation-index/ | ar | index_map | AR internal reference navigation | governance_meta | low | non_public_until_hreflang_wiring | multilingual_ar | P2 |
+| ar_term_thiosulfate | /ar/terminology/thiosulfate/ | ar | core_terminology | Thiosulfate AR terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+| ar_term_polysulfide | /ar/terminology/polysulfide/ | ar | core_terminology | Polysulfide AR terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_ar | P1 |
+
+### Chinese technical reference expansion (+30)
+
+| proposed_route_id | proposed_path | language | corpus_category | page_role | source_requirement_level | claim_risk_level | public_launch_eligibility | internal_linking_cluster | priority_level |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| zh_hub_terminology | /zh/reference/terminology-hub/ | zh | index_map | ZH terminology hub | governance_meta | low | non_public_until_hreflang_wiring | multilingual_zh | P1 |
+| zh_core_sulfide | /zh/terminology/sulfide/ | zh | core_terminology | Sulfide ZH terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_core_bisulfide | /zh/terminology/bisulfide/ | zh | core_terminology | Bisulfide ZH terminology | strict_registry | medium | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_core_hydrosulfide | /zh/terminology/hydrosulfide/ | zh | core_terminology | Hydrosulfide ZH terminology | strict_registry | medium | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_core_disulfide | /zh/terminology/disulfide/ | zh | core_terminology | Disulfide ZH terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_core_sulfate | /zh/terminology/sulfate/ | zh | core_terminology | Sulfate ZH terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_core_sulfite | /zh/terminology/sulfite/ | zh | core_terminology | Sulfite ZH terminology | strict_registry | medium | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_core_hydrogen_sulfide | /zh/terminology/hydrogen-sulfide/ | zh | core_terminology | H2S ZH naming non-manual | strict_registry | high | deferred_high_risk_review | multilingual_zh | P2 |
+| zh_core_elemental_sulfur | /zh/terminology/elemental-sulfur/ | zh | core_terminology | Elemental sulfur ZH | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_core_sulfuric_acid | /zh/terminology/sulfuric-acid/ | zh | core_terminology | Sulfuric acid ZH vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_core_iron_sulfide | /zh/terminology/iron-sulfide/ | zh | core_terminology | Iron sulfide ZH vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_core_copper_sulfide | /zh/terminology/copper-sulfide/ | zh | core_terminology | Copper sulfide ZH vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_core_zinc_sulfide | /zh/terminology/zinc-sulfide/ | zh | core_terminology | Zinc sulfide ZH vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_core_mos2 | /zh/terminology/molybdenum-disulfide/ | zh | core_terminology | MoS2 ZH vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_gov_source_policy | /zh/reference/source-policy/ | zh | source_governance | ZH source policy face | strict_registry | low | non_public_until_editorial_signoff | multilingual_zh | P2 |
+| zh_gov_nomenclature | /zh/reference/nomenclature/ | zh | source_governance | ZH nomenclature discipline | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P2 |
+| zh_method_translator | /zh/reference/translator-playbook/ | zh | methodology_reference | ZH translator playbook | strict_registry | low | non_public_until_editorial_signoff | multilingual_zh | P2 |
+| zh_index_corpus_map | /zh/reference/corpus-map/ | zh | index_map | ZH corpus map | governance_meta | low | non_public_until_hreflang_wiring | multilingual_zh | P2 |
+| zh_industrial_claus | /zh/industrial/claus-vocabulary/ | zh | industrial_economic_interpretation | Claus ZH document language | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P2 |
+| zh_industrial_fgd | /zh/industrial/fgd-vocabulary/ | zh | industrial_economic_interpretation | FGD ZH document language | strict_registry | medium | eligible_after_full_source_lock | multilingual_zh | P2 |
+| zh_industrial_battery_lang | /zh/industrial/battery-sulfur-language/ | zh | industrial_economic_interpretation | Battery sector sulfur doc language | strict_registry | medium | eligible_after_full_source_lock | multilingual_zh | P2 |
+| zh_dis_bisulfite_wall | /zh/reference/bisulfite-wall/ | zh | disambiguation_authority | Bisulfite wall ZH | strict_registry | medium | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_dis_sulfide_sulfite | /zh/reference/sulfide-sulfite-boundary/ | zh | disambiguation_authority | Sulfide sulfite ZH boundary | strict_registry | medium | eligible_after_full_source_lock | multilingual_zh | P2 |
+| zh_bridge_en_zh | /zh/reference/en-zh-bridge/ | zh | multilingual_terminology_control | EN-ZH terminology bridge | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_compliance_sds_lang | /zh/compliance/sds-term-language/ | zh | documentation_compliance | SDS ZH term language non-manual | strict_registry | high | deferred_high_risk_review | multilingual_zh | P2 |
+| zh_compliance_customs_docs | /zh/compliance/customs-document-language/ | zh | documentation_compliance | Customs doc ZH vocabulary | strict_registry | medium | eligible_after_full_source_lock | multilingual_zh | P2 |
+| zh_nav_reference_index | /zh/reference/navigation-index/ | zh | index_map | ZH internal reference navigation | governance_meta | low | non_public_until_hreflang_wiring | multilingual_zh | P2 |
+| zh_term_thiosulfate | /zh/terminology/thiosulfate/ | zh | core_terminology | Thiosulfate ZH terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_term_polysulfide | /zh/terminology/polysulfide/ | zh | core_terminology | Polysulfide ZH terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_zh | P1 |
+| zh_term_carbon_disulfide | /zh/terminology/carbon-disulfide/ | zh | core_terminology | CS2 ZH vocabulary | strict_registry | medium | eligible_after_full_source_lock | multilingual_zh | P2 |
+
+### Japanese technical reference expansion (+30)
+
+| proposed_route_id | proposed_path | language | corpus_category | page_role | source_requirement_level | claim_risk_level | public_launch_eligibility | internal_linking_cluster | priority_level |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ja_hub_terminology | /ja/reference/terminology-hub/ | ja | index_map | JA terminology hub | governance_meta | low | non_public_until_hreflang_wiring | multilingual_ja | P1 |
+| ja_core_sulfide | /ja/terminology/sulfide/ | ja | core_terminology | Sulfide JA terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_core_bisulfide | /ja/terminology/bisulfide/ | ja | core_terminology | Bisulfide JA terminology | strict_registry | medium | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_core_hydrosulfide | /ja/terminology/hydrosulfide/ | ja | core_terminology | Hydrosulfide JA terminology | strict_registry | medium | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_core_disulfide | /ja/terminology/disulfide/ | ja | core_terminology | Disulfide JA terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_core_sulfate | /ja/terminology/sulfate/ | ja | core_terminology | Sulfate JA terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_core_sulfite | /ja/terminology/sulfite/ | ja | core_terminology | Sulfite JA terminology | strict_registry | medium | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_core_hydrogen_sulfide | /ja/terminology/hydrogen-sulfide/ | ja | core_terminology | H2S JA naming non-manual | strict_registry | high | deferred_high_risk_review | multilingual_ja | P2 |
+| ja_core_elemental_sulfur | /ja/terminology/elemental-sulfur/ | ja | core_terminology | Elemental sulfur JA | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_core_sulfuric_acid | /ja/terminology/sulfuric-acid/ | ja | core_terminology | Sulfuric acid JA vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_core_iron_sulfide | /ja/terminology/iron-sulfide/ | ja | core_terminology | Iron sulfide JA vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_core_copper_sulfide | /ja/terminology/copper-sulfide/ | ja | core_terminology | Copper sulfide JA vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_core_zinc_sulfide | /ja/terminology/zinc-sulfide/ | ja | core_terminology | Zinc sulfide JA vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_core_mos2 | /ja/terminology/molybdenum-disulfide/ | ja | core_terminology | MoS2 JA vocabulary | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_gov_source_policy | /ja/reference/source-policy/ | ja | source_governance | JA source policy face | strict_registry | low | non_public_until_editorial_signoff | multilingual_ja | P2 |
+| ja_gov_nomenclature | /ja/reference/nomenclature/ | ja | source_governance | JA nomenclature discipline | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P2 |
+| ja_method_translator | /ja/reference/translator-playbook/ | ja | methodology_reference | JA translator playbook | strict_registry | low | non_public_until_editorial_signoff | multilingual_ja | P2 |
+| ja_index_corpus_map | /ja/reference/corpus-map/ | ja | index_map | JA corpus map | governance_meta | low | non_public_until_hreflang_wiring | multilingual_ja | P2 |
+| ja_industrial_claus | /ja/industrial/claus-vocabulary/ | ja | industrial_economic_interpretation | Claus JA document language | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P2 |
+| ja_industrial_semiconductor | /ja/industrial/semiconductor-sulfur-language/ | ja | industrial_economic_interpretation | Semiconductor sulfur doc language | strict_registry | medium | eligible_after_full_source_lock | multilingual_ja | P2 |
+| ja_industrial_battery_lang | /ja/industrial/battery-sulfur-language/ | ja | industrial_economic_interpretation | Battery sulfur doc language JA | strict_registry | medium | eligible_after_full_source_lock | multilingual_ja | P2 |
+| ja_dis_bisulfite_wall | /ja/reference/bisulfite-wall/ | ja | disambiguation_authority | Bisulfite wall JA | strict_registry | medium | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_dis_sulfide_sulfite | /ja/reference/sulfide-sulfite-boundary/ | ja | disambiguation_authority | Sulfide sulfite JA boundary | strict_registry | medium | eligible_after_full_source_lock | multilingual_ja | P2 |
+| ja_bridge_en_ja | /ja/reference/en-ja-bridge/ | ja | multilingual_terminology_control | EN-JA terminology bridge | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_compliance_sds_lang | /ja/compliance/sds-term-language/ | ja | documentation_compliance | SDS JA term language non-manual | strict_registry | high | deferred_high_risk_review | multilingual_ja | P2 |
+| ja_compliance_export_docs | /ja/compliance/export-document-language/ | ja | documentation_compliance | Export doc JA vocabulary | strict_registry | medium | eligible_after_full_source_lock | multilingual_ja | P2 |
+| ja_nav_reference_index | /ja/reference/navigation-index/ | ja | index_map | JA internal reference navigation | governance_meta | low | non_public_until_hreflang_wiring | multilingual_ja | P2 |
+| ja_term_thiosulfate | /ja/terminology/thiosulfate/ | ja | core_terminology | Thiosulfate JA terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_term_polysulfide | /ja/terminology/polysulfide/ | ja | core_terminology | Polysulfide JA terminology | strict_registry | low | eligible_after_full_source_lock | multilingual_ja | P1 |
+| ja_term_iupac_ja_boundary | /ja/reference/iupac-ja-boundary/ | ja | de_en_chemical_language | IUPAC JA boundary non-normative | strict_registry | medium | eligible_after_full_source_lock | multilingual_ja | P1 |
+
+### Disambiguation, governance, index & industrial expansion (+18)
+
+| proposed_route_id | proposed_path | language | corpus_category | page_role | source_requirement_level | claim_risk_level | public_launch_eligibility | internal_linking_cluster | priority_level |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| en_dis_sulfate_sulfite | /reference/sulfate-sulfite-boundary/ | en | disambiguation_authority | Sulfate vs sulfite boundary | strict_registry | medium | eligible_after_full_source_lock | disambiguation | P2 |
+| en_dis_thiosulfate_sulfite | /reference/thiosulfate-sulfite-boundary/ | en | disambiguation_authority | Thiosulfate vs sulfite boundary | strict_registry | medium | eligible_after_full_source_lock | disambiguation | P2 |
+| en_dis_sulfide_sulfite | /reference/sulfide-sulfite-boundary/ | en | disambiguation_authority | Sulfide vs sulfite boundary | strict_registry | medium | eligible_after_full_source_lock | disambiguation | P2 |
+| en_dis_hydrogen_sulfide_hydrosulfide | /reference/h2s-hydrosulfide-boundary/ | en | disambiguation_authority | H2S vs hydrosulfide naming | strict_registry | high | deferred_high_risk_review | disambiguation | P2 |
+| en_dis_carbon_disulfide_bisulfide | /reference/cs2-bisulfide-boundary/ | en | disambiguation_authority | CS2 vs bisulfide family boundary | strict_registry | medium | eligible_after_full_source_lock | disambiguation | P2 |
+| en_gov_claim_registry_explainer | /reference/claim-registry-explainer/ | en | source_governance | How claim registries work | governance_meta | low | non_public_until_registry_activation | governance | P2 |
+| en_gov_ontology_governance | /reference/ontology-governance/ | en | source_governance | Ontology governance primer | strict_registry | low | non_public_until_registry_activation | governance | P2 |
+| en_gov_hreflang_policy | /reference/hreflang-policy/ | en | methodology_reference | hreflang governance explainer | governance_meta | low | non_public_until_hreflang_wiring | governance | P2 |
+| en_index_terminology_spine | /reference/terminology-spine-map/ | en | index_map | Terminology spine index | governance_meta | low | non_public_until_link_wiring | index_map | P2 |
+| en_index_disambiguation_map | /reference/disambiguation-map/ | en | index_map | Disambiguation cluster index | governance_meta | low | non_public_until_link_wiring | index_map | P2 |
+| en_index_multilingual_map | /reference/multilingual-layer-map/ | en | index_map | Multilingual layer overview | governance_meta | low | non_public_until_hreflang_wiring | index_map | P2 |
+| en_nav_internal_reference | /reference/internal-navigation/ | en | index_map | Internal reference navigation guide | governance_meta | low | non_public_until_link_wiring | index_map | P2 |
+| en_industrial_vessel_sulfur_lang | /industrial/vessel-sulfur-language/ | en | industrial_economic_interpretation | Vessel sulfur doc vocabulary | strict_registry | medium | eligible_after_full_source_lock | industrial_interpretation | P2 |
+| en_industrial_mining_sulfur_lang | /industrial/mining-sulfur-language/ | en | industrial_economic_interpretation | Mining sulfur doc vocabulary | strict_registry | medium | eligible_after_full_source_lock | industrial_interpretation | P2 |
+| en_industrial_pharma_sulfur_lang | /industrial/pharma-sulfur-language/ | en | industrial_economic_interpretation | Pharma sulfur doc vocabulary non-medical | strict_registry | medium | eligible_after_full_source_lock | industrial_interpretation | P2 |
+| en_compliance_export_doc_lang | /compliance/export-document-language/ | en | documentation_compliance | Export doc sulfur vocabulary | strict_registry | medium | eligible_after_full_source_lock | industrial_interpretation | P2 |
+| en_compliance_customs_sulfur_lang | /compliance/customs-sulfur-language/ | en | documentation_compliance | Customs sulfur doc language | strict_registry | medium | eligible_after_full_source_lock | industrial_interpretation | P2 |
+| en_compliance_reach_language | /compliance/reach-document-language/ | en | documentation_compliance | REACH doc language framing only | strict_registry | medium | eligible_after_full_source_lock | industrial_interpretation | P2 |
+
+---
+
+## Total blueprint row count (Sprint 5A + Sprint 5H expansion)
+
+| Register | Concepts |
+| --- | ---: |
+| Sprint 5A original table | 307 |
+| Sprint 5H expansion register | 193 |
+| **Total proposed concepts** | **500** |
+
+**Publication readiness:** **Not ready for publication.** Blueprint only. **No** `routes.json` modifications in Sprint 5H.
+
+**Recommended next sprint:** Route registration wave 1 (80–120 planned routes from blueprint priority rows) — see `CORPUS_PRODUCTION_WAVE_MODEL.md`.
+
+---
+
+*Sprint 5H blueprint revision — 500-page minimum launch cohort. No registry edits.*

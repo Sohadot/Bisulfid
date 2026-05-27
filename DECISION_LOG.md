@@ -1598,3 +1598,46 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5G entry appended.
 
 **Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, templates, root `README.md`, package files, workflows, generated output, **pre-existing** content draft pages (every file other than the three Batch 1B targets above).
+
+---
+
+### 2026-05-27 — Five Hundred Page Sovereign Launch Program Established
+
+**Decision:** Upgrade Bisulfid.com’s **minimum public launch threshold** from **300** to **500 governed reference pages** and establish the strategic production program, expansion model, blueprint expansion, and wave-based production architecture required to reach that threshold—**without** publishing routes, creating content, or modifying registries.
+
+**Summary:** Sprint **5H** revised `SOVEREIGN_REFERENCE_CORPUS_ARCHITECTURE.md`, `CORPUS_LAUNCH_THRESHOLD.md`, `CORPUS_EXPANSION_MODEL.md`, and `CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md` to reflect the **500-page minimum** first public launch cohort (300 is no longer the launch threshold). Created `FIVE_HUNDRED_PAGE_SOVEREIGN_LAUNCH_PROGRAM.md` and `CORPUS_PRODUCTION_WAVE_MODEL.md`. Blueprint expansion adds **193** concepts to the original **307** for **500** total proposed reference pages. **No** routes were published. **No** content pages were created or modified. **No** claims were approved. **No** registries were modified.
+
+**Rationale:** The owner judged **300 pages insufficient** for a sovereign-grade first public surface. **500** is the new **floor** (not the ceiling); long-term ambition remains **1,000+** and **3,000+** pages under strict governance. Small batch sprints proved discipline; **wave-based production** is now required to reach launch scale without thin pages, translation spam, or fake readiness.
+
+**Doctrine reference:** `doctrine/PROJECT_DOCTRINE.md`, `doctrine/QUALITY_GATE.md`, `doctrine/SOURCE_POLICY.md`.
+
+**Sprint 5H validation (observed where applicable):**
+
+- `FIVE_HUNDRED_PAGE_SOVEREIGN_LAUNCH_PROGRAM.md` and `CORPUS_PRODUCTION_WAVE_MODEL.md` exist with layer allocation, audience map, wave sizes, production sequence, and rejected shortcuts.
+- `SOVEREIGN_REFERENCE_CORPUS_ARCHITECTURE.md` states **500 pages** as minimum public launch threshold; **300** superseded.
+- `CORPUS_LAUNCH_THRESHOLD.md` defines **500** governed pages as minimum cohort with full launch gates (metadata, links, SEO, technical/security, no markers, no thin pages).
+- `CORPUS_EXPANSION_MODEL.md` defines horizons: **500** launch, **1,000+** authority, **3,000+** multilingual, optional **5,000+**.
+- `CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md` acknowledges **307 insufficient**; expansion register totals **500** proposed concepts.
+- `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/sources/source_registry.json`, `main/data/claims/terminology_claims.json`, `main/data/ontology/sulfur_terms.json` — **not modified**.
+- **No** content pages created or modified; **no** `[SOURCE REQUIRED]` markers removed.
+- No claim has `status: approved`; claim registries remain **inactive**.
+- All routes remain `status: planned`; **no** `indexable: true` or `in_sitemap: true`.
+- **No** generated HTML, dependencies, workflows, or root `README.md` changes.
+- `DECISION_LOG.md` updated with this entry.
+
+**Publication readiness:** **Not ready for publication**; **not** public launch. **No publication before 500-page threshold.**
+
+**Files created:**
+
+- `main/data/FIVE_HUNDRED_PAGE_SOVEREIGN_LAUNCH_PROGRAM.md`
+- `main/data/CORPUS_PRODUCTION_WAVE_MODEL.md`
+
+**Files updated:**
+
+- `main/data/SOVEREIGN_REFERENCE_CORPUS_ARCHITECTURE.md`
+- `main/data/CORPUS_LAUNCH_THRESHOLD.md`
+- `main/data/CORPUS_EXPANSION_MODEL.md`
+- `main/data/CORPUS_ROUTE_BLUEPRINT_LAUNCH_COHORT.md`
+- `DECISION_LOG.md` — Sprint 5H entry appended.
+
+**Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, templates, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
