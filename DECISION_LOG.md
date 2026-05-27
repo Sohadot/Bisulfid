@@ -1828,3 +1828,43 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5K entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, `scripts/validate_route_registry_l0.py`, `scripts/validate_content_drafts_l0.py`, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-27 — Draft Wave 1 Source and Claim Boundaries Reviewed
+
+**Decision:** Review and classify source and claim boundaries for all **50** Sprint **5J** non-public drafts before the next large draft-production wave.
+
+**Summary:** Sprint **5L** classified wave-1 drafts by source requirement level, claim-risk level, publication blockers, and readiness for future source-mapping and claim-boundary work. Created boundary review report and four supporting matrices/action documents. **No** content pages were modified. **No** routes were published. **No** claims were approved. **No** source entries, claim registries, route records, internal links, sitemap, navigation, generated HTML, dependencies, workflows, or root README files were modified. `[SOURCE REQUIRED]` markers remain in place.
+
+**Rationale:** Sprint **5K** established L1 automation and recommended source/claim boundary review (5L) before draft wave 2. With **68** draft-backed routes and **50** new standardized drafts, unclassified source/claim debt would compound toward the **500-page** launch threshold.
+
+**Doctrine reference:** `CORPUS_AUTOMATION_CONTROL_LAYER.md`, `CORPUS_AUTOMATION_VALIDATION_REQUIREMENTS.md`, `CORPUS_LAUNCH_THRESHOLD.md`, `CORPUS_PRODUCTION_WAVE_MODEL.md`, `DRAFT_PRODUCTION_WAVE_1_MANIFEST.md`, `CORPUS_AUTOMATION_NEXT_WAVE_RECOMMENDATIONS.md`.
+
+**Sprint 5L validation:**
+
+- **50/50** Sprint 5J drafts exist, match `routes.json`, remain `draft` / `non_public` / non-indexable.
+- L1 runtime **PASS** (pre-flight).
+- **0** drafts publication-ready; **12** ready for source-mapping cohort A; **3** blocked pending reframe.
+- Matrices contain **50** rows each.
+- `routes.json`, registries, content pages — **not modified**.
+- No claim `status: approved`; registries remain **inactive**.
+- All **126** routes remain `planned`; no `indexable: true` or `in_sitemap: true`.
+
+**Publication readiness:** **Not ready for publication**. Classification sprint only.
+
+**Recommended next sprint:** Source mapping wave 1 (cohort A, 10–15 drafts) plus claim boundary registration report for medium-risk drafts.
+
+**Files created:**
+
+- `main/data/DRAFT_WAVE_1_SOURCE_CLAIM_BOUNDARY_REVIEW.md`
+- `main/data/DRAFT_WAVE_1_SOURCE_REQUIREMENT_MATRIX.md`
+- `main/data/DRAFT_WAVE_1_CLAIM_RISK_MATRIX.md`
+- `main/data/DRAFT_WAVE_1_PUBLICATION_BLOCKER_MATRIX.md`
+- `main/data/DRAFT_WAVE_1_NEXT_ACTIONS.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5L entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, L1/L0 validator scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
