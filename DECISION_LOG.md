@@ -1780,8 +1780,98 @@ Each entry includes:
 - `main/data/DRAFT_PRODUCTION_WAVE_1_REPORT.md`
 - `main/data/CONTENT_DRAFTS_L0_VALIDATION_REPORT.md`
 
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-27 — Corpus Automation Runtime Layer 1 Established
+
+**Decision:** Establish the first **executable read-only automation runtime layer** (L1) for Bisulfid.com’s sovereign reference corpus validation.
+
+**Summary:** Sprint **5K** added L1 validators for route registry integrity, draft content discipline, publication locks, claim locks, and internal reference discipline, plus a local orchestration runtime (`corpus_validation_runtime_l1.py`). Created automation documentation and validation reports. **No** routes, content pages, registries, workflows, dependencies, or public HTML were added or modified. **No** routes were published. **No** claims were approved. All routes remain `planned`; all claim registries remain **inactive**.
+
+**Rationale:** After Sprint **5I-B** (126 routes) and Sprint **5J** (68 draft-backed pages), isolated L0 wave validators are insufficient for corpus-scale governance. L1 provides repeatable, stdlib-only, read-only validation toward the **500-page** launch threshold and later **1,000+** / **3,000+** expansion without lowering quality, trust, SEO, security, or governance control.
+
+**Doctrine reference:** `CORPUS_AUTOMATION_CONTROL_LAYER.md`, `CORPUS_AUTOMATION_MANIFEST.md`, `CORPUS_AUTOMATION_WAVE_PROTOCOL.md`, `CORPUS_AUTOMATION_VALIDATION_REQUIREMENTS.md`, `CORPUS_LAUNCH_THRESHOLD.md`, `FIVE_HUNDRED_PAGE_SOVEREIGN_LAUNCH_PROGRAM.md`.
+
+**Sprint 5K validation:**
+
+- All new L1 scripts exist under `scripts/`; Python standard library only; read-only.
+- `python scripts/corpus_validation_runtime_l1.py` — **PASS** (all L1 validators; L0 informational PASS).
+- `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json` — **not modified**.
+- **No** content pages created or modified; **no** generated HTML; root `README.md` **not modified**.
+- **No** GitHub workflows created; **no** dependencies added.
+- All **126** routes remain `status: planned`; **no** `indexable: true`, `in_sitemap: true`, or `in_navigation: true`.
+- Claim registries remain **inactive**; **0** approved claims; **14** pending_review.
+- L1 warnings documented for **18** legacy pre-5J drafts and **4** pre-existing safety-context route metadata keywords — **not auto-fixed**.
+- `CORPUS_AUTOMATION_SCRIPT_REGISTRY.md`, `CORPUS_AUTOMATION_RUNTIME_LAYER_1_REPORT.md`, `CORPUS_L1_VALIDATION_REPORT.md`, and `CORPUS_AUTOMATION_NEXT_WAVE_RECOMMENDATIONS.md` exist.
+
+**Publication readiness:** **Not ready for publication**. Validation infrastructure only. **374** routes remain to be registered toward the 500-page threshold; **58** routes lack drafts.
+
+**Recommended next sprint:** Source and claim boundary review for Sprint 5J drafts (Sprint 5L), then draft production wave 2.
+
+**Files created:**
+
+- `scripts/corpus_validation_runtime_l1.py`
+- `scripts/validate_corpus_routes_l1.py`
+- `scripts/validate_corpus_drafts_l1.py`
+- `scripts/validate_corpus_publication_lock_l1.py`
+- `scripts/validate_corpus_claims_l1.py`
+- `scripts/validate_corpus_references_l1.py`
+- `main/data/CORPUS_AUTOMATION_SCRIPT_REGISTRY.md`
+- `main/data/CORPUS_AUTOMATION_RUNTIME_LAYER_1_REPORT.md`
+- `main/data/CORPUS_L1_VALIDATION_REPORT.md`
+- `main/data/CORPUS_AUTOMATION_NEXT_WAVE_RECOMMENDATIONS.md`
+
 **Files updated:**
 
-- `DECISION_LOG.md` — Sprint 5J entry appended.
+- `DECISION_LOG.md` — Sprint 5K entry appended.
 
-**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, `scripts/validate_route_registry_l0.py`, `scripts/validate_content_drafts_l0.py`, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-27 — Corpus Automation Runtime Layer 1 Established
+
+**Decision:** Establish the first **executable read-only automation runtime layer** (L1) for Bisulfid.com’s sovereign reference corpus validation.
+
+**Summary:** Sprint **5K** added L1 validators for route registry integrity, draft content discipline, publication locks, claim locks, and internal reference discipline, plus a local orchestration runtime (`corpus_validation_runtime_l1.py`). Created automation documentation and validation reports. **No** routes, content pages, registries, workflows, dependencies, or public HTML were added or modified. **No** routes were published. **No** claims were approved. All routes remain `planned`; all claim registries remain **inactive**.
+
+**Rationale:** After Sprint **5I-B** (126 routes) and Sprint **5J** (68 draft-backed pages), isolated L0 wave validators are insufficient for corpus-scale governance. L1 provides repeatable, stdlib-only, read-only validation toward the **500-page** launch threshold and later **1,000+** / **3,000+** expansion without lowering quality, trust, SEO, security, or governance control.
+
+**Doctrine reference:** `CORPUS_AUTOMATION_CONTROL_LAYER.md`, `CORPUS_AUTOMATION_MANIFEST.md`, `CORPUS_AUTOMATION_WAVE_PROTOCOL.md`, `CORPUS_AUTOMATION_VALIDATION_REQUIREMENTS.md`, `CORPUS_LAUNCH_THRESHOLD.md`, `FIVE_HUNDRED_PAGE_SOVEREIGN_LAUNCH_PROGRAM.md`.
+
+**Sprint 5K validation:**
+
+- All new L1 scripts exist under `scripts/`; Python standard library only; read-only.
+- `python scripts/corpus_validation_runtime_l1.py` — **PASS** (all L1 validators; L0 informational PASS).
+- `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json` — **not modified**.
+- **No** content pages created or modified; **no** generated HTML; root `README.md` **not modified**.
+- **No** GitHub workflows created; **no** dependencies added.
+- All **126** routes remain `status: planned`; **no** `indexable: true`, `in_sitemap: true`, or `in_navigation: true`.
+- Claim registries remain **inactive**; **0** approved claims; **14** pending_review.
+- L1 warnings documented for **18** legacy pre-5J drafts and **4** pre-existing safety-context route metadata keywords — **not auto-fixed**.
+- `CORPUS_AUTOMATION_SCRIPT_REGISTRY.md`, `CORPUS_AUTOMATION_RUNTIME_LAYER_1_REPORT.md`, `CORPUS_L1_VALIDATION_REPORT.md`, and `CORPUS_AUTOMATION_NEXT_WAVE_RECOMMENDATIONS.md` exist.
+
+**Publication readiness:** **Not ready for publication**. Validation infrastructure only. **374** routes remain to be registered toward the 500-page threshold; **58** routes lack drafts.
+
+**Recommended next sprint:** Source and claim boundary review for Sprint 5J drafts (Sprint 5L), then draft production wave 2.
+
+**Files created:**
+
+- `scripts/corpus_validation_runtime_l1.py`
+- `scripts/validate_corpus_routes_l1.py`
+- `scripts/validate_corpus_drafts_l1.py`
+- `scripts/validate_corpus_publication_lock_l1.py`
+- `scripts/validate_corpus_claims_l1.py`
+- `scripts/validate_corpus_references_l1.py`
+- `main/data/CORPUS_AUTOMATION_SCRIPT_REGISTRY.md`
+- `main/data/CORPUS_AUTOMATION_RUNTIME_LAYER_1_REPORT.md`
+- `main/data/CORPUS_L1_VALIDATION_REPORT.md`
+- `main/data/CORPUS_AUTOMATION_NEXT_WAVE_RECOMMENDATIONS.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5K entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, `scripts/validate_route_registry_l0.py`, `scripts/validate_content_drafts_l0.py`, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
