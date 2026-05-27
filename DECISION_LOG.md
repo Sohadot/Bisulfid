@@ -1679,3 +1679,44 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5I-A entry appended.
 
 **Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, templates, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output, scripts directories.
+
+---
+
+### 2026-05-27 — Route Registration Wave 1 Added
+
+**Decision:** Register the **first large wave** of low-risk **planned** routes toward the **500-page sovereign launch threshold** and introduce a read-only **L0 route registry validator**.
+
+**Summary:** Sprint **5I-B** added **100** new route records to `routes.json` (26 → **126** total). Created `scripts/validate_route_registry_l0.py`, `ROUTE_REGISTRATION_WAVE_1_MANIFEST.md`, `ROUTE_REGISTRATION_WAVE_1_REPORT.md`, and `ROUTE_REGISTRY_L0_VALIDATION_REPORT.md`. **No** content pages were created. **No** routes were published. All new routes remain `planned`, `indexable: false`, `in_sitemap: false`, `in_navigation: false`. **No** claims were approved. **No** internal links, source registries, claim registries, sitemap, navigation, generated HTML, dependencies, workflows, or root README files were modified.
+
+**Rationale:** Sprint **5H** set the 500-page launch threshold; Sprint **5I-A** defined automation control and wave protocol. Route-scale production must begin with governed **registry-only** waves (80–120 routes) before draft production, preserving publication and claim locks.
+
+**Doctrine reference:** `CORPUS_PRODUCTION_WAVE_MODEL.md`, `CORPUS_AUTOMATION_CONTROL_LAYER.md`, `CORPUS_AUTOMATION_WAVE_PROTOCOL.md`, `FIVE_HUNDRED_PAGE_SOVEREIGN_LAUNCH_PROGRAM.md`, `doctrine/QUALITY_GATE.md`.
+
+**Sprint 5I-B validation:**
+
+- `routes.json` remains valid JSON; **100** new route records added (target 80–120 met).
+- Every new `route_id` was absent before this sprint; no duplicate `route_id` or `path`.
+- Every new route: `status: planned`, `indexable: false`, `in_sitemap: false`, `in_navigation: false`.
+- **No** content files created or modified; **no** generated HTML.
+- `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json` — **not modified**.
+- No claim `status: approved`; claim registries remain **inactive**.
+- `scripts/validate_route_registry_l0.py` exists; L0 validation **PASS**.
+- Manifest, report, and validation report artifacts exist.
+
+**Publication readiness:** **Not ready for publication**. Registry expansion only. **374** routes remain to be registered toward the 500-page threshold.
+
+**Recommended next sprint:** Draft production wave 1 (40–60 governed drafts for highest-priority newly registered routes) and/or route registration wave 2.
+
+**Files created:**
+
+- `scripts/validate_route_registry_l0.py`
+- `main/data/ROUTE_REGISTRATION_WAVE_1_MANIFEST.md`
+- `main/data/ROUTE_REGISTRATION_WAVE_1_REPORT.md`
+- `main/data/ROUTE_REGISTRY_L0_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `main/data/routes.json` — 100 planned routes added (126 total).
+- `DECISION_LOG.md` — Sprint 5I-B entry appended.
+
+**Not modified in this sprint:** `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, templates, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
