@@ -1641,3 +1641,41 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5H entry appended.
 
 **Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, templates, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-27 — Corpus Automation Control Layer Established
+
+**Decision:** Establish the **governed automation control layer** for Bisulfid.com’s **500-page sovereign reference corpus program**—defining how future automation may support wave production without publishing routes, approving claims, generating weak pages, or bypassing human governance.
+
+**Summary:** Sprint **5I-A** created `CORPUS_AUTOMATION_CONTROL_LAYER.md`, `CORPUS_AUTOMATION_MANIFEST.md`, `CORPUS_AUTOMATION_WAVE_PROTOCOL.md`, and `CORPUS_AUTOMATION_VALIDATION_REQUIREMENTS.md`. The layer defines automation boundaries for route registration, draft production, source mapping, claim boundary review, internal-link wiring, SEO/metadata validation, and technical/pre-publication validation. **No** scripts, workflows, dependencies, routes, content pages, or registries were created or modified.
+
+**Rationale:** Sprint **5H** established **500-page** wave production; scaling to 80–120 route waves and 40–60 draft waves requires **repeatable validation and manifest discipline** before tooling is implemented. Automation follows doctrine; human review remains mandatory at merge, sample audit, source/claim signoff, and launch authorization (S9).
+
+**Doctrine reference:** `CORPUS_PRODUCTION_WAVE_MODEL.md`, `CORPUS_LAUNCH_THRESHOLD.md`, `FIVE_HUNDRED_PAGE_SOVEREIGN_LAUNCH_PROGRAM.md`, `doctrine/QUALITY_GATE.md`, `doctrine/SOURCE_POLICY.md`.
+
+**Sprint 5I-A validation (observed where applicable):**
+
+- `CORPUS_AUTOMATION_CONTROL_LAYER.md`, `CORPUS_AUTOMATION_MANIFEST.md`, `CORPUS_AUTOMATION_WAVE_PROTOCOL.md`, and `CORPUS_AUTOMATION_VALIDATION_REQUIREMENTS.md` exist with stage definitions, wave protocol, validation check IDs, and publication lock rules.
+- **No** scripts created; **no** GitHub workflows created; **no** dependencies added.
+- `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/sources/source_registry.json`, `main/data/claims/terminology_claims.json`, `main/data/ontology/sulfur_terms.json` — **not modified**.
+- **No** content pages created or modified.
+- No claim has `status: approved`; claim registries remain **inactive**.
+- All routes remain `status: planned`; **no** `indexable: true` or `in_sitemap: true`.
+- **No** generated HTML; root `README.md` **not modified**.
+- `DECISION_LOG.md` updated with this entry.
+
+**Publication readiness:** **Not ready for publication**; **not** public launch. **No publication before 500-page threshold.**
+
+**Files created:**
+
+- `main/data/CORPUS_AUTOMATION_CONTROL_LAYER.md`
+- `main/data/CORPUS_AUTOMATION_MANIFEST.md`
+- `main/data/CORPUS_AUTOMATION_WAVE_PROTOCOL.md`
+- `main/data/CORPUS_AUTOMATION_VALIDATION_REQUIREMENTS.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5I-A entry appended.
+
+**Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, templates, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output, scripts directories.
