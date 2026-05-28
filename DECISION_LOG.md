@@ -1992,3 +1992,44 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-B entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, existing L0/L1 corpus validator scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-28 — Candidate Source Discovery Wave 1 Completed
+
+**Decision:** Create the first candidate source discovery layer for the **5** selected source-registration proposal drafts from Sprint **5N-A**.
+
+**Summary:** Sprint **5N-C** created the first candidate source discovery layer for the five selected source-registration proposal drafts. The sprint classified candidate source families, authority requirements, rejection rules, and next actions without adding source entries, modifying `source_registry.json`, approving claims, modifying claim registries, editing content pages, publishing routes, adding raw URLs, or inventing bibliographic details. Candidate sources remain discovery targets only and are not approved, source-locked, or publication-ready.
+
+**Rationale:** Sprint **5N-A** proposals and Sprint **5N-B** guardrails established prerequisites. Discovery names **families and search targets** for human review before any registry execution — preserving the trust root without false source-lock progress.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SOURCE_REGISTRATION_PROPOSAL_WAVE_1_REPORT.md`, `SOURCE_REGISTRATION_PROPOSAL_MATRIX_WAVE_1.md`, `SOURCE_EVIDENCE_REQUIREMENT_MATRIX_WAVE_1.md`, `SOURCE_CLAIM_AUTOMATION_GUARDRAIL_REPORT.md`, `CORPUS_LAUNCH_THRESHOLD.md`.
+
+**Sprint 5N-C validation:**
+
+- **5/5** selected drafts covered in discovery matrices.
+- Guardrail runtime **PASS** (pre- and post-sprint).
+- Corpus L1 runtime **PASS** (pre- and post-sprint).
+- `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `routes.json` — **not modified**.
+- **No** content pages created or modified; **no** markers removed; **no** raw URLs; **no** invented bibliographic details.
+- **0** approved claims; registries **inactive**.
+- All **126** routes remain `planned`; no `indexable: true` or `in_sitemap: true`.
+
+**Publication readiness:** **Not ready for publication**. Discovery-planning sprint only.
+
+**Recommended next sprint:** Sprint **5N-D** — human candidate source review wave 1 (name and evaluate candidates; still no registry edits unless execution sprint chartered).
+
+**Files created:**
+
+- `main/data/CANDIDATE_SOURCE_DISCOVERY_WAVE_1_REPORT.md`
+- `main/data/CANDIDATE_SOURCE_DISCOVERY_MATRIX_WAVE_1.md`
+- `main/data/CANDIDATE_SOURCE_AUTHORITY_REQUIREMENTS_WAVE_1.md`
+- `main/data/CANDIDATE_SOURCE_REJECTION_RULES_WAVE_1.md`
+- `main/data/CANDIDATE_SOURCE_DISCOVERY_NEXT_ACTIONS_WAVE_1.md`
+- `main/data/CANDIDATE_SOURCE_DISCOVERY_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5N-C entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
