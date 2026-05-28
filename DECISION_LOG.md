@@ -1868,3 +1868,42 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5L entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, L1/L0 validator scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-27 — Draft Wave 1 Source Mapping Wave 1 Completed
+
+**Decision:** Complete the first **source-mapping wave** for the **12** lowest-risk Sprint **5J** drafts identified by Sprint **5L**, and prepare claim-boundary notes for **20** medium-risk drafts.
+
+**Summary:** Sprint **5M** mapped source requirements, source category gaps, and claim posture for cohort-A drafts and produced medium-risk claim-boundary preparation for **20** drafts. **No** source entries were added. **No** claim registries, content pages, or route records were modified. **No** claims were approved. **No** routes were published. `[SOURCE REQUIRED]` markers remain in place.
+
+**Rationale:** Sprint **5L** classified wave-1 drafts and recommended source mapping before draft wave 2. Mapping defines audit-grade plans for future source registration without falsely claiming source-lock completion.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `DRAFT_WAVE_1_SOURCE_CLAIM_BOUNDARY_REVIEW.md`, `DRAFT_WAVE_1_NEXT_ACTIONS.md`, `CORPUS_LAUNCH_THRESHOLD.md`, `CORPUS_AUTOMATION_VALIDATION_REQUIREMENTS.md`.
+
+**Sprint 5M validation:**
+
+- **12/12** cohort-A drafts mapped; **20/20** medium-risk drafts covered in claim-boundary prep.
+- L1 runtime **PASS** (pre-flight).
+- `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `routes.json` — **not modified**.
+- **No** content pages created or modified; **no** markers removed.
+- **0** publication-ready drafts; **0** approved claims; registries **inactive**.
+- All **126** routes remain `planned`; no `indexable: true` or `in_sitemap: true`.
+
+**Publication readiness:** **Not ready for publication**. Mapping and preparation sprint only.
+
+**Recommended next sprint:** Source registration proposal wave 1 (4–6 drafts, report-only) and claim boundary registration report (20 medium-risk drafts).
+
+**Files created:**
+
+- `main/data/DRAFT_WAVE_1_SOURCE_MAPPING_WAVE_1_REPORT.md`
+- `main/data/DRAFT_WAVE_1_SOURCE_MAPPING_MATRIX.md`
+- `main/data/DRAFT_WAVE_1_SOURCE_CATEGORY_GAP_ANALYSIS.md`
+- `main/data/DRAFT_WAVE_1_MEDIUM_RISK_CLAIM_BOUNDARY_PREP.md`
+- `main/data/DRAFT_WAVE_1_SOURCE_MAPPING_NEXT_ACTIONS.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5M entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
