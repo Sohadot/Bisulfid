@@ -1947,3 +1947,48 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-A entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-28 — Source and Claim Automation Guardrails Established
+
+**Decision:** Establish specialized read-only automation guardrails for Bisulfid.com's source and claim governance layer before candidate source discovery or registry edits.
+
+**Summary:** Sprint **5N-B** established specialized read-only automation guardrails for Bisulfid.com's source and claim governance layer. The sprint added validators for source registration proposals, source evidence requirements, claim-boundary preparation, source registry locks, and claim registry locks without adding sources, modifying `source_registry.json`, approving claims, modifying claim registries, editing content pages, publishing routes, generating public output, adding dependencies, creating workflows, or removing `[SOURCE REQUIRED]` markers. The guardrail layer protects the future source registration process before the corpus advances toward public launch readiness.
+
+**Rationale:** Sprint **5N-A** produced source registration proposals; Sprint **5M** mapped sources and prepared medium-risk claim boundaries. Before 5N-C candidate discovery or registry execution, automation must verify proposals and registries remain controlled, non-approved, and non-misleading. Sources are the trust root of the sovereign reference corpus.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SOURCE_REGISTRATION_PROPOSAL_WAVE_1_REPORT.md`, `DRAFT_WAVE_1_MEDIUM_RISK_CLAIM_BOUNDARY_PREP.md`, `CORPUS_AUTOMATION_SCRIPT_REGISTRY.md`, `CORPUS_LAUNCH_THRESHOLD.md`.
+
+**Sprint 5N-B validation:**
+
+- **6** guardrail scripts created; stdlib-only; read-only.
+- Guardrail runtime **PASS** (2026-05-28).
+- Corpus L1 runtime **PASS** (informational).
+- `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `routes.json` — **not modified**.
+- **No** content pages created or modified; **no** markers removed.
+- **0** approved claims; registries **inactive**.
+- All **126** routes remain `planned`; no `indexable: true` or `in_sitemap: true`.
+
+**Publication readiness:** **Not ready for publication**. Automation sprint only.
+
+**Recommended next sprint:** Sprint **5N-C** (candidate source discovery for 5 proposed drafts) with guardrail runtime as pre/post gate.
+
+**Files created:**
+
+- `scripts/source_claim_guardrail_runtime_l1.py`
+- `scripts/validate_source_registration_proposals_l1.py`
+- `scripts/validate_source_evidence_requirements_l1.py`
+- `scripts/validate_claim_boundary_preparation_l1.py`
+- `scripts/validate_source_registry_lock_l1.py`
+- `scripts/validate_claim_registry_lock_l1.py`
+- `main/data/SOURCE_CLAIM_AUTOMATION_GUARDRAIL_REPORT.md`
+- `main/data/SOURCE_CLAIM_AUTOMATION_SCRIPT_REGISTRY.md`
+- `main/data/SOURCE_CLAIM_AUTOMATION_VALIDATION_REPORT.md`
+- `main/data/SOURCE_CLAIM_AUTOMATION_NEXT_ACTIONS.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5N-B entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, existing L0/L1 corpus validator scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
