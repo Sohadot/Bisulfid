@@ -1,0 +1,53 @@
+name: Corpus Governance CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  corpus-governance:
+    name: Corpus governance validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: "Layer 1 — corpus validation runtime"
+        run: python scripts/corpus_validation_runtime_l1.py
+
+      - name: "Layer 1 — source and claim guardrail runtime"
+        run: python scripts/source_claim_guardrail_runtime_l1.py
+
+      - name: "Layer 2 — production validation runtime"
+        run: python scripts/corpus_production_runtime_l2.py
+
+      - name: "Layer 2 — production planner (dry-run report)"
+        run: python scripts/corpus_production_planner_l2.py
+
+      - name: "Layer 0 — route registry validation"
+        run: |
+          if [ -f scripts/validate_route_registry_l0.py ]; then
+            python scripts/validate_route_registry_l0.py
+          else
+            echo "ERROR: expected scripts/validate_route_registry_l0.py is missing"
+            exit 1
+          fi
+
+      - name: "Layer 0 — content drafts validation"
+        run: |
+          if [ -f scripts/validate_content_drafts_l0.py ]; then
+            python scripts/validate_content_drafts_l0.py
+          else
+            echo "ERROR: expected scripts/validate_content_drafts_l0.py is missing"
+            exit 1
+          fi

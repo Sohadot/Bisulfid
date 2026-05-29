@@ -2291,3 +2291,42 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-G entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-29 — GitHub Actions Governance Workflow Layer Established
+
+**Decision:** Establish read-only GitHub Actions governance CI for merge-time corpus validation.
+
+**Summary:** Sprint **5P-A** established the first GitHub Actions governance workflow layer for Bisulfid.com. The sprint added a read-only Corpus Governance CI workflow that runs existing L1, source/claim guardrail, and L2 production validation scripts on pull requests and manual dispatch. The workflow is governance-only, not deployment automation. It does not publish routes, generate HTML, approve claims, register sources, modify registries, create content pages, use secrets, deploy to GitHub Pages, or integrate Cloudflare. No routes were added, no content pages were created, no sources were added, no claims were approved, no public output was generated, and all publication/indexation locks remain active.
+
+**Rationale:** Scaling toward **500** governed pages requires merge-blocking validation beyond local runs. L1 (**5K**), guardrails (**5N-B**), and L2 (**5O-A**) runtimes must enforce the same discipline on every PR to `main` before deployment or generation automation is considered.
+
+**Doctrine reference:** `CORPUS_PRODUCTION_AUTOMATION_LAYER_2_REPORT.md`, `SOURCE_CLAIM_AUTOMATION_GUARDRAIL_REPORT.md`, `CORPUS_LAUNCH_THRESHOLD.md`, `GITHUB_ACTIONS_GOVERNANCE_SECURITY_MODEL.md`.
+
+**Sprint 5P-A validation:**
+
+- Workflow: `.github/workflows/corpus-governance-ci.yml` — **Corpus Governance CI**.
+- Triggers: `pull_request` → `main`, `workflow_dispatch` only.
+- Permissions: `contents: read`; no secrets; no deploy; no artifacts; no package install.
+- Scripts: L1 runtime, guardrail runtime, L2 runtime, L2 planner, L0 route registry, L0 content drafts.
+- Local runtimes **PASS**; route count **126**; draft-backed **68**; missing drafts **58**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Registries, content, packages, README — **not modified**.
+
+**Publication readiness:** **Not ready for publication**. Governance CI sprint only — no deployment.
+
+**Recommended next sprint:** **5N-H prep** — human external verification for `de_core_mos2` named candidates; enable branch protection for Corpus Governance CI.
+
+**Files created:**
+
+- `.github/workflows/corpus-governance-ci.yml`
+- `main/data/GITHUB_ACTIONS_GOVERNANCE_WORKFLOW_REPORT.md`
+- `main/data/GITHUB_ACTIONS_GOVERNANCE_SECURITY_MODEL.md`
+- `main/data/GITHUB_ACTIONS_GOVERNANCE_VALIDATION_REPORT.md`
+- `main/data/GITHUB_ACTIONS_GOVERNANCE_NEXT_ACTIONS.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5P-A entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, existing automation scripts, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
