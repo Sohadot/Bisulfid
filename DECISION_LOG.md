@@ -2248,6 +2248,46 @@ Each entry includes:
 
 **Files updated:**
 
-- `DECISION_LOG.md` — Sprint 5O-B entry appended.
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-29 — Named Source Candidate Intake Wave 1 Completed
+
+**Decision:** Complete named source candidate intake documentation for `de_core_mos2` without registry or content modification.
+
+**Summary:** Sprint **5N-G** completed named source candidate intake documentation for `de_core_mos2` while keeping `sulfur_element_term_record` on a separate database-candidate naming track. The sprint preserved the distinction between candidate intake, source approval, registry execution, claim approval, source-locking, and publication readiness. Initial repository-internal finding: **`named_candidate_absent`**. After external human review (patch): intake re-classified to **`named_candidate_requires_external_verification`** with four documented candidate targets — **Spektrum Lexikon der Chemie — Molybdän(IV)-sulfid** (primary DE lexicon), **PubChem — Molybdenum disulfide / CID 14823** (supporting database), **NIST Chemistry WebBook — molybdenum disulphide** (supporting technical data), **Chemie.de Lexikon — Molybdän(IV)-sulfid** (secondary DE support only). All candidates **unapproved**. Registry proposal drafting **blocked until human verification**; registry execution **blocked** (separate sprint). No source entries were added, `source_registry.json` was not modified, no claims were approved, claim registries were not modified, content pages were not edited, routes were not published, no routes were added, no generated HTML was created, no dependencies or workflows were added, and `[SOURCE REQUIRED]` markers remain unresolved.
+
+**Rationale:** Sprint **5N-F** made `de_core_mos2` the only conditional proposal-readiness candidate but recorded **named source candidate present: no**. Intake must confirm naming before proposal drafting — without inventing bibliographic details or treating evidence families as named candidates.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SOURCE_REGISTRY_PROPOSAL_READINESS_WAVE_1_REPORT.md`, `EXTERNAL_SOURCE_VERIFICATION_WAVE_1_REPORT.md`, `SOURCE_CLAIM_AUTOMATION_GUARDRAIL_REPORT.md`.
+
+**Sprint 5N-G validation:**
+
+- Intake target: **`de_core_mos2`** — **`named_candidate_requires_external_verification`** (post-patch; originally **`named_candidate_absent`** repository-internal).
+- Named candidate targets documented: **4** (Spektrum primary; PubChem/NIST supporting; Chemie.de secondary) — all **unapproved**.
+- `sulfur_element_term_record` — **not advanced**; database-candidate track unchanged.
+- Route count **126**; draft-backed **68**; missing drafts **58**.
+- L2 production runtime **PASS**; L1 corpus runtime **PASS**; guardrail runtime **PASS**.
+- Planner: all locks **LOCKED**; `production_can_safely_proceed: no`.
+- `source_registry.json`, `terminology_claims.json`, content — **not modified**.
+- **0** approved claims; registries **inactive**; all routes `planned`, non-indexable.
+
+**Publication readiness:** **Not ready for publication**. Named-source-intake documentation sprint only — registry execution **not allowed**.
+
+**Recommended next sprint:** **Human external verification** of documented MoS2 named candidates (`de_core_mos2`). **Do not** proceed to source registry proposal drafting (5N-H) until verification completes; registry editing remains blocked. Parallel: `sulfur_element_term_record` database candidate naming; Draft Wave 1 backlog reduction.
+
+**Files created:**
+
+- `main/data/NAMED_SOURCE_CANDIDATE_INTAKE_WAVE_1_REPORT.md`
+- `main/data/NAMED_SOURCE_CANDIDATE_INTAKE_MATRIX_WAVE_1.md`
+- `main/data/NAMED_SOURCE_CANDIDATE_ACCEPTANCE_RULES_WAVE_1.md`
+- `main/data/NAMED_SOURCE_CANDIDATE_REJECTION_RULES_WAVE_1.md`
+- `main/data/NAMED_SOURCE_CANDIDATE_NEXT_ACTIONS_WAVE_1.md`
+- `main/data/NAMED_SOURCE_CANDIDATE_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5N-G entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
