@@ -2248,6 +2248,45 @@ Each entry includes:
 
 **Files updated:**
 
-- `DECISION_LOG.md` — Sprint 5O-B entry appended.
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-29 — Named Source Candidate Intake Wave 1 Completed
+
+**Decision:** Complete named source candidate intake documentation for `de_core_mos2` without registry or content modification.
+
+**Summary:** Sprint **5N-G** completed named source candidate intake documentation for `de_core_mos2` while keeping `sulfur_element_term_record` on a separate database-candidate naming track. The sprint confirmed whether a named German specialist lexicon candidate was actually provided and preserved the distinction between candidate intake, source approval, registry execution, claim approval, source-locking, and publication readiness. Intake finding: **`named_candidate_absent`** — only evidence family documentation exists; no human-named specific lexicon work. Registry proposal drafting remains **blocked**. No source entries were added, `source_registry.json` was not modified, no claims were approved, claim registries were not modified, content pages were not edited, routes were not published, no routes were added, no generated HTML was created, no dependencies or workflows were added, and `[SOURCE REQUIRED]` markers remain unresolved.
+
+**Rationale:** Sprint **5N-F** made `de_core_mos2` the only conditional proposal-readiness candidate but recorded **named source candidate present: no**. Intake must confirm naming before proposal drafting — without inventing bibliographic details or treating evidence families as named candidates.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SOURCE_REGISTRY_PROPOSAL_READINESS_WAVE_1_REPORT.md`, `EXTERNAL_SOURCE_VERIFICATION_WAVE_1_REPORT.md`, `SOURCE_CLAIM_AUTOMATION_GUARDRAIL_REPORT.md`.
+
+**Sprint 5N-G validation:**
+
+- Intake target: **`de_core_mos2`** — **`named_candidate_absent`**.
+- `sulfur_element_term_record` — **not advanced**; database-candidate track unchanged.
+- Route count **126**; draft-backed **68**; missing drafts **58**.
+- L2 production runtime **PASS**; L1 corpus runtime **PASS**; guardrail runtime **PASS**.
+- Planner: all locks **LOCKED**; `production_can_safely_proceed: no`.
+- `source_registry.json`, `terminology_claims.json`, content — **not modified**.
+- **0** approved claims; registries **inactive**; all routes `planned`, non-indexable.
+
+**Publication readiness:** **Not ready for publication**. Named-source-intake documentation sprint only — registry execution **not allowed**.
+
+**Recommended next sprint:** **Human naming** of specific DE specialist lexicon candidate for `de_core_mos2`, then re-intake or external verification. **Do not** proceed to source registry proposal drafting (5N-H) or registry editing until named candidate provided. Parallel: `sulfur_element_term_record` database candidate naming; Draft Wave 1 backlog reduction.
+
+**Files created:**
+
+- `main/data/NAMED_SOURCE_CANDIDATE_INTAKE_WAVE_1_REPORT.md`
+- `main/data/NAMED_SOURCE_CANDIDATE_INTAKE_MATRIX_WAVE_1.md`
+- `main/data/NAMED_SOURCE_CANDIDATE_ACCEPTANCE_RULES_WAVE_1.md`
+- `main/data/NAMED_SOURCE_CANDIDATE_REJECTION_RULES_WAVE_1.md`
+- `main/data/NAMED_SOURCE_CANDIDATE_NEXT_ACTIONS_WAVE_1.md`
+- `main/data/NAMED_SOURCE_CANDIDATE_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5N-G entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
