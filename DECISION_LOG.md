@@ -2371,3 +2371,44 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-H entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-29 — Source Registry Proposal Draft Wave 1 Completed
+
+**Decision:** Complete source registry proposal drafting documentation for `de_core_mos2` without registry execution, source approval, or content modification.
+
+**Summary:** Sprint **5N-I** completed source registry proposal drafting documentation for `de_core_mos2`. Spektrum was drafted as the primary German specialist lexicon proposal candidate for later source registry review, while PubChem and NIST remain supporting database/technical candidates and Chemie.de remains secondary German-language support only. The sprint preserved the distinction between proposal drafting, source registry execution, source approval, claim approval, source-locking, and publication readiness. No source entries were added, `source_registry.json` was not modified, no claims were approved, claim registries were not modified, content pages were not edited, routes were not published, no routes were added, no generated HTML was created, no dependencies or workflows were added, and `[SOURCE REQUIRED]` markers remain unresolved.
+
+**Rationale:** Sprint **5N-H** verified Spektrum as **`primary_candidate_verified_for_later_proposal`**. Structured proposal drafting must precede registry execution so human reviewers can assess intended registry role, claim boundaries, and supporting-only discipline before any `source_registry.json` modification.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SOURCE_REGISTRY_PROPOSAL_DRAFTING_CRITERIA_WAVE_1.md`, `NAMED_CANDIDATE_HUMAN_VERIFICATION_WAVE_1_REPORT.md`, `GITHUB_ACTIONS_GOVERNANCE_WORKFLOW_REPORT.md`.
+
+**Sprint 5N-I validation:**
+
+- Target: `de_core_mos2` — **1** draft proposal.
+- Spektrum: **`proposal_draft_primary_candidate`** — not approved; execution **not allowed now**.
+- PubChem / NIST: supporting-only proposal boundaries.
+- Chemie.de: secondary-only proposal boundary.
+- Local runtimes **PASS**; route count **126**; draft-backed **68**; missing drafts **58**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Registries, content, packages, README, workflows — **not modified**.
+
+**Publication readiness:** **Not ready for publication**. Proposal drafting sprint only — no source-locking.
+
+**Recommended next sprint:** **5N-J prep** — source registry execution review with human-verified Spektrum bibliographic fields; still requires separate execution charter.
+
+**Files created:**
+
+- `main/data/SOURCE_REGISTRY_PROPOSAL_DRAFT_WAVE_1_REPORT.md`
+- `main/data/SOURCE_REGISTRY_PROPOSAL_DRAFT_MATRIX_WAVE_1.md`
+- `main/data/SPEKTRUM_SOURCE_REGISTRY_PROPOSAL_DRAFT_WAVE_1.md`
+- `main/data/SUPPORTING_SOURCE_BOUNDARY_PROPOSAL_DRAFT_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_PROPOSAL_EXECUTION_BLOCKERS_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_PROPOSAL_NEXT_ACTIONS_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_PROPOSAL_DRAFT_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5N-I entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
