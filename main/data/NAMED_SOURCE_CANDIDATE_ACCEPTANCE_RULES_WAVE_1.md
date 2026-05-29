@@ -80,13 +80,18 @@ Named candidate must map to:
 
 All must be true before Sprint 5N-H (proposal drafting) may be chartered:
 
-1. Intake status ≥ `named_candidate_provided_by_human`.
-2. External human verification completed (or `named_candidate_requires_external_verification` cleared).
-3. Guardrail + corpus L1 runtimes **PASS**.
-4. `source_registry.json` still **not modified** until separate execution sprint.
-5. Proposal draft contains **human-verified** bibliographic details only — no AI-invented DOI/ISBN/edition.
-6. Claim boundaries for MoS2 lines documented — claim approval still separate.
-7. `[SOURCE REQUIRED]` markers **remain** until audited linkage sprint.
+1. Intake status ≥ `named_candidate_requires_external_verification` with named targets documented.
+2. **Human external verification completed** for each candidate role:
+   - **Spektrum Lexikon der Chemie — Molybdän(IV)-sulfid** — primary DE specialist lexicon fit confirmed.
+   - **PubChem — Molybdenum disulfide / CID 14823** — supporting database scope only; not primary DE authority.
+   - **NIST Chemistry WebBook — molybdenum disulphide** — supporting technical data scope only.
+   - **Chemie.de Lexikon — Molybdän(IV)-sulfid** — secondary DE support only; not elevated to primary without verification.
+3. External human verification completed with documented posture.
+4. Guardrail + corpus L1 runtimes **PASS**.
+5. `source_registry.json` still **not modified** until separate execution sprint.
+6. Proposal draft contains **human-verified** bibliographic details only — no AI-invented DOI/ISBN/edition.
+7. Claim boundaries for MoS2 lines documented — claim approval still separate.
+8. `[SOURCE REQUIRED]` markers **remain** until audited linkage sprint.
 
 ---
 

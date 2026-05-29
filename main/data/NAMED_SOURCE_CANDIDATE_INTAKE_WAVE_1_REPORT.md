@@ -41,9 +41,11 @@ Readiness without a named candidate cannot advance to proposal drafting without 
 
 ## Relationship to Sprint 5N-F
 
-Sprint **5N-F** set `de_core_mos2` to `proposal_readiness_conditional` with posture `can_prepare_proposal_draft_after_named_source` and **named source candidate present: no**. Sprint **5N-G** executes the intake step 5N-F deferred: confirm whether a named candidate now exists in repository artifacts or human intake channels documented for this sprint.
+Sprint **5N-F** set `de_core_mos2` to `proposal_readiness_conditional` with posture `can_prepare_proposal_draft_after_named_source` and **named source candidate present: no**. Sprint **5N-G** executes the intake step 5N-F deferred: confirm whether a named candidate exists and document intake posture.
 
-**Intake finding:** No named candidate provided. Registry proposal drafting **remains blocked**.
+**Original repository-internal finding:** **`named_candidate_absent`** — no human-named specific lexicon work in repository artifacts at initial intake review.
+
+**Updated finding (after external human review):** External human review identified **named candidate targets** for `de_core_mos2`. Intake re-classified to **`named_candidate_requires_external_verification`**. All listed targets remain **candidates only — not approved**. Source registry proposal drafting **remains blocked** until human verification confirms authority fit and `SOURCE_POLICY` fit.
 
 ---
 
@@ -78,7 +80,7 @@ Sprint **5O-B** documented **83** dry-run route candidates with per-row **source
 | Launch threshold | **500** governed pages |
 | Current route count (`routes.json`) | **126** |
 | Named intake target | **1** draft (`de_core_mos2`) |
-| Named candidates accepted | **0** |
+| Named candidate targets documented | **4** (all **unapproved**) |
 | Registry entries added | **0** |
 | Publication-ready pages | **0** |
 
@@ -162,11 +164,12 @@ de_core_mos2
 
 ## Named candidate intake methodology
 
-1. Reviewed Sprint **5N-C** through **5N-F** artifacts for any human-provided **named** German specialist lexicon candidate (title, publisher, edition, or equivalent verifiable identifier).
-2. Searched repository governance documents and `source_registry.json` for MoS2-specific named candidate records — none beyond evidence **family** labels.
-3. Read `de_core_mos2` draft content (read-only) — retains `[SOURCE REQUIRED]` markers; no named source citation added.
-4. Applied intake classification per sprint schema: if no named candidate, classify **`named_candidate_absent`**.
-5. Documented acceptance/rejection rules for **future** human naming without inventing bibliographic details.
+1. Reviewed Sprint **5N-C** through **5N-F** artifacts for human-provided **named** German specialist lexicon candidates.
+2. Applied initial repository-internal intake review — classified **`named_candidate_absent`** when no named targets appeared in repository governance artifacts.
+3. Incorporated **external human review** identifying specific named candidate targets for MoS2 (documented below as **candidates only**).
+4. Read `de_core_mos2` draft content (read-only) — retains `[SOURCE REQUIRED]` markers; no named source citation added to content.
+5. Re-classified intake to **`named_candidate_requires_external_verification`** / **`candidate_requires_human_verification`**.
+6. Documented acceptance/rejection rules and role boundaries (primary DE lexicon vs supporting database/technical vs secondary DE support) without inventing bibliographic details or adding registry rows.
 
 ---
 
@@ -197,25 +200,45 @@ de_core_mos2
 | --- | --- |
 | Evidence family (from 5N-C / 5N-E) | DE specialist chemistry lexicon entry for MoS2 compound naming |
 | Authority class | `chemistry_dictionary_authority` |
-| Named candidate in repository | **None** |
-| Human-provided specific lexicon work | **Not provided** |
-| **Named candidate status** | **`named_candidate_absent`** |
-| **Source candidate posture** | **`candidate_not_provided`** |
-| **Future registry posture** | **`do_not_prepare_registry_proposal_yet`** |
+| Original repository-internal status | **`named_candidate_absent`** |
+| External human review | **Named candidate targets identified** (see table below) |
+| **Named candidate status** | **`named_candidate_requires_external_verification`** |
+| **Source candidate posture** | **`candidate_requires_human_verification`** |
+| **Future registry posture** | **`can_prepare_registry_proposal_after_human_verification`** |
 
-Prior sprints (5N-D, 5N-E, 5N-F) consistently recorded **named source candidate present: no** and required human to name DE specialist lexicon. Sprint **5N-G** intake confirms **no new named candidate** was supplied in repository artifacts during this sprint window.
+### Named candidate targets (candidates only — not approved)
+
+| Role | Candidate target | Candidate function |
+| --- | --- | --- |
+| **Primary German specialist lexicon** | Spektrum Lexikon der Chemie — Molybdän(IV)-sulfid | German specialist chemistry lexicon candidate for Molybdän(IV)-sulfid / Molybdändisulfid / MoS2 naming |
+| **Supporting database** | PubChem — Molybdenum disulfide / CID 14823 | Database support for MoS2 identity — **not** a substitute for German lexical authority |
+| **Supporting technical data** | NIST Chemistry WebBook — molybdenum disulphide | Technical data support for formula / CAS / thermochemistry context — **not** primary DE lexicon authority |
+| **Secondary German support** | Chemie.de Lexikon — Molybdän(IV)-sulfid | Secondary German-language support only — **not** primary authority |
+
+**Authority boundary:** For the DE route `de_core_mos2`, **Spektrum Lexikon der Chemie** is the **primary** German specialist lexicon candidate. PubChem and NIST are **supporting** candidates for identity and technical context only. Chemie.de is **secondary DE support only** and must not replace Spektrum as primary lexical authority without human verification confirming fit.
+
+All four targets remain **unapproved**, **not source-locked**, and **not** registry entries.
 
 ---
 
 ## Whether a named candidate was actually provided
 
-**No.** Only candidate **family** and authority **class** documentation exists. No specific German specialist lexicon title, publisher, edition, or verifiable bibliographic identifier was human-provided for intake review.
+**Yes — named candidate targets were provided through external human review** after the original repository-internal finding of **`named_candidate_absent`**.
+
+**No candidate is approved.** Intake records **identities for verification**, not verified registry authority. Human external verification must confirm edition scope, MoS2 naming coverage, `SOURCE_POLICY` alignment, and rejection of lubricant-market drift before proposal drafting may be considered.
 
 ---
 
 ## Registry proposal drafting status
 
-**Blocked.** Because `named_candidate_absent`, source registry proposal drafting (planned Sprint 5N-H) **must not proceed** until a human names a specific candidate and intake re-classifies to `named_candidate_provided_by_human` or `named_candidate_requires_external_verification`.
+**Blocked until human verification completes.** Named targets are documented, but source registry proposal drafting (planned Sprint 5N-H) **must not proceed** until human verification confirms:
+
+1. Spektrum entry scope fits MoS2 German naming claims on `de_core_mos2`.
+2. PubChem / NIST supporting roles stay within supporting-only boundaries.
+3. Chemie.de remains secondary — not elevated to primary without explicit verification.
+4. All candidates pass acceptance rules and none trigger rejection rules.
+
+**Source registry execution** remains blocked and requires a **separate future sprint** even after verification clears proposal drafting.
 
 ---
 
@@ -279,9 +302,11 @@ All **126** routes remain `planned`, non-indexable, out of sitemap and navigatio
 
 | Blocker | Status |
 | --- | --- |
-| Named source candidate | **Absent** — blocks proposal drafting |
+| Named source candidate targets | **Documented** — **4** candidates; all **unapproved** |
+| Human external verification | **Required** — not yet completed |
+| Source registry proposal drafting | **Blocked** until verification confirms authority and policy fit |
+| Source registry execution | **Blocked** — separate future sprint |
 | Source registry | **inactive** — blocks registry execution |
-| Human external verification | **Not started** — no named candidate to verify |
 | Claim registries | **inactive** — 0 approved claims |
 | `[SOURCE REQUIRED]` markers | **Unresolved** on `de_core_mos2` |
 | Route publication lock | **LOCKED** |
@@ -291,11 +316,11 @@ All **126** routes remain `planned`, non-indexable, out of sitemap and navigatio
 
 ## Recommended next sprint
 
-**Human naming sprint (owner action outside automation)** — a corpus owner or designated human must **name a specific German specialist chemistry lexicon candidate** for MoS2 compound naming and supply it for re-intake or external verification.
+**Sprint 5N-H prep — human external verification for `de_core_mos2` named candidates** — verify Spektrum primary lexicon fit, PubChem/NIST supporting scope, and Chemie.de secondary-only role under `SOURCE_POLICY` and acceptance/rejection rules.
 
-**Do not proceed to:** source registry proposal drafting (5N-H), source registry editing, claim approval, or content source-locking until named candidate intake clears.
+**Do not proceed to:** source registry proposal drafting (5N-H) until verification completes; source registry editing; claim approval; or content source-locking.
 
-**Parallel (unchanged):** `sulfur_element_term_record` scientific database candidate naming track; Draft Wave 1 backlog reduction (**58** missing drafts); Route Registration Wave 2 execution **not approved**.
+**Parallel (unchanged):** `sulfur_element_term_record` scientific database candidate naming track — **not advanced** in this sprint; Draft Wave 1 backlog reduction (**58** missing drafts); Route Registration Wave 2 execution **not approved**.
 
 ---
 

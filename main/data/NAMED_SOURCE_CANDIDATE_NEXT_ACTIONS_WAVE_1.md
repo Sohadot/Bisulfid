@@ -1,30 +1,28 @@
 # Named Source Candidate Next Actions — Wave 1
 
 **Sprint:** 5N-G  
-**Date:** 2026-05-29  
-**Status:** Intake complete — **named candidate absent** — registry execution **not allowed**
+**Date:** 2026-05-29 (patched after external human review)  
+**Status:** Intake complete — **named candidates documented, verification required** — registry execution **not allowed**
 
 ---
 
 ## Recommended next sprint
 
-**Owner / human action — name specific DE specialist lexicon candidate for `de_core_mos2`**, then re-run named candidate intake or proceed to external verification sprint with the human-provided name documented in governance artifacts.
+**Human external verification sprint for `de_core_mos2` named candidates** — verify primary Spektrum lexicon fit, PubChem/NIST supporting scope, and Chemie.de secondary-only role. After verification clears, charter **5N-H** source registry **proposal drafting** (still no registry execution).
 
-**Do not proceed to:** source registry proposal drafting (5N-H), source registry editing, claim approval, content source-locking, Route Registration Wave 2 execution, or Draft Wave 2 until named candidate intake clears for MoS2.
+**Do not proceed to:** source registry editing, claim approval, content source-locking, Route Registration Wave 2 execution, or Draft Wave 2 until human verification completes and proposal drafting gates clear.
 
 ---
 
 ## Whether next step should be human naming of a specific German specialist lexicon candidate
 
-**Yes — required.** Sprint 5N-G confirmed **`named_candidate_absent`**. A corpus owner or designated human must name a **specific** German specialist chemistry lexicon work suitable for MoS2 compound naming under `NAMED_SOURCE_CANDIDATE_ACCEPTANCE_RULES_WAVE_1.md`.
-
-This is **human governance action**, not an automation sprint substitute.
+**Partially complete.** External human review identified named targets including **Spektrum Lexikon der Chemie — Molybdän(IV)-sulfid** as **primary** German specialist lexicon candidate. **Next step is human external verification** of documented targets — not additional naming unless verification rejects primary candidate.
 
 ---
 
 ## Whether next step should be source registry proposal drafting
 
-**No — not yet.** Proposal drafting (planned 5N-H) requires intake status ≥ `named_candidate_provided_by_human` and cleared external verification path. Current posture: **`do_not_prepare_registry_proposal_yet`**.
+**No — not yet.** Proposal drafting (planned 5N-H) requires completed human external verification confirming authority fit and `SOURCE_POLICY` fit. Current posture: **`can_prepare_registry_proposal_after_human_verification`** — verification **not yet complete**. **`source registry proposal allowed next: no`**.
 
 ---
 
@@ -36,13 +34,13 @@ This is **human governance action**, not an automation sprint substitute.
 
 ## Whether sulfur_element_term_record should remain in database candidate naming track
 
-**Yes.** Remains **`needs_scientific_database_candidate_first`** — parallel track, not advanced in 5N-G. Scientific database candidate naming is independent of MoS2 lexicon intake.
+**Yes.** Remains **`needs_scientific_database_candidate_first`** — parallel track, **not advanced** in 5N-G. MoS2 supporting candidates (PubChem, NIST) documented for **`de_core_mos2` only** and do **not** advance `sulfur_element_term_record`.
 
 ---
 
 ## Whether claim-boundary registration/reporting should happen before registry execution
 
-**Yes — recommended in parallel with source track**, but claim-boundary work does **not** substitute for named source intake. Strict-registry MoS2 lines require claim gates before publication-ready status — claim approval remains blocked with inactive registries.
+**Yes — recommended in parallel with source track**, but claim-boundary work does **not** substitute for human verification of named candidates. Claim approval remains blocked with inactive registries.
 
 ---
 
@@ -57,7 +55,7 @@ This is **human governance action**, not an automation sprint substitute.
 **Yes.** Draft Wave 2 is **not approved** (Sprint 5O-B). Draft Wave 2 should wait until:
 
 1. Wave 1 draft backlog materially addressed,
-2. Named source progress for priority drafts (`de_core_mos2`),
+2. Human verification progress for `de_core_mos2`,
 3. Explicit Draft Wave 2 charter with capacity.
 
 ---
@@ -66,12 +64,12 @@ This is **human governance action**, not an automation sprint substitute.
 
 All must be true:
 
-1. Human names specific DE specialist lexicon candidate — intake re-classified from `named_candidate_absent`.
-2. Candidate passes acceptance rules; not rejected under rejection rules.
-3. External human verification completed or in progress with documented posture.
+1. Named candidate targets documented — **complete** (Sprint 5N-G patch).
+2. **Human external verification completed** for Spektrum (primary), PubChem/NIST (supporting), Chemie.de (secondary only).
+3. Candidates pass acceptance rules; none rejected under rejection rules.
 4. Guardrail + corpus L1 (+ L2 if production context) runtimes **PASS**.
 5. Separate **5N-H** proposal drafting sprint chartered — maximum **1** draft: `de_core_mos2`.
-6. Proposal contains human-verified bibliographic details only.
+6. Proposal contains **human-verified** bibliographic details only.
 7. `[SOURCE REQUIRED]` markers **remain** until source-locking sprint.
 
 ---
@@ -81,12 +79,13 @@ All must be true:
 Apply `NAMED_SOURCE_CANDIDATE_REJECTION_RULES_WAVE_1.md`:
 
 - Vague, family-only, or AI-invented identities
+- PubChem or NIST elevated to **primary DE lexical authority** without verification
+- Chemie.de elevated to primary without verification
 - General web, commercial, or market-drift sources
-- EN-only dictionary without DE verification for DE page
-- Dictionary scope exceeded (formal nomenclature, market, safety, medical)
+- Dictionary/database scope exceeded (formal nomenclature, market, safety, medical)
 - Cannot be human-verified
 
-Rejected candidates → **`named_candidate_rejected`**; registry proposal drafting **blocked**.
+Rejected candidates → **`named_candidate_rejected`** or reversion to blocked posture; registry proposal drafting **blocked**.
 
 ---
 
@@ -109,12 +108,12 @@ Guardrail failure **blocks** registry execution regardless of intake or readines
 
 | Contribution | Mechanism |
 | --- | --- |
-| Sequencing clarity | Named intake prevents registry inflation without verified sources |
-| `de_core_mos2` path | Lowest-gap DE terminology draft — priority source track when human names candidate |
-| Blocked false progress | Absent candidate documented — no fake source-locking or publication readiness |
-| Parallel tracks | Database naming for `sulfur_element_term_record` separated from lexicon track |
+| Named targets documented | Spektrum + supporting candidates give verification-ready intake — still **unapproved** |
+| Role boundaries | Primary DE lexicon vs database/technical support prevents authority substitution |
+| Verification gate | No proposal drafting until human confirms fit — no fake source-locking |
+| Parallel tracks | `sulfur_element_term_record` database track unchanged |
 | Production discipline | L2 dry-run (5O-B) + source intake (5N-G) advance planning without route/draft mass generation |
-| Launch threshold | **500** governed pages require source-locked, editorially signed pages — not registry or intake rows |
+| Launch threshold | **500** governed pages require source-locked, editorially signed pages — not intake documentation |
 
 Authority preserved by: **no approval without verification**, **no registry without execution sprint**, **no marker removal without audit**, **no publication without locks cleared**.
 
@@ -124,13 +123,12 @@ Authority preserved by: **no approval without verification**, **no registry with
 
 | Action | Proceed? |
 | --- | ---: |
-| Human naming of DE specialist lexicon for MoS2 | **Yes — required** |
-| Re-intake / external verification after naming | **Yes — after human provides name** |
-| Source registry proposal drafting (5N-H) | **No — wait** |
+| Human external verification of documented MoS2 candidates | **Yes — required next** |
+| Source registry proposal drafting (5N-H) | **No — wait for verification** |
 | Source registry editing | **No** |
 | Claim approval | **No** |
 | Content source-locking | **No** |
-| `sulfur_element_term_record` database naming track | **Parallel — unchanged** |
+| `sulfur_element_term_record` database naming track | **Parallel — unchanged, not advanced** |
 | Draft Wave 2 | **No — wait** |
 | Route Registration Wave 2 execution | **No** |
 

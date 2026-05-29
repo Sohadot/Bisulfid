@@ -1,7 +1,7 @@
 # Named Source Candidate Validation Report — Wave 1
 
 **Sprint:** 5N-G  
-**Validation date:** 2026-05-29  
+**Validation date:** 2026-05-29 (post-patch)  
 **Branch:** `claude/sprint-5n-g-named-source-candidate-intake-wave-1`
 
 ---
@@ -10,16 +10,16 @@
 
 | Script | Exit | Result |
 | --- | ---: | --- |
-| `scripts/corpus_production_runtime_l2.py` | 0 | **PASS** (pre- and post-sprint) |
-| `scripts/corpus_validation_runtime_l1.py` | 0 | **PASS** (pre- and post-sprint) |
-| `scripts/source_claim_guardrail_runtime_l1.py` | 0 | **PASS** (pre- and post-sprint) |
-| `scripts/corpus_production_planner_l2.py` | 0 | **PASS** (dry-run report) |
+| `scripts/corpus_production_runtime_l2.py` | 0 | **PASS** (pre-sprint, post-sprint, post-patch) |
+| `scripts/corpus_validation_runtime_l1.py` | 0 | **PASS** (pre-sprint, post-sprint, post-patch) |
+| `scripts/source_claim_guardrail_runtime_l1.py` | 0 | **PASS** (pre-sprint, post-sprint, post-patch) |
+| `scripts/corpus_production_planner_l2.py` | 0 | **PASS** (dry-run report, post-patch) |
 
 ---
 
 ## Files checked
 
-### Named candidate intake documents (Sprint 5N-G)
+### Named candidate intake documents (Sprint 5N-G — patched)
 
 - `main/data/NAMED_SOURCE_CANDIDATE_INTAKE_WAVE_1_REPORT.md`
 - `main/data/NAMED_SOURCE_CANDIDATE_INTAKE_MATRIX_WAVE_1.md`
@@ -45,9 +45,24 @@
 
 ## Selected draft checked
 
-| route_id | Exists | routes.json match | draft posture | Intake result |
+| route_id | Exists | routes.json match | draft posture | Intake result (post-patch) |
 | --- | --- | --- | --- | --- |
-| `de_core_mos2` | Yes | Yes | draft / non_public / non-indexable | **`named_candidate_absent`** |
+| `de_core_mos2` | Yes | Yes | draft / non_public / non-indexable | **`named_candidate_requires_external_verification`** |
+
+---
+
+## Named candidate targets documented
+
+**PASS** — four candidate targets documented as **candidates only** (not approved):
+
+| Role | Candidate target |
+| --- | --- |
+| Primary German specialist lexicon | Spektrum Lexikon der Chemie — Molybdän(IV)-sulfid |
+| Supporting database | PubChem — Molybdenum disulfide / CID 14823 |
+| Supporting technical data | NIST Chemistry WebBook — molybdenum disulphide |
+| Secondary German support | Chemie.de Lexikon — Molybdän(IV)-sulfid |
+
+Original repository-internal finding **`named_candidate_absent`** superseded for intake posture after external human review. All candidates remain **unapproved**.
 
 ---
 
@@ -55,11 +70,11 @@
 
 | Document | Scope | Posture |
 | --- | --- | --- |
-| Intake matrix | **1** row | named present = **no**; proposal/entry/claim/pub = **no** |
-| Acceptance rules | DE lexicon criteria | Intake ≠ approval |
+| Intake matrix | **1** row | named present = **yes**; proposal/entry/claim/pub = **no** |
+| Acceptance rules | DE lexicon + verification role boundaries | Intake ≠ approval |
 | Rejection rules | Full rejection set | No registry on reject |
-| Next actions | Human naming required | No registry drafting yet |
-| Report | Route count **126** | Documented from `routes.json` |
+| Next actions | Human verification required next | No registry drafting until verification |
+| Report | Route count **126**; candidate role table | Documented from `routes.json` |
 
 ---
 
@@ -96,9 +111,21 @@
 
 ---
 
+## routes.json unchanged result
+
+**PASS** — **126** routes; all `planned`; not modified in Sprint 5N-G or patch.
+
+---
+
+## Content unchanged result
+
+**PASS** — `de_core_mos2` draft read-only; no content pages created or modified; `[SOURCE REQUIRED]` markers remain.
+
+---
+
 ## Raw URL result
 
-**PASS** — no `http://` or `https://` URLs in Sprint **5N-G** intake documents. `SOURCE_POLICY.md` does not authorize raw URLs in these internal governance reports.
+**PASS** — no `http://` or `https://` URLs in Sprint **5N-G** intake documents (including patch). Candidate targets documented by work name and identifier (e.g. CID 14823) only.
 
 ---
 
@@ -110,7 +137,7 @@
 
 ## Source approval false-positive result
 
-**PASS** — no language treating named candidate as approved source; intake matrix and report state **candidate not provided** / **not approved**.
+**PASS** — all four named targets explicitly **candidates only — not approved**; matrix and report state verification required before proposal drafting.
 
 ---
 
@@ -141,10 +168,10 @@
 
 | Warning | Notes |
 | --- | --- |
-| `named_candidate_absent` | Expected — human must name DE specialist lexicon |
+| Human external verification incomplete | Expected — next gate before proposal drafting |
 | `production_can_safely_proceed: no` | Expected — not an error |
 | **58** missing drafts | Wave 1 backlog — parallel track |
-| `sulfur_element_term_record` blocked | Database candidate track — not 5N-G scope |
+| `sulfur_element_term_record` blocked | Database candidate track — not advanced in 5N-G |
 
 No validator failures. No registry drift detected.
 
@@ -152,12 +179,12 @@ No validator failures. No registry drift detected.
 
 ## Final validation conclusion
 
-**PASS** — Sprint **5N-G** named source candidate intake documentation complete for **`de_core_mos2`**. Classification: **`named_candidate_absent`**; registry proposal drafting **blocked**; **`sulfur_element_term_record`** remains on separate database-candidate track. No registry edits, no content edits, no URLs, no invented bibliographic details, no approval false-positives. All runtimes **PASS**.
+**PASS** — Sprint **5N-G** named source candidate intake documentation updated for **`de_core_mos2`**. Post-patch classification: **`named_candidate_requires_external_verification`**; **`candidate_requires_human_verification`**; **`can_prepare_registry_proposal_after_human_verification`**. Four named candidate targets documented (Spektrum primary; PubChem/NIST supporting; Chemie.de secondary only). All **unapproved**. Registry proposal drafting **blocked until human verification**; registry execution **blocked** (separate sprint). **`sulfur_element_term_record`** not advanced. No registry edits, no content edits, no raw URLs, no invented bibliographic details, no approval false-positives. All runtimes **PASS**.
 
 ---
 
-## Recommended follow-up validation (after human names candidate)
+## Recommended follow-up validation (after human verification)
 
 1. Re-run guardrail + corpus L1 (+ L2 if applicable) runtimes.
-2. Update intake matrix with named candidate identity (human-provided only).
-3. Confirm acceptance/rejection rules applied before proposal drafting charter.
+2. Confirm verification outcome per candidate role.
+3. Charter 5N-H proposal drafting only if verification clears all gates.
