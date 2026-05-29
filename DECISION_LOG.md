@@ -2412,3 +2412,43 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-I entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-29 — Source Registry Execution Readiness Wave 1 Completed
+
+**Decision:** Complete source registry execution readiness documentation for `de_core_mos2` without registry execution, source approval, or content modification.
+
+**Summary:** Sprint **5N-J** completed source registry execution readiness documentation for `de_core_mos2`. Spektrum was reviewed as the primary German specialist lexicon source execution candidate for a future `source_registry.json` entry, while PubChem, NIST, and Chemie.de remain bounded supporting candidates. The sprint preserved the distinction between execution readiness, source registry execution, source approval, claim approval, source-locking, and publication readiness. No source entries were added, `source_registry.json` was not modified, no claims were approved, claim registries were not modified, content pages were not edited, routes were not published, no routes were added, no generated HTML was created, no dependencies or workflows were added, and `[SOURCE REQUIRED]` markers remain unresolved.
+
+**Rationale:** Sprint **5N-I** drafted Spektrum as **`proposal_draft_primary_candidate`**. Execution readiness must confirm verified vs unverified registry fields before any `source_registry.json` modification — without treating readiness as execution or approval.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SPEKTRUM_SOURCE_REGISTRY_PROPOSAL_DRAFT_WAVE_1.md`, `SOURCE_REGISTRY_PROPOSAL_EXECUTION_BLOCKERS_WAVE_1.md`, `GITHUB_ACTIONS_GOVERNANCE_WORKFLOW_REPORT.md`.
+
+**Sprint 5N-J validation:**
+
+- Target: `de_core_mos2` — **1** draft readiness review.
+- Spektrum: **`execution_readiness_candidate`**, **`execution_blocked_pending_field_verification`**, **`execution_not_allowed_now`** — not approved.
+- PubChem / NIST / Chemie.de: **`supporting_boundary_retained`**, **`not_primary_registry_source_now`**.
+- Local runtimes **PASS**; route count **126**; draft-backed **68**; missing drafts **58**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Registries, content, packages, README, workflows — **not modified**.
+
+**Publication readiness:** **Not ready for publication**. Execution readiness sprint only — no source-locking.
+
+**Recommended next sprint:** **5N-K prep** — human bibliographic field verification for Spektrum; then separate execution sprint if readiness clears.
+
+**Files created:**
+
+- `main/data/SOURCE_REGISTRY_EXECUTION_READINESS_WAVE_1_REPORT.md`
+- `main/data/SOURCE_REGISTRY_EXECUTION_READINESS_MATRIX_WAVE_1.md`
+- `main/data/SPEKTRUM_EXECUTION_READINESS_REVIEW_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_ENTRY_FIELD_REVIEW_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_EXECUTION_RISK_REVIEW_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_EXECUTION_NEXT_ACTIONS_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_EXECUTION_READINESS_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5N-J entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
