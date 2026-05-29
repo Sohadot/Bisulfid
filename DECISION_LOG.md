@@ -2330,3 +2330,44 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5P-A entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, existing automation scripts, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-27 — Named Candidate Human Verification Wave 1 Completed
+
+**Decision:** Complete human verification documentation for `de_core_mos2` named candidate sources without registry, claim, or content execution.
+
+**Summary:** Sprint **5N-H** completed human verification documentation for `de_core_mos2` named candidate sources. Spektrum was reviewed as the primary German specialist lexicon candidate (`primary_candidate_verified_for_later_proposal`), while PubChem and NIST were kept as supporting database/technical candidates and Chemie.de was kept as secondary German-language support only. The sprint preserved the distinction between human verification, source approval, source registry execution, claim approval, source-locking, and publication readiness. No source entries were added, `source_registry.json` was not modified, no claims were approved, claim registries were not modified, content pages were not edited, routes were not published, no routes were added, no generated HTML was created, no dependencies or workflows were added, and `[SOURCE REQUIRED]` markers remain unresolved.
+
+**Rationale:** Sprint **5N-G** documented named candidate targets requiring external human verification. Controlled human verification must confirm authority role fit before source registry proposal drafting — without treating verification as approval or registry execution.
+
+**Doctrine reference:** `NAMED_SOURCE_CANDIDATE_ACCEPTANCE_RULES_WAVE_1.md`, `NAMED_SOURCE_CANDIDATE_REJECTION_RULES_WAVE_1.md`, `doctrine/SOURCE_POLICY.md`, `GITHUB_ACTIONS_GOVERNANCE_WORKFLOW_REPORT.md`.
+
+**Sprint 5N-H validation:**
+
+- Target: `de_core_mos2` — **1** draft verified.
+- Spektrum: **`primary_candidate_verified_for_later_proposal`** — not approved.
+- PubChem / NIST: supporting-only; **`rejected_as_primary_german_authority`**.
+- Chemie.de: **`secondary_german_support_only`**; **`not_primary_authority`**.
+- Local runtimes **PASS**; route count **126**; draft-backed **68**; missing drafts **58**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Registries, content, packages, README, workflows — **not modified**.
+
+**Publication readiness:** **Not ready for publication**. Human verification sprint only — no source-locking.
+
+**Recommended next sprint:** **5N-I prep** — source registry proposal drafting for `de_core_mos2` with human-verified Spektrum bibliographic lines; still no registry execution.
+
+**Files created:**
+
+- `main/data/NAMED_CANDIDATE_HUMAN_VERIFICATION_WAVE_1_REPORT.md`
+- `main/data/NAMED_CANDIDATE_HUMAN_VERIFICATION_MATRIX_WAVE_1.md`
+- `main/data/SPEKTRUM_CANDIDATE_AUTHORITY_REVIEW_WAVE_1.md`
+- `main/data/SUPPORTING_CANDIDATE_BOUNDARY_REVIEW_WAVE_1.md`
+- `main/data/NAMED_CANDIDATE_HUMAN_VERIFICATION_RISK_REVIEW_WAVE_1.md`
+- `main/data/NAMED_CANDIDATE_HUMAN_VERIFICATION_NEXT_ACTIONS_WAVE_1.md`
+- `main/data/NAMED_CANDIDATE_HUMAN_VERIFICATION_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5N-H entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
