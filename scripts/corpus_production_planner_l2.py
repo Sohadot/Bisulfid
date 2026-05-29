@@ -85,6 +85,13 @@ def sitemap_lock_status(routes: list[dict]) -> str:
     return "LOCKED (none in_sitemap)"
 
 
+def navigation_lock_status(routes: list[dict]) -> str:
+    in_navigation = sum(1 for r in routes if r.get("in_navigation") is True)
+    if in_navigation:
+        return f"FAIL ({in_navigation} in_navigation)"
+    return "LOCKED (none in_navigation)"
+
+
 def next_eligible_wave_type(route_count: int, draft_backed: int) -> str:
     if route_count < 500:
         if WAVE_CONTROL_PATH.exists():
@@ -119,6 +126,7 @@ def main() -> int:
     print(f"route_publication_lock: {publication_lock_status(routes)}")
     print(f"indexation_lock: {indexation_lock_status(routes)}")
     print(f"sitemap_lock: {sitemap_lock_status(routes)}")
+    print(f"navigation_lock: {navigation_lock_status(routes)}")
     print(f"source_registry_lock: {registry_lock_status()}")
     print(f"claim_registry_lock: {claim_lock_status()}")
     print(f"500_page_threshold_active: {threshold_active}")
