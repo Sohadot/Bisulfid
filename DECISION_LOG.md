@@ -2160,3 +2160,51 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-F entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-29 — Corpus Production Automation Layer 2 Established
+
+**Decision:** Establish read-only Corpus Production Automation Layer 2 for sovereign-scale corpus growth planning and validation.
+
+**Summary:** Sprint **5O-A** established a read-only Corpus Production Automation Layer 2 for sovereign-scale Bisulfid.com corpus growth. The sprint added dry-run production planning and validation scripts for production waves, internal link graph planning, SEO/indexation planning, multilingual expansion planning, and L2 runtime orchestration. It also documented wave controls, production gates, link graph discipline, SEO/indexation discipline, and multilingual production rules. No routes were added, no content pages were created, no sources were added, no claims were approved, no registries were modified, no routes were published, no generated HTML was created, no dependencies or workflows were added, and `[SOURCE REQUIRED]` markers remain unresolved.
+
+**Rationale:** Scaling toward **500** governed launch pages and beyond requires repeatable wave planning, gate enforcement, and merge-blocking validation — not ad hoc page generation. L2 complements L1 corpus automation and 5N-B source/claim guardrails without weakening authority.
+
+**Doctrine reference:** `CORPUS_LAUNCH_THRESHOLD.md`, `CORPUS_PRODUCTION_WAVE_MODEL.md`, `FIVE_HUNDRED_PAGE_SOVEREIGN_LAUNCH_PROGRAM.md`, `SOURCE_CLAIM_AUTOMATION_GUARDRAIL_REPORT.md`.
+
+**Sprint 5O-A validation:**
+
+- **6** L2 scripts created — stdlib-only, read-only/dry-run.
+- L2 production runtime **PASS**; L1 corpus runtime **PASS**; guardrail runtime **PASS**.
+- Route count **126**; draft-backed **68**; production can safely proceed: **no**.
+- `routes.json`, registries, content pages — **not modified**.
+- **0** approved claims; registries **inactive**; all routes `planned`, non-indexable.
+
+**Publication readiness:** **Not ready for publication**. Automation architecture sprint only.
+
+**Recommended next sprint:** Sprint **5O-B** — production dry-run wave planning; parallel **5N-G** named source candidate intake.
+
+**Files created:**
+
+- `scripts/corpus_production_planner_l2.py`
+- `scripts/validate_production_wave_plan_l2.py`
+- `scripts/validate_internal_link_graph_plan_l2.py`
+- `scripts/validate_seo_indexation_plan_l2.py`
+- `scripts/validate_multilingual_wave_plan_l2.py`
+- `scripts/corpus_production_runtime_l2.py`
+- `main/data/CORPUS_PRODUCTION_AUTOMATION_LAYER_2_REPORT.md`
+- `main/data/CORPUS_PRODUCTION_AUTOMATION_SCRIPT_REGISTRY.md`
+- `main/data/CORPUS_PRODUCTION_WAVE_CONTROL_MODEL.md`
+- `main/data/CORPUS_PRODUCTION_GATE_MODEL.md`
+- `main/data/CORPUS_PRODUCTION_LINK_GRAPH_MODEL.md`
+- `main/data/CORPUS_PRODUCTION_SEO_INDEXATION_MODEL.md`
+- `main/data/CORPUS_PRODUCTION_MULTILINGUAL_MODEL.md`
+- `main/data/CORPUS_PRODUCTION_AUTOMATION_VALIDATION_REPORT.md`
+- `main/data/CORPUS_PRODUCTION_AUTOMATION_NEXT_ACTIONS.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5O-A entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages (except no edits), root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output. Existing L1 automation scripts unchanged except additive L2 siblings.
