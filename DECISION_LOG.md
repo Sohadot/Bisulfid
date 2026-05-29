@@ -2116,3 +2116,47 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-E entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-29 — Source Registry Proposal Readiness Wave 1 Completed
+
+**Decision:** Complete source registry proposal readiness documentation for `de_core_mos2` and `sulfur_element_term_record` after external source verification.
+
+**Summary:** Sprint **5N-F** completed source registry proposal readiness documentation for `de_core_mos2` and `sulfur_element_term_record` after external source verification. The sprint identified `de_core_mos2` as the only conditional proposal-readiness candidate and kept `sulfur_element_term_record` blocked until a scientific database candidate is named. No source entries were added, `source_registry.json` was not modified, no claims were approved, claim registries were not modified, content pages were not edited, routes were not published, `[SOURCE REQUIRED]` markers remain unresolved, and no page is source-locked or publication-ready.
+
+**Rationale:** Sprint **5N-E** found conditional proposal path for `de_core_mos2` but **0** named verified candidates. Proposal readiness documents gates, criteria, and blockers before any proposal drafting or registry execution — preserving separation between readiness, drafting, execution, approval, and publication.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `EXTERNAL_SOURCE_VERIFICATION_WAVE_1_REPORT.md`, `HUMAN_SOURCE_ACCEPTANCE_CRITERIA_WAVE_1.md`, `SOURCE_CLAIM_AUTOMATION_GUARDRAIL_REPORT.md`, `CORPUS_LAUNCH_THRESHOLD.md`.
+
+**Sprint 5N-F validation:**
+
+- **2/2** target drafts covered in readiness matrix.
+- `de_core_mos2` — **only conditional** proposal-readiness candidate (`proposal_readiness_conditional`).
+- `sulfur_element_term_record` — **blocked** (`needs_scientific_database_candidate_first`).
+- Route count **126** read from `routes.json` and documented.
+- Guardrail runtime **PASS** (pre- and post-sprint).
+- Corpus L1 runtime **PASS** (pre- and post-sprint).
+- `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `routes.json` — **not modified**.
+- **No** content pages created or modified; **no** markers removed; **no** raw URLs; **no** invented bibliographic details.
+- **0** approved claims; registries **inactive**.
+- All **126** routes remain `planned`; no `indexable: true` or `in_sitemap: true`.
+
+**Publication readiness:** **Not ready for publication**. Proposal-readiness documentation sprint only.
+
+**Recommended next sprint:** Sprint **5N-G** — named source candidate intake wave 1 (`de_core_mos2`); parallel database candidate naming for `sulfur_element_term_record`.
+
+**Files created:**
+
+- `main/data/SOURCE_REGISTRY_PROPOSAL_READINESS_WAVE_1_REPORT.md`
+- `main/data/SOURCE_REGISTRY_PROPOSAL_READINESS_MATRIX_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_PROPOSAL_DRAFTING_CRITERIA_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_PROPOSAL_BLOCKERS_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_PROPOSAL_NEXT_ACTIONS_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_PROPOSAL_READINESS_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5N-F entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
