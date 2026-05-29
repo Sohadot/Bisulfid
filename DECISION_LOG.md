@@ -2208,3 +2208,46 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5O-A entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages (except no edits), root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output. Existing L1 automation scripts unchanged except additive L2 siblings.
+
+---
+
+### 2026-05-27 — Production Dry-Run Wave Planning Completed
+
+**Decision:** Complete production dry-run wave planning for a future Route Registration Wave 2 without modifying `routes.json` or creating pages.
+
+**Summary:** Sprint **5O-B** completed a dry-run production planning wave for a future Route Registration Wave 2 without modifying `routes.json` or creating pages. The sprint used the Corpus Production Automation Layer 2 to plan and evaluate a candidate route-registration wave under the 500-page sovereign launch threshold, source/claim gates, internal link graph discipline, SEO/indexation locks, multilingual governance, and anti-thin-content standards. **83** dry-run candidates were identified from the launch cohort blueprint (80–120 band; below preferred 100 because safely eligible EN/DE-first inventory is exhausted under current gates). No routes were added, no content pages were created, no sources were added, no claims were approved, no registries were modified, no routes were published, no generated HTML was created, no dependencies or workflows were added, and `[SOURCE REQUIRED]` markers remain unresolved.
+
+**Rationale:** Sprint **5O-A** established L2 read-only production automation. Before Route Registration Wave 2 execution, L2 must be tested against a real planning cohort with manifest, matrix, risk review, and execution blockers — without registry side effects. Wave 1 left **58** missing drafts; registering 83 additional routes now would inflate content debt without source/claim clearance.
+
+**Doctrine reference:** `FIVE_HUNDRED_PAGE_SOVEREIGN_LAUNCH_PROGRAM.md`, `CORPUS_PRODUCTION_WAVE_CONTROL_MODEL.md`, `CORPUS_PRODUCTION_GATE_MODEL.md`, `SOURCE_CLAIM_AUTOMATION_GUARDRAIL_REPORT.md`, `ROUTE_REGISTRATION_WAVE_1_REPORT.md`.
+
+**Sprint 5O-B validation:**
+
+- Dry-run candidates: **83** (all absent from `routes.json`).
+- Language split: **72** `en`, **11** `de`; ar/zh/ja excluded.
+- Candidate status: **74** `dry_run_candidate`, **9** `dry_run_candidate_needs_review`.
+- Route count **126**; draft-backed **68**; missing drafts **58**.
+- L2 production runtime **PASS**; L1 corpus runtime **PASS**; guardrail runtime **PASS**.
+- Planner: publication/indexation/sitemap/navigation locks **LOCKED**; `production_can_safely_proceed: no`.
+- `routes.json`, registries, content pages — **not modified**.
+- **0** approved claims; registries **inactive**; all routes `planned`, non-indexable.
+
+**Publication readiness:** **Not ready for publication**. Dry-run planning sprint only — Route Registration Wave 2 execution **not approved**.
+
+**Recommended next sprint:** Sprint **5N-G** — named source candidate intake (`de_core_mos2`); parallel Draft Wave 1 backlog reduction. **Do not** execute Route Registration Wave 2 or Draft Wave 2 in the next sprint without explicit execution charter and cleared blockers.
+
+**Files created:**
+
+- `main/data/PRODUCTION_DRY_RUN_WAVE_PLANNING_REPORT.md`
+- `main/data/ROUTE_REGISTRATION_WAVE_2_DRY_RUN_MANIFEST.md`
+- `main/data/ROUTE_REGISTRATION_WAVE_2_CANDIDATE_MATRIX.md`
+- `main/data/ROUTE_REGISTRATION_WAVE_2_RISK_REVIEW.md`
+- `main/data/ROUTE_REGISTRATION_WAVE_2_EXECUTION_BLOCKERS.md`
+- `main/data/PRODUCTION_DRY_RUN_VALIDATION_REPORT.md`
+- `main/data/PRODUCTION_DRY_RUN_NEXT_ACTIONS.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5O-B entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, root `README.md`, package files, workflows, deployment configs, Cloudflare configs, generated output.
