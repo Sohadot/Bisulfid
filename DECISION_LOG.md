@@ -2492,3 +2492,44 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-K entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-29 — Spektrum Direct Source Access Bibliographic Capture Wave 1 Completed
+
+**Decision:** Complete direct source access bibliographic capture documentation for the Spektrum candidate associated with `de_core_mos2` without registry execution, source approval, or content modification.
+
+**Summary:** Sprint **5N-L** completed direct source access bibliographic capture documentation for the Spektrum candidate associated with `de_core_mos2`. The sprint documented which bibliographic fields were captured through direct source access, which fields remain unavailable or require additional access, and which fields must stay blank rather than be invented. Direct access was **`direct_access_not_available`** in repository artifacts — **0** bibliographic fields captured; **6** remain blank. The sprint preserved the distinction between direct source capture, source registry execution, source approval, claim approval, source-locking, and publication readiness. No source entries were added, `source_registry.json` was not modified, no claims were approved, claim registries were not modified, content pages were not edited, routes were not published, no routes were added, no generated HTML was created, no dependencies or workflows were added, and `[SOURCE REQUIRED]` markers remain unresolved.
+
+**Rationale:** Sprint **5N-K** classified Spektrum as **`execution_blocked_pending_direct_source_access`**. Direct source access capture must document verified bibliographic values from direct inspection before any `source_registry.json` modification — without treating capture as execution or approval.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SPEKTRUM_BIBLIOGRAPHIC_FIELD_VERIFICATION_WAVE_1_REPORT.md`, `SOURCE_REGISTRY_FIELD_GAP_REVIEW_WAVE_1.md`, `GITHUB_ACTIONS_GOVERNANCE_WORKFLOW_REPORT.md`.
+
+**Sprint 5N-L validation:**
+
+- Target: `de_core_mos2` — **1** draft direct access capture review.
+- Spektrum: **`direct_access_not_available`** in repository; **0** bibliographic fields captured; **6** remain blank — **`execution_still_blocked`**, **`execution_not_allowed_now`** — not approved.
+- **7** governance fields carry forward verified from 5N-K.
+- PubChem / NIST / Chemie.de: **`supporting_boundary_retained`**, **`not_primary_registry_source_now`**.
+- Local runtimes **PASS**; route count **126**; draft-backed **68**; missing drafts **58**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Registries, content, packages, README, workflows — **not modified**.
+
+**Publication readiness:** **Not ready for publication**. Direct source access capture sprint only — no source-locking.
+
+**Recommended next sprint:** **5N-M prep** — verified bibliographic artifact capture with human sign-off for Spektrum; then separate execution sprint if readiness clears.
+
+**Files created:**
+
+- `main/data/SPEKTRUM_DIRECT_SOURCE_ACCESS_CAPTURE_WAVE_1_REPORT.md`
+- `main/data/SPEKTRUM_DIRECT_SOURCE_ACCESS_FIELD_MATRIX_WAVE_1.md`
+- `main/data/SPEKTRUM_DIRECT_SOURCE_ACCESS_EVIDENCE_REVIEW_WAVE_1.md`
+- `main/data/SPEKTRUM_CAPTURED_FIELD_GAP_REVIEW_WAVE_1.md`
+- `main/data/SPEKTRUM_DIRECT_SOURCE_ACCESS_RISK_REVIEW_WAVE_1.md`
+- `main/data/SPEKTRUM_DIRECT_SOURCE_ACCESS_NEXT_ACTIONS_WAVE_1.md`
+- `main/data/SPEKTRUM_DIRECT_SOURCE_ACCESS_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5N-L entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
