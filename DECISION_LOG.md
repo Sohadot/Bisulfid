@@ -2907,3 +2907,46 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-V entry appended.
 
 **Not modified in this sprint:** `main/data/sources/source_registry.json`, `main/data/claims/terminology_claims.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-30 — Sovereign 14,000-Page Corpus Production Architecture Codification Completed
+
+**Decision:** Codify agreed strategic direction for sovereign-grade 14,000-page corpus production into operational repository files and machine-readable registries.
+
+**Summary:** Sprint **6A** codified bisulfid.com as a visible, global, multilingual, sovereign-grade reference asset—not a thin glossary or hidden internal corpus. Created **`corpus_route_formula.json`** (8-dimensional route derivation), **`page_type_registry.json`** (19 page families including **`PT_DIFFERENCE_COMPARISON`** as core SEO class), **`audience_layer_registry.json`** (9 audiences), and **`corpus_production_rules.md`** (batch production rulebook). Target scale: **7 languages × 2,000 pages = 14,000** governed pages via dimensional intersection. Documented SEO/internal-link/security model, batch production transition (100–500 pages/day benchmarks), and phased execution **6B–6F**. **No routes published. No pages generated. No HTML created.** Validators unchanged.
+
+**Rationale:** Sprints 5A–5N proved governance at small scale; batch-governed production requires codified execution primitives before inventory and generator sprints. Strategic direction was agreed—6A operationalizes it in repository doctrine.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `CORPUS_AUTOMATION_CONTROL_LAYER.md`, `CORPUS_AUTOMATION_WAVE_PROTOCOL.md`, `corpus_production_rules.md`.
+
+**Sprint 6A validation:**
+
+- Target: architecture codification only.
+- Registered routes: **126** (unchanged); publication **LOCKED**; `production_can_safely_proceed: no`.
+- All L1/L2 runtimes **PASS**; no validator weakening.
+- Routes, content, sources, claims, workflows, packages — **not modified**.
+
+**Publication readiness:** **Not ready for publication**. Architecture codification only.
+
+**Recommended next step:** Sprint **6B** — 14,000-route master inventory model (execution, not discussion).
+
+**Files created:**
+
+- `main/data/SOVEREIGN_CORPUS_ARCHITECTURE_CODIFICATION_REPORT.md`
+- `main/data/SOVEREIGN_PAGE_FAMILY_TAXONOMY_WAVE_1.md`
+- `main/data/SOVEREIGN_MULTILINGUAL_ROUTE_MODEL_WAVE_1.md`
+- `main/data/SOVEREIGN_AUDIENCE_LAYER_MODEL_WAVE_1.md`
+- `main/data/SOVEREIGN_SEO_INTERNAL_LINKING_SECURITY_MODEL_WAVE_1.md`
+- `main/data/SOVEREIGN_BATCH_PRODUCTION_TRANSITION_PLAN_WAVE_1.md`
+- `main/data/SOVEREIGN_CORPUS_ARCHITECTURE_CODIFICATION_VALIDATION_REPORT.md`
+- `main/data/corpus_route_formula.json`
+- `main/data/page_type_registry.json`
+- `main/data/audience_layer_registry.json`
+- `main/data/corpus_production_rules.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 6A entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, all `main/content/**` pages, `main/data/sources/source_registry.json`, `main/data/claims/`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, automation scripts, workflows, root `README.md`, package files, deployment configs, generated output.
