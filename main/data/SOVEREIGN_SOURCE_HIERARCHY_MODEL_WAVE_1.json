@@ -1,0 +1,108 @@
+{
+  "version": "1.0.0",
+  "sprint": "6C",
+  "site": "bisulfid.com",
+  "status": "design_only",
+  "principle": "No page may flatten source types as equal authority. Generator must preserve hierarchy rank in citations and reliability notices.",
+  "source_hierarchy_ranks": [
+    {
+      "hierarchy_rank": 100,
+      "source_type_id": "authoritative_dictionary_lexicon",
+      "registry_category_map": ["authoritative_dictionary"],
+      "authority_scope": "terminology_lexical_framing",
+      "may_support": ["terminology", "lexical_form", "dictionary_entry_boundary"],
+      "may_not_support": ["safety", "medical", "market", "industrial", "production", "procurement", "regulatory_prescription"],
+      "example": "Spektrum Lexikon der Chemie, Merriam-Webster, Duden"
+    },
+    {
+      "hierarchy_rank": 95,
+      "source_type_id": "chemical_nomenclature_standard",
+      "registry_category_map": ["chemical_nomenclature_standard"],
+      "authority_scope": "nomenclature_rules_where_directly_stated",
+      "may_support": ["nomenclature_context", "naming_relationships"],
+      "may_not_support": ["market", "medical", "safety_handling", "german_universal_suffix_rules_without_de_source"]
+    },
+    {
+      "hierarchy_rank": 90,
+      "source_type_id": "scientific_database",
+      "registry_category_map": ["government_scientific_database"],
+      "authority_scope": "identifiers_entity_facts_database_fields",
+      "may_support": ["compound_identity", "identifiers", "database_backed_facts"],
+      "may_not_support": ["market", "policy", "terminology_authority_alone", "procurement"]
+    },
+    {
+      "hierarchy_rank": 85,
+      "source_type_id": "peer_reviewed_literature",
+      "registry_category_map": ["peer_reviewed_journal"],
+      "authority_scope": "published_research_within_citation_boundary",
+      "may_support": ["research_context", "cited_findings_within_boundary"],
+      "may_not_support": ["unsourced_generalizations", "market", "safety_prescriptive"]
+    },
+    {
+      "hierarchy_rank": 80,
+      "source_type_id": "institutional_government",
+      "registry_category_map": ["regulatory_body", "government_scientific_database"],
+      "authority_scope": "policy_document_language_institutional_reference",
+      "may_support": ["document_language", "institutional_terminology_context"],
+      "may_not_support": ["unsourced_regulatory_claims", "legal_advice", "safety_instructions"]
+    },
+    {
+      "hierarchy_rank": 75,
+      "source_type_id": "standards_body",
+      "registry_category_map": ["regulatory_body"],
+      "authority_scope": "standards_referenced_where_sourced",
+      "may_support": ["standards_terminology_in_documents"],
+      "may_not_support": ["market", "medical", "universal_claims_without_citation"]
+    },
+    {
+      "hierarchy_rank": 60,
+      "source_type_id": "educational_source",
+      "registry_category_map": ["academic_teaching_reference"],
+      "authority_scope": "teaching_context_simplification",
+      "may_support": ["educational_explanation", "vocabulary_ladder"],
+      "may_not_support": ["formal_rule_authority", "market", "safety", "universal_suffix_rules"]
+    },
+    {
+      "hierarchy_rank": 55,
+      "source_type_id": "economic_market_source",
+      "registry_category_map": ["market_report", "industry_publication"],
+      "authority_scope": "verified_market_and_industry_context_only",
+      "may_support": ["document_language_in_reports", "verified_market_statistics_with_methodology"],
+      "may_not_support": ["chemical_terminology_as_market_evidence", "investment_advice", "acquisition_targeting"]
+    },
+    {
+      "hierarchy_rank": 50,
+      "source_type_id": "company_commercial_source",
+      "registry_category_map": ["industry_publication"],
+      "authority_scope": "industry_document_language",
+      "may_support": ["process_vocabulary", "industry_terminology_in_documents"],
+      "may_not_support": ["procurement", "pricing", "unsourced_production_data"]
+    },
+    {
+      "hierarchy_rank": 10,
+      "source_type_id": "unsourced_pending",
+      "registry_category_map": [],
+      "authority_scope": "none",
+      "may_support": [],
+      "may_not_support": ["any_factual_assertion_without_upgrade"],
+      "marker_required": "[SOURCE REQUIRED]"
+    }
+  ],
+  "cross_type_rules": [
+    "Dictionary source must not justify market claim on economic page",
+    "Scientific database must not justify policy claim on government page without institutional source",
+    "Economic source must not justify terminology claim without dictionary/nomenclature source",
+    "Educational source must not justify chemist-grade authoritative wording",
+    "Multiple sources: cite highest rank per claim class; do not merge into single authority blob"
+  ],
+  "generator_behavior": {
+    "primary_source_required_when": "factual_terminology_line",
+    "secondary_source_allowed_when": "supporting_context_same_claim_class",
+    "source_count_minimum_by_grade": {
+      "source_verified": 1,
+      "comparative_boundary": 1,
+      "claim_approved": 1,
+      "economic_context_pending": 0
+    }
+  }
+}

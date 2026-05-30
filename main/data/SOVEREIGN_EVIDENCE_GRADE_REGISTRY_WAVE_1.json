@@ -1,0 +1,110 @@
+{
+  "version": "1.0.0",
+  "sprint": "6C",
+  "site": "bisulfid.com",
+  "status": "design_only",
+  "governed_by": "main/data/SOVEREIGN_KNOWLEDGE_RELIABILITY_MODEL_WAVE_1.md",
+  "required_on_every_generated_page": true,
+  "evidence_grades": [
+    {
+      "evidence_grade_id": "EG_SOURCE_VERIFIED",
+      "code": "source_verified",
+      "rank": 80,
+      "description": "Page supported by at least one verified source and claim boundary approved where factual lines appear.",
+      "allows_factual_assertions": true,
+      "allows_public_indexation": false,
+      "requires": ["source_status_verified", "claim_boundary_registered"],
+      "forbidden_without": ["invented_facts"],
+      "reliability_notice": "Supported by verified source(s) within registered boundary."
+    },
+    {
+      "evidence_grade_id": "EG_CLAIM_APPROVED",
+      "code": "claim_approved",
+      "rank": 85,
+      "description": "Page contains only claims approved within relevant source/claim boundary.",
+      "allows_factual_assertions": true,
+      "allows_public_indexation": false,
+      "requires": ["claim_status_approved_or_narrow"],
+      "forbidden_without": ["claim_expansion_beyond_registry"],
+      "reliability_notice": "Claims limited to approved registry boundary."
+    },
+    {
+      "evidence_grade_id": "EG_SOURCE_PENDING",
+      "code": "source_pending",
+      "rank": 20,
+      "description": "Draft/inventory may exist; factual claims must not appear settled.",
+      "allows_factual_assertions": false,
+      "allows_public_indexation": false,
+      "requires": ["SOURCE REQUIRED markers on factual lines"],
+      "reliability_notice": "Source verification pending — factual lines not settled."
+    },
+    {
+      "evidence_grade_id": "EG_CLAIM_PENDING",
+      "code": "claim_pending",
+      "rank": 25,
+      "description": "Source may exist but claim not approved; cautious non-public posture.",
+      "allows_factual_assertions": false,
+      "allows_public_indexation": false,
+      "requires": ["cautious_wording", "no_approval_implication"],
+      "reliability_notice": "Claim approval pending — not publication-ready."
+    },
+    {
+      "evidence_grade_id": "EG_EDUCATIONAL_SIMPLIFICATION",
+      "code": "educational_simplification",
+      "rank": 50,
+      "description": "Simplified for learning audiences; truth boundaries preserved; no false certainty.",
+      "allows_factual_assertions": "limited_naming_vocabulary_only",
+      "allows_public_indexation": false,
+      "requires": ["simplification_limit_enforced", "child_safe_when_applicable"],
+      "reliability_notice": "Educational simplification — not exhaustive authority."
+    },
+    {
+      "evidence_grade_id": "EG_COMPARATIVE_BOUNDARY",
+      "code": "comparative_boundary",
+      "rank": 70,
+      "description": "Comparison pages: each side sourced, partially sourced, or explicitly unresolved.",
+      "allows_factual_assertions": "distinction_only_per_side_posture",
+      "allows_public_indexation": false,
+      "requires": ["comparison_sourcing_disclosure", "both_sides_addressed"],
+      "reliability_notice": "Comparison sourcing status disclosed per side."
+    },
+    {
+      "evidence_grade_id": "EG_ECONOMIC_CONTEXT_PENDING",
+      "code": "economic_context_pending",
+      "rank": 15,
+      "description": "Economic/market/investor context blocked until economic sources registered and approved.",
+      "allows_factual_assertions": "terminology_in_documents_only",
+      "allows_public_indexation": false,
+      "requires": ["no_unsourced_market_stats"],
+      "reliability_notice": "Economic evidence pending — no market conclusions."
+    },
+    {
+      "evidence_grade_id": "EG_RESTRICTED_CLAIM_CLASS",
+      "code": "restricted_claim_class",
+      "rank": 0,
+      "description": "Safety, medical, handling, procurement, production, pricing, trade, CAGR, acquisition, operational guidance forbidden unless separately sourced and approved.",
+      "allows_factual_assertions": false,
+      "allows_public_indexation": false,
+      "requires": ["hard_reject_in_generator"],
+      "reliability_notice": "Claim class restricted — not permitted on this page type."
+    }
+  ],
+  "grade_selection_rules": [
+    "Generator assigns lowest applicable grade from route source_posture and claim_posture",
+    "Never upgrade grade without registry change",
+    "comparison pages default to comparative_boundary",
+    "child_edu pages cap at educational_simplification unless source_verified",
+    "economic pages default to economic_context_pending until market sources verified",
+    "indexation_approved requires source_verified AND claim_approved minimum"
+  ],
+  "knowledge_reliability_levels": [
+    { "level": "L0_blocked", "description": "Generation rejected" },
+    { "level": "L1_inventory_only", "description": "Row exists; no draft" },
+    { "level": "L2_draft_cautious", "description": "Draft with markers and pending grades" },
+    { "level": "L3_draft_sourced", "description": "Draft with verified sources; claim boundary" },
+    { "level": "L4_publication_candidate", "description": "All gates pass; still noindex until owner charter" },
+    { "level": "L5_indexable_approved", "description": "Launch program only" }
+  ],
+  "claim_confidence_values": ["unsettled", "narrow_approved", "approved", "forbidden"],
+  "citation_modes": ["inline_source_id", "structured_provenance_block", "simplified_provenance_note", "per_side_source_id", "doctrine_reference"]
+}
