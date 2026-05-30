@@ -2,10 +2,11 @@
 """serve.py — Local development server for bisulfid.com.
 
 Serves the site/ directory on localhost using Python's built-in http.server.
-Run build.py first to generate site/ output before serving.
+The sovereign build engine (scripts/build.py) does not generate public HTML
+while publication locks are active. Safe inspection: --dry-run.
 
 No external dependencies. No browser auto-open.
-Default port: 8000.
+Default port: 8000. Not for public deployment.
 """
 
 import http.server
