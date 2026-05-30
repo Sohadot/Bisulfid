@@ -1,15 +1,21 @@
-<!-- SKELETON TEMPLATE — not production UI. -->
 <!--
-  partials/footer.html — Footer partial for bisulfid.com
-  This skeleton reserves the footer slot only.
-  Links must reference published routes only.
-  No tracking scripts. No inline JS.
+  partials/footer.html — Footer governance language (Sprint 6M-B)
+  Links resolve only from published routes at build time. No hard-coded URLs.
 -->
-<footer>
-  <!-- FUTURE: Copyright line with site_name and year -->
-  <!-- FUTURE: Language navigation links (published languages only) -->
-  <!-- FUTURE: Policy and terms links (published routes only) -->
-  <!-- FUTURE: Source attribution statement -->
-
-  <!-- No inline JS. No tracking. -->
+<footer class="site-footer__inner">
+  <p class="footer-governance">
+    {{site_name}} — sovereign sulfur intelligence reference frame.
+    Minimum launch corpus target: <strong>14,000 governed pages</strong>.
+    Current render posture: <strong>{{publication_posture}}</strong>.
+    Not publication-ready. Not a launch artifact unless explicitly authorized.
+  </p>
+  <p class="footer-locks">
+    Indexation: {{indexable_flag}} · Sitemap: {{in_sitemap_flag}} · Navigation: {{in_navigation_flag}}
+  </p>
+  <p class="footer-source-claim">
+    Source verification: {{source_registry_posture}}.
+    Claim approval: {{claim_approval_state}}.
+    No approved claim is implied by this template frame.
+  </p>
+  <p class="footer-copyright">&copy; {{copyright_year}} {{site_name}}. All rights reserved.</p>
 </footer>

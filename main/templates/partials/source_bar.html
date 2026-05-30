@@ -1,12 +1,13 @@
-<!-- SKELETON TEMPLATE — not production UI. -->
 <!--
-  partials/source_bar.html — Source attribution bar partial for bisulfid.com
-  Generated from main/data/sources/source_registry.json and claim source_ids.
-  A source bar is emitted only when at least one verified source exists for page claims.
-  No source entry = no source bar = no published claim (doctrine/SOURCE_POLICY.md).
+  partials/source_bar.html — Source attribution slot (Sprint 6M-B)
+  Emitted only when verified sources exist. Never implies approval or source-lock.
 -->
-<aside aria-label="Sources">
-  <!-- FUTURE: Source list for claims on this page, driven by source_registry.json entries -->
-  <!-- FUTURE: Each entry: title, publisher, year, source_type -->
-  <!-- STATUS: source_registry.json has no verified entries — no source bar emitted -->
+<aside class="source-bar" aria-label="Source status" data-source-required="{{source_required_flag}}">
+  <h2 class="source-bar__heading">Source and governance status</h2>
+  <p class="source-bar__posture">{{source_posture_message}}</p>
+  {{source_list}}
+  <p class="source-bar__required" data-visible="{{source_required_visible}}">
+    [SOURCE REQUIRED] markers remain binding where content requires verification.
+    This frame does not remove source requirements or approve claims.
+  </p>
 </aside>

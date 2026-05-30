@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<!-- SKELETON TEMPLATE — not production UI. -->
 <!--
-  base.html — Base layout template for bisulfid.com
-  This skeleton defines the structural slots only.
-  No real content. No external scripts. No inline JS. No tracking.
-  Templates must not be used to imply launch readiness.
-  Do not render this template until the target route is published
-  and all Quality Gate conditions pass.
+  base.html — Sovereign publication frame shell (Sprint 6M-B)
+  Part of the 14,000-page governed launch corpus rendering pipeline.
+  NOT A LAUNCH TEMPLATE. Do not render for public output until route status
+  is published and all Quality Gate conditions pass.
+  No external scripts. No inline JS. No tracking.
 -->
 <html lang="{{language}}" dir="{{text_direction}}">
 <head>
-  <!-- PARTIAL: head.html -->
   {{head}}
+  {{hreflang}}
 </head>
-<body>
-  <!-- PARTIAL: nav.html -->
-  {{nav}}
+<body class="bisulfid-frame" data-route-id="{{route_id}}" data-route-status="{{route_status}}" data-publication-posture="{{publication_posture}}">
+  {{governance_banner}}
 
-  <main>
+  <header class="site-header">
+    {{nav}}
+  </header>
+
+  {{breadcrumbs}}
+
+  <main id="main-content" role="main">
     {{content}}
   </main>
 
-  <!-- PARTIAL: footer.html -->
-  {{footer}}
-
-  <!-- No inline JS. No external scripts. No tracking. -->
+  <footer class="site-footer">
+    {{footer}}
+  </footer>
 </body>
 </html>

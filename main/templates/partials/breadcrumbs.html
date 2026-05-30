@@ -1,0 +1,12 @@
+<!--
+  partials/breadcrumbs.html — Route context trail (Sprint 6M-B)
+  Built from governed route metadata at render time. No invented links.
+-->
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    {{breadcrumb_items}}
+  </ol>
+  <p class="breadcrumbs__context" hidden="{{breadcrumb_context_hidden}}">
+    Route ID: {{route_id}} · Path: {{route_path}} · Layer: {{route_layer}}
+  </p>
+</nav>

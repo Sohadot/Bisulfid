@@ -3497,3 +3497,52 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, all content pages, workflows, root README.md, package files, dependencies, generated public HTML.
 
+---
+
+## Sprint 6M-B — Sovereign Template Layer Hardened for 14,000-Page Publication Frame
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6m-b-fourteen-thousand-publication-frame-template-layer`  
+**Base:** main @ Sprint 6M-A merge  
+**Status:** Complete — publication frame hardened; all locks intact
+
+**Summary:** Sprint **6M-B** hardened the template layer as the **publication frame** for the fixed **14,000-page minimum launch corpus**. The sprint created governed frame templates (`page.html`, `reference.html`, `term.html`), hardened `base.html`, `home.html`, and nine partials with institutional shell, metadata, robots/noindex defaults, canonical non-public behavior, multilingual/RTL readiness, governance visibility, and source/claim honesty. The sprint did **not** publish routes, did **not** authorize indexation/sitemap/navigation, did **not** approve sources or claims, did **not** modify registries or content, and did **not** create a public launch. Sample rendering remains an engineering QA step inside the 14k pipeline only — not a launch strategy.
+
+**Rationale:** The build engine (6M-A) requires a scalable publication frame before governed rendering at 14,000-page scale. Template hardening precedes render wiring and local quarantined QA.
+
+**Doctrine reference:** `FOURTEEN_THOUSAND_PUBLICATION_FRAME_MODEL.md`, `TEMPLATE_CONTRACT_MODEL.md`, `BUILD_ENGINE_POLICY.md`.
+
+**Sprint 6M-B validation:**
+
+- `validate_template_layer_l1.py`: **PASS**
+- `build.py --dry-run` / `--dry-run --strict`: **PASS**
+- All L1/L2 corpus runtimes: **PASS**
+- `production_can_safely_proceed`: **no**
+- `site/_sample/` quarantine path reserved; no public HTML committed
+
+**Publication readiness:** **Not ready for publication**. Template frame only.
+
+**Recommended next step:** Sprint **6M-C** — governed render wiring + local quarantined QA sample under `site/_sample/`.
+
+**Files created:**
+
+- `main/templates/page.html`, `reference.html`, `term.html`
+- `main/templates/partials/governance_banner.html`, `breadcrumbs.html`
+- `scripts/validate_template_layer_l1.py`
+- `scripts/validate_sample_output_l1.py`
+- `main/data/TEMPLATE_HARDENING_REPORT.md`
+- `main/data/TEMPLATE_CONTRACT_MODEL.md`
+- `main/data/TEMPLATE_GOVERNANCE_STATUS_MODEL.md`
+- `main/data/TEMPLATE_MULTILINGUAL_RENDERING_MODEL.md`
+- `main/data/FOURTEEN_THOUSAND_PUBLICATION_FRAME_MODEL.md`
+- `main/data/TEMPLATE_VALIDATION_REPORT.md`
+- `main/data/TEMPLATE_NEXT_ACTIONS.md`
+- `site/_sample/.gitkeep`
+
+**Files updated:**
+
+- `main/templates/base.html`, `home.html`, `partials/*.html` (hardened)
+- `DECISION_LOG.md`
+
+**Not modified in this sprint:** `routes.json`, `internal_links.json`, sitemap/navigation policies, source/claim registries, all content pages, `build.py`, workflows, root README.md, package files, dependencies.
+
