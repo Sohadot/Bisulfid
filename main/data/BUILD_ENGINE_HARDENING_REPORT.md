@@ -127,10 +127,11 @@ The pre-6M-A `scripts/build.py`:
 - Fails on missing template (when referenced)
 - Fails on missing content for sample candidates
 - Fails on duplicate output paths
+- Fails on route/content mismatch (frontmatter `route_id`, language fields, publication posture, registry `content_file`)
 - Fails on unsafe publication flag combinations
 - Fails on indexable/sitemap/navigation conflicts with publication locks
 - Fails on missing required route metadata
-- **Post-hardening strict dry-run: PASS** (skeleton templates pass block checks; partials exempt from content-body slot rule)
+- **Post-hardening strict dry-run: PASS** (985 route/content alignments checked; skeleton templates pass block checks)
 
 ---
 

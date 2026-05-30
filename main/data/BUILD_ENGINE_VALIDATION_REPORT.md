@@ -39,7 +39,7 @@
 | `validate_build_engine_l1.py` | **PASS** |
 | `build.py` (default/help) | **PASS** (exit 0, no writes) |
 | `build.py --dry-run` | **PASS** (exit 0, 0 public HTML) |
-| `build.py --dry-run --strict` | **PASS** (exit 0 post partial-check fix) |
+| `build.py --dry-run --strict` | **PASS** (exit 0; 985 route/content alignments checked) |
 | `build.py --sample 3 --dry-run` | **PASS** (planning only) |
 
 **Not run:** full production build (explicitly forbidden).
@@ -52,6 +52,7 @@
 | --- | --- |
 | Deterministic | **Yes** — sorted route_id sample selection, fixed output mapping |
 | Fail-closed | **Yes** — strict mode; zero eligible routes in locked posture |
+| Route/content mismatch validation | **Yes** — strict mode checks 985 draft-backed routes |
 | Route governance flags | **Yes** — status, indexable, in_sitemap, in_navigation |
 | No infer publication from file existence | **Yes** |
 | Draft routes not publishable | **Yes** — 0 eligible |

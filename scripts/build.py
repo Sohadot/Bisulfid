@@ -122,6 +122,8 @@ class BuildAudit:
     sitemap_generated: bool = False
     navigation_generated: bool = False
     strict_errors: list[str] = field(default_factory=list)
+    content_alignment_warnings: list[str] = field(default_factory=list)
+    content_alignment_checked: int = 0
     template_checks: list[TemplateCheck] = field(default_factory=list)
     route_assessments: list[RouteAssessment] = field(default_factory=list)
     output_plan_notes: list[str] = field(default_factory=list)
@@ -332,6 +334,175 @@ def check_duplicate_output_paths(assessments: list[RouteAssessment]) -> list[str
     return [f"duplicate output path: {p} ({c} routes)" for p, c in paths.items() if c > 1]
 
 
+def parse_content_frontmatter(text: str) -> dict[str, str]:
+    if not text.startswith("---"):
+        return {}
+    parts = text.split("---", 2)
+    if len(parts) < 3:
+        return {}
+    fm: dict[str, str] = {}
+    for line in parts[1].strip().splitlines():
+        if ":" in line:
+            key, value = line.split(":", 1)
+            fm[key.strip()] = value.strip()
+    return fm
+
+
+def is_truthy_flag(value: str) -> bool:
+    return value.strip().lower() in ("true", "1", "yes", "on")
+
+
+def format_route_content_mismatch(
+    route: dict[str, Any],
+    *,
+    field: str,
+    expected: str,
+    actual: str,
+) -> str:
+    return (
+        f"route/content mismatch: route_id={route['route_id']} "
+        f"route_path={route.get('path', '')} "
+        f"content_file={route.get('content_file', '')} "
+        f"field={field} expected={expected!r} actual={actual!r}"
+    )
+
+
+def check_duplicate_content_file_assignments(routes: list[dict[str, Any]]) -> list[str]:
+    by_file: dict[str, list[str]] = {}
+    for route in routes:
+        content_file = route.get("content_file", "")
+        if content_file:
+            by_file.setdefault(content_file, []).append(route["route_id"])
+    errors: list[str] = []
+    for content_file, route_ids in by_file.items():
+        if len(route_ids) <= 1:
+            continue
+        for route_id in route_ids:
+            errors.append(
+                format_route_content_mismatch(
+                    {
+                        "route_id": route_id,
+                        "path": next(
+                            (r.get("path", "") for r in routes if r["route_id"] == route_id),
+                            "",
+                        ),
+                        "content_file": content_file,
+                    },
+                    field="content_file",
+                    expected="unique registry assignment",
+                    actual=f"shared with {', '.join(route_ids)}",
+                )
+            )
+    return errors
+
+
+def validate_route_content_alignment(
+    route: dict[str, Any],
+) -> tuple[list[str], list[str]]:
+    """Validate registry route identity against its registered content file."""
+    errors: list[str] = []
+    warnings: list[str] = []
+    content_rel = route.get("content_file", "")
+    if not content_rel:
+        return errors, warnings
+
+    content_path = ROOT / content_rel
+    if not content_path.is_file():
+        return errors, warnings
+
+    resolved = content_path.resolve()
+    expected_resolved = (ROOT / content_rel).resolve()
+    if resolved != expected_resolved:
+        errors.append(
+            format_route_content_mismatch(
+                route,
+                field="content_file_path",
+                expected=str(expected_resolved),
+                actual=str(resolved),
+            )
+        )
+
+    text = content_path.read_text(encoding="utf-8")
+    fm = parse_content_frontmatter(text)
+
+    if fm.get("route_id") and fm["route_id"] != route["route_id"]:
+        errors.append(
+            format_route_content_mismatch(
+                route,
+                field="route_id",
+                expected=route["route_id"],
+                actual=fm["route_id"],
+            )
+        )
+
+    for lang_field in ("language", "locale", "source_language"):
+        if lang_field in fm and fm[lang_field] != route.get(lang_field):
+            errors.append(
+                format_route_content_mismatch(
+                    route,
+                    field=lang_field,
+                    expected=str(route.get(lang_field)),
+                    actual=fm[lang_field],
+                )
+            )
+
+    route_status = route.get("status", "planned")
+    if fm.get("status"):
+        content_status = fm["status"].lower()
+        if content_status == "published" and route_status != "published":
+            errors.append(
+                format_route_content_mismatch(
+                    route,
+                    field="status",
+                    expected=f"not published (route status={route_status!r})",
+                    actual=fm["status"],
+                )
+            )
+
+    if fm.get("publication_status"):
+        pub_status = fm["publication_status"].lower()
+        contradictory = {
+            "public",
+            "published",
+            "live",
+            "launch_ready",
+            "publication_ready",
+            "indexable",
+        }
+        if pub_status in contradictory and route_status != "published":
+            errors.append(
+                format_route_content_mismatch(
+                    route,
+                    field="publication_status",
+                    expected="non_public or absent (route not published)",
+                    actual=fm["publication_status"],
+                )
+            )
+
+    for flag in ("indexable", "in_sitemap", "in_navigation"):
+        if flag in fm and is_truthy_flag(fm[flag]) and route.get(flag) is not True:
+            errors.append(
+                format_route_content_mismatch(
+                    route,
+                    field=flag,
+                    expected="false (route registry lock)",
+                    actual=fm[flag],
+                )
+            )
+
+    if fm.get("content_file") and fm["content_file"] != content_rel:
+        errors.append(
+            format_route_content_mismatch(
+                route,
+                field="content_file",
+                expected=content_rel,
+                actual=fm["content_file"],
+            )
+        )
+
+    return errors, warnings
+
+
 def check_partials(templates_root: Path) -> list[TemplateCheck]:
     partial_checks = []
     for partial in (
@@ -498,6 +669,14 @@ def run_build_engine(
     audit.strict_errors.extend(check_duplicate_output_paths(assessments))
 
     if strict:
+        audit.strict_errors.extend(check_duplicate_content_file_assignments(routes))
+
+        selected_route_ids: set[str] | None = None
+        if sample_size is not None:
+            selected_route_ids = {
+                a.route_id for a in assessments if a.selected_for_sample
+            }
+
         for route in routes:
             audit.strict_errors.extend(unsafe_flag_errors(route, build_config))
             if route.get("status") == "planned":
@@ -515,6 +694,17 @@ def run_build_engine(
                             f"{route['route_id']}: missing template for sample candidate"
                         )
             audit.strict_errors.extend(validate_required_metadata(route))
+
+            content_path = ROOT / route.get("content_file", "")
+            if not content_path.is_file():
+                continue
+            if selected_route_ids is not None and route["route_id"] not in selected_route_ids:
+                continue
+
+            audit.content_alignment_checked += 1
+            align_errors, align_warnings = validate_route_content_alignment(route)
+            audit.strict_errors.extend(align_errors)
+            audit.content_alignment_warnings.extend(align_warnings)
 
         for check in audit.template_checks:
             if not check.exists:
@@ -641,6 +831,14 @@ def print_summary(audit: BuildAudit, strict: bool) -> None:
         print(f"  Placeholder-like templates:   {len(placeholder_templates)}")
         for p in placeholder_templates[:10]:
             print(f"    - {p}")
+
+    if audit.content_alignment_checked:
+        print()
+        print(f"  Route/content alignment checked: {audit.content_alignment_checked}")
+    if audit.content_alignment_warnings:
+        print(f"  Content alignment warnings:   {len(audit.content_alignment_warnings)}")
+        for warn in audit.content_alignment_warnings[:10]:
+            print(f"    - {warn}")
 
     if audit.strict_errors:
         print()

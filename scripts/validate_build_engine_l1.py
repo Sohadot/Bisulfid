@@ -112,6 +112,9 @@ def validate() -> tuple[list[str], list[str], dict]:
     if "SOURCE REQUIRED" in source and "remove" in source.lower():
         errors.append("build.py may remove [SOURCE REQUIRED] markers")
 
+    if not re.search(r"validate_route_content_alignment|route/content mismatch", source):
+        errors.append("build.py missing explicit route/content mismatch validation")
+
     missing_templates = []
     for rel in REQUIRED_TEMPLATES:
         if not (TEMPLATES_ROOT / rel).is_file():
@@ -149,11 +152,14 @@ def validate() -> tuple[list[str], list[str], dict]:
         if "production_can_safely_proceed: yes" in output.lower().replace(" ", ""):
             errors.append("dry-run reported production_can_safely_proceed yes")
 
-    # Strict dry-run may fail on template placeholders — note only
-    code_strict, _ = run_build(["--dry-run", "--strict"])
+    # Strict dry-run must pass on current locked corpus (no route/content mismatches)
+    code_strict, strict_output = run_build(["--dry-run", "--strict"])
     stats["strict_dry_run_exit_code"] = code_strict
+    stats["strict_dry_run_invocation"] = "PASS" if code_strict == 0 else "FAIL"
     if code_strict != 0:
-        stats["strict_dry_run_note"] = "strict mode fails on template/metadata gaps (expected in skeleton phase)"
+        errors.append(f"build.py --dry-run --strict exit {code_strict}")
+    if "route/content alignment checked:" in strict_output.lower():
+        stats["route_content_alignment_checked"] = True
 
     return errors, warnings, stats
 
@@ -179,7 +185,12 @@ def main() -> int:
     print("--- Safe invocation ---")
     print(f"help/default: {stats.get('help_invocation', 'N/A')} (exit {stats.get('help_exit_code', '?')})")
     print(f"--dry-run: {stats.get('dry_run_invocation', 'N/A')} (exit {stats.get('dry_run_exit_code', '?')})")
-    if "strict_dry_run_exit_code" in stats:
+    if "strict_dry_run_invocation" in stats:
+        print(
+            f"--dry-run --strict: {stats['strict_dry_run_invocation']} "
+            f"(exit {stats.get('strict_dry_run_exit_code', '?')})"
+        )
+    elif "strict_dry_run_exit_code" in stats:
         print(f"--dry-run --strict: exit {stats['strict_dry_run_exit_code']} ({stats.get('strict_dry_run_note', '')})")
     print()
 
