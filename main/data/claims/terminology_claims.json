@@ -13,24 +13,25 @@
     "claim_registry_file_status": "inactive",
     "route_publication_lock": "LOCKED",
     "allows_individual_claim_approved_status": true,
-    "guardrail_transition_pending": true,
+    "guardrail_transition_pending": false,
+    "guardrail_policy_update_sprint": "5N-U",
     "guardrail_scripts": [
       "scripts/validate_claim_registry_lock_l1.py",
       "scripts/validate_corpus_claims_l1.py"
     ],
-    "guardrail_blocker_summary": "Sprint 5N-B claim lock: claim registry file status must remain inactive AND any claim row with status approved is rejected. Data-only approved transition blocked until claim guardrail policy update charter.",
+    "guardrail_blocker_summary": "Sprint 5N-B claim lock superseded by 5N-U: claim registry file status remains inactive; narrow claim status approved permitted only under approval_limited posture with claim_id in approval_ready_claims, verified linked source, and source_lock_status candidate.",
     "approval_ready_claims": [
       {
         "claim_id": "CLM-TERM-MOS2-DE-001",
         "source_ids": ["SRC-SPEKTRUM-MOS2-DE"],
         "evidence_sprint": "5N-S",
         "evidence_sufficient": true,
-        "current_status": "pending_review",
+        "current_status": "approved",
         "target_status_after_guardrail_transition": "approved",
         "narrow_boundary": "German Lexikon der Chemie dictionary-entry terminology for de_core_mos2 only"
       }
     ],
-    "next_charter": "Claim guardrail policy update sprint to permit approval_limited posture with individual approved rows while publication, content, and route locks remain LOCKED"
+    "next_charter": "Content source-lock audit; marker resolution; route publication — separate charters. Narrow claim approval does not authorize any of the above."
   },
   "claims": [
     {
@@ -268,8 +269,8 @@
     {
       "claim_id": "CLM-TERM-MOS2-DE-001",
       "claim_type": "terminology",
-      "status": "pending_review",
-      "statement": "Molybdän(IV)-sulfid has a German Lexikon der Chemie dictionary entry on Spektrum.de that may support cautious terminology framing for the de_core_mos2 route.",
+      "status": "approved",
+      "statement": "Molybdän(IV)-sulfid has a German Lexikon der Chemie dictionary entry on Spektrum.de that supports cautious terminology framing for the de_core_mos2 route within the registered narrow dictionary-entry boundary.",
       "source_ids": ["SRC-SPEKTRUM-MOS2-DE"],
       "related_terms": ["molybdän(iv)-sulfid", "mos2", "molybdän disulfid"],
       "related_routes": ["de_core_mos2"],
@@ -296,8 +297,8 @@
         "route publication"
       ],
       "risk_level": "medium",
-      "last_reviewed": "2026-05-30",
-      "notes": "Claim-boundary registration Sprint 5N-P. Claim approval review Sprint 5N-T: SRC-SPEKTRUM-MOS2-DE bibliographic verified (5N-S); narrow German dictionary-entry terminology boundary; approval evidence sufficient per SOURCE_POLICY. Status remains pending_review — inactive claim registry lock guardrail blocks approved transition; not content source-locking, marker resolution, or route publication. Excludes chemical safety, market, production, procurement, medical, industrial, trade, CAGR, pricing, and acquisition claims."
+      "last_reviewed": "2026-05-27",
+      "notes": "Claim-boundary registration Sprint 5N-P. Claim approval review Sprint 5N-T: evidence sufficient. Guardrail policy update Sprint 5N-U: status approved under approval_limited posture with SRC-SPEKTRUM-MOS2-DE verified and source_lock_status candidate. Narrow German Lexikon der Chemie dictionary-entry terminology only for de_core_mos2. Not content source-locking, marker resolution, route publication, sitemap, navigation, or production readiness. Excludes chemical safety, market, production, procurement, medical, industrial, trade, CAGR, pricing, and acquisition claims."
     }
   ]
 }

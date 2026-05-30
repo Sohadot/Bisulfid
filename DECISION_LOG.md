@@ -2832,3 +2832,42 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-T entry appended.
 
 **Not modified in this sprint:** `main/data/sources/source_registry.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-27 — Claim Guardrail Policy Update and Spektrum Approved Claim Transition Wave 1 Completed
+
+**Decision:** Update claim guardrails for `approval_limited` narrow claim approval and transition `CLM-TERM-MOS2-DE-001` to `approved` without source-locking, marker resolution, or route publication.
+
+**Summary:** Sprint **5N-U** updated **`validate_claim_registry_lock_l1.py`** and **`validate_corpus_claims_l1.py`** to distinguish **narrow individual claim approval** from **claim registry/publication activation** while preserving **`inactive`** claim registry file posture and all publication locks. Guardrail permits **`approved`** only when `claim_approval_lock_resolution.resolved_posture` is **`approval_limited`**, claim is listed in **`approval_ready_claims`**, linked source is **`verified`**, and **`source_lock_status`** remains **`candidate`**. **`CLM-TERM-MOS2-DE-001`** transitioned from **`pending_review`** to **`approved`**. Claim registry file remains **`inactive`**; **`SRC-SPEKTRUM-MOS2-DE`** remains **`verified`** with **`source_lock_status: candidate`**; **1** narrow approved claim; `[SOURCE REQUIRED]` markers remain.
+
+**Rationale:** Sprint **5N-T** resolved approval evidence in data; Sprint **5N-U** implements guardrail policy to allow controlled narrow claim approval without weakening publication, route, source-lock, or production gates.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SPEKTRUM_CLAIM_APPROVAL_REVIEW_WAVE_1_REPORT.md`, `CLAIM_GUARDRAIL_POLICY_UPDATE_WAVE_1_REPORT.md`.
+
+**Sprint 5N-U validation:**
+
+- Target: guardrail policy + **1** approved claim transition.
+- Narrow approved claims: **1**; claim registry file **`inactive`**; source **`candidate`** lock unchanged.
+- All runtimes **PASS**; route count **126**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Content, routes, source registry, workflows, packages, README — **not modified** (except guardrail scripts and claim row).
+
+**Publication readiness:** **Not ready for publication**. Narrow claim approval only — no source-locking.
+
+**Recommended next step:** Content source-lock audit; marker resolution; route publication — separate charters.
+
+**Files created:**
+
+- `main/data/CLAIM_GUARDRAIL_POLICY_UPDATE_WAVE_1_REPORT.md`
+- `main/data/SPEKTRUM_APPROVED_CLAIM_TRANSITION_WAVE_1_REPORT.md`
+- `main/data/CLAIM_APPROVAL_LIMITED_NO_SOURCE_LOCK_NO_PUBLICATION_WAVE_1.md`
+- `main/data/CLAIM_GUARDRAIL_POLICY_UPDATE_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `scripts/validate_claim_registry_lock_l1.py` — `approval_limited` narrow claim approval policy.
+- `scripts/validate_corpus_claims_l1.py` — `approval_limited` narrow claim approval policy.
+- `main/data/claims/terminology_claims.json` — **`CLM-TERM-MOS2-DE-001`** `status: approved`; lock resolution updated.
+- `DECISION_LOG.md` — Sprint 5N-U entry appended.
+
+**Not modified in this sprint:** `main/data/sources/source_registry.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
