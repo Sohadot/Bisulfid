@@ -62,10 +62,24 @@ def run_validation() -> tuple[list[str], list[str], dict]:
 
     for dirname in HTML_OUTPUT_DIRS:
         d = ROOT / dirname
-        if d.is_dir():
-            html_files = list(d.rglob("*.html"))
-            if html_files:
-                errors.append(f"Generated HTML found in {dirname}/ ({len(html_files)} files)")
+        if not d.is_dir():
+            continue
+        html_files: list[Path] = []
+        for path in d.rglob("*.html"):
+            if dirname == "site":
+                try:
+                    rel = path.relative_to(d)
+                except ValueError:
+                    html_files.append(path)
+                    continue
+                if len(rel.parts) >= 1 and rel.parts[0] == "_sample":
+                    continue
+            html_files.append(path)
+        if html_files:
+            errors.append(
+                f"Generated HTML found in {dirname}/ outside quarantine "
+                f"({len(html_files)} files)"
+            )
 
     if THRESHOLD_PATH.exists():
         th = THRESHOLD_PATH.read_text(encoding="utf-8").lower()

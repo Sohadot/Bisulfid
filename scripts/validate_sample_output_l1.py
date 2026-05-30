@@ -31,11 +31,37 @@ REQUIRED_MARKERS = (
     "non_public",
     "non-public",
     "QA",
+    "planned",
+    "outside sitemap",
+    "outside navigation",
+    "no_claims_approved",
 )
+
+SOURCE_CLAIM_MARKERS = (
+    "[SOURCE REQUIRED]",
+    "source approval not implied",
+    "no source approval",
+    "unapproved",
+)
+
+def implies_claim_approval(text: str) -> bool:
+    lower = text.lower()
+    for phrase in (
+        "no claim is approved",
+        "any claim is approved",
+        "not imply any claim is approved",
+        "not imply claim approval",
+        "no claims_approved",
+        "no_claims_approved",
+    ):
+        lower = lower.replace(phrase, "")
+    return "claim is approved" in lower
+
 
 FORBIDDEN = (
     re.compile(r"index,\s*follow", re.I),
     re.compile(r"(?<!not )(?<!non-)(ready for (public )?launch|go live now)", re.I),
+    re.compile(r"source-locking is complete", re.I),
 )
 
 
@@ -73,8 +99,21 @@ def validate_sample_file(path: Path) -> tuple[list[str], list[str]]:
         if pattern.search(text):
             errors.append(f"{path.name}: forbidden pattern in sample output")
 
+    if implies_claim_approval(text):
+        errors.append(f"{path.name}: implies claim approval")
+
     if "production_can_safely_proceed: yes" in lower.replace(" ", ""):
         errors.append(f"{path.name}: claims production_can_safely_proceed yes")
+
+    if "route_status" not in lower and "route status" not in lower:
+        errors.append(f"{path.name}: missing route status visibility")
+
+    has_source_marker = any(m.lower() in lower for m in SOURCE_CLAIM_MARKERS)
+    if "[source required]" in lower and not has_source_marker:
+        errors.append(f"{path.name}: [SOURCE REQUIRED] not visibly preserved")
+
+    if "claim approval not implied" not in lower and "no_claims_approved" not in lower:
+        warnings.append(f"{path.name}: claim non-approval posture could be clearer")
 
     return errors, warnings
 

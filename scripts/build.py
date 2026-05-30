@@ -9,6 +9,7 @@ Default invocation performs no file writes. Use explicit flags for output.
 Modes:
   --dry-run       Inspect routes, templates, and output plan (default action)
   --sample N      Plan a controlled sample of N routes (no HTML in locked posture)
+  --render-quarantined-sample  Render deterministic QA HTML to site/_sample/ only
   --strict        Fail closed on validation errors
   --write-build-status  Write site/build-status.json audit artifact only
 
@@ -20,7 +21,9 @@ Python standard library only.
 from __future__ import annotations
 
 import argparse
+import html
 import json
+import re
 import sys
 from collections import Counter
 from dataclasses import dataclass, field
@@ -72,6 +75,47 @@ PARTIAL_SOURCE_BAR_PATH = ROOT / "main/templates/partials/source_bar.html"
 PARTIAL_INTERNAL_LINKS_PATH = ROOT / "main/templates/partials/internal_links.html"
 
 PLACEHOLDER_SIZE_THRESHOLD = 800  # bytes; skeleton templates are intentionally small
+
+# Legacy registry template names -> hardened publication frame (Sprint 6M-C bridge)
+TEMPLATE_FRAME_BRIDGE: dict[str, str] = {
+    "reference_page.html": "reference.html",
+    "term_page.html": "term.html",
+    "home.html": "home.html",
+    "glossary.html": "reference.html",
+    "newsletter.html": "page.html",
+    "acquire.html": "page.html",
+}
+
+BRIDGE_TEMPLATE_MARKERS = (
+    "Registry bridge",
+    "Bridge target:",
+    "reference-frame",
+    "term-frame",
+)
+
+# Deterministic quarantined QA sample — fixed route_ids, no registry mutation
+QUARANTINED_SAMPLE_ROUTE_IDS: tuple[str, ...] = (
+    "home",
+    "what_is_bisulfid",
+    "de_core_mos2",
+    "en_index_disambiguation_map",
+    "sources",
+    "corpus_methodology_overview",
+    "de_bisulfide_hydrosulfide_sulfide",
+    "bisulfide_hydrosulfide_sulfide",
+)
+
+QUARANTINED_SAMPLE_DIR = DEFAULT_SITE_DIR / "_sample"
+
+QA_HTML_PREAMBLE = """<!--
+  QUARANTINED NON-PUBLIC QA RENDER — NOT A LAUNCH
+  Sprint 6M-C publication-frame proof. Not indexable. Outside sitemap. Outside navigation.
+  Source/claim approval not implied. 14,000-page minimum launch objective unchanged.
+  production_can_safely_proceed: no
+-->
+"""
+
+RTL_LANGUAGES = frozenset({"ar", "he", "fa", "ur"})
 
 
 @dataclass
@@ -168,6 +212,15 @@ def global_navigation_allowed() -> tuple[bool, str]:
     return False, "navigation config missing"
 
 
+def resolve_frame_template(template_name: str) -> str:
+    """Map legacy registry template name to hardened publication frame."""
+    return TEMPLATE_FRAME_BRIDGE.get(template_name, template_name)
+
+
+def is_bridged_template(text: str) -> bool:
+    return any(marker in text for marker in BRIDGE_TEMPLATE_MARKERS)
+
+
 def assess_template(templates_root: Path, template_name: str) -> TemplateCheck:
     rel = template_name.replace("\\", "/")
     path = templates_root / rel
@@ -178,7 +231,16 @@ def assess_template(templates_root: Path, template_name: str) -> TemplateCheck:
 
     text = path.read_text(encoding="utf-8")
     check.size_bytes = len(text.encode("utf-8"))
-    check.placeholder_like = check.size_bytes < PLACEHOLDER_SIZE_THRESHOLD
+    bridged = is_bridged_template(text) or template_name in TEMPLATE_FRAME_BRIDGE
+    frame_target = resolve_frame_template(template_name)
+    frame_exists = (templates_root / frame_target).is_file()
+    check.placeholder_like = (
+        check.size_bytes < PLACEHOLDER_SIZE_THRESHOLD
+        and "SKELETON TEMPLATE" in text
+        and not bridged
+    )
+    if bridged and frame_exists and "SKELETON TEMPLATE" not in text:
+        check.placeholder_like = False
     check.governance_present = any(m in text for m in TEMPLATE_GOVERNANCE_MARKERS)
 
     if rel == "base.html":
@@ -198,6 +260,11 @@ def assess_template(templates_root: Path, template_name: str) -> TemplateCheck:
 
     if check.placeholder_like:
         check.issues.append("template appears placeholder-like (below size threshold)")
+    if template_name in TEMPLATE_FRAME_BRIDGE:
+        if not frame_exists:
+            check.issues.append(f"bridge target missing: {frame_target}")
+        elif "SKELETON TEMPLATE" in text:
+            check.issues.append("legacy template remains unresolved skeleton")
     if check.missing_blocks:
         check.issues.append(f"missing blocks: {', '.join(check.missing_blocks)}")
     if not check.governance_present and rel != "partials/nav.html":
@@ -539,6 +606,346 @@ def select_sample_routes(
     return chosen_ids
 
 
+def strip_content_body(text: str) -> str:
+    if text.startswith("---"):
+        parts = text.split("---", 2)
+        if len(parts) >= 3:
+            return parts[2].strip()
+    return text.strip()
+
+
+def highlight_source_required(text: str) -> str:
+    return text.replace(
+        "[SOURCE REQUIRED]",
+        '<mark class="source-required-marker">[SOURCE REQUIRED]</mark>',
+    )
+
+
+def markdown_body_to_html(markdown: str) -> str:
+    """Minimal markdown-to-HTML for quarantined QA renders (stdlib only)."""
+    lines = markdown.splitlines()
+    out: list[str] = []
+    in_ul = False
+    in_ol = False
+    in_table = False
+    table_rows: list[str] = []
+
+    def close_lists() -> None:
+        nonlocal in_ul, in_ol
+        if in_ul:
+            out.append("</ul>")
+            in_ul = False
+        if in_ol:
+            out.append("</ol>")
+            in_ol = False
+
+    def flush_table() -> None:
+        nonlocal in_table, table_rows
+        if not in_table:
+            return
+        out.append("<table>")
+        for i, row in enumerate(table_rows):
+            cells = [c.strip() for c in row.strip("|").split("|")]
+            tag = "th" if i == 0 else "td"
+            out.append("<tr>" + "".join(f"<{tag}>{html.escape(c)}</{tag}>" for c in cells) + "</tr>")
+        out.append("</table>")
+        in_table = False
+        table_rows = []
+
+    for raw in lines:
+        line = raw.rstrip()
+        if line.startswith("|") and "|" in line[1:]:
+            close_lists()
+            if not in_table:
+                in_table = True
+                table_rows = []
+            if re.match(r"^\|[\s\-:|]+\|$", line):
+                continue
+            table_rows.append(line)
+            continue
+        flush_table()
+
+        if not line.strip():
+            close_lists()
+            continue
+        if line.strip() == "---":
+            close_lists()
+            out.append("<hr>")
+            continue
+        if line.startswith("#"):
+            close_lists()
+            level = len(line) - len(line.lstrip("#"))
+            level = min(max(level, 1), 6)
+            title = line[level:].strip()
+            out.append(f"<h{level}>{html.escape(title)}</h{level}>")
+            continue
+        if line.lstrip().startswith("- "):
+            if not in_ul:
+                close_lists()
+                out.append("<ul>")
+                in_ul = True
+            item = line.lstrip()[2:].strip()
+            item = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", item)
+            item = highlight_source_required(html.escape(item))
+            item = item.replace("&lt;strong&gt;", "<strong>").replace("&lt;/strong&gt;", "</strong>")
+            out.append(f"<li>{item}</li>")
+            continue
+        if re.match(r"^\d+\.\s", line.lstrip()):
+            if not in_ol:
+                close_lists()
+                out.append("<ol>")
+                in_ol = True
+            item = re.sub(r"^\d+\.\s", "", line.lstrip())
+            item = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", item)
+            item = highlight_source_required(html.escape(item))
+            item = item.replace("&lt;strong&gt;", "<strong>").replace("&lt;/strong&gt;", "</strong>")
+            out.append(f"<li>{item}</li>")
+            continue
+
+        close_lists()
+        para = line.strip()
+        para = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", para)
+        para = re.sub(r"`([^`]+)`", r"<code>\1</code>", para)
+        para = highlight_source_required(html.escape(para))
+        para = para.replace("&lt;strong&gt;", "<strong>").replace("&lt;/strong&gt;", "</strong>")
+        para = para.replace("&lt;code&gt;", "<code>").replace("&lt;/code&gt;", "</code>")
+        out.append(f"<p>{para}</p>")
+
+    close_lists()
+    flush_table()
+    return "\n".join(out)
+
+
+def substitute_slots(template: str, context: dict[str, str]) -> str:
+    result = template
+    for key, value in context.items():
+        result = result.replace(f"{{{{{key}}}}}", value)
+    return result
+
+
+def read_template_file(templates_root: Path, rel: str) -> str:
+    path = templates_root / rel
+    if not path.is_file():
+        return ""
+    return path.read_text(encoding="utf-8")
+
+
+def build_render_context(route: dict[str, Any], body_html: str) -> dict[str, str]:
+    language = route.get("language", "en")
+    text_direction = "rtl" if language in RTL_LANGUAGES else "ltr"
+    status = route.get("status", "planned")
+    indexable = route.get("indexable", False)
+    in_sitemap = route.get("in_sitemap", False)
+    in_navigation = route.get("in_navigation", False)
+    source_required = route.get("source_required", False)
+    has_source_markers = "[SOURCE REQUIRED]" in body_html or source_required
+
+    frame = resolve_frame_template(route.get("template", ""))
+    layer = route.get("layer", "reference")
+
+    empty_slot = '<p class="slot-empty" data-empty="true">Slot reserved — not populated in QA render.</p>'
+    safety_body = ""
+    if layer == "safety_governance":
+        safety_body = (
+            "Safety-layer route — governance notice required before publication. "
+            "No handling instructions implied."
+        )
+
+    context: dict[str, str] = {
+        "language": language,
+        "text_direction": text_direction,
+        "route_id": route["route_id"],
+        "route_status": status,
+        "route_path": route.get("path", ""),
+        "route_layer": layer,
+        "publication_posture": "non_public",
+        "page_title": route.get("title", route["route_id"]),
+        "meta_description": route.get("description", ""),
+        "robots_directive": "noindex, nofollow",
+        "canonical_url": f"https://bisulfid.com{route.get('path', '/')}",
+        "canonical_mode": "non_public_withheld",
+        "indexable_flag": "false",
+        "in_sitemap_flag": "false",
+        "in_navigation_flag": "false",
+        "source_required_flag": "true" if has_source_markers else "false",
+        "claim_approval_state": "no_claims_approved",
+        "source_registry_posture": "inactive",
+        "csp_policy_placeholder": "default-src 'none'; frame-ancestors 'none'",
+        "site_name": "bisulfid.com",
+        "copyright_year": str(datetime.now(timezone.utc).year),
+        "page_h1": route.get("h1", route.get("title", route["route_id"])),
+        "qa_artifact_flag": "true",
+        "governance_banner_title": "Non-public QA render — NOT A LAUNCH",
+        "governance_banner_body": (
+            "Quarantined engineering sample under site/_sample/. "
+            "Not indexable. Outside sitemap. Outside navigation. "
+            "14,000-page governed launch corpus frame proof only."
+        ),
+        "navigation_status": "inactive",
+        "navigation_items": "",
+        "hreflang_status": "inactive",
+        "hreflang_link_tags": "<!-- hreflang withheld — publication locks active -->",
+        "breadcrumb_items": (
+            f'<li><span>QA sample</span></li><li><span>{html.escape(route["route_id"])}</span></li>'
+        ),
+        "breadcrumb_context_hidden": "false",
+        "source_posture_message": (
+            "Sources and claims remain unapproved. [SOURCE REQUIRED] markers are binding."
+            if has_source_markers
+            else "No source approval implied by this QA frame."
+        ),
+        "source_list": "",
+        "source_required_visible": "true" if has_source_markers else "false",
+        "internal_link_items": "",
+        "internal_links_empty": "true",
+        "safety_notice_body": safety_body,
+        "gateway_intro": empty_slot,
+        "interactive_term_map": empty_slot,
+        "language_entry_points": empty_slot,
+        "related_terms": empty_slot,
+        "disambiguation_notice": empty_slot,
+        "reference_body": body_html,
+        "term_definition": body_html,
+        "page_body": body_html,
+    }
+
+    if frame == "home.html":
+        intro_lines = []
+        for line in strip_content_body(
+            (ROOT / route.get("content_file", "")).read_text(encoding="utf-8")
+            if route.get("content_file") and (ROOT / route["content_file"]).is_file()
+            else ""
+        ).splitlines():
+            if line.strip() and not line.startswith("#"):
+                intro_lines.append(line.strip())
+                if len(intro_lines) >= 2:
+                    break
+        context["gateway_intro"] = (
+            html.escape(" ".join(intro_lines)) if intro_lines else empty_slot
+        )
+
+    return context
+
+
+def render_route_quarantined(
+    route: dict[str, Any],
+    templates_root: Path,
+) -> str:
+    content_path = ROOT / route.get("content_file", "")
+    if not content_path.is_file():
+        raise FileNotFoundError(f"missing content: {content_path}")
+
+    body_md = strip_content_body(content_path.read_text(encoding="utf-8"))
+    body_html = markdown_body_to_html(body_md)
+    context = build_render_context(route, body_html)
+
+    registry_template = route.get("template", "")
+    frame_template = resolve_frame_template(registry_template)
+    bridge_text = read_template_file(templates_root, registry_template)
+    frame_text = read_template_file(templates_root, frame_template)
+    inner_template = bridge_text if bridge_text and "SKELETON TEMPLATE" not in bridge_text else frame_text
+    if not inner_template:
+        inner_template = frame_text
+
+    if frame_template == "home.html":
+        inner_template = read_template_file(templates_root, "home.html")
+
+    inner_html = substitute_slots(inner_template, context)
+
+    partials = {
+        "head": read_template_file(templates_root, "partials/head.html"),
+        "nav": read_template_file(templates_root, "partials/nav.html"),
+        "footer": read_template_file(templates_root, "partials/footer.html"),
+        "governance_banner": read_template_file(templates_root, "partials/governance_banner.html"),
+        "breadcrumbs": read_template_file(templates_root, "partials/breadcrumbs.html"),
+        "hreflang": read_template_file(templates_root, "partials/hreflang.html"),
+        "source_bar": read_template_file(templates_root, "partials/source_bar.html"),
+        "internal_links": read_template_file(templates_root, "partials/internal_links.html"),
+        "safety_notice": read_template_file(templates_root, "partials/safety_notice.html"),
+    }
+    for key in partials:
+        partials[key] = substitute_slots(partials[key], context)
+
+    if layer := route.get("layer"):
+        if layer != "safety_governance":
+            partials["safety_notice"] = ""
+
+    context["head"] = partials["head"]
+    context["nav"] = partials["nav"]
+    context["footer"] = partials["footer"]
+    context["governance_banner"] = partials["governance_banner"]
+    context["breadcrumbs"] = partials["breadcrumbs"]
+    context["hreflang"] = partials["hreflang"]
+    context["content"] = inner_html
+    context["source_bar"] = partials["source_bar"]
+    context["internal_links"] = partials["internal_links"]
+    context["safety_notice"] = partials["safety_notice"]
+
+    inner_html = substitute_slots(inner_html, {
+        "source_bar": partials["source_bar"],
+        "internal_links": partials["internal_links"],
+        "safety_notice": partials["safety_notice"],
+    })
+    context["content"] = inner_html
+
+    base = read_template_file(templates_root, "base.html")
+    page = substitute_slots(base, context)
+
+    qa_notice = (
+        '<div class="qa-render-notice" role="status" data-qa-artifact="true" '
+        'data-publication-posture="non_public">'
+        "<p><strong>Quarantined non-public QA render</strong> — not a public launch. "
+        "Not indexable. Outside sitemap. Outside navigation. "
+        "Source and claim approval not implied. "
+        "Route status: <strong>planned</strong>. "
+        "14,000-page minimum launch objective unchanged.</p></div>"
+    )
+    page = page.replace("<main id=\"main-content\"", qa_notice + "\n  <main id=\"main-content\"", 1)
+    return QA_HTML_PREAMBLE + page
+
+
+def write_quarantined_sample_html(
+    routes: list[dict[str, Any]],
+    templates_root: Path,
+    sample_dir: Path,
+) -> tuple[int, list[str], list[str]]:
+    """Render deterministic QA sample to site/_sample/ only."""
+    errors: list[str] = []
+    written: list[str] = []
+    route_by_id = {r["route_id"]: r for r in routes}
+
+    sample_dir.mkdir(parents=True, exist_ok=True)
+    for existing in sample_dir.glob("*.html"):
+        existing.unlink()
+
+    for route_id in QUARANTINED_SAMPLE_ROUTE_IDS:
+        route = route_by_id.get(route_id)
+        if not route:
+            errors.append(f"quarantined sample route missing: {route_id}")
+            continue
+        content_path = ROOT / route.get("content_file", "")
+        if not content_path.is_file():
+            errors.append(f"{route_id}: missing content_file for QA render")
+            continue
+        template_name = route.get("template", "")
+        if template_name not in TEMPLATE_FRAME_BRIDGE and not (
+            templates_root / template_name
+        ).is_file():
+            errors.append(f"{route_id}: unmapped template {template_name}")
+            continue
+        try:
+            html_out = render_route_quarantined(route, templates_root)
+        except OSError as exc:
+            errors.append(f"{route_id}: render failed: {exc}")
+            continue
+
+        out_path = sample_dir / f"{route_id}.html"
+        out_path.write_text(html_out, encoding="utf-8")
+        written.append(str(out_path.relative_to(ROOT)).replace("\\", "/"))
+
+    return len(written), written, errors
+
+
 def compute_locks(routes: list[dict[str, Any]]) -> tuple[str, str, str, str]:
     published = sum(1 for r in routes if r.get("status") == "published")
     indexable = sum(1 for r in routes if r.get("indexable") is True)
@@ -578,11 +985,14 @@ def run_build_engine(
     dry_run: bool = True,
     strict: bool = False,
     sample_size: int | None = None,
+    render_quarantined_sample: bool = False,
     write_build_status: bool = False,
     write_audit_report: Path | None = None,
 ) -> BuildAudit:
     mode = "dry-run"
-    if sample_size is not None:
+    if render_quarantined_sample:
+        mode = "render-quarantined-sample"
+    elif sample_size is not None:
         mode = f"sample-plan-{sample_size}"
     if write_build_status:
         mode += "+write-build-status"
@@ -719,7 +1129,23 @@ def run_build_engine(
     audit.sitemap_generated = False
     audit.navigation_generated = False
 
-    if write_build_status and not dry_run:
+    if render_quarantined_sample:
+        count, paths, render_errors = write_quarantined_sample_html(
+            routes, templates_root, QUARANTINED_SAMPLE_DIR
+        )
+        audit.strict_errors.extend(render_errors)
+        if paths:
+            audit.output_plan_notes.append(
+                f"quarantined QA HTML written: {count} file(s) under site/_sample/"
+            )
+            for p in paths:
+                audit.output_plan_notes.append(f"  - {p}")
+        if strict and render_errors:
+            pass  # strict exit handled by caller
+        if count == 0 and not render_errors:
+            audit.strict_errors.append("quarantined sample render produced zero files")
+
+    if write_build_status and not render_quarantined_sample:
         pass  # guarded below — status write allowed explicitly
 
     if write_build_status:
@@ -857,6 +1283,9 @@ def print_summary(audit: BuildAudit, strict: bool) -> None:
         print("STRICT MODE: FAIL — validation errors detected.")
     elif audit.mode.startswith("dry-run") or audit.mode.startswith("sample"):
         print("Dry-run complete. No public HTML generated. No registries modified.")
+    elif audit.mode.startswith("render-quarantined-sample"):
+        print("Quarantined QA render complete. Output under site/_sample/ only.")
+        print("No public HTML outside quarantine. No registries modified.")
     else:
         print("Build engine run complete. No public HTML generated.")
 
@@ -878,6 +1307,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--strict",
         action="store_true",
         help="Fail closed on missing templates, unsafe flags, duplicates, and metadata gaps.",
+    )
+    parser.add_argument(
+        "--render-quarantined-sample",
+        action="store_true",
+        help="Render deterministic QA HTML to site/_sample/ only (non-public, noindex).",
     )
     parser.add_argument(
         "--sample",
@@ -902,11 +1336,17 @@ def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
 
-    if not any((args.dry_run, args.sample is not None, args.write_build_status)):
+    if not any((
+        args.dry_run,
+        args.sample is not None,
+        args.render_quarantined_sample,
+        args.write_build_status,
+    )):
         parser.print_help()
         print()
         print("No action selected. Default is read-only help (no file writes).")
         print("Safe inspection: python scripts/build.py --dry-run")
+        print("Quarantined QA render: python scripts/build.py --render-quarantined-sample")
         return 0
 
     audit_report_path = None
@@ -914,9 +1354,10 @@ def main(argv: list[str] | None = None) -> int:
         audit_report_path = ROOT / args.write_audit_report
 
     audit = run_build_engine(
-        dry_run=True,
+        dry_run=not args.render_quarantined_sample,
         strict=args.strict,
         sample_size=args.sample,
+        render_quarantined_sample=args.render_quarantined_sample,
         write_build_status=args.write_build_status,
         write_audit_report=audit_report_path,
     )

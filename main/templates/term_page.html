@@ -1,21 +1,30 @@
-<!-- SKELETON TEMPLATE — not production UI. -->
 <!--
-  term_page.html — Term record template for bisulfid.com
-  Used for ontology-governed term pages (e.g., /bisulfid/, /bisulfide/, /hydrosulfide/).
-  Content requires source-verified ontology claims locked in source_registry.json.
-  Do not generate pages from this template until route status is published
+  term_page.html — Registry bridge to hardened term.html (Sprint 6M-C)
+  routes.json references this legacy name; build.py resolves to term.html frame.
+  NOT A LAUNCH TEMPLATE. Do not render for public output until route status is published
   and all Quality Gate conditions pass.
+  Bridge target: main/templates/term.html
 -->
+<article class="term-frame" lang="{{language}}" dir="{{text_direction}}">
+  <header class="term-frame__header">
+    <h1 class="term-frame__title">{{page_h1}}</h1>
+    <p class="term-frame__meta">
+      Term route · {{route_id}} · Cohort-ready for 14,000-page corpus scale
+    </p>
+  </header>
 
-<!-- SLOT: Term heading (h1) -->
-<!-- SLOT: Definition block (source-verified claim) -->
-<!-- SLOT: Related terms block (driven from term_edges.json) -->
-<!-- SLOT: Disambiguation notice (if term has a not_same_as edge in term_edges.json) -->
+  <section class="term-frame__definition" aria-label="Term definition slot">
+    {{term_definition}}
+  </section>
 
-<!-- PARTIAL: source_bar.html -->
-{{source_bar}}
+  <section class="term-frame__related" aria-label="Related terms slot">
+    {{related_terms}}
+  </section>
 
-<!-- PARTIAL: internal_links.html -->
-{{internal_links}}
+  <section class="term-frame__disambiguation" aria-label="Disambiguation slot">
+    {{disambiguation_notice}}
+  </section>
 
-<!-- No inline JS. No external scripts. No tracking. -->
+  {{source_bar}}
+  {{internal_links}}
+</article>

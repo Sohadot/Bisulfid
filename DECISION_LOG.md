@@ -3546,3 +3546,51 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Not modified in this sprint:** `routes.json`, `internal_links.json`, sitemap/navigation policies, source/claim registries, all content pages, `build.py`, workflows, root README.md, package files, dependencies.
 
+---
+
+## Template Registry Migration and Quarantined QA Render Completed
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6m-c-template-registry-migration-and-quarantined-qa-render`  
+**Base:** main @ Sprint 6M-B merge  
+**Status:** Complete — template bridges wired; quarantined QA render under `site/_sample/`; all locks intact
+
+**Summary:** Sprint **6M-C** migrated or bridged legacy template references into the hardened sovereign template layer and produced the first quarantined non-public QA render under `site/_sample/`. The sprint proved that the publication frame can generate visible HTML without weakening publication, indexation, sitemap, navigation, source, or claim locks. The QA output remained isolated, noindex, outside sitemap, outside navigation, and clearly marked as non-public. No routes were published, no routes were made indexable, no routes were added to sitemap or navigation, no sources or claims were approved, no registries were modified, no content pages were edited, and `[SOURCE REQUIRED]` markers remained unresolved. The fixed **14,000-page minimum launch objective** remains unchanged.
+
+**Rationale:** Sprint 6M-B hardened publication frames but deferred registry template name migration. 6M-C connects legacy `reference_page.html` / `term_page.html` registry references to hardened frames via wrapper bridges and `build.py` `TEMPLATE_FRAME_BRIDGE` without mutating `routes.json`.
+
+**Sprint 6M-C validation:**
+
+- `validate_template_registry_l1.py`: **PASS**
+- `validate_template_layer_l1.py`: **PASS**
+- `validate_sample_output_l1.py`: **PASS** (8 quarantined QA files)
+- `validate_build_engine_l1.py`: **PASS**
+- `build.py --dry-run` / `--dry-run --strict`: **PASS**
+- `build.py --render-quarantined-sample`: **PASS** (8 files)
+- All L1/L2 corpus runtimes + source/claim guardrails: **PASS**
+- `production_can_safely_proceed`: **no**
+- Corpus Governance CI: **required on PR**
+
+**Publication readiness:** **Not ready for publication**. QA engineering proof only.
+
+**Recommended next step:** Sprint **6M-D** — expanded non-public release candidate (100–250 pages) or authorized registry template name migration.
+
+**Files created:**
+
+- `scripts/validate_template_registry_l1.py`
+- `main/data/TEMPLATE_REGISTRY_MIGRATION_REPORT.md`
+- `main/data/QUARANTINED_QA_RENDER_REPORT.md`
+- `main/data/QUARANTINED_QA_RENDER_VALIDATION_REPORT.md`
+- `main/data/PUBLICATION_FRAME_QA_NEXT_ACTIONS.md`
+- `site/_sample/*.html` (8 quarantined QA pages)
+
+**Files updated:**
+
+- `scripts/build.py` — template bridge map, quarantined sample render mode
+- `main/templates/reference_page.html`, `term_page.html` — hardened frame bridges
+- `scripts/validate_sample_output_l1.py` — expanded QA marker checks
+- `scripts/validate_corpus_publication_lock_l1.py` — quarantine exception for `site/_sample/`
+- `DECISION_LOG.md`
+
+**Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, all `main/content/**` pages, workflows, root README.md, package files, dependencies, public HTML outside `site/_sample/`.
+
