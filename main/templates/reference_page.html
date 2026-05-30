@@ -1,22 +1,21 @@
-<!-- SKELETON TEMPLATE — not production UI. -->
 <!--
-  reference_page.html — Generic reference page template for bisulfid.com
-  This skeleton reserves the reference content slot only.
-  Content requires source-verified claims before this template may generate output.
-  Do not generate pages from this template until route status is published
+  reference_page.html — Registry bridge to hardened reference.html (Sprint 6M-C)
+  routes.json references this legacy name; build.py resolves to reference.html frame.
+  NOT A LAUNCH TEMPLATE. Do not render for public output until route status is published
   and all Quality Gate conditions pass.
+  Bridge target: main/templates/reference.html
 -->
+<article class="reference-frame" lang="{{language}}" dir="{{text_direction}}">
+  <header class="reference-frame__header">
+    <h1 class="reference-frame__title">{{page_h1}}</h1>
+    <p class="reference-frame__layer">Reference layer: {{route_layer}}</p>
+  </header>
 
-<!-- SLOT: Page title (h1) -->
-<!-- SLOT: Canonical reference body -->
+  <div class="reference-frame__body">
+    {{reference_body}}
+  </div>
 
-<!-- PARTIAL: source_bar.html -->
-{{source_bar}}
-
-<!-- PARTIAL: internal_links.html -->
-{{internal_links}}
-
-<!-- PARTIAL: safety_notice.html (required if route has safety claim group) -->
-{{safety_notice}}
-
-<!-- No inline JS. No external scripts. No tracking. -->
+  {{source_bar}}
+  {{safety_notice}}
+  {{internal_links}}
+</article>
