@@ -9,7 +9,8 @@ Default invocation performs no file writes. Use explicit flags for output.
 Modes:
   --dry-run       Inspect routes, templates, and output plan (default action)
   --sample N      Plan a controlled sample of N routes (no HTML in locked posture)
-  --render-quarantined-sample  Render deterministic QA HTML to site/_sample/ only
+  --render-quarantined-sample  Render deterministic 8-page QA HTML to site/_sample/ only
+  --render-quarantined-rc-batch --limit N  Render non-public RC batch to site/_sample/ only
   --strict        Fail closed on validation errors
   --write-build-status  Write site/build-status.json audit artifact only
 
@@ -107,10 +108,23 @@ QUARANTINED_SAMPLE_ROUTE_IDS: tuple[str, ...] = (
 
 QUARANTINED_SAMPLE_DIR = DEFAULT_SITE_DIR / "_sample"
 
+RC_BATCH_DEFAULT_LIMIT = 250
+RC_BATCH_MIN_TARGET = 100
+RC_BATCH_MANIFEST_NAME = "rc_batch_manifest.json"
+
 QA_HTML_PREAMBLE = """<!--
   QUARANTINED NON-PUBLIC QA RENDER — NOT A LAUNCH
   Sprint 6M-C publication-frame proof. Not indexable. Outside sitemap. Outside navigation.
   Source/claim approval not implied. 14,000-page minimum launch objective unchanged.
+  production_can_safely_proceed: no
+-->
+"""
+
+RC_HTML_PREAMBLE = """<!--
+  QUARANTINED NON-PUBLIC RELEASE CANDIDATE — NOT A LAUNCH
+  Sprint 6M-D RC Batch 01 inside the 14,000-page publication pipeline.
+  Not indexable. Not publication-ready. Outside sitemap. Outside navigation.
+  Source/claim approval not implied. Not a reduced launch target.
   production_can_safely_proceed: no
 -->
 """
@@ -144,6 +158,18 @@ class RouteAssessment:
 
 
 @dataclass
+class RCBatchResult:
+    rendered_count: int
+    skipped_count: int
+    written_paths: list[str]
+    errors: list[str]
+    skipped_by_category: dict[str, int]
+    manifest_path: str
+    selected_route_ids: list[str]
+    page_records: list[dict[str, Any]]
+
+
+@dataclass
 class BuildAudit:
     mode: str
     timestamp_utc: str
@@ -157,6 +183,7 @@ class BuildAudit:
     out_of_sitemap_count: int = 0
     out_of_navigation_count: int = 0
     sample_planned_count: int = 0
+    rc_batch_result: RCBatchResult | None = None
     publication_lock: str = "LOCKED"
     indexation_lock: str = "LOCKED"
     sitemap_lock: str = "LOCKED"
@@ -606,6 +633,146 @@ def select_sample_routes(
     return chosen_ids
 
 
+def assert_quarantine_output_dir(sample_dir: Path) -> None:
+    """Fail closed if output target is outside site/_sample/."""
+    resolved = sample_dir.resolve()
+    expected_root = QUARANTINED_SAMPLE_DIR.resolve()
+    if resolved != expected_root and expected_root not in resolved.parents:
+        raise ValueError(
+            f"quarantine output dir must be under site/_sample/: got {resolved}"
+        )
+
+
+def classify_route_page_type(route: dict[str, Any]) -> str:
+    layer = route.get("layer", "")
+    lang = route.get("language", "en")
+    notes = route.get("notes", "").lower()
+    template = route.get("template", "")
+    rid = route.get("route_id", "")
+
+    if layer in ("gateway", "public_gateway") or template == "home.html" or rid == "home":
+        return "gateway"
+    if "disambiguation" in notes or "disambiguation" in rid:
+        return "disambiguation"
+    if layer in ("methodology_reference", "utility", "foundation_reference", "safety_governance"):
+        return "reference_governance"
+    if template == "term_page.html" or layer == "terminology_system":
+        return "de_terminology" if lang == "de" else "en_terminology"
+    if layer == "acquisition" or template == "acquire.html":
+        return "acquisition"
+    return "reference"
+
+
+def route_is_render_eligible(route: dict[str, Any], templates_root: Path) -> tuple[bool, str]:
+    content_path = ROOT / route.get("content_file", "")
+    if not content_path.is_file():
+        return False, "missing_content"
+    template_name = route.get("template", "")
+    if template_name not in TEMPLATE_FRAME_BRIDGE and not (templates_root / template_name).is_file():
+        return False, "unmapped_template"
+    if route.get("status") != "planned":
+        return False, "non_planned_status"
+    return True, ""
+
+
+def select_rc_batch_routes(
+    routes: list[dict[str, Any]],
+    templates_root: Path,
+    limit: int,
+) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    """Deterministic stratified RC batch selection from draft-backed routes."""
+    route_by_id = {r["route_id"]: r for r in routes}
+    selected_ids: list[str] = []
+    seen: set[str] = set()
+    skipped_by_category: Counter[str] = Counter()
+
+    def add_route(route: dict[str, Any]) -> bool:
+        if len(selected_ids) >= limit:
+            return False
+        rid = route["route_id"]
+        if rid in seen:
+            return True
+        ok, reason = route_is_render_eligible(route, templates_root)
+        if not ok:
+            skipped_by_category[reason] += 1
+            return True
+        selected_ids.append(rid)
+        seen.add(rid)
+        return True
+
+    # Tier 0: Sprint 6M-C QA proof routes (always first)
+    for rid in QUARANTINED_SAMPLE_ROUTE_IDS:
+        route = route_by_id.get(rid)
+        if route:
+            add_route(route)
+
+    eligible = [r for r in routes if r["route_id"] not in seen]
+    buckets: dict[str, list[dict[str, Any]]] = {
+        "gateway": [],
+        "de_terminology": [],
+        "en_terminology": [],
+        "disambiguation": [],
+        "reference_governance": [],
+        "reference": [],
+        "acquisition": [],
+    }
+    for route in eligible:
+        ok, reason = route_is_render_eligible(route, templates_root)
+        if not ok:
+            continue
+        page_type = classify_route_page_type(route)
+        bucket = page_type if page_type in buckets else "reference"
+        buckets[bucket].append(route)
+
+    for key in buckets:
+        buckets[key].sort(key=lambda r: r["route_id"])
+
+    bucket_order = (
+        "gateway",
+        "de_terminology",
+        "disambiguation",
+        "reference_governance",
+        "en_terminology",
+        "acquisition",
+        "reference",
+    )
+    indices = {k: 0 for k in bucket_order}
+    while len(selected_ids) < limit:
+        progressed = False
+        for bucket_name in bucket_order:
+            if len(selected_ids) >= limit:
+                break
+            idx = indices[bucket_name]
+            bucket = buckets[bucket_name]
+            if idx >= len(bucket):
+                continue
+            route = bucket[idx]
+            indices[bucket_name] += 1
+            if route["route_id"] in seen:
+                continue
+            selected_ids.append(route["route_id"])
+            seen.add(route["route_id"])
+            progressed = True
+        if not progressed:
+            break
+
+    if len(selected_ids) < limit:
+        for route in sorted(eligible, key=lambda r: r["route_id"]):
+            if len(selected_ids) >= limit:
+                break
+            if route["route_id"] in seen:
+                continue
+            ok, reason = route_is_render_eligible(route, templates_root)
+            if not ok:
+                skipped_by_category[reason] += 1
+                continue
+            selected_ids.append(route["route_id"])
+            seen.add(route["route_id"])
+
+    selected_routes = [route_by_id[rid] for rid in selected_ids if rid in route_by_id]
+    return selected_routes, dict(skipped_by_category)
+
+
 def strip_content_body(text: str) -> str:
     if text.startswith("---"):
         parts = text.split("---", 2)
@@ -730,7 +897,12 @@ def read_template_file(templates_root: Path, rel: str) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def build_render_context(route: dict[str, Any], body_html: str) -> dict[str, str]:
+def build_render_context(
+    route: dict[str, Any],
+    body_html: str,
+    *,
+    render_mode: str = "qa_sample",
+) -> dict[str, str]:
     language = route.get("language", "en")
     text_direction = "rtl" if language in RTL_LANGUAGES else "ltr"
     status = route.get("status", "planned")
@@ -775,18 +947,33 @@ def build_render_context(route: dict[str, Any], body_html: str) -> dict[str, str
         "copyright_year": str(datetime.now(timezone.utc).year),
         "page_h1": route.get("h1", route.get("title", route["route_id"])),
         "qa_artifact_flag": "true",
-        "governance_banner_title": "Non-public QA render — NOT A LAUNCH",
+        "governance_banner_title": (
+            "Non-public release candidate — NOT A LAUNCH"
+            if render_mode == "rc_batch"
+            else "Non-public QA render — NOT A LAUNCH"
+        ),
         "governance_banner_body": (
-            "Quarantined engineering sample under site/_sample/. "
-            "Not indexable. Outside sitemap. Outside navigation. "
-            "14,000-page governed launch corpus frame proof only."
+            "RC Batch 01 under site/_sample/ inside the 14,000-page publication pipeline. "
+            "Not indexable. Not publication-ready. Outside sitemap. Outside navigation. "
+            "Not a reduced launch target."
+            if render_mode == "rc_batch"
+            else (
+                "Quarantined engineering sample under site/_sample/. "
+                "Not indexable. Outside sitemap. Outside navigation. "
+                "14,000-page governed launch corpus frame proof only."
+            )
         ),
         "navigation_status": "inactive",
         "navigation_items": "",
         "hreflang_status": "inactive",
         "hreflang_link_tags": "<!-- hreflang withheld — publication locks active -->",
         "breadcrumb_items": (
-            f'<li><span>QA sample</span></li><li><span>{html.escape(route["route_id"])}</span></li>'
+            f'<li><span>RC Batch 01</span></li><li><span>{html.escape(route["route_id"])}</span></li>'
+            if render_mode == "rc_batch"
+            else (
+                f'<li><span>QA sample</span></li>'
+                f'<li><span>{html.escape(route["route_id"])}</span></li>'
+            )
         ),
         "breadcrumb_context_hidden": "false",
         "source_posture_message": (
@@ -830,6 +1017,8 @@ def build_render_context(route: dict[str, Any], body_html: str) -> dict[str, str
 def render_route_quarantined(
     route: dict[str, Any],
     templates_root: Path,
+    *,
+    render_mode: str = "qa_sample",
 ) -> str:
     content_path = ROOT / route.get("content_file", "")
     if not content_path.is_file():
@@ -837,7 +1026,7 @@ def render_route_quarantined(
 
     body_md = strip_content_body(content_path.read_text(encoding="utf-8"))
     body_html = markdown_body_to_html(body_md)
-    context = build_render_context(route, body_html)
+    context = build_render_context(route, body_html, render_mode=render_mode)
 
     registry_template = route.get("template", "")
     frame_template = resolve_frame_template(registry_template)
@@ -891,17 +1080,33 @@ def render_route_quarantined(
     base = read_template_file(templates_root, "base.html")
     page = substitute_slots(base, context)
 
-    qa_notice = (
-        '<div class="qa-render-notice" role="status" data-qa-artifact="true" '
-        'data-publication-posture="non_public">'
-        "<p><strong>Quarantined non-public QA render</strong> — not a public launch. "
-        "Not indexable. Outside sitemap. Outside navigation. "
-        "Source and claim approval not implied. "
-        "Route status: <strong>planned</strong>. "
-        "14,000-page minimum launch objective unchanged.</p></div>"
-    )
+    if render_mode == "rc_batch":
+        qa_notice = (
+            '<div class="qa-render-notice rc-batch-notice" role="status" '
+            'data-qa-artifact="true" data-rc-batch="01" '
+            'data-publication-posture="non_public">'
+            "<p><strong>Quarantined non-public release candidate batch</strong> — "
+            "not a public launch. Not publication-ready. Not indexable. "
+            "Outside sitemap. Outside navigation. "
+            "Source and claim approval not implied. "
+            f"Route status: <strong>{html.escape(route.get('status', 'planned'))}</strong>. "
+            "14,000-page minimum launch objective unchanged. "
+            "Not a reduced publication target.</p></div>"
+        )
+        preamble = RC_HTML_PREAMBLE
+    else:
+        qa_notice = (
+            '<div class="qa-render-notice" role="status" data-qa-artifact="true" '
+            'data-publication-posture="non_public">'
+            "<p><strong>Quarantined non-public QA render</strong> — not a public launch. "
+            "Not indexable. Outside sitemap. Outside navigation. "
+            "Source and claim approval not implied. "
+            "Route status: <strong>planned</strong>. "
+            "14,000-page minimum launch objective unchanged.</p></div>"
+        )
+        preamble = QA_HTML_PREAMBLE
     page = page.replace("<main id=\"main-content\"", qa_notice + "\n  <main id=\"main-content\"", 1)
-    return QA_HTML_PREAMBLE + page
+    return preamble + page
 
 
 def write_quarantined_sample_html(
@@ -946,6 +1151,98 @@ def write_quarantined_sample_html(
     return len(written), written, errors
 
 
+def content_has_source_required(route: dict[str, Any]) -> bool:
+    if route.get("source_required"):
+        return True
+    content_path = ROOT / route.get("content_file", "")
+    if not content_path.is_file():
+        return False
+    return "[SOURCE REQUIRED]" in content_path.read_text(encoding="utf-8")
+
+
+def write_quarantined_rc_batch_html(
+    routes: list[dict[str, Any]],
+    templates_root: Path,
+    sample_dir: Path,
+    limit: int,
+) -> RCBatchResult:
+    """Render deterministic non-public RC batch to site/_sample/ only."""
+    assert_quarantine_output_dir(sample_dir)
+    errors: list[str] = []
+    written: list[str] = []
+    page_records: list[dict[str, Any]] = []
+    skipped_by_category: Counter[str] = Counter()
+
+    selected_routes, selection_skipped = select_rc_batch_routes(routes, templates_root, limit)
+    skipped_by_category.update(selection_skipped)
+
+    sample_dir.mkdir(parents=True, exist_ok=True)
+    for existing in sample_dir.glob("*.html"):
+        existing.unlink()
+
+    for route in selected_routes:
+        rid = route["route_id"]
+        ok, reason = route_is_render_eligible(route, templates_root)
+        if not ok:
+            skipped_by_category[reason] += 1
+            errors.append(f"{rid}: skipped ({reason})")
+            continue
+        try:
+            html_out = render_route_quarantined(route, templates_root, render_mode="rc_batch")
+        except OSError as exc:
+            skipped_by_category["render_failed"] += 1
+            errors.append(f"{rid}: render failed: {exc}")
+            continue
+
+        out_path = sample_dir / f"{rid}.html"
+        if sample_dir.resolve() != QUARANTINED_SAMPLE_DIR.resolve():
+            raise ValueError(f"refusing to write outside quarantine: {out_path}")
+        out_path.write_text(html_out, encoding="utf-8")
+        rel_path = str(out_path.relative_to(ROOT)).replace("\\", "/")
+        written.append(rel_path)
+
+        source_vis = (
+            "[SOURCE REQUIRED]" in html_out or "source-required-marker" in html_out
+        )
+        page_records.append({
+            "route_id": rid,
+            "route_path": route.get("path", ""),
+            "language": route.get("language", ""),
+            "page_type": classify_route_page_type(route),
+            "template_used": route.get("template", ""),
+            "output_path": rel_path,
+            "source_required_visible": "yes" if source_vis else "no",
+            "route_status": route.get("status", "planned"),
+        })
+
+    total_skipped = sum(skipped_by_category.values())
+    manifest = {
+        "batch_id": "rc_batch_01",
+        "sprint": "6M-D",
+        "target_limit": limit,
+        "rendered_count": len(written),
+        "skipped_count": total_skipped,
+        "skipped_by_category": dict(skipped_by_category),
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "output_dir": str(sample_dir.relative_to(ROOT)).replace("\\", "/"),
+        "pages": page_records,
+    }
+    manifest_path = sample_dir / RC_BATCH_MANIFEST_NAME
+    with manifest_path.open("w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
+
+    return RCBatchResult(
+        rendered_count=len(written),
+        skipped_count=total_skipped,
+        written_paths=written,
+        errors=errors,
+        skipped_by_category=dict(skipped_by_category),
+        manifest_path=str(manifest_path.relative_to(ROOT)).replace("\\", "/"),
+        selected_route_ids=[r["route_id"] for r in selected_routes],
+        page_records=page_records,
+    )
+
+
 def compute_locks(routes: list[dict[str, Any]]) -> tuple[str, str, str, str]:
     published = sum(1 for r in routes if r.get("status") == "published")
     indexable = sum(1 for r in routes if r.get("indexable") is True)
@@ -986,11 +1283,15 @@ def run_build_engine(
     strict: bool = False,
     sample_size: int | None = None,
     render_quarantined_sample: bool = False,
+    render_quarantined_rc_batch: bool = False,
+    rc_batch_limit: int = RC_BATCH_DEFAULT_LIMIT,
     write_build_status: bool = False,
     write_audit_report: Path | None = None,
 ) -> BuildAudit:
     mode = "dry-run"
-    if render_quarantined_sample:
+    if render_quarantined_rc_batch:
+        mode = f"render-quarantined-rc-batch-{rc_batch_limit}"
+    elif render_quarantined_sample:
         mode = "render-quarantined-sample"
     elif sample_size is not None:
         mode = f"sample-plan-{sample_size}"
@@ -1129,7 +1430,29 @@ def run_build_engine(
     audit.sitemap_generated = False
     audit.navigation_generated = False
 
-    if render_quarantined_sample:
+    if render_quarantined_rc_batch:
+        if render_quarantined_sample:
+            audit.strict_errors.append("cannot combine --render-quarantined-sample with RC batch")
+        else:
+            rc_result = write_quarantined_rc_batch_html(
+                routes, templates_root, QUARANTINED_SAMPLE_DIR, rc_batch_limit
+            )
+            audit.rc_batch_result = rc_result
+            audit.strict_errors.extend(rc_result.errors)
+            audit.output_plan_notes.append(
+                f"RC Batch 01: rendered {rc_result.rendered_count} page(s), "
+                f"skipped {rc_result.skipped_count}"
+            )
+            audit.output_plan_notes.append(f"manifest: {rc_result.manifest_path}")
+            for category, count in sorted(rc_result.skipped_by_category.items()):
+                audit.output_plan_notes.append(f"  skipped ({category}): {count}")
+            if strict and rc_result.rendered_count < RC_BATCH_MIN_TARGET:
+                audit.strict_errors.append(
+                    f"RC batch rendered {rc_result.rendered_count} pages "
+                    f"(minimum target {RC_BATCH_MIN_TARGET})"
+                )
+
+    elif render_quarantined_sample:
         count, paths, render_errors = write_quarantined_sample_html(
             routes, templates_root, QUARANTINED_SAMPLE_DIR
         )
@@ -1145,10 +1468,7 @@ def run_build_engine(
         if count == 0 and not render_errors:
             audit.strict_errors.append("quarantined sample render produced zero files")
 
-    if write_build_status and not render_quarantined_sample:
-        pass  # guarded below — status write allowed explicitly
-
-    if write_build_status:
+    if write_build_status and not render_quarantined_sample and not render_quarantined_rc_batch:
         output_dir.mkdir(parents=True, exist_ok=True)
         status_path = output_dir / "build-status.json"
         status_payload = {
@@ -1283,6 +1603,14 @@ def print_summary(audit: BuildAudit, strict: bool) -> None:
         print("STRICT MODE: FAIL — validation errors detected.")
     elif audit.mode.startswith("dry-run") or audit.mode.startswith("sample"):
         print("Dry-run complete. No public HTML generated. No registries modified.")
+    elif audit.mode.startswith("render-quarantined-rc-batch"):
+        print("RC Batch 01 render complete. Output under site/_sample/ only.")
+        if audit.rc_batch_result:
+            print(
+                f"  Rendered: {audit.rc_batch_result.rendered_count} | "
+                f"Skipped: {audit.rc_batch_result.skipped_count}"
+            )
+        print("No public HTML outside quarantine. No registries modified.")
     elif audit.mode.startswith("render-quarantined-sample"):
         print("Quarantined QA render complete. Output under site/_sample/ only.")
         print("No public HTML outside quarantine. No registries modified.")
@@ -1307,6 +1635,18 @@ def build_parser() -> argparse.ArgumentParser:
         "--strict",
         action="store_true",
         help="Fail closed on missing templates, unsafe flags, duplicates, and metadata gaps.",
+    )
+    parser.add_argument(
+        "--render-quarantined-rc-batch",
+        action="store_true",
+        help="Render non-public RC Batch 01 HTML to site/_sample/ only (noindex, not a launch).",
+    )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=RC_BATCH_DEFAULT_LIMIT,
+        metavar="N",
+        help="Max routes for --render-quarantined-rc-batch (default 250).",
     )
     parser.add_argument(
         "--render-quarantined-sample",
@@ -1340,6 +1680,7 @@ def main(argv: list[str] | None = None) -> int:
         args.dry_run,
         args.sample is not None,
         args.render_quarantined_sample,
+        args.render_quarantined_rc_batch,
         args.write_build_status,
     )):
         parser.print_help()
@@ -1347,6 +1688,7 @@ def main(argv: list[str] | None = None) -> int:
         print("No action selected. Default is read-only help (no file writes).")
         print("Safe inspection: python scripts/build.py --dry-run")
         print("Quarantined QA render: python scripts/build.py --render-quarantined-sample")
+        print("RC Batch 01 render: python scripts/build.py --render-quarantined-rc-batch --limit 250")
         return 0
 
     audit_report_path = None
@@ -1354,10 +1696,12 @@ def main(argv: list[str] | None = None) -> int:
         audit_report_path = ROOT / args.write_audit_report
 
     audit = run_build_engine(
-        dry_run=not args.render_quarantined_sample,
+        dry_run=not (args.render_quarantined_sample or args.render_quarantined_rc_batch),
         strict=args.strict,
         sample_size=args.sample,
         render_quarantined_sample=args.render_quarantined_sample,
+        render_quarantined_rc_batch=args.render_quarantined_rc_batch,
+        rc_batch_limit=args.limit,
         write_build_status=args.write_build_status,
         write_audit_report=audit_report_path,
     )

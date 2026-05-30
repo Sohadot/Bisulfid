@@ -1,0 +1,2512 @@
+{
+  "batch_id": "rc_batch_01",
+  "sprint": "6M-D",
+  "target_limit": 250,
+  "rendered_count": 250,
+  "skipped_count": 0,
+  "skipped_by_category": {},
+  "timestamp_utc": "2026-05-30T20:06:19.438504+00:00",
+  "output_dir": "site/_sample",
+  "pages": [
+    {
+      "route_id": "home",
+      "route_path": "/",
+      "language": "en",
+      "page_type": "gateway",
+      "template_used": "home.html",
+      "output_path": "site/_sample/home.html",
+      "source_required_visible": "no",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "what_is_bisulfid",
+      "route_path": "/what-is-bisulfid/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/what_is_bisulfid.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_core_mos2",
+      "route_path": "/de/terminology/molybdenum-disulfide/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/de_core_mos2.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_index_disambiguation_map",
+      "route_path": "/reference/disambiguation-map/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_index_disambiguation_map.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "sources",
+      "route_path": "/sources/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/sources.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "corpus_methodology_overview",
+      "route_path": "/reference/corpus-methodology/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/corpus_methodology_overview.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_bisulfide_hydrosulfide_sulfide",
+      "route_path": "/de/bisulfide-hydrosulfide-sulfide/",
+      "language": "de",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/de_bisulfide_hydrosulfide_sulfide.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "bisulfide_hydrosulfide_sulfide",
+      "route_path": "/bisulfide-hydrosulfide-sulfide/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/bisulfide_hydrosulfide_sulfide.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_home",
+      "route_path": "/de/",
+      "language": "de",
+      "page_type": "gateway",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/de_home.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_bisulfid_vs_bisulfide",
+      "route_path": "/de/bisulfid-vs-bisulfide/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/de_bisulfid_vs_bisulfide.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "bisulfite_wall_explainer",
+      "route_path": "/reference/bisulfite-wall/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/bisulfite_wall_explainer.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "academic_teaching_source_boundary",
+      "route_path": "/reference/academic-teaching-source-boundary/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/academic_teaching_source_boundary.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "bisulfid",
+      "route_path": "/bisulfid/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/bisulfid.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "acquire",
+      "route_path": "/acquire/",
+      "language": "en",
+      "page_type": "acquisition",
+      "template_used": "acquire.html",
+      "output_path": "site/_sample/acquire.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "claus_process_vocabulary",
+      "route_path": "/industrial/claus-process-vocabulary/",
+      "language": "en",
+      "page_type": "reference",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/claus_process_vocabulary.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "sulfur_compounds",
+      "route_path": "/sulfur-compounds/",
+      "language": "en",
+      "page_type": "gateway",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/sulfur_compounds.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_bridge_en_de_suffix",
+      "route_path": "/de/reference/suffix-bridge/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/de_bridge_en_de_suffix.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_air_ai_tech",
+      "route_path": "/en/terminology/bisulfite-disambiguation/air/ai/tech/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_air_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "citation_discipline_primer",
+      "route_path": "/reference/citation-discipline/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/citation_discipline_primer.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "bisulfid_vs_bisulfide",
+      "route_path": "/bisulfid-vs-bisulfide/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/bisulfid_vs_bisulfide.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "contact_process_vocabulary",
+      "route_path": "/industrial/contact-process-vocabulary/",
+      "language": "en",
+      "page_type": "reference",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/contact_process_vocabulary.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "what_is_sulfur",
+      "route_path": "/what-is-sulfur/",
+      "language": "en",
+      "page_type": "gateway",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/what_is_sulfur.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_bridge_iupac_de",
+      "route_path": "/de/reference/iupac-de-boundary/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/de_bridge_iupac_de.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_air_res_res",
+      "route_path": "/en/terminology/bisulfite-disambiguation/air/res/res/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_air_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_method_corpus_map",
+      "route_path": "/de/reference/corpus-map/",
+      "language": "de",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/de_method_corpus_map.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "carbon_disulfide_terms",
+      "route_path": "/terminology/carbon-disulfide/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/carbon_disulfide_terms.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "disulfide_bonds",
+      "route_path": "/disulfide-bonds/",
+      "language": "en",
+      "page_type": "reference",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/disulfide_bonds.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_core_amines_gas_treat",
+      "route_path": "/de/terminology/amines-gas-treating/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/de_core_amines_gas_treat.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_aud_anl_know",
+      "route_path": "/en/terminology/bisulfite-disambiguation/aud/anl/know/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_aud_anl_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_method_translator_playbook",
+      "route_path": "/de/reference/translator-playbook/",
+      "language": "de",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/de_method_translator_playbook.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "carbonyl_sulfide_terms",
+      "route_path": "/terminology/carbonyl-sulfide/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/carbonyl_sulfide_terms.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "economic_document_language_sulfur",
+      "route_path": "/reference/economic-document-language-sulfur/",
+      "language": "en",
+      "page_type": "reference",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/economic_document_language_sulfur.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_core_biogenic_lang",
+      "route_path": "/de/terminology/biogenic-sulfur-language/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/de_core_biogenic_lang.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_aud_chem_know",
+      "route_path": "/en/terminology/bisulfite-disambiguation/aud/chem/know/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_aud_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_compliance_customs_sulfur_lang",
+      "route_path": "/compliance/customs-sulfur-language/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_compliance_customs_sulfur_lang.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_air_ai_tech",
+      "route_path": "/en/terminology/bisulfid/air/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_air_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "protein_disulfide_structure",
+      "route_path": "/protein-disulfide-structure/",
+      "language": "en",
+      "page_type": "reference",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/protein_disulfide_structure.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_core_cas",
+      "route_path": "/de/terminology/calcium-sulfide/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/de_core_cas.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_aud_gov_inst",
+      "route_path": "/en/terminology/bisulfite-disambiguation/aud/gov/inst/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_aud_gov_inst.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_compliance_export_doc_lang",
+      "route_path": "/compliance/export-document-language/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_compliance_export_doc_lang.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_air_res_res",
+      "route_path": "/en/terminology/bisulfid/air/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_air_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_core_cds",
+      "route_path": "/de/terminology/cadmium-sulfide/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/de_core_cds.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_aud_res_res",
+      "route_path": "/en/terminology/bisulfite-disambiguation/aud/res/res/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_aud_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_compliance_reach_language",
+      "route_path": "/compliance/reach-document-language/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_compliance_reach_language.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_aud_anl_know",
+      "route_path": "/en/terminology/bisulfid/aud/anl/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_aud_anl_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_core_cus",
+      "route_path": "/de/terminology/copper-sulfides/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/de_core_cus.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_aud_stu_edu",
+      "route_path": "/en/terminology/bisulfite-disambiguation/aud/stu/edu/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_aud_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_ai_readable_policy",
+      "route_path": "/en/foundation/ai-readable-reference-policy/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_ai_readable_policy.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_aud_chem_know",
+      "route_path": "/en/terminology/bisulfid/aud/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_aud_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_core_fes",
+      "route_path": "/de/terminology/iron-sulfides/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/de_core_fes.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_term_ai_tech",
+      "route_path": "/en/terminology/bisulfite-disambiguation/term/ai/tech/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_term_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_audience_layers",
+      "route_path": "/en/foundation/audience-layer-overview/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_audience_layers.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_aud_gov_inst",
+      "route_path": "/en/terminology/bisulfid/aud/gov/inst/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_aud_gov_inst.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_core_k2s",
+      "route_path": "/de/terminology/potassium-sulfide/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/de_core_k2s.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_term_chem_acad",
+      "route_path": "/en/terminology/bisulfite-disambiguation/term/chem/acad/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_term_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_chemical_language_governance",
+      "route_path": "/en/foundation/chemical-language-governance-framework/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_chemical_language_governance.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_aud_res_res",
+      "route_path": "/en/terminology/bisulfid/aud/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_aud_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_core_liquid_sulfur",
+      "route_path": "/de/terminology/liquid-sulfur/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/de_core_liquid_sulfur.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_term_chem_know",
+      "route_path": "/en/terminology/bisulfite-disambiguation/term/chem/know/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_term_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_child_safe_policy",
+      "route_path": "/en/foundation/child-safe-educational-policy/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_child_safe_policy.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_aud_stu_edu",
+      "route_path": "/en/terminology/bisulfid/aud/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_aud_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_core_na2s",
+      "route_path": "/de/terminology/sodium-sulfide/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/de_core_na2s.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_term_res_res",
+      "route_path": "/en/terminology/bisulfite-disambiguation/term/res/res/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_term_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_claim_policy",
+      "route_path": "/en/foundation/claim-policy-overview/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_claim_policy.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_term_ai_tech",
+      "route_path": "/en/terminology/bisulfid/term/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_term_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_core_oleum",
+      "route_path": "/de/terminology/oleum/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "term_page.html",
+      "output_path": "site/_sample/de_core_oleum.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_term_stu_know",
+      "route_path": "/en/terminology/bisulfite-disambiguation/term/stu/know/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_term_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_corpus_status",
+      "route_path": "/en/foundation/corpus-status/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_corpus_status.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_term_chem_acad",
+      "route_path": "/en/terminology/bisulfid/term/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_term_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_german_english_chemical_terms",
+      "route_path": "/de/german-english-chemical-terms/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/de_german_english_chemical_terms.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_disambiguation_term_stu_ling",
+      "route_path": "/en/terminology/bisulfite-disambiguation/term/stu/ling/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_disambiguation_term_stu_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_economic_institutional_restrictions",
+      "route_path": "/en/foundation/economic-institutional-claim-restrictions/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_economic_institutional_restrictions.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_term_chem_know",
+      "route_path": "/en/terminology/bisulfid/term/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_term_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_glossary",
+      "route_path": "/de/glossary/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/de_glossary.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_dis_carbon_disulfide_bisulfide",
+      "route_path": "/reference/cs2-bisulfide-boundary/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_dis_carbon_disulfide_bisulfide.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_institutional_purpose",
+      "route_path": "/en/foundation/institutional-purpose/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_institutional_purpose.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_term_res_res",
+      "route_path": "/en/terminology/bisulfid/term/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_term_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_sulfid_vs_sulfide",
+      "route_path": "/de/sulfid-vs-sulfide/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/de_sulfid_vs_sulfide.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_dis_sulfate_sulfite",
+      "route_path": "/reference/sulfate-sulfite-boundary/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_dis_sulfate_sulfite.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_knowledge_reliability",
+      "route_path": "/en/foundation/knowledge-reliability-model/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_knowledge_reliability.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_term_stu_know",
+      "route_path": "/en/terminology/bisulfid/term/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_term_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "de_what_is_bisulfid",
+      "route_path": "/de/what-is-bisulfid/",
+      "language": "de",
+      "page_type": "de_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/de_what_is_bisulfid.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_dis_sulfide_sulfite",
+      "route_path": "/reference/sulfide-sulfite-boundary/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_dis_sulfide_sulfite.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_launch_status",
+      "route_path": "/en/foundation/launch-status-non-public-corpus/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_launch_status.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_term_stu_ling",
+      "route_path": "/en/terminology/bisulfid/term/stu/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_term_stu_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_dis_thiosulfate_sulfite",
+      "route_path": "/reference/thiosulfate-sulfite-boundary/",
+      "language": "en",
+      "page_type": "disambiguation",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_dis_thiosulfate_sulfite.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_methodology",
+      "route_path": "/en/foundation/methodology/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_methodology.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_vs_bisulfide_ai_tech",
+      "route_path": "/en/terminology/compare/bisulfid-vs-bisulfide/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_vs_bisulfide_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_multilingual_overview",
+      "route_path": "/en/foundation/multilingual-corpus-overview/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_multilingual_overview.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_vs_bisulfide_chem_ling",
+      "route_path": "/en/terminology/compare/bisulfid-vs-bisulfide/chem/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_vs_bisulfide_chem_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_reference_layers",
+      "route_path": "/en/foundation/reference-layer-overview/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_reference_layers.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_vs_bisulfide_res_res",
+      "route_path": "/en/terminology/compare/bisulfid-vs-bisulfide/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_vs_bisulfide_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_source_policy",
+      "route_path": "/en/foundation/source-policy-overview/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_source_policy.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_vs_bisulfide_stu_edu",
+      "route_path": "/en/terminology/compare/bisulfid-vs-bisulfide/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfid_vs_bisulfide_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_foundation_sovereign_intro",
+      "route_path": "/en/foundation/sovereign-reference-introduction/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_foundation_sovereign_intro.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_air_ai_tech",
+      "route_path": "/en/terminology/bisulfide/air/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_air_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_gov_claim_registry_explainer",
+      "route_path": "/reference/claim-registry-explainer/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_gov_claim_registry_explainer.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_air_res_res",
+      "route_path": "/en/terminology/bisulfide/air/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_air_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_gov_hreflang_policy",
+      "route_path": "/reference/hreflang-policy/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_gov_hreflang_policy.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_aud_anl_know",
+      "route_path": "/en/terminology/bisulfide/aud/anl/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_aud_anl_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_gov_ontology_governance",
+      "route_path": "/reference/ontology-governance/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_gov_ontology_governance.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_aud_chem_know",
+      "route_path": "/en/terminology/bisulfide/aud/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_aud_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_index_multilingual_map",
+      "route_path": "/reference/multilingual-layer-map/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_index_multilingual_map.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_aud_gov_inst",
+      "route_path": "/en/terminology/bisulfide/aud/gov/inst/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_aud_gov_inst.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "en_index_terminology_spine",
+      "route_path": "/reference/terminology-spine-map/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/en_index_terminology_spine.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_aud_res_res",
+      "route_path": "/en/terminology/bisulfide/aud/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_aud_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "internal_linking_discipline",
+      "route_path": "/reference/internal-linking-discipline/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/internal_linking_discipline.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_aud_stu_edu",
+      "route_path": "/en/terminology/bisulfide/aud/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_aud_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "nomenclature_governance_overview",
+      "route_path": "/reference/nomenclature-governance/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/nomenclature_governance_overview.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_term_ai_tech",
+      "route_path": "/en/terminology/bisulfide/term/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_term_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "quality_gate_public_explainer",
+      "route_path": "/reference/quality-gate/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/quality_gate_public_explainer.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_term_chem_acad",
+      "route_path": "/en/terminology/bisulfide/term/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_term_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "translator_playbook_bisulfide_family",
+      "route_path": "/reference/translator-playbook-bisulfide-family/",
+      "language": "en",
+      "page_type": "reference_governance",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/translator_playbook_bisulfide_family.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_term_chem_know",
+      "route_path": "/en/terminology/bisulfide/term/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_term_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_term_res_res",
+      "route_path": "/en/terminology/bisulfide/term/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_term_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_term_stu_know",
+      "route_path": "/en/terminology/bisulfide/term/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_term_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_term_stu_ling",
+      "route_path": "/en/terminology/bisulfide/term/stu/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_term_stu_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_vs_hydrosulfide_ai_tech",
+      "route_path": "/en/terminology/compare/bisulfide-vs-hydrosulfide/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_vs_hydrosulfide_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_vs_hydrosulfide_chem_ling",
+      "route_path": "/en/terminology/compare/bisulfide-vs-hydrosulfide/chem/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_vs_hydrosulfide_chem_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_vs_hydrosulfide_res_res",
+      "route_path": "/en/terminology/compare/bisulfide-vs-hydrosulfide/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_vs_hydrosulfide_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_vs_hydrosulfide_stu_edu",
+      "route_path": "/en/terminology/compare/bisulfide-vs-hydrosulfide/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_vs_hydrosulfide_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_vs_sulfide_ai_tech",
+      "route_path": "/en/terminology/compare/bisulfide-vs-sulfide/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_vs_sulfide_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_vs_sulfide_chem_ling",
+      "route_path": "/en/terminology/compare/bisulfide-vs-sulfide/chem/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_vs_sulfide_chem_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_vs_sulfide_res_res",
+      "route_path": "/en/terminology/compare/bisulfide-vs-sulfide/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_vs_sulfide_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfide_vs_sulfide_stu_edu",
+      "route_path": "/en/terminology/compare/bisulfide-vs-sulfide/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfide_vs_sulfide_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_vs_bisulfide_ai_tech",
+      "route_path": "/en/terminology/compare/bisulfite-vs-bisulfide/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_vs_bisulfide_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_vs_bisulfide_chem_ling",
+      "route_path": "/en/terminology/compare/bisulfite-vs-bisulfide/chem/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_vs_bisulfide_chem_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_vs_bisulfide_res_res",
+      "route_path": "/en/terminology/compare/bisulfite-vs-bisulfide/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_vs_bisulfide_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_bisulfite_vs_bisulfide_stu_edu",
+      "route_path": "/en/terminology/compare/bisulfite-vs-bisulfide/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_bisulfite_vs_bisulfide_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_air_ai_tech",
+      "route_path": "/en/terminology/cadmium-sulfide/air/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_air_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_air_res_res",
+      "route_path": "/en/terminology/cadmium-sulfide/air/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_air_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_aud_anl_know",
+      "route_path": "/en/terminology/cadmium-sulfide/aud/anl/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_aud_anl_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_aud_chem_know",
+      "route_path": "/en/terminology/cadmium-sulfide/aud/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_aud_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_aud_gov_inst",
+      "route_path": "/en/terminology/cadmium-sulfide/aud/gov/inst/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_aud_gov_inst.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_aud_res_res",
+      "route_path": "/en/terminology/cadmium-sulfide/aud/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_aud_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_aud_stu_edu",
+      "route_path": "/en/terminology/cadmium-sulfide/aud/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_aud_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_child_child_edu",
+      "route_path": "/en/terminology/cadmium-sulfide/child/child/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_child_child_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_child_stu_edu",
+      "route_path": "/en/terminology/cadmium-sulfide/child/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_child_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_cmp_ai_tech",
+      "route_path": "/en/terminology/cadmium-sulfide/cmp/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_cmp_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_cmp_chem_acad",
+      "route_path": "/en/terminology/cadmium-sulfide/cmp/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_cmp_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_cmp_res_res",
+      "route_path": "/en/terminology/cadmium-sulfide/cmp/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_cmp_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_cmp_stu_know",
+      "route_path": "/en/terminology/cadmium-sulfide/cmp/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_cmp_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_term_ai_tech",
+      "route_path": "/en/terminology/cadmium-sulfide/term/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_term_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_term_chem_acad",
+      "route_path": "/en/terminology/cadmium-sulfide/term/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_term_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_term_chem_know",
+      "route_path": "/en/terminology/cadmium-sulfide/term/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_term_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_term_res_res",
+      "route_path": "/en/terminology/cadmium-sulfide/term/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_term_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_term_stu_know",
+      "route_path": "/en/terminology/cadmium-sulfide/term/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_term_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cadmium_sulfide_term_stu_ling",
+      "route_path": "/en/terminology/cadmium-sulfide/term/stu/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cadmium_sulfide_term_stu_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_air_ai_tech",
+      "route_path": "/en/terminology/calcium-sulfide/air/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_air_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_air_res_res",
+      "route_path": "/en/terminology/calcium-sulfide/air/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_air_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_aud_anl_know",
+      "route_path": "/en/terminology/calcium-sulfide/aud/anl/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_aud_anl_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_aud_chem_know",
+      "route_path": "/en/terminology/calcium-sulfide/aud/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_aud_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_aud_gov_inst",
+      "route_path": "/en/terminology/calcium-sulfide/aud/gov/inst/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_aud_gov_inst.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_aud_res_res",
+      "route_path": "/en/terminology/calcium-sulfide/aud/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_aud_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_aud_stu_edu",
+      "route_path": "/en/terminology/calcium-sulfide/aud/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_aud_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_child_child_edu",
+      "route_path": "/en/terminology/calcium-sulfide/child/child/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_child_child_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_child_stu_edu",
+      "route_path": "/en/terminology/calcium-sulfide/child/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_child_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_cmp_ai_tech",
+      "route_path": "/en/terminology/calcium-sulfide/cmp/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_cmp_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_cmp_chem_acad",
+      "route_path": "/en/terminology/calcium-sulfide/cmp/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_cmp_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_cmp_res_res",
+      "route_path": "/en/terminology/calcium-sulfide/cmp/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_cmp_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_cmp_stu_know",
+      "route_path": "/en/terminology/calcium-sulfide/cmp/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_cmp_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_term_ai_tech",
+      "route_path": "/en/terminology/calcium-sulfide/term/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_term_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_term_chem_acad",
+      "route_path": "/en/terminology/calcium-sulfide/term/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_term_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_term_chem_know",
+      "route_path": "/en/terminology/calcium-sulfide/term/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_term_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_term_res_res",
+      "route_path": "/en/terminology/calcium-sulfide/term/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_term_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_term_stu_know",
+      "route_path": "/en/terminology/calcium-sulfide/term/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_term_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_calcium_sulfide_term_stu_ling",
+      "route_path": "/en/terminology/calcium-sulfide/term/stu/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_calcium_sulfide_term_stu_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_air_ai_tech",
+      "route_path": "/en/terminology/carbon-disulfide/air/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_air_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_air_res_res",
+      "route_path": "/en/terminology/carbon-disulfide/air/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_air_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_aud_anl_know",
+      "route_path": "/en/terminology/carbon-disulfide/aud/anl/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_aud_anl_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_aud_chem_know",
+      "route_path": "/en/terminology/carbon-disulfide/aud/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_aud_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_aud_gov_inst",
+      "route_path": "/en/terminology/carbon-disulfide/aud/gov/inst/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_aud_gov_inst.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_aud_res_res",
+      "route_path": "/en/terminology/carbon-disulfide/aud/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_aud_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_aud_stu_edu",
+      "route_path": "/en/terminology/carbon-disulfide/aud/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_aud_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_cmp_ai_tech",
+      "route_path": "/en/terminology/carbon-disulfide/cmp/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_cmp_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_cmp_chem_acad",
+      "route_path": "/en/terminology/carbon-disulfide/cmp/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_cmp_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_cmp_res_res",
+      "route_path": "/en/terminology/carbon-disulfide/cmp/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_cmp_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_cmp_stu_know",
+      "route_path": "/en/terminology/carbon-disulfide/cmp/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_cmp_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_term_ai_tech",
+      "route_path": "/en/terminology/carbon-disulfide/term/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_term_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_term_chem_acad",
+      "route_path": "/en/terminology/carbon-disulfide/term/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_term_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_term_chem_know",
+      "route_path": "/en/terminology/carbon-disulfide/term/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_term_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_term_res_res",
+      "route_path": "/en/terminology/carbon-disulfide/term/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_term_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_term_stu_know",
+      "route_path": "/en/terminology/carbon-disulfide/term/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_term_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbon_disulfide_term_stu_ling",
+      "route_path": "/en/terminology/carbon-disulfide/term/stu/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbon_disulfide_term_stu_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_air_ai_tech",
+      "route_path": "/en/terminology/carbonyl-sulfide/air/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_air_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_air_res_res",
+      "route_path": "/en/terminology/carbonyl-sulfide/air/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_air_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_aud_anl_know",
+      "route_path": "/en/terminology/carbonyl-sulfide/aud/anl/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_aud_anl_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_aud_chem_know",
+      "route_path": "/en/terminology/carbonyl-sulfide/aud/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_aud_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_aud_gov_inst",
+      "route_path": "/en/terminology/carbonyl-sulfide/aud/gov/inst/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_aud_gov_inst.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_aud_res_res",
+      "route_path": "/en/terminology/carbonyl-sulfide/aud/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_aud_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_aud_stu_edu",
+      "route_path": "/en/terminology/carbonyl-sulfide/aud/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_aud_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_child_child_edu",
+      "route_path": "/en/terminology/carbonyl-sulfide/child/child/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_child_child_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_child_stu_edu",
+      "route_path": "/en/terminology/carbonyl-sulfide/child/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_child_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_cmp_ai_tech",
+      "route_path": "/en/terminology/carbonyl-sulfide/cmp/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_cmp_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_cmp_chem_acad",
+      "route_path": "/en/terminology/carbonyl-sulfide/cmp/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_cmp_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_cmp_res_res",
+      "route_path": "/en/terminology/carbonyl-sulfide/cmp/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_cmp_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_cmp_stu_know",
+      "route_path": "/en/terminology/carbonyl-sulfide/cmp/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_cmp_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_term_ai_tech",
+      "route_path": "/en/terminology/carbonyl-sulfide/term/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_term_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_term_chem_acad",
+      "route_path": "/en/terminology/carbonyl-sulfide/term/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_term_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_term_chem_know",
+      "route_path": "/en/terminology/carbonyl-sulfide/term/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_term_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_term_res_res",
+      "route_path": "/en/terminology/carbonyl-sulfide/term/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_term_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_term_stu_know",
+      "route_path": "/en/terminology/carbonyl-sulfide/term/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_term_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_carbonyl_sulfide_term_stu_ling",
+      "route_path": "/en/terminology/carbonyl-sulfide/term/stu/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_carbonyl_sulfide_term_stu_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_air_ai_tech",
+      "route_path": "/en/terminology/cas-registry-language/air/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_air_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_air_res_res",
+      "route_path": "/en/terminology/cas-registry-language/air/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_air_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_aud_anl_know",
+      "route_path": "/en/terminology/cas-registry-language/aud/anl/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_aud_anl_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_aud_chem_know",
+      "route_path": "/en/terminology/cas-registry-language/aud/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_aud_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_aud_gov_inst",
+      "route_path": "/en/terminology/cas-registry-language/aud/gov/inst/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_aud_gov_inst.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_aud_res_res",
+      "route_path": "/en/terminology/cas-registry-language/aud/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_aud_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_aud_stu_edu",
+      "route_path": "/en/terminology/cas-registry-language/aud/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_aud_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_child_child_edu",
+      "route_path": "/en/terminology/cas-registry-language/child/child/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_child_child_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_child_stu_edu",
+      "route_path": "/en/terminology/cas-registry-language/child/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_child_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_term_ai_tech",
+      "route_path": "/en/terminology/cas-registry-language/term/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_term_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_term_chem_acad",
+      "route_path": "/en/terminology/cas-registry-language/term/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_term_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_term_chem_know",
+      "route_path": "/en/terminology/cas-registry-language/term/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_term_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_term_res_res",
+      "route_path": "/en/terminology/cas-registry-language/term/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_term_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_term_stu_know",
+      "route_path": "/en/terminology/cas-registry-language/term/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_term_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_cas_registry_language_term_stu_ling",
+      "route_path": "/en/terminology/cas-registry-language/term/stu/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_cas_registry_language_term_stu_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_air_ai_tech",
+      "route_path": "/en/terminology/copper-sulfides/air/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_air_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_air_res_res",
+      "route_path": "/en/terminology/copper-sulfides/air/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_air_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_aud_anl_know",
+      "route_path": "/en/terminology/copper-sulfides/aud/anl/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_aud_anl_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_aud_chem_know",
+      "route_path": "/en/terminology/copper-sulfides/aud/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_aud_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_aud_gov_inst",
+      "route_path": "/en/terminology/copper-sulfides/aud/gov/inst/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_aud_gov_inst.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_aud_res_res",
+      "route_path": "/en/terminology/copper-sulfides/aud/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_aud_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_aud_stu_edu",
+      "route_path": "/en/terminology/copper-sulfides/aud/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_aud_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_child_child_edu",
+      "route_path": "/en/terminology/copper-sulfides/child/child/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_child_child_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_child_stu_edu",
+      "route_path": "/en/terminology/copper-sulfides/child/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_child_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_cmp_ai_tech",
+      "route_path": "/en/terminology/copper-sulfides/cmp/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_cmp_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_cmp_chem_acad",
+      "route_path": "/en/terminology/copper-sulfides/cmp/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_cmp_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_cmp_res_res",
+      "route_path": "/en/terminology/copper-sulfides/cmp/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_cmp_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_cmp_stu_know",
+      "route_path": "/en/terminology/copper-sulfides/cmp/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_cmp_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_term_ai_tech",
+      "route_path": "/en/terminology/copper-sulfides/term/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_term_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_term_chem_acad",
+      "route_path": "/en/terminology/copper-sulfides/term/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_term_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_term_chem_know",
+      "route_path": "/en/terminology/copper-sulfides/term/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_term_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_term_res_res",
+      "route_path": "/en/terminology/copper-sulfides/term/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_term_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_term_stu_know",
+      "route_path": "/en/terminology/copper-sulfides/term/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_term_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_copper_sulfides_term_stu_ling",
+      "route_path": "/en/terminology/copper-sulfides/term/stu/ling/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_copper_sulfides_term_stu_ling.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_air_ai_tech",
+      "route_path": "/en/terminology/dimethyl-sulfide/air/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_air_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_air_res_res",
+      "route_path": "/en/terminology/dimethyl-sulfide/air/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_air_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_aud_anl_know",
+      "route_path": "/en/terminology/dimethyl-sulfide/aud/anl/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_aud_anl_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_aud_chem_know",
+      "route_path": "/en/terminology/dimethyl-sulfide/aud/chem/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_aud_chem_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_aud_gov_inst",
+      "route_path": "/en/terminology/dimethyl-sulfide/aud/gov/inst/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_aud_gov_inst.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_aud_res_res",
+      "route_path": "/en/terminology/dimethyl-sulfide/aud/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_aud_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_aud_stu_edu",
+      "route_path": "/en/terminology/dimethyl-sulfide/aud/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_aud_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_child_child_edu",
+      "route_path": "/en/terminology/dimethyl-sulfide/child/child/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_child_child_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_child_stu_edu",
+      "route_path": "/en/terminology/dimethyl-sulfide/child/stu/edu/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_child_stu_edu.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_cmp_ai_tech",
+      "route_path": "/en/terminology/dimethyl-sulfide/cmp/ai/tech/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_cmp_ai_tech.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_cmp_chem_acad",
+      "route_path": "/en/terminology/dimethyl-sulfide/cmp/chem/acad/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_cmp_chem_acad.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_cmp_res_res",
+      "route_path": "/en/terminology/dimethyl-sulfide/cmp/res/res/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_cmp_res_res.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    },
+    {
+      "route_id": "cohort02_en_dimethyl_sulfide_cmp_stu_know",
+      "route_path": "/en/terminology/dimethyl-sulfide/cmp/stu/know/",
+      "language": "en",
+      "page_type": "en_terminology",
+      "template_used": "reference_page.html",
+      "output_path": "site/_sample/cohort02_en_dimethyl_sulfide_cmp_stu_know.html",
+      "source_required_visible": "yes",
+      "route_status": "planned"
+    }
+  ]
+}
