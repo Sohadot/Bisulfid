@@ -3154,3 +3154,45 @@ Each entry includes:
 
 **Not modified in this sprint:** COHORT_01 draft content files, `main/data/sources/source_registry.json`, `main/data/claims/`, automation scripts, workflows, root `README.md`, package files, dependencies.
 
+---
+
+## Sprint 6G — Initial 14,000-Page Launch Corpus Execution Charter
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6g-initial-14000-page-launch-corpus-charter`  
+**Base:** main @ Sprint 6F merge  
+**Status:** Complete — launch charter; composition model; no generation
+
+**Summary:** Sprint **6G** established the **initial 14,000-page launch corpus** as the **minimum launch target** (7 languages × 2,000 pages), not a distant future goal. Created execution charter, launch composition model (JSON), cohort sequencing (COHORT_01 complete → COHORT_02 next in 6H), quality thresholds, internal-link requirements, controlled indexation strategy, and scale model to **100,000+** / **300,000+** pages. **No pages generated. routes.json unchanged (141). No public HTML. production_can_safely_proceed remains no.**
+
+**Rationale:** 6A–6F built architecture, engine, foundation cohort, validation, and route registration. 6G defines how the corpus moves from 141 registered routes toward 14,000 governed launch pages as scalable sovereign infrastructure.
+
+**Doctrine reference:** `corpus_route_formula.json`, `SOVEREIGN_ROUTE_GENERATION_MATRIX_WAVE_1.json`, `SOVEREIGN_BATCH_GENERATION_AUTOMATION_DESIGN_WAVE_1.md`, COHORT_01 artifacts (6D–6F).
+
+**Sprint 6G validation:**
+
+- Pre-flight and post-run: all L1/L2 runtimes **PASS**
+- routes.json, sources, claims — **not modified**
+- Validators not weakened
+
+**Publication readiness:** **Not ready for publication**. Charter and planning only.
+
+**Recommended next step:** Sprint **6H** — route inventory generation for COHORT_02 (core EN terminology spine, 500–1,000 inventory rows).
+
+**Files created:**
+
+- `main/data/INITIAL_14000_PAGE_LAUNCH_CORPUS_CHARTER.md`
+- `main/data/INITIAL_14000_PAGE_LAUNCH_COMPOSITION_MODEL.json`
+- `main/data/INITIAL_14000_PAGE_LAUNCH_COHORT_SEQUENCE.md`
+- `main/data/INITIAL_14000_PAGE_LAUNCH_QUALITY_THRESHOLDS.md`
+- `main/data/INITIAL_14000_PAGE_LAUNCH_INTERNAL_LINK_REQUIREMENTS.md`
+- `main/data/INITIAL_14000_PAGE_LAUNCH_INDEXATION_STRATEGY.md`
+- `main/data/SOVEREIGN_CORPUS_SCALE_TO_100K_PLUS_MODEL.md`
+- `main/data/INITIAL_14000_PAGE_LAUNCH_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 6G entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, all content drafts, source/claim registries, automation scripts, workflows, root `README.md`, package files, dependencies.
+
