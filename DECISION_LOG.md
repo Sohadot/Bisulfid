@@ -2871,3 +2871,39 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-U entry appended.
 
 **Not modified in this sprint:** `main/data/sources/source_registry.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-30 — Spektrum Content Source-Lock Audit for de_core_mos2 Wave 1 Completed
+
+**Decision:** Audit `de_core_mos2` draft content against `SRC-SPEKTRUM-MOS2-DE` and `CLM-TERM-MOS2-DE-001`; defer content source-locking with documented blockers.
+
+**Summary:** Sprint **5N-V** read-only audited `main/content/de/pages/terminology/molybdenum-disulfide.md` against bibliographic **`verified`** source **`SRC-SPEKTRUM-MOS2-DE`** and narrow **`approved`** claim **`CLM-TERM-MOS2-DE-001`**. Structural page role and boundary exclusions align with the approved German Lexikon der Chemie dictionary-entry terminology boundary. Factual terminology lines remain **`[SOURCE REQUIRED]`** placeholders only; no MoS2 dictionary-entry content is present to lock. Content schema lacks governed partial source-lock metadata for DE Wave 1 drafts; body source/claim status section is stale relative to registry (states zero approved claims). **Content source-locking deferred** — not applied. **`[SOURCE REQUIRED]`** markers (**4**) remain; no content body rewrite; no route publication.
+
+**Rationale:** Registry-layer verification and claim approval (5N-S, 5N-U) do not automatically authorize content-layer source-locking. Audit must distinguish supported governance framing from unsupported factual placeholders and schema/guardrail blockers before any lock annotation.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SPEKTRUM_APPROVED_CLAIM_TRANSITION_WAVE_1_REPORT.md`, `SPEKTRUM_CONTENT_SOURCE_LOCK_AUDIT_WAVE_1_REPORT.md`.
+
+**Sprint 5N-V validation:**
+
+- Target: **`de_core_mos2`** — **1** content source-lock audit.
+- Content source-lock applied: **No** — deferred.
+- All runtimes **PASS**; route count **126**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Source registry, claims, routes, content, workflows, packages, README — **not modified** (audit documentation only).
+
+**Publication readiness:** **Not ready for publication**. Content source-lock audit only — no source-locking, no marker resolution.
+
+**Recommended next step:** Content schema partial-lock charter (if desired); marker-resolution sprint for narrow dictionary-entry terminology; registry source-lock sprint only after content alignment.
+
+**Files created:**
+
+- `main/data/SPEKTRUM_CONTENT_SOURCE_LOCK_AUDIT_WAVE_1_REPORT.md`
+- `main/data/SPEKTRUM_CONTENT_BOUNDARY_MATRIX_WAVE_1.md`
+- `main/data/SPEKTRUM_CONTENT_SOURCE_LOCK_NO_MARKER_REMOVAL_NO_PUBLICATION_WAVE_1.md`
+- `main/data/SPEKTRUM_CONTENT_SOURCE_LOCK_AUDIT_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5N-V entry appended.
+
+**Not modified in this sprint:** `main/data/sources/source_registry.json`, `main/data/claims/terminology_claims.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
