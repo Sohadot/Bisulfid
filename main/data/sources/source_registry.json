@@ -469,9 +469,10 @@
         "Dictionary source only; not chemical safety, regulatory, industrial, or market authority.",
         "Copyright 1998 Spektrum Akademischer Verlag, Heidelberg — rights evidence only; not publication_date.",
         "publication_date and edition_or_version not visible from reviewed source — omitted.",
-        "Human artifact review Sprint 5N-N; registry execution Sprint 5N-O — not source approval."
+        "Human artifact review Sprint 5N-N; registry execution Sprint 5N-O — not source approval.",
+        "Verification review Sprint 5N-Q: human-reviewed bibliographic evidence sufficient per SOURCE_POLICY for narrow authoritative_dictionary boundary; access date 2026-05-30 satisfies publication/access date requirement for online lexicon entry; entry status remains seeded — inactive registry lock guardrail blocks verified status transition; not claim approval or source-locking."
       ],
-      "notes": "Spektrum Lexikon der Chemie. Entry: Molybdän(IV)-sulfid, in Lexikon der Chemie. Access date 2026-05-30. Route scope: de_core_mos2. Bibliographic reference only; no full copyrighted text copied."
+      "notes": "Spektrum Lexikon der Chemie. Entry: Molybdän(IV)-sulfid, in Lexikon der Chemie. Access date 2026-05-30. Route scope: de_core_mos2. Bibliographic reference only; no full copyrighted text copied. Verification review Sprint 5N-Q: evidence supports verified posture for dictionary-entry terminology scope only; status remains seeded pending inactive registry lock."
     }
   ]
 }
