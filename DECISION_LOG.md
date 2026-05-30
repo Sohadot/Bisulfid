@@ -3451,3 +3451,49 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Not modified in this sprint:** `main/data/routes.json`, all content drafts, `scripts/validate_corpus_routes_l1.py`, source/claim registries, workflows, root README.md, package files, dependencies.
 
+---
+
+## Sprint 6M-A — Sovereign Build Engine Hardening Layer Established
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6m-a-sovereign-build-engine-hardening-layer`  
+**Base:** main @ Sprint 6L merge  
+**Status:** Complete — build engine hardened; no public output; all locks intact
+
+**Summary:** Sprint **6M-A** hardened the Bisulfid build engine before any public output generation. The sprint strengthened `scripts/build.py` as a governed, fail-closed, dry-run-capable build engine designed to respect route status, indexation locks, sitemap locks, navigation locks, source/claim boundaries, and publication controls. The sprint did not publish routes, did not generate a public launch, did not approve sources or claims, did not modify registries, did not edit content pages, did not remove `[SOURCE REQUIRED]` markers, and did not authorize sitemap, navigation, or indexation exposure. The purpose was to prepare the build layer for future governed sample rendering and later large-scale controlled output.
+
+**Rationale:** With **1,043** governed routes and zero publication activation, the highest-risk next step would be uncontrolled HTML generation. Hardening the build layer first ensures future render sprints cannot accidentally expose draft-backed routes.
+
+**Doctrine reference:** `BUILD_ENGINE_POLICY.md`, `BUILD_ENGINE_DRY_RUN_MODEL.md`, `BUILD_ENGINE_OUTPUT_LOCK_MODEL.md`, `main/config/build.json`.
+
+**Sprint 6M-A validation:**
+
+- Pre-run and post-run: all L1/L2 runtimes **PASS**
+- `validate_build_engine_l1.py`: **PASS**
+- `build.py --dry-run`: 1,043 routes inspected; 0 eligible; 0 public HTML
+- `build.py --dry-run --strict`: **PASS**
+- `production_can_safely_proceed`: **no** (confirmed)
+- No registry, content, or route status modifications
+
+**Publication readiness:** **Not ready for publication**. Build engine hardening only.
+
+**Recommended next step:** Sprint **6M-B** — template hardening, then first governed non-public sample render under quarantined output path.
+
+**Files created:**
+
+- `scripts/validate_build_engine_l1.py`
+- `main/data/BUILD_ENGINE_HARDENING_REPORT.md`
+- `main/data/BUILD_ENGINE_POLICY.md`
+- `main/data/BUILD_ENGINE_DRY_RUN_MODEL.md`
+- `main/data/BUILD_ENGINE_OUTPUT_LOCK_MODEL.md`
+- `main/data/BUILD_ENGINE_VALIDATION_REPORT.md`
+- `main/data/BUILD_ENGINE_NEXT_ACTIONS.md`
+
+**Files updated:**
+
+- `scripts/build.py` — sovereign build engine (dry-run, strict, sample, explicit write modes)
+- `scripts/serve.py` — safe local preview documentation
+- `DECISION_LOG.md` — Sprint 6M-A entry appended
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, all content pages, workflows, root README.md, package files, dependencies, generated public HTML.
+
