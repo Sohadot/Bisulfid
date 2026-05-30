@@ -3322,3 +3322,49 @@ Each entry includes:
 
 **Not modified in this sprint:** `main/data/routes.json`, `source_registry.json`, `terminology_claims.json`, workflows, root `README.md`, package files, dependencies.
 
+
+
+---
+
+## Sprint 6J — COHORT_02 Full Draft Quality Gate and Internal Link Graph
+
+**Date:** 2026-05-30  
+**Branch:** claude/sprint-6j-cohort-02-full-draft-quality-gate-link-graph  
+**Base:** main @ Sprint 6I merge  
+**Status:** Complete — 902/902 audited; internal-link graph defined; no route registration
+
+**Summary:** Sprint **6J** audited all **902** COHORT_02 non-public terminology drafts and produced quality gate documentation plus a governed internal-link graph using 
+oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog, forbidden-claim, reliability coverage). Link graph: 50 entity hubs, 5 cluster types, 0 broken route_id references. **0 draft files modified.** **routes.json unchanged (141). No public HTML. production_can_safely_proceed remains no.**
+
+**Rationale:** 6I generated the first large terminology draft wave; 6J validates draft quality and defines the link graph required before any controlled COHORT_02 route registration charter.
+
+**Doctrine reference:** COHORT_02_FULL_DRAFT_MANIFEST.json, COHORT_02_EN_TERMINOLOGY_ROUTE_INVENTORY.json, INITIAL_14000_PAGE_LAUNCH_INTERNAL_LINK_REQUIREMENTS.md, Sprint 6E foundation link graph discipline.
+
+**Sprint 6J validation:**
+
+- Pre-flight and post-run: all L1/L2 runtimes **PASS**
+- Quality audit: 902/902 pass; 253–298 words; 0 broken internal-link refs
+- Structural duplication: 902 unique signatures (6 shared templates — expected)
+- Generator refinement: **not required**
+- routes.json not modified; sources/claims not modified; no draft rewrites
+
+**Publication readiness:** **Not ready for publication**. Audit and planning graph only.
+
+**Recommended next step:** Sprint **6K** — COHORT_02 controlled route registration wave charter (staged; still gated by source/claim locks and merge approval).
+
+**Files created:**
+
+- main/data/COHORT_02_FULL_DRAFT_QUALITY_MATRIX.md
+- main/data/COHORT_02_FULL_DRAFT_ANTI_THIN_ANTI_FAKE_REPORT.md
+- main/data/COHORT_02_FULL_DRAFT_FORBIDDEN_CLAIM_VALIDATION_REPORT.md
+- main/data/COHORT_02_FULL_DRAFT_KNOWLEDGE_RELIABILITY_COVERAGE_REPORT.md
+- main/data/COHORT_02_INTERNAL_LINK_GRAPH.md
+- main/data/COHORT_02_ROUTE_REGISTRATION_READINESS_REPORT.md
+- main/data/COHORT_02_FULL_DRAFT_NO_PUBLICATION_NO_ROUTE_REGISTRATION_GUARDRAIL.md
+- main/data/COHORT_02_FULL_DRAFT_QUALITY_GATE_VALIDATION_REPORT.md
+
+**Files updated:**
+
+- DECISION_LOG.md — Sprint 6J entry appended.
+
+**Not modified in this sprint:** main/data/routes.json, all 902 COHORT_02 draft files, source_registry.json, 	erminology_claims.json, workflows, root README.md, package files, dependencies.

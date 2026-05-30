@@ -1,15 +1,15 @@
 # COHORT_02 Full Draft — No Publication / No Indexation / No Route Registration Guardrail
 
-**Sprint:** 6I  
+**Sprint:** 6J  
 **Date:** 2026-05-30  
 **Cohort:** `COHORT_02_EN_TERMINOLOGY_SPINE`  
-**Posture:** Non-public draft wave — guardrail attestation
+**Posture:** Quality gate and link graph sprint — guardrail attestation
 
 ---
 
 ## Guardrail verdict
 
-**PASS** — Sprint 6I did not activate publication, indexation, sitemap, navigation, or route registration for COHORT_02.
+**PASS** — Sprint 6J did not activate publication, indexation, sitemap, navigation, or route registration for COHORT_02.
 
 ---
 
@@ -20,7 +20,8 @@
 | `routes.json` modified | No | No | **PASS** |
 | Registered route count | 141 (unchanged) | 141 | **PASS** |
 | COHORT_02 routes in `routes.json` | 0 | 0 | **PASS** |
-| `production_route_registry` flag on drafts | false (inventory-only) | false | **PASS** |
+| New content pages created | No | No | **PASS** |
+| Draft files modified | Only if minimal correction required | **0 modified** | **PASS** |
 
 ---
 
@@ -36,6 +37,7 @@
 | New sources registered | No | No | **PASS** |
 | `source_registry.json` modified | No | No | **PASS** |
 | `terminology_claims.json` modified | No | No | **PASS** |
+| Additional draft generation | No | No | **PASS** |
 
 ---
 
@@ -67,26 +69,31 @@
 
 ---
 
-## Content location guardrail
+## Sprint 6J scope guardrails
 
-COHORT_02 drafts reside under `main/content/en/pages/cohort-02-terminology/` — a **pre-registration staging path** not bound to production `routes.json` entries. L1 draft validator scope covers registered routes; unregistered cohort drafts do not imply publication eligibility.
-
-Internal links use `route_id` placeholders only — no live public URLs, no markdown hyperlinks.
+| Prohibited action | Status |
+| --- | --- |
+| Route registration | **Not performed** |
+| Batch draft regeneration | **Not performed** |
+| Validator weakening | **Not performed** |
+| Workflow modification | **Not performed** |
+| Package/dependency modification | **Not performed** |
+| README modification | **Not performed** |
+| Live markdown link insertion | **Not performed** |
+| `internal_links.json` modification | **Not performed** |
 
 ---
 
-## Explicit prohibitions honored
+## Content modification attestation
 
-- No route registration wave executed
-- No sitemap file activation
-- No navigation manifest activation
-- No indexation approval charter
-- No validator weakening
-- No workflow or dependency changes
-- No free-form LLM generation
+Sprint 6J performed **audit and documentation only**. Zero COHORT_02 draft files required metadata correction. No `[SOURCE REQUIRED]` markers removed from any corpus page.
 
 ---
 
 ## Attestation
 
-Sprint **6I** generated **902** governed non-public drafts as the first large terminology draft wave toward the 14,000-page launch corpus. **No publication surface was activated.**
+Sprint **6J** audited **902** COHORT_02 drafts, produced quality gate reports and internal-link graph documentation. **No publication surface was activated.**
+
+---
+
+*Sprint 6J — COHORT_02 No Publication / No Route Registration Guardrail*
