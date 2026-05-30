@@ -236,6 +236,40 @@
       "risk_level": "medium",
       "last_reviewed": "2026-05-16",
       "notes": "Candidate academic teaching support only. This claim does not approve public wording that states a formal German suffix rule."
+    },
+    {
+      "claim_id": "CLM-TERM-MOS2-DE-001",
+      "claim_type": "terminology",
+      "status": "pending_review",
+      "statement": "Molybdän(IV)-sulfid has a German Lexikon der Chemie dictionary entry on Spektrum.de that may support cautious terminology framing for the de_core_mos2 route.",
+      "source_ids": ["SRC-SPEKTRUM-MOS2-DE"],
+      "related_terms": ["molybdän(iv)-sulfid", "mos2", "molybdän disulfid"],
+      "related_routes": ["de_core_mos2"],
+      "allowed_pages": ["de_core_mos2"],
+      "prohibited_uses": [
+        "chemical safety",
+        "safety handling instructions",
+        "medical claims",
+        "market data",
+        "market-share data",
+        "CAGR claims",
+        "pricing claims",
+        "production data",
+        "procurement advice",
+        "trade data",
+        "industrial performance claims",
+        "acquisition-target claims",
+        "EN-only authority",
+        "formal IUPAC nomenclature standard authority",
+        "universal suffix transformation rules",
+        "claim approval by itself",
+        "source-locking by itself",
+        "removal of [SOURCE REQUIRED] markers",
+        "route publication"
+      ],
+      "risk_level": "medium",
+      "last_reviewed": "2026-05-30",
+      "notes": "Claim-boundary registration only (Sprint 5N-P). Not approved for publication. SRC-SPEKTRUM-MOS2-DE remains seeded / not verified; source_lock_status candidate. Spektrum Lexikon der Chemie may support German dictionary-entry terminology framing only — not chemical safety, market, production, procurement, medical, industrial, trade, CAGR, pricing, or acquisition claims. Stronger source verification and separate claim approval required before removing source-required markers."
     }
   ]
 }
