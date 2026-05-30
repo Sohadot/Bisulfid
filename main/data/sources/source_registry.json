@@ -13,7 +13,8 @@
     "claim_registry_lock": "LOCKED",
     "route_publication_lock": "LOCKED",
     "allows_individual_source_verified_status": true,
-    "guardrail_transition_pending": true,
+    "guardrail_transition_pending": false,
+    "guardrail_policy_update_sprint": "5N-S",
     "guardrail_script": "scripts/validate_source_registry_lock_l1.py",
     "guardrail_blocker_summary": "Sprint 5N-B dual lock: registry file status must remain inactive AND any source row with status verified is rejected. Data-only verified transition blocked until guardrail policy update charter.",
     "verification_ready_sources": [
@@ -21,7 +22,7 @@
         "source_id": "SRC-SPEKTRUM-MOS2-DE",
         "evidence_sprint": "5N-Q",
         "evidence_sufficient": true,
-        "current_status": "seeded",
+        "current_status": "verified",
         "target_status_after_guardrail_transition": "verified",
         "source_lock_status_unchanged": "candidate"
       }
@@ -469,7 +470,7 @@
       "author_or_organization": "Lexikon der Chemie editorial and authorial team; Fachkoordination: Hans-Dieter Jakubke and Ruth Karcher; Redaktion: Sabine Bartels, Ruth Karcher, Sonja Nagel",
       "url": "https://www.spektrum.de/lexikon/chemie/molybdaen-iv-sulfid/5985",
       "language": "de",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-05-30",
       "use_for": [
@@ -495,9 +496,10 @@
         "publication_date and edition_or_version not visible from reviewed source — omitted.",
         "Human artifact review Sprint 5N-N; registry execution Sprint 5N-O — not source approval.",
         "Verification review Sprint 5N-Q: human-reviewed bibliographic evidence sufficient per SOURCE_POLICY for narrow authoritative_dictionary boundary; access date 2026-05-30 satisfies publication/access date requirement for online lexicon entry; entry status remains seeded — inactive registry lock guardrail blocks verified status transition; not claim approval or source-locking.",
-        "Lock resolution Sprint 5N-R: verification_limited posture documented at registry layer; evidence verification-ready; status remains seeded pending guardrail policy update charter; source_lock_status remains candidate."
+        "Lock resolution Sprint 5N-R: verification_limited posture documented at registry layer; evidence verification-ready; source_lock_status remains candidate.",
+        "Guardrail policy update Sprint 5N-S: bibliographic status verified under verification_limited — not claim approval, source-locking, route publication, or registry activation."
       ],
-      "notes": "Spektrum Lexikon der Chemie. Entry: Molybdän(IV)-sulfid, in Lexikon der Chemie. Access date 2026-05-30. Route scope: de_core_mos2. Bibliographic reference only; no full copyrighted text copied. Verification review Sprint 5N-Q: evidence supports verified posture for dictionary-entry terminology scope only. Lock resolution Sprint 5N-R: listed in verification_ready_sources; status remains seeded until guardrail transition."
+      "notes": "Spektrum Lexikon der Chemie. Entry: Molybdän(IV)-sulfid, in Lexikon der Chemie. Access date 2026-05-30. Route scope: de_core_mos2. Bibliographic reference only; no full copyrighted text copied. Verification review Sprint 5N-Q: evidence supports verified posture for dictionary-entry terminology scope only. Guardrail transition Sprint 5N-S: bibliographic status verified; source_lock_status candidate; not claim approval or source-locking."
     }
   ]
 }
