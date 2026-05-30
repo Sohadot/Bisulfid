@@ -436,6 +436,42 @@
         "Must not be used for market, safety, medical, procurement, or acquisition claims."
       ],
       "notes": "Universität Rostock German-language teaching PDF for nomenclature. Candidate academic teaching support only for cautious review of German -id anion examples where directly stated."
+    },
+    {
+      "source_id": "SRC-SPEKTRUM-MOS2-DE",
+      "category": "authoritative_dictionary",
+      "publisher": "Spektrum Akademischer Verlag, Heidelberg",
+      "title": "Molybdän(IV)-sulfid - Lexikon der Chemie",
+      "author_or_organization": "Lexikon der Chemie editorial and authorial team; Fachkoordination: Hans-Dieter Jakubke and Ruth Karcher; Redaktion: Sabine Bartels, Ruth Karcher, Sonja Nagel",
+      "url": "https://www.spektrum.de/lexikon/chemie/molybdaen-iv-sulfid/5985",
+      "language": "de",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-05-30",
+      "use_for": [
+        "German lexicon entry for Molybdän(IV)-sulfid / MoS2 on de_core_mos2",
+        "German specialist dictionary terminology context within lexicon entry scope",
+        "cautious lexical and document-language support where directly supported by the Spektrum entry"
+      ],
+      "do_not_use_for": [
+        "market data",
+        "safety prescriptive advice",
+        "medical claims",
+        "procurement or trade guidance",
+        "EN-only authority",
+        "universal suffix transformation rules",
+        "formal IUPAC nomenclature standard authority",
+        "claim approval by itself",
+        "removal of [SOURCE REQUIRED] markers by itself",
+        "route publication by itself"
+      ],
+      "risk_notes": [
+        "Dictionary source only; not chemical safety, regulatory, industrial, or market authority.",
+        "Copyright 1998 Spektrum Akademischer Verlag, Heidelberg — rights evidence only; not publication_date.",
+        "publication_date and edition_or_version not visible from reviewed source — omitted.",
+        "Human artifact review Sprint 5N-N; registry execution Sprint 5N-O — not source approval."
+      ],
+      "notes": "Spektrum Lexikon der Chemie. Entry: Molybdän(IV)-sulfid, in Lexikon der Chemie. Access date 2026-05-30. Route scope: de_core_mos2. Bibliographic reference only; no full copyrighted text copied."
     }
   ]
 }

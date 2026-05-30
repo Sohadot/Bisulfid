@@ -2609,3 +2609,40 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-N entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-30 — Spektrum Source Registry Execution Candidate Wave 1 Completed
+
+**Decision:** Execute controlled source registry entry for `SRC-SPEKTRUM-MOS2-DE` associated with `de_core_mos2` without source approval, claim approval, or content modification.
+
+**Summary:** Sprint **5N-O** completed controlled source registry execution for Spektrum on `de_core_mos2`. One schema-compliant row **`SRC-SPEKTRUM-MOS2-DE`** was added to `source_registry.json` using verified governance fields (5N-K) and human-reviewed bibliographic fields (5N-N). Entry posture: `status: seeded`, `source_lock_status: candidate`; registry file remains **`inactive`**. `publication_date` and `edition_or_version` omitted — not invented. Copyright 1998 documented as rights evidence only. The sprint preserved the distinction between registry execution, source approval, claim approval, source-locking, and publication readiness. `terminology_claims.json` was not modified, no claims were approved, content pages were not edited, routes were not published, and `[SOURCE REQUIRED]` markers remain unresolved.
+
+**Rationale:** Sprint **5N-N** concluded **`execution_candidate_after_artifact_review`**. Controlled registry execution inserts the governed row without granting `verified` status or approving claims.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SPEKTRUM_HUMAN_ARTIFACT_REVIEW_WAVE_1_REPORT.md`, `SPEKTRUM_HUMAN_ARTIFACT_FIELD_CLASSIFICATION_WAVE_1.md`.
+
+**Sprint 5N-O validation:**
+
+- Target: `de_core_mos2` — **1** registry execution.
+- Added: **`SRC-SPEKTRUM-MOS2-DE`** — **15** total entries; **0** verified.
+- Local runtimes **PASS**; route count **126**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Claims, content, routes, packages, README, workflows — **not modified** (except `source_registry.json`).
+
+**Publication readiness:** **Not ready for publication**. Registry execution only — no source-locking.
+
+**Recommended next step:** Claim boundary registration sprint; content source-lock audit sprint — separate charters.
+
+**Files created:**
+
+- `main/data/SPEKTRUM_SOURCE_REGISTRY_EXECUTION_WAVE_1_REPORT.md`
+- `main/data/SPEKTRUM_SOURCE_REGISTRY_FIELD_MAPPING_WAVE_1.md`
+- `main/data/SPEKTRUM_SOURCE_REGISTRY_NO_CLAIM_APPROVAL_WAVE_1.md`
+- `main/data/SPEKTRUM_SOURCE_REGISTRY_EXECUTION_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `main/data/sources/source_registry.json` — **`SRC-SPEKTRUM-MOS2-DE`** row added.
+- `DECISION_LOG.md` — Sprint 5N-O entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
