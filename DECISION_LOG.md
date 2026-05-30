@@ -2533,3 +2533,42 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-L entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-29 — Spektrum Verified Bibliographic Artifact Intake Wave 1 Completed
+
+**Decision:** Establish governed bibliographic artifact intake documentation for the Spektrum candidate associated with `de_core_mos2` without registry execution, source approval, or content modification.
+
+**Summary:** Sprint **5N-M** completed verified bibliographic artifact intake documentation for the Spektrum candidate associated with `de_core_mos2`. The sprint defined required human-provided evidence, intake field matrix, source artifact deposit protocol, and human sign-off checklist. No verified artifact bundle is present in repository — **0** intake fields deposited; **10** required fields missing or awaiting human confirmation. The sprint preserved the distinction between artifact intake, source registry execution, source approval, claim approval, source-locking, and publication readiness. No source entries were added, `source_registry.json` was not modified, no claims were approved, claim registries were not modified, content pages were not edited, routes were not published, no routes were added, no generated HTML was created, no dependencies or workflows were added, and `[SOURCE REQUIRED]` markers remain unresolved.
+
+**Rationale:** Sprint **5N-L** documented **`direct_access_not_available`** with **0** bibliographic fields captured. A governed intake layer must define exact evidence requirements before any `source_registry.json` modification — without treating intake as execution or approval.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SPEKTRUM_DIRECT_SOURCE_ACCESS_CAPTURE_WAVE_1_REPORT.md`, `SPEKTRUM_BIBLIOGRAPHIC_FIELD_VERIFICATION_WAVE_1_REPORT.md`, `GITHUB_ACTIONS_GOVERNANCE_WORKFLOW_REPORT.md`.
+
+**Sprint 5N-M validation:**
+
+- Target: `de_core_mos2` — **1** artifact intake layer.
+- Spektrum: artifact bundle **absent**; **0** intake fields present — **`execution_still_blocked`**, **`execution_not_allowed_now`**, **`source_approval_not_allowed_now`** — not approved.
+- **7** governance fields carry forward verified from 5N-K.
+- Local runtimes **PASS**; route count **126**; draft-backed **68**; missing drafts **58**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Registries, content, packages, README, workflows — **not modified**.
+
+**Publication readiness:** **Not ready for publication**. Artifact intake sprint only — no source-locking.
+
+**Recommended next step:** Human artifact deposit + sign-off per deposit protocol; then separate registry execution sprint if readiness clears.
+
+**Files created:**
+
+- `main/data/SPEKTRUM_VERIFIED_BIBLIOGRAPHIC_ARTIFACT_INTAKE_WAVE_1_REPORT.md`
+- `main/data/SPEKTRUM_VERIFIED_BIBLIOGRAPHIC_ARTIFACT_FIELD_MATRIX_WAVE_1.md`
+- `main/data/SPEKTRUM_SOURCE_ARTIFACT_DEPOSIT_PROTOCOL_WAVE_1.md`
+- `main/data/SPEKTRUM_BIBLIOGRAPHIC_HUMAN_SIGNOFF_CHECKLIST_WAVE_1.md`
+- `main/data/SPEKTRUM_VERIFIED_BIBLIOGRAPHIC_ARTIFACT_RISK_REVIEW_WAVE_1.md`
+- `main/data/SPEKTRUM_VERIFIED_BIBLIOGRAPHIC_ARTIFACT_INTAKE_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 5N-M entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `hreflang_groups.json`, `translation_registry.json`, `main/data/sources/source_registry.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
