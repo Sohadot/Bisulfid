@@ -1,0 +1,206 @@
+{
+  "version": "1.0.0",
+  "sprint": "6C",
+  "site": "bisulfid.com",
+  "status": "design_only",
+  "governed_by": [
+    "main/data/corpus_production_rules.md",
+    "main/data/corpus_route_formula.json",
+    "main/data/page_type_registry.json",
+    "main/data/audience_layer_registry.json",
+    "main/data/reference_layer_registry.json",
+    "main/data/SOVEREIGN_ROUTE_INVENTORY_SCHEMA_WAVE_1.json",
+    "main/data/SOVEREIGN_EVIDENCE_GRADE_REGISTRY_WAVE_1.json",
+    "main/data/SOVEREIGN_SOURCE_HIERARCHY_MODEL_WAVE_1.json"
+  ],
+  "scope_amendment": "maximum_knowledge_credibility_and_reliability_layer",
+  "generator_principle": "Registry-constrained batch generation only. No free-form LLM generation as production method.",
+  "generator_id": "sovereign_corpus_generator_v1",
+  "execution_mode": "design_only_sprint_6c",
+  "inputs": {
+    "required_registries": [
+      "main/data/corpus_master_inventory.json",
+      "main/data/corpus_route_formula.json",
+      "main/data/page_type_registry.json",
+      "main/data/audience_layer_registry.json",
+      "main/data/reference_layer_registry.json",
+      "main/data/sources/source_registry.json",
+      "main/data/claims/terminology_claims.json",
+      "main/data/ontology/sulfur_terms.json",
+      "main/data/corpus_production_rules.md",
+      "main/data/SOVEREIGN_TEMPLATE_CONTRACT_MODEL_WAVE_1.json",
+      "main/data/SOVEREIGN_EVIDENCE_GRADE_REGISTRY_WAVE_1.json",
+      "main/data/SOVEREIGN_SOURCE_HIERARCHY_MODEL_WAVE_1.json"
+    ],
+    "forbidden_inputs": [
+      "unsourced_llm_prose",
+      "ai_summary_as_source",
+      "invented_bibliographic_data",
+      "routes_json_direct_write_without_charter"
+    ]
+  },
+  "route_generation_unit": {
+    "description": "Minimum governed input unit for one draft generation attempt",
+    "required_fields": [
+      "route_id",
+      "language",
+      "term_or_entity_id",
+      "page_type_id",
+      "audience_id",
+      "reference_layer_id",
+      "source_posture",
+      "claim_posture",
+      "route_state",
+      "indexation_state",
+      "internal_link_role",
+      "template_id",
+      "knowledge_reliability_profile",
+      "required_data_fields",
+      "forbidden_content_classes",
+      "validation_gates",
+      "noindex_default"
+    ],
+    "knowledge_reliability_profile_required": true,
+    "knowledge_reliability_profile_fields": [
+      "knowledge_reliability_level",
+      "evidence_grade",
+      "source_hierarchy",
+      "source_count_required",
+      "primary_source_required",
+      "secondary_source_allowed",
+      "claim_boundary_required",
+      "claim_confidence",
+      "citation_mode",
+      "provenance_note",
+      "last_reviewed_policy",
+      "unresolved_fields",
+      "excluded_claim_classes",
+      "conflict_resolution_policy",
+      "human_review_required",
+      "machine_readability_level",
+      "audience_simplification_limit",
+      "page_assertion_limit"
+    ]
+  },
+  "outputs": {
+    "allowed": [
+      "draft_markdown_with_frontmatter",
+      "generation_manifest_json",
+      "validation_report_json",
+      "internal_link_proposal_json"
+    ],
+    "forbidden": [
+      "public_html",
+      "published_route_status",
+      "indexable_true",
+      "in_sitemap_true",
+      "in_navigation_true",
+      "marker_removal_without_charter",
+      "claim_approval",
+      "source_registration"
+    ],
+    "draft_frontmatter_required": [
+      "route_id",
+      "status",
+      "publication_status",
+      "indexable",
+      "in_sitemap",
+      "language",
+      "locale",
+      "source_language",
+      "template_id",
+      "page_type_id",
+      "audience_id",
+      "reference_layer_id",
+      "evidence_grade",
+      "knowledge_reliability_level",
+      "noindex_default"
+    ],
+    "draft_frontmatter_defaults": {
+      "status": "draft",
+      "publication_status": "non_public",
+      "indexable": false,
+      "in_sitemap": false,
+      "generated": true,
+      "noindex_default": true
+    }
+  },
+  "generation_pipeline": {
+    "stages": [
+      {
+        "stage": "G0_preflight",
+        "action": "Validate inventory row + template contract + reliability profile completeness"
+      },
+      {
+        "stage": "G1_registry_read",
+        "action": "Load source_ids, claim_ids, ontology term, hierarchy ranks"
+      },
+      {
+        "stage": "G2_template_bind",
+        "action": "Bind template sections from registry data only; unresolved lines get [SOURCE REQUIRED]"
+      },
+      {
+        "stage": "G3_reliability_enforce",
+        "action": "Cap assertions per page_assertion_limit and evidence_grade; inject reliability notice"
+      },
+      {
+        "stage": "G4_forbidden_scan",
+        "action": "Scan forbidden_content_classes and excluded_claim_classes"
+      },
+      {
+        "stage": "G5_validator_pass",
+        "action": "Run L0/L1 draft + knowledge reliability validators"
+      },
+      {
+        "stage": "G6_manifest_emit",
+        "action": "Write generation manifest; no routes.json write"
+      }
+    ]
+  },
+  "reference_layer_anti_duplication": {
+    "registry_ref": "main/data/SOVEREIGN_GENERATOR_REFERENCE_LAYER_DUPLICATION_GUARD_WAVE_1.md",
+    "rule": "Generator must select template_id + reference_layer combination that changes structure, evidence standard, or vocabulary level"
+  },
+  "comparison_page_rules": {
+    "page_type_id": "PT_DIFFERENCE_COMPARISON",
+    "evidence_grade_default": "comparative_boundary",
+    "requires": ["comparison_pair_id", "side_a_source_posture", "side_b_source_posture", "comparison_sourcing_disclosure"],
+    "forbidden": ["unsupported_distinction", "conflation_of_bisulfite_and_bisulfide_data"]
+  },
+  "audience_special_rules": {
+    "AUD_CHILD_EDU": {
+      "evidence_grade_allowed": ["educational_simplification", "source_verified", "claim_approved"],
+      "forbidden": ["unsafe_experiment", "handling", "hazard_detail", "medical", "procurement"]
+    },
+    "AUD_AI_SYSTEM": {
+      "machine_readability_level": "structured_required",
+      "requires_disclosure": ["source_status", "claim_status", "excluded_claims", "unresolved_fields"]
+    },
+    "AUD_INVESTOR": {
+      "evidence_grade_allowed": ["economic_context_pending", "source_verified", "claim_approved"],
+      "requires_economic_source_for_market_lines": true
+    }
+  },
+  "batch_throughput_targets": {
+    "minimum_stable_pages_per_day": 100,
+    "target_mature_pages_per_day": 500,
+    "cohort_wave_size": "500-2000_inventory_rows_per_charter",
+    "no_micro_sprint_routine_families": true
+  },
+  "handoff_6d": {
+    "next_sprint": "6D_first_large_governed_draft_cohort",
+    "prerequisites": [
+      "Template contracts validated",
+      "Knowledge reliability validators specified",
+      "Cohort COHORT_01 or COHORT_02 selected",
+      "production_route_registry false until merge charter"
+    ]
+  },
+  "epistemic_rules": [
+    "Never state more than evidence_grade allows",
+    "Never convert absence of evidence into factual conclusion",
+    "Never flatten source hierarchy ranks",
+    "Never hide excluded_claim_classes",
+    "Never present draft as final without reliability notice"
+  ]
+}

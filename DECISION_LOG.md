@@ -2990,3 +2990,45 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 6B entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, all `main/content/**` pages, `main/data/sources/source_registry.json`, `main/data/claims/`, `corpus_route_formula.json`, `page_type_registry.json`, `audience_layer_registry.json`, `corpus_production_rules.md`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, automation scripts, workflows, root `README.md`, package files, deployment configs, generated output.
+
+---
+
+### 2026-05-30 — Sovereign Corpus Generator Schema and Template Requirements Completed
+
+**Decision:** Design generator schema, template contracts, validation gates, and knowledge reliability layer for batch-governed corpus production — without generating pages or modifying production routes.
+
+**Summary:** Sprint **6C** designed **`SOVEREIGN_CORPUS_GENERATOR_SCHEMA_WAVE_1.json`** (registry-constrained generator; no free-form LLM), **`SOVEREIGN_TEMPLATE_CONTRACT_MODEL_WAVE_1.json`** (6 template contracts with full SEO/reliability fields), validation gate model (G0–G8), batch automation design (100–500 pages/day), and reference-layer duplication guard. Scope amendment added **knowledge reliability layer**: **`SOVEREIGN_KNOWLEDGE_RELIABILITY_MODEL_WAVE_1.md`**, **`SOVEREIGN_EVIDENCE_GRADE_REGISTRY_WAVE_1.json`** (8 evidence grades), **`SOVEREIGN_SOURCE_HIERARCHY_MODEL_WAVE_1.json`** (10 ranked source types), **`SOVEREIGN_KNOWLEDGE_RELIABILITY_VALIDATION_REQUIREMENTS_WAVE_1.md`** (KR-01–KR-15). Every future page requires knowledge_reliability_profile — not optional. **No pages generated. routes.json unchanged (126).**
+
+**Rationale:** 6A/6B codified architecture and inventory model; 6C defines how automation produces validation-controlled drafts with maximum epistemic credibility — exposing evidence, claim boundaries, and unresolved areas.
+
+**Doctrine reference:** `corpus_production_rules.md`, `SOVEREIGN_ROUTE_INVENTORY_SCHEMA_WAVE_1.json`, `reference_layer_registry.json`, `SOVEREIGN_CORPUS_GENERATOR_SCHEMA_WAVE_1.json`.
+
+**Sprint 6C validation:**
+
+- Target: generator schema design only — **0** pages, **0** content files.
+- All L1/L2 runtimes **PASS**; validators not weakened.
+- routes, content, sources, claims, workflows — **not modified**.
+
+**Publication readiness:** **Not ready for publication**. Generator design only.
+
+**Recommended next step:** Sprint **6D** — first large governed draft cohort under 6C schema.
+
+**Files created:**
+
+- `main/data/SOVEREIGN_CORPUS_GENERATOR_SCHEMA_WAVE_1.json`
+- `main/data/SOVEREIGN_TEMPLATE_CONTRACT_MODEL_WAVE_1.json`
+- `main/data/SOVEREIGN_GENERATOR_VALIDATION_GATE_MODEL_WAVE_1.md`
+- `main/data/SOVEREIGN_BATCH_GENERATION_AUTOMATION_DESIGN_WAVE_1.md`
+- `main/data/SOVEREIGN_GENERATOR_REFERENCE_LAYER_DUPLICATION_GUARD_WAVE_1.md`
+- `main/data/SOVEREIGN_GENERATOR_NO_PUBLICATION_GUARDRAIL_WAVE_1.md`
+- `main/data/SOVEREIGN_GENERATOR_SCHEMA_VALIDATION_REPORT.md`
+- `main/data/SOVEREIGN_KNOWLEDGE_RELIABILITY_MODEL_WAVE_1.md`
+- `main/data/SOVEREIGN_EVIDENCE_GRADE_REGISTRY_WAVE_1.json`
+- `main/data/SOVEREIGN_SOURCE_HIERARCHY_MODEL_WAVE_1.json`
+- `main/data/SOVEREIGN_KNOWLEDGE_RELIABILITY_VALIDATION_REQUIREMENTS_WAVE_1.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 6C entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, all `main/content/**` pages, `main/data/sources/source_registry.json`, `main/data/claims/`, 6A/6B registry files, automation scripts, workflows, root `README.md`, package files, deployment configs, generated output.
