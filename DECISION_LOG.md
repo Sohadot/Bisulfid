@@ -3594,3 +3594,51 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Not modified in this sprint:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, all `main/content/**` pages, workflows, root README.md, package files, dependencies, public HTML outside `site/_sample/`.
 
+---
+
+## 14K Pipeline Non-Public Release Candidate Batch 01 Completed
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6m-d-14k-pipeline-non-public-release-candidate-batch-01`  
+**Base:** main @ Sprint 6M-C merge  
+**Status:** Complete — 250-page RC batch rendered under quarantine; all locks intact
+
+**Summary:** Sprint **6M-D** produced the first larger non-public release candidate batch inside the fixed **14,000-page** Bisulfid publication pipeline. The sprint expanded quarantined rendering beyond the initial 8-page QA proof to **250 deterministic pages** while keeping all output isolated under `site/_sample/`, noindex, outside sitemap, outside navigation, and clearly marked as non-public release candidate output. The sprint did not publish routes, did not make routes indexable, did not add routes to sitemap or navigation, did not approve sources or claims, did not modify registries, did not edit content pages, and did not remove `[SOURCE REQUIRED]` markers. The batch is an engineering release candidate for the 14,000-page launch pipeline, not a reduced launch target.
+
+**Rationale:** Sprint 6M-C proved the publication frame at 8 pages. 6M-D validates batch selection, render throughput, multilingual and source-required coverage at RC scale before 500 / 1,000 / 14,000 execution stages.
+
+**Sprint 6M-D validation:**
+
+- `validate_release_candidate_batch_l1.py`: **PASS** (250 files)
+- `validate_template_registry_l1.py`: **PASS**
+- `validate_template_layer_l1.py`: **PASS**
+- `validate_sample_output_l1.py`: **PASS** (250 files)
+- `validate_build_engine_l1.py`: **PASS**
+- `build.py --dry-run` / `--dry-run --strict`: **PASS**
+- `build.py --render-quarantined-rc-batch --limit 250`: **PASS**
+- All L1/L2 corpus runtimes + source/claim guardrails: **PASS**
+- `production_can_safely_proceed`: **no**
+- Corpus Governance CI: **required on PR**
+
+**Publication readiness:** **Not ready for publication**. RC engineering batch only.
+
+**Recommended next step:** Sprint **6M-E** — 500-page non-public RC Batch 02 or markdown rendering improvements.
+
+**Files created:**
+
+- `scripts/validate_release_candidate_batch_l1.py`
+- `main/data/NON_PUBLIC_RELEASE_CANDIDATE_BATCH_01_REPORT.md`
+- `main/data/NON_PUBLIC_RELEASE_CANDIDATE_BATCH_01_MATRIX.md`
+- `main/data/NON_PUBLIC_RELEASE_CANDIDATE_BATCH_01_VALIDATION_REPORT.md`
+- `main/data/FOURTEEN_THOUSAND_PIPELINE_NEXT_ACTIONS.md`
+- `site/_sample/rc_batch_manifest.json`
+- `site/_sample/*.html` (250 RC batch pages)
+
+**Files updated:**
+
+- `scripts/build.py` — RC batch render mode, stratified selection, manifest
+- `scripts/validate_sample_output_l1.py` — RC marker support, negation-aware governance scans
+- `DECISION_LOG.md`
+
+**Not modified in this sprint:** `routes.json`, `internal_links.json`, sitemap/navigation policies, source/claim registries, `sulfur_terms.json`, all `main/content/**` pages, workflows, root README.md, package files, dependencies, public HTML outside `site/_sample/`.
+

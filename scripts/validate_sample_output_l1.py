@@ -30,12 +30,14 @@ REQUIRED_MARKERS = (
     "14,000",
     "non_public",
     "non-public",
-    "QA",
     "planned",
     "outside sitemap",
     "outside navigation",
     "no_claims_approved",
 )
+
+# QA sample (6M-C) or RC batch (6M-D) posture marker — at least one required
+POSTURE_MARKERS = ("QA", "release candidate")
 
 SOURCE_CLAIM_MARKERS = (
     "[SOURCE REQUIRED]",
@@ -44,8 +46,12 @@ SOURCE_CLAIM_MARKERS = (
     "unapproved",
 )
 
+def strip_html_tags(text: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", text))
+
+
 def implies_claim_approval(text: str) -> bool:
-    lower = text.lower()
+    lower = strip_html_tags(text).lower()
     for phrase in (
         "no claim is approved",
         "any claim is approved",
@@ -53,15 +59,29 @@ def implies_claim_approval(text: str) -> bool:
         "not imply claim approval",
         "no claims_approved",
         "no_claims_approved",
+        "no approved claim is implied",
+        "no science claim is approved",
+        "none approved today",
+        "not approved claim is implied",
     ):
         lower = lower.replace(phrase, "")
     return "claim is approved" in lower
 
 
+def implies_source_locking_complete(text: str) -> bool:
+    lower = strip_html_tags(text).lower()
+    if not re.search(r"source-locking is complete", lower):
+        return False
+    if re.search(r"(?:does|do)\s+not\s+claim\s+source-locking is complete", lower):
+        return False
+    if re.search(r"not\s+claim\s+source-locking is complete", lower):
+        return False
+    return True
+
+
 FORBIDDEN = (
     re.compile(r"index,\s*follow", re.I),
     re.compile(r"(?<!not )(?<!non-)(ready for (public )?launch|go live now)", re.I),
-    re.compile(r"source-locking is complete", re.I),
 )
 
 
@@ -95,12 +115,22 @@ def validate_sample_file(path: Path) -> tuple[list[str], list[str]]:
         if marker.lower() not in lower and marker not in text:
             errors.append(f"{path.name}: missing marker {marker!r}")
 
+    if not any(m.lower() in lower or m in text for m in POSTURE_MARKERS):
+        errors.append(f"{path.name}: missing QA or release candidate posture marker")
+
+    if "release candidate" in lower or "rc-batch" in lower:
+        if "not publication-ready" not in lower:
+            errors.append(f"{path.name}: RC batch missing not publication-ready marker")
+
     for pattern in FORBIDDEN:
         if pattern.search(text):
             errors.append(f"{path.name}: forbidden pattern in sample output")
 
     if implies_claim_approval(text):
         errors.append(f"{path.name}: implies claim approval")
+
+    if implies_source_locking_complete(text):
+        errors.append(f"{path.name}: implies source-locking complete")
 
     if "production_can_safely_proceed: yes" in lower.replace(" ", ""):
         errors.append(f"{path.name}: claims production_can_safely_proceed yes")
