@@ -3,7 +3,31 @@
   "site": "bisulfid.com",
   "governed_by": "doctrine/SOURCE_POLICY.md",
   "status": "inactive",
-  "rule": "No source entry = no published claim. Sources are added to this registry only when verified. No placeholder or fabricated URLs are permitted.",
+  "rule": "No source entry = no published claim. Sources are added to this registry only when verified. No placeholder or fabricated URLs are permitted. Registry file status inactive locks publication use only; individual source verification is governed separately under verification_lock_resolution.",
+  "verification_lock_resolution": {
+    "sprint": "5N-R",
+    "resolution_date": "2026-05-30",
+    "resolved_posture": "verification_limited",
+    "policy_basis": "doctrine/SOURCE_POLICY.md",
+    "publication_lock": "LOCKED",
+    "claim_registry_lock": "LOCKED",
+    "route_publication_lock": "LOCKED",
+    "allows_individual_source_verified_status": true,
+    "guardrail_transition_pending": true,
+    "guardrail_script": "scripts/validate_source_registry_lock_l1.py",
+    "guardrail_blocker_summary": "Sprint 5N-B dual lock: registry file status must remain inactive AND any source row with status verified is rejected. Data-only verified transition blocked until guardrail policy update charter.",
+    "verification_ready_sources": [
+      {
+        "source_id": "SRC-SPEKTRUM-MOS2-DE",
+        "evidence_sprint": "5N-Q",
+        "evidence_sufficient": true,
+        "current_status": "seeded",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      }
+    ],
+    "next_charter": "Validator policy update sprint to permit verification_limited posture with individual verified rows while publication, claim, and route locks remain LOCKED"
+  },
   "source_categories": [
     "authoritative_dictionary",
     "chemical_nomenclature_standard",
@@ -470,9 +494,10 @@
         "Copyright 1998 Spektrum Akademischer Verlag, Heidelberg — rights evidence only; not publication_date.",
         "publication_date and edition_or_version not visible from reviewed source — omitted.",
         "Human artifact review Sprint 5N-N; registry execution Sprint 5N-O — not source approval.",
-        "Verification review Sprint 5N-Q: human-reviewed bibliographic evidence sufficient per SOURCE_POLICY for narrow authoritative_dictionary boundary; access date 2026-05-30 satisfies publication/access date requirement for online lexicon entry; entry status remains seeded — inactive registry lock guardrail blocks verified status transition; not claim approval or source-locking."
+        "Verification review Sprint 5N-Q: human-reviewed bibliographic evidence sufficient per SOURCE_POLICY for narrow authoritative_dictionary boundary; access date 2026-05-30 satisfies publication/access date requirement for online lexicon entry; entry status remains seeded — inactive registry lock guardrail blocks verified status transition; not claim approval or source-locking.",
+        "Lock resolution Sprint 5N-R: verification_limited posture documented at registry layer; evidence verification-ready; status remains seeded pending guardrail policy update charter; source_lock_status remains candidate."
       ],
-      "notes": "Spektrum Lexikon der Chemie. Entry: Molybdän(IV)-sulfid, in Lexikon der Chemie. Access date 2026-05-30. Route scope: de_core_mos2. Bibliographic reference only; no full copyrighted text copied. Verification review Sprint 5N-Q: evidence supports verified posture for dictionary-entry terminology scope only; status remains seeded pending inactive registry lock."
+      "notes": "Spektrum Lexikon der Chemie. Entry: Molybdän(IV)-sulfid, in Lexikon der Chemie. Access date 2026-05-30. Route scope: de_core_mos2. Bibliographic reference only; no full copyrighted text copied. Verification review Sprint 5N-Q: evidence supports verified posture for dictionary-entry terminology scope only. Lock resolution Sprint 5N-R: listed in verification_ready_sources; status remains seeded until guardrail transition."
     }
   ]
 }

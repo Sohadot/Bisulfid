@@ -2720,3 +2720,40 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-Q entry appended.
 
 **Not modified in this sprint:** `main/data/claims/terminology_claims.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-30 — Source Registry Verification Lock Resolution Wave 1 Completed
+
+**Decision:** Resolve source registry verification lock architecture for `SRC-SPEKTRUM-MOS2-DE` without claim approval, source-locking, or content modification.
+
+**Summary:** Sprint **5N-R** resolved the Sprint **5N-B** dual lock that blocked individual source verification while the registry file remains **`inactive`**. Added **`verification_lock_resolution`** to `source_registry.json` documenting **`verification_limited`** posture: publication, claim, and route locks remain **LOCKED**; SOURCE_POLICY evidence for **`SRC-SPEKTRUM-MOS2-DE`** is **sufficient** (5N-Q); source listed in **`verification_ready_sources`**. Guardrail assessment: `validate_source_registry_lock_l1.py` **blocks** data-only `status: verified` transition — validator policy update deferred to separate charter per sprint constraints. **`SRC-SPEKTRUM-MOS2-DE`** **`status` remains `seeded`**; **`source_lock_status` remains `candidate`**; **0** verified sources. No claims approved; `CLM-TERM-MOS2-DE-001` unchanged; `[SOURCE REQUIRED]` markers remain.
+
+**Rationale:** Lock resolution separates registry publication posture from individual source bibliographic verification. Policy-sufficient evidence and guardrail enforcement require distinct governance layers — resolved in data without weakening validators.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SPEKTRUM_SOURCE_VERIFICATION_REVIEW_WAVE_1_REPORT.md`, `scripts/validate_source_registry_lock_l1.py` (read-only review).
+
+**Sprint 5N-R validation:**
+
+- Target: registry verification lock — **1** resolution.
+- Registry: **`verification_lock_resolution`** added; **1** verification-ready source documented; **0** verified rows.
+- Validators: **not modified**; all runtimes **PASS**; route count **126**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Claims, content, routes, packages, README, workflows — **not modified** (except registry lock resolution metadata).
+
+**Publication readiness:** **Not ready for publication**. Lock resolution only — no source-locking.
+
+**Recommended next step:** Validator policy update charter to permit **`verified`** rows under **`verification_limited`** posture; then Spektrum verified status transition with guardrail **PASS**.
+
+**Files created:**
+
+- `main/data/SOURCE_REGISTRY_VERIFICATION_LOCK_RESOLUTION_WAVE_1_REPORT.md`
+- `main/data/SPEKTRUM_VERIFIED_STATUS_TRANSITION_WAVE_1_REPORT.md`
+- `main/data/SOURCE_REGISTRY_LOCK_NO_PUBLICATION_NO_SOURCE_LOCK_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_VERIFICATION_LOCK_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `main/data/sources/source_registry.json` — **`verification_lock_resolution`** added; Spektrum notes updated.
+- `DECISION_LOG.md` — Sprint 5N-R entry appended.
+
+**Not modified in this sprint:** `main/data/claims/terminology_claims.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
