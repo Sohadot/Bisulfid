@@ -1,0 +1,226 @@
+{
+  "version": "1.0.0",
+  "sprint": "6B",
+  "site": "bisulfid.com",
+  "governed_by": [
+    "main/data/corpus_route_formula.json",
+    "main/data/page_type_registry.json",
+    "main/data/audience_layer_registry.json",
+    "main/data/reference_layer_registry.json"
+  ],
+  "status": "model_only",
+  "strategic_target": {
+    "minimum_routes": 14000,
+    "languages": 7,
+    "routes_per_language": 2000,
+    "derivation": "dimensional_intersection_with_reference_layer"
+  },
+  "core_dimensions": [
+    "language",
+    "page_type",
+    "audience_layer",
+    "reference_layer",
+    "term_or_entity_class",
+    "source_posture",
+    "claim_posture",
+    "route_state",
+    "indexation_state",
+    "internal_link_role"
+  ],
+  "languages": [
+    { "code": "en", "role": "primary_institutional", "rtl": false, "target_routes": 2000 },
+    { "code": "ar", "role": "expansion", "rtl": true, "target_routes": 2000 },
+    { "code": "de", "role": "expansion", "rtl": false, "target_routes": 2000 },
+    { "code": "fr", "role": "expansion", "rtl": false, "target_routes": 2000 },
+    { "code": "es", "role": "expansion", "rtl": false, "target_routes": 2000 },
+    { "code": "ja", "role": "expansion", "rtl": false, "target_routes": 2000 },
+    { "code": "zh", "role": "expansion", "rtl": false, "target_routes": 2000 }
+  ],
+  "term_entity_classes": [
+    { "class": "term", "estimated_core_inventory": 180, "examples": ["bisulfid", "sulfid", "hydrosulfide"] },
+    { "class": "compound", "estimated_core_inventory": 120, "examples": ["mos2", "fes", "na2s"] },
+    { "class": "concept", "estimated_core_inventory": 40, "examples": ["suffix_boundary", "nomenclature_governance"] },
+    { "class": "comparison_pair", "estimated_core_inventory": 80, "examples": ["bisulfid_vs_bisulfide", "bisulfid_vs_bisulfite"] },
+    { "class": "governance_object", "estimated_core_inventory": 30, "examples": ["source_registry", "claim_registry"] },
+    { "class": "hub_scope", "estimated_core_inventory": 50, "examples": ["terminology_spine", "multilingual_map"] }
+  ],
+  "compatibility_matrix_rules": {
+    "description": "Not all dimension combinations are valid. Generator filters by registries before row emission.",
+    "filters": [
+      "page_type.allowed_audiences includes audience_id",
+      "reference_layer.allowed_page_families includes page_type_id",
+      "reference_layer anti_duplication: distinct purpose vs sibling rows",
+      "audience forbidden_claim_classes respected",
+      "comparison pages require comparison_pair entity + comparison_reference_mode"
+    ]
+  },
+  "page_type_audience_reference_eligibility": [
+    {
+      "page_type_id": "PT_DIFFERENCE_COMPARISON",
+      "priority": "core_seo",
+      "eligible_audiences": ["AUD_CHEMIST", "AUD_RESEARCHER", "AUD_STUDENT", "AUD_ANALYST", "AUD_AI_SYSTEM", "AUD_INVESTOR"],
+      "eligible_reference_layers": ["REF_LINGUISTIC", "REF_RESEARCH", "REF_EDUCATIONAL", "REF_TECHNICAL", "REF_ECONOMIC", "REF_INSTITUTIONAL"],
+      "comparison_modes": ["linguistic_comparison", "technical_comparison", "educational_comparison", "research_comparison", "economic_relevance_comparison", "institutional_terminology_comparison"],
+      "routes_per_language_estimate": 200
+    },
+    {
+      "page_type_id": "PT_TERM_CANONICAL",
+      "eligible_audiences": ["AUD_CHEMIST", "AUD_RESEARCHER", "AUD_STUDENT", "AUD_AI_SYSTEM"],
+      "eligible_reference_layers": ["REF_ACADEMIC", "REF_KNOWLEDGE", "REF_RESEARCH", "REF_TECHNICAL", "REF_LINGUISTIC", "REF_LOGISTICAL"],
+      "routes_per_language_estimate": 400
+    },
+    {
+      "page_type_id": "PT_AUDIENCE_EXPLAINER",
+      "eligible_audiences": ["AUD_CHEMIST", "AUD_RESEARCHER", "AUD_ANALYST", "AUD_GOVERNMENT", "AUD_INVESTOR", "AUD_COMPANY", "AUD_STUDENT", "AUD_AI_SYSTEM"],
+      "eligible_reference_layers": ["REF_KNOWLEDGE", "REF_RESEARCH", "REF_EDUCATIONAL", "REF_ECONOMIC", "REF_LOGISTICAL"],
+      "routes_per_language_estimate": 350
+    },
+    {
+      "page_type_id": "PT_MULTILINGUAL_EQUIV",
+      "eligible_audiences": ["AUD_CHEMIST", "AUD_RESEARCHER", "AUD_STUDENT", "AUD_AI_SYSTEM"],
+      "eligible_reference_layers": ["REF_LINGUISTIC"],
+      "routes_per_language_estimate": 100
+    },
+    {
+      "page_type_id": "PT_MULTILINGUAL_HUB",
+      "eligible_audiences": ["AUD_CHEMIST", "AUD_RESEARCHER", "AUD_STUDENT", "AUD_AI_SYSTEM"],
+      "eligible_reference_layers": ["REF_LINGUISTIC", "REF_INSTITUTIONAL"],
+      "routes_per_language_estimate": 50
+    },
+    {
+      "page_type_id": "PT_COMPOUND_ENTITY",
+      "eligible_audiences": ["AUD_CHEMIST", "AUD_RESEARCHER", "AUD_STUDENT", "AUD_AI_SYSTEM"],
+      "eligible_reference_layers": ["REF_ACADEMIC", "REF_RESEARCH", "REF_TECHNICAL", "REF_LOGISTICAL"],
+      "routes_per_language_estimate": 200
+    },
+    {
+      "page_type_id": "PT_CHILD_SAFE_EDU",
+      "eligible_audiences": ["AUD_CHILD_EDU", "AUD_STUDENT"],
+      "eligible_reference_layers": ["REF_EDUCATIONAL"],
+      "routes_per_language_estimate": 100
+    },
+    {
+      "page_type_id": "PT_AI_READABLE",
+      "eligible_audiences": ["AUD_AI_SYSTEM", "AUD_RESEARCHER"],
+      "eligible_reference_layers": ["REF_TECHNICAL", "REF_RESEARCH"],
+      "routes_per_language_estimate": 100
+    },
+    {
+      "page_type_id": "PT_GLOSSARY_CLUSTER",
+      "eligible_audiences": ["AUD_STUDENT", "AUD_CHEMIST", "AUD_CHILD_EDU"],
+      "eligible_reference_layers": ["REF_KNOWLEDGE", "REF_EDUCATIONAL", "REF_LOGISTICAL"],
+      "routes_per_language_estimate": 200
+    },
+    {
+      "page_type_id": "PT_FOUNDATION",
+      "eligible_audiences": ["ALL"],
+      "eligible_reference_layers": ["REF_INSTITUTIONAL", "REF_KNOWLEDGE"],
+      "routes_per_language_estimate": 50
+    },
+    {
+      "page_type_id": "PT_GOVERNMENT_POLICY",
+      "eligible_audiences": ["AUD_GOVERNMENT", "AUD_RESEARCHER", "AUD_ANALYST"],
+      "eligible_reference_layers": ["REF_INSTITUTIONAL"],
+      "routes_per_language_estimate": 50
+    },
+    {
+      "page_type_id": "PT_INVESTOR_ECONOMIC",
+      "eligible_audiences": ["AUD_INVESTOR", "AUD_ANALYST", "AUD_COMPANY"],
+      "eligible_reference_layers": ["REF_ECONOMIC"],
+      "routes_per_language_estimate": 100
+    },
+    {
+      "page_type_id": "PT_COMPANY_INDUSTRY",
+      "eligible_audiences": ["AUD_COMPANY", "AUD_ANALYST", "AUD_INVESTOR"],
+      "eligible_reference_layers": ["REF_ECONOMIC", "REF_LOGISTICAL"],
+      "routes_per_language_estimate": 100
+    },
+    {
+      "page_type_id": "PT_SOURCE_BOUND",
+      "eligible_audiences": ["AUD_RESEARCHER", "AUD_GOVERNMENT", "AUD_AI_SYSTEM"],
+      "eligible_reference_layers": ["REF_ACADEMIC", "REF_RESEARCH", "REF_TECHNICAL", "REF_INSTITUTIONAL"],
+      "routes_per_language_estimate": 100
+    },
+    {
+      "page_type_id": "PT_CLAIM_BOUNDARY",
+      "eligible_audiences": ["AUD_RESEARCHER", "AUD_GOVERNMENT", "AUD_AI_SYSTEM"],
+      "eligible_reference_layers": ["REF_RESEARCH", "REF_INSTITUTIONAL", "REF_TECHNICAL"],
+      "routes_per_language_estimate": 100
+    },
+    {
+      "page_type_id": "PT_METHODOLOGY_GOVERNANCE",
+      "eligible_audiences": ["AUD_RESEARCHER", "AUD_GOVERNMENT", "AUD_AI_SYSTEM"],
+      "eligible_reference_layers": ["REF_INSTITUTIONAL"],
+      "routes_per_language_estimate": 50
+    },
+    {
+      "page_type_id": "PT_SOURCE_STATUS",
+      "eligible_audiences": ["AUD_RESEARCHER", "AUD_GOVERNMENT", "AUD_AI_SYSTEM"],
+      "eligible_reference_layers": ["REF_INSTITUTIONAL", "REF_RESEARCH"],
+      "routes_per_language_estimate": 50
+    },
+    {
+      "page_type_id": "PT_CLAIM_STATUS",
+      "eligible_audiences": ["AUD_RESEARCHER", "AUD_GOVERNMENT", "AUD_AI_SYSTEM"],
+      "eligible_reference_layers": ["REF_INSTITUTIONAL", "REF_RESEARCH"],
+      "routes_per_language_estimate": 50
+    },
+    {
+      "page_type_id": "PT_CORPUS_STATUS",
+      "eligible_audiences": ["AUD_RESEARCHER", "AUD_GOVERNMENT", "AUD_AI_SYSTEM"],
+      "eligible_reference_layers": ["REF_INSTITUTIONAL"],
+      "routes_per_language_estimate": 50
+    }
+  ],
+  "per_language_bucket_sum": {
+    "note": "Estimates sum to 2000 per language; actual inventory generator applies compatibility filters",
+    "buckets_total": 2000,
+    "grand_total_7_languages": 14000
+  },
+  "intersection_examples": [
+    {
+      "route_intent": "bisulfid + Arabic + researcher + research_reference",
+      "language": "ar",
+      "audience_id": "AUD_RESEARCHER",
+      "reference_layer_id": "REF_RESEARCH",
+      "page_type_id": "PT_AUDIENCE_EXPLAINER",
+      "distinct_from": "bisulfid + Arabic + student + educational_reference"
+    },
+    {
+      "route_intent": "bisulfid + Arabic + student + educational_reference",
+      "language": "ar",
+      "audience_id": "AUD_STUDENT",
+      "reference_layer_id": "REF_EDUCATIONAL",
+      "page_type_id": "PT_CHILD_SAFE_EDU"
+    },
+    {
+      "route_intent": "bisulfid + Arabic + AI agent + technical_reference",
+      "language": "ar",
+      "audience_id": "AUD_AI_SYSTEM",
+      "reference_layer_id": "REF_TECHNICAL",
+      "page_type_id": "PT_AI_READABLE"
+    },
+    {
+      "route_intent": "bisulfid + Arabic + investor + economic_reference",
+      "language": "ar",
+      "audience_id": "AUD_INVESTOR",
+      "reference_layer_id": "REF_ECONOMIC",
+      "page_type_id": "PT_INVESTOR_ECONOMIC"
+    },
+    {
+      "route_intent": "bisulfid vs bisulfide + English + linguistic comparison",
+      "language": "en",
+      "page_type_id": "PT_DIFFERENCE_COMPARISON",
+      "reference_layer_id": "REF_LINGUISTIC",
+      "comparison_reference_mode": "linguistic_comparison"
+    }
+  ],
+  "anti_shallow_duplication": {
+    "rule": "Reject inventory row if reference_layer does not change structure, purpose, evidence standard, vocabulary level, internal links, or claim boundary",
+    "test": "hash(page_type + audience + reference_layer + template_id) must differ from sibling rows"
+  },
+  "production_registry_separation": {
+    "routes_json": "126 existing production routes — unchanged in 6B",
+    "master_inventory": "Future corpus_master_inventory.json holds 14k model rows with production_route_registry: false until merge charter"
+  }
+}

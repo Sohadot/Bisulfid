@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sovereign Route Inventory Row Schema",
+  "version": "1.0.0",
+  "sprint": "6B",
+  "description": "Machine-readable schema for master route inventory rows. Rows live in future corpus_master_inventory.json — not in routes.json until separate merge charter.",
+  "governed_by": [
+    "main/data/corpus_route_formula.json",
+    "main/data/page_type_registry.json",
+    "main/data/audience_layer_registry.json",
+    "main/data/reference_layer_registry.json",
+    "main/data/corpus_production_rules.md"
+  ],
+  "inventory_file_target": "main/data/corpus_master_inventory.json",
+  "inventory_status_default": "model_only",
+  "extends_6a_formula": {
+    "note": "6B adds reference_layer as ninth core dimension without modifying 6A registry files",
+    "route_key_template": "{language}:{term_entity_id}:{page_type_id}:{audience_id}:{reference_layer_id}:{source_posture}:{claim_posture}:{route_state}:{indexation_state}:{internal_link_role}"
+  },
+  "required_fields": [
+    "inventory_row_id",
+    "route_id",
+    "language",
+    "page_type_id",
+    "audience_id",
+    "reference_layer_id",
+    "term_or_entity_class",
+    "term_entity_id",
+    "source_posture",
+    "claim_posture",
+    "route_state",
+    "indexation_state",
+    "internal_link_role",
+    "generation_eligibility",
+    "cohort_id",
+    "path_pattern_id",
+    "production_route_registry": "false"
+  ],
+  "field_definitions": {
+    "inventory_row_id": {
+      "type": "string",
+      "pattern": "^INV-[A-Z0-9-]+$",
+      "description": "Stable inventory row identifier distinct from route_id"
+    },
+    "route_id": {
+      "type": "string",
+      "description": "Future routes.json route_id; unique across full 14k inventory"
+    },
+    "language": {
+      "type": "string",
+      "enum": ["en", "ar", "de", "fr", "es", "ja", "zh"]
+    },
+    "page_type_id": {
+      "type": "string",
+      "description": "From page_type_registry.json page_type_id"
+    },
+    "audience_id": {
+      "type": "string",
+      "description": "From audience_layer_registry.json audience_id"
+    },
+    "reference_layer_id": {
+      "type": "string",
+      "description": "From reference_layer_registry.json reference_layer_id"
+    },
+    "term_or_entity_class": {
+      "type": "string",
+      "enum": ["term", "compound", "concept", "comparison_pair", "governance_object", "hub_scope", "cluster"]
+    },
+    "term_entity_id": {
+      "type": "string",
+      "description": "Ontology term_id, compound_id, comparison_pair_id, or hub_scope_id"
+    },
+    "source_posture": {
+      "type": "string",
+      "enum": [
+        "source_not_required",
+        "source_candidate",
+        "source_verified",
+        "source_locked",
+        "source_required_unresolved",
+        "source_pending"
+      ]
+    },
+    "claim_posture": {
+      "type": "string",
+      "enum": [
+        "claim_not_required",
+        "claim_pending_review",
+        "claim_pending",
+        "claim_approved_narrow",
+        "claim_approved",
+        "claim_forbidden",
+        "claim_required_unresolved"
+      ]
+    },
+    "route_state": {
+      "type": "string",
+      "enum": [
+        "inventory_planned",
+        "draft_eligible",
+        "draft_backed",
+        "source_pending",
+        "claim_pending",
+        "source_verified",
+        "claim_approved",
+        "source_lock_candidate",
+        "publication_blocked",
+        "indexation_blocked"
+      ]
+    },
+    "indexation_state": {
+      "type": "string",
+      "enum": [
+        "noindex_default",
+        "indexation_candidate",
+        "indexation_approved",
+        "indexation_blocked"
+      ]
+    },
+    "internal_link_role": {
+      "type": "string",
+      "enum": [
+        "language_hub",
+        "term_hub",
+        "source_hub",
+        "claim_hub",
+        "audience_hub",
+        "glossary_hub",
+        "comparison_hub",
+        "AI_reference_hub",
+        "education_hub"
+      ]
+    },
+    "generation_eligibility": {
+      "type": "string",
+      "enum": ["eligible", "eligible_after_gates", "blocked_missing_source", "blocked_missing_claim", "blocked_incompatible_intersection", "blocked_thin_duplicate"]
+    },
+    "cohort_id": {
+      "type": "string",
+      "description": "Batch production cohort from SOVEREIGN_ROUTE_COHORT_MODEL_WAVE_1.md"
+    },
+    "path_pattern_id": {
+      "type": "string",
+      "description": "From SOVEREIGN_ROUTE_PATH_PATTERN_MODEL_WAVE_1.md"
+    },
+    "production_route_registry": {
+      "type": "boolean",
+      "const": false,
+      "description": "Must remain false until routes.json merge charter; 6B model only"
+    },
+    "hreflang_group": {
+      "type": "string",
+      "description": "Links language alternates for same dimensional subject"
+    },
+    "rtl": {
+      "type": "boolean",
+      "description": "true for Arabic content layer; English remains institutional base"
+    },
+    "comparison_reference_mode": {
+      "type": "string",
+      "enum": [
+        "linguistic_comparison",
+        "technical_comparison",
+        "educational_comparison",
+        "research_comparison",
+        "economic_relevance_comparison",
+        "institutional_terminology_comparison"
+      ],
+      "description": "Required when page_type_id is PT_DIFFERENCE_COMPARISON"
+    },
+    "source_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "claim_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "indexable": {
+      "type": "boolean",
+      "const": false,
+      "description": "Must remain false in inventory model until launch gate"
+    },
+    "in_sitemap": {
+      "type": "boolean",
+      "const": false
+    },
+    "in_navigation": {
+      "type": "boolean",
+      "const": false
+    },
+    "status": {
+      "type": "string",
+      "const": "inventory_planned",
+      "description": "Distinct from routes.json status; inventory-only posture"
+    }
+  },
+  "route_state_transitions": {
+    "inventory_planned": ["draft_eligible", "publication_blocked"],
+    "draft_eligible": ["draft_backed", "source_pending", "claim_pending"],
+    "draft_backed": ["source_pending", "claim_pending"],
+    "source_pending": ["source_verified", "publication_blocked"],
+    "claim_pending": ["claim_approved", "publication_blocked"],
+    "source_verified": ["source_lock_candidate", "draft_eligible"],
+    "claim_approved": ["draft_eligible", "indexation_blocked"],
+    "source_lock_candidate": ["publication_blocked"],
+    "publication_blocked": ["draft_eligible"],
+    "indexation_blocked": ["indexation_candidate"]
+  },
+  "indexation_state_rules": {
+    "noindex_default": "All new inventory rows start here",
+    "indexation_candidate": "Requires source_verified + claim_approved + draft_backed + validator pass",
+    "indexation_approved": "Owner launch charter only; enables future indexable true in routes.json",
+    "indexation_blocked": "Missing gates; explicit block"
+  },
+  "anti_fake_rules": [
+    "Reject row if required_fields incomplete",
+    "Reject row if page_type not in reference_layer allowed_page_families",
+    "Reject row if audience not in page_type allowed_audiences",
+    "Reject row if reference_layer anti_duplication_rule violated",
+    "Reject row if indexable true in inventory model",
+    "Reject row if production_route_registry true without merge charter",
+    "Reject row if comparison page lacks comparison_reference_mode and both entity sides"
+  ],
+  "existing_production_routes": {
+    "registry_file": "main/data/routes.json",
+    "count": 126,
+    "merge_policy": "Existing rows remain authoritative; inventory model adds future rows only via charter"
+  }
+}
