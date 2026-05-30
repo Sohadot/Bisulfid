@@ -3032,3 +3032,41 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 6C entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, all `main/content/**` pages, `main/data/sources/source_registry.json`, `main/data/claims/`, 6A/6B registry files, automation scripts, workflows, root `README.md`, package files, deployment configs, generated output.
+
+---
+
+### 2026-05-30 — First Governed Public Foundation Draft Cohort Completed
+
+**Decision:** Create COHORT_01 foundation draft cohort as pre-route non-public English drafts with manifest, blueprints, and knowledge reliability assignments — without modifying production routes.
+
+**Summary:** Sprint **6D** created **15** English foundation drafts at `main/content/en/pages/foundation/` under **`SOVEREIGN_FOUNDATION_COHORT_01_MANIFEST.json`** and route blueprints. Pages cover sovereign introduction, institutional purpose, methodology, source/claim policy, knowledge reliability, multilingual/reference/audience layers, chemical-language governance, AI-readable and child-safe policies, economic restrictions, corpus status, and launch status. Each draft includes **reference_layer_id**, **evidence_grade**, **knowledge_reliability_level**, excluded claim classes, and publication blockers per 6C schema. **`routes.json` unchanged** (126 routes); drafts are pre-route pending merge charter. Multilingual expansion documented for ar/de/fr/es/ja/zh.
+
+**Rationale:** Move from architecture-only to visible sovereign foundation construction while preserving publication locks. Pre-route draft pattern is schema-safe — L1 validators unchanged.
+
+**Doctrine reference:** `SOVEREIGN_CORPUS_GENERATOR_SCHEMA_WAVE_1.json`, `SOVEREIGN_TEMPLATE_CONTRACT_MODEL_WAVE_1.json`, `SOVEREIGN_FOUNDATION_COHORT_01_MANIFEST.json`.
+
+**Sprint 6D validation:**
+
+- Target: **15** foundation drafts + manifest/blueprints.
+- routes.json: **not modified**; production_can_safely_proceed: **no**.
+- All L1/L2 runtimes **PASS**.
+
+**Publication readiness:** **Not ready for publication**. Pre-route foundation drafts only.
+
+**Recommended next step:** Route merge charter for COHORT_01 blueprints; multilingual foundation expansion; Sprint 6E internal-link wiring.
+
+**Files created:**
+
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_MANIFEST.json`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_ROUTE_BLUEPRINTS.json`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_INTERNAL_LINK_MODEL.md`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_KNOWLEDGE_RELIABILITY_ASSIGNMENT.md`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_NO_PUBLICATION_GUARDRAIL.md`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_VALIDATION_REPORT.md`
+- `main/content/en/pages/foundation/` — **15** non-public draft pages
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 6D entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/sources/source_registry.json`, `main/data/claims/`, automation scripts, workflows, root `README.md`, package files, generated HTML.

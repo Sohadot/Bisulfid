@@ -1,0 +1,148 @@
+{
+  "version": "1.0.0",
+  "sprint": "6D",
+  "cohort_id": "COHORT_01_FOUNDATION_GOV",
+  "site": "bisulfid.com",
+  "status": "draft_cohort_created",
+  "governed_by": [
+    "main/data/SOVEREIGN_CORPUS_GENERATOR_SCHEMA_WAVE_1.json",
+    "main/data/SOVEREIGN_TEMPLATE_CONTRACT_MODEL_WAVE_1.json",
+    "main/data/corpus_production_rules.md"
+  ],
+  "production_route_registry": false,
+  "language_priority": ["en", "ar", "de", "fr", "es", "ja", "zh"],
+  "language_this_sprint": "en",
+  "page_count": 15,
+  "template_id": "TPL_FOUNDATION_GOV_V1",
+  "page_type_id": "PT_FOUNDATION",
+  "default_posture": {
+    "status": "draft",
+    "publication_status": "non_public",
+    "indexable": false,
+    "in_sitemap": false,
+    "in_navigation": false,
+    "noindex_default": true,
+    "knowledge_reliability_level": "L2_draft_cautious",
+    "evidence_grade": "claim_not_required",
+    "source_posture": "source_not_required",
+    "claim_posture": "claim_not_required",
+    "route_state": "draft_backed",
+    "indexation_state": "noindex_default",
+    "internal_link_role": "language_hub"
+  },
+  "pages": [
+    {
+      "theme_id": 1,
+      "route_id": "en_foundation_sovereign_intro",
+      "title": "Sovereign Reference Introduction",
+      "reference_layer_id": "REF_KNOWLEDGE",
+      "content_file": "main/content/en/pages/foundation/sovereign-reference-introduction.md"
+    },
+    {
+      "theme_id": 2,
+      "route_id": "en_foundation_institutional_purpose",
+      "title": "Institutional Purpose",
+      "reference_layer_id": "REF_INSTITUTIONAL",
+      "content_file": "main/content/en/pages/foundation/institutional-purpose.md"
+    },
+    {
+      "theme_id": 3,
+      "route_id": "en_foundation_methodology",
+      "title": "Corpus Methodology",
+      "reference_layer_id": "REF_ACADEMIC",
+      "content_file": "main/content/en/pages/foundation/methodology.md"
+    },
+    {
+      "theme_id": 4,
+      "route_id": "en_foundation_source_policy",
+      "title": "Source Policy Overview",
+      "reference_layer_id": "REF_INSTITUTIONAL",
+      "content_file": "main/content/en/pages/foundation/source-policy-overview.md"
+    },
+    {
+      "theme_id": 5,
+      "route_id": "en_foundation_claim_policy",
+      "title": "Claim Policy Overview",
+      "reference_layer_id": "REF_INSTITUTIONAL",
+      "content_file": "main/content/en/pages/foundation/claim-policy-overview.md"
+    },
+    {
+      "theme_id": 6,
+      "route_id": "en_foundation_knowledge_reliability",
+      "title": "Knowledge Reliability Model",
+      "reference_layer_id": "REF_RESEARCH",
+      "content_file": "main/content/en/pages/foundation/knowledge-reliability-model.md"
+    },
+    {
+      "theme_id": 7,
+      "route_id": "en_foundation_multilingual_overview",
+      "title": "Multilingual Corpus Overview",
+      "reference_layer_id": "REF_LINGUISTIC",
+      "content_file": "main/content/en/pages/foundation/multilingual-corpus-overview.md"
+    },
+    {
+      "theme_id": 8,
+      "route_id": "en_foundation_reference_layers",
+      "title": "Reference Layer Overview",
+      "reference_layer_id": "REF_KNOWLEDGE",
+      "content_file": "main/content/en/pages/foundation/reference-layer-overview.md"
+    },
+    {
+      "theme_id": 9,
+      "route_id": "en_foundation_audience_layers",
+      "title": "Audience Layer Overview",
+      "reference_layer_id": "REF_KNOWLEDGE",
+      "content_file": "main/content/en/pages/foundation/audience-layer-overview.md"
+    },
+    {
+      "theme_id": 10,
+      "route_id": "en_foundation_chemical_language_governance",
+      "title": "Chemical-Language Governance Framework",
+      "reference_layer_id": "REF_ACADEMIC",
+      "content_file": "main/content/en/pages/foundation/chemical-language-governance-framework.md"
+    },
+    {
+      "theme_id": 11,
+      "route_id": "en_foundation_ai_readable_policy",
+      "title": "AI-Readable Reference Policy",
+      "reference_layer_id": "REF_TECHNICAL",
+      "content_file": "main/content/en/pages/foundation/ai-readable-reference-policy.md"
+    },
+    {
+      "theme_id": 12,
+      "route_id": "en_foundation_child_safe_policy",
+      "title": "Child-Safe Educational Policy",
+      "reference_layer_id": "REF_EDUCATIONAL",
+      "content_file": "main/content/en/pages/foundation/child-safe-educational-policy.md"
+    },
+    {
+      "theme_id": 13,
+      "route_id": "en_foundation_economic_institutional_restrictions",
+      "title": "Economic and Institutional Claim Restrictions",
+      "reference_layer_id": "REF_ECONOMIC",
+      "content_file": "main/content/en/pages/foundation/economic-institutional-claim-restrictions.md"
+    },
+    {
+      "theme_id": 14,
+      "route_id": "en_foundation_corpus_status",
+      "title": "Corpus Status",
+      "reference_layer_id": "REF_INSTITUTIONAL",
+      "content_file": "main/content/en/pages/foundation/corpus-status.md"
+    },
+    {
+      "theme_id": 15,
+      "route_id": "en_foundation_launch_status",
+      "title": "Launch Status and Non-Public Corpus",
+      "reference_layer_id": "REF_INSTITUTIONAL",
+      "content_file": "main/content/en/pages/foundation/launch-status-non-public-corpus.md"
+    }
+  ],
+  "multilingual_readiness": {
+    "hreflang_group_pattern": "en_foundation_{theme_slug}",
+    "expansion_languages": ["ar", "de", "fr", "es", "ja", "zh"],
+    "expansion_sprint": "6D+ or dedicated foundation localization charter",
+    "rtl_language": "ar"
+  },
+  "routes_json_merge": "deferred_separate_charter",
+  "notes": "Draft files created pre-route. production_route_registry remains false until inventory merge charter."
+}

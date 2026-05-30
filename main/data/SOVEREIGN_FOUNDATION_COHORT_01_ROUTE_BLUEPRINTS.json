@@ -1,0 +1,183 @@
+{
+  "version": "1.0.0",
+  "sprint": "6D",
+  "cohort_id": "COHORT_01_FOUNDATION_GOV",
+  "production_route_registry": false,
+  "blueprint_status": "pre_route_inventory",
+  "path_prefix_en": "/en/foundation/",
+  "routes": [
+    {
+      "route_id": "en_foundation_sovereign_intro",
+      "path": "/en/foundation/sovereign-reference-introduction/",
+      "title": "Sovereign Reference Introduction — bisulfid.com",
+      "h1": "Sovereign Reference Introduction",
+      "content_file": "main/content/en/pages/foundation/sovereign-reference-introduction.md",
+      "page_type_id": "PT_FOUNDATION",
+      "reference_layer_id": "REF_KNOWLEDGE",
+      "internal_link_role": "language_hub",
+      "hreflang_group": "foundation_sovereign_intro"
+    },
+    {
+      "route_id": "en_foundation_institutional_purpose",
+      "path": "/en/foundation/institutional-purpose/",
+      "title": "Institutional Purpose — bisulfid.com",
+      "h1": "Institutional Purpose",
+      "content_file": "main/content/en/pages/foundation/institutional-purpose.md",
+      "page_type_id": "PT_FOUNDATION",
+      "reference_layer_id": "REF_INSTITUTIONAL",
+      "internal_link_role": "language_hub",
+      "hreflang_group": "foundation_institutional_purpose"
+    },
+    {
+      "route_id": "en_foundation_methodology",
+      "path": "/en/foundation/methodology/",
+      "title": "Corpus Methodology — bisulfid.com",
+      "h1": "Corpus Methodology",
+      "content_file": "main/content/en/pages/foundation/methodology.md",
+      "page_type_id": "PT_METHODOLOGY_GOVERNANCE",
+      "reference_layer_id": "REF_ACADEMIC",
+      "internal_link_role": "language_hub",
+      "hreflang_group": "foundation_methodology"
+    },
+    {
+      "route_id": "en_foundation_source_policy",
+      "path": "/en/foundation/source-policy/",
+      "title": "Source Policy Overview — bisulfid.com",
+      "h1": "Source Policy Overview",
+      "content_file": "main/content/en/pages/foundation/source-policy-overview.md",
+      "page_type_id": "PT_METHODOLOGY_GOVERNANCE",
+      "reference_layer_id": "REF_INSTITUTIONAL",
+      "internal_link_role": "source_hub",
+      "hreflang_group": "foundation_source_policy"
+    },
+    {
+      "route_id": "en_foundation_claim_policy",
+      "path": "/en/foundation/claim-policy/",
+      "title": "Claim Policy Overview — bisulfid.com",
+      "h1": "Claim Policy Overview",
+      "content_file": "main/content/en/pages/foundation/claim-policy-overview.md",
+      "page_type_id": "PT_METHODOLOGY_GOVERNANCE",
+      "reference_layer_id": "REF_INSTITUTIONAL",
+      "internal_link_role": "claim_hub",
+      "hreflang_group": "foundation_claim_policy"
+    },
+    {
+      "route_id": "en_foundation_knowledge_reliability",
+      "path": "/en/foundation/knowledge-reliability/",
+      "title": "Knowledge Reliability Model — bisulfid.com",
+      "h1": "Knowledge Reliability Model",
+      "content_file": "main/content/en/pages/foundation/knowledge-reliability-model.md",
+      "page_type_id": "PT_METHODOLOGY_GOVERNANCE",
+      "reference_layer_id": "REF_RESEARCH",
+      "internal_link_role": "language_hub",
+      "hreflang_group": "foundation_knowledge_reliability"
+    },
+    {
+      "route_id": "en_foundation_multilingual_overview",
+      "path": "/en/foundation/multilingual-corpus/",
+      "title": "Multilingual Corpus Overview — bisulfid.com",
+      "h1": "Multilingual Corpus Overview",
+      "content_file": "main/content/en/pages/foundation/multilingual-corpus-overview.md",
+      "page_type_id": "PT_MULTILINGUAL_HUB",
+      "reference_layer_id": "REF_LINGUISTIC",
+      "internal_link_role": "language_hub",
+      "hreflang_group": "foundation_multilingual_overview"
+    },
+    {
+      "route_id": "en_foundation_reference_layers",
+      "path": "/en/foundation/reference-layers/",
+      "title": "Reference Layer Overview — bisulfid.com",
+      "h1": "Reference Layer Overview",
+      "content_file": "main/content/en/pages/foundation/reference-layer-overview.md",
+      "page_type_id": "PT_FOUNDATION",
+      "reference_layer_id": "REF_KNOWLEDGE",
+      "internal_link_role": "language_hub",
+      "hreflang_group": "foundation_reference_layers"
+    },
+    {
+      "route_id": "en_foundation_audience_layers",
+      "path": "/en/foundation/audience-layers/",
+      "title": "Audience Layer Overview — bisulfid.com",
+      "h1": "Audience Layer Overview",
+      "content_file": "main/content/en/pages/foundation/audience-layer-overview.md",
+      "page_type_id": "PT_FOUNDATION",
+      "reference_layer_id": "REF_KNOWLEDGE",
+      "internal_link_role": "audience_hub",
+      "hreflang_group": "foundation_audience_layers"
+    },
+    {
+      "route_id": "en_foundation_chemical_language_governance",
+      "path": "/en/foundation/chemical-language-governance/",
+      "title": "Chemical-Language Governance — bisulfid.com",
+      "h1": "Chemical-Language Governance Framework",
+      "content_file": "main/content/en/pages/foundation/chemical-language-governance-framework.md",
+      "page_type_id": "PT_METHODOLOGY_GOVERNANCE",
+      "reference_layer_id": "REF_ACADEMIC",
+      "internal_link_role": "term_hub",
+      "hreflang_group": "foundation_chemical_language_governance"
+    },
+    {
+      "route_id": "en_foundation_ai_readable_policy",
+      "path": "/en/foundation/ai-readable-policy/",
+      "title": "AI-Readable Reference Policy — bisulfid.com",
+      "h1": "AI-Readable Reference Policy",
+      "content_file": "main/content/en/pages/foundation/ai-readable-reference-policy.md",
+      "page_type_id": "PT_METHODOLOGY_GOVERNANCE",
+      "reference_layer_id": "REF_TECHNICAL",
+      "internal_link_role": "AI_reference_hub",
+      "hreflang_group": "foundation_ai_readable_policy"
+    },
+    {
+      "route_id": "en_foundation_child_safe_policy",
+      "path": "/en/foundation/child-safe-policy/",
+      "title": "Child-Safe Educational Policy — bisulfid.com",
+      "h1": "Child-Safe Educational Policy",
+      "content_file": "main/content/en/pages/foundation/child-safe-educational-policy.md",
+      "page_type_id": "PT_METHODOLOGY_GOVERNANCE",
+      "reference_layer_id": "REF_EDUCATIONAL",
+      "internal_link_role": "education_hub",
+      "hreflang_group": "foundation_child_safe_policy"
+    },
+    {
+      "route_id": "en_foundation_economic_institutional_restrictions",
+      "path": "/en/foundation/economic-institutional-restrictions/",
+      "title": "Economic and Institutional Claim Restrictions — bisulfid.com",
+      "h1": "Economic and Institutional Claim Restrictions",
+      "content_file": "main/content/en/pages/foundation/economic-institutional-claim-restrictions.md",
+      "page_type_id": "PT_METHODOLOGY_GOVERNANCE",
+      "reference_layer_id": "REF_ECONOMIC",
+      "internal_link_role": "language_hub",
+      "hreflang_group": "foundation_economic_restrictions"
+    },
+    {
+      "route_id": "en_foundation_corpus_status",
+      "path": "/en/foundation/corpus-status/",
+      "title": "Corpus Status — bisulfid.com",
+      "h1": "Corpus Status",
+      "content_file": "main/content/en/pages/foundation/corpus-status.md",
+      "page_type_id": "PT_CORPUS_STATUS",
+      "reference_layer_id": "REF_INSTITUTIONAL",
+      "internal_link_role": "language_hub",
+      "hreflang_group": "foundation_corpus_status"
+    },
+    {
+      "route_id": "en_foundation_launch_status",
+      "path": "/en/foundation/launch-status/",
+      "title": "Launch Status — bisulfid.com",
+      "h1": "Launch Status and Non-Public Corpus",
+      "content_file": "main/content/en/pages/foundation/launch-status-non-public-corpus.md",
+      "page_type_id": "PT_CORPUS_STATUS",
+      "reference_layer_id": "REF_INSTITUTIONAL",
+      "internal_link_role": "language_hub",
+      "hreflang_group": "foundation_launch_status"
+    }
+  ],
+  "seo_defaults": {
+    "indexable": false,
+    "in_sitemap": false,
+    "in_navigation": false,
+    "robots": "noindex, nofollow",
+    "title_pattern": "{h1} — bisulfid.com",
+    "meta_description_pattern": "Governed foundation reference. Non-public draft."
+  }
+}
