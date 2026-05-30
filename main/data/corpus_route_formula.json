@@ -1,0 +1,196 @@
+{
+  "version": "1.0.0",
+  "sprint": "6A",
+  "site": "bisulfid.com",
+  "governed_by": [
+    "doctrine/SOURCE_POLICY.md",
+    "main/data/corpus_production_rules.md",
+    "main/data/page_type_registry.json",
+    "main/data/audience_layer_registry.json"
+  ],
+  "status": "codified",
+  "strategic_target": {
+    "minimum_governed_pages": 14000,
+    "language_count": 7,
+    "pages_per_language": 2000,
+    "derivation_basis": "dimensional_intersection_not_volume_inflation"
+  },
+  "route_identity_formula": {
+    "description": "A governed route is a unique reference page derived from the intersection of eight dimensions. Each dimension must be explicitly registered; invalid intersections are rejected by validators.",
+    "dimensions": [
+      "language",
+      "term_entity",
+      "page_family",
+      "audience_layer",
+      "source_posture",
+      "claim_posture",
+      "indexation_posture",
+      "internal_link_role"
+    ],
+    "route_key_template": "{language}:{term_entity_id}:{page_type_id}:{audience_id}:{source_posture}:{claim_posture}:{indexation_posture}:{internal_link_role}",
+    "route_id_template": "{language_code}_{page_type_code}_{entity_slug}_{audience_code}",
+    "route_id_rules": [
+      "route_id must be unique across the full inventory",
+      "route_id must be stable once registered; slug changes require migration charter",
+      "language_code uses ISO 639-1 where applicable (en, ar, de, fr, es, ja, zh)",
+      "page_type_code maps to page_type_registry.json page_type_code field",
+      "entity_slug derives from ontology term_id or compound_id slug",
+      "audience_code maps to audience_layer_registry.json audience_code field",
+      "hub and governance routes may omit entity_slug when page_type is hub or status class"
+    ]
+  },
+  "dimensions": {
+    "language": {
+      "registry_ref": "main/data/SOVEREIGN_MULTILINGUAL_ROUTE_MODEL_WAVE_1.md",
+      "allowed_values": ["en", "ar", "de", "fr", "es", "ja", "zh"],
+      "primary_layer": "en",
+      "expansion_layers": ["ar", "de", "fr", "es", "ja", "zh"]
+    },
+    "term_entity": {
+      "registry_ref": "main/data/ontology/sulfur_terms.json",
+      "entity_classes": ["term", "compound", "concept", "comparison_pair", "governance_object"],
+      "required_fields": ["term_entity_id", "canonical_label", "entity_class"]
+    },
+    "page_family": {
+      "registry_ref": "main/data/page_type_registry.json",
+      "count": 19,
+      "core_seo_families": ["PT_DIFFERENCE_COMPARISON", "PT_TERM_CANONICAL", "PT_MULTILINGUAL_EQUIV"]
+    },
+    "audience_layer": {
+      "registry_ref": "main/data/audience_layer_registry.json",
+      "count": 9
+    },
+    "source_posture": {
+      "allowed_values": [
+        "source_not_required",
+        "source_candidate",
+        "source_verified",
+        "source_locked",
+        "source_required_unresolved"
+      ],
+      "registry_ref": "main/data/sources/source_registry.json",
+      "publication_rule": "published pages require source_verified or source_locked for all factual claims"
+    },
+    "claim_posture": {
+      "allowed_values": [
+        "claim_not_required",
+        "claim_pending_review",
+        "claim_approved_narrow",
+        "claim_approved",
+        "claim_forbidden",
+        "claim_required_unresolved"
+      ],
+      "registry_ref": "main/data/claims/",
+      "publication_rule": "published pages require claim_approved or claim_approved_narrow for all registered claim classes"
+    },
+    "indexation_posture": {
+      "allowed_values": [
+        "non_indexable",
+        "indexable_candidate",
+        "indexable_approved",
+        "noindex_governance"
+      ],
+      "default_for_new_routes": "non_indexable",
+      "publication_rule": "indexable_approved only after launch gate and validator pass"
+    },
+    "internal_link_role": {
+      "allowed_values": [
+        "hub_spoke",
+        "term_spine",
+        "comparison_cluster",
+        "source_cluster",
+        "claim_cluster",
+        "audience_cluster",
+        "glossary_cluster",
+        "language_hub",
+        "ai_readable_cluster",
+        "child_safe_cluster",
+        "orphan_forbidden"
+      ],
+      "registry_ref": "main/data/internal_links.json"
+    }
+  },
+  "scale_derivation": {
+    "formula": "total_pages = sum over languages of eligible_intersections(language, term_entity, page_family, audience_layer, source_posture, claim_posture, indexation_posture, internal_link_role)",
+    "target_proof": {
+      "languages": 7,
+      "pages_per_language": 2000,
+      "total": 14000
+    },
+    "illustrative_decomposition_per_language": {
+      "note": "Not every Cartesian product is valid; eligibility filters in page_type_registry and audience_layer_registry reduce combinations.",
+      "example_buckets": [
+        { "bucket": "canonical_terminology_and_compound_reference", "estimated_pages": 400 },
+        { "bucket": "difference_comparison_intent", "estimated_pages": 200 },
+        { "bucket": "multilingual_equivalence_and_hubs", "estimated_pages": 150 },
+        { "bucket": "audience_layer_explainers", "estimated_pages": 350 },
+        { "bucket": "source_bound_and_claim_boundary", "estimated_pages": 200 },
+        { "bucket": "glossary_and_cluster_pages", "estimated_pages": 200 },
+        { "bucket": "governance_methodology_status", "estimated_pages": 100 },
+        { "bucket": "government_investor_company_context", "estimated_pages": 200 },
+        { "bucket": "child_safe_and_ai_readable", "estimated_pages": 200 }
+      ],
+      "sum_per_language": 2000
+    },
+    "intersection_examples": [
+      {
+        "description": "bisulfid + Arabic + researcher",
+        "route_key": "ar:bisulfid:PT_AUDIENCE_EXPLAINER:AUD_RESEARCHER:source_verified:claim_approved_narrow:non_indexable:audience_cluster"
+      },
+      {
+        "description": "bisulfid + Arabic + student",
+        "route_key": "ar:bisulfid:PT_AUDIENCE_EXPLAINER:AUD_STUDENT:source_verified:claim_approved_narrow:non_indexable:audience_cluster"
+      },
+      {
+        "description": "bisulfid + Arabic + AI agent",
+        "route_key": "ar:bisulfid:PT_AI_READABLE:AUD_AI_SYSTEM:source_verified:claim_approved:non_indexable:ai_readable_cluster"
+      },
+      {
+        "description": "bisulfid + German + chemist",
+        "route_key": "de:bisulfid:PT_TERM_CANONICAL:AUD_CHEMIST:source_verified:claim_approved:non_indexable:term_spine"
+      },
+      {
+        "description": "bisulfid + English + investor",
+        "route_key": "en:bisulfid:PT_INVESTOR_ECONOMIC:AUD_INVESTOR:source_candidate:claim_pending_review:non_indexable:audience_cluster"
+      }
+    ]
+  },
+  "generation_eligibility_rules": [
+    "Reject intersection if page_type forbids audience",
+    "Reject intersection if page_type forbids claim class for audience",
+    "Reject intersection if source_posture insufficient for page_type source_requirements",
+    "Reject intersection if claim_posture insufficient for page_type claim_requirements",
+    "Reject thin pages: fewer than required_data_fields satisfied",
+    "Reject duplicate route_key or route_id",
+    "Reject public indexation unless indexation_posture is indexable_approved and all publication locks cleared",
+    "Reject free-form LLM generation; generator must read registries",
+    "Hub pages may omit term_entity but must declare hub_scope in inventory",
+    "Comparison pages require comparison_pair entity with both sides registered"
+  ],
+  "required_data_model_before_generation": {
+    "terms": "main/data/ontology/sulfur_terms.json",
+    "languages": "corpus_route_formula.json dimensions.language",
+    "compounds_entities": "ontology compound and entity records",
+    "audiences": "main/data/audience_layer_registry.json",
+    "page_families": "main/data/page_type_registry.json",
+    "source_states": "main/data/sources/source_registry.json",
+    "claim_states": "main/data/claims/*.json",
+    "route_states": "main/data/routes.json",
+    "indexation_states": "routes.json indexable + sitemap_policy.json",
+    "internal_link_roles": "main/data/internal_links.json"
+  },
+  "phased_execution_refs": {
+    "6B": "14000-route master inventory model",
+    "6C": "schemas/templates/generator design",
+    "6D": "first large governed draft cohort",
+    "6E": "internal-link graph and validation expansion",
+    "6F": "controlled public visibility plan"
+  },
+  "current_corpus_baseline_sprint_6A": {
+    "registered_routes": 126,
+    "draft_backed_routes": 68,
+    "missing_drafts": 58,
+    "publication_lock": "LOCKED",
+    "production_can_safely_proceed": "no"
+  }
+}

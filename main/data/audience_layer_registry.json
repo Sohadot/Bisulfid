@@ -1,0 +1,117 @@
+{
+  "version": "1.0.0",
+  "sprint": "6A",
+  "site": "bisulfid.com",
+  "governed_by": "main/data/corpus_production_rules.md",
+  "status": "codified",
+  "audiences": [
+    {
+      "audience_id": "AUD_CHEMIST",
+      "audience_code": "chemist",
+      "name": "Chemists",
+      "description": "Professional chemists requiring precise terminology, nomenclature context, and source-bound reference.",
+      "allowed_vocabulary_level": "professional_technical",
+      "allowed_claim_classes": ["terminology", "nomenclature", "compound_identity", "comparison"],
+      "forbidden_claim_classes": ["medical", "procurement", "acquisition", "unsourced_market"],
+      "tone_complexity_constraints": "Precise, source-cited, no prescriptive safety or handling.",
+      "internal_link_expectations": ["term_spine", "comparison_cluster", "source_cluster"],
+      "safety_medical_market_restrictions": "No safety instructions, medical claims, or unsourced market data."
+    },
+    {
+      "audience_id": "AUD_RESEARCHER",
+      "audience_code": "researcher",
+      "name": "Researchers",
+      "description": "Academic and industrial researchers needing provenance, claim boundaries, and multilingual terminology context.",
+      "allowed_vocabulary_level": "academic_technical",
+      "allowed_claim_classes": ["terminology", "science", "comparison", "methodology", "source_boundary"],
+      "forbidden_claim_classes": ["medical", "procurement", "investment_advice"],
+      "tone_complexity_constraints": "Evidence-oriented, boundary-aware, citation-first.",
+      "internal_link_expectations": ["term_spine", "source_cluster", "claim_cluster", "ai_readable_cluster"],
+      "safety_medical_market_restrictions": "No safety prescription, medical claims, or unsourced statistics."
+    },
+    {
+      "audience_id": "AUD_ANALYST",
+      "audience_code": "analyst",
+      "name": "Economic analysts",
+      "description": "Analysts interpreting document language, market context, and terminology in economic or trade documents.",
+      "allowed_vocabulary_level": "professional_analytical",
+      "allowed_claim_classes": ["terminology", "document_language", "verified_market_context"],
+      "forbidden_claim_classes": ["unsourced_CAGR", "unsourced_pricing", "procurement_advice", "acquisition_targeting"],
+      "tone_complexity_constraints": "Analytical framing only; market data requires verified market_report sources.",
+      "internal_link_expectations": ["audience_cluster", "comparison_cluster", "investor_context"],
+      "safety_medical_market_restrictions": "Market claims only with verified sources; no investment recommendations."
+    },
+    {
+      "audience_id": "AUD_GOVERNMENT",
+      "audience_code": "government",
+      "name": "Governments and policy users",
+      "description": "Government, regulatory, and policy readers needing document-language and nomenclature reference.",
+      "allowed_vocabulary_level": "institutional_formal",
+      "allowed_claim_classes": ["terminology", "policy_language", "nomenclature_in_documents"],
+      "forbidden_claim_classes": ["safety_instructions", "medical", "unsourced_regulatory_claims"],
+      "tone_complexity_constraints": "Formal, non-prescriptive, source-bound.",
+      "internal_link_expectations": ["gov_policy", "source_cluster", "methodology"],
+      "safety_medical_market_restrictions": "No handling instructions or medical claims."
+    },
+    {
+      "audience_id": "AUD_INVESTOR",
+      "audience_code": "investor",
+      "name": "Investors",
+      "description": "Investors seeking terminology and document-language context in economic materials—not investment advice.",
+      "allowed_vocabulary_level": "professional_financial",
+      "allowed_claim_classes": ["terminology", "verified_market_context", "document_language"],
+      "forbidden_claim_classes": ["investment_recommendation", "acquisition_targeting", "unsourced_CAGR", "unsourced_pricing"],
+      "tone_complexity_constraints": "Context only; no buy/sell or target language.",
+      "internal_link_expectations": ["audience_cluster", "investor_context", "comparison_cluster"],
+      "safety_medical_market_restrictions": "Market data only with verified market_report sources."
+    },
+    {
+      "audience_id": "AUD_COMPANY",
+      "audience_code": "company",
+      "name": "Companies and industry users",
+      "description": "Industry readers needing process vocabulary and document-language reference without procurement claims.",
+      "allowed_vocabulary_level": "professional_industry",
+      "allowed_claim_classes": ["terminology", "process_vocabulary", "document_language"],
+      "forbidden_claim_classes": ["procurement_advice", "acquisition", "unsourced_production_data", "safety_handling"],
+      "tone_complexity_constraints": "Industry-neutral reference; no procurement or safety prescription.",
+      "internal_link_expectations": ["industry_context", "glossary_cluster", "term_spine"],
+      "safety_medical_market_restrictions": "No procurement, production, or safety advice."
+    },
+    {
+      "audience_id": "AUD_STUDENT",
+      "audience_code": "student",
+      "name": "Students",
+      "description": "Secondary and tertiary students learning chemical language and multilingual terminology.",
+      "allowed_vocabulary_level": "educational_intermediate",
+      "allowed_claim_classes": ["terminology", "comparison", "basic_nomenclature"],
+      "forbidden_claim_classes": ["medical", "market", "safety_detail", "industrial_performance"],
+      "tone_complexity_constraints": "Clear, educational, source-cited, no advanced industrial or market claims.",
+      "internal_link_expectations": ["glossary_cluster", "comparison_cluster", "child_safe_cluster"],
+      "safety_medical_market_restrictions": "No safety, medical, or market content."
+    },
+    {
+      "audience_id": "AUD_AI_SYSTEM",
+      "audience_code": "ai_system",
+      "name": "AI systems",
+      "description": "Machine agents consuming structured reference with explicit claim and source boundaries.",
+      "allowed_vocabulary_level": "structured_machine",
+      "allowed_claim_classes": ["terminology", "comparison", "claim_boundary", "source_boundary"],
+      "forbidden_claim_classes": ["unsupported_inference", "hallucinated_facts", "all_prescriptive_classes"],
+      "tone_complexity_constraints": "Structured fields, explicit provenance, no inference beyond registered claims.",
+      "internal_link_expectations": ["ai_readable_cluster", "source_cluster", "claim_cluster"],
+      "safety_medical_market_restrictions": "All factual output must trace to registry entries."
+    },
+    {
+      "audience_id": "AUD_CHILD_EDU",
+      "audience_code": "child_edu",
+      "name": "Children and educational users",
+      "description": "Young learners with strict safety, complexity, and claim limits.",
+      "allowed_vocabulary_level": "child_safe_basic",
+      "allowed_claim_classes": ["basic_terminology", "naming_awareness", "language_curiosity"],
+      "forbidden_claim_classes": ["safety", "medical", "market", "industrial", "toxicity", "procurement"],
+      "tone_complexity_constraints": "Simple, positive, non-frightening, no chemical hazard detail.",
+      "internal_link_expectations": ["child_safe_cluster", "glossary_cluster"],
+      "safety_medical_market_restrictions": "Strict exclusion of safety, medical, market, and industrial content."
+    }
+  ]
+}
