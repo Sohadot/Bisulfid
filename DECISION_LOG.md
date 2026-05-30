@@ -3236,3 +3236,89 @@ Each entry includes:
 
 **Not modified in this sprint:** `main/data/routes.json`, all content drafts, source/claim registries, automation scripts, workflows, root `README.md`, package files.
 
+---
+
+## Sprint 6I — COHORT_02 Full Non-Public Draft Generation Wave
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6i-cohort-02-full-draft-generation-wave`  
+**Base:** main @ Sprint 6H merge  
+**Status:** Complete — 902/902 non-public drafts generated; no route registration
+
+**Summary:** Sprint **6I** executed the first large non-public draft generation wave toward the 14,000-page launch corpus. Deterministic engine `generate_cohort_02_full_draft_wave_v1.py` processed all **902** COHORT_02 English terminology inventory rows with **0 rejections**. Drafts written to `main/content/en/pages/cohort-02-terminology/`. All drafts: `non_public`, `indexable: false`, `source_required_unresolved`, `claim_pending_review`, `[SOURCE REQUIRED]` markers. **routes.json unchanged (141). No public HTML. production_can_safely_proceed remains no.**
+
+**Rationale:** 6H produced executable inventory; 6I converts inventory into governed draft artifacts without publication, route merge, or indexation activation — the required pipeline step before controlled route registration.
+
+**Doctrine reference:** `COHORT_02_EN_TERMINOLOGY_ROUTE_INVENTORY.json`, `SOVEREIGN_TEMPLATE_CONTRACT_MODEL_WAVE_1.json`, `corpus_production_rules.md`, `INITIAL_14000_PAGE_LAUNCH_COHORT_SEQUENCE.md`.
+
+**Sprint 6I validation:**
+
+- Pre-flight and post-run: all L1/L2 runtimes **PASS**
+- Engine: 902 generated, 0 rejected; min word count 311
+- routes.json not modified; sources/claims not modified
+- Initial blocker (registry key `audiences` vs `audience_layers`) resolved in-engine
+
+**Publication readiness:** **Not ready for publication**. Non-public drafts only.
+
+**Recommended next step:** Sprint **6J** — COHORT_02 draft validation charter, internal-link graph planning, controlled route-registration wave planning (still gated by source/claim locks).
+
+**Files created:**
+
+- `scripts/generate_cohort_02_full_draft_wave_v1.py`
+- `main/data/COHORT_02_FULL_DRAFT_MANIFEST.json`
+- `main/data/COHORT_02_FULL_DRAFT_BLUEPRINTS.json`
+- `main/data/COHORT_02_FULL_DRAFT_GENERATION_REPORT.md`
+- `main/data/COHORT_02_FULL_DRAFT_QUALITY_ANTI_THIN_VALIDATION_REPORT.md`
+- `main/data/COHORT_02_FULL_DRAFT_NO_PUBLICATION_NO_ROUTE_REGISTRATION_GUARDRAIL.md`
+- `main/data/COHORT_02_FULL_DRAFT_GENERATION_VALIDATION_REPORT.md`
+- `main/content/en/pages/cohort-02-terminology/*.md` (902 files)
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 6I entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `source_registry.json`, `terminology_claims.json`, workflows, root `README.md`, package files, dependencies.
+
+---
+
+## Sprint 6I — COHORT_02 Full Non-Public Draft Generation Wave
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6i-cohort-02-full-draft-generation-wave`  
+**Base:** main @ Sprint 6H merge  
+**Status:** Complete — 902/902 non-public drafts generated; no route registration
+
+**Summary:** Sprint **6I** executed the first large non-public draft generation wave toward the 14,000-page launch corpus. Deterministic engine `generate_cohort_02_full_draft_wave_v1.py` processed all **902** COHORT_02 English terminology inventory rows with **0 rejections**. Drafts written to `main/content/en/pages/cohort-02-terminology/`. All drafts: `non_public`, `indexable: false`, `source_required_unresolved`, `claim_pending_review`, `[SOURCE REQUIRED]` markers. **routes.json unchanged (141). No public HTML. production_can_safely_proceed remains no.**
+
+**Rationale:** 6H produced executable inventory; 6I converts inventory into governed draft artifacts without publication, route merge, or indexation activation — the required pipeline step before controlled route registration.
+
+**Doctrine reference:** `COHORT_02_EN_TERMINOLOGY_ROUTE_INVENTORY.json`, `SOVEREIGN_TEMPLATE_CONTRACT_MODEL_WAVE_1.json`, `corpus_production_rules.md`, `INITIAL_14000_PAGE_LAUNCH_COHORT_SEQUENCE.md`.
+
+**Sprint 6I validation:**
+
+- Pre-flight and post-run: all L1/L2 runtimes **PASS**
+- Engine: 902 generated, 0 rejected; min word count 311
+- routes.json not modified; sources/claims not modified
+- Initial blocker (registry key `audiences` vs `audience_layers`) resolved in-engine
+
+**Publication readiness:** **Not ready for publication**. Non-public drafts only.
+
+**Recommended next step:** Sprint **6J** — COHORT_02 draft validation charter, internal-link graph planning, controlled route-registration wave planning (still gated by source/claim locks).
+
+**Files created:**
+
+- `scripts/generate_cohort_02_full_draft_wave_v1.py`
+- `main/data/COHORT_02_FULL_DRAFT_MANIFEST.json`
+- `main/data/COHORT_02_FULL_DRAFT_BLUEPRINTS.json`
+- `main/data/COHORT_02_FULL_DRAFT_GENERATION_REPORT.md`
+- `main/data/COHORT_02_FULL_DRAFT_QUALITY_ANTI_THIN_VALIDATION_REPORT.md`
+- `main/data/COHORT_02_FULL_DRAFT_NO_PUBLICATION_NO_ROUTE_REGISTRATION_GUARDRAIL.md`
+- `main/data/COHORT_02_FULL_DRAFT_GENERATION_VALIDATION_REPORT.md`
+- `main/content/en/pages/cohort-02-terminology/*.md` (902 files)
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 6I entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `source_registry.json`, `terminology_claims.json`, workflows, root `README.md`, package files, dependencies.
+
