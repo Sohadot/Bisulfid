@@ -3196,3 +3196,43 @@ Each entry includes:
 
 **Not modified in this sprint:** `main/data/routes.json`, all content drafts, source/claim registries, automation scripts, workflows, root `README.md`, package files, dependencies.
 
+---
+
+## Sprint 6H — COHORT_02 English Terminology Route Inventory Generation
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6h-cohort-02-english-terminology-route-inventory`  
+**Base:** main @ Sprint 6G merge  
+**Status:** Complete — 902 inventory rows; no content; no routes.json merge
+
+**Summary:** Sprint **6H** generated **902** governed COHORT_02 English terminology spine inventory rows in `COHORT_02_EN_TERMINOLOGY_ROUTE_INVENTORY.json` (500–1,000 target). Coverage: 50 entities, 6 page types (canonical, audience explainer, compound, AI-readable, child-safe, comparison), 7 reference layers, 7 audiences. All rows: `inventory_planned`, `noindex_default`, `publication_eligibility: false`, `generation_eligibility: conditional`. **routes.json unchanged (141). No content. No public HTML. production_can_safely_proceed remains no.**
+
+**Rationale:** 6G chartered the 14k launch path with COHORT_02 as first major terminology spine. 6H emits executable inventory without content generation or route publication.
+
+**Doctrine reference:** `SOVEREIGN_ROUTE_INVENTORY_SCHEMA_WAVE_1.json`, `SOVEREIGN_ROUTE_GENERATION_MATRIX_WAVE_1.json`, `ontology/sulfur_terms.json`, `INITIAL_14000_PAGE_LAUNCH_COHORT_SEQUENCE.md`.
+
+**Sprint 6H validation:**
+
+- Pre-flight and post-run: all L1/L2 runtimes **PASS**
+- Inventory: 902 rows; unique route_ids; all safety postures verified
+- routes.json not modified; sources/claims not modified
+
+**Publication readiness:** **Not ready for publication**. Inventory only.
+
+**Recommended next step:** Sprint **6I** — COHORT_02 draft generation charter or selective inventory merge review.
+
+**Files created:**
+
+- `main/data/COHORT_02_EN_TERMINOLOGY_ROUTE_INVENTORY.json`
+- `main/data/COHORT_02_EN_TERMINOLOGY_ROUTE_GENERATION_REPORT.md`
+- `main/data/COHORT_02_EN_TERMINOLOGY_SPINE_MODEL.md`
+- `main/data/COHORT_02_EN_COMPARISON_ROUTE_SUBSET_MODEL.md`
+- `main/data/COHORT_02_NO_PUBLICATION_NO_CONTENT_GENERATION_GUARDRAIL.md`
+- `main/data/COHORT_02_ROUTE_INVENTORY_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 6H entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, all content drafts, source/claim registries, automation scripts, workflows, root `README.md`, package files.
+
