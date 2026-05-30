@@ -2795,3 +2795,40 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-S entry appended.
 
 **Not modified in this sprint:** `main/data/claims/terminology_claims.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-30 — Spektrum Claim Approval Review Wave 1 Completed
+
+**Decision:** Complete claim approval review for `CLM-TERM-MOS2-DE-001` on `de_core_mos2` without content source-locking, marker resolution, or route publication.
+
+**Summary:** Sprint **5N-T** reviewed whether **`CLM-TERM-MOS2-DE-001`** may transition from **`pending_review`** to **`approved`** given bibliographic **`verified`** source **`SRC-SPEKTRUM-MOS2-DE`** (5N-S) and registered narrow terminology boundary (5N-P). Policy assessment: evidence **sufficient** for narrow German Lexikon der Chemie dictionary-entry approval only. Guardrail assessment: **`validate_claim_registry_lock_l1.py`** and **`validate_corpus_claims_l1.py`** **block** `status: approved` while claim registry file remains **`inactive`** — approved transition **deferred**. Added **`claim_approval_lock_resolution`** to `terminology_claims.json`; claim listed in **`approval_ready_claims`**. **`CLM-TERM-MOS2-DE-001`** remains **`pending_review`**; **0** approved claims; `[SOURCE REQUIRED]` markers remain.
+
+**Rationale:** Claim approval review evaluates policy evidence and guardrail gates separately from content source-locking and publication. Policy-sufficient evidence does not override inactive claim registry lock without separate guardrail charter.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SPEKTRUM_CLAIM_BOUNDARY_REGISTRATION_WAVE_1_REPORT.md`, `SPEKTRUM_VERIFIED_TRANSITION_WAVE_1_REPORT.md`.
+
+**Sprint 5N-T validation:**
+
+- Target: `de_core_mos2` — **1** claim approval review.
+- Claim: **`CLM-TERM-MOS2-DE-001`** — approval review documented; **0** approved claims.
+- All runtimes **PASS**; route count **126**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Source registry, content, routes, workflows, packages, README — **not modified** (except `terminology_claims.json`).
+
+**Publication readiness:** **Not ready for publication**. Claim approval review only — no source-locking.
+
+**Recommended next step:** Claim guardrail policy update charter; then controlled **`approved`** transition with guardrail **PASS**.
+
+**Files created:**
+
+- `main/data/SPEKTRUM_CLAIM_APPROVAL_REVIEW_WAVE_1_REPORT.md`
+- `main/data/SPEKTRUM_APPROVED_CLAIM_BOUNDARY_EVIDENCE_WAVE_1.md`
+- `main/data/SPEKTRUM_CLAIM_APPROVAL_NO_SOURCE_LOCK_NO_PUBLICATION_WAVE_1.md`
+- `main/data/SPEKTRUM_CLAIM_APPROVAL_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `main/data/claims/terminology_claims.json` — **`claim_approval_lock_resolution`** added; claim notes updated.
+- `DECISION_LOG.md` — Sprint 5N-T entry appended.
+
+**Not modified in this sprint:** `main/data/sources/source_registry.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
