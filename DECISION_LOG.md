@@ -2757,3 +2757,41 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-R entry appended.
 
 **Not modified in this sprint:** `main/data/claims/terminology_claims.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-30 — Source Registry Guardrail Policy Update and Spektrum Verified Transition Wave 1 Completed
+
+**Decision:** Update source registry guardrail for `verification_limited` bibliographic verification and transition `SRC-SPEKTRUM-MOS2-DE` to `verified` without claim approval, source-locking, or content modification.
+
+**Summary:** Sprint **5N-S** updated **`validate_source_registry_lock_l1.py`** to distinguish bibliographic **`verified`** status from registry/publication activation while preserving **`inactive`** registry file posture and all publication locks. Guardrail permits **`verified`** only when `verification_lock_resolution.resolved_posture` is **`verification_limited`**, source is listed in **`verification_ready_sources`**, and **`source_lock_status`** remains **`candidate`**. **`SRC-SPEKTRUM-MOS2-DE`** transitioned from **`seeded`** to **`verified`**. Registry file remains **`inactive`**; **`source_lock_status`** remains **`candidate`**; **`CLM-TERM-MOS2-DE-001`** unchanged (**`pending_review`**); **0** approved claims; `[SOURCE REQUIRED]` markers remain.
+
+**Rationale:** Sprint **5N-R** resolved lock architecture in data; Sprint **5N-S** implements guardrail policy to allow controlled bibliographic verification without weakening publication, claim, route, or source-lock gates.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SOURCE_REGISTRY_VERIFICATION_LOCK_RESOLUTION_WAVE_1_REPORT.md`, `SPEKTRUM_SOURCE_VERIFICATION_REVIEW_WAVE_1_REPORT.md`.
+
+**Sprint 5N-S validation:**
+
+- Target: guardrail policy + **1** verified transition.
+- Bibliographic verified sources: **1**; registry file **`inactive`**; approved claims **0**.
+- All runtimes **PASS**; route count **126**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Content, routes, claims, workflows, packages, README — **not modified** (except guardrail script and registry row).
+
+**Publication readiness:** **Not ready for publication**. Bibliographic verification only — no source-locking.
+
+**Recommended next step:** Claim approval sprint; content source-lock audit; marker resolution — separate charters.
+
+**Files created:**
+
+- `main/data/SOURCE_REGISTRY_GUARDRAIL_POLICY_UPDATE_WAVE_1_REPORT.md`
+- `main/data/SPEKTRUM_VERIFIED_TRANSITION_WAVE_1_REPORT.md`
+- `main/data/SOURCE_REGISTRY_VERIFICATION_LIMITED_NO_PUBLICATION_WAVE_1.md`
+- `main/data/SOURCE_REGISTRY_GUARDRAIL_POLICY_UPDATE_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `scripts/validate_source_registry_lock_l1.py` — `verification_limited` bibliographic verification policy.
+- `main/data/sources/source_registry.json` — **`SRC-SPEKTRUM-MOS2-DE`** `status: verified`; lock resolution updated.
+- `DECISION_LOG.md` — Sprint 5N-S entry appended.
+
+**Not modified in this sprint:** `main/data/claims/terminology_claims.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
