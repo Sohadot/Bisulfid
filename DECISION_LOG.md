@@ -2950,3 +2950,43 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 6A entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, all `main/content/**` pages, `main/data/sources/source_registry.json`, `main/data/claims/`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, automation scripts, workflows, root `README.md`, package files, deployment configs, generated output.
+
+---
+
+### 2026-05-30 — Sovereign 14,000-Route Master Inventory Model Completed
+
+**Decision:** Create master route inventory model for 14,000+ governed multilingual routes with reference_layer dimension — without modifying production routes or generating content.
+
+**Summary:** Sprint **6B** transformed 6A architecture into executable inventory model artifacts: **`SOVEREIGN_ROUTE_INVENTORY_SCHEMA_WAVE_1.json`** (row schema, route/indexation states, anti-fake rules), **`SOVEREIGN_ROUTE_GENERATION_MATRIX_WAVE_1.json`** (language × page_type × audience × reference_layer matrix), **`reference_layer_registry.json`** (9 reference layers — scope amendment), plus cohort, path pattern, and guardrail documentation. Extended route formula with **`reference_layer`** as ninth dimension. Defined 7 batch cohorts, 10 route states, 4 indexation states, 9 internal-link roles. Target scale **7 × 2,000 = 14,000** routes via dimensional intersection — not repetition. **`routes.json` unchanged** (126 routes); **`production_route_registry: false`** for all model rows; no inventory rows emitted to production.
+
+**Rationale:** Batch-governed corpus production requires machine-readable inventory schema before generator (6C) and draft cohorts (6D). reference_layer prevents shallow duplication — each page exists for distinct field, evidence, and vocabulary posture.
+
+**Doctrine reference:** `corpus_route_formula.json`, `page_type_registry.json`, `audience_layer_registry.json`, `corpus_production_rules.md`, `SOVEREIGN_14000_ROUTE_MASTER_INVENTORY_MODEL.md`.
+
+**Sprint 6B validation:**
+
+- Target: inventory model only — **0** production route changes.
+- Registered routes: **126** (unchanged); `production_can_safely_proceed: no`.
+- All L1/L2 runtimes **PASS**; validators not weakened.
+- Routes, content, sources, claims, workflows — **not modified**.
+
+**Publication readiness:** **Not ready for publication**. Inventory modeling only.
+
+**Recommended next step:** Sprint **6C** — schemas, templates, generator design.
+
+**Files created:**
+
+- `main/data/SOVEREIGN_14000_ROUTE_MASTER_INVENTORY_MODEL.md`
+- `main/data/SOVEREIGN_ROUTE_INVENTORY_SCHEMA_WAVE_1.json`
+- `main/data/SOVEREIGN_ROUTE_GENERATION_MATRIX_WAVE_1.json`
+- `main/data/reference_layer_registry.json`
+- `main/data/SOVEREIGN_ROUTE_COHORT_MODEL_WAVE_1.md`
+- `main/data/SOVEREIGN_ROUTE_PATH_PATTERN_MODEL_WAVE_1.md`
+- `main/data/SOVEREIGN_ROUTE_INVENTORY_NO_PUBLICATION_GUARDRAIL_WAVE_1.md`
+- `main/data/SOVEREIGN_ROUTE_INVENTORY_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 6B entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, all `main/content/**` pages, `main/data/sources/source_registry.json`, `main/data/claims/`, `corpus_route_formula.json`, `page_type_registry.json`, `audience_layer_registry.json`, `corpus_production_rules.md`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, automation scripts, workflows, root `README.md`, package files, deployment configs, generated output.
