@@ -3,7 +3,35 @@
   "site": "bisulfid.com",
   "governed_by": "doctrine/SOURCE_POLICY.md",
   "status": "inactive",
-  "rule": "No terminology claim may be published without a verified source entry in source_registry.json. All claims in this file remain draft or pending_source until sources are locked.",
+  "rule": "No terminology claim may be published without a verified source entry in source_registry.json. All claims in this file remain draft or pending_source until sources are locked. Claim registry file status inactive locks publication use only; individual claim approval is governed separately under claim_approval_lock_resolution.",
+  "claim_approval_lock_resolution": {
+    "sprint": "5N-T",
+    "resolution_date": "2026-05-30",
+    "resolved_posture": "approval_limited",
+    "policy_basis": "doctrine/SOURCE_POLICY.md",
+    "publication_lock": "LOCKED",
+    "claim_registry_file_status": "inactive",
+    "route_publication_lock": "LOCKED",
+    "allows_individual_claim_approved_status": true,
+    "guardrail_transition_pending": true,
+    "guardrail_scripts": [
+      "scripts/validate_claim_registry_lock_l1.py",
+      "scripts/validate_corpus_claims_l1.py"
+    ],
+    "guardrail_blocker_summary": "Sprint 5N-B claim lock: claim registry file status must remain inactive AND any claim row with status approved is rejected. Data-only approved transition blocked until claim guardrail policy update charter.",
+    "approval_ready_claims": [
+      {
+        "claim_id": "CLM-TERM-MOS2-DE-001",
+        "source_ids": ["SRC-SPEKTRUM-MOS2-DE"],
+        "evidence_sprint": "5N-S",
+        "evidence_sufficient": true,
+        "current_status": "pending_review",
+        "target_status_after_guardrail_transition": "approved",
+        "narrow_boundary": "German Lexikon der Chemie dictionary-entry terminology for de_core_mos2 only"
+      }
+    ],
+    "next_charter": "Claim guardrail policy update sprint to permit approval_limited posture with individual approved rows while publication, content, and route locks remain LOCKED"
+  },
   "claims": [
     {
       "claim_id": "CLM-TERM-001",
@@ -269,7 +297,7 @@
       ],
       "risk_level": "medium",
       "last_reviewed": "2026-05-30",
-      "notes": "Claim-boundary registration only (Sprint 5N-P). Not approved for publication. SRC-SPEKTRUM-MOS2-DE remains seeded / not verified; source_lock_status candidate. Spektrum Lexikon der Chemie may support German dictionary-entry terminology framing only — not chemical safety, market, production, procurement, medical, industrial, trade, CAGR, pricing, or acquisition claims. Stronger source verification and separate claim approval required before removing source-required markers."
+      "notes": "Claim-boundary registration Sprint 5N-P. Claim approval review Sprint 5N-T: SRC-SPEKTRUM-MOS2-DE bibliographic verified (5N-S); narrow German dictionary-entry terminology boundary; approval evidence sufficient per SOURCE_POLICY. Status remains pending_review — inactive claim registry lock guardrail blocks approved transition; not content source-locking, marker resolution, or route publication. Excludes chemical safety, market, production, procurement, medical, industrial, trade, CAGR, pricing, and acquisition claims."
     }
   ]
 }
