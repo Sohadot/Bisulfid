@@ -3114,4 +3114,43 @@ Each entry includes:
 
 **Not modified in this sprint:** `main/data/routes.json`, COHORT_01 draft files, `main/data/sources/source_registry.json`, `main/data/claims/`, automation scripts, workflows, root `README.md`, package files, dependencies.
 
+---
+
+## Sprint 6F — COHORT_01 Foundation Route Registration Candidate
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6f-cohort-01-foundation-route-registration`  
+**Base:** main @ Sprint 6E merge  
+**Status:** Complete — 15 COHORT_01 routes registered; no publication
+
+**Summary:** Sprint **6F** registered all **15** COHORT_01 foundation drafts in `routes.json` as **planned**, **draft-backed**, **non-public** routes (126 → **141**). Each route retains `indexable: false`, `in_sitemap: false`, `in_navigation: false`, and `source_required: false`. `required_internal_links` populated from Sprint 6E graph. **No routes published. No public HTML. No sitemap/navigation/indexation activation. production_can_safely_proceed remains no.**
+
+**Rationale:** 6D generated drafts; 6E validated quality and link graph; 6F binds drafts to the governed route registry without publication activation.
+
+**Doctrine reference:** `SOVEREIGN_FOUNDATION_COHORT_01_INTERNAL_LINK_GRAPH.md`, `SOVEREIGN_FOUNDATION_COHORT_01_ROUTE_MAPPING_READINESS.md`, `validate_corpus_routes_l1.py` schema.
+
+**Sprint 6F validation:**
+
+- Pre-flight and post-run: all L1/L2 runtimes **PASS**
+- `validate_corpus_routes_l1.py`: 141 routes, 0 errors
+- `validate_corpus_drafts_l1.py`: 83 draft-backed, 0 errors
+- No draft content modifications required
+
+**Publication readiness:** **Not ready for publication**. Route registration only.
+
+**Recommended next step:** Sprint **6G** or internal link wiring / multilingual foundation expansion if authorized.
+
+**Files created:**
+
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_ROUTE_REGISTRATION_REPORT.md`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_ROUTE_TO_DRAFT_MAPPING.md`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_ROUTE_REGISTRATION_NO_PUBLICATION_GUARDRAIL.md`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_ROUTE_REGISTRATION_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `main/data/routes.json` — 15 COHORT_01 foundation routes added
+- `DECISION_LOG.md` — Sprint 6F entry appended.
+
+**Not modified in this sprint:** COHORT_01 draft content files, `main/data/sources/source_registry.json`, `main/data/claims/`, automation scripts, workflows, root `README.md`, package files, dependencies.
 
