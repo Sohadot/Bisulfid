@@ -2646,3 +2646,40 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 5N-O entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/claims/*.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
+
+---
+
+### 2026-05-30 — Spektrum Claim Boundary Registration Wave 1 Completed
+
+**Decision:** Register narrow non-approved claim boundary for `de_core_mos2` tied to `SRC-SPEKTRUM-MOS2-DE` without claim approval, source verification, or content modification.
+
+**Summary:** Sprint **5N-P** completed claim-boundary registration for Spektrum on `de_core_mos2`. One schema-compliant **`pending_review`** claim **`CLM-TERM-MOS2-DE-001`** was added to `terminology_claims.json`, linking **`SRC-SPEKTRUM-MOS2-DE`** to the German Lexikon der Chemie dictionary-entry terminology boundary only. Explicit exclusions: chemical safety, medical, market, production, procurement, pricing, trade, CAGR, industrial performance, and acquisition claims. The sprint preserved the distinction between claim-boundary registration, claim approval, source verification, source-locking, and publication readiness. `source_registry.json` was not modified; **`SRC-SPEKTRUM-MOS2-DE`** remains `status: seeded`, `source_lock_status: candidate`; registry file remains **`inactive`**. No claims were approved, content pages were not edited, routes were not published, and `[SOURCE REQUIRED]` markers remain unresolved.
+
+**Rationale:** Sprint **5N-O** registered the Spektrum source row without claim linkage. Claim-boundary registration defines what the source may support in future review — without granting approval or resolving draft markers.
+
+**Doctrine reference:** `doctrine/SOURCE_POLICY.md`, `SPEKTRUM_SOURCE_REGISTRY_EXECUTION_WAVE_1_REPORT.md`, `SPEKTRUM_SOURCE_REGISTRY_NO_CLAIM_APPROVAL_WAVE_1.md`.
+
+**Sprint 5N-P validation:**
+
+- Target: `de_core_mos2` — **1** claim boundary registration.
+- Added: **`CLM-TERM-MOS2-DE-001`** — **12** terminology claims; **0** approved.
+- Local runtimes **PASS**; route count **126**; all locks **LOCKED**; `production_can_safely_proceed: no`.
+- Source registry, content, routes, packages, README, workflows — **not modified** (except `terminology_claims.json`).
+
+**Publication readiness:** **Not ready for publication**. Claim-boundary registration only — no source-locking.
+
+**Recommended next step:** Source verification sprint; claim approval sprint; content source-lock audit sprint — separate charters.
+
+**Files created:**
+
+- `main/data/SPEKTRUM_CLAIM_BOUNDARY_REGISTRATION_WAVE_1_REPORT.md`
+- `main/data/SPEKTRUM_SOURCE_TO_CLAIM_BOUNDARY_MAPPING_WAVE_1.md`
+- `main/data/SPEKTRUM_CLAIM_BOUNDARY_NO_APPROVAL_NO_SOURCE_LOCK_WAVE_1.md`
+- `main/data/SPEKTRUM_CLAIM_BOUNDARY_REGISTRATION_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `main/data/claims/terminology_claims.json` — **`CLM-TERM-MOS2-DE-001`** added.
+- `DECISION_LOG.md` — Sprint 5N-P entry appended.
+
+**Not modified in this sprint:** `main/data/sources/source_registry.json`, `main/data/routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `main/data/ontology/sulfur_terms.json`, all `main/content/**` pages, automation scripts, workflows, root `README.md`, package files, deployment configs, Cloudflare configs, generated output.
