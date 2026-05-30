@@ -33,7 +33,7 @@
 | Script | Result |
 | --- | --- |
 | `validate_template_layer_l1.py` | **PASS** (3 legacy skeleton warnings) |
-| `validate_sample_output_l1.py` | **PASS** (no committed HTML — quarantine empty) |
+| `validate_sample_output_l1.py` | **PASS** — no HTML outside `site/_sample/`; quarantine placeholders only |
 | `build.py --dry-run` | **PASS** |
 | `build.py --dry-run --strict` | **PASS** |
 | `corpus_production_runtime_l2.py` | **PASS** |
@@ -61,7 +61,12 @@
 
 ## QA sample note
 
-`site/_sample/` path established. No HTML committed — L1 publication lock scans all `site/**/*.html`. Local uncommitted QA renders documented for next sprint.
+`site/_sample/` path established. No HTML committed. `validate_sample_output_l1.py` scans all of `site/` and **fails** on any `.html` outside `site/_sample/`. Allowed: `site/.gitkeep`, `site/_sample/.gitkeep`. Local uncommitted QA renders documented for next sprint.
+
+## Post-patch validation (6M-B patch)
+
+- Sample output validator now enforces quarantine boundary for all `site/**/*.html`
+- Documentation gaps closed: 100,000+ scale, CI display limits, translation/empty-language boundaries, `source_bar` placement, contract infer rules
 
 ---
 

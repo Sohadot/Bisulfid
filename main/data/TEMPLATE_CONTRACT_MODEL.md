@@ -73,3 +73,24 @@ base.html
 - Missing variable → build strict mode fails (future render sprint)
 - Missing template → build strict mode fails
 - Publication flags true on planned route → build strict mode fails
+
+---
+
+## What templates may never infer
+
+Templates and partials must **never** infer or display as fact:
+
+- Draft or content file existence → publish permission
+- Route registration count → launch authorization
+- Template frame completeness → publication readiness
+- Corpus Governance CI PASS → source approval
+- Corpus Governance CI PASS → claim approval
+- Corpus Governance CI PASS → public launch readiness
+- Empty language directories → published multilingual content
+- `translation_status` other than published → live alternate language route
+- 500-page threshold met → 14,000-page objective satisfied
+- Sample QA render → launch or reduced publication target
+- Source registry entry presence → verified or source-locked content
+- Claim registry entry presence → approved claim for publication
+
+All of the above remain **build-engine and registry responsibilities**; the template frame only renders governed variables supplied at build time.

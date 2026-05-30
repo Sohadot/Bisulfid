@@ -61,3 +61,27 @@ Future sprint adds localized governance strings. Frame uses `{{language}}` slot;
 - [x] No hard-coded LTR-only CSS in templates (no CSS in 6M-B)
 - [ ] RTL typography polish (future UI sprint)
 - [ ] Arabic governance string localization (future)
+
+---
+
+## Translation status boundaries
+
+| `translation_status` (route) | Template behavior |
+| --- | --- |
+| `source_planned`, `draft`, `planned` | Render as non-public; no hreflang emission |
+| `published` (future) | Only then may alternate language links activate under hreflang gate |
+| Missing field | Do not assume published; use route `status` and locks |
+
+Templates must **never** treat `translation_status` alone as permission to render indexable or public output.
+
+---
+
+## Empty language folder boundaries
+
+| Condition | Template / build rule |
+| --- | --- |
+| Language directory exists but has zero published routes | **Not published content** — do not list in nav, sitemap, or hreflang |
+| Language folder with drafts only | Render only under quarantined QA with governance banner |
+| Empty `main/content/{lang}/` tree | **No inference** — absence of files is not a launch blocker display in templates |
+
+**Empty language folders must not be treated as published content.** The frame remains language-ready via `{{language}}` and `{{text_direction}}`; content presence is a separate governed fact from route registry and publication locks.

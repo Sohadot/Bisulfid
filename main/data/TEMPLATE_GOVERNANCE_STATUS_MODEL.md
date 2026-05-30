@@ -69,3 +69,19 @@ Build frame **never** sets `approved` without registry + sprint gate.
 - Source-lock completion
 - Claim approval
 - 500-page launch sufficiency
+
+---
+
+## CI status display limits
+
+| Rule | Limit |
+| --- | --- |
+| CI PASS badge in template | **Forbidden** — templates do not embed CI status |
+| CI summary in governance banner | **Forbidden** — no “validated for launch” language |
+| CI reference in footer | **Informational only** if ever added by build report link — not in 6M-B templates |
+
+**CI PASS does not mean source approval.** Corpus Governance CI validates registry integrity and lock posture; it does not verify individual sources or approve claims.
+
+**CI PASS does not mean publication readiness.** A green CI run confirms the repository respects current locks; it does not authorize indexation, sitemap, navigation, or public launch.
+
+Templates must never render CI success as publication, source, or claim authorization.

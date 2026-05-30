@@ -75,3 +75,17 @@ At 14,000 routes the frame must still enforce:
 - 0 publication inference from file existence
 
 Sprint **6M-B** establishes the frame; build engine + registries enforce the locks.
+
+---
+
+## Fixed launch objective and scale path
+
+| Principle | Statement |
+| --- | --- |
+| **14,000-page minimum** | Fixed launch corpus target — this sprint does **not** downgrade it |
+| **Not a small launch** | Not a glossary pilot, blog, 500-page MVP, or sample-launch substitute |
+| **14,000+ template architecture** | Publication frame must support governed output at **14,000+ pages** |
+| **100,000+ compatibility** | Future expansion to **100,000+ governed pages** remains compatible by design |
+| **Hundreds of thousands** | Later scaling toward **hundreds of thousands** of governed pages is a **design requirement**, not an afterthought |
+
+The template layer uses deterministic slots, per-route lock variables, and language-agnostic shells so the same frame scales from 1,043 routes today to 14,000+ at launch and beyond without weakening publication, indexation, sitemap, navigation, source, or claim boundaries.

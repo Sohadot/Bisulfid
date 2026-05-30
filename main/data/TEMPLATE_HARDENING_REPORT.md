@@ -15,6 +15,14 @@ This sprint is **not** a launch, sample launch, or reduced target exercise. It p
 
 ---
 
+## Publishing pressure and publication visibility
+
+As the governed corpus grows toward **14,000 pages**, **publication visibility pressure increases** — stakeholders will expect rendered output, but **value must become visible only through governed, non-public engineering proofs** until explicit launch authorization.
+
+Template hardening is the **publication frame**: the institutional shell that makes future rendering possible without implying publication readiness. This sprint establishes that frame. It is **still not a public launch**, **still not indexable output**, and **still not a reduced launch target**.
+
+---
+
 ## Strategic constraint
 
 | Rule | Posture |
@@ -50,6 +58,15 @@ This sprint is **not** a launch, sample launch, or reduced target exercise. It p
 | `page.html` | Generic governed page frame |
 | `reference.html` | Reference-layer frame |
 | `term.html` | Terminology frame (COHORT-scale ready) |
+
+### source_bar placement (intentional)
+
+| Layer | Responsibility |
+| --- | --- |
+| `base.html` | Institutional shell and **governance region** (banner, breadcrumbs, nav slot, footer) |
+| Page-type frames (`page.html`, `reference.html`, `term.html`, `home.html`) | Render `{{source_bar}}` where **page context** exists |
+
+`source_bar` is **not** in `base.html` by design: source posture is page-type-specific. This is **not** a missing approval path — the shell surfaces route-level governance; page frames surface source-required and [SOURCE REQUIRED] posture at render time.
 
 ### Hardened partials
 
