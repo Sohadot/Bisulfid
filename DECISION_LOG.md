@@ -3367,4 +3367,47 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 - DECISION_LOG.md — Sprint 6J entry appended.
 
-**Not modified in this sprint:** main/data/routes.json, all 902 COHORT_02 draft files, source_registry.json, 	erminology_claims.json, workflows, root README.md, package files, dependencies.
+**Not modified in this sprint:** main/data/routes.json, all 902 COHORT_02 draft files, source_registry.json, terminology_claims.json, workflows, root README.md, package files, dependencies.
+
+---
+
+## Sprint 6K — COHORT_02 Controlled Route Registration
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6k-cohort-02-controlled-route-registration`  
+**Base:** main @ Sprint 6J merge  
+**Status:** Complete — 902/902 routes registered; no publication
+
+**Summary:** Sprint **6K** registered all **902** COHORT_02 English terminology draft routes in `routes.json` as **planned**, **draft-backed**, **non-public** routes (**141 → 1,043**). Each route: `indexable: false`, `in_sitemap: false`, `in_navigation: false`, `source_required: true`. `required_internal_links` from Sprint 6J graph. **48** comparison routes received disambiguated paths. **No content created. No public HTML. production_can_safely_proceed remains no.**
+
+**Rationale:** 6J validated drafts and link graph; 6K binds the first large terminology cohort to the governed route registry — material progress toward the 14,000-page launch corpus without publication activation.
+
+**Doctrine reference:** `COHORT_02_INTERNAL_LINK_GRAPH.md`, `COHORT_02_ROUTE_REGISTRATION_READINESS_REPORT.md`, `COHORT_02_FULL_DRAFT_MANIFEST.json`.
+
+**Sprint 6K validation:**
+
+- Pre-flight and post-run: all L1/L2 runtimes **PASS**
+- `validate_corpus_routes_l1.py`: 1,043 routes, 0 errors
+- `validate_corpus_drafts_l1.py`: 985 draft-backed, 0 errors
+- L1 slug alignment for `cohort-02-terminology/` route_id filenames
+- No draft content modifications
+
+**Publication readiness:** **Not ready for publication**. Route registration only.
+
+**Recommended next step:** Sprint **6L** — next cohort inventory/draft wave or source/claim boundary work toward publication gates (still gated by `production_can_safely_proceed: no`).
+
+**Files created:**
+
+- `main/data/COHORT_02_CONTROLLED_ROUTE_REGISTRATION_REPORT.md`
+- `main/data/COHORT_02_ROUTE_TO_DRAFT_MAPPING_WAVE_1.md`
+- `main/data/COHORT_02_ROUTE_REGISTRATION_NO_PUBLICATION_GUARDRAIL.md`
+- `main/data/COHORT_02_ROUTE_REGISTRATION_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `main/data/routes.json` — 902 COHORT_02 routes added
+- `scripts/validate_corpus_routes_l1.py` — cohort-02-terminology slug alignment (L1 schema; not publication lock change)
+- `DECISION_LOG.md` — Sprint 6K entry appended
+
+**Not modified in this sprint:** all 902 COHORT_02 draft content files, source_registry.json, terminology_claims.json, workflows, root README.md, package files, dependencies.
+

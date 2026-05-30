@@ -33,6 +33,9 @@ PRE_EXISTING_FORGIVEN = frozenset({
 })
 
 
+COHORT02_CONTENT_PREFIX = "main/content/en/pages/cohort-02-terminology/"
+
+
 def validate_content_file_pattern(route: dict) -> str | None:
     lang = route.get("language")
     cf = route.get("content_file", "")
@@ -45,7 +48,10 @@ def validate_content_file_pattern(route: dict) -> str | None:
     if not cf.endswith(".md"):
         return f"{route['route_id']}: content_file must end with .md"
     slug = cf.split("/")[-1].replace(".md", "")
-    if not re.match(r"^[a-z0-9][a-z0-9\-]*$", slug) and slug not in ("de",):
+    if cf.startswith(COHORT02_CONTENT_PREFIX):
+        if not re.match(r"^[a-z0-9][a-z0-9_\-]*$", slug):
+            return f"{route['route_id']}: content_file slug discipline ({slug})"
+    elif not re.match(r"^[a-z0-9][a-z0-9\-]*$", slug) and slug not in ("de",):
         return f"{route['route_id']}: content_file slug discipline ({slug})"
     return None
 
