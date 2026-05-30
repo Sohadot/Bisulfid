@@ -3411,3 +3411,43 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Not modified in this sprint:** all 902 COHORT_02 draft content files, source_registry.json, terminology_claims.json, workflows, root README.md, package files, dependencies.
 
+---
+
+## Sprint 6L — Route Registry Integrity Gate After COHORT_02 Registration
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6l-route-registry-integrity-gate`  
+**Base:** main @ Sprint 6K merge  
+**Status:** Complete — 1,043/1,043 audited; registry stable; no corrections required
+
+**Summary:** Sprint **6L** audited the full route registry after the **141 → 1,043** COHORT_02 registration jump. **902/902** COHORT_02 route-to-draft mappings confirmed. **Zero** duplicate route_ids, paths, or content_files. **Zero** publication/indexation/sitemap/navigation leakage. **Zero** broken COHORT_02 draft paths. **58** pre-existing missing drafts (pre-COHORT Wave 1) documented — not introduced by 6K. **`routes.json` unchanged.** `production_can_safely_proceed remains no.**
+
+**Rationale:** After registering 902 routes in one wave, the registry must be proven stable before the next large-scale generation wave toward 14,000 pages.
+
+**Doctrine reference:** `COHORT_02_ROUTE_TO_DRAFT_MAPPING_WAVE_1.md`, `COHORT_02_CONTROLLED_ROUTE_REGISTRATION_REPORT.md`, `validate_corpus_routes_l1.py`.
+
+**Sprint 6L validation:**
+
+- Pre-audit and post-run: all L1/L2 runtimes **PASS**
+- Integrity gate: 1,043 routes; 0 collisions; 0 leakage
+- Sprint 6K slug validator scope confirmed narrow (cohort-02-terminology only)
+- No registry or content modifications
+
+**Publication readiness:** **Not ready for publication**. Integrity audit only.
+
+**Recommended next step:** Resume large-scale corpus production — likely **multilingual / reference-layer wave** toward 14,000-page launch target (subject to source/claim gates).
+
+**Files created:**
+
+- `main/data/ROUTE_REGISTRY_INTEGRITY_GATE_WAVE_1_REPORT.md`
+- `main/data/COHORT_02_ROUTE_TO_DRAFT_INTEGRITY_MATRIX.md`
+- `main/data/ROUTE_REGISTRY_DUPLICATE_AND_PATH_COLLISION_AUDIT.md`
+- `main/data/ROUTE_REGISTRY_PUBLICATION_INDEXATION_LEAKAGE_AUDIT.md`
+- `main/data/ROUTE_REGISTRY_INTEGRITY_GATE_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 6L entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, all content drafts, `scripts/validate_corpus_routes_l1.py`, source/claim registries, workflows, root README.md, package files, dependencies.
+
