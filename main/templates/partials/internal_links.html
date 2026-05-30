@@ -1,13 +1,12 @@
-<!-- SKELETON TEMPLATE — not production UI. -->
 <!--
-  partials/internal_links.html — Internal link block partial for bisulfid.com
-  Links are generated from main/data/internal_links.json using route_id references.
-  A link is emitted only if both source and target routes are published
-  and pass link validation (Gate 01).
-  No raw URLs. Route IDs resolve to canonical paths at build time.
+  partials/internal_links.html — Internal link slot (Sprint 6M-B)
+  Links from main/data/internal_links.json — emitted only for published route pairs.
+  No invented links. Empty slot is valid in locked posture.
 -->
-<nav aria-label="Related content">
-  <!-- FUTURE: Link list generated from internal_links.json for the current route -->
-  <!-- FUTURE: Only published target routes produce visible links -->
-  <!-- STATUS: No published routes — no links emitted -->
+<nav class="internal-links" aria-label="Related governed routes">
+  <h2 class="internal-links__heading">Related routes (governed)</h2>
+  {{internal_link_items}}
+  <p class="internal-links__empty" data-empty="{{internal_links_empty}}">
+    No internal links emitted — publication locks active or targets unpublished.
+  </p>
 </nav>

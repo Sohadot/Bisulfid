@@ -1,18 +1,12 @@
-<!-- SKELETON TEMPLATE — not production UI. -->
 <!--
-  partials/safety_notice.html — Safety notice partial for bisulfid.com
-  Required on all Layer 04 safety governance pages before Quality Gate passes.
-  Driven by main/content/shared/disclaimers/safety-disclaimer.md.
-  Blocked claim patterns must never appear here or in any page including this partial:
-    - handling instructions
-    - exposure thresholds as advice
-    - emergency response instructions
-    - dosage or medical advice
-  See main/data/claims/safety_claims.json blocked_claim_patterns.
-  Required on: /sodium-bisulfide/, /hydrogen-sulfide-risk/,
-               /sulfur-safety-context/, /sds-and-sulfur-terms/
+  partials/safety_notice.html — Safety governance slot (Sprint 6M-B)
+  Required on safety-layer routes before publication. No handling instructions.
 -->
-<div role="note" aria-label="Safety notice">
-  <!-- FUTURE: Safety disclaimer content from shared/disclaimers/safety-disclaimer.md -->
-  <!-- STATUS: draft — not attached to any published route yet -->
+<div class="safety-notice" role="note" aria-label="Safety governance notice">
+  <h2 class="safety-notice__heading">Safety governance notice</h2>
+  <p>{{safety_notice_body}}</p>
+  <p class="safety-notice__boundary">
+    This frame does not provide handling instructions, exposure guidance, medical advice,
+    or emergency response. Safety claims require dedicated governance routes and approved sources.
+  </p>
 </div>

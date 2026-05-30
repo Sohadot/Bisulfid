@@ -1,14 +1,12 @@
-<!-- SKELETON TEMPLATE — not production UI. -->
 <!--
-  partials/nav.html — Primary navigation partial for bisulfid.com
-  Navigation items are controlled by main/config/navigation.json.
-  Status is currently inactive: no published routes exist.
-  Navigation may include only published routes that pass Quality Gate.
-  Do not hard-code route URLs here. Route IDs resolve to paths at build time.
+  partials/nav.html — Primary navigation slot (Sprint 6M-B)
+  Navigation items controlled by main/config/navigation.json — currently inactive.
+  Build engine must not emit nav links unless route in_navigation and global gate allow.
 -->
-<nav aria-label="Primary navigation">
-  <!-- FUTURE: Navigation items generated from navigation.json when status is active -->
-  <!-- FUTURE: Active state driven by current route path -->
-  <!-- FUTURE: Language switcher driven from hreflang_groups.json when active -->
-  <!-- STATUS: inactive — navigation.json has no items; no published routes yet -->
+<nav aria-label="Primary navigation" data-navigation-status="{{navigation_status}}">
+  {{navigation_items}}
+  <p class="nav-governance-note" role="note">
+    Navigation inactive — no published routes in production navigation.
+    Not in sitemap. Not indexable. Not a public launch.
+  </p>
 </nav>

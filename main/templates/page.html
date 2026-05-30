@@ -1,0 +1,20 @@
+<!--
+  page.html — Generic governed page frame (Sprint 6M-B)
+  Canonical publication frame for standard pages in the 14,000-page launch corpus.
+  Composes base.html slots via build engine. NOT A LAUNCH TEMPLATE.
+-->
+<article class="page-frame" lang="{{language}}" dir="{{text_direction}}">
+  <header class="page-frame__header">
+    <h1 class="page-frame__title">{{page_h1}}</h1>
+    <p class="page-frame__meta">
+      Page type: generic · Route: {{route_id}} · Status: {{route_status}}
+    </p>
+  </header>
+
+  <div class="page-frame__body">
+    {{page_body}}
+  </div>
+
+  {{source_bar}}
+  {{internal_links}}
+</article>

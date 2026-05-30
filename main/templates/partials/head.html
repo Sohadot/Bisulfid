@@ -1,17 +1,24 @@
-<!-- SKELETON TEMPLATE — not production UI. -->
 <!--
-  partials/head.html — <head> section partial for bisulfid.com
-  CSP meta tag is required before production launch (Gate 06).
-  No external scripts. No tracking pixels. No inline JS.
-  No meta keywords (meta_keywords_allowed: false in seo.json).
+  partials/head.html — Governed <head> metadata block (Sprint 6M-B)
+  Default posture: noindex, nofollow until explicit publication authorization.
+  Canonical is withheld or marked non-public for planned/draft routes.
+  CSP meta required before public launch (Gate 06) — placeholder only here.
 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{page_title}}</title>
+<meta name="description" content="{{meta_description}}">
 <meta name="robots" content="{{robots_directive}}">
-<!-- FUTURE: <title>{{page_title}}</title> -->
-<!-- FUTURE: <meta name="description" content="{{meta_description}}"> -->
-<!-- FUTURE: <link rel="canonical" href="{{canonical_url}}"> -->
-<!-- FUTURE: CSP meta tag (required before launch per doctrine/SECURITY_POLICY.md) -->
-<!-- FUTURE: Stylesheet link (SRI hash pinning required for external CDN resources) -->
-
-<!-- No meta keywords. No tracking. -->
+<!-- default robots posture: noindex, nofollow until publication authorization -->
+<link rel="canonical" href="{{canonical_url}}" data-canonical-mode="{{canonical_mode}}">
+<meta name="bisulfid:route-id" content="{{route_id}}">
+<meta name="bisulfid:route-status" content="{{route_status}}">
+<meta name="bisulfid:publication-posture" content="{{publication_posture}}">
+<meta name="bisulfid:indexable" content="{{indexable_flag}}">
+<meta name="bisulfid:in-sitemap" content="{{in_sitemap_flag}}">
+<meta name="bisulfid:in-navigation" content="{{in_navigation_flag}}">
+<meta name="bisulfid:source-required" content="{{source_required_flag}}">
+<meta name="bisulfid:claim-approval-state" content="{{claim_approval_state}}">
+<!-- CSP placeholder: required before public launch per doctrine/SECURITY_POLICY.md -->
+<meta http-equiv="Content-Security-Policy" content="{{csp_policy_placeholder}}">
+<!-- No meta keywords. No tracking pixels. No external scripts. -->

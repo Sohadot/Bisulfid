@@ -1,26 +1,32 @@
-<!-- SKELETON TEMPLATE — not production UI. -->
 <!--
-  home.html — Homepage template for bisulfid.com
-  Extends base.html.
-  This skeleton reserves the homepage slot only.
-  Content is not yet written. Route is not yet published.
-  Do not generate this page until the route passes Quality Gate.
+  home.html — Gateway homepage frame (Sprint 6M-B)
+  Sovereign sulfur intelligence gateway shell for the 14,000-page launch corpus.
+  Route must remain planned until explicit publication sprint authorization.
 -->
+<!-- SLOT: content body -->
+<article class="home-frame" lang="{{language}}" dir="{{text_direction}}">
+  <header class="home-frame__header">
+    <h1 class="home-frame__title">{{page_h1}}</h1>
+    <p class="home-frame__intro">{{gateway_intro}}</p>
+    <p class="home-frame__corpus-note">
+      Minimum launch corpus: 14,000 governed pages — gateway frame only, not a launch.
+    </p>
+  </header>
 
-<!-- SLOT: Homepage introductory heading (h1) -->
-<!-- FUTURE: Primary heading introducing bisulfid.com as the sovereign sulfur intelligence gateway -->
+  <section class="home-frame__term-map" aria-label="Interactive term map slot">
+    {{interactive_term_map}}
+  </section>
 
-<!-- SLOT: Interactive Term Map -->
-<!-- PARTIAL: interactive_term_map.html -->
-{{interactive_term_map}}
+  <section class="home-frame__language-entry" aria-label="Language entry points">
+    {{language_entry_points}}
+  </section>
 
-<!-- SLOT: Language navigation -->
-<!-- FUTURE: DE (identity priority) and AR (market chain priority) entry points -->
+  <section class="home-frame__claims" aria-label="Governed claim slot">
+    <p class="home-frame__claim-boundary">
+      Introductory claims require source verification. No claim approval implied.
+      {{source_required_flag}}
+    </p>
+  </section>
 
-<!-- SLOT: Source-verified introductory claim block -->
-<!-- FUTURE: Claims sourced and locked in source_registry.json before generation -->
-
-<!-- PARTIAL: internal_links.html -->
-{{internal_links}}
-
-<!-- No inline JS. No external scripts. No tracking. -->
+  {{internal_links}}
+</article>
