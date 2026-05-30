@@ -3032,3 +3032,45 @@ Each entry includes:
 - `DECISION_LOG.md` — Sprint 6C entry appended.
 
 **Not modified in this sprint:** `main/data/routes.json`, all `main/content/**` pages, `main/data/sources/source_registry.json`, `main/data/claims/`, 6A/6B registry files, automation scripts, workflows, root `README.md`, package files, deployment configs, generated output.
+
+---
+
+## Sprint 6D — Sovereign Content Automation Engine v1
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6d-sovereign-content-automation-engine-v1`  
+**Base:** main @ Sprint 6C merge  
+**Status:** Complete — engine v1, COHORT_01 drafts, dry-run manifest; no publication
+
+**Summary:** Sprint **6D** implemented **Content Automation Engine v1** (`scripts/generate_sovereign_foundation_cohort_v1.py`) — registry-constrained, deterministic, stdlib-only draft generation with no LLM. Engine reads 6A–6C governed inputs and produces **COHORT_01_FOUNDATION_GOV** (15 English foundation units): dry-run manifest, draft blueprints, and non-public pre-route markdown under `main/content/en/pages/foundation/`. Each unit receives full metadata assignments (page_type, reference_layer, reliability profile, evidence grade, source/claim posture, indexation state, validation gates). **routes.json unchanged (126). No public routes. No public HTML. production_can_safely_proceed remains no.**
+
+**Rationale:** Corpus architecture (6A), inventory model (6B), and generator schema (6C) enable controlled automation instead of manual page-by-page work. Engine v1 proves the pipeline on a small foundation cohort without publication activation.
+
+**Doctrine reference:** `corpus_production_rules.md`, `SOVEREIGN_CORPUS_GENERATOR_SCHEMA_WAVE_1.json`, `SOVEREIGN_TEMPLATE_CONTRACT_MODEL_WAVE_1.json`, `TPL_FOUNDATION_GOV_V1`, `SOVEREIGN_EVIDENCE_GRADE_REGISTRY_WAVE_1.json`.
+
+**Sprint 6D validation:**
+
+- Pre-flight and post-run: all L1/L2 runtimes **PASS**
+- Engine: 15/15 units validated; `llm_used: false`; `routes_json_modified: false`
+- Validators not weakened; sources/claims not modified
+
+**Publication readiness:** **Not ready for publication**. Pre-route foundation drafts only.
+
+**Recommended next step:** Review COHORT_01 drafts; separate charter for route registration merge if authorized.
+
+**Files created:**
+
+- `scripts/generate_sovereign_foundation_cohort_v1.py`
+- `main/data/SOVEREIGN_CONTENT_AUTOMATION_ENGINE_V1_REPORT.md`
+- `main/data/SOVEREIGN_CONTENT_AUTOMATION_ENGINE_V1_DRY_RUN_MANIFEST.json`
+- `main/data/SOVEREIGN_CONTENT_AUTOMATION_ENGINE_V1_DRAFT_BLUEPRINTS.json`
+- `main/data/SOVEREIGN_CONTENT_AUTOMATION_ENGINE_V1_VALIDATION_REPORT.md`
+- `main/data/SOVEREIGN_CONTENT_AUTOMATION_ENGINE_V1_NO_PUBLICATION_GUARDRAIL.md`
+- `main/content/en/pages/foundation/*.md` (15 non-public draft files)
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 6D entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, `main/data/sources/source_registry.json`, `main/data/claims/`, 6A/6B/6C registry files, workflows, root `README.md`, package files, dependencies, deployment configs.
+
