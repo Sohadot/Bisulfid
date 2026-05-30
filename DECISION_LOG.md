@@ -3074,3 +3074,44 @@ Each entry includes:
 
 **Not modified in this sprint:** `main/data/routes.json`, `main/data/sources/source_registry.json`, `main/data/claims/`, 6A/6B/6C registry files, workflows, root `README.md`, package files, dependencies, deployment configs.
 
+---
+
+## Sprint 6E — Foundation Cohort Validation and Internal Link Graph
+
+**Date:** 2026-05-30  
+**Branch:** `claude/sprint-6e-foundation-cohort-validation-link-graph`  
+**Base:** main @ Sprint 6D merge (PR #67)  
+**Status:** Complete — COHORT_01 validated; internal-link graph modeled; no publication
+
+**Summary:** Sprint **6E** audited all **15** non-public COHORT_01 foundation drafts under `main/content/en/pages/foundation/`, confirmed zero fake-page/thin-page/forbidden-claim risk, verified reliability profile and noindex posture on every unit, and built the governed **internal-link graph** (hubs, spokes, required/optional/prohibited edges, orphan prevention, breadcrumbs). Documented **future route mapping** and **multilingual expansion readiness** without modifying `routes.json`. **No draft content changes required. No public routes. No public HTML. production_can_safely_proceed remains no.**
+
+**Rationale:** 6D produced registry-constrained foundation drafts via Content Automation Engine v1; 6E validates quality and defines link topology before any route registration merge charter.
+
+**Doctrine reference:** `SOVEREIGN_CONTENT_AUTOMATION_ENGINE_V1_DRY_RUN_MANIFEST.json`, `SOVEREIGN_CONTENT_AUTOMATION_ENGINE_V1_DRAFT_BLUEPRINTS.json`, `CORPUS_PRODUCTION_LINK_GRAPH_MODEL.md`, `SOVEREIGN_SEO_INTERNAL_LINKING_SECURITY_MODEL_WAVE_1.md`.
+
+**Sprint 6E validation:**
+
+- Pre-flight and post-run: all L1/L2 runtimes **PASS**
+- COHORT_01 audit: 15/15 pass; 0 draft modifications
+- Internal-link graph: 0 orphans; no live links added
+- Validators not weakened; sources/claims not modified
+
+**Publication readiness:** **Not ready for publication**. Validation and graph modeling only.
+
+**Recommended next step:** Sprint **6F** or route registration merge charter review if authorized.
+
+**Files created:**
+
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_QUALITY_MATRIX.md`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_INTERNAL_LINK_GRAPH.md`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_ROUTE_MAPPING_READINESS.md`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_MULTILINGUAL_EXPANSION_READINESS.md`
+- `main/data/SOVEREIGN_FOUNDATION_COHORT_01_VALIDATION_REPORT.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md` — Sprint 6E entry appended.
+
+**Not modified in this sprint:** `main/data/routes.json`, COHORT_01 draft files, `main/data/sources/source_registry.json`, `main/data/claims/`, automation scripts, workflows, root `README.md`, package files, dependencies.
+
+
