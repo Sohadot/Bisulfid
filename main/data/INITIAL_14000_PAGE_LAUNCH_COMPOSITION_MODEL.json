@@ -1,0 +1,131 @@
+{
+  "version": "1.0.0",
+  "sprint": "6G",
+  "site": "bisulfid.com",
+  "status": "charter_model_only",
+  "governed_by": [
+    "main/data/corpus_route_formula.json",
+    "main/data/SOVEREIGN_ROUTE_GENERATION_MATRIX_WAVE_1.json",
+    "main/data/page_type_registry.json",
+    "main/data/audience_layer_registry.json",
+    "main/data/reference_layer_registry.json",
+    "main/data/INITIAL_14000_PAGE_LAUNCH_CORPUS_CHARTER.md"
+  ],
+  "strategic_target": {
+    "minimum_launch_pages": 14000,
+    "languages": 7,
+    "pages_per_language": 2000,
+    "page_families": 19,
+    "reference_layers": 9,
+    "audience_layers": 9,
+    "long_term_scale": {
+      "phase_2": 100000,
+      "phase_3": 300000
+    }
+  },
+  "current_baseline_sprint_6G": {
+    "routes_json_count": 141,
+    "draft_backed_count": 83,
+    "cohort_01_foundation_en": 15,
+    "gap_to_launch_minimum": 13859,
+    "production_can_safely_proceed": "no"
+  },
+  "languages": [
+    { "code": "en", "role": "primary_institutional", "target_pages": 2000, "launch_priority": 1 },
+    { "code": "de", "role": "expansion_chemical_language", "target_pages": 2000, "launch_priority": 2 },
+    { "code": "fr", "role": "expansion", "target_pages": 2000, "launch_priority": 3 },
+    { "code": "es", "role": "expansion", "target_pages": 2000, "launch_priority": 4 },
+    { "code": "ar", "role": "expansion_rtl", "target_pages": 2000, "launch_priority": 5 },
+    { "code": "ja", "role": "expansion", "target_pages": 2000, "launch_priority": 6 },
+    { "code": "zh", "role": "expansion", "target_pages": 2000, "launch_priority": 7 }
+  ],
+  "per_language_buckets": [
+    { "bucket_id": "canonical_terminology_compound", "target_pages": 400, "primary_page_types": ["PT_TERM_CANONICAL", "PT_COMPOUND_ENTITY"] },
+    { "bucket_id": "difference_comparison", "target_pages": 200, "primary_page_types": ["PT_DIFFERENCE_COMPARISON"] },
+    { "bucket_id": "multilingual_equivalence_hubs", "target_pages": 150, "primary_page_types": ["PT_MULTILINGUAL_EQUIV", "PT_MULTILINGUAL_HUB"] },
+    { "bucket_id": "audience_explainers", "target_pages": 350, "primary_page_types": ["PT_AUDIENCE_EXPLAINER"] },
+    { "bucket_id": "source_claim_boundary", "target_pages": 200, "primary_page_types": ["PT_SOURCE_BOUND", "PT_CLAIM_BOUNDARY", "PT_SOURCE_STATUS", "PT_CLAIM_STATUS"] },
+    { "bucket_id": "glossary_clusters", "target_pages": 200, "primary_page_types": ["PT_GLOSSARY_CLUSTER"] },
+    { "bucket_id": "governance_methodology_status", "target_pages": 100, "primary_page_types": ["PT_FOUNDATION", "PT_METHODOLOGY_GOVERNANCE", "PT_CORPUS_STATUS"] },
+    { "bucket_id": "government_investor_company", "target_pages": 200, "primary_page_types": ["PT_GOVERNMENT_POLICY", "PT_INVESTOR_ECONOMIC", "PT_COMPANY_INDUSTRY"] },
+    { "bucket_id": "child_safe_ai_readable", "target_pages": 200, "primary_page_types": ["PT_CHILD_SAFE_EDU", "PT_AI_READABLE"] }
+  ],
+  "page_type_targets_per_language": [
+    { "page_type_id": "PT_TERM_CANONICAL", "target_pages": 400, "core_seo": true },
+    { "page_type_id": "PT_DIFFERENCE_COMPARISON", "target_pages": 200, "core_seo": true },
+    { "page_type_id": "PT_AUDIENCE_EXPLAINER", "target_pages": 350, "core_seo": false },
+    { "page_type_id": "PT_MULTILINGUAL_EQUIV", "target_pages": 100, "core_seo": true },
+    { "page_type_id": "PT_MULTILINGUAL_HUB", "target_pages": 50, "core_seo": false },
+    { "page_type_id": "PT_COMPOUND_ENTITY", "target_pages": 200, "core_seo": false },
+    { "page_type_id": "PT_GLOSSARY_CLUSTER", "target_pages": 200, "core_seo": false },
+    { "page_type_id": "PT_CHILD_SAFE_EDU", "target_pages": 100, "core_seo": false },
+    { "page_type_id": "PT_AI_READABLE", "target_pages": 100, "core_seo": false },
+    { "page_type_id": "PT_FOUNDATION", "target_pages": 50, "core_seo": false, "note": "COHORT_01 contributes 15 EN; remainder per-language foundation expansion" },
+    { "page_type_id": "PT_METHODOLOGY_GOVERNANCE", "target_pages": 50, "core_seo": false },
+    { "page_type_id": "PT_SOURCE_BOUND", "target_pages": 100, "core_seo": false },
+    { "page_type_id": "PT_CLAIM_BOUNDARY", "target_pages": 100, "core_seo": false },
+    { "page_type_id": "PT_SOURCE_STATUS", "target_pages": 50, "core_seo": false },
+    { "page_type_id": "PT_CLAIM_STATUS", "target_pages": 50, "core_seo": false },
+    { "page_type_id": "PT_CORPUS_STATUS", "target_pages": 50, "core_seo": false },
+    { "page_type_id": "PT_GOVERNMENT_POLICY", "target_pages": 50, "core_seo": false },
+    { "page_type_id": "PT_INVESTOR_ECONOMIC", "target_pages": 100, "core_seo": false },
+    { "page_type_id": "PT_COMPANY_INDUSTRY", "target_pages": 100, "core_seo": false }
+  ],
+  "reference_layer_distribution_launch_total": {
+    "note": "Approximate share of 14,000 launch pages by reference layer after compatibility filters",
+    "REF_ACADEMIC": 1400,
+    "REF_KNOWLEDGE": 2100,
+    "REF_RESEARCH": 1750,
+    "REF_EDUCATIONAL": 1400,
+    "REF_ECONOMIC": 1050,
+    "REF_INSTITUTIONAL": 1750,
+    "REF_TECHNICAL": 1400,
+    "REF_LINGUISTIC": 2100,
+    "REF_LOGISTICAL": 1050
+  },
+  "audience_layer_distribution_launch_total": {
+    "note": "Approximate share of 14,000 launch pages; ALL audience used for foundation/governance only",
+    "AUD_CHEMIST": 2800,
+    "AUD_RESEARCHER": 2800,
+    "AUD_STUDENT": 2100,
+    "AUD_ANALYST": 1050,
+    "AUD_GOVERNMENT": 1050,
+    "AUD_INVESTOR": 1050,
+    "AUD_COMPANY": 1050,
+    "AUD_AI_SYSTEM": 1400,
+    "AUD_CHILD_EDU": 700,
+    "ALL": 100
+  },
+  "term_entity_class_inventory": {
+    "term": { "core_inventory": 180, "pages_per_term_avg": 8 },
+    "compound": { "core_inventory": 120, "pages_per_compound_avg": 10 },
+    "concept": { "core_inventory": 40, "pages_per_concept_avg": 6 },
+    "comparison_pair": { "core_inventory": 80, "pages_per_pair_avg": 5 },
+    "governance_object": { "core_inventory": 30, "pages_per_object_avg": 4 },
+    "hub_scope": { "core_inventory": 50, "pages_per_hub_avg": 12 }
+  },
+  "source_claim_status_classes": {
+    "governance_no_source_required": { "source_posture": "source_not_required", "claim_posture": "claim_not_required", "launch_pages_estimate": 700 },
+    "terminology_source_pending": { "source_posture": "source_required_unresolved", "claim_posture": "claim_pending_review", "launch_pages_estimate": 5600 },
+    "terminology_narrow_approved": { "source_posture": "source_verified", "claim_posture": "claim_approved_narrow", "launch_pages_estimate": 2100 },
+    "research_source_verified": { "source_posture": "source_verified", "claim_posture": "claim_approved", "launch_pages_estimate": 3500 },
+    "economic_source_candidate": { "source_posture": "source_candidate", "claim_posture": "claim_pending_review", "launch_pages_estimate": 1400 },
+    "blocked_unresolved": { "source_posture": "source_required_unresolved", "claim_posture": "claim_forbidden", "launch_pages_estimate": 700, "indexation": "permanently_noindex_until_resolved" }
+  },
+  "compatibility_rules": {
+    "reject_cartesian_product": true,
+    "filters": [
+      "page_type.allowed_audiences includes audience_id",
+      "reference_layer.allowed_page_families includes page_type_id",
+      "reference_layer anti_duplication vs sibling rows",
+      "audience forbidden_claim_classes respected",
+      "comparison pages require comparison_pair entity"
+    ]
+  },
+  "production_registry_separation": {
+    "master_inventory_future": "corpus_master_inventory.json",
+    "routes_json_current": 141,
+    "merge_charter_required": true,
+    "auto_write_routes_json": false
+  }
+}
