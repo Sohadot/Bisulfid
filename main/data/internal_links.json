@@ -109,6 +109,11 @@
       "from_route_id": "acquire",
       "status": "planned",
       "intended_links": ["home", "what_is_bisulfid", "industrial_sulfur_systems"]
+    },
+    {
+      "from_route_id": "en_index_cohort03_spine",
+      "status": "planned",
+      "intended_links": ["en_foundation_sovereign_intro", "en_index_terminology_spine", "en_foundation_1500_rc_posture"]
     }
   ]
 }

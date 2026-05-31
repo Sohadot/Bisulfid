@@ -61,6 +61,8 @@ def implies_claim_approval(text: str) -> bool:
         "no_claims_approved",
         "no approved claim is implied",
         "no science claim is approved",
+        "no science or industry claim is approved",
+        "no industry claim is approved",
         "none approved today",
         "not approved claim is implied",
     ):
