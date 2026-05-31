@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Chemical language control room">
+  <title>Chemical space</title>
+  <rect width="64" height="64" fill="#0a0c0f"/>
+  <defs>
+    <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M8 0H0V8" fill="none" stroke="#3d4654" stroke-width="0.35" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <rect width="64" height="64" fill="url(#grid)"/>
+  <circle cx="32" cy="32" r="8" fill="none" stroke="#c9b037" stroke-width="1" opacity="0.7"/>
+  <circle cx="18" cy="22" r="3" fill="#6b8cae" opacity="0.5"/>
+  <circle cx="46" cy="24" r="3" fill="#6b8cae" opacity="0.5"/>
+  <circle cx="24" cy="44" r="3" fill="#6b8cae" opacity="0.5"/>
+  <circle cx="42" cy="42" r="3" fill="#6b8cae" opacity="0.5"/>
+  <line x1="32" y1="32" x2="18" y2="22" stroke="#3d4654" stroke-width="0.75"/>
+  <line x1="32" y1="32" x2="46" y2="24" stroke="#3d4654" stroke-width="0.75"/>
+  <line x1="32" y1="32" x2="24" y2="44" stroke="#3d4654" stroke-width="0.75"/>
+  <line x1="32" y1="32" x2="42" y2="42" stroke="#3d4654" stroke-width="0.75"/>
+</svg>

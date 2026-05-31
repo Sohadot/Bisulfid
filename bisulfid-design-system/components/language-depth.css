@@ -1,0 +1,69 @@
+/**
+ * Language depth — multilingual layer display.
+ * EN/DE active tokens; AR/FR/ES/JA/ZH reserved for future waves.
+ */
+.bs-language-depth {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--bs-space-unit) * 2);
+  align-items: center;
+}
+
+.bs-language-depth__layer {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--bs-space-unit) * 1);
+  padding: calc(var(--bs-space-unit) * 1) calc(var(--bs-space-unit) * 3);
+  font-size: var(--bs-font-size-term-meta);
+  font-weight: var(--bs-font-weight-term);
+  border-radius: calc(var(--bs-space-unit) * 1);
+  border: 1px solid transparent;
+}
+
+.bs-language-depth__layer--en {
+  background: var(--bs-color-lang-depth-1);
+  color: var(--bs-color-lang-en);
+  border-color: var(--bs-color-lang-en);
+}
+
+.bs-language-depth__layer--de {
+  background: var(--bs-color-lang-depth-2);
+  color: var(--bs-color-lang-de);
+  border-color: var(--bs-color-lang-de);
+}
+
+/* Future languages — inactive until wave authorized */
+.bs-language-depth__layer--ar,
+.bs-language-depth__layer--fr,
+.bs-language-depth__layer--es,
+.bs-language-depth__layer--ja,
+.bs-language-depth__layer--zh {
+  background: transparent;
+  color: var(--bs-color-lang-future);
+  border-color: var(--bs-color-graphite-line);
+  opacity: 0.6;
+}
+
+.bs-language-depth__layer--future::after {
+  content: " (planned)";
+  font-weight: 400;
+  font-size: 0.75em;
+}
+
+.bs-language-depth__depth-indicator {
+  font-size: var(--bs-font-size-source-label);
+  color: var(--bs-color-ink-muted);
+}
+
+/*
+ * RTL readiness: wrap with dir="rtl" and use logical properties.
+ */
+[dir="rtl"] .bs-language-depth {
+  flex-direction: row-reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-language-depth__layer {
+    transition: none;
+  }
+}

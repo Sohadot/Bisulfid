@@ -1,0 +1,56 @@
+/**
+ * Bisulfid motion tokens — respects prefers-reduced-motion via components.
+ */
+:root {
+  /* Duration */
+  --bs-motion-duration-instant: 0ms;
+  --bs-motion-duration-fast: 120ms;
+  --bs-motion-duration-normal: 220ms;
+  --bs-motion-duration-slow: 380ms;
+  --bs-motion-duration-missing-e: 640ms;
+
+  /* Easing */
+  --bs-motion-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --bs-motion-ease-emphasis: cubic-bezier(0.2, 0, 0, 1);
+  --bs-motion-ease-boundary: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /*
+   * Missing-E motion principle:
+   * Subtle horizontal shift at spelling boundary — never implies approval.
+   * Applied only via .bs-motion-missing-e when motion allowed.
+   */
+  --bs-motion-missing-e-offset: 3px;
+  --bs-motion-missing-e-iterations: 2;
+
+  /*
+   * Relation pulse principle:
+   * Low-amplitude opacity pulse on lattice edges — data-bound links only.
+   */
+  --bs-motion-relation-pulse-scale: 1;
+  --bs-motion-relation-pulse-opacity-min: 0.55;
+  --bs-motion-relation-pulse-opacity-max: 1;
+
+  /*
+   * Source-state transition principle:
+   * Color/border transitions when governance class changes — not auto-approval.
+   */
+  --bs-motion-source-transition: border-color var(--bs-motion-duration-normal)
+    var(--bs-motion-ease-standard),
+    background-color var(--bs-motion-duration-normal) var(--bs-motion-ease-standard);
+
+  /*
+   * Reduced-motion fallback:
+   * All animated components must honor @media (prefers-reduced-motion: reduce).
+   */
+  --bs-motion-reduced-duration: 0ms;
+  --bs-motion-reduced-iteration: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --bs-motion-duration-fast: var(--bs-motion-reduced-duration);
+    --bs-motion-duration-normal: var(--bs-motion-reduced-duration);
+    --bs-motion-duration-slow: var(--bs-motion-reduced-duration);
+    --bs-motion-duration-missing-e: var(--bs-motion-reduced-duration);
+  }
+}
