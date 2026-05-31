@@ -50,6 +50,26 @@ def fetch_url(url: str, timeout: int = 20) -> tuple[int | None, str, str | None]
         return None, "", str(exc)
 
 
+INTEGRATION_SAMPLE_DIR_NAME = "_integration_sample"
+
+
+def is_foundation_public_page(path: Path) -> bool:
+    """True for 14,000-page launch foundation pages (excludes integration pilot)."""
+    try:
+        rel = path.relative_to(PUBLIC_DIR)
+    except ValueError:
+        return False
+    if not rel.parts:
+        return True
+    return rel.parts[0] != INTEGRATION_SAMPLE_DIR_NAME
+
+
+def foundation_public_html_files() -> list[Path]:
+    if not PUBLIC_DIR.is_dir():
+        return []
+    return sorted(p for p in PUBLIC_DIR.rglob("index.html") if is_foundation_public_page(p))
+
+
 def validate_local_artifact() -> tuple[list[str], dict]:
     errors: list[str] = []
     stats: dict = {}
@@ -58,10 +78,11 @@ def validate_local_artifact() -> tuple[list[str], dict]:
         errors.append("site/public/ missing")
         return errors, stats
 
-    html_files = sorted(PUBLIC_DIR.rglob("index.html"))
+    html_files = foundation_public_html_files()
     stats["public_html_count"] = len(html_files)
+    stats["integration_sample_count"] = len(list((PUBLIC_DIR / INTEGRATION_SAMPLE_DIR_NAME).rglob("index.html"))) if (PUBLIC_DIR / INTEGRATION_SAMPLE_DIR_NAME).is_dir() else 0
     if len(html_files) != 14000:
-        errors.append(f"expected 14000 public pages, found {len(html_files)}")
+        errors.append(f"expected 14000 public foundation pages, found {len(html_files)}")
 
     slot_files = 0
     md_files = 0

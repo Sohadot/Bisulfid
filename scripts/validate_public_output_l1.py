@@ -19,6 +19,22 @@ PUBLIC_DIR = SITE_DIR / "public"
 SAMPLE_DIR = SITE_DIR / "_sample"
 ROUTES_PATH = ROOT / "main/data/routes.json"
 
+
+def is_foundation_public_page(path: Path) -> bool:
+    try:
+        rel = path.relative_to(PUBLIC_DIR)
+    except ValueError:
+        return False
+    if not rel.parts:
+        return True
+    return rel.parts[0] != "_integration_sample"
+
+
+def foundation_public_html_files() -> list[Path]:
+    if not PUBLIC_DIR.is_dir():
+        return []
+    return sorted(p for p in PUBLIC_DIR.rglob("index.html") if is_foundation_public_page(p))
+
 ALLOWED_PUBLIC_ROOTS = frozenset({"public", "_sample"})
 
 FORBIDDEN = (
@@ -152,17 +168,24 @@ def main() -> int:
             print(f"  ERROR: {e}")
         return 1
 
-    public_files = sorted(PUBLIC_DIR.rglob("index.html"))
-    rel_paths = [str(p.relative_to(ROOT)).replace("\\", "/") for p in public_files]
+    foundation_files = foundation_public_html_files()
+    integration_files = [
+        p for p in PUBLIC_DIR.rglob("index.html")
+        if not is_foundation_public_page(p)
+    ] if PUBLIC_DIR.is_dir() else []
+    rel_paths = [str(p.relative_to(ROOT)).replace("\\", "/") for p in foundation_files]
     if len(rel_paths) != len(set(rel_paths)):
         all_errors.append("duplicate public output paths detected")
 
-    sample_checked = min(50, len(public_files))
-    for path in public_files[:sample_checked]:
+    sample_checked = min(50, len(foundation_files))
+    for path in foundation_files[:sample_checked]:
+        all_errors.extend(validate_public_file(path))
+    for path in integration_files:
         all_errors.extend(validate_public_file(path))
 
-    print(f"Public output pages: {len(public_files)}")
-    print(f"Sample validated: {sample_checked}")
+    print(f"Public foundation pages: {len(foundation_files)}")
+    print(f"Integration sample pages: {len(integration_files)}")
+    print(f"Foundation sample validated: {sample_checked}")
     print(f"Unsafe leakage paths: {len(unsafe)}")
     print(f"Uncontrolled artifacts: {len(uncontrolled)}")
     print()

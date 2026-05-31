@@ -1,19 +1,24 @@
 <!--
-  reference.html — Reference-layer publication frame (Sprint 6M-B)
-  For gateway and reference routes in the 14,000-page governed corpus.
-  Does not imply source-lock or claim approval.
+  reference.html — Reference-layer publication frame (Sprint 6M-B / 6N-B)
+  Reference term-card framing with language depth.
 -->
-<article class="reference-frame" lang="{{language}}" dir="{{text_direction}}">
-  <header class="reference-frame__header">
-    <h1 class="reference-frame__title">{{page_h1}}</h1>
-    <p class="reference-frame__layer">Reference layer: {{route_layer}}</p>
+<article class="reference-frame bs-term-card {{term_card_modifier}}" lang="{{language}}" dir="{{text_direction}}">
+  <header class="reference-frame__header bs-term-card__header">
+    <div class="bs-language-depth" aria-label="Language depth">
+      <span class="bs-language-depth__layer bs-language-depth__layer--{{language}}">{{language_depth_label}}</span>
+      <span class="bs-language-depth__depth-indicator">Reference layer · {{route_layer}}</span>
+    </div>
+    <h1 class="reference-frame__title bs-term-card__title">{{page_h1}}</h1>
+    <p class="reference-frame__layer bs-term-card__route-type">Reference layer: {{route_layer}}</p>
   </header>
 
-  <div class="reference-frame__body">
+  <div class="reference-frame__body bs-term-card__body">
     {{reference_body}}
   </div>
 
-  {{source_bar}}
+  <div class="bs-term-card__source-bar">
+    {{source_bar}}
+  </div>
   {{safety_notice}}
   {{internal_links}}
 </article>

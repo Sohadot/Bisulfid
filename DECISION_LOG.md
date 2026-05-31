@@ -3959,3 +3959,44 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Next sprint:** **6N-B — Design System Template Integration Pilot** (see `main/data/LIVE_SITE_NEXT_ACTIONS.md`).
 
+---
+
+## Bisulfid Design System Template Integration Pilot Completed
+
+**Date:** 2026-05-31  
+**Branch:** `claude/sprint-6n-b-design-system-template-integration-pilot`  
+**Base:** main @ Sprint 6M-I merge (`8e7b80d24`)  
+**Status:** Complete — design-system template integration pilot
+
+**Summary:** Sprint **6N-B** integrated the first layer of the proprietary Bisulfid design system into the publication template layer through a controlled pilot. The sprint began moving the live public foundation away from browser-default rendering toward a sovereign chemical-language control room interface while preserving source-required visibility, source/claim boundaries, noindex posture, and closed sitemap/navigation gates. The sprint addressed raw Markdown and public QA placeholder defects in the controlled integration sample and established the next path toward staged 14,000-page design-system re-rendering. No external dependencies, CDNs, npm packages, tracking scripts, source approvals, claim approvals, sitemap artifacts, or navigation artifacts were introduced.
+
+**Integration pilot:**
+
+- Templates wired to local `/assets/bisulfid-design-system/bisulfid-frame.css`
+- Components: governance banner, source crystal, term card, language depth
+- Build engine: `--render-integration-sample` → `site/public/_integration_sample/` (7 routes)
+- Markdown rendering fixed (inline, headings, table cells)
+- QA placeholder suppressed in integration/public render modes
+- 14,000-page foundation corpus unchanged
+
+**Sprint 6N-B validation:**
+
+- `validate_bisulfid_design_system_integration_l1.py`: **PASS**
+- `validate_live_site_visibility_l1.py`: **PASS**
+- `validate_bisulfid_design_system_l1.py`: **PASS**
+- All prior L1/L2 validators: **PASS**
+
+**Files created/updated:**
+
+- `main/templates/**` — design-system class integration
+- `scripts/build.py` — integration sample render + markdown fixes
+- `scripts/validate_bisulfid_design_system_integration_l1.py`
+- `site/public/assets/bisulfid-design-system/**`
+- `site/public/_integration_sample/**`
+- Sprint reports under `main/data/`
+- `DECISION_LOG.md`
+
+**Not modified:** `routes.json`, registries, `main/content/**`, 14,000 foundation `site/public/**` pages (excluding `_integration_sample/`), `site/_sample/**`, GitHub Pages workflow, package files, dependencies, root README.md.
+
+**Next sprint:** **6N-C — Controlled design-system re-render** (see `main/data/DESIGN_SYSTEM_TEMPLATE_INTEGRATION_NEXT_ACTIONS.md`).
+

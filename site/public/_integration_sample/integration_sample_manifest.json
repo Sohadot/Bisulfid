@@ -1,0 +1,69 @@
+{
+  "sample_id": "design_system_integration_pilot_6N-B",
+  "sprint": "6N-B",
+  "route_count": 7,
+  "timestamp_utc": "2026-05-31T21:20:18.815517+00:00",
+  "output_dir": "site/public/_integration_sample",
+  "indexation_gate": "closed",
+  "sitemap_gate": "closed",
+  "navigation_gate": "closed",
+  "replaces_public_foundation": false,
+  "pages": [
+    {
+      "route_id": "home",
+      "route_path": "/",
+      "language": "en",
+      "output_path": "site/public/_integration_sample/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes"
+    },
+    {
+      "route_id": "what_is_bisulfid",
+      "route_path": "/what-is-bisulfid/",
+      "language": "en",
+      "output_path": "site/public/_integration_sample/what-is-bisulfid/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes"
+    },
+    {
+      "route_id": "de_core_mos2",
+      "route_path": "/de/terminology/molybdenum-disulfide/",
+      "language": "de",
+      "output_path": "site/public/_integration_sample/de/terminology/molybdenum-disulfide/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes"
+    },
+    {
+      "route_id": "en_index_disambiguation_map",
+      "route_path": "/reference/disambiguation-map/",
+      "language": "en",
+      "output_path": "site/public/_integration_sample/reference/disambiguation-map/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes"
+    },
+    {
+      "route_id": "bisulfide_hydrosulfide_sulfide",
+      "route_path": "/bisulfide-hydrosulfide-sulfide/",
+      "language": "en",
+      "output_path": "site/public/_integration_sample/bisulfide-hydrosulfide-sulfide/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes"
+    },
+    {
+      "route_id": "sources",
+      "route_path": "/sources/",
+      "language": "en",
+      "output_path": "site/public/_integration_sample/sources/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes"
+    },
+    {
+      "route_id": "corpus_methodology_overview",
+      "route_path": "/reference/corpus-methodology/",
+      "language": "en",
+      "output_path": "site/public/_integration_sample/reference/corpus-methodology/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes"
+    }
+  ]
+}

@@ -26,6 +26,7 @@ import argparse
 import html
 import json
 import re
+import shutil
 import sys
 from collections import Counter
 from dataclasses import dataclass, field
@@ -122,6 +123,21 @@ PUBLIC_LAUNCH_MANIFEST_NAME = "public_launch_manifest.json"
 PUBLIC_LAUNCH_FOUNDATION_TARGET = 14000
 PUBLIC_LAUNCH_MAX_LIMIT = 14000
 
+# Design-system integration pilot — deterministic 7-route sample (Sprint 6N-B)
+INTEGRATION_SAMPLE_ROUTE_IDS: tuple[str, ...] = (
+    "home",
+    "what_is_bisulfid",
+    "de_core_mos2",
+    "en_index_disambiguation_map",
+    "bisulfide_hydrosulfide_sulfide",
+    "sources",
+    "corpus_methodology_overview",
+)
+INTEGRATION_SAMPLE_DIR = PUBLIC_LAUNCH_FOUNDATION_DIR / "_integration_sample"
+INTEGRATION_SAMPLE_MANIFEST_NAME = "integration_sample_manifest.json"
+DESIGN_SYSTEM_SRC = ROOT / "bisulfid-design-system"
+DESIGN_SYSTEM_PUBLIC_ASSETS = PUBLIC_LAUNCH_FOUNDATION_DIR / "assets" / "bisulfid-design-system"
+
 QA_HTML_PREAMBLE = """<!--
   QUARANTINED NON-PUBLIC QA RENDER — NOT A LAUNCH
   Sprint 6M-C publication-frame proof. Not indexable. Outside sitemap. Outside navigation.
@@ -144,6 +160,15 @@ PUBLIC_LAUNCH_HTML_PREAMBLE = """<!--
   Indexation gate: CLOSED (noindex,nofollow). Sitemap gate: CLOSED. Navigation gate: CLOSED.
   Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved.
   Public visibility does not mean final publication-ready status.
+-->
+"""
+
+INTEGRATION_HTML_PREAMBLE = """<!--
+  DESIGN SYSTEM INTEGRATION SAMPLE — Sprint 6N-B controlled pilot
+  Output: site/public/_integration_sample/ only. Does not replace 14,000-page foundation.
+  Indexation gate: CLOSED (noindex,nofollow). Sitemap gate: CLOSED. Navigation gate: CLOSED.
+  Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved.
+  Bisulfid proprietary design system — local assets only. No external dependencies.
 -->
 """
 
@@ -941,6 +966,35 @@ def highlight_source_required(text: str) -> str:
     )
 
 
+def restore_inline_html_tags(text: str) -> str:
+    return (
+        text.replace("&lt;strong&gt;", "<strong>")
+        .replace("&lt;/strong&gt;", "</strong>")
+        .replace("&lt;code&gt;", "<code>")
+        .replace("&lt;/code&gt;", "</code>")
+        .replace("&lt;mark class=&quot;source-required-marker&quot;&gt;", '<mark class="source-required-marker">')
+        .replace("&lt;/mark&gt;", "</mark>")
+    )
+
+
+def markdown_inline_to_html(text: str) -> str:
+    """Convert inline markdown (bold, code) for gateway intros and short fields."""
+    converted = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
+    converted = re.sub(r"`([^`]+)`", r"<code>\1</code>", converted)
+    converted = highlight_source_required(html.escape(converted))
+    return restore_inline_html_tags(converted)
+
+
+def empty_slot_markup(render_mode: str) -> str:
+    """QA placeholder only in quarantined engineering renders — not public/integration."""
+    if render_mode in ("integration_sample", "public_launch_foundation"):
+        return '<div class="bs-slot-empty" aria-hidden="true"></div>'
+    return (
+        '<p class="slot-empty" data-empty="true">'
+        "Slot reserved — not populated in QA render.</p>"
+    )
+
+
 def markdown_body_to_html(markdown: str) -> str:
     """Minimal markdown-to-HTML for quarantined QA renders (stdlib only)."""
     lines = markdown.splitlines()
@@ -967,7 +1021,13 @@ def markdown_body_to_html(markdown: str) -> str:
         for i, row in enumerate(table_rows):
             cells = [c.strip() for c in row.strip("|").split("|")]
             tag = "th" if i == 0 else "td"
-            out.append("<tr>" + "".join(f"<{tag}>{html.escape(c)}</{tag}>" for c in cells) + "</tr>")
+            rendered_cells = []
+            for c in cells:
+                cell = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", c)
+                cell = highlight_source_required(html.escape(cell))
+                cell = restore_inline_html_tags(cell)
+                rendered_cells.append(cell)
+            out.append("<tr>" + "".join(f"<{tag}>{cell}</{tag}>" for cell in rendered_cells) + "</tr>")
         out.append("</table>")
         in_table = False
         table_rows = []
@@ -997,7 +1057,10 @@ def markdown_body_to_html(markdown: str) -> str:
             level = len(line) - len(line.lstrip("#"))
             level = min(max(level, 1), 6)
             title = line[level:].strip()
-            out.append(f"<h{level}>{html.escape(title)}</h{level}>")
+            title = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", title)
+            title = highlight_source_required(html.escape(title))
+            title = restore_inline_html_tags(title)
+            out.append(f"<h{level}>{title}</h{level}>")
             continue
         if line.lstrip().startswith("- "):
             if not in_ul:
@@ -1007,7 +1070,7 @@ def markdown_body_to_html(markdown: str) -> str:
             item = line.lstrip()[2:].strip()
             item = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", item)
             item = highlight_source_required(html.escape(item))
-            item = item.replace("&lt;strong&gt;", "<strong>").replace("&lt;/strong&gt;", "</strong>")
+            item = restore_inline_html_tags(item)
             out.append(f"<li>{item}</li>")
             continue
         if re.match(r"^\d+\.\s", line.lstrip()):
@@ -1018,7 +1081,7 @@ def markdown_body_to_html(markdown: str) -> str:
             item = re.sub(r"^\d+\.\s", "", line.lstrip())
             item = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", item)
             item = highlight_source_required(html.escape(item))
-            item = item.replace("&lt;strong&gt;", "<strong>").replace("&lt;/strong&gt;", "</strong>")
+            item = restore_inline_html_tags(item)
             out.append(f"<li>{item}</li>")
             continue
 
@@ -1027,8 +1090,7 @@ def markdown_body_to_html(markdown: str) -> str:
         para = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", para)
         para = re.sub(r"`([^`]+)`", r"<code>\1</code>", para)
         para = highlight_source_required(html.escape(para))
-        para = para.replace("&lt;strong&gt;", "<strong>").replace("&lt;/strong&gt;", "</strong>")
-        para = para.replace("&lt;code&gt;", "<code>").replace("&lt;/code&gt;", "</code>")
+        para = restore_inline_html_tags(para)
         out.append(f"<p>{para}</p>")
 
     close_lists()
@@ -1068,7 +1130,7 @@ def build_render_context(
     frame = resolve_frame_template(route.get("template", ""))
     layer = route.get("layer", "reference")
 
-    empty_slot = '<p class="slot-empty" data-empty="true">Slot reserved — not populated in QA render.</p>'
+    empty_slot = empty_slot_markup(render_mode)
     safety_body = ""
     if layer == "safety_governance":
         safety_body = (
@@ -1084,7 +1146,20 @@ def build_render_context(
         "route_path": route.get("path", ""),
         "route_layer": layer,
         "publication_posture": (
-            "public_visible_foundation" if render_mode == "public_launch_foundation" else "non_public"
+            "integration_sample"
+            if render_mode == "integration_sample"
+            else (
+                "public_visible_foundation"
+                if render_mode == "public_launch_foundation"
+                else "non_public"
+            )
+        ),
+        "language_depth_label": language.upper(),
+        "source_crystal_class": (
+            "bs-source-crystal--required" if has_source_markers else "bs-source-crystal--candidate"
+        ),
+        "term_card_modifier": (
+            "bs-term-card--source-required" if has_source_markers else ""
         ),
         "page_title": route.get("title", route["route_id"]),
         "meta_description": route.get("description", ""),
@@ -1108,30 +1183,45 @@ def build_render_context(
         "site_name": "bisulfid.com",
         "copyright_year": str(datetime.now(timezone.utc).year),
         "page_h1": route.get("h1", route.get("title", route["route_id"])),
-        "qa_artifact_flag": "false" if render_mode == "public_launch_foundation" else "true",
+        "qa_artifact_flag": (
+            "false"
+            if render_mode in ("public_launch_foundation", "integration_sample")
+            else "true"
+        ),
         "governance_banner_title": (
-            "Public launch foundation — controlled visibility"
-            if render_mode == "public_launch_foundation"
+            "Design system integration sample — controlled pilot"
+            if render_mode == "integration_sample"
             else (
-                "Non-public release candidate — NOT A LAUNCH"
-                if render_mode == "rc_batch"
-                else "Non-public QA render — NOT A LAUNCH"
+                "Public launch foundation — controlled visibility"
+                if render_mode == "public_launch_foundation"
+                else (
+                    "Non-public release candidate — NOT A LAUNCH"
+                    if render_mode == "rc_batch"
+                    else "Non-public QA render — NOT A LAUNCH"
+                )
             )
         ),
         "governance_banner_body": (
-            "14,000-page public launch foundation. Indexation CLOSED (noindex). "
-            "Sitemap CLOSED. Navigation CLOSED. Source approval not implied. "
-            "Claim approval not implied. [SOURCE REQUIRED] preserved where unresolved."
-            if render_mode == "public_launch_foundation"
+            "Bisulfid design-system template integration pilot (Sprint 6N-B). "
+            "Indexation CLOSED (noindex). Sitemap CLOSED. Navigation CLOSED. "
+            "Source approval not implied. Claim approval not implied. "
+            "[SOURCE REQUIRED] preserved where unresolved."
+            if render_mode == "integration_sample"
             else (
-                "RC Batch 01 under site/_sample/ inside the 14,000-page publication pipeline. "
-                "Not indexable. Not publication-ready. Outside sitemap. Outside navigation. "
-                "Not a reduced launch target."
-                if render_mode == "rc_batch"
+                "14,000-page public launch foundation. Indexation CLOSED (noindex). "
+                "Sitemap CLOSED. Navigation CLOSED. Source approval not implied. "
+                "Claim approval not implied. [SOURCE REQUIRED] preserved where unresolved."
+                if render_mode == "public_launch_foundation"
                 else (
-                    "Quarantined engineering sample under site/_sample/. "
-                    "Not indexable. Outside sitemap. Outside navigation. "
-                    "14,000-page governed launch corpus frame proof only."
+                    "RC Batch 01 under site/_sample/ inside the 14,000-page publication pipeline. "
+                    "Not indexable. Not publication-ready. Outside sitemap. Outside navigation. "
+                    "Not a reduced launch target."
+                    if render_mode == "rc_batch"
+                    else (
+                        "Quarantined engineering sample under site/_sample/. "
+                        "Not indexable. Outside sitemap. Outside navigation. "
+                        "14,000-page governed launch corpus frame proof only."
+                    )
                 )
             )
         ),
@@ -1140,15 +1230,20 @@ def build_render_context(
         "hreflang_status": "inactive",
         "hreflang_link_tags": "<!-- hreflang withheld — publication locks active -->",
         "breadcrumb_items": (
-            f'<li><span>Public launch foundation</span></li>'
+            f'<li><span>Design system integration sample</span></li>'
             f'<li><span>{html.escape(route["route_id"])}</span></li>'
-            if render_mode == "public_launch_foundation"
+            if render_mode == "integration_sample"
             else (
-                f'<li><span>RC Batch 01</span></li><li><span>{html.escape(route["route_id"])}</span></li>'
-                if render_mode == "rc_batch"
+                f'<li><span>Public launch foundation</span></li>'
+                f'<li><span>{html.escape(route["route_id"])}</span></li>'
+                if render_mode == "public_launch_foundation"
                 else (
-                    f'<li><span>QA sample</span></li>'
-                    f'<li><span>{html.escape(route["route_id"])}</span></li>'
+                    f'<li><span>RC Batch 01</span></li><li><span>{html.escape(route["route_id"])}</span></li>'
+                    if render_mode == "rc_batch"
+                    else (
+                        f'<li><span>QA sample</span></li>'
+                        f'<li><span>{html.escape(route["route_id"])}</span></li>'
+                    )
                 )
             )
         ),
@@ -1185,7 +1280,7 @@ def build_render_context(
                 if len(intro_lines) >= 2:
                     break
         context["gateway_intro"] = (
-            html.escape(" ".join(intro_lines)) if intro_lines else empty_slot
+            markdown_inline_to_html(" ".join(intro_lines)) if intro_lines else empty_slot
         )
 
     return context
@@ -1285,6 +1380,18 @@ def render_route_quarantined(
             "14,000-page launch foundation — scaling toward 100,000+ governed pages.</p></div>"
         )
         preamble = PUBLIC_LAUNCH_HTML_PREAMBLE
+    elif render_mode == "integration_sample":
+        qa_notice = (
+            '<div class="integration-sample-notice bs-governance-banner" role="status" '
+            'data-integration-sample="6N-B" '
+            'data-publication-posture="integration_sample">'
+            "<p><strong>Design system integration sample</strong> — controlled pilot only. "
+            "Indexation gate: <strong>CLOSED</strong> (noindex,nofollow). "
+            "Sitemap gate: <strong>CLOSED</strong>. Navigation gate: <strong>CLOSED</strong>. "
+            "Source approval not implied. Claim approval not implied. "
+            "Does not replace the 14,000-page public foundation corpus.</p></div>"
+        )
+        preamble = INTEGRATION_HTML_PREAMBLE
     else:
         qa_notice = (
             '<div class="qa-render-notice" role="status" data-qa-artifact="true" '
@@ -1338,6 +1445,123 @@ def write_quarantined_sample_html(
         out_path = sample_dir / f"{route_id}.html"
         out_path.write_text(html_out, encoding="utf-8")
         written.append(str(out_path.relative_to(ROOT)).replace("\\", "/"))
+
+    return len(written), written, errors
+
+
+def sync_design_system_public_assets() -> list[str]:
+    """Copy local design-system assets to site/public/assets/ (stdlib only)."""
+    written: list[str] = []
+    if not DESIGN_SYSTEM_SRC.is_dir():
+        raise FileNotFoundError(f"design system source missing: {DESIGN_SYSTEM_SRC}")
+
+    DESIGN_SYSTEM_PUBLIC_ASSETS.mkdir(parents=True, exist_ok=True)
+    for sub in ("tokens", "components", "assets", "engine"):
+        src_dir = DESIGN_SYSTEM_SRC / sub
+        dst_dir = DESIGN_SYSTEM_PUBLIC_ASSETS / sub
+        if not src_dir.is_dir():
+            continue
+        dst_dir.mkdir(parents=True, exist_ok=True)
+        for src_file in src_dir.iterdir():
+            if src_file.is_file():
+                dst_file = dst_dir / src_file.name
+                shutil.copy2(src_file, dst_file)
+                written.append(str(dst_file.relative_to(ROOT)).replace("\\", "/"))
+
+    bundle_path = DESIGN_SYSTEM_PUBLIC_ASSETS / "bisulfid-frame.css"
+    if not bundle_path.is_file():
+        bundle_path.write_text(
+            '@import url("tokens/colors.css");\n'
+            '@import url("tokens/typography.css");\n'
+            '@import url("tokens/spacing.css");\n'
+            '@import url("tokens/motion.css");\n'
+            '@import url("tokens/depth.css");\n'
+            '@import url("tokens/governance.css");\n'
+            '@import url("components/governance-banner.css");\n'
+            '@import url("components/source-crystal.css");\n'
+            '@import url("components/term-card.css");\n'
+            '@import url("components/term-node.css");\n'
+            '@import url("components/language-depth.css");\n'
+            '@import url("components/relation-lattice.css");\n',
+            encoding="utf-8",
+        )
+        written.append(str(bundle_path.relative_to(ROOT)).replace("\\", "/"))
+
+    return written
+
+
+def write_integration_sample_html(
+    routes: list[dict[str, Any]],
+    templates_root: Path,
+    sample_dir: Path,
+) -> tuple[int, list[str], list[str]]:
+    """Render design-system integration pilot to site/public/_integration_sample/ only."""
+    if sample_dir.resolve().parent != PUBLIC_LAUNCH_FOUNDATION_DIR.resolve():
+        raise ValueError(f"integration sample must be under site/public/: {sample_dir}")
+    if "_integration_sample" not in sample_dir.parts:
+        raise ValueError(f"integration sample dir must be _integration_sample: {sample_dir}")
+
+    errors: list[str] = []
+    written: list[str] = []
+    page_records: list[dict[str, Any]] = []
+    route_by_id = {r["route_id"]: r for r in routes}
+
+    sync_design_system_public_assets()
+
+    if sample_dir.exists():
+        for existing in sample_dir.rglob("*.html"):
+            existing.unlink()
+    sample_dir.mkdir(parents=True, exist_ok=True)
+
+    for route_id in INTEGRATION_SAMPLE_ROUTE_IDS:
+        route = route_by_id.get(route_id)
+        if not route:
+            errors.append(f"integration sample route missing: {route_id}")
+            continue
+        ok, reason = route_is_render_eligible(route, templates_root)
+        if not ok:
+            errors.append(f"{route_id}: not render eligible ({reason})")
+            continue
+        try:
+            html_out = render_route_quarantined(
+                route, templates_root, render_mode="integration_sample"
+            )
+        except OSError as exc:
+            errors.append(f"{route_id}: render failed: {exc}")
+            continue
+
+        raw_path = route.get("path", "/").strip("/")
+        out_path = sample_dir / ("index.html" if not raw_path else f"{raw_path}/index.html")
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(html_out, encoding="utf-8")
+        rel_path = str(out_path.relative_to(ROOT)).replace("\\", "/")
+        written.append(rel_path)
+
+        source_vis = "[SOURCE REQUIRED]" in html_out or "source-required-marker" in html_out
+        page_records.append({
+            "route_id": route_id,
+            "route_path": route.get("path", ""),
+            "language": route.get("language", ""),
+            "output_path": rel_path,
+            "source_required_visible": "yes" if source_vis else "no",
+            "design_system_linked": "yes" if "bisulfid-design-system" in html_out else "no",
+        })
+
+    manifest = {
+        "sample_id": "design_system_integration_pilot_6N-B",
+        "sprint": "6N-B",
+        "route_count": len(written),
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "output_dir": str(sample_dir.relative_to(ROOT)).replace("\\", "/"),
+        "indexation_gate": "closed",
+        "sitemap_gate": "closed",
+        "navigation_gate": "closed",
+        "replaces_public_foundation": False,
+        "pages": page_records,
+    }
+    manifest_path = sample_dir / INTEGRATION_SAMPLE_MANIFEST_NAME
+    with manifest_path.open("w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
 
     return len(written), written, errors
 
@@ -1592,6 +1816,7 @@ def run_build_engine(
     render_quarantined_sample: bool = False,
     render_quarantined_rc_batch: bool = False,
     render_public_launch_foundation: bool = False,
+    render_integration_sample: bool = False,
     rc_batch_limit: int = RC_BATCH_DEFAULT_LIMIT,
     public_launch_limit: int = PUBLIC_LAUNCH_FOUNDATION_TARGET,
     write_build_status: bool = False,
@@ -1600,6 +1825,8 @@ def run_build_engine(
     mode = "dry-run"
     if render_public_launch_foundation:
         mode = f"render-public-launch-foundation-{public_launch_limit}"
+    elif render_integration_sample:
+        mode = "render-integration-sample"
     elif render_quarantined_rc_batch:
         mode = f"render-quarantined-rc-batch-{rc_batch_limit}"
     elif render_quarantined_sample:
@@ -1745,11 +1972,32 @@ def run_build_engine(
         render_quarantined_rc_batch,
         render_quarantined_sample,
         render_public_launch_foundation,
+        render_integration_sample,
     ))
     if render_modes > 1:
         audit.strict_errors.append("cannot combine multiple render modes")
 
-    if render_public_launch_foundation:
+    if render_integration_sample:
+        count, paths, render_errors = write_integration_sample_html(
+            routes, templates_root, INTEGRATION_SAMPLE_DIR
+        )
+        audit.strict_errors.extend(render_errors)
+        audit.public_html_generated = count
+        audit.output_plan_notes.append(
+            f"Design system integration sample: rendered {count} page(s) under "
+            f"{INTEGRATION_SAMPLE_DIR.relative_to(ROOT)}"
+        )
+        for p in paths:
+            audit.output_plan_notes.append(f"  - {p}")
+        if strict and render_errors:
+            pass
+        elif strict and count != len(INTEGRATION_SAMPLE_ROUTE_IDS):
+            audit.strict_errors.append(
+                f"integration sample rendered {count} pages "
+                f"(expected {len(INTEGRATION_SAMPLE_ROUTE_IDS)})"
+            )
+
+    elif render_public_launch_foundation:
         pl_result = write_public_launch_foundation_html(
             routes, templates_root, PUBLIC_LAUNCH_FOUNDATION_DIR, public_launch_limit
         )
@@ -1960,6 +2208,10 @@ def print_summary(audit: BuildAudit, strict: bool) -> None:
         print("STRICT MODE: FAIL — validation errors detected.")
     elif audit.mode.startswith("dry-run") or audit.mode.startswith("sample"):
         print("Dry-run complete. No public HTML generated. No registries modified.")
+    elif audit.mode.startswith("render-integration-sample"):
+        print("Design system integration sample render complete.")
+        print(f"  Output under {INTEGRATION_SAMPLE_DIR.relative_to(ROOT)}/ only.")
+        print("  14,000-page public foundation corpus unchanged.")
     elif audit.mode.startswith("render-public-launch-foundation"):
         print("Public launch foundation render complete. Output under site/public/ only.")
         if audit.public_launch_result:
@@ -2022,6 +2274,11 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--render-integration-sample",
+        action="store_true",
+        help="Render design-system integration pilot to site/public/_integration_sample/ only.",
+    )
+    parser.add_argument(
         "--render-quarantined-sample",
         action="store_true",
         help="Render deterministic QA HTML to site/_sample/ only (non-public, noindex).",
@@ -2055,6 +2312,7 @@ def main(argv: list[str] | None = None) -> int:
         args.render_quarantined_sample,
         args.render_quarantined_rc_batch,
         args.render_public_launch_foundation,
+        args.render_integration_sample,
         args.write_build_status,
     )):
         parser.print_help()
@@ -2066,6 +2324,7 @@ def main(argv: list[str] | None = None) -> int:
         print("RC 1500 render: python scripts/build.py --render-quarantined-rc-batch --limit 1500")
         print("RC 7500 render: python scripts/build.py --render-quarantined-rc-batch --limit 7500")
         print("Public launch foundation: python scripts/build.py --render-public-launch-foundation --limit 14000")
+        print("Integration sample: python scripts/build.py --render-integration-sample")
         return 0
 
     audit_report_path = None
@@ -2076,6 +2335,7 @@ def main(argv: list[str] | None = None) -> int:
         args.render_quarantined_sample
         or args.render_quarantined_rc_batch
         or args.render_public_launch_foundation
+        or args.render_integration_sample
     )
     public_limit = (
         args.limit if args.render_public_launch_foundation else PUBLIC_LAUNCH_FOUNDATION_TARGET
@@ -2088,6 +2348,7 @@ def main(argv: list[str] | None = None) -> int:
         render_quarantined_sample=args.render_quarantined_sample,
         render_quarantined_rc_batch=args.render_quarantined_rc_batch,
         render_public_launch_foundation=args.render_public_launch_foundation,
+        render_integration_sample=args.render_integration_sample,
         rc_batch_limit=args.limit,
         public_launch_limit=public_limit,
         write_build_status=args.write_build_status,

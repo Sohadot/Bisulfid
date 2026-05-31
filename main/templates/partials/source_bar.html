@@ -1,13 +1,16 @@
 <!--
-  partials/source_bar.html — Source attribution slot (Sprint 6M-B)
-  Emitted only when verified sources exist. Never implies approval or source-lock.
+  partials/source_bar.html — Source attribution slot (Sprint 6M-B / 6N-B)
+  Source crystal styling. Never implies approval or source-lock by default.
 -->
-<aside class="source-bar" aria-label="Source status" data-source-required="{{source_required_flag}}">
-  <h2 class="source-bar__heading">Source and governance status</h2>
-  <p class="source-bar__posture">{{source_posture_message}}</p>
-  {{source_list}}
-  <p class="source-bar__required" data-visible="{{source_required_visible}}">
-    [SOURCE REQUIRED] markers remain binding where content requires verification.
-    This frame does not remove source requirements or approve claims.
-  </p>
+<aside class="source-bar bs-source-crystal {{source_crystal_class}}" aria-label="Source status" data-source-required="{{source_required_flag}}" data-claim-approval="{{claim_approval_state}}">
+  <img class="bs-source-crystal__icon" src="/assets/bisulfid-design-system/assets/source-crystal.svg" alt="" aria-hidden="true">
+  <div class="bs-source-crystal__content">
+    <h2 class="source-bar__heading bs-source-crystal__label">Source and governance status</h2>
+    <p class="source-bar__posture bs-source-crystal__state">{{source_posture_message}}</p>
+    {{source_list}}
+    <p class="source-bar__required bs-source-required-inline" data-visible="{{source_required_visible}}">
+      [SOURCE REQUIRED] markers remain binding where content requires verification.
+      This frame does not remove source requirements or approve claims.
+    </p>
+  </div>
 </aside>

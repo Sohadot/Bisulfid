@@ -20,6 +20,23 @@ MANIFEST_PATH = PUBLIC_DIR / "public_launch_manifest.json"
 ROUTES_PATH = ROOT / "main/data/routes.json"
 
 PUBLIC_LAUNCH_EXACT = 14000
+INTEGRATION_SAMPLE_DIR = PUBLIC_DIR / "_integration_sample"
+
+
+def is_foundation_public_page(path: Path) -> bool:
+    try:
+        rel = path.relative_to(PUBLIC_DIR)
+    except ValueError:
+        return False
+    if not rel.parts:
+        return True
+    return rel.parts[0] != "_integration_sample"
+
+
+def foundation_public_html_files() -> list[Path]:
+    if not PUBLIC_DIR.is_dir():
+        return []
+    return sorted(p for p in PUBLIC_DIR.rglob("index.html") if is_foundation_public_page(p))
 
 REQUIRED_MARKERS = (
     "noindex",
@@ -163,7 +180,7 @@ def main() -> int:
     else:
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
 
-    public_files = sorted(PUBLIC_DIR.rglob("index.html")) if PUBLIC_DIR.is_dir() else []
+    public_files = foundation_public_html_files()
     output_paths = [str(p.relative_to(ROOT)).replace("\\", "/") for p in public_files]
 
     if len(output_paths) != len(set(output_paths)):

@@ -1,0 +1,66 @@
+/**
+ * Term node — governed visual identity for a terminology node.
+ * Does not imply source or claim approval.
+ */
+.bs-term-node {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--bs-space-unit) * 2);
+  padding: calc(var(--bs-space-unit) * 2) calc(var(--bs-space-unit) * 3);
+  background: var(--bs-color-foundation-surface);
+  border: 1px solid var(--bs-color-graphite-line);
+  border-radius: calc(var(--bs-space-unit) * 1);
+  color: var(--bs-color-ink-primary);
+  font-family: var(--bs-font-family-term);
+  font-size: var(--bs-font-size-term-primary);
+  font-weight: var(--bs-font-weight-term);
+  line-height: var(--bs-line-height-term);
+  box-shadow: var(--bs-depth-card-flat);
+  transition: var(--bs-motion-source-transition);
+}
+
+.bs-term-node__label {
+  font-weight: var(--bs-font-weight-term);
+}
+
+.bs-term-node__meta {
+  font-size: var(--bs-font-size-term-meta);
+  color: var(--bs-color-ink-muted);
+}
+
+/* Unresolved / source-required — visible, not hidden */
+.bs-term-node--source-required {
+  border-color: var(--bs-gov-source-required-border);
+  background: var(--bs-gov-source-required-bg);
+  box-shadow: var(--bs-depth-card-source-required);
+}
+
+.bs-term-node--source-required .bs-term-node__marker {
+  color: var(--bs-gov-source-required-fg);
+  font-size: var(--bs-font-size-source-label);
+  font-weight: var(--bs-font-weight-source-emphasis);
+  letter-spacing: var(--bs-letter-spacing-source);
+}
+
+.bs-term-node--source-required .bs-term-node__marker::before {
+  content: var(--bs-gov-source-required-marker);
+}
+
+/* Candidate — explicitly not approved */
+.bs-term-node--source-candidate {
+  border-color: var(--bs-gov-source-candidate-fg);
+  background: var(--bs-gov-source-candidate-bg);
+}
+
+/* Approved states — data-bound only; never default */
+.bs-term-node--source-approved,
+.bs-term-node--claim-approved {
+  /* Reserved for registry-authorized integration only */
+  border-width: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-term-node {
+    transition: none;
+  }
+}

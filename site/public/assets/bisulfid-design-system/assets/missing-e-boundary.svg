@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 26" role="img" aria-label="Missing E spelling boundary">
+  <title>Bisulfid Bisulfide boundary</title>
+  <text x="2" y="14" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#e8ecf1">Bisulfi</text>
+  <rect x="44" y="2" width="12" height="14" rx="2" fill="none" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <text x="46" y="13" font-family="system-ui,sans-serif" font-size="11" fill="#d4a017" opacity="0.6">e?</text>
+  <text x="58" y="14" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#7a8494">de</text>
+  <line x1="40" y1="9" x2="44" y2="9" stroke="#d4a017" stroke-width="1"/>
+  <text x="2" y="24" font-family="system-ui,sans-serif" font-size="6" fill="#7a8494">spelling boundary — not approval</text>
+</svg>

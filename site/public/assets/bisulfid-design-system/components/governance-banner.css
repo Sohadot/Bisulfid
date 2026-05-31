@@ -1,0 +1,68 @@
+/**
+ * Governance banner — public visibility, noindex, gate state display.
+ */
+.bs-governance-banner {
+  display: block;
+  padding: var(--bs-space-governance-padding);
+  margin-block-end: var(--bs-space-page-gutter);
+  background: var(--bs-gov-visibility-public-bg);
+  border: 1px solid var(--bs-gov-visibility-public-foundation);
+  border-inline-start-width: 4px;
+  color: var(--bs-color-ink-primary);
+  font-family: var(--bs-font-family-institutional);
+  font-size: var(--bs-font-size-term-secondary);
+  line-height: var(--bs-line-height-source);
+}
+
+.bs-governance-banner__title {
+  font-size: var(--bs-font-size-title-md);
+  font-weight: var(--bs-font-weight-title);
+  margin: 0 0 var(--bs-space-governance-item-gap);
+}
+
+.bs-governance-banner__body {
+  margin: 0 0 var(--bs-space-governance-lock-gap);
+  color: var(--bs-color-ink-secondary);
+}
+
+.bs-governance-banner__locks {
+  display: grid;
+  gap: var(--bs-space-governance-item-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--bs-font-size-source-body);
+}
+
+.bs-governance-banner__locks li {
+  display: flex;
+  gap: calc(var(--bs-space-unit) * 2);
+}
+
+.bs-governance-banner--noindex {
+  border-inline-start-color: var(--bs-gov-noindex-border);
+  background: var(--bs-gov-noindex-bg);
+}
+
+.bs-governance-banner--noindex .bs-governance-banner__robots::before {
+  content: "Robots: " var(--bs-gov-noindex-label);
+  font-family: var(--bs-font-family-mono);
+  font-size: var(--bs-font-size-source-label);
+}
+
+.bs-governance-banner__posture {
+  font-size: var(--bs-font-size-source-label);
+  color: var(--bs-color-ink-muted);
+}
+
+/* Does not hide source-required */
+.bs-governance-banner .bs-source-required-inline {
+  color: var(--bs-gov-source-required-fg);
+  font-weight: var(--bs-font-weight-source-emphasis);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-governance-banner {
+    transition: none;
+  }
+}
