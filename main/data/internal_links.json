@@ -251,6 +251,14 @@
         "en_foundation_sovereign_intro",
         "en_index_terminology_spine"
       ]
+    },
+    {
+      "from_route_id": "en_index_cohort05_spine",
+      "status": "planned",
+      "intended_links": [
+        "en_foundation_sovereign_intro",
+        "en_index_terminology_spine"
+      ]
     }
   ]
 }

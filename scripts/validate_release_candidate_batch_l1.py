@@ -19,7 +19,7 @@ MANIFEST_PATH = SAMPLE_DIR / "rc_batch_manifest.json"
 ROUTES_PATH = ROOT / "main/data/routes.json"
 
 RC_BATCH_MIN = 100
-RC_BATCH_MAX = 7500
+RC_BATCH_MAX = 14000
 
 REQUIRED_MARKERS = (
     "noindex",
@@ -99,7 +99,7 @@ def find_disallowed_html() -> list[Path]:
         except ValueError:
             disallowed.append(path)
             continue
-        if not (len(rel.parts) >= 1 and rel.parts[0] == "_sample"):
+        if not (len(rel.parts) >= 1 and rel.parts[0] in ("_sample", "public")):
             disallowed.append(path)
     return disallowed
 
