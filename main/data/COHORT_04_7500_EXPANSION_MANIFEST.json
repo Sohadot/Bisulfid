@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "sprint": "6M-F",
+  "cohort_id": "COHORT_04_7500_PIPELINE_EXPANSION",
+  "engine": "generate_7500_corpus_expansion_v1",
+  "date": "2026-05-31",
+  "routes_before": 1500,
+  "routes_after": 7500,
+  "draft_backed_before": 1500,
+  "draft_backed_after": 7500,
+  "new_routes_added": 6000,
+  "target_new_routes": 6000,
+  "target_renderable": 7500,
+  "en_entity_count": 725,
+  "single_route_count": 200
+}

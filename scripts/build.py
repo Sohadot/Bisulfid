@@ -109,9 +109,10 @@ QUARANTINED_SAMPLE_ROUTE_IDS: tuple[str, ...] = (
 QUARANTINED_SAMPLE_DIR = DEFAULT_SITE_DIR / "_sample"
 
 RC_BATCH_DEFAULT_LIMIT = 250
-RC_BATCH_MAX_LIMIT = 1500
+RC_BATCH_MAX_LIMIT = 7500
 RC_BATCH_MIN_TARGET = 100
 RC_BATCH_1500_TARGET = 1500
+RC_BATCH_7500_TARGET = 7500
 RC_BATCH_MANIFEST_NAME = "rc_batch_manifest.json"
 
 QA_HTML_PREAMBLE = """<!--
@@ -1218,8 +1219,15 @@ def write_quarantined_rc_batch_html(
         })
 
     total_skipped = sum(skipped_by_category.values())
-    batch_id = "rc_1500" if limit >= RC_BATCH_1500_TARGET else "rc_batch_01"
-    sprint_tag = "6M-E" if limit >= RC_BATCH_1500_TARGET else "6M-D"
+    if limit >= RC_BATCH_7500_TARGET:
+        batch_id = "rc_7500"
+        sprint_tag = "6M-F"
+    elif limit >= RC_BATCH_1500_TARGET:
+        batch_id = "rc_1500"
+        sprint_tag = "6M-E"
+    else:
+        batch_id = "rc_batch_01"
+        sprint_tag = "6M-D"
     manifest = {
         "batch_id": batch_id,
         "sprint": sprint_tag,
@@ -1455,7 +1463,12 @@ def run_build_engine(
                     f"RC batch rendered {rc_result.rendered_count} pages "
                     f"(minimum target {RC_BATCH_MIN_TARGET})"
                 )
-            if strict and rc_batch_limit >= RC_BATCH_1500_TARGET and rc_result.rendered_count < RC_BATCH_1500_TARGET:
+            if strict and rc_batch_limit >= RC_BATCH_7500_TARGET and rc_result.rendered_count < RC_BATCH_7500_TARGET:
+                audit.strict_errors.append(
+                    f"RC 7500 batch rendered {rc_result.rendered_count} pages "
+                    f"(required {RC_BATCH_7500_TARGET})"
+                )
+            elif strict and rc_batch_limit >= RC_BATCH_1500_TARGET and rc_result.rendered_count < RC_BATCH_1500_TARGET:
                 audit.strict_errors.append(
                     f"RC 1500 batch rendered {rc_result.rendered_count} pages "
                     f"(required {RC_BATCH_1500_TARGET})"
@@ -1699,6 +1712,7 @@ def main(argv: list[str] | None = None) -> int:
         print("Quarantined QA render: python scripts/build.py --render-quarantined-sample")
         print("RC Batch 01 render: python scripts/build.py --render-quarantined-rc-batch --limit 250")
         print("RC 1500 render: python scripts/build.py --render-quarantined-rc-batch --limit 1500")
+        print("RC 7500 render: python scripts/build.py --render-quarantined-rc-batch --limit 7500")
         return 0
 
     audit_report_path = None
