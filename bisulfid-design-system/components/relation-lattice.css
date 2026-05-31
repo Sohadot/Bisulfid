@@ -1,0 +1,71 @@
+/**
+ * Relation lattice — controlled term relationship visualization.
+ * Links must be data-bound; component never invents edges.
+ */
+.bs-relation-lattice {
+  display: grid;
+  gap: var(--bs-space-lattice-edge);
+  padding: var(--bs-space-lattice-cluster);
+  background: var(--bs-color-foundation-base);
+  border: 1px solid var(--bs-color-graphite-grid);
+  border-radius: calc(var(--bs-space-unit) * 2);
+  position: relative;
+}
+
+.bs-relation-lattice__nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bs-space-lattice-node);
+  align-items: flex-start;
+}
+
+.bs-relation-lattice__edge {
+  display: block;
+  height: 1px;
+  background: var(--bs-color-graphite-line);
+  margin: var(--bs-space-lattice-edge) 0;
+  opacity: var(--bs-motion-relation-pulse-opacity-max);
+}
+
+.bs-relation-lattice__edge[data-link-status="planned"] {
+  border-style: dashed;
+  opacity: var(--bs-motion-relation-pulse-opacity-min);
+}
+
+.bs-relation-lattice__edge[data-link-status="active"] {
+  background: var(--bs-color-sulfur-dim);
+}
+
+/* Pulse only when motion allowed and data-link-status present */
+@media (prefers-reduced-motion: no-preference) {
+  .bs-relation-lattice__edge[data-link-status="active"] {
+    animation: bs-relation-pulse var(--bs-motion-duration-slow) var(--bs-motion-ease-standard)
+      infinite alternate;
+  }
+}
+
+@keyframes bs-relation-pulse {
+  from {
+    opacity: var(--bs-motion-relation-pulse-opacity-min);
+  }
+  to {
+    opacity: var(--bs-motion-relation-pulse-opacity-max);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-relation-lattice__edge[data-link-status="active"] {
+    animation: none;
+  }
+}
+
+.bs-relation-lattice__empty {
+  font-size: var(--bs-font-size-source-body);
+  color: var(--bs-color-ink-muted);
+  font-style: italic;
+}
+
+/* No invented links — empty state when no data-edges */
+.bs-relation-lattice:not([data-edges]) .bs-relation-lattice__edge {
+  display: none;
+}
