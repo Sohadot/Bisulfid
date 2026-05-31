@@ -1,0 +1,65 @@
+/**
+ * Bisulfid publication frame integration bundle — Sprint 6N-B
+ * Local tokens and components only. No external dependencies.
+ */
+@import url("tokens/colors.css");
+@import url("tokens/typography.css");
+@import url("tokens/spacing.css");
+@import url("tokens/motion.css");
+@import url("tokens/depth.css");
+@import url("tokens/governance.css");
+@import url("components/governance-banner.css");
+@import url("components/source-crystal.css");
+@import url("components/term-card.css");
+@import url("components/term-node.css");
+@import url("components/language-depth.css");
+@import url("components/relation-lattice.css");
+
+/* Control-room frame shell */
+.bs-control-room {
+  background: var(--bs-color-foundation-base, #0a0c0f);
+  color: var(--bs-color-ink-primary, #e8eaed);
+  font-family: var(--bs-font-family-institutional, system-ui, sans-serif);
+  line-height: var(--bs-line-height-term, 1.55);
+  margin: 0;
+  min-height: 100vh;
+}
+
+.bs-control-room .site-header,
+.bs-control-room .site-footer {
+  padding: var(--bs-space-page-gutter, 1rem);
+}
+
+.bs-control-room #main-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: var(--bs-space-page-gutter, 1rem);
+}
+
+.bs-missing-e-boundary {
+  display: block;
+  margin-block-end: var(--bs-space-governance-item-gap, 0.5rem);
+  opacity: 0.85;
+}
+
+.bs-slot-empty {
+  display: none;
+}
+
+.bs-slot-empty[aria-hidden="true"] {
+  display: none;
+}
+
+mark.source-required-marker,
+.bs-source-required-inline {
+  background: var(--bs-gov-source-required-bg, #3d1f1f);
+  color: var(--bs-gov-source-required-fg, #ffb4b4);
+  padding: 0 0.15em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-control-room * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

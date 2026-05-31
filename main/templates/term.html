@@ -1,21 +1,24 @@
 <!--
-  term.html — Terminology publication frame (Sprint 6M-B)
-  For ontology-governed term routes across EN/DE/AR and future multilingual waves.
-  Term claims require verified sources — never implied by this frame.
+  term.html — Terminology publication frame (Sprint 6M-B / 6N-B)
+  Term card + language depth identity. Term claims require verified sources.
 -->
-<article class="term-frame" lang="{{language}}" dir="{{text_direction}}">
-  <header class="term-frame__header">
-    <h1 class="term-frame__title">{{page_h1}}</h1>
-    <p class="term-frame__meta">
-      Term route · {{route_id}} · Cohort-ready for 14,000-page corpus scale
+<article class="term-frame bs-term-card {{term_card_modifier}}" lang="{{language}}" dir="{{text_direction}}">
+  <header class="term-frame__header bs-term-card__header">
+    <div class="bs-language-depth" aria-label="Language depth">
+      <span class="bs-language-depth__layer bs-language-depth__layer--{{language}}">{{language_depth_label}}</span>
+      <span class="bs-language-depth__depth-indicator">Term node · {{route_id}}</span>
+    </div>
+    <h1 class="term-frame__title bs-term-card__title">{{page_h1}}</h1>
+    <p class="term-frame__meta bs-term-card__route-type">
+      Term route · Cohort-ready for 14,000-page corpus scale
     </p>
   </header>
 
-  <section class="term-frame__definition" aria-label="Term definition slot">
+  <section class="term-frame__definition bs-term-card__body" aria-label="Term definition slot">
     {{term_definition}}
   </section>
 
-  <section class="term-frame__related" aria-label="Related terms slot">
+  <section class="term-frame__related bs-relation-lattice" aria-label="Related terms slot">
     {{related_terms}}
   </section>
 
@@ -23,6 +26,8 @@
     {{disambiguation_notice}}
   </section>
 
-  {{source_bar}}
+  <div class="bs-term-card__source-bar">
+    {{source_bar}}
+  </div>
   {{internal_links}}
 </article>

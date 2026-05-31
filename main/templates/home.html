@@ -1,23 +1,26 @@
 <!--
-  home.html — Gateway homepage frame (Sprint 6M-B)
-  Sovereign sulfur intelligence gateway shell for the 14,000-page launch corpus.
-  Route must remain planned until explicit publication sprint authorization.
+  home.html — Gateway homepage frame (Sprint 6M-B / 6N-B)
+  Chemical-language control room gateway with term-card identity.
 -->
 <!-- SLOT: content body -->
-<article class="home-frame" lang="{{language}}" dir="{{text_direction}}">
-  <header class="home-frame__header">
-    <h1 class="home-frame__title">{{page_h1}}</h1>
-    <p class="home-frame__intro">{{gateway_intro}}</p>
-    <p class="home-frame__corpus-note">
+<article class="home-frame bs-term-card {{term_card_modifier}}" lang="{{language}}" dir="{{text_direction}}">
+  <header class="home-frame__header bs-term-card__header">
+    <div class="bs-language-depth" aria-label="Language depth">
+      <span class="bs-language-depth__layer bs-language-depth__layer--{{language}}">{{language_depth_label}}</span>
+      <span class="bs-language-depth__depth-indicator">Gateway · control room entry</span>
+    </div>
+    <h1 class="home-frame__title bs-term-card__title">{{page_h1}}</h1>
+    <p class="home-frame__intro bs-term-card__body">{{gateway_intro}}</p>
+    <p class="home-frame__corpus-note bs-term-card__disclaimer">
       Minimum launch corpus: 14,000 governed pages — gateway frame only, not a launch.
     </p>
   </header>
 
-  <section class="home-frame__term-map" aria-label="Interactive term map slot">
+  <section class="home-frame__term-map bs-relation-lattice" aria-label="Interactive term map slot">
     {{interactive_term_map}}
   </section>
 
-  <section class="home-frame__language-entry" aria-label="Language entry points">
+  <section class="home-frame__language-entry bs-language-depth" aria-label="Language entry points">
     {{language_entry_points}}
   </section>
 

@@ -1,0 +1,34 @@
+/**
+ * Bisulfid spacing rhythm tokens.
+ */
+:root {
+  /* Base unit — 4px grid */
+  --bs-space-unit: 0.25rem;
+
+  /* Page rhythm */
+  --bs-space-page-inline: clamp(1rem, 4vw, 2.5rem);
+  --bs-space-page-block: clamp(1.5rem, 5vw, 3rem);
+  --bs-space-page-section: calc(var(--bs-space-unit) * 12);
+  --bs-space-page-gutter: calc(var(--bs-space-unit) * 6);
+
+  /* Card rhythm */
+  --bs-space-card-padding: calc(var(--bs-space-unit) * 5);
+  --bs-space-card-gap: calc(var(--bs-space-unit) * 4);
+  --bs-space-card-header-gap: calc(var(--bs-space-unit) * 2);
+  --bs-space-card-footer-gap: calc(var(--bs-space-unit) * 3);
+
+  /* Lattice rhythm */
+  --bs-space-lattice-node: calc(var(--bs-space-unit) * 8);
+  --bs-space-lattice-edge: calc(var(--bs-space-unit) * 2);
+  --bs-space-lattice-cluster: calc(var(--bs-space-unit) * 16);
+
+  /* Source bar spacing */
+  --bs-space-source-bar-inline: calc(var(--bs-space-unit) * 4);
+  --bs-space-source-bar-block: calc(var(--bs-space-unit) * 3);
+  --bs-space-source-marker-gap: calc(var(--bs-space-unit) * 2);
+
+  /* Governance banner spacing */
+  --bs-space-governance-padding: calc(var(--bs-space-unit) * 4);
+  --bs-space-governance-item-gap: calc(var(--bs-space-unit) * 2);
+  --bs-space-governance-lock-gap: calc(var(--bs-space-unit) * 3);
+}

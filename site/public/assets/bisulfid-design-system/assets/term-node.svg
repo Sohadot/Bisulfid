@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Bisulfid term node">
+  <title>Term node</title>
+  <circle cx="16" cy="16" r="13" fill="none" stroke="#c9b037" stroke-width="1.5"/>
+  <circle cx="16" cy="16" r="4" fill="#c9b037" opacity="0.85"/>
+  <path d="M16 3v6M16 23v6M3 16h6M23 16h6" stroke="#3d4654" stroke-width="1" stroke-linecap="round"/>
+</svg>

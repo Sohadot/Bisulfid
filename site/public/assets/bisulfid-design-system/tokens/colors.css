@@ -1,0 +1,54 @@
+/**
+ * Bisulfid color tokens — proprietary, no external imports.
+ * Chemical-language control room palette.
+ */
+:root {
+  /* Foundation background tokens */
+  --bs-color-foundation-deep: #0a0c0f;
+  --bs-color-foundation-base: #12161c;
+  --bs-color-foundation-surface: #1a2029;
+  --bs-color-foundation-elevated: #222a36;
+  --bs-color-foundation-muted: #2a3342;
+
+  /* Sulfur signal tokens */
+  --bs-color-sulfur-primary: #c9b037;
+  --bs-color-sulfur-dim: #8a7828;
+  --bs-color-sulfur-glow: rgba(201, 176, 55, 0.18);
+  --bs-color-sulfur-accent: #e8d56a;
+
+  /* Graphite / ink tokens */
+  --bs-color-ink-primary: #e8ecf1;
+  --bs-color-ink-secondary: #b8c0cc;
+  --bs-color-ink-muted: #7a8494;
+  --bs-color-ink-inverse: #0a0c0f;
+  --bs-color-graphite-line: #3d4654;
+  --bs-color-graphite-grid: rgba(61, 70, 84, 0.35);
+
+  /* Source-state tokens */
+  --bs-color-source-neutral: #6b8cae;
+  --bs-color-source-candidate: #5a9a8f;
+  --bs-color-source-verified: #4a8f7c;
+  --bs-color-source-approved-boundary: #3d7a68;
+
+  /* Unresolved-source tokens */
+  --bs-color-source-required: #c45c4a;
+  --bs-color-source-required-bg: rgba(196, 92, 74, 0.12);
+  --bs-color-source-required-border: #a04a3a;
+  --bs-color-source-required-text: #f0b4a8;
+
+  /* Language-depth tokens */
+  --bs-color-lang-en: #7aa2d4;
+  --bs-color-lang-de: #9ab87a;
+  --bs-color-lang-ar: #d4a57a;
+  --bs-color-lang-future: #8a8494;
+  --bs-color-lang-depth-1: rgba(122, 162, 212, 0.15);
+  --bs-color-lang-depth-2: rgba(154, 184, 122, 0.15);
+  --bs-color-lang-depth-3: rgba(212, 165, 122, 0.15);
+
+  /* Boundary / accent tokens */
+  --bs-color-boundary-spelling: #d4a017;
+  --bs-color-boundary-ion: #6eb5d4;
+  --bs-color-boundary-compound: #a87ad4;
+  --bs-color-accent-governance: #5c6b7a;
+  --bs-color-accent-noindex: #6a5c7a;
+}

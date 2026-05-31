@@ -23,6 +23,15 @@ NOJEKYLL_PATH = PUBLIC_DIR / ".nojekyll"
 
 PUBLIC_LAUNCH_EXACT = 14000
 
+
+def foundation_public_html_files() -> list[Path]:
+    if not PUBLIC_DIR.is_dir():
+        return []
+    return sorted(
+        p for p in PUBLIC_DIR.rglob("index.html")
+        if not (p.relative_to(PUBLIC_DIR).parts and p.relative_to(PUBLIC_DIR).parts[0] == "_integration_sample")
+    )
+
 FORBIDDEN_WORKFLOW_PATTERNS = (
     re.compile(r"\bnpm\s+install\b", re.I),
     re.compile(r"\bpip\s+install\b", re.I),
@@ -148,8 +157,11 @@ def main() -> int:
     else:
         print(".nojekyll: present")
 
-    public_files = sorted(PUBLIC_DIR.rglob("index.html")) if PUBLIC_DIR.is_dir() else []
+    public_files = foundation_public_html_files()
+    integration_count = len(list(PUBLIC_DIR.rglob("index.html"))) - len(public_files) if PUBLIC_DIR.is_dir() else 0
     print(f"Public foundation pages: {len(public_files)}")
+    if integration_count:
+        print(f"Integration sample pages (excluded): {integration_count}")
     if len(public_files) != PUBLIC_LAUNCH_EXACT:
         all_errors.append(
             f"expected {PUBLIC_LAUNCH_EXACT} public pages, found {len(public_files)}"

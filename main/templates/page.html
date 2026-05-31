@@ -1,20 +1,23 @@
 <!--
-  page.html — Generic governed page frame (Sprint 6M-B)
-  Canonical publication frame for standard pages in the 14,000-page launch corpus.
-  Composes base.html slots via build engine. NOT A LAUNCH TEMPLATE.
+  page.html — Generic governed page frame (Sprint 6M-B / 6N-B)
 -->
-<article class="page-frame" lang="{{language}}" dir="{{text_direction}}">
-  <header class="page-frame__header">
-    <h1 class="page-frame__title">{{page_h1}}</h1>
-    <p class="page-frame__meta">
+<article class="page-frame bs-term-card {{term_card_modifier}}" lang="{{language}}" dir="{{text_direction}}">
+  <header class="page-frame__header bs-term-card__header">
+    <div class="bs-language-depth" aria-label="Language depth">
+      <span class="bs-language-depth__layer bs-language-depth__layer--{{language}}">{{language_depth_label}}</span>
+    </div>
+    <h1 class="page-frame__title bs-term-card__title">{{page_h1}}</h1>
+    <p class="page-frame__meta bs-term-card__route-type">
       Page type: generic · Route: {{route_id}} · Status: {{route_status}}
     </p>
   </header>
 
-  <div class="page-frame__body">
+  <div class="page-frame__body bs-term-card__body">
     {{page_body}}
   </div>
 
-  {{source_bar}}
+  <div class="bs-term-card__source-bar">
+    {{source_bar}}
+  </div>
   {{internal_links}}
 </article>

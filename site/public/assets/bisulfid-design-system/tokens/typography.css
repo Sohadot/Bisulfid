@@ -1,0 +1,43 @@
+/**
+ * Bisulfid typography tokens — institutional reference scale.
+ */
+:root {
+  /* Institutional title scale */
+  --bs-font-family-institutional: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --bs-font-family-term: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --bs-font-family-mono: ui-monospace, "Cascadia Mono", "Consolas", monospace;
+
+  --bs-font-size-title-xl: clamp(1.75rem, 4vw, 2.5rem);
+  --bs-font-size-title-lg: clamp(1.375rem, 3vw, 1.875rem);
+  --bs-font-size-title-md: clamp(1.125rem, 2.5vw, 1.5rem);
+  --bs-font-weight-title: 600;
+  --bs-line-height-title: 1.2;
+  --bs-letter-spacing-title: -0.02em;
+
+  /* Term label scale */
+  --bs-font-size-term-primary: clamp(1rem, 2vw, 1.25rem);
+  --bs-font-size-term-secondary: 0.9375rem;
+  --bs-font-size-term-meta: 0.8125rem;
+  --bs-font-weight-term: 500;
+  --bs-line-height-term: 1.35;
+
+  /* Source annotation scale */
+  --bs-font-size-source-label: 0.75rem;
+  --bs-font-size-source-body: 0.8125rem;
+  --bs-font-weight-source-emphasis: 600;
+  --bs-line-height-source: 1.45;
+  --bs-letter-spacing-source: 0.04em;
+
+  /* Multilingual fallback policy */
+  --bs-font-fallback-latin: system-ui, sans-serif;
+  --bs-font-fallback-cjk: "Segoe UI", "Noto Sans CJK SC", sans-serif;
+  --bs-font-fallback-arabic: "Segoe UI", "Noto Sans Arabic", sans-serif;
+
+  /*
+   * Arabic / RTL future readiness:
+   * Use logical properties (margin-inline, padding-inline) in components.
+   * Set dir="rtl" on container; --bs-text-align-start maps to right in RTL.
+   */
+  --bs-text-align-start: start;
+  --bs-text-align-end: end;
+}
