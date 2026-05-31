@@ -3854,45 +3854,10 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 - `main/data/GITHUB_PAGES_PUBLIC_DEPLOYMENT_GATE_REPORT.md`
 - `main/data/GITHUB_PAGES_PUBLIC_DEPLOYMENT_SECURITY_MODEL.md`
 - `main/data/GITHUB_PAGES_PUBLIC_DEPLOYMENT_VALIDATION_REPORT.md`
+- `main/data/GITHUB_PAGES_PUBLIC_DEPLOYMENT_NEXT_ACTIONS.md`
 - `DECISION_LOG.md`
 
 **Not modified:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `main/content/**`, `site/public/*.html`, `site/_sample/**`, root README.md, package files, dependencies, `corpus-governance-ci.yml`.
-
----
-
-## Bisulfid Proprietary Design System Foundation Established
-
-**Date:** 2026-05-31  
-**Branch:** `claude/sprint-6n-a-bisulfid-design-system-foundation`  
-**Base:** main @ Sprint 6M-H merge (`249ad0b28`)  
-**Status:** Complete — dependency-free design-system foundation
-
-**Summary:** Sprint **6N-A** established the dependency-free Bisulfid design-system foundation as a proprietary visual and interaction language for the 14,000-page public launch foundation and future 100,000+ page expansion. The sprint created internal tokens, component primitives, SVG identity assets, and a vanilla motion governance layer without external UI libraries, npm dependencies, CDN assets, tracking scripts, or third-party visual frameworks. The design system preserves source-required visibility, source/claim truth, governance states, accessibility, and future multilingual readiness. It does not modify public output, open indexation, publish sitemap/navigation, or approve sources or claims.
-
-**Sprint 6N-A validation:**
-
-- `validate_bisulfid_design_system_l1.py`: **PASS**
-- `validate_pages_deployment_gate_l1.py`: **PASS**
-- `validate_14000_public_launch_foundation_l1.py`: **PASS**
-- `validate_public_output_l1.py`: **PASS**
-- `corpus_validation_runtime_l1.py`: **PASS**
-- `source_claim_guardrail_runtime_l1.py`: **PASS**
-- All prior public foundation validators: **PASS**
-
-**Files created:**
-
-- `bisulfid-design-system/**` — tokens, components, assets, engine
-- `scripts/validate_bisulfid_design_system_l1.py`
-- `main/data/BISULFID_DESIGN_SYSTEM_FOUNDATION_REPORT.md`
-- `main/data/BISULFID_DESIGN_SYSTEM_TOKEN_MODEL.md`
-- `main/data/BISULFID_DESIGN_SYSTEM_COMPONENT_MODEL.md`
-- `main/data/BISULFID_DESIGN_SYSTEM_NEXT_ACTIONS.md`
-
-**Files updated:**
-
-- `DECISION_LOG.md`
-
-**Not modified:** `routes.json`, registries, `main/content/**`, `site/public/**`, `site/_sample/**`, `.github/workflows/pages-public-deploy.yml`, root README.md, package files, dependencies.
 
 ---
 
