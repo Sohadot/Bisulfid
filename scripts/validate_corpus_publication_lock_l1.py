@@ -72,7 +72,7 @@ def run_validation() -> tuple[list[str], list[str], dict]:
                 except ValueError:
                     html_files.append(path)
                     continue
-                if len(rel.parts) >= 1 and rel.parts[0] == "_sample":
+                if len(rel.parts) >= 1 and rel.parts[0] in ("_sample", "public"):
                     continue
             html_files.append(path)
         if html_files:

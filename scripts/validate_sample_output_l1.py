@@ -88,13 +88,16 @@ FORBIDDEN = (
 
 
 def is_allowed_html(path: Path) -> bool:
-    """HTML is allowed only under site/_sample/."""
+    """HTML is allowed under site/_sample/ (quarantine) or site/public/ (launch foundation)."""
     try:
         rel = path.relative_to(SITE_DIR)
     except ValueError:
         return False
-    parts = rel.parts
-    return len(parts) >= 2 and parts[0] == "_sample" and path.suffix.lower() == ".html"
+    if path.suffix.lower() != ".html":
+        return True
+    if not rel.parts:
+        return False
+    return rel.parts[0] in ("_sample", "public")
 
 
 def find_disallowed_html() -> list[Path]:
@@ -164,14 +167,14 @@ def main() -> int:
     all_warnings: list[str] = []
 
     disallowed = find_disallowed_html()
-    print("--- site/ HTML scan (outside _sample) ---")
+    print("--- site/ HTML scan (outside _sample and public) ---")
     if disallowed:
         for path in disallowed:
             rel = path.relative_to(ROOT)
-            all_errors.append(f"public HTML outside quarantine: {rel}")
+            all_errors.append(f"HTML outside allowed output areas: {rel}")
             print(f"  DISALLOWED: {rel}")
     else:
-        print("  No HTML outside site/_sample/")
+        print("  No HTML outside site/_sample/ or site/public/")
     print()
 
     sample_html = list(SAMPLE_DIR.glob("*.html")) if SAMPLE_DIR.is_dir() else []

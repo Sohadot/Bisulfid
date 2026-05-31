@@ -11,6 +11,7 @@ Modes:
   --sample N      Plan a controlled sample of N routes (no HTML in locked posture)
   --render-quarantined-sample  Render deterministic 8-page QA HTML to site/_sample/ only
   --render-quarantined-rc-batch --limit N  Render non-public RC batch to site/_sample/ only
+  --render-public-launch-foundation --limit N  Render controlled public launch foundation to site/public/ only
   --strict        Fail closed on validation errors
   --write-build-status  Write site/build-status.json audit artifact only
 
@@ -109,11 +110,17 @@ QUARANTINED_SAMPLE_ROUTE_IDS: tuple[str, ...] = (
 QUARANTINED_SAMPLE_DIR = DEFAULT_SITE_DIR / "_sample"
 
 RC_BATCH_DEFAULT_LIMIT = 250
-RC_BATCH_MAX_LIMIT = 7500
+RC_BATCH_MAX_LIMIT = 14000
 RC_BATCH_MIN_TARGET = 100
 RC_BATCH_1500_TARGET = 1500
 RC_BATCH_7500_TARGET = 7500
+RC_BATCH_14000_TARGET = 14000
 RC_BATCH_MANIFEST_NAME = "rc_batch_manifest.json"
+
+PUBLIC_LAUNCH_FOUNDATION_DIR = DEFAULT_SITE_DIR / "public"
+PUBLIC_LAUNCH_MANIFEST_NAME = "public_launch_manifest.json"
+PUBLIC_LAUNCH_FOUNDATION_TARGET = 14000
+PUBLIC_LAUNCH_MAX_LIMIT = 14000
 
 QA_HTML_PREAMBLE = """<!--
   QUARANTINED NON-PUBLIC QA RENDER — NOT A LAUNCH
@@ -129,6 +136,14 @@ RC_HTML_PREAMBLE = """<!--
   Not indexable. Not publication-ready. Outside sitemap. Outside navigation.
   Source/claim approval not implied. Not a reduced launch target.
   production_can_safely_proceed: no
+-->
+"""
+
+PUBLIC_LAUNCH_HTML_PREAMBLE = """<!--
+  PUBLIC LAUNCH FOUNDATION — 14,000-PAGE CONTROLLED VISIBILITY (Sprint 6M-G)
+  Indexation gate: CLOSED (noindex,nofollow). Sitemap gate: CLOSED. Navigation gate: CLOSED.
+  Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved.
+  Public visibility does not mean final publication-ready status.
 -->
 """
 
@@ -173,6 +188,18 @@ class RCBatchResult:
 
 
 @dataclass
+class PublicLaunchResult:
+    rendered_count: int
+    skipped_count: int
+    written_paths: list[str]
+    errors: list[str]
+    skipped_by_category: dict[str, int]
+    manifest_path: str
+    selected_route_ids: list[str]
+    page_records: list[dict[str, Any]]
+
+
+@dataclass
 class BuildAudit:
     mode: str
     timestamp_utc: str
@@ -187,6 +214,7 @@ class BuildAudit:
     out_of_navigation_count: int = 0
     sample_planned_count: int = 0
     rc_batch_result: RCBatchResult | None = None
+    public_launch_result: PublicLaunchResult | None = None
     publication_lock: str = "LOCKED"
     indexation_lock: str = "LOCKED"
     sitemap_lock: str = "LOCKED"
@@ -646,6 +674,128 @@ def assert_quarantine_output_dir(sample_dir: Path) -> None:
         )
 
 
+def assert_public_launch_output_path(out_path: Path) -> None:
+    """Fail closed if public launch output is outside site/public/."""
+    resolved = out_path.resolve()
+    public_root = PUBLIC_LAUNCH_FOUNDATION_DIR.resolve()
+    sample_root = QUARANTINED_SAMPLE_DIR.resolve()
+    if sample_root in resolved.parents or resolved == sample_root:
+        raise ValueError(f"public launch must not write to quarantine: {resolved}")
+    try:
+        resolved.relative_to(public_root)
+    except ValueError as exc:
+        raise ValueError(f"public launch output must be under site/public/: {resolved}") from exc
+
+
+def route_is_public_launch_eligible(route: dict[str, Any], templates_root: Path) -> tuple[bool, str]:
+    content_path = ROOT / route.get("content_file", "")
+    if not content_path.is_file():
+        return False, "missing_content"
+    template_name = route.get("template", "")
+    if template_name not in TEMPLATE_FRAME_BRIDGE and not (templates_root / template_name).is_file():
+        return False, "unmapped_template"
+    if route.get("status") != "planned":
+        return False, "non_planned_status"
+    if route.get("indexable") is True:
+        return False, "indexable_not_allowed"
+    if route.get("in_sitemap") is True:
+        return False, "in_sitemap_not_allowed"
+    if route.get("in_navigation") is True:
+        return False, "in_navigation_not_allowed"
+    return True, ""
+
+
+def select_public_launch_routes(
+    routes: list[dict[str, Any]],
+    templates_root: Path,
+    limit: int,
+) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    """Deterministic stratified public launch foundation selection."""
+    route_by_id = {r["route_id"]: r for r in routes}
+    selected_ids: list[str] = []
+    seen: set[str] = set()
+    skipped_by_category: Counter[str] = Counter()
+
+    def add_route(route: dict[str, Any]) -> bool:
+        if len(selected_ids) >= limit:
+            return False
+        rid = route["route_id"]
+        if rid in seen:
+            return True
+        ok, reason = route_is_public_launch_eligible(route, templates_root)
+        if not ok:
+            skipped_by_category[reason] += 1
+            return True
+        selected_ids.append(rid)
+        seen.add(rid)
+        return True
+
+    eligible = [r for r in routes if r["route_id"] not in seen]
+    buckets: dict[str, list[dict[str, Any]]] = {
+        "gateway": [],
+        "de_terminology": [],
+        "en_terminology": [],
+        "disambiguation": [],
+        "reference_governance": [],
+        "reference": [],
+        "acquisition": [],
+    }
+    for route in eligible:
+        ok, reason = route_is_public_launch_eligible(route, templates_root)
+        if not ok:
+            continue
+        page_type = classify_route_page_type(route)
+        bucket = page_type if page_type in buckets else "reference"
+        buckets[bucket].append(route)
+
+    for key in buckets:
+        buckets[key].sort(key=lambda r: r["route_id"])
+
+    bucket_order = (
+        "gateway",
+        "de_terminology",
+        "disambiguation",
+        "reference_governance",
+        "en_terminology",
+        "acquisition",
+        "reference",
+    )
+    indices = {k: 0 for k in bucket_order}
+    while len(selected_ids) < limit:
+        progressed = False
+        for bucket_name in bucket_order:
+            if len(selected_ids) >= limit:
+                break
+            idx = indices[bucket_name]
+            bucket = buckets[bucket_name]
+            if idx >= len(bucket):
+                continue
+            route = bucket[idx]
+            indices[bucket_name] += 1
+            if route["route_id"] in seen:
+                continue
+            add_route(route)
+            progressed = True
+        if not progressed:
+            break
+
+    if len(selected_ids) < limit:
+        for route in sorted(eligible, key=lambda r: r["route_id"]):
+            if len(selected_ids) >= limit:
+                break
+            if route["route_id"] in seen:
+                continue
+            ok, reason = route_is_public_launch_eligible(route, templates_root)
+            if not ok:
+                skipped_by_category[reason] += 1
+                continue
+            selected_ids.append(route["route_id"])
+            seen.add(route["route_id"])
+
+    selected_routes = [route_by_id[rid] for rid in selected_ids if rid in route_by_id]
+    return selected_routes, dict(skipped_by_category)
+
+
 def classify_route_page_type(route: dict[str, Any]) -> str:
     layer = route.get("layer", "")
     lang = route.get("language", "en")
@@ -933,12 +1083,21 @@ def build_render_context(
         "route_status": status,
         "route_path": route.get("path", ""),
         "route_layer": layer,
-        "publication_posture": "non_public",
+        "publication_posture": (
+            "public_visible_foundation" if render_mode == "public_launch_foundation" else "non_public"
+        ),
         "page_title": route.get("title", route["route_id"]),
         "meta_description": route.get("description", ""),
-        "robots_directive": "noindex, nofollow",
+        "robots_directive": (
+            "noindex, nofollow"
+            if render_mode == "public_launch_foundation" or not indexable
+            else "noindex, nofollow"
+        ),
         "canonical_url": f"https://bisulfid.com{route.get('path', '/')}",
-        "canonical_mode": "non_public_withheld",
+        "canonical_mode": (
+            "public_foundation_noindex" if render_mode == "public_launch_foundation"
+            else "non_public_withheld"
+        ),
         "indexable_flag": "false",
         "in_sitemap_flag": "false",
         "in_navigation_flag": "false",
@@ -949,21 +1108,31 @@ def build_render_context(
         "site_name": "bisulfid.com",
         "copyright_year": str(datetime.now(timezone.utc).year),
         "page_h1": route.get("h1", route.get("title", route["route_id"])),
-        "qa_artifact_flag": "true",
+        "qa_artifact_flag": "false" if render_mode == "public_launch_foundation" else "true",
         "governance_banner_title": (
-            "Non-public release candidate — NOT A LAUNCH"
-            if render_mode == "rc_batch"
-            else "Non-public QA render — NOT A LAUNCH"
+            "Public launch foundation — controlled visibility"
+            if render_mode == "public_launch_foundation"
+            else (
+                "Non-public release candidate — NOT A LAUNCH"
+                if render_mode == "rc_batch"
+                else "Non-public QA render — NOT A LAUNCH"
+            )
         ),
         "governance_banner_body": (
-            "RC Batch 01 under site/_sample/ inside the 14,000-page publication pipeline. "
-            "Not indexable. Not publication-ready. Outside sitemap. Outside navigation. "
-            "Not a reduced launch target."
-            if render_mode == "rc_batch"
+            "14,000-page public launch foundation. Indexation CLOSED (noindex). "
+            "Sitemap CLOSED. Navigation CLOSED. Source approval not implied. "
+            "Claim approval not implied. [SOURCE REQUIRED] preserved where unresolved."
+            if render_mode == "public_launch_foundation"
             else (
-                "Quarantined engineering sample under site/_sample/. "
-                "Not indexable. Outside sitemap. Outside navigation. "
-                "14,000-page governed launch corpus frame proof only."
+                "RC Batch 01 under site/_sample/ inside the 14,000-page publication pipeline. "
+                "Not indexable. Not publication-ready. Outside sitemap. Outside navigation. "
+                "Not a reduced launch target."
+                if render_mode == "rc_batch"
+                else (
+                    "Quarantined engineering sample under site/_sample/. "
+                    "Not indexable. Outside sitemap. Outside navigation. "
+                    "14,000-page governed launch corpus frame proof only."
+                )
             )
         ),
         "navigation_status": "inactive",
@@ -971,18 +1140,23 @@ def build_render_context(
         "hreflang_status": "inactive",
         "hreflang_link_tags": "<!-- hreflang withheld — publication locks active -->",
         "breadcrumb_items": (
-            f'<li><span>RC Batch 01</span></li><li><span>{html.escape(route["route_id"])}</span></li>'
-            if render_mode == "rc_batch"
+            f'<li><span>Public launch foundation</span></li>'
+            f'<li><span>{html.escape(route["route_id"])}</span></li>'
+            if render_mode == "public_launch_foundation"
             else (
-                f'<li><span>QA sample</span></li>'
-                f'<li><span>{html.escape(route["route_id"])}</span></li>'
+                f'<li><span>RC Batch 01</span></li><li><span>{html.escape(route["route_id"])}</span></li>'
+                if render_mode == "rc_batch"
+                else (
+                    f'<li><span>QA sample</span></li>'
+                    f'<li><span>{html.escape(route["route_id"])}</span></li>'
+                )
             )
         ),
         "breadcrumb_context_hidden": "false",
         "source_posture_message": (
             "Sources and claims remain unapproved. [SOURCE REQUIRED] markers are binding."
             if has_source_markers
-            else "No source approval implied by this QA frame."
+            else "No source approval implied by public visibility."
         ),
         "source_list": "",
         "source_required_visible": "true" if has_source_markers else "false",
@@ -1097,6 +1271,20 @@ def render_route_quarantined(
             "Not a reduced publication target.</p></div>"
         )
         preamble = RC_HTML_PREAMBLE
+    elif render_mode == "public_launch_foundation":
+        qa_notice = (
+            '<div class="public-launch-foundation-notice" role="status" '
+            'data-public-launch-foundation="14000" '
+            'data-publication-posture="public_visible_foundation">'
+            "<p><strong>Public launch foundation</strong> — controlled visibility only. "
+            "Indexation gate: <strong>CLOSED</strong> (noindex,nofollow). "
+            "Sitemap gate: <strong>CLOSED</strong>. Navigation gate: <strong>CLOSED</strong>. "
+            "Source approval not implied. Claim approval not implied. "
+            "Not final publication-ready. "
+            f"Route status: <strong>{html.escape(route.get('status', 'planned'))}</strong>. "
+            "14,000-page launch foundation — scaling toward 100,000+ governed pages.</p></div>"
+        )
+        preamble = PUBLIC_LAUNCH_HTML_PREAMBLE
     else:
         qa_notice = (
             '<div class="qa-render-notice" role="status" data-qa-artifact="true" '
@@ -1219,7 +1407,10 @@ def write_quarantined_rc_batch_html(
         })
 
     total_skipped = sum(skipped_by_category.values())
-    if limit >= RC_BATCH_7500_TARGET:
+    if limit >= RC_BATCH_14000_TARGET:
+        batch_id = "rc_14000"
+        sprint_tag = "6M-G"
+    elif limit >= RC_BATCH_7500_TARGET:
         batch_id = "rc_7500"
         sprint_tag = "6M-F"
     elif limit >= RC_BATCH_1500_TARGET:
@@ -1244,6 +1435,110 @@ def write_quarantined_rc_batch_html(
         json.dump(manifest, f, indent=2)
 
     return RCBatchResult(
+        rendered_count=len(written),
+        skipped_count=total_skipped,
+        written_paths=written,
+        errors=errors,
+        skipped_by_category=dict(skipped_by_category),
+        manifest_path=str(manifest_path.relative_to(ROOT)).replace("\\", "/"),
+        selected_route_ids=[r["route_id"] for r in selected_routes],
+        page_records=page_records,
+    )
+
+
+def write_public_launch_foundation_html(
+    routes: list[dict[str, Any]],
+    templates_root: Path,
+    public_dir: Path,
+    limit: int,
+) -> PublicLaunchResult:
+    """Render controlled public launch foundation to site/public/ only."""
+    public_root = PUBLIC_LAUNCH_FOUNDATION_DIR.resolve()
+    if public_dir.resolve() != public_root:
+        raise ValueError(f"public launch dir must be site/public/: got {public_dir.resolve()}")
+
+    errors: list[str] = []
+    written: list[str] = []
+    page_records: list[dict[str, Any]] = []
+    skipped_by_category: Counter[str] = Counter()
+    language_split: Counter[str] = Counter()
+    family_split: Counter[str] = Counter()
+
+    selected_routes, selection_skipped = select_public_launch_routes(routes, templates_root, limit)
+    skipped_by_category.update(selection_skipped)
+
+    public_dir.mkdir(parents=True, exist_ok=True)
+    for existing in public_dir.rglob("*.html"):
+        existing.unlink()
+
+    for route in selected_routes:
+        rid = route["route_id"]
+        ok, reason = route_is_public_launch_eligible(route, templates_root)
+        if not ok:
+            skipped_by_category[reason] += 1
+            errors.append(f"{rid}: skipped ({reason})")
+            continue
+        try:
+            html_out = render_route_quarantined(
+                route, templates_root, render_mode="public_launch_foundation"
+            )
+        except OSError as exc:
+            skipped_by_category["render_failed"] += 1
+            errors.append(f"{rid}: render failed: {exc}")
+            continue
+
+        rel_out = route_output_path(route, public_dir)
+        out_path = ROOT / rel_out
+        assert_public_launch_output_path(out_path)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(html_out, encoding="utf-8")
+        rel_path = str(out_path.relative_to(ROOT)).replace("\\", "/")
+        written.append(rel_path)
+
+        page_type = classify_route_page_type(route)
+        language_split[route.get("language", "unknown")] += 1
+        family_split[page_type] += 1
+
+        source_vis = (
+            "[SOURCE REQUIRED]" in html_out or "source-required-marker" in html_out
+        )
+        page_records.append({
+            "route_id": rid,
+            "route_path": route.get("path", ""),
+            "language": route.get("language", ""),
+            "page_type": page_type,
+            "template_used": route.get("template", ""),
+            "output_path": rel_path,
+            "source_required_visible": "yes" if source_vis else "no",
+            "route_status": route.get("status", "planned"),
+            "public_visibility_enabled": "yes",
+            "indexation_enabled": "no",
+            "sitemap_enabled": "no",
+            "navigation_enabled": "no",
+        })
+
+    total_skipped = sum(skipped_by_category.values())
+    manifest = {
+        "foundation_id": "public_launch_14000",
+        "sprint": "6M-G",
+        "target_limit": limit,
+        "rendered_count": len(written),
+        "skipped_count": total_skipped,
+        "skipped_by_category": dict(skipped_by_category),
+        "language_split": dict(language_split),
+        "family_split": dict(family_split),
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "output_dir": str(public_dir.relative_to(ROOT)).replace("\\", "/"),
+        "indexation_gate": "closed",
+        "sitemap_gate": "closed",
+        "navigation_gate": "closed",
+        "pages": page_records,
+    }
+    manifest_path = public_dir / PUBLIC_LAUNCH_MANIFEST_NAME
+    with manifest_path.open("w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
+
+    return PublicLaunchResult(
         rendered_count=len(written),
         skipped_count=total_skipped,
         written_paths=written,
@@ -1296,12 +1591,16 @@ def run_build_engine(
     sample_size: int | None = None,
     render_quarantined_sample: bool = False,
     render_quarantined_rc_batch: bool = False,
+    render_public_launch_foundation: bool = False,
     rc_batch_limit: int = RC_BATCH_DEFAULT_LIMIT,
+    public_launch_limit: int = PUBLIC_LAUNCH_FOUNDATION_TARGET,
     write_build_status: bool = False,
     write_audit_report: Path | None = None,
 ) -> BuildAudit:
     mode = "dry-run"
-    if render_quarantined_rc_batch:
+    if render_public_launch_foundation:
+        mode = f"render-public-launch-foundation-{public_launch_limit}"
+    elif render_quarantined_rc_batch:
         mode = f"render-quarantined-rc-batch-{rc_batch_limit}"
     elif render_quarantined_sample:
         mode = "render-quarantined-sample"
@@ -1437,12 +1736,43 @@ def run_build_engine(
                     f"template {check.path} missing blocks: {', '.join(check.missing_blocks)}"
                 )
 
-    # Never generate public HTML in current locked posture
+    # Default: no public HTML unless explicit public launch foundation render
     audit.public_html_generated = 0
     audit.sitemap_generated = False
     audit.navigation_generated = False
 
-    if render_quarantined_rc_batch:
+    render_modes = sum((
+        render_quarantined_rc_batch,
+        render_quarantined_sample,
+        render_public_launch_foundation,
+    ))
+    if render_modes > 1:
+        audit.strict_errors.append("cannot combine multiple render modes")
+
+    if render_public_launch_foundation:
+        pl_result = write_public_launch_foundation_html(
+            routes, templates_root, PUBLIC_LAUNCH_FOUNDATION_DIR, public_launch_limit
+        )
+        audit.public_launch_result = pl_result
+        audit.public_html_generated = pl_result.rendered_count
+        audit.strict_errors.extend(pl_result.errors)
+        audit.output_plan_notes.append(
+            f"Public launch foundation: rendered {pl_result.rendered_count} page(s), "
+            f"skipped {pl_result.skipped_count}"
+        )
+        audit.output_plan_notes.append(f"manifest: {pl_result.manifest_path}")
+        audit.output_plan_notes.append(
+            f"output scope: {PUBLIC_LAUNCH_FOUNDATION_DIR.relative_to(ROOT)}"
+        )
+        for category, count in sorted(pl_result.skipped_by_category.items()):
+            audit.output_plan_notes.append(f"  skipped ({category}): {count}")
+        if strict and pl_result.rendered_count < PUBLIC_LAUNCH_FOUNDATION_TARGET:
+            audit.strict_errors.append(
+                f"public launch rendered {pl_result.rendered_count} pages "
+                f"(required {PUBLIC_LAUNCH_FOUNDATION_TARGET})"
+            )
+
+    elif render_quarantined_rc_batch:
         if render_quarantined_sample:
             audit.strict_errors.append("cannot combine --render-quarantined-sample with RC batch")
         else:
@@ -1463,7 +1793,12 @@ def run_build_engine(
                     f"RC batch rendered {rc_result.rendered_count} pages "
                     f"(minimum target {RC_BATCH_MIN_TARGET})"
                 )
-            if strict and rc_batch_limit >= RC_BATCH_7500_TARGET and rc_result.rendered_count < RC_BATCH_7500_TARGET:
+            if strict and rc_batch_limit >= RC_BATCH_14000_TARGET and rc_result.rendered_count < RC_BATCH_14000_TARGET:
+                audit.strict_errors.append(
+                    f"RC 14000 batch rendered {rc_result.rendered_count} pages "
+                    f"(required {RC_BATCH_14000_TARGET})"
+                )
+            elif strict and rc_batch_limit >= RC_BATCH_7500_TARGET and rc_result.rendered_count < RC_BATCH_7500_TARGET:
                 audit.strict_errors.append(
                     f"RC 7500 batch rendered {rc_result.rendered_count} pages "
                     f"(required {RC_BATCH_7500_TARGET})"
@@ -1490,7 +1825,7 @@ def run_build_engine(
         if count == 0 and not render_errors:
             audit.strict_errors.append("quarantined sample render produced zero files")
 
-    if write_build_status and not render_quarantined_sample and not render_quarantined_rc_batch:
+    if write_build_status and not render_quarantined_sample and not render_quarantined_rc_batch and not render_public_launch_foundation:
         output_dir.mkdir(parents=True, exist_ok=True)
         status_path = output_dir / "build-status.json"
         status_payload = {
@@ -1625,6 +1960,14 @@ def print_summary(audit: BuildAudit, strict: bool) -> None:
         print("STRICT MODE: FAIL — validation errors detected.")
     elif audit.mode.startswith("dry-run") or audit.mode.startswith("sample"):
         print("Dry-run complete. No public HTML generated. No registries modified.")
+    elif audit.mode.startswith("render-public-launch-foundation"):
+        print("Public launch foundation render complete. Output under site/public/ only.")
+        if audit.public_launch_result:
+            print(
+                f"  Rendered: {audit.public_launch_result.rendered_count} | "
+                f"Skipped: {audit.public_launch_result.skipped_count}"
+            )
+        print("Indexation/sitemap/navigation gates remain CLOSED. No registries modified.")
     elif audit.mode.startswith("render-quarantined-rc-batch"):
         print("RC Batch 01 render complete. Output under site/_sample/ only.")
         if audit.rc_batch_result:
@@ -1659,6 +2002,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="Fail closed on missing templates, unsafe flags, duplicates, and metadata gaps.",
     )
     parser.add_argument(
+        "--render-public-launch-foundation",
+        action="store_true",
+        help="Render controlled public launch foundation HTML to site/public/ only (noindex).",
+    )
+    parser.add_argument(
         "--render-quarantined-rc-batch",
         action="store_true",
         help="Render non-public RC batch HTML to site/_sample/ only (noindex, not a launch).",
@@ -1668,7 +2016,10 @@ def build_parser() -> argparse.ArgumentParser:
         type=int,
         default=RC_BATCH_DEFAULT_LIMIT,
         metavar="N",
-        help=f"Max routes for --render-quarantined-rc-batch (default {RC_BATCH_DEFAULT_LIMIT}, up to {RC_BATCH_MAX_LIMIT}).",
+        help=(
+            f"Max routes for RC batch or public launch foundation "
+            f"(default {RC_BATCH_DEFAULT_LIMIT}, up to {RC_BATCH_MAX_LIMIT})."
+        ),
     )
     parser.add_argument(
         "--render-quarantined-sample",
@@ -1703,6 +2054,7 @@ def main(argv: list[str] | None = None) -> int:
         args.sample is not None,
         args.render_quarantined_sample,
         args.render_quarantined_rc_batch,
+        args.render_public_launch_foundation,
         args.write_build_status,
     )):
         parser.print_help()
@@ -1713,19 +2065,31 @@ def main(argv: list[str] | None = None) -> int:
         print("RC Batch 01 render: python scripts/build.py --render-quarantined-rc-batch --limit 250")
         print("RC 1500 render: python scripts/build.py --render-quarantined-rc-batch --limit 1500")
         print("RC 7500 render: python scripts/build.py --render-quarantined-rc-batch --limit 7500")
+        print("Public launch foundation: python scripts/build.py --render-public-launch-foundation --limit 14000")
         return 0
 
     audit_report_path = None
     if args.write_audit_report:
         audit_report_path = ROOT / args.write_audit_report
 
+    render_any = (
+        args.render_quarantined_sample
+        or args.render_quarantined_rc_batch
+        or args.render_public_launch_foundation
+    )
+    public_limit = (
+        args.limit if args.render_public_launch_foundation else PUBLIC_LAUNCH_FOUNDATION_TARGET
+    )
+
     audit = run_build_engine(
-        dry_run=not (args.render_quarantined_sample or args.render_quarantined_rc_batch),
+        dry_run=not render_any,
         strict=args.strict,
         sample_size=args.sample,
         render_quarantined_sample=args.render_quarantined_sample,
         render_quarantined_rc_batch=args.render_quarantined_rc_batch,
+        render_public_launch_foundation=args.render_public_launch_foundation,
         rc_batch_limit=args.limit,
+        public_launch_limit=public_limit,
         write_build_status=args.write_build_status,
         write_audit_report=audit_report_path,
     )

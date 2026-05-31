@@ -3745,3 +3745,71 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Not modified:** `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, workflows, root README.md, package files, dependencies, public HTML outside `site/_sample/`.
 
+---
+
+## 14,000-Page Controlled Public Launch Foundation Completed
+
+**Date:** 2026-05-31  
+**Branch:** `claude/sprint-6m-g-14000-page-controlled-public-launch-foundation`  
+**Base:** main @ Sprint 6M-F merge  
+**Status:** Complete — 14,000-page controlled public launch foundation
+
+**Summary:** Sprint **6M-G** moved Bisulfid from non-public release-candidate testing into the first controlled public launch foundation. The sprint expanded the governed corpus to **14,000** draft-backed routes and generated **14,000** controlled public output pages under `site/public/` while preserving source/claim truth and gate separation. The sprint established public visibility as the primary track after the successful 7,500-page non-public RC test. It did not approve sources or claims, did not remove unresolved source markers, did not create uncontrolled sitemap/navigation/indexation exposure, and did not weaken the quality system. The 14,000-page launch foundation is the first visible public beginning of a much larger reference asset intended to scale to 100,000+ and eventually hundreds of thousands of governed pages.
+
+**Corpus expansion:**
+
+- Before: 7,500 routes, 7,500 draft-backed, 0 missing drafts
+- Added: +6,500 COHORT_05 routes via `generate_14000_corpus_expansion_v1.py`
+- After: 14,000 routes, 14,000 draft-backed, 0 missing drafts
+
+**Public output:**
+
+- Command: `python scripts/build.py --render-public-launch-foundation --limit 14000`
+- Rendered: 14,000 pages, 0 skipped
+- Location: `site/public/` (not `site/_sample/`)
+- Indexation: CLOSED (`noindex,nofollow`)
+- Sitemap: CLOSED
+- Navigation: CLOSED
+
+**Sprint 6M-G validation:**
+
+- `validate_14000_public_launch_foundation_l1.py`: **PASS**
+- `validate_public_output_l1.py`: **PASS**
+- `validate_release_candidate_batch_l1.py`: **PASS**
+- `validate_template_registry_l1.py`: **PASS**
+- `validate_template_layer_l1.py`: **PASS**
+- `validate_sample_output_l1.py`: **PASS**
+- `validate_build_engine_l1.py`: **PASS**
+- `build.py --dry-run` / `--strict`: **PASS**
+- `corpus_production_runtime_l2.py`: **PASS**
+- `corpus_validation_runtime_l1.py`: **PASS**
+- `source_claim_guardrail_runtime_l1.py`: **PASS**
+- `corpus_production_planner_l2.py`: **PASS**
+
+**Files created:**
+
+- `scripts/generate_14000_corpus_expansion_v1.py`
+- `scripts/validate_14000_public_launch_foundation_l1.py`
+- `scripts/validate_public_output_l1.py`
+- `main/data/LAUNCH_FOUNDATION_14000_REPORT.md`
+- `main/data/LAUNCH_FOUNDATION_14000_MATRIX.md` (14,000 rows)
+- `main/data/LAUNCH_FOUNDATION_14000_VALIDATION_REPORT.md`
+- `main/data/PUBLICATION_GATE_MODEL_14000.md`
+- `main/data/PUBLIC_LAUNCH_NEXT_ACTIONS.md`
+- `main/data/COHORT_05_14000_EXPANSION_INVENTORY.json`
+- `main/data/COHORT_05_14000_EXPANSION_MANIFEST.json`
+- `site/public/public_launch_manifest.json`
+- `site/public/**/index.html` (14,000 public foundation pages)
+
+**Files updated:**
+
+- `scripts/build.py` — `--render-public-launch-foundation`, RC 14,000 batch_id, public launch render pipeline
+- `scripts/validate_release_candidate_batch_l1.py` — allow `site/public/`, RC max 14,000
+- `scripts/validate_sample_output_l1.py` — allow `site/public/` in HTML scan
+- `main/data/routes.json` — +6,500 governed planned routes (COHORT_05)
+- `main/data/internal_links.json` — cohort05 spine planning link group
+- `main/content/**` — governed draft expansion only
+- `DECISION_LOG.md`
+
+**Not modified:** `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, workflows, root README.md, package files, dependencies.
+

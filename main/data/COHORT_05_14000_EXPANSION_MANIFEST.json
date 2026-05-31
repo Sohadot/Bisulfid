@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "sprint": "6M-G",
+  "cohort_id": "COHORT_05_14000_LAUNCH_FOUNDATION",
+  "engine": "generate_14000_corpus_expansion_v1",
+  "date": "2026-05-31",
+  "routes_before": 7500,
+  "routes_after": 14000,
+  "draft_backed_before": 7500,
+  "draft_backed_after": 14000,
+  "new_routes_added": 6500,
+  "target_new_routes": 6500,
+  "target_renderable": 14000,
+  "en_entity_count": 806,
+  "single_route_count": 52
+}
