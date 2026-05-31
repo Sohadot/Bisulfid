@@ -1,0 +1,49 @@
+name: Pages public deploy
+
+# Governed GitHub Pages deployment gate (Sprint 6M-H).
+# Deploys site/public/ only — not repository root, not site/_sample/.
+# Does not regenerate corpus, install dependencies, or mutate repository files.
+# Indexation/sitemap/navigation/source/claim gates remain CLOSED.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-public-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy-public-foundation:
+    name: Deploy site/public to GitHub Pages
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout repository (read-only)
+        uses: actions/checkout@v4
+
+      - name: Verify deployment artifact root exists
+        run: |
+          test -d site/public
+          test -f site/public/public_launch_manifest.json
+          page_count="$(find site/public -name 'index.html' | wc -l | tr -d ' ')"
+          echo "Public foundation pages in artifact root: ${page_count}"
+          test "${page_count}" -eq 14000
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site/public artifact only
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
