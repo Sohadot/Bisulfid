@@ -19,7 +19,7 @@ MANIFEST_PATH = SAMPLE_DIR / "rc_batch_manifest.json"
 ROUTES_PATH = ROOT / "main/data/routes.json"
 
 RC_BATCH_MIN = 100
-RC_BATCH_MAX = 250
+RC_BATCH_MAX = 1500
 
 REQUIRED_MARKERS = (
     "noindex",
@@ -60,6 +60,8 @@ def implies_claim_approval(text: str) -> bool:
         "no_claims_approved",
         "no approved claim is implied",
         "no science claim is approved",
+        "no science or industry claim is approved",
+        "no industry claim is approved",
         "none approved today",
         "not approved claim is implied",
     ):
@@ -171,7 +173,9 @@ def main() -> int:
             all_errors.append(
                 f"RC batch count {rendered} below minimum {RC_BATCH_MIN}"
             )
-        if rendered > RC_BATCH_MAX:
+        if manifest.get("batch_id") == "rc_1500" and rendered != 1500:
+            all_errors.append(f"RC 1500 batch count {rendered} != 1500")
+        elif rendered > RC_BATCH_MAX:
             all_warnings.append(f"RC batch count {rendered} exceeds nominal max {RC_BATCH_MAX}")
     else:
         all_errors.append("rc_batch_manifest.json missing under site/_sample/")
