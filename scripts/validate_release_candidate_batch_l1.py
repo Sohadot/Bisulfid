@@ -19,7 +19,7 @@ MANIFEST_PATH = SAMPLE_DIR / "rc_batch_manifest.json"
 ROUTES_PATH = ROOT / "main/data/routes.json"
 
 RC_BATCH_MIN = 100
-RC_BATCH_MAX = 1500
+RC_BATCH_MAX = 7500
 
 REQUIRED_MARKERS = (
     "noindex",
@@ -173,7 +173,9 @@ def main() -> int:
             all_errors.append(
                 f"RC batch count {rendered} below minimum {RC_BATCH_MIN}"
             )
-        if manifest.get("batch_id") == "rc_1500" and rendered != 1500:
+        if manifest.get("batch_id") == "rc_7500" and rendered != 7500:
+            all_errors.append(f"RC 7500 batch count {rendered} != 7500")
+        elif manifest.get("batch_id") == "rc_1500" and rendered != 1500:
             all_errors.append(f"RC 1500 batch count {rendered} != 1500")
         elif rendered > RC_BATCH_MAX:
             all_warnings.append(f"RC batch count {rendered} exceeds nominal max {RC_BATCH_MAX}")

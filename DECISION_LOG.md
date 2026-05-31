@@ -3693,3 +3693,55 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Not modified:** `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, workflows, root README.md, package files, dependencies, public HTML outside `site/_sample/`.
 
+---
+
+## 14K Pipeline 7,500-Page Non-Public RC Completed
+
+**Date:** 2026-05-31  
+**Branch:** `claude/sprint-6m-f-7500-page-14k-pipeline-non-public-rc`  
+**Base:** main @ Sprint 6M-E merge (`9c0d434`)  
+**Status:** Complete — 7,500-page RC rendered under quarantine; all locks intact
+
+**Summary:** Sprint **6M-F** advanced the Bisulfid **14,000-page** publication pipeline by expanding the governed non-public corpus to **7,500** draft-backed routes and producing a **7,500-page** non-public release candidate under `site/_sample/`. The sprint moved directly from the **1,500-page** RC stage to the **7,500-page** RC stage to accelerate toward the fixed **14,000-page** launch corpus while preserving all governance controls. The **7,500-page** batch is an engineering release candidate, **not a public launch** and **not a reduced target**. No routes were published, no routes were made indexable, no routes were added to sitemap or navigation, no sources or claims were approved, no protected registries were modified for approval, and `[SOURCE REQUIRED]` markers remained unresolved.
+
+**Rationale:** Sprint 6M-E proved 1,500-page RC scale. 6M-F validates governed corpus expansion (+6,000 COHORT_04 routes), render throughput, and validator coverage at **7,500 pages** on the direct path to **14,000** non-public launch-corpus candidate.
+
+**Sprint 6M-F validation:**
+
+- `validate_7500_rc_batch_l1.py`: **PASS** (7,500 files)
+- `validate_release_candidate_batch_l1.py`: **PASS** (7,500 files)
+- `validate_template_registry_l1.py`: **PASS**
+- `validate_template_layer_l1.py`: **PASS**
+- `validate_sample_output_l1.py`: **PASS** (7,500 files)
+- `validate_build_engine_l1.py`: **PASS**
+- `build.py --dry-run` / `--strict`: **PASS**
+- `build.py --render-quarantined-rc-batch --limit 7500`: **PASS** (7,500 rendered, 0 skipped)
+- `corpus_production_runtime_l2.py`: **PASS**
+- `corpus_validation_runtime_l1.py`: **PASS**
+- `source_claim_guardrail_runtime_l1.py`: **PASS**
+- `corpus_production_planner_l2.py`: **PASS**
+
+**Files created:**
+
+- `scripts/generate_7500_corpus_expansion_v1.py`
+- `scripts/validate_7500_rc_batch_l1.py`
+- `main/data/NON_PUBLIC_RC_7500_REPORT.md`
+- `main/data/NON_PUBLIC_RC_7500_MATRIX.md` (7,500 rows)
+- `main/data/NON_PUBLIC_RC_7500_VALIDATION_REPORT.md`
+- `main/data/FOURTEEN_THOUSAND_LAUNCH_CORPUS_NEXT_ACTIONS.md`
+- `main/data/COHORT_04_7500_EXPANSION_INVENTORY.json`
+- `main/data/COHORT_04_7500_EXPANSION_MANIFEST.json`
+- `site/_sample/rc_batch_manifest.json`
+- `site/_sample/*.html` (7,500 RC pages)
+
+**Files updated:**
+
+- `scripts/build.py` — RC 7,500 limit, `batch_id: rc_7500`, sprint 6M-F tag
+- `scripts/validate_release_candidate_batch_l1.py` — RC max 7,500, rc_7500 batch check
+- `main/data/routes.json` — +6,000 governed planned routes (COHORT_04 expansion)
+- `main/data/internal_links.json` — cohort04 spine planning link group
+- `main/content/**` — governed draft expansion only
+- `DECISION_LOG.md`
+
+**Not modified:** `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, workflows, root README.md, package files, dependencies, public HTML outside `site/_sample/`.
+
