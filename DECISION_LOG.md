@@ -3813,3 +3813,52 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Not modified:** `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, workflows, root README.md, package files, dependencies.
 
+---
+
+## GitHub Pages Public Deployment Gate Established
+
+**Date:** 2026-05-31  
+**Branch:** `claude/sprint-6m-h-github-pages-public-deployment-gate`  
+**Base:** main @ Sprint 6M-G merge (`5cfd22f34`)  
+**Status:** Complete — governed GitHub Pages deployment gate configured
+
+**Summary:** Sprint **6M-H** established the governed GitHub Pages deployment gate for the 14,000-page Bisulfid public launch foundation. The sprint configured deployment to serve `site/public/` as the public website artifact while preserving branch protection, source/claim truth, and gate separation. It did not deploy repository root, did not deploy `site/_sample/`, did not open indexation, did not publish sitemap or navigation artifacts, did not approve sources or claims, and did not modify content pages or protected registries. CNAME handling was moved into repository-controlled files rather than direct GitHub UI commits, preserving the protected-main workflow.
+
+**Deployment model:**
+
+- Workflow: `.github/workflows/pages-public-deploy.yml`
+- Trigger: `workflow_dispatch` (explicit manual run)
+- Artifact root: `site/public/` only (14,000 pages + manifest + CNAME + `.nojekyll`)
+- Permissions: `contents: read`, `pages: write`, `id-token: write`
+- No secrets, no Cloudflare API, no dependency install, no corpus regeneration
+
+**Sprint 6M-H validation:**
+
+- `validate_pages_deployment_gate_l1.py`: **PASS**
+- `validate_14000_public_launch_foundation_l1.py`: **PASS**
+- `validate_public_output_l1.py`: **PASS**
+- `validate_release_candidate_batch_l1.py`: **PASS**
+- `validate_build_engine_l1.py`: **PASS**
+- `build.py --dry-run` / `--strict`: **PASS**
+- `corpus_production_runtime_l2.py`: **PASS**
+- `corpus_validation_runtime_l1.py`: **PASS**
+- `source_claim_guardrail_runtime_l1.py`: **PASS**
+- `corpus_production_planner_l2.py`: **PASS**
+
+**Files created:**
+
+- `.github/workflows/pages-public-deploy.yml`
+- `scripts/validate_pages_deployment_gate_l1.py`
+- `site/public/CNAME`
+- `site/public/.nojekyll`
+- `main/data/GITHUB_PAGES_PUBLIC_DEPLOYMENT_GATE_REPORT.md`
+- `main/data/GITHUB_PAGES_PUBLIC_DEPLOYMENT_SECURITY_MODEL.md`
+- `main/data/GITHUB_PAGES_PUBLIC_DEPLOYMENT_VALIDATION_REPORT.md`
+- `main/data/GITHUB_PAGES_PUBLIC_DEPLOYMENT_NEXT_ACTIONS.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md`
+
+**Not modified:** `routes.json`, `internal_links.json`, `sitemap_policy.json`, `navigation.json`, `source_registry.json`, `terminology_claims.json`, `sulfur_terms.json`, `main/content/**`, `site/public/*.html`, `site/_sample/**`, root README.md, package files, dependencies, `corpus-governance-ci.yml`.
+
