@@ -3895,3 +3895,67 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Not modified:** `routes.json`, registries, `main/content/**`, `site/public/**`, `site/_sample/**`, `.github/workflows/pages-public-deploy.yml`, root README.md, package files, dependencies.
 
+---
+
+## Live Site Visibility Verified and Rendering Defects Registered
+
+**Date:** 2026-05-31  
+**Branch:** `claude/sprint-6m-i-live-site-verification-and-render-defect-register`  
+**Base:** main @ Sprint 6N-A merge (`6ae6ca0c4`)  
+**Status:** Complete — live visibility verified; rendering defects registered; all gates preserved
+
+**Summary:** Sprint **6M-I** verified that bisulfid.com is serving the controlled `site/public/` launch foundation and that public visibility is operational. The sprint also registered the first live-rendering defects exposed by public visibility: default browser styling, raw Markdown markers, QA placeholder text, and unintegrated governance presentation. The sprint preserved all gates: indexation, sitemap, navigation, source approval, and claim approval remain closed. The result confirms that deployment succeeded while making **6N-B** design-system template integration the immediate next priority before search exposure.
+
+**Live verification findings:**
+
+- `https://bisulfid.com/` → **200**, public launch foundation HTML (not README)
+- Forbidden paths `/scripts/`, `/main/`, `/_sample/`, `/README.md` → **404**
+- `noindex,nofollow` present on live and local artifact
+- `sitemap.xml` and `robots.txt` → **404** on live; absent under `site/public/`
+- Navigation inactive; source/claim approval not implied; `[SOURCE REQUIRED]` visible where unresolved
+
+**Rendering defects registered:**
+
+| ID | Defect | Local count |
+|----|--------|-------------|
+| DEF-01 | Default browser styling | 14,000 pages |
+| DEF-02 | Raw Markdown `**` markers | 4 pages |
+| DEF-03 | QA placeholder leakage | 228 pages |
+| DEF-04 | Governance overload (raw text) | All pages |
+| DEF-05 | Design system not integrated | 14,000 pages |
+
+**Sprint 6M-I validation:**
+
+- `validate_live_site_visibility_l1.py`: **PASS**
+- `validate_pages_deployment_gate_l1.py`: **PASS**
+- `validate_14000_public_launch_foundation_l1.py`: **PASS**
+- `validate_public_output_l1.py`: **PASS**
+- `validate_bisulfid_design_system_l1.py`: **PASS**
+- `validate_release_candidate_batch_l1.py`: **PASS**
+- `validate_template_registry_l1.py`: **PASS**
+- `validate_template_layer_l1.py`: **PASS**
+- `validate_sample_output_l1.py`: **PASS**
+- `validate_build_engine_l1.py`: **PASS**
+- `build.py --dry-run` / `--strict`: **PASS**
+- `corpus_production_runtime_l2.py`: **PASS**
+- `corpus_validation_runtime_l1.py`: **PASS**
+- `source_claim_guardrail_runtime_l1.py`: **PASS**
+- `corpus_production_planner_l2.py`: **PASS**
+
+**Files created:**
+
+- `scripts/validate_live_site_visibility_l1.py`
+- `main/data/LIVE_SITE_VERIFICATION_REPORT.md`
+- `main/data/PUBLIC_RENDERING_DEFECT_REGISTER.md`
+- `main/data/LIVE_SITE_VISIBILITY_GATE_VALIDATION_REPORT.md`
+- `main/data/DESIGN_SYSTEM_INTEGRATION_URGENCY_REPORT.md`
+- `main/data/LIVE_SITE_NEXT_ACTIONS.md`
+
+**Files updated:**
+
+- `DECISION_LOG.md`
+
+**Not modified:** `routes.json`, `source_registry.json`, `terminology_claims.json`, `main/content/**`, `site/public/*.html`, `site/_sample/**`, GitHub Pages workflow, package files, dependencies, root README.md.
+
+**Next sprint:** **6N-B — Design System Template Integration Pilot** (see `main/data/LIVE_SITE_NEXT_ACTIONS.md`).
+
