@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <!--
-  base.html — Sovereign publication frame shell (Sprint 6M-B)
-  Part of the 14,000-page governed launch corpus rendering pipeline.
-  NOT A LAUNCH TEMPLATE. Do not render for public output until route status
-  is published and all Quality Gate conditions pass.
-  No external scripts. No inline JS. No tracking.
+  base.html — Sovereign publication frame shell (Sprint 6M-B / 6N-D)
+  Chemical-language control room. No external scripts. No tracking.
 -->
 <html lang="{{language}}" dir="{{text_direction}}">
 <head>
@@ -12,20 +9,22 @@
   {{hreflang}}
 </head>
 <body class="bisulfid-frame bs-control-room" data-route-id="{{route_id}}" data-route-status="{{route_status}}" data-publication-posture="{{publication_posture}}" data-design-system="bisulfid-frame">
-  {{governance_banner}}
+  <div class="bs-control-room__shell">
+    {{governance_banner}}
 
-  <header class="site-header">
-    {{nav}}
-  </header>
+    <header class="site-header">
+      {{nav}}
+    </header>
 
-  {{breadcrumbs}}
+    {{breadcrumbs}}
 
-  <main id="main-content" role="main">
-    {{content}}
-  </main>
+    <main id="main-content" role="main">
+      {{content}}
+    </main>
 
-  <footer class="site-footer">
-    {{footer}}
-  </footer>
+    <footer class="site-footer">
+      {{footer}}
+    </footer>
+  </div>
 </body>
 </html>

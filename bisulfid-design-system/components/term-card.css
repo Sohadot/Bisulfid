@@ -1,17 +1,40 @@
 /**
- * Term card — page-level term structure with language, route type, source state.
+ * Term card — sovereign chemical-language frame (Sprint 6N-D).
  */
 .bs-term-card {
   display: flex;
   flex-direction: column;
   gap: var(--bs-space-card-gap);
   padding: var(--bs-space-card-padding);
-  background: var(--bs-color-foundation-elevated);
-  border: 1px solid var(--bs-color-graphite-line);
-  border-radius: calc(var(--bs-space-unit) * 2);
+  background: linear-gradient(
+    165deg,
+    var(--bs-carbon-panel) 0%,
+    var(--bs-carbon-850) 45%,
+    var(--bs-carbon-800) 100%
+  );
+  border: 1px solid var(--bs-molybdenum-edge);
+  border-radius: calc(var(--bs-space-unit) * 3);
   box-shadow: var(--bs-depth-card-raised);
   color: var(--bs-color-ink-primary);
-  max-width: 72ch;
+  max-width: 72rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.bs-term-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--bs-sulfur-500) 20%,
+    var(--bs-molybdenum-300) 50%,
+    var(--bs-sulfur-500) 80%,
+    transparent
+  );
+  opacity: 0.65;
 }
 
 .bs-term-card__header {
@@ -22,24 +45,27 @@
 
 .bs-term-card__title {
   font-family: var(--bs-font-family-institutional);
-  font-size: var(--bs-font-size-title-md);
+  font-size: var(--bs-font-size-title-lg);
   font-weight: var(--bs-font-weight-title);
   line-height: var(--bs-line-height-title);
   margin: 0;
+  color: var(--bs-molybdenum-100);
+  text-wrap: balance;
 }
 
 .bs-term-card__route-type {
   font-size: var(--bs-font-size-term-meta);
-  color: var(--bs-color-ink-muted);
+  color: var(--bs-molybdenum-500);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  margin: 0;
 }
 
 .bs-term-card__language {
   display: inline-block;
   padding: calc(var(--bs-space-unit) * 1) calc(var(--bs-space-unit) * 2);
   font-size: var(--bs-font-size-term-meta);
-  border-radius: calc(var(--bs-space-unit) * 1);
+  border-radius: var(--bs-gov-chip-radius);
 }
 
 .bs-term-card__language--en {
@@ -55,6 +81,7 @@
 .bs-term-card__body {
   font-size: var(--bs-font-size-term-secondary);
   line-height: var(--bs-line-height-term);
+  color: var(--bs-molybdenum-300);
 }
 
 .bs-term-card__source-bar {
@@ -62,6 +89,10 @@
   border-top: 1px solid var(--bs-color-graphite-line);
   font-size: var(--bs-font-size-source-body);
   line-height: var(--bs-line-height-source);
+}
+
+.bs-term-card--source-required {
+  box-shadow: var(--bs-depth-card-source-required);
 }
 
 .bs-term-card--source-required .bs-term-card__source-bar {
@@ -72,13 +103,46 @@
 
 .bs-term-card__disclaimer {
   font-size: var(--bs-font-size-source-label);
-  color: var(--bs-color-ink-muted);
+  color: var(--bs-molybdenum-500);
+  margin: 0;
 }
 
-/* Never imply approval by default */
 .bs-term-card:not(.bs-term-card--source-approved):not(.bs-term-card--claim-approved)
   .bs-term-card__approval-badge {
   display: none;
+}
+
+.bs-term-card--gateway {
+  border-color: var(--bs-molybdenum-edge);
+  box-shadow:
+    var(--bs-depth-card-raised),
+    0 0 32px var(--bs-sulfur-haze);
+}
+
+.bs-term-card--gateway::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--bs-molybdenum-500) 25%,
+    var(--bs-sulfur-500) 50%,
+    var(--bs-molybdenum-500) 75%,
+    transparent
+  );
+  opacity: 0.5;
+}
+
+.bs-term-card--gateway .home-frame__term-map {
+  min-height: 12rem;
+}
+
+@media (max-width: 640px) {
+  .bs-term-card__title {
+    font-size: var(--bs-font-size-title-md);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -21,6 +21,7 @@ ROUTES_PATH = ROOT / "main/data/routes.json"
 
 PUBLIC_LAUNCH_EXACT = 14000
 INTEGRATION_SAMPLE_DIR = PUBLIC_DIR / "_integration_sample"
+VISUAL_PROOF_SAMPLE_DIR = PUBLIC_DIR / "_visual_proof_sample"
 
 
 def is_foundation_public_page(path: Path) -> bool:
@@ -30,7 +31,7 @@ def is_foundation_public_page(path: Path) -> bool:
         return False
     if not rel.parts:
         return True
-    return rel.parts[0] != "_integration_sample"
+    return rel.parts[0] not in ("_integration_sample", "_visual_proof_sample")
 
 
 def foundation_public_html_files() -> list[Path]:

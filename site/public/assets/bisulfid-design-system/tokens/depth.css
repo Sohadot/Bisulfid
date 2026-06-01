@@ -1,32 +1,59 @@
 /**
- * Bisulfid depth tokens — chemical-space layering without WebGL.
+ * Bisulfid depth tokens — material spatial layering (Sprint 6N-D iteration 5).
  */
 :root {
-  /* Chemical-space depth tokens */
-  --bs-depth-space-far: 0;
-  --bs-depth-space-mid: 1;
-  --bs-depth-space-near: 2;
-  --bs-depth-space-focus: 3;
+  --bs-perspective-scene: 1200px;
+  --bs-perspective-tilt: 5deg;
+  --bs-perspective-limit: 1200px;
+  --bs-perspective-tilt-max: 2deg;
 
-  /* Card elevation tokens */
+  --bs-depth-space-far: -100px;
+  --bs-depth-space-mid: -30px;
+  --bs-depth-space-near: 24px;
+  --bs-depth-space-focus: 56px;
+  --bs-depth-hero-back: -70px;
+  --bs-depth-hero-mid: 8px;
+  --bs-depth-hero-front: 40px;
+
+  --bs-depth-term-node: 28px;
+  --bs-depth-source-crystal: 36px;
+  --bs-depth-lattice-plane: -50px;
+
   --bs-depth-card-flat: none;
-  --bs-depth-card-raised: 0 1px 3px rgba(0, 0, 0, 0.35),
-    0 0 0 1px var(--bs-color-graphite-line);
-  --bs-depth-card-floating: 0 4px 16px rgba(0, 0, 0, 0.45),
-    0 0 0 1px var(--bs-color-graphite-line);
-  --bs-depth-card-source-required: 0 0 0 2px var(--bs-color-source-required-border);
+  --bs-depth-card-raised:
+    0 1px 0 var(--bs-molybdenum-shine) inset,
+    0 2px 0 rgba(42, 53, 68, 0.85) inset,
+    0 10px 32px rgba(0, 0, 0, 0.58),
+    0 0 0 1px rgba(154, 172, 190, 0.14);
+  --bs-depth-card-floating:
+    0 0 0 1px var(--bs-sulfur-line),
+    0 16px 40px rgba(0, 0, 0, 0.62),
+    0 0 24px var(--bs-sulfur-glow);
+  --bs-depth-card-source-required:
+    0 0 0 1px var(--bs-color-source-required-border),
+    0 0 28px rgba(224, 122, 95, 0.3);
 
-  /* Semantic layer depth */
   --bs-z-governance-banner: 100;
+  --bs-z-control-room-hero: 50;
   --bs-z-source-bar: 90;
   --bs-z-term-card: 10;
   --bs-z-lattice-edge: 5;
   --bs-z-lattice-node: 20;
 
-  /*
-   * Perspective limits — CSS only in 6N-A.
-   * WebGL/WebXR uses separate engine boundary (see engine/README.md).
-   */
-  --bs-perspective-limit: 1200px;
-  --bs-perspective-tilt-max: 2deg;
+  --bs-depth-hero-gradient:
+    radial-gradient(ellipse 120% 80% at 50% -12%, var(--bs-sulfur-haze) 0%, transparent 52%),
+    radial-gradient(ellipse 70% 50% at 100% 100%, rgba(154, 172, 190, 0.14) 0%, transparent 48%),
+    radial-gradient(ellipse 55% 35% at 0% 85%, rgba(232, 234, 78, 0.04) 0%, transparent 50%),
+    linear-gradient(175deg, var(--bs-carbon-950) 0%, var(--bs-carbon-900) 38%, var(--bs-carbon-850) 68%, var(--bs-carbon-800) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --bs-perspective-tilt: 0deg;
+    --bs-depth-space-far: 0px;
+    --bs-depth-space-mid: 0px;
+    --bs-depth-space-near: 0px;
+    --bs-depth-hero-back: 0px;
+    --bs-depth-hero-front: 0px;
+  }
 }

@@ -4067,3 +4067,41 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Next steps:** Merge → **Pages public deploy** → **Sprint 6M-J — Post-Refresh Live Site Verification** (indexation remains **CLOSED**).
 
+---
+
+## Sovereign Visual Interface Reconstruction Completed
+
+**Date:** 2026-06-01  
+**Branch:** `claude/sprint-6n-d-sovereign-visual-interface-reconstruction`  
+**Base:** main @ Sprint 6N-C-P1 merge  
+**Status:** In progress — design-system + templates complete; **visual proof gate active**; full 14,000 refresh **pending human proof approval**
+
+**Visual Proof Gate:** 6N-C validators passed while live UI failed eye review. 6N-D requires `--render-visual-proof-sample` (7 routes) and `visual_review_status: approved` before `--render-public-design-system-refresh --limit 14000`.
+
+**Summary:** Sprint **6N-D** reconstructs the visible Bisulfid public interface using the fixed **carbon-gray, warm sulfur-yellow, and molybdenum-silver** material palette. Design-system tokens, components, SVG assets, templates, and validators are in place. The **14,000-page foundation remains on 6N-C output** until visual proof passes human review and full refresh is explicitly authorized.
+
+**Proof command:** `python scripts/build.py --render-visual-proof-sample`
+
+**Full refresh command (gated):** `python scripts/build.py --render-public-design-system-refresh --limit 14000`
+
+**Results (current):**
+
+- Visual proof sample: **7 routes** under `site/public/_visual_proof_sample/`
+- Public foundation: **14,000 pages** (6N-C design until proof-approved full refresh)
+- Material palette: carbon / sulfur / molybdenum
+- Full refresh: **BLOCKED** until `visual_review_status: approved`
+
+**Files updated:**
+
+- `bisulfid-design-system/**` — tokens, components, SVG assets, bisulfid-frame.css
+- `main/templates/**` — hero, governance chips, footer labels
+- `scripts/build.py` — display labels, manifest metadata, asset sync
+- `scripts/validate_sovereign_visual_interface_l1.py`
+- `site/public/**` (14,000 foundation + assets)
+- Sprint reports under `main/data/`
+- `DECISION_LOG.md`
+
+**Not modified:** `routes.json`, registries, `main/content/**`, `site/_sample/**`, GitHub Pages workflow, package files, dependencies, root README.md.
+
+**Next steps:** GitHub Pages redeploy → **Sprint 6M-J — Post-Refresh Live Site Verification** (indexation remains **CLOSED**).
+

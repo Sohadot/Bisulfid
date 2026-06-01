@@ -1,6 +1,5 @@
 /**
- * Language depth — multilingual layer display.
- * EN/DE active tokens; AR/FR/ES/JA/ZH reserved for future waves.
+ * Language depth — multilingual layer chips + missing-E boundary (Sprint 6N-D iteration 3).
  */
 .bs-language-depth {
   display: flex;
@@ -16,23 +15,22 @@
   padding: calc(var(--bs-space-unit) * 1) calc(var(--bs-space-unit) * 3);
   font-size: var(--bs-font-size-term-meta);
   font-weight: var(--bs-font-weight-term);
-  border-radius: calc(var(--bs-space-unit) * 1);
+  border-radius: var(--bs-gov-chip-radius);
   border: 1px solid transparent;
 }
 
 .bs-language-depth__layer--en {
   background: var(--bs-color-lang-depth-1);
   color: var(--bs-color-lang-en);
-  border-color: var(--bs-color-lang-en);
+  border-color: rgba(138, 180, 232, 0.35);
 }
 
 .bs-language-depth__layer--de {
   background: var(--bs-color-lang-depth-2);
   color: var(--bs-color-lang-de);
-  border-color: var(--bs-color-lang-de);
+  border-color: rgba(154, 184, 122, 0.35);
 }
 
-/* Future languages — inactive until wave authorized */
 .bs-language-depth__layer--ar,
 .bs-language-depth__layer--fr,
 .bs-language-depth__layer--es,
@@ -44,22 +42,127 @@
   opacity: 0.6;
 }
 
-.bs-language-depth__layer--future::after {
-  content: " (planned)";
-  font-weight: 400;
-  font-size: 0.75em;
-}
-
 .bs-language-depth__depth-indicator {
   font-size: var(--bs-font-size-source-label);
-  color: var(--bs-color-ink-muted);
+  color: var(--bs-molybdenum-500);
+  letter-spacing: 0.04em;
 }
 
-/*
- * RTL readiness: wrap with dir="rtl" and use logical properties.
- */
+/* Missing-E boundary — BISULFIDE → final E absent → BISULFID */
+.bs-missing-e-boundary-system {
+  margin-block-end: calc(var(--bs-space-unit) * 4);
+  padding: calc(var(--bs-space-unit) * 3) calc(var(--bs-space-unit) * 4);
+  background: linear-gradient(
+    155deg,
+    rgba(28, 38, 50, 0.92) 0%,
+    rgba(13, 18, 24, 0.98) 100%
+  );
+  border: 1px solid var(--bs-molybdenum-edge);
+  border-radius: calc(var(--bs-space-unit) * 2);
+  box-shadow:
+    0 1px 0 var(--bs-molybdenum-shine) inset,
+    0 8px 28px rgba(0, 0, 0, 0.45),
+    0 0 24px var(--bs-sulfur-ember);
+}
+
+.bs-missing-e-boundary-system__family {
+  margin: 0 0 calc(var(--bs-space-unit) * 1);
+  font-size: 0.6875rem;
+  font-weight: var(--bs-font-weight-source-emphasis);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bs-molybdenum-500);
+  opacity: 0.72;
+}
+
+.bs-missing-e-boundary-system__row {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--bs-space-unit) * 2);
+  flex-wrap: nowrap;
+}
+
+.bs-missing-e-boundary-system__name {
+  font-family: var(--bs-font-family-institutional);
+  font-size: clamp(1.75rem, 7vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--bs-molybdenum-100);
+  text-shadow:
+    0 0 20px var(--bs-sulfur-glow),
+    0 2px 0 rgba(0, 0, 0, 0.4);
+  line-height: 1;
+}
+
+.bs-missing-e-boundary-system__boundary {
+  display: block;
+  width: 2px;
+  height: clamp(1.75rem, 5vw, 2.5rem);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--bs-sulfur-400) 20%,
+    var(--bs-sulfur-500) 50%,
+    var(--bs-sulfur-400) 80%,
+    transparent
+  );
+  box-shadow: 0 0 10px var(--bs-sulfur-glow);
+  flex-shrink: 0;
+}
+
+.bs-missing-e-boundary-system__ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: clamp(1.75rem, 5vw, 2.25rem);
+  height: clamp(1.75rem, 5vw, 2.25rem);
+  border: 1.5px dashed var(--bs-sulfur-500);
+  border-radius: calc(var(--bs-space-unit) * 1);
+  background: rgba(200, 148, 18, 0.08);
+  box-shadow: 0 0 12px var(--bs-sulfur-ember);
+}
+
+.bs-missing-e-boundary-system__ghost-letter {
+  font-family: var(--bs-font-family-institutional);
+  font-size: clamp(1.125rem, 4vw, 1.5rem);
+  font-weight: 700;
+  color: var(--bs-sulfur-400);
+  opacity: 0.38;
+  line-height: 1;
+}
+
+.bs-missing-e-boundary-system__caption {
+  margin: calc(var(--bs-space-unit) * 2) 0 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bs-sulfur-500);
+  opacity: 0.85;
+}
+
+.bs-control-room-hero__content .bs-missing-e-boundary-system {
+  max-width: 36rem;
+}
+
+@media (max-width: 640px) {
+  .bs-control-room-hero__content {
+    padding-top: clamp(4.5rem, 18vw, 6.5rem);
+  }
+}
+
 [dir="rtl"] .bs-language-depth {
   flex-direction: row-reverse;
+}
+
+@media (max-width: 640px) {
+  .bs-missing-e-boundary-system {
+    padding: calc(var(--bs-space-unit) * 2.5) calc(var(--bs-space-unit) * 3);
+    margin-block-end: calc(var(--bs-space-unit) * 3);
+  }
+
+  .bs-missing-e-boundary-system__caption {
+    font-size: 0.625rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,22 +1,26 @@
 <!--
-  partials/governance_banner.html — Non-public posture visibility (Sprint 6M-B / 6N-B)
-  Structured design-system governance banner. Does not imply publication authorization.
+  partials/governance_banner.html — Compact governance chips (Sprint 6N-D iteration 3)
+  Structured design-system banner. Does not imply publication authorization.
 -->
 <div class="governance-banner bs-governance-banner bs-governance-banner--noindex" role="status" aria-live="polite" data-qa-artifact="{{qa_artifact_flag}}" data-indexation-gate="closed" data-sitemap-gate="closed" data-navigation-gate="closed">
-  <img class="bs-missing-e-boundary" src="/assets/bisulfid-design-system/assets/missing-e-boundary.svg" alt="" aria-hidden="true" width="40" height="40">
-  <p class="governance-banner__title bs-governance-banner__title">{{governance_banner_title}}</p>
-  <p class="governance-banner__body bs-governance-banner__body">{{governance_banner_body}}</p>
-  <ul class="governance-banner__locks bs-governance-banner__locks">
-    <li>Route status: <strong>{{route_status}}</strong></li>
-    <li>Publication posture: <strong>{{publication_posture}}</strong></li>
-    <li>Indexable: <strong>{{indexable_flag}}</strong></li>
-    <li>In sitemap: <strong>{{in_sitemap_flag}}</strong></li>
-    <li>In navigation: <strong>{{in_navigation_flag}}</strong></li>
-    <li class="bs-governance-banner__robots">Robots: <strong>{{robots_directive}}</strong></li>
+  <div class="bs-governance-banner__brand">
+    <img class="bs-governance-banner__brand-mark bs-missing-e-boundary" src="/assets/bisulfid-design-system/assets/missing-e-boundary.svg" alt="BISULFID sovereign name with missing final E boundary from BISULFIDE" width="220" height="48">
+    <span class="bs-governance-banner__brand-name">BISULFID</span>
+  </div>
+  <ul class="bs-governance-banner__chips" aria-label="Governance posture">
+    <li><span class="bs-gov-chip bs-gov-chip--noindex">{{robots_directive}}</span></li>
+    <li><span class="bs-gov-chip bs-gov-chip--sitemap-closed">Sitemap {{gate_sitemap_label}}</span></li>
+    <li><span class="bs-gov-chip bs-gov-chip--nav-closed">Nav {{gate_navigation_label}}</span></li>
+    <li><span class="bs-gov-chip bs-gov-chip--route">{{route_status_label}}</span></li>
+    <li><span class="bs-gov-chip bs-gov-chip--source-required">{{source_required_chip}}</span></li>
   </ul>
-  <p class="governance-banner__frame-note bs-governance-banner__posture">
-    14,000-page governed launch corpus frame — chemical-language control room interface.
-    Not a launch. Not a reduced publication target.
-    <span class="bs-source-required-inline">[SOURCE REQUIRED]</span> preserved where unresolved.
+  <p class="bs-governance-banner__sr-summary">
+    {{governance_banner_title}}. 14,000-page governed launch corpus frame — chemical-language control room.
+    Not a launch. Route status: {{route_status}}. Publication posture: {{publication_posture}}.
+    Indexation {{gate_indexation_label}}. Robots: {{robots_directive}}.
+    Sitemap {{gate_sitemap_label}}. Navigation {{gate_navigation_label}}.
+    Source approval not implied. Claim approval not implied.
+    {{source_required_chip}} preserved where unresolved.
+    BISULFID is the sovereign domain form; missing final E boundary from BISULFIDE.
   </p>
 </div>

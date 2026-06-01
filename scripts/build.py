@@ -13,6 +13,7 @@ Modes:
   --render-quarantined-rc-batch --limit N  Render non-public RC batch to site/_sample/ only
   --render-public-launch-foundation --limit N  Render controlled public launch foundation to site/public/ only
   --render-public-design-system-refresh --limit N  Re-render public foundation with design system (Sprint 6N-C)
+  --render-visual-proof-sample  Render 6N-D visual proof (7 routes) before full 14,000 refresh
   --render-integration-sample  Render design-system integration pilot to site/public/_integration_sample/
   --strict        Fail closed on validation errors
   --write-build-status  Write site/build-status.json audit artifact only
@@ -137,10 +138,31 @@ INTEGRATION_SAMPLE_ROUTE_IDS: tuple[str, ...] = (
 )
 INTEGRATION_SAMPLE_DIR = PUBLIC_LAUNCH_FOUNDATION_DIR / "_integration_sample"
 INTEGRATION_SAMPLE_MANIFEST_NAME = "integration_sample_manifest.json"
+
+# Visual proof gate — deterministic 7-route sample before full 14,000 refresh (Sprint 6N-D)
+VISUAL_PROOF_SAMPLE_ROUTE_IDS: tuple[str, ...] = INTEGRATION_SAMPLE_ROUTE_IDS
+VISUAL_PROOF_SAMPLE_DIR = PUBLIC_LAUNCH_FOUNDATION_DIR / "_visual_proof_sample"
+VISUAL_PROOF_MANIFEST_NAME = "visual_proof_manifest.json"
+VISUAL_PROOF_REVIEW_APPROVED = "approved"
 DESIGN_SYSTEM_SRC = ROOT / "bisulfid-design-system"
 DESIGN_SYSTEM_PUBLIC_ASSETS = PUBLIC_LAUNCH_FOUNDATION_DIR / "assets" / "bisulfid-design-system"
-DESIGN_SYSTEM_REFRESH_SPRINT = "6N-C"
+DESIGN_SYSTEM_REFRESH_SPRINT = "6N-D"
+DESIGN_SYSTEM_VISUAL_RECONSTRUCTION_SPRINT = "6N-D"
 DESIGN_SYSTEM_REFRESH_EXACT = 14000
+
+PUBLIC_FOUNDATION_CSP = (
+    "default-src 'none'; "
+    "base-uri 'none'; "
+    "form-action 'none'; "
+    "frame-ancestors 'none'; "
+    "style-src 'self'; "
+    "img-src 'self' data:; "
+    "font-src 'self'; "
+    "connect-src 'none'; "
+    "object-src 'none'; "
+    "media-src 'none'; "
+    "script-src 'none'"
+)
 
 QA_HTML_PREAMBLE = """<!--
   QUARANTINED NON-PUBLIC QA RENDER — NOT A LAUNCH
@@ -1180,10 +1202,26 @@ def build_render_context(
         "indexable_flag": "false",
         "in_sitemap_flag": "false",
         "in_navigation_flag": "false",
+        "indexable_label": "Closed",
+        "in_sitemap_label": "Closed",
+        "in_navigation_label": "Closed",
+        "gate_indexation_label": "CLOSED",
+        "gate_sitemap_label": "CLOSED",
+        "gate_navigation_label": "CLOSED",
+        "route_status_label": route.get("status", "planned"),
+        "publication_posture_label": (
+            "Public foundation"
+            if render_mode == "public_launch_foundation"
+            else route.get("status", "planned")
+        ),
         "source_required_flag": "true" if has_source_markers else "false",
+        "source_required_chip": (
+            "[SOURCE REQUIRED]" if has_source_markers else "Not flagged"
+        ),
         "claim_approval_state": "no_claims_approved",
+        "claim_approval_label": "None approved",
         "source_registry_posture": "inactive",
-        "csp_policy_placeholder": "default-src 'none'; frame-ancestors 'none'",
+        "csp_policy_placeholder": PUBLIC_FOUNDATION_CSP,
         "site_name": "bisulfid.com",
         "copyright_year": str(datetime.now(timezone.utc).year),
         "page_h1": route.get("h1", route.get("title", route["route_id"])),
@@ -1372,16 +1410,12 @@ def render_route_quarantined(
         preamble = RC_HTML_PREAMBLE
     elif render_mode == "public_launch_foundation":
         qa_notice = (
-            '<div class="public-launch-foundation-notice" role="status" '
-            'data-public-launch-foundation="14000" '
-            'data-publication-posture="public_visible_foundation">'
-            "<p><strong>Public launch foundation</strong> — controlled visibility only. "
-            "Indexation gate: <strong>CLOSED</strong> (noindex,nofollow). "
-            "Sitemap gate: <strong>CLOSED</strong>. Navigation gate: <strong>CLOSED</strong>. "
-            "Source approval not implied. Claim approval not implied. "
-            "Not final publication-ready. "
-            f"Route status: <strong>{html.escape(route.get('status', 'planned'))}</strong>. "
-            "14,000-page launch foundation — scaling toward 100,000+ governed pages.</p></div>"
+            '<div class="public-launch-foundation-notice bs-governance-banner__sr-summary" '
+            'role="status" data-public-launch-foundation="14000" '
+            'data-publication-posture="public_visible_foundation" aria-hidden="true">'
+            "Public launch foundation — controlled visibility. "
+            "Indexation CLOSED. Sitemap CLOSED. Navigation CLOSED."
+            "</div>"
         )
         preamble = PUBLIC_LAUNCH_HTML_PREAMBLE
     elif render_mode == "integration_sample":
@@ -1472,8 +1506,12 @@ def sync_design_system_public_assets() -> list[str]:
                 shutil.copy2(src_file, dst_file)
                 written.append(str(dst_file.relative_to(ROOT)).replace("\\", "/"))
 
+    bundle_src = DESIGN_SYSTEM_SRC / "bisulfid-frame.css"
     bundle_path = DESIGN_SYSTEM_PUBLIC_ASSETS / "bisulfid-frame.css"
-    if not bundle_path.is_file():
+    if bundle_src.is_file():
+        shutil.copy2(bundle_src, bundle_path)
+        written.append(str(bundle_path.relative_to(ROOT)).replace("\\", "/"))
+    elif not bundle_path.is_file():
         bundle_path.write_text(
             '@import url("tokens/colors.css");\n'
             '@import url("tokens/typography.css");\n'
@@ -1564,6 +1602,132 @@ def write_integration_sample_html(
         "pages": page_records,
     }
     manifest_path = sample_dir / INTEGRATION_SAMPLE_MANIFEST_NAME
+    with manifest_path.open("w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
+
+    return len(written), written, errors
+
+
+def visual_proof_review_status() -> str | None:
+    """Return visual_review_status from proof manifest, or None if absent."""
+    manifest_path = VISUAL_PROOF_SAMPLE_DIR / VISUAL_PROOF_MANIFEST_NAME
+    if not manifest_path.is_file():
+        return None
+    try:
+        data = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    status = data.get("visual_review_status")
+    return str(status) if status is not None else None
+
+
+def visual_proof_gate_allows_full_refresh() -> tuple[bool, str]:
+    """Full 14,000 refresh requires approved visual proof manifest (Sprint 6N-D gate)."""
+    manifest_path = VISUAL_PROOF_SAMPLE_DIR / VISUAL_PROOF_MANIFEST_NAME
+    if not manifest_path.is_file():
+        return False, (
+            "visual proof manifest missing — run "
+            "'python scripts/build.py --render-visual-proof-sample' and complete visual review first"
+        )
+    status = visual_proof_review_status()
+    if status != VISUAL_PROOF_REVIEW_APPROVED:
+        return False, (
+            f"visual proof not approved (status={status!r}) — review "
+            f"{manifest_path.relative_to(ROOT)} routes visually, set "
+            f"visual_review_status to {VISUAL_PROOF_REVIEW_APPROVED!r}, then re-run full refresh"
+        )
+    return True, "visual proof approved"
+
+
+def write_visual_proof_sample_html(
+    routes: list[dict[str, Any]],
+    templates_root: Path,
+    sample_dir: Path,
+) -> tuple[int, list[str], list[str]]:
+    """Render 6N-D visual proof sample — 7 routes with public_launch_foundation templates."""
+    if sample_dir.resolve().parent != PUBLIC_LAUNCH_FOUNDATION_DIR.resolve():
+        raise ValueError(f"visual proof sample must be under site/public/: {sample_dir}")
+    if "_visual_proof_sample" not in sample_dir.parts:
+        raise ValueError(f"visual proof dir must be _visual_proof_sample: {sample_dir}")
+
+    errors: list[str] = []
+    written: list[str] = []
+    page_records: list[dict[str, Any]] = []
+    route_by_id = {r["route_id"]: r for r in routes}
+
+    sync_design_system_public_assets()
+
+    if sample_dir.exists():
+        for existing in sample_dir.rglob("*.html"):
+            existing.unlink()
+    sample_dir.mkdir(parents=True, exist_ok=True)
+
+    for route_id in VISUAL_PROOF_SAMPLE_ROUTE_IDS:
+        route = route_by_id.get(route_id)
+        if not route:
+            errors.append(f"visual proof route missing: {route_id}")
+            continue
+        ok, reason = route_is_public_launch_eligible(route, templates_root)
+        if not ok:
+            errors.append(f"{route_id}: not public launch eligible ({reason})")
+            continue
+        try:
+            html_out = render_route_quarantined(
+                route, templates_root, render_mode="public_launch_foundation"
+            )
+        except OSError as exc:
+            errors.append(f"{route_id}: render failed: {exc}")
+            continue
+
+        if "bs-control-room-hero" not in html_out and route_id == "home":
+            errors.append(f"{route_id}: missing bs-control-room-hero in visual proof output")
+        if route_id == "home" and "bs-source-crystal" not in html_out:
+            errors.append(f"{route_id}: missing source crystal on gateway home")
+        if "bisulfid-design-system" not in html_out:
+            errors.append(f"{route_id}: missing design-system links in visual proof output")
+
+        raw_path = route.get("path", "/").strip("/")
+        out_path = sample_dir / ("index.html" if not raw_path else f"{raw_path}/index.html")
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(html_out, encoding="utf-8")
+        rel_path = str(out_path.relative_to(ROOT)).replace("\\", "/")
+        written.append(rel_path)
+
+        source_vis = "[SOURCE REQUIRED]" in html_out or "source-required-marker" in html_out
+        page_records.append({
+            "route_id": route_id,
+            "route_path": route.get("path", ""),
+            "language": route.get("language", ""),
+            "output_path": rel_path,
+            "source_required_visible": "yes" if source_vis else "no",
+            "design_system_linked": "yes" if "bisulfid-design-system" in html_out else "no",
+            "bs_control_room_hero": "yes" if "bs-control-room-hero" in html_out else "no",
+            "bs_gov_chip": "yes" if "bs-gov-chip" in html_out else "no",
+        })
+
+    manifest = {
+        "sample_id": "sovereign_visual_proof_6N-D",
+        "sprint": DESIGN_SYSTEM_VISUAL_RECONSTRUCTION_SPRINT,
+        "route_count": len(written),
+        "expected_route_count": len(VISUAL_PROOF_SAMPLE_ROUTE_IDS),
+        "visual_proof_iteration": 3,
+        "visual_review_status": "pending_review",
+        "visual_review_note": (
+            "Human visual review required before full 14,000-page refresh. "
+            "Set visual_review_status to 'approved' after proof passes eye review."
+        ),
+        "visual_palette": "carbon-sulfur-molybdenum",
+        "proof_routes": list(VISUAL_PROOF_SAMPLE_ROUTE_IDS),
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "output_dir": str(sample_dir.relative_to(ROOT)).replace("\\", "/"),
+        "indexation_gate": "closed",
+        "sitemap_gate": "closed",
+        "navigation_gate": "closed",
+        "replaces_public_foundation": False,
+        "full_refresh_allowed": False,
+        "pages": page_records,
+    }
+    manifest_path = sample_dir / VISUAL_PROOF_MANIFEST_NAME
     with manifest_path.open("w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2)
 
@@ -1675,14 +1839,14 @@ def write_quarantined_rc_batch_html(
 
 
 def is_foundation_public_html_path(path: Path, public_dir: Path) -> bool:
-    """True for 14,000-page foundation HTML (excludes _integration_sample pilot)."""
+    """True for 14,000-page foundation HTML (excludes pilot/proof sample dirs)."""
     try:
         rel = path.relative_to(public_dir)
     except ValueError:
         return False
     if not rel.parts:
         return True
-    return rel.parts[0] != "_integration_sample"
+    return rel.parts[0] not in ("_integration_sample", "_visual_proof_sample")
 
 
 def clear_foundation_public_html(public_dir: Path) -> int:
@@ -1815,6 +1979,10 @@ def write_public_design_system_refresh_html(
             f"design system refresh requires limit {DESIGN_SYSTEM_REFRESH_EXACT}, got {limit}"
         )
 
+    gate_ok, gate_msg = visual_proof_gate_allows_full_refresh()
+    if not gate_ok:
+        raise ValueError(f"visual proof gate CLOSED: {gate_msg}")
+
     sync_design_system_public_assets()
 
     errors: list[str] = []
@@ -1887,9 +2055,12 @@ def write_public_design_system_refresh_html(
     manifest = {
         "foundation_id": "public_launch_14000",
         "sprint": DESIGN_SYSTEM_REFRESH_SPRINT,
-        "previous_sprint": "6M-G",
+        "previous_sprint": "6N-C",
         "design_system_refresh": True,
-        "design_system_refresh_sprint": DESIGN_SYSTEM_REFRESH_SPRINT,
+        "design_system_refresh_sprint": "6N-C",
+        "visual_reconstruction": True,
+        "visual_reconstruction_sprint": DESIGN_SYSTEM_VISUAL_RECONSTRUCTION_SPRINT,
+        "visual_palette": "carbon-sulfur-molybdenum",
         "design_system_bundle": "/assets/bisulfid-design-system/bisulfid-frame.css",
         "target_limit": limit,
         "rendered_count": len(written),
@@ -1965,6 +2136,7 @@ def run_build_engine(
     render_public_launch_foundation: bool = False,
     render_public_design_system_refresh: bool = False,
     render_integration_sample: bool = False,
+    render_visual_proof_sample: bool = False,
     rc_batch_limit: int = RC_BATCH_DEFAULT_LIMIT,
     public_launch_limit: int = PUBLIC_LAUNCH_FOUNDATION_TARGET,
     write_build_status: bool = False,
@@ -1977,6 +2149,8 @@ def run_build_engine(
         mode = f"render-public-design-system-refresh-{public_launch_limit}"
     elif render_integration_sample:
         mode = "render-integration-sample"
+    elif render_visual_proof_sample:
+        mode = "render-visual-proof-sample"
     elif render_quarantined_rc_batch:
         mode = f"render-quarantined-rc-batch-{rc_batch_limit}"
     elif render_quarantined_sample:
@@ -2124,11 +2298,37 @@ def run_build_engine(
         render_public_launch_foundation,
         render_public_design_system_refresh,
         render_integration_sample,
+        render_visual_proof_sample,
     ))
     if render_modes > 1:
         audit.strict_errors.append("cannot combine multiple render modes")
 
-    if render_integration_sample:
+    if render_visual_proof_sample:
+        count, paths, render_errors = write_visual_proof_sample_html(
+            routes, templates_root, VISUAL_PROOF_SAMPLE_DIR
+        )
+        audit.strict_errors.extend(render_errors)
+        audit.public_html_generated = count
+        audit.output_plan_notes.append(
+            f"Visual proof sample: rendered {count} page(s) under "
+            f"{VISUAL_PROOF_SAMPLE_DIR.relative_to(ROOT)}"
+        )
+        audit.output_plan_notes.append(
+            "Visual proof gate: full 14,000 refresh BLOCKED until "
+            f"visual_review_status is {VISUAL_PROOF_REVIEW_APPROVED!r} in "
+            f"{VISUAL_PROOF_MANIFEST_NAME}"
+        )
+        for p in paths:
+            audit.output_plan_notes.append(f"  - {p}")
+        if strict and render_errors:
+            pass
+        elif strict and count != len(VISUAL_PROOF_SAMPLE_ROUTE_IDS):
+            audit.strict_errors.append(
+                f"visual proof sample rendered {count} pages "
+                f"(expected {len(VISUAL_PROOF_SAMPLE_ROUTE_IDS)})"
+            )
+
+    elif render_integration_sample:
         count, paths, render_errors = write_integration_sample_html(
             routes, templates_root, INTEGRATION_SAMPLE_DIR
         )
@@ -2248,7 +2448,7 @@ def run_build_engine(
         if count == 0 and not render_errors:
             audit.strict_errors.append("quarantined sample render produced zero files")
 
-    if write_build_status and not render_quarantined_sample and not render_quarantined_rc_batch and not render_public_launch_foundation and not render_public_design_system_refresh:
+    if write_build_status and not render_quarantined_sample and not render_quarantined_rc_batch and not render_public_launch_foundation and not render_public_design_system_refresh and not render_visual_proof_sample:
         output_dir.mkdir(parents=True, exist_ok=True)
         status_path = output_dir / "build-status.json"
         status_payload = {
@@ -2383,6 +2583,15 @@ def print_summary(audit: BuildAudit, strict: bool) -> None:
         print("STRICT MODE: FAIL — validation errors detected.")
     elif audit.mode.startswith("dry-run") or audit.mode.startswith("sample"):
         print("Dry-run complete. No public HTML generated. No registries modified.")
+    elif audit.mode.startswith("render-visual-proof-sample"):
+        print("Visual proof sample render complete.")
+        print(f"  Output under {VISUAL_PROOF_SAMPLE_DIR.relative_to(ROOT)}/ only.")
+        print("  14,000-page public foundation corpus unchanged.")
+        print(
+            f"  Review routes visually, then set visual_review_status to "
+            f"{VISUAL_PROOF_REVIEW_APPROVED!r} in {VISUAL_PROOF_MANIFEST_NAME} "
+            "before full refresh."
+        )
     elif audit.mode.startswith("render-integration-sample"):
         print("Design system integration sample render complete.")
         print(f"  Output under {INTEGRATION_SAMPLE_DIR.relative_to(ROOT)}/ only.")
@@ -2395,6 +2604,7 @@ def print_summary(audit: BuildAudit, strict: bool) -> None:
                 f"Skipped: {audit.public_launch_result.skipped_count}"
             )
         print("  _integration_sample/ and assets/ preserved.")
+        print(f"  Visual proof gate: approved status required in {VISUAL_PROOF_MANIFEST_NAME}")
     elif audit.mode.startswith("render-public-launch-foundation"):
         print("Public launch foundation render complete. Output under site/public/ only.")
         if audit.public_launch_result:
@@ -2462,6 +2672,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="Re-render 14,000 public foundation pages with design system (noindex; gates closed).",
     )
     parser.add_argument(
+        "--render-visual-proof-sample",
+        action="store_true",
+        help=(
+            "Render 6N-D visual proof (7 routes) to site/public/_visual_proof_sample/ "
+            "before full 14,000 refresh."
+        ),
+    )
+    parser.add_argument(
         "--render-integration-sample",
         action="store_true",
         help="Render design-system integration pilot to site/public/_integration_sample/ only.",
@@ -2502,6 +2720,7 @@ def main(argv: list[str] | None = None) -> int:
         args.render_public_launch_foundation,
         args.render_public_design_system_refresh,
         args.render_integration_sample,
+        args.render_visual_proof_sample,
         args.write_build_status,
     )):
         parser.print_help()
@@ -2514,6 +2733,8 @@ def main(argv: list[str] | None = None) -> int:
         print("RC 7500 render: python scripts/build.py --render-quarantined-rc-batch --limit 7500")
         print("Public launch foundation: python scripts/build.py --render-public-launch-foundation --limit 14000")
         print("Design system refresh: python scripts/build.py --render-public-design-system-refresh --limit 14000")
+        print("  (requires visual_review_status=approved in _visual_proof_sample/visual_proof_manifest.json)")
+        print("Visual proof sample: python scripts/build.py --render-visual-proof-sample")
         print("Integration sample: python scripts/build.py --render-integration-sample")
         return 0
 
@@ -2527,6 +2748,7 @@ def main(argv: list[str] | None = None) -> int:
         or args.render_public_launch_foundation
         or args.render_public_design_system_refresh
         or args.render_integration_sample
+        or args.render_visual_proof_sample
     )
     public_limit = (
         args.limit
@@ -2543,6 +2765,7 @@ def main(argv: list[str] | None = None) -> int:
         render_public_launch_foundation=args.render_public_launch_foundation,
         render_public_design_system_refresh=args.render_public_design_system_refresh,
         render_integration_sample=args.render_integration_sample,
+        render_visual_proof_sample=args.render_visual_proof_sample,
         rc_batch_limit=args.limit,
         public_launch_limit=public_limit,
         write_build_status=args.write_build_status,

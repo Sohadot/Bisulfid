@@ -30,10 +30,12 @@ PUBLIC_LAUNCH_EXACT = 14000
 def foundation_public_html_files() -> list[Path]:
     if not PUBLIC_DIR.is_dir():
         return []
-    return sorted(
-        p for p in PUBLIC_DIR.rglob("index.html")
-        if not (p.relative_to(PUBLIC_DIR).parts and p.relative_to(PUBLIC_DIR).parts[0] == "_integration_sample")
-    )
+    out: list[Path] = []
+    for p in PUBLIC_DIR.rglob("index.html"):
+        rel = p.relative_to(PUBLIC_DIR)
+        if not rel.parts or rel.parts[0] not in ("_integration_sample", "_visual_proof_sample"):
+            out.append(p)
+    return sorted(out)
 
 
 def integration_sample_html_files() -> list[Path]:
@@ -70,6 +72,7 @@ REQUIRED_WORKFLOW_MARKERS = (
     "upload-pages-artifact",
     "deploy-pages",
     "_integration_sample",
+    "_visual_proof_sample",
     "rsync",
     "pages-artifact",
     "artifact_dir",
@@ -108,6 +111,8 @@ def validate_workflow(text: str) -> list[str]:
 
     if not re.search(r"--exclude=['\"]?_integration_sample/", text):
         errors.append("workflow must rsync with --exclude='_integration_sample/'")
+    if not re.search(r"--exclude=['\"]?_visual_proof_sample/", text):
+        errors.append("workflow must rsync with --exclude='_visual_proof_sample/'")
 
     if not re.search(r"steps\.stage\.outputs\.artifact_dir", text):
         errors.append("workflow must upload staged artifact_dir, not raw site/public")

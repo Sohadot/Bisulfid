@@ -1,44 +1,46 @@
 /**
- * Bisulfid governance state tokens — visibility, indexation, source, claim.
- * Display-only; never imply approval without data-bound classes.
+ * Bisulfid governance state tokens — compact chips (Sprint 6N-D).
  */
 :root {
-  /* Public visibility state */
-  --bs-gov-visibility-public-foundation: var(--bs-color-sulfur-dim);
-  --bs-gov-visibility-public-bg: rgba(201, 176, 55, 0.08);
-  --bs-gov-visibility-quarantine: var(--bs-color-accent-governance);
+  --bs-gov-visibility-public-foundation: var(--bs-sulfur-500);
+  --bs-gov-visibility-public-bg: var(--bs-sulfur-haze);
+  --bs-gov-visibility-quarantine: var(--bs-molybdenum-500);
 
-  /* Noindex state */
-  --bs-gov-noindex-border: var(--bs-color-accent-noindex);
+  --bs-gov-noindex-border: var(--bs-sulfur-500);
   --bs-gov-noindex-label: "noindex,nofollow";
-  --bs-gov-noindex-bg: rgba(106, 92, 122, 0.1);
+  --bs-gov-noindex-bg: rgba(106, 92, 122, 0.12);
+  --bs-gov-noindex-chip-bg: rgba(106, 92, 122, 0.2);
+  --bs-gov-noindex-chip-fg: #c4b8d4;
 
-  /* Source-required state */
+  --bs-gov-sitemap-chip-bg: rgba(138, 150, 168, 0.15);
+  --bs-gov-sitemap-chip-fg: var(--bs-molybdenum-300);
+  --bs-gov-nav-chip-bg: rgba(138, 150, 168, 0.15);
+  --bs-gov-nav-chip-fg: var(--bs-molybdenum-300);
+  --bs-gov-route-chip-bg: rgba(232, 234, 78, 0.1);
+  --bs-gov-route-chip-fg: var(--bs-sulfur-400);
+
   --bs-gov-source-required-fg: var(--bs-color-source-required-text);
   --bs-gov-source-required-bg: var(--bs-color-source-required-bg);
   --bs-gov-source-required-border: var(--bs-color-source-required-border);
   --bs-gov-source-required-marker: "[SOURCE REQUIRED]";
+  --bs-gov-source-required-chip-bg: rgba(224, 122, 95, 0.18);
+  --bs-gov-source-required-chip-fg: #f5b8a8;
 
-  /* Source-candidate state — not approved */
-  --bs-gov-source-candidate-fg: var(--bs-color-source-candidate);
-  --bs-gov-source-candidate-bg: rgba(90, 154, 143, 0.1);
+  --bs-gov-source-candidate-fg: var(--bs-source-candidate);
+  --bs-gov-source-candidate-bg: rgba(106, 154, 146, 0.12);
   --bs-gov-source-candidate-label: "source candidate — not approved";
 
-  /*
-   * Source-approved state boundary:
-   * Class .bs-gov-source-approved may ONLY be applied when registry data authorizes.
-   * Token exists for future integration — default posture is inactive.
-   */
   --bs-gov-source-approved-fg: var(--bs-color-source-approved-boundary);
   --bs-gov-source-approved-bg: rgba(61, 122, 104, 0.12);
   --bs-gov-source-approved-label: "source approved — registry bound";
 
-  /*
-   * Claim-approved state boundary:
-   * Class .bs-gov-claim-approved may ONLY be applied when claim registry authorizes.
-   */
-  --bs-gov-claim-approved-fg: var(--bs-color-source-verified);
-  --bs-gov-claim-approved-bg: rgba(74, 143, 124, 0.1);
+  --bs-gov-claim-approved-fg: var(--bs-source-verified);
+  --bs-gov-claim-approved-bg: rgba(90, 143, 124, 0.1);
   --bs-gov-claim-approved-label: "claim approved — registry bound";
   --bs-gov-claim-none: "no_claims_approved";
+
+  --bs-gov-chip-radius: 999px;
+  --bs-gov-chip-padding: 0.25rem 0.65rem;
+  --bs-gov-chip-font: 0.6875rem;
+  --bs-gov-chip-gap: 0.35rem;
 }

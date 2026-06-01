@@ -1,66 +1,100 @@
 /**
- * Term node — governed visual identity for a terminology node.
- * Does not imply source or claim approval.
+ * Term node — floating governed node identity (Sprint 6N-D).
  */
 .bs-term-node {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: calc(var(--bs-space-unit) * 2);
+  gap: calc(var(--bs-space-unit) * 1);
   padding: calc(var(--bs-space-unit) * 2) calc(var(--bs-space-unit) * 3);
-  background: var(--bs-color-foundation-surface);
-  border: 1px solid var(--bs-color-graphite-line);
-  border-radius: calc(var(--bs-space-unit) * 1);
-  color: var(--bs-color-ink-primary);
+  background: linear-gradient(
+    160deg,
+    var(--bs-carbon-panel) 0%,
+    var(--bs-carbon-850) 55%,
+    var(--bs-carbon-800) 100%
+  );
+  border: 1px solid var(--bs-molybdenum-500);
+  border-radius: calc(var(--bs-space-unit) * 2);
+  color: var(--bs-molybdenum-100);
   font-family: var(--bs-font-family-term);
-  font-size: var(--bs-font-size-term-primary);
+  font-size: var(--bs-font-size-term-meta);
   font-weight: var(--bs-font-weight-term);
   line-height: var(--bs-line-height-term);
-  box-shadow: var(--bs-depth-card-flat);
-  transition: var(--bs-motion-source-transition);
+  box-shadow:
+    0 1px 0 var(--bs-molybdenum-shine) inset,
+    var(--bs-depth-card-floating);
+  transform: translateZ(var(--bs-depth-term-node));
+  min-width: 4.5rem;
+  text-align: center;
+}
+
+.bs-term-node__glyph {
+  width: 1.75rem;
+  height: 1.75rem;
+  filter: drop-shadow(0 0 6px var(--bs-sulfur-glow));
 }
 
 .bs-term-node__label {
   font-weight: var(--bs-font-weight-term);
+  font-size: var(--bs-font-size-term-meta);
 }
 
 .bs-term-node__meta {
-  font-size: var(--bs-font-size-term-meta);
-  color: var(--bs-color-ink-muted);
+  font-size: 0.6875rem;
+  color: var(--bs-molybdenum-500);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-/* Unresolved / source-required — visible, not hidden */
+.bs-term-node--center {
+  border-color: var(--bs-sulfur-500);
+  box-shadow:
+    0 0 14px var(--bs-sulfur-glow),
+    var(--bs-depth-card-floating);
+  transform: translateZ(var(--bs-depth-space-focus));
+}
+
 .bs-term-node--source-required {
   border-color: var(--bs-gov-source-required-border);
-  background: var(--bs-gov-source-required-bg);
-  box-shadow: var(--bs-depth-card-source-required);
+  background: linear-gradient(
+    160deg,
+    rgba(224, 122, 95, 0.15) 0%,
+    var(--bs-carbon-panel) 100%
+  );
 }
 
 .bs-term-node--source-required .bs-term-node__marker {
   color: var(--bs-gov-source-required-fg);
   font-size: var(--bs-font-size-source-label);
   font-weight: var(--bs-font-weight-source-emphasis);
-  letter-spacing: var(--bs-letter-spacing-source);
 }
 
 .bs-term-node--source-required .bs-term-node__marker::before {
-  content: var(--bs-gov-source-required-marker);
+  content: "●";
+  color: var(--bs-gov-source-required-fg);
+  margin-inline-end: 0.15em;
 }
 
-/* Candidate — explicitly not approved */
-.bs-term-node--source-candidate {
-  border-color: var(--bs-gov-source-candidate-fg);
-  background: var(--bs-gov-source-candidate-bg);
+@media (prefers-reduced-motion: no-preference) {
+  .bs-term-node--center {
+    animation: bs-term-node-float var(--bs-motion-duration-slow) var(--bs-motion-ease-standard)
+      infinite alternate;
+  }
 }
 
-/* Approved states — data-bound only; never default */
-.bs-term-node--source-approved,
-.bs-term-node--claim-approved {
-  /* Reserved for registry-authorized integration only */
-  border-width: 2px;
+@keyframes bs-term-node-float {
+  from {
+    transform: translateZ(var(--bs-depth-space-focus)) translateY(0);
+  }
+  to {
+    transform: translateZ(var(--bs-depth-space-focus)) translateY(-4px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .bs-term-node {
     transition: none;
+    transform: none;
+    animation: none;
   }
 }
