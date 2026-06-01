@@ -1687,12 +1687,12 @@ def is_foundation_public_html_path(path: Path, public_dir: Path) -> bool:
 
 def clear_foundation_public_html(public_dir: Path) -> int:
     """Clear foundation index.html only; preserve _integration_sample and assets."""
-    removed = 0
+    cleared = 0
     for existing in public_dir.rglob("index.html"):
         if is_foundation_public_html_path(existing, public_dir):
             existing.unlink()
-            removed += 1
-    return removed
+            cleared += 1
+    return cleared
 
 
 def write_public_launch_foundation_html(
