@@ -64,6 +64,12 @@
   font-weight: var(--bs-font-weight-source-emphasis);
 }
 
+.bs-term-node--source-required .bs-term-node__marker::before {
+  content: "●";
+  color: var(--bs-gov-source-required-fg);
+  margin-inline-end: 0.15em;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .bs-term-node--center {
     animation: bs-term-node-float var(--bs-motion-duration-slow) var(--bs-motion-ease-standard)

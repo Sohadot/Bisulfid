@@ -150,6 +150,20 @@ DESIGN_SYSTEM_REFRESH_SPRINT = "6N-D"
 DESIGN_SYSTEM_VISUAL_RECONSTRUCTION_SPRINT = "6N-D"
 DESIGN_SYSTEM_REFRESH_EXACT = 14000
 
+PUBLIC_FOUNDATION_CSP = (
+    "default-src 'none'; "
+    "base-uri 'none'; "
+    "form-action 'none'; "
+    "frame-ancestors 'none'; "
+    "style-src 'self'; "
+    "img-src 'self' data:; "
+    "font-src 'self'; "
+    "connect-src 'none'; "
+    "object-src 'none'; "
+    "media-src 'none'; "
+    "script-src 'none'"
+)
+
 QA_HTML_PREAMBLE = """<!--
   QUARANTINED NON-PUBLIC QA RENDER — NOT A LAUNCH
   Sprint 6M-C publication-frame proof. Not indexable. Outside sitemap. Outside navigation.
@@ -1207,7 +1221,7 @@ def build_render_context(
         "claim_approval_state": "no_claims_approved",
         "claim_approval_label": "None approved",
         "source_registry_posture": "inactive",
-        "csp_policy_placeholder": "default-src 'none'; frame-ancestors 'none'",
+        "csp_policy_placeholder": PUBLIC_FOUNDATION_CSP,
         "site_name": "bisulfid.com",
         "copyright_year": str(datetime.now(timezone.utc).year),
         "page_h1": route.get("h1", route.get("title", route["route_id"])),
@@ -1667,6 +1681,8 @@ def write_visual_proof_sample_html(
 
         if "bs-control-room-hero" not in html_out and route_id == "home":
             errors.append(f"{route_id}: missing bs-control-room-hero in visual proof output")
+        if route_id == "home" and "bs-source-crystal" not in html_out:
+            errors.append(f"{route_id}: missing source crystal on gateway home")
         if "bisulfid-design-system" not in html_out:
             errors.append(f"{route_id}: missing design-system links in visual proof output")
 
@@ -1694,6 +1710,7 @@ def write_visual_proof_sample_html(
         "sprint": DESIGN_SYSTEM_VISUAL_RECONSTRUCTION_SPRINT,
         "route_count": len(written),
         "expected_route_count": len(VISUAL_PROOF_SAMPLE_ROUTE_IDS),
+        "visual_proof_iteration": 2,
         "visual_review_status": "pending_review",
         "visual_review_note": (
             "Human visual review required before full 14,000-page refresh. "

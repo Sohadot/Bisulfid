@@ -98,3 +98,20 @@
 .bs-relation-lattice:not([data-edges]) .bs-relation-lattice__edge {
   display: none;
 }
+
+.bs-relation-lattice--gateway {
+  min-height: 12rem;
+  border-color: var(--bs-sulfur-line);
+  box-shadow:
+    0 0 0 1px rgba(154, 168, 186, 0.1) inset,
+    0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.bs-relation-lattice--gateway .bs-relation-lattice__canvas {
+  opacity: 0.92;
+}
+
+.bs-relation-lattice--gateway .bs-relation-lattice__edge[data-link-status="active"] {
+  height: 2px;
+  box-shadow: 0 0 8px var(--bs-sulfur-glow);
+}

@@ -61,6 +61,32 @@
   color: var(--bs-gov-source-required-fg);
 }
 
+.bs-source-crystal--compact,
+.home-frame__source-crystal-slot .bs-source-crystal {
+  padding: calc(var(--bs-space-unit) * 2.5) calc(var(--bs-space-unit) * 3);
+  gap: calc(var(--bs-space-unit) * 2);
+}
+
+.home-frame__source-crystal-slot .bs-source-crystal__icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.home-frame__source-crystal-slot .bs-source-crystal__label {
+  font-size: 0.6875rem;
+  margin-block-end: calc(var(--bs-space-unit) * 0.5);
+}
+
+.home-frame__source-crystal-slot .bs-source-crystal__state {
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.home-frame__source-crystal-slot .source-bar__required {
+  font-size: 0.6875rem;
+  margin: calc(var(--bs-space-unit) * 1) 0 0;
+}
+
 .bs-source-crystal--candidate {
   border-color: var(--bs-gov-source-candidate-fg);
   background: var(--bs-gov-source-candidate-bg);

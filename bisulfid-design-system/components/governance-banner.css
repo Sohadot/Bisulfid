@@ -116,16 +116,38 @@
 
 @media (max-width: 640px) {
   .bs-governance-banner {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: calc(var(--bs-space-unit) * 2) var(--bs-space-page-inline);
+    margin-block-end: 0;
+    gap: calc(var(--bs-space-unit) * 2);
   }
 
   .bs-governance-banner__brand {
     margin-inline-end: 0;
+    font-size: 0.6875rem;
+  }
+
+  .bs-governance-banner__brand-mark {
+    width: 2rem;
   }
 
   .bs-governance-banner__chips {
-    width: 100%;
+    width: auto;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    gap: calc(var(--bs-space-unit) * 1);
+  }
+
+  .bs-gov-chip {
+    font-size: 0.5625rem;
+    padding: calc(var(--bs-space-unit) * 0.75) calc(var(--bs-space-unit) * 1.5);
+  }
+
+  body[data-route-id="home"] .bs-gov-chip--route,
+  body[data-route-id="home"] .bs-gov-chip--source-required {
+    display: none;
   }
 }
 

@@ -1,17 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Source crystal">
   <defs>
     <linearGradient id="crystal-face" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#e8ecef"/>
-      <stop offset="40%" stop-color="#b8c2cc"/>
-      <stop offset="100%" stop-color="#8a96a8"/>
+      <stop offset="0%" stop-color="#eef1f4"/>
+      <stop offset="35%" stop-color="#c4ccd6"/>
+      <stop offset="100%" stop-color="#9aa8ba"/>
     </linearGradient>
     <linearGradient id="crystal-edge" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#d4a017" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#8a96a8"/>
+      <stop offset="0%" stop-color="#e0b020" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#9aa8ba"/>
     </linearGradient>
   </defs>
-  <polygon points="24,4 42,16 36,42 12,42 6,16" fill="url(#crystal-face)" stroke="url(#crystal-edge)" stroke-width="1.5"/>
-  <line x1="24" y1="4" x2="24" y2="42" stroke="#060708" stroke-width="0.5" opacity="0.3"/>
-  <line x1="6" y1="16" x2="42" y2="16" stroke="#060708" stroke-width="0.5" opacity="0.3"/>
-  <circle cx="24" cy="22" r="3" fill="#d4a017" opacity="0.85"/>
+  <polygon points="24,4 42,16 36,42 12,42 6,16" fill="url(#crystal-face)" stroke="url(#crystal-edge)" stroke-width="1.75"/>
+  <line x1="24" y1="4" x2="24" y2="42" stroke="#040506" stroke-width="0.6" opacity="0.35"/>
+  <line x1="6" y1="16" x2="42" y2="16" stroke="#040506" stroke-width="0.6" opacity="0.35"/>
+  <circle cx="24" cy="22" r="3.5" fill="#e0b020" opacity="0.92"/>
+  <circle cx="24" cy="22" r="1.25" fill="#f0d060"/>
 </svg>

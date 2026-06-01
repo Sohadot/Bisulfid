@@ -89,10 +89,31 @@ def validate_home() -> list[str]:
         ("bs-relation-lattice", "relation lattice"),
         ("bs-term-node", "term nodes"),
         ("bisulfid-design-system", "design-system CSS"),
+        ("bs-source-crystal", "source crystal"),
+        ("source-crystal.svg", "source crystal asset"),
     )
     for marker, label in checks:
         if marker not in text:
             errors.append(f"homepage missing {label}")
+    csp_match = re.search(
+        r'Content-Security-Policy"\s+content="([^"]+)"',
+        text,
+        re.I,
+    )
+    if not csp_match:
+        errors.append("homepage missing CSP meta")
+    else:
+        csp = csp_match.group(1).lower()
+        for required in (
+            "default-src 'none'",
+            "style-src 'self'",
+            "img-src 'self' data:",
+            "script-src 'none'",
+        ):
+            if required not in csp:
+                errors.append(f"homepage CSP missing {required}")
+        if "unsafe-inline" in csp or "unsafe-eval" in csp:
+            errors.append("homepage CSP allows unsafe directives")
     if "noindex" not in lower or "nofollow" not in lower:
         errors.append("homepage missing noindex,nofollow")
     if "[source required]" not in lower:

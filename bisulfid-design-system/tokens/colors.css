@@ -1,43 +1,40 @@
 /**
- * Bisulfid material palette — carbon / sulfur / molybdenum (Sprint 6N-D).
- * Sovereign chemical-language control room. No external imports.
+ * Bisulfid material palette — carbon / sulfur / molybdenum (Sprint 6N-D iteration 2).
  */
 :root {
-  /* Deep carbon gray — industrial density, control-room shell */
-  --bs-carbon-950: #060708;
-  --bs-carbon-900: #0c0e11;
-  --bs-carbon-800: #14181e;
-  --bs-carbon-panel: #1a2028;
+  --bs-carbon-950: #040506;
+  --bs-carbon-900: #0a0c10;
+  --bs-carbon-800: #12161c;
+  --bs-carbon-panel: #181f28;
+  --bs-carbon-panel-edge: #252d38;
 
-  /* Warm sulfur yellow — root substance signal */
-  --bs-sulfur-500: #d4a017;
-  --bs-sulfur-400: #e8c547;
-  --bs-sulfur-glow: rgba(232, 197, 71, 0.22);
+  --bs-sulfur-500: #e0b020;
+  --bs-sulfur-400: #f0d060;
+  --bs-sulfur-glow: rgba(240, 208, 96, 0.42);
+  --bs-sulfur-line: rgba(224, 176, 32, 0.62);
 
-  /* Molybdenum silver — metallic future-material accent */
-  --bs-molybdenum-100: #e8ecef;
-  --bs-molybdenum-300: #b8c2cc;
-  --bs-molybdenum-500: #8a96a8;
+  --bs-molybdenum-100: #eef1f4;
+  --bs-molybdenum-300: #c4ccd6;
+  --bs-molybdenum-500: #9aa8ba;
+  --bs-molybdenum-edge: rgba(196, 204, 214, 0.55);
 
-  /* Source authority states */
   --bs-source-required: #e07a5f;
   --bs-source-candidate: #6a9a92;
   --bs-source-verified: #5a8f7c;
 
-  /* Boundary & lattice */
-  --bs-boundary-missing-e: var(--bs-sulfur-500);
-  --bs-lattice-line: rgba(138, 150, 168, 0.35);
-  --bs-depth-violet: rgba(106, 92, 138, 0.18);
+  --bs-boundary-missing-e: var(--bs-sulfur-400);
+  --bs-lattice-line: rgba(224, 176, 32, 0.28);
+  --bs-lattice-moly: rgba(154, 168, 186, 0.35);
+  --bs-depth-violet: rgba(106, 92, 138, 0.12);
 
-  /* Legacy aliases — mapped to material palette */
   --bs-color-foundation-deep: var(--bs-carbon-950);
   --bs-color-foundation-base: var(--bs-carbon-900);
   --bs-color-foundation-surface: var(--bs-carbon-800);
   --bs-color-foundation-elevated: var(--bs-carbon-panel);
-  --bs-color-foundation-muted: #222a34;
+  --bs-color-foundation-muted: var(--bs-carbon-panel-edge);
 
   --bs-color-sulfur-primary: var(--bs-sulfur-500);
-  --bs-color-sulfur-dim: #a88620;
+  --bs-color-sulfur-dim: #b89018;
   --bs-color-sulfur-glow: var(--bs-sulfur-glow);
   --bs-color-sulfur-accent: var(--bs-sulfur-400);
 
@@ -45,8 +42,8 @@
   --bs-color-ink-secondary: var(--bs-molybdenum-300);
   --bs-color-ink-muted: var(--bs-molybdenum-500);
   --bs-color-ink-inverse: var(--bs-carbon-950);
-  --bs-color-graphite-line: rgba(138, 150, 168, 0.28);
-  --bs-color-graphite-grid: var(--bs-lattice-line);
+  --bs-color-graphite-line: var(--bs-molybdenum-edge);
+  --bs-color-graphite-grid: var(--bs-lattice-moly);
 
   --bs-color-source-neutral: var(--bs-molybdenum-500);
   --bs-color-source-candidate: var(--bs-source-candidate);
@@ -54,17 +51,17 @@
   --bs-color-source-approved-boundary: #4a7a68;
 
   --bs-color-source-required: var(--bs-source-required);
-  --bs-color-source-required-bg: rgba(224, 122, 95, 0.12);
-  --bs-color-source-required-border: #b85a42;
-  --bs-color-source-required-text: #f5b8a8;
+  --bs-color-source-required-bg: rgba(224, 122, 95, 0.14);
+  --bs-color-source-required-border: #c86850;
+  --bs-color-source-required-text: #ffc8b8;
 
   --bs-color-lang-en: #8ab4e8;
   --bs-color-lang-de: #9ab87a;
   --bs-color-lang-ar: #d4a57a;
   --bs-color-lang-future: var(--bs-molybdenum-500);
-  --bs-color-lang-depth-1: rgba(138, 180, 232, 0.12);
-  --bs-color-lang-depth-2: rgba(154, 184, 122, 0.12);
-  --bs-color-lang-depth-3: rgba(212, 165, 122, 0.12);
+  --bs-color-lang-depth-1: rgba(138, 180, 232, 0.14);
+  --bs-color-lang-depth-2: rgba(154, 184, 122, 0.14);
+  --bs-color-lang-depth-3: rgba(212, 165, 122, 0.14);
 
   --bs-color-boundary-spelling: var(--bs-boundary-missing-e);
   --bs-color-boundary-ion: #6eb5d4;
