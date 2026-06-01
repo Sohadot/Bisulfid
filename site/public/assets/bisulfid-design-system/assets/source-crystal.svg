@@ -6,7 +6,7 @@
       <stop offset="100%" stop-color="#9aacbe"/>
     </linearGradient>
     <linearGradient id="crystal-edge" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#e0b020" stop-opacity="0.82"/>
+      <stop offset="0%" stop-color="#f2d13b" stop-opacity="0.72"/>
       <stop offset="100%" stop-color="#b8c5d6"/>
     </linearGradient>
     <linearGradient id="crystal-shine" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -18,6 +18,6 @@
   <polygon points="24,4 42,16 24,16" fill="url(#crystal-shine)" opacity="0.45"/>
   <line x1="24" y1="4" x2="24" y2="42" stroke="#070a0e" stroke-width="0.65" opacity="0.32"/>
   <line x1="6" y1="16" x2="42" y2="16" stroke="#070a0e" stroke-width="0.65" opacity="0.32"/>
-  <circle cx="24" cy="22" r="3.75" fill="#e0b020" opacity="0.94"/>
-  <circle cx="24" cy="22" r="1.35" fill="#f0c840"/>
+  <circle cx="24" cy="22" r="3.75" fill="#f2d13b" opacity="0.92"/>
+  <circle cx="24" cy="22" r="1.35" fill="#ffe36a"/>
 </svg>

@@ -1,5 +1,5 @@
 /**
- * Bisulfid material palette — carbon / sulfur / molybdenum (Sprint 6N-D iteration 3).
+ * Bisulfid material palette — carbon / sulfur / molybdenum (Sprint 6N-D iteration 4).
  */
 :root {
   --bs-carbon-950: #070a0e;
@@ -9,12 +9,12 @@
   --bs-carbon-panel: #1c2632;
   --bs-carbon-panel-edge: #2a3544;
 
-  --bs-sulfur-600: #c89412;
-  --bs-sulfur-500: #e0b020;
-  --bs-sulfur-400: #f0c840;
-  --bs-sulfur-glow: rgba(240, 200, 64, 0.48);
-  --bs-sulfur-line: rgba(224, 176, 32, 0.68);
-  --bs-sulfur-ember: rgba(200, 148, 18, 0.22);
+  --bs-sulfur-600: #c9a915;
+  --bs-sulfur-500: #f2d13b;
+  --bs-sulfur-400: #ffe36a;
+  --bs-sulfur-glow: rgba(242, 209, 59, 0.38);
+  --bs-sulfur-line: rgba(242, 209, 59, 0.62);
+  --bs-sulfur-ember: rgba(242, 209, 59, 0.16);
 
   --bs-molybdenum-100: #eef2f6;
   --bs-molybdenum-200: #d8e0ea;
@@ -28,7 +28,7 @@
   --bs-source-verified: #5a8f7c;
 
   --bs-boundary-missing-e: var(--bs-sulfur-400);
-  --bs-lattice-line: rgba(224, 176, 32, 0.32);
+  --bs-lattice-line: rgba(242, 209, 59, 0.28);
   --bs-lattice-moly: rgba(154, 172, 190, 0.38);
   --bs-depth-violet: rgba(106, 92, 138, 0.1);
 

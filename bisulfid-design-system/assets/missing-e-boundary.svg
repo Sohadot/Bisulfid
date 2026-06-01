@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" role="img" aria-label="BISULFID sovereign name — missing final E boundary from BISULFIDE">
   <defs>
     <linearGradient id="sulfur-signal" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#c89412" stop-opacity="0.4"/>
-      <stop offset="50%" stop-color="#f0c840" stop-opacity="1"/>
-      <stop offset="100%" stop-color="#c89412" stop-opacity="0.4"/>
+      <stop offset="0%" stop-color="#c9a915" stop-opacity="0.45"/>
+      <stop offset="50%" stop-color="#f2d13b" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#c9a915" stop-opacity="0.45"/>
     </linearGradient>
     <linearGradient id="moly-frame" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#d8e0ea"/>
@@ -16,12 +16,12 @@
   </defs>
   <rect width="220" height="48" fill="#0d1218" rx="5" stroke="url(#moly-frame)" stroke-width="0.85"/>
   <text x="10" y="13" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" fill="#8a9cb0" letter-spacing="0.14em" opacity="0.62">BISULFIDE</text>
-  <path d="M 78 9 L 92 9" stroke="#c89412" stroke-width="1.2" opacity="0.55"/>
-  <polygon points="92,9 88,7 88,11" fill="#c89412" opacity="0.55"/>
-  <text x="98" y="13" font-family="system-ui,sans-serif" font-size="7.5" fill="#c89412" opacity="0.72">final E boundary</text>
+  <path d="M 78 9 L 92 9" stroke="#c9a915" stroke-width="1.2" opacity="0.55"/>
+  <polygon points="92,9 88,7 88,11" fill="#c9a915" opacity="0.55"/>
+  <text x="98" y="13" font-family="system-ui,sans-serif" font-size="7.5" fill="#f2d13b" opacity="0.78">final E boundary</text>
   <text x="10" y="36" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#eef2f6" letter-spacing="0.08em">BISULFID</text>
   <line x1="112" y1="20" x2="112" y2="42" stroke="url(#sulfur-signal)" stroke-width="2.25" stroke-dasharray="4 3"/>
-  <rect x="118" y="21" width="20" height="21" rx="3" fill="rgba(200,148,18,0.06)" stroke="url(#sulfur-signal)" stroke-width="1.5" stroke-dasharray="5 3" filter="url(#e-glow)"/>
-  <text x="123" y="37" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#f0c840" opacity="0.32">E</text>
+  <rect x="118" y="21" width="20" height="21" rx="3" fill="rgba(242,209,59,0.06)" stroke="url(#sulfur-signal)" stroke-width="1.5" stroke-dasharray="5 3" filter="url(#e-glow)"/>
+  <text x="123" y="37" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#ffe36a" opacity="0.32">E</text>
   <text x="144" y="36" font-family="system-ui,sans-serif" font-size="7" fill="#9aacbe" opacity="0.75">absent</text>
 </svg>

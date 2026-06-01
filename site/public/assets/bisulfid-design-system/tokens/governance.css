@@ -3,7 +3,7 @@
  */
 :root {
   --bs-gov-visibility-public-foundation: var(--bs-sulfur-500);
-  --bs-gov-visibility-public-bg: rgba(212, 160, 23, 0.06);
+  --bs-gov-visibility-public-bg: rgba(242, 209, 59, 0.06);
   --bs-gov-visibility-quarantine: var(--bs-molybdenum-500);
 
   --bs-gov-noindex-border: var(--bs-sulfur-500);
@@ -16,7 +16,7 @@
   --bs-gov-sitemap-chip-fg: var(--bs-molybdenum-300);
   --bs-gov-nav-chip-bg: rgba(138, 150, 168, 0.15);
   --bs-gov-nav-chip-fg: var(--bs-molybdenum-300);
-  --bs-gov-route-chip-bg: rgba(212, 160, 23, 0.12);
+  --bs-gov-route-chip-bg: rgba(242, 209, 59, 0.1);
   --bs-gov-route-chip-fg: var(--bs-sulfur-400);
 
   --bs-gov-source-required-fg: var(--bs-color-source-required-text);
