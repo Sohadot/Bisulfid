@@ -91,6 +91,8 @@ def validate_home() -> list[str]:
         ("bisulfid-design-system", "design-system CSS"),
         ("bs-source-crystal", "source crystal"),
         ("source-crystal.svg", "source crystal asset"),
+        ("bs-missing-e-boundary-system", "missing-E boundary system"),
+        ("bs-missing-e-boundary-system__name", "canonical BISULFID name"),
     )
     for marker, label in checks:
         if marker not in text:
@@ -126,6 +128,24 @@ def validate_home() -> list[str]:
     for pattern in EXTERNAL_PATTERNS:
         if pattern.search(text):
             errors.append(f"homepage external dependency: {pattern.pattern}")
+
+    if re.search(r">Bisulfi<", text, re.I):
+        errors.append("homepage wrong missing-E split (isolated Bisulfi fragment)")
+    if "bisulfi-de" in lower.replace(" ", ""):
+        errors.append("homepage wrong BISULFI-DE split motif")
+    if "BISULFID" not in text:
+        errors.append("homepage missing canonical BISULFID identity")
+
+    svg_path = DS_ASSETS / "assets/missing-e-boundary.svg"
+    if svg_path.is_file():
+        svg_text = svg_path.read_text(encoding="utf-8")
+        if "BISULFID" not in svg_text:
+            errors.append("missing-e-boundary.svg missing BISULFID")
+        if re.search(r">Bisulfi<", svg_text, re.I):
+            errors.append("missing-e-boundary.svg uses wrong Bisulfi split")
+        if re.search(r">de<", svg_text, re.I) and "BISULFIDE" not in svg_text:
+            errors.append("missing-e-boundary.svg implies wrong de split")
+
     return errors
 
 

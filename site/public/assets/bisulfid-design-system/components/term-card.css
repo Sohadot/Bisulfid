@@ -9,9 +9,10 @@
   background: linear-gradient(
     165deg,
     var(--bs-carbon-panel) 0%,
+    var(--bs-carbon-850) 45%,
     var(--bs-carbon-800) 100%
   );
-  border: 1px solid var(--bs-color-graphite-line);
+  border: 1px solid var(--bs-molybdenum-edge);
   border-radius: calc(var(--bs-space-unit) * 3);
   box-shadow: var(--bs-depth-card-raised);
   color: var(--bs-color-ink-primary);

@@ -10,6 +10,7 @@
   background: linear-gradient(
     160deg,
     var(--bs-carbon-panel) 0%,
+    var(--bs-carbon-850) 55%,
     var(--bs-carbon-800) 100%
   );
   border: 1px solid var(--bs-molybdenum-500);
@@ -19,7 +20,9 @@
   font-size: var(--bs-font-size-term-meta);
   font-weight: var(--bs-font-weight-term);
   line-height: var(--bs-line-height-term);
-  box-shadow: var(--bs-depth-card-floating);
+  box-shadow:
+    0 1px 0 var(--bs-molybdenum-shine) inset,
+    var(--bs-depth-card-floating);
   transform: translateZ(var(--bs-depth-term-node));
   min-width: 4.5rem;
   text-align: center;

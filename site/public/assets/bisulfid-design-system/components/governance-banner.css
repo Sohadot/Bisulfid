@@ -34,10 +34,18 @@
 }
 
 .bs-governance-banner__brand-mark {
-  width: 2.75rem;
-  height: auto;
+  width: auto;
+  height: 2rem;
+  max-width: 8.5rem;
   flex-shrink: 0;
-  filter: drop-shadow(0 0 6px var(--bs-sulfur-glow));
+  filter: drop-shadow(0 0 8px var(--bs-sulfur-glow));
+}
+
+.bs-governance-banner__brand-name {
+  font-size: var(--bs-font-size-term-meta);
+  font-weight: var(--bs-font-weight-title);
+  color: var(--bs-molybdenum-100);
+  letter-spacing: 0.12em;
 }
 
 .bs-governance-banner__chips {

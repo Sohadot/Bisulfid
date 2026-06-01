@@ -8,14 +8,17 @@
   padding: var(--bs-space-source-bar-block) var(--bs-space-source-bar-inline);
   background: linear-gradient(
     135deg,
-    var(--bs-carbon-800) 0%,
-    var(--bs-carbon-panel) 100%
+    var(--bs-carbon-850) 0%,
+    var(--bs-carbon-panel) 55%,
+    var(--bs-carbon-800) 100%
   );
   border: 1px solid var(--bs-molybdenum-500);
   border-radius: calc(var(--bs-space-unit) * 3);
   font-size: var(--bs-font-size-source-body);
   line-height: var(--bs-line-height-source);
-  box-shadow: var(--bs-depth-card-raised);
+  box-shadow:
+    0 1px 0 var(--bs-molybdenum-shine) inset,
+    var(--bs-depth-card-raised);
   transform: translateZ(var(--bs-depth-source-crystal));
 }
 

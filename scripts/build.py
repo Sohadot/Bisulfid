@@ -1710,7 +1710,7 @@ def write_visual_proof_sample_html(
         "sprint": DESIGN_SYSTEM_VISUAL_RECONSTRUCTION_SPRINT,
         "route_count": len(written),
         "expected_route_count": len(VISUAL_PROOF_SAMPLE_ROUTE_IDS),
-        "visual_proof_iteration": 2,
+        "visual_proof_iteration": 3,
         "visual_review_status": "pending_review",
         "visual_review_note": (
             "Human visual review required before full 14,000-page refresh. "

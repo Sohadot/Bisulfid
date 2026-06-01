@@ -1,31 +1,36 @@
 /**
- * Bisulfid material palette — carbon / sulfur / molybdenum (Sprint 6N-D iteration 2).
+ * Bisulfid material palette — carbon / sulfur / molybdenum (Sprint 6N-D iteration 3).
  */
 :root {
-  --bs-carbon-950: #040506;
-  --bs-carbon-900: #0a0c10;
-  --bs-carbon-800: #12161c;
-  --bs-carbon-panel: #181f28;
-  --bs-carbon-panel-edge: #252d38;
+  --bs-carbon-950: #070a0e;
+  --bs-carbon-900: #0d1218;
+  --bs-carbon-850: #111820;
+  --bs-carbon-800: #161e28;
+  --bs-carbon-panel: #1c2632;
+  --bs-carbon-panel-edge: #2a3544;
 
+  --bs-sulfur-600: #c89412;
   --bs-sulfur-500: #e0b020;
-  --bs-sulfur-400: #f0d060;
-  --bs-sulfur-glow: rgba(240, 208, 96, 0.42);
-  --bs-sulfur-line: rgba(224, 176, 32, 0.62);
+  --bs-sulfur-400: #f0c840;
+  --bs-sulfur-glow: rgba(240, 200, 64, 0.48);
+  --bs-sulfur-line: rgba(224, 176, 32, 0.68);
+  --bs-sulfur-ember: rgba(200, 148, 18, 0.22);
 
-  --bs-molybdenum-100: #eef1f4;
-  --bs-molybdenum-300: #c4ccd6;
-  --bs-molybdenum-500: #9aa8ba;
-  --bs-molybdenum-edge: rgba(196, 204, 214, 0.55);
+  --bs-molybdenum-100: #eef2f6;
+  --bs-molybdenum-200: #d8e0ea;
+  --bs-molybdenum-300: #b8c5d6;
+  --bs-molybdenum-500: #9aacbe;
+  --bs-molybdenum-edge: rgba(184, 197, 214, 0.62);
+  --bs-molybdenum-shine: rgba(216, 224, 234, 0.18);
 
   --bs-source-required: #e07a5f;
   --bs-source-candidate: #6a9a92;
   --bs-source-verified: #5a8f7c;
 
   --bs-boundary-missing-e: var(--bs-sulfur-400);
-  --bs-lattice-line: rgba(224, 176, 32, 0.28);
-  --bs-lattice-moly: rgba(154, 168, 186, 0.35);
-  --bs-depth-violet: rgba(106, 92, 138, 0.12);
+  --bs-lattice-line: rgba(224, 176, 32, 0.32);
+  --bs-lattice-moly: rgba(154, 172, 190, 0.38);
+  --bs-depth-violet: rgba(106, 92, 138, 0.1);
 
   --bs-color-foundation-deep: var(--bs-carbon-950);
   --bs-color-foundation-base: var(--bs-carbon-900);
@@ -34,7 +39,7 @@
   --bs-color-foundation-muted: var(--bs-carbon-panel-edge);
 
   --bs-color-sulfur-primary: var(--bs-sulfur-500);
-  --bs-color-sulfur-dim: #b89018;
+  --bs-color-sulfur-dim: var(--bs-sulfur-600);
   --bs-color-sulfur-glow: var(--bs-sulfur-glow);
   --bs-color-sulfur-accent: var(--bs-sulfur-400);
 

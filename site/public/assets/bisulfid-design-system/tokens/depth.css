@@ -1,9 +1,9 @@
 /**
- * Bisulfid depth tokens — spatial layering (Sprint 6N-D iteration 2).
+ * Bisulfid depth tokens — material spatial layering (Sprint 6N-D iteration 3).
  */
 :root {
   --bs-perspective-scene: 1200px;
-  --bs-perspective-tilt: 6deg;
+  --bs-perspective-tilt: 5deg;
   --bs-perspective-limit: 1200px;
   --bs-perspective-tilt-max: 2deg;
 
@@ -21,16 +21,17 @@
 
   --bs-depth-card-flat: none;
   --bs-depth-card-raised:
-    0 1px 0 var(--bs-molybdenum-edge) inset,
-    0 8px 28px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(154, 168, 186, 0.16);
+    0 1px 0 var(--bs-molybdenum-shine) inset,
+    0 2px 0 rgba(42, 53, 68, 0.85) inset,
+    0 10px 32px rgba(0, 0, 0, 0.58),
+    0 0 0 1px rgba(154, 172, 190, 0.14);
   --bs-depth-card-floating:
     0 0 0 1px var(--bs-sulfur-line),
-    0 14px 36px rgba(0, 0, 0, 0.6),
-    0 0 32px var(--bs-sulfur-glow);
+    0 16px 40px rgba(0, 0, 0, 0.62),
+    0 0 36px var(--bs-sulfur-glow);
   --bs-depth-card-source-required:
     0 0 0 1px var(--bs-color-source-required-border),
-    0 0 24px rgba(224, 122, 95, 0.28);
+    0 0 28px rgba(224, 122, 95, 0.3);
 
   --bs-z-governance-banner: 100;
   --bs-z-control-room-hero: 50;
@@ -40,9 +41,10 @@
   --bs-z-lattice-node: 20;
 
   --bs-depth-hero-gradient:
-    radial-gradient(ellipse 110% 75% at 50% -8%, rgba(224, 176, 32, 0.16) 0%, transparent 55%),
-    radial-gradient(ellipse 65% 45% at 100% 100%, rgba(154, 168, 186, 0.12) 0%, transparent 52%),
-    linear-gradient(180deg, var(--bs-carbon-950) 0%, var(--bs-carbon-900) 42%, var(--bs-carbon-800) 100%);
+    radial-gradient(ellipse 120% 80% at 50% -12%, rgba(224, 176, 32, 0.2) 0%, transparent 52%),
+    radial-gradient(ellipse 70% 50% at 100% 100%, rgba(154, 172, 190, 0.14) 0%, transparent 48%),
+    radial-gradient(ellipse 55% 35% at 0% 85%, rgba(200, 148, 18, 0.08) 0%, transparent 50%),
+    linear-gradient(175deg, var(--bs-carbon-950) 0%, var(--bs-carbon-900) 38%, var(--bs-carbon-850) 68%, var(--bs-carbon-800) 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
