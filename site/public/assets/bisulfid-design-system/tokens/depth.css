@@ -1,5 +1,5 @@
 /**
- * Bisulfid depth tokens — material spatial layering (Sprint 6N-D iteration 4).
+ * Bisulfid depth tokens — material spatial layering (Sprint 6N-D iteration 5).
  */
 :root {
   --bs-perspective-scene: 1200px;
@@ -28,7 +28,7 @@
   --bs-depth-card-floating:
     0 0 0 1px var(--bs-sulfur-line),
     0 16px 40px rgba(0, 0, 0, 0.62),
-    0 0 36px var(--bs-sulfur-glow);
+    0 0 24px var(--bs-sulfur-glow);
   --bs-depth-card-source-required:
     0 0 0 1px var(--bs-color-source-required-border),
     0 0 28px rgba(224, 122, 95, 0.3);
@@ -41,9 +41,9 @@
   --bs-z-lattice-node: 20;
 
   --bs-depth-hero-gradient:
-    radial-gradient(ellipse 120% 80% at 50% -12%, rgba(242, 209, 59, 0.16) 0%, transparent 52%),
+    radial-gradient(ellipse 120% 80% at 50% -12%, var(--bs-sulfur-haze) 0%, transparent 52%),
     radial-gradient(ellipse 70% 50% at 100% 100%, rgba(154, 172, 190, 0.14) 0%, transparent 48%),
-    radial-gradient(ellipse 55% 35% at 0% 85%, rgba(242, 209, 59, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 55% 35% at 0% 85%, rgba(232, 234, 78, 0.04) 0%, transparent 50%),
     linear-gradient(175deg, var(--bs-carbon-950) 0%, var(--bs-carbon-900) 38%, var(--bs-carbon-850) 68%, var(--bs-carbon-800) 100%);
 }
 

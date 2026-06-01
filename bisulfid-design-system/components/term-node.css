@@ -48,7 +48,9 @@
 
 .bs-term-node--center {
   border-color: var(--bs-sulfur-500);
-  box-shadow: 0 0 20px var(--bs-sulfur-glow), var(--bs-depth-card-floating);
+  box-shadow:
+    0 0 14px var(--bs-sulfur-glow),
+    var(--bs-depth-card-floating);
   transform: translateZ(var(--bs-depth-space-focus));
 }
 

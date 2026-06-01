@@ -116,7 +116,7 @@
   border-color: var(--bs-molybdenum-edge);
   box-shadow:
     var(--bs-depth-card-raised),
-    0 0 48px rgba(242, 209, 59, 0.04);
+    0 0 32px var(--bs-sulfur-haze);
 }
 
 .bs-term-card--gateway::after {
