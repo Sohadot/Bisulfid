@@ -18,6 +18,8 @@ PUBLIC_DIR = ROOT / "site/public"
 SAMPLE_DIR = ROOT / "site/_sample"
 MANIFEST_PATH = PUBLIC_DIR / "public_launch_manifest.json"
 HOME_PATH = PUBLIC_DIR / "index.html"
+PROOF_MANIFEST_PATH = PUBLIC_DIR / "_visual_proof_sample" / "visual_proof_manifest.json"
+PROOF_HOME_PATH = PUBLIC_DIR / "_visual_proof_sample" / "index.html"
 DS_ASSETS = PUBLIC_DIR / "assets/bisulfid-design-system"
 
 FOUNDATION_EXACT = 14000
@@ -52,7 +54,7 @@ def is_foundation_page(path: Path) -> bool:
         rel = path.relative_to(PUBLIC_DIR)
     except ValueError:
         return False
-    return not rel.parts or rel.parts[0] != "_integration_sample"
+    return not rel.parts or rel.parts[0] not in ("_integration_sample", "_visual_proof_sample")
 
 
 def foundation_pages() -> list[Path]:
@@ -92,47 +94,51 @@ def implies_source_approval(text: str) -> bool:
     return bool(re.search(r"source(?:s)?\s+(?:is|are)\s+approved", lower))
 
 
-def validate_homepage() -> tuple[list[str], list[str]]:
+def validate_homepage_at(path: Path, label: str = "homepage") -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
-    if not HOME_PATH.is_file():
-        errors.append("site/public/index.html missing")
+    if not path.is_file():
+        errors.append(f"{label} missing: {path.relative_to(ROOT)}")
         return errors, warnings
 
-    text = HOME_PATH.read_text(encoding="utf-8")
+    text = path.read_text(encoding="utf-8")
     lower = text.lower()
 
     if "bs-control-room-hero" not in text:
-        errors.append("homepage missing bs-control-room-hero")
+        errors.append(f"{label} missing bs-control-room-hero")
     if "chemical-space.svg" not in text:
-        errors.append("homepage missing chemical-space visual")
+        errors.append(f"{label} missing chemical-space visual")
     if "missing-e-boundary.svg" not in text:
-        errors.append("homepage missing missing-E boundary visual")
+        errors.append(f"{label} missing missing-E boundary visual")
     if "bs-gov-chip" not in text:
-        errors.append("homepage missing governance chips")
+        errors.append(f"{label} missing governance chips")
     if "bs-relation-lattice" not in text:
-        errors.append("homepage missing relation lattice")
+        errors.append(f"{label} missing relation lattice")
     if "bs-term-node" not in text:
-        errors.append("homepage missing term nodes")
-    if "bs-source-crystal" not in text and "source-crystal.svg" not in text:
-        warnings.append("homepage: source crystal not in hero (may be in source bar on other routes)")
+        errors.append(f"{label} missing term nodes")
+    if "bisulfid-design-system" not in text:
+        errors.append(f"{label} missing design-system links")
 
     visible = strip_meta_and_comments(text)
     if GOVERNANCE_UI_TRUE.search(visible):
-        errors.append("homepage visible raw 'true' leakage in governance UI")
+        errors.append(f"{label} raw true leakage in governance UI")
     if GOVERNANCE_UI_FALSE.search(visible):
-        errors.append("homepage visible raw 'false' leakage in governance UI")
+        errors.append(f"{label} raw false leakage in governance UI")
 
     if "noindex" not in lower or "nofollow" not in lower:
-        errors.append("homepage missing noindex,nofollow")
+        errors.append(f"{label} missing noindex,nofollow")
     if "[source required]" not in lower:
-        errors.append("homepage missing [SOURCE REQUIRED] visibility")
+        errors.append(f"{label} missing [SOURCE REQUIRED]")
 
     for pattern in EXTERNAL_PATTERNS:
         if pattern.search(text):
-            errors.append(f"homepage external dependency: {pattern.pattern}")
+            errors.append(f"{label} external dependency: {pattern.pattern}")
 
     return errors, warnings
+
+
+def validate_homepage() -> tuple[list[str], list[str]]:
+    return validate_homepage_at(HOME_PATH, "foundation homepage")
 
 
 def validate_page(path: Path) -> list[str]:
@@ -170,7 +176,7 @@ def validate_page(path: Path) -> list[str]:
     return errors
 
 
-def validate_manifest() -> list[str]:
+def validate_manifest(*, full_refresh_applied: bool) -> list[str]:
     errors: list[str] = []
     if not MANIFEST_PATH.is_file():
         errors.append("public_launch_manifest.json missing")
@@ -178,14 +184,25 @@ def validate_manifest() -> list[str]:
     manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     if manifest.get("rendered_count") != FOUNDATION_EXACT:
         errors.append("manifest rendered_count != 14000")
-    if manifest.get("visual_reconstruction") is not True:
-        errors.append("manifest visual_reconstruction not true")
-    if manifest.get("visual_reconstruction_sprint") != "6N-D":
-        errors.append("manifest visual_reconstruction_sprint != 6N-D")
+    if full_refresh_applied:
+        if manifest.get("visual_reconstruction") is not True:
+            errors.append("manifest visual_reconstruction not true")
+        if manifest.get("visual_reconstruction_sprint") != "6N-D":
+            errors.append("manifest visual_reconstruction_sprint != 6N-D")
     for gate in ("indexation_gate", "sitemap_gate", "navigation_gate"):
         if manifest.get(gate) != "closed":
             errors.append(f"manifest {gate} not closed")
     return errors
+
+
+def full_visual_refresh_applied() -> bool:
+    if not MANIFEST_PATH.is_file():
+        return False
+    try:
+        manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return False
+    return manifest.get("visual_reconstruction") is True
 
 
 def main() -> int:
@@ -218,8 +235,18 @@ def main() -> int:
                 if token not in ct:
                     all_errors.append(f"colors.css missing {token}")
 
-    all_errors.extend(validate_manifest())
-    home_errors, home_warnings = validate_homepage()
+    full_refresh = full_visual_refresh_applied()
+    print(f"Full 6N-D refresh applied: {full_refresh}")
+
+    all_errors.extend(validate_manifest(full_refresh_applied=full_refresh))
+    if full_refresh:
+        home_errors, home_warnings = validate_homepage()
+    else:
+        home_errors, home_warnings = validate_homepage_at(
+            PROOF_HOME_PATH, "visual proof homepage"
+        )
+        if not PROOF_MANIFEST_PATH.is_file():
+            all_errors.append("visual proof manifest missing — run --render-visual-proof-sample")
     all_errors.extend(home_errors)
     all_warnings.extend(home_warnings)
 
@@ -230,10 +257,13 @@ def main() -> int:
     sample_count = len(list(SAMPLE_DIR.rglob("*.html"))) if SAMPLE_DIR.is_dir() else 0
     print(f"Quarantine sample pages (unchanged check deferred to git): {sample_count}")
 
-    sample_checked = min(100, len(pages))
-    for path in pages[:sample_checked]:
-        all_errors.extend(validate_page(path))
-    print(f"Pages sampled: {sample_checked}")
+    if full_refresh:
+        sample_checked = min(100, len(pages))
+        for path in pages[:sample_checked]:
+            all_errors.extend(validate_page(path))
+        print(f"Foundation pages sampled: {sample_checked}")
+    else:
+        print("Foundation page visual sampling deferred until full 14,000 refresh")
 
     if all_warnings:
         print()

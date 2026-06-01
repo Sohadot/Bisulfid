@@ -41,7 +41,7 @@ def is_foundation_page(path: Path) -> bool:
         rel = path.relative_to(PUBLIC_DIR)
     except ValueError:
         return False
-    return not rel.parts or rel.parts[0] != "_integration_sample"
+    return not rel.parts or rel.parts[0] not in ("_integration_sample", "_visual_proof_sample")
 
 
 def foundation_pages() -> list[Path]:

@@ -1,7 +1,7 @@
 name: Pages public deploy
 
 # Governed GitHub Pages deployment gate (Sprint 6M-H, artifact patch 6N-C-P1).
-# Stages site/public/ into a temporary artifact excluding _integration_sample/.
+# Stages site/public/ into a temporary artifact excluding _integration_sample/ and _visual_proof_sample/.
 # Deploys 14,000 foundation pages only — not repository root, not site/_sample/.
 # Does not regenerate corpus, install dependencies, or mutate repository files.
 # Indexation/sitemap/navigation/source/claim gates remain CLOSED.
@@ -36,20 +36,24 @@ jobs:
           test -f site/public/CNAME
           test -f site/public/.nojekyll
           test -d site/public/assets/bisulfid-design-system
-          foundation_count="$(find site/public -path 'site/public/_integration_sample' -prune -o -name 'index.html' -print | wc -l | tr -d ' ')"
+          foundation_count="$(find site/public -path 'site/public/_integration_sample' -prune -o -path 'site/public/_visual_proof_sample' -prune -o -name 'index.html' -print | wc -l | tr -d ' ')"
           echo "Public foundation pages in repository source: ${foundation_count}"
           test "${foundation_count}" -eq 14000
           if test -d site/public/_integration_sample; then
             integration_count="$(find site/public/_integration_sample -name 'index.html' | wc -l | tr -d ' ')"
             echo "Integration sample pages (excluded from deploy): ${integration_count}"
           fi
+          if test -d site/public/_visual_proof_sample; then
+            proof_count="$(find site/public/_visual_proof_sample -name 'index.html' | wc -l | tr -d ' ')"
+            echo "Visual proof sample pages (excluded from deploy): ${proof_count}"
+          fi
 
-      - name: Stage deployment artifact (exclude _integration_sample/)
+      - name: Stage deployment artifact (exclude sample directories)
         id: stage
         run: |
           ARTIFACT_DIR="${RUNNER_TEMP}/pages-artifact"
           mkdir -p "${ARTIFACT_DIR}"
-          rsync -a --exclude='_integration_sample/' site/public/ "${ARTIFACT_DIR}/"
+          rsync -a --exclude='_integration_sample/' --exclude='_visual_proof_sample/' site/public/ "${ARTIFACT_DIR}/"
           page_count="$(find "${ARTIFACT_DIR}" -name 'index.html' | wc -l | tr -d ' ')"
           echo "Deployable foundation pages in staged artifact: ${page_count}"
           test "${page_count}" -eq 14000
@@ -58,6 +62,7 @@ jobs:
           test -f "${ARTIFACT_DIR}/.nojekyll"
           test -d "${ARTIFACT_DIR}/assets/bisulfid-design-system"
           test ! -e "${ARTIFACT_DIR}/_integration_sample"
+          test ! -e "${ARTIFACT_DIR}/_visual_proof_sample"
           echo "artifact_dir=${ARTIFACT_DIR}" >> "${GITHUB_OUTPUT}"
 
       - name: Configure GitHub Pages

@@ -61,6 +61,63 @@ Indexation, sitemap, navigation, source/claim approval, content expansion, WebXR
 
 Visual maturity is required but not sufficient for publication authorization. All pages retain `noindex,nofollow`.
 
+## Visual proof gate before full 14,000 render
+
+Sprint 6N-C showed that **validators can PASS while the eye says FAIL**. Sprint 6N-D adds a mandatory **Visual Proof Gate** before any full public refresh.
+
+### Proof routes (deterministic 7)
+
+- `home`
+- `what_is_bisulfid`
+- `de_core_mos2`
+- `en_index_disambiguation_map`
+- `bisulfide_hydrosulfide_sulfide`
+- `sources`
+- `corpus_methodology_overview`
+
+### Command
+
+```bash
+python scripts/build.py --render-visual-proof-sample
+```
+
+Output: `site/public/_visual_proof_sample/` (7 pages + `visual_proof_manifest.json`).
+
+### Proof must demonstrate
+
+- Carbon / sulfur / molybdenum palette applied clearly
+- No broken top visual
+- No raw governance overload
+- No leaked `true`/`false` in visible UI
+- Compact governance chips
+- Visible missing-E motif
+- Visible source crystal / source-required state
+- Visible relation lattice or chemical-space layer
+- Visible CSS/SVG depth
+- Mobile-first hierarchy improved
+- No browser-default feeling
+
+### Gate rule
+
+**Do not run** `--render-public-design-system-refresh --limit 14000` until:
+
+1. Visual proof sample renders successfully
+2. Human eye review passes on proof routes
+3. `visual_review_status` is set to `approved` in `visual_proof_manifest.json`
+
+If proof remains weak, improve tokens/components and re-render proof only — **not** the full corpus.
+
+## Build requirement (after proof approval)
+
+```bash
+python scripts/build.py --render-public-design-system-refresh --limit 14000
+```
+
+Blocked at build time until visual proof manifest is `approved`.
+
 ## Next step
 
-GitHub Pages redeploy → Sprint 6M-J live re-check with reconstructed interface.
+1. Render and review visual proof sample
+2. After approval → full 14,000 refresh
+3. GitHub Pages redeploy → Sprint 6M-J live re-check
+

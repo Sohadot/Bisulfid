@@ -1,0 +1,97 @@
+{
+  "sample_id": "sovereign_visual_proof_6N-D",
+  "sprint": "6N-D",
+  "route_count": 7,
+  "expected_route_count": 7,
+  "visual_review_status": "pending_review",
+  "visual_review_note": "Human visual review required before full 14,000-page refresh. Set visual_review_status to 'approved' after proof passes eye review.",
+  "visual_palette": "carbon-sulfur-molybdenum",
+  "proof_routes": [
+    "home",
+    "what_is_bisulfid",
+    "de_core_mos2",
+    "en_index_disambiguation_map",
+    "bisulfide_hydrosulfide_sulfide",
+    "sources",
+    "corpus_methodology_overview"
+  ],
+  "timestamp_utc": "2026-06-01T10:12:37.385045+00:00",
+  "output_dir": "site/public/_visual_proof_sample",
+  "indexation_gate": "closed",
+  "sitemap_gate": "closed",
+  "navigation_gate": "closed",
+  "replaces_public_foundation": false,
+  "full_refresh_allowed": false,
+  "pages": [
+    {
+      "route_id": "home",
+      "route_path": "/",
+      "language": "en",
+      "output_path": "site/public/_visual_proof_sample/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes",
+      "bs_control_room_hero": "yes",
+      "bs_gov_chip": "yes"
+    },
+    {
+      "route_id": "what_is_bisulfid",
+      "route_path": "/what-is-bisulfid/",
+      "language": "en",
+      "output_path": "site/public/_visual_proof_sample/what-is-bisulfid/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes",
+      "bs_control_room_hero": "no",
+      "bs_gov_chip": "yes"
+    },
+    {
+      "route_id": "de_core_mos2",
+      "route_path": "/de/terminology/molybdenum-disulfide/",
+      "language": "de",
+      "output_path": "site/public/_visual_proof_sample/de/terminology/molybdenum-disulfide/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes",
+      "bs_control_room_hero": "no",
+      "bs_gov_chip": "yes"
+    },
+    {
+      "route_id": "en_index_disambiguation_map",
+      "route_path": "/reference/disambiguation-map/",
+      "language": "en",
+      "output_path": "site/public/_visual_proof_sample/reference/disambiguation-map/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes",
+      "bs_control_room_hero": "no",
+      "bs_gov_chip": "yes"
+    },
+    {
+      "route_id": "bisulfide_hydrosulfide_sulfide",
+      "route_path": "/bisulfide-hydrosulfide-sulfide/",
+      "language": "en",
+      "output_path": "site/public/_visual_proof_sample/bisulfide-hydrosulfide-sulfide/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes",
+      "bs_control_room_hero": "no",
+      "bs_gov_chip": "yes"
+    },
+    {
+      "route_id": "sources",
+      "route_path": "/sources/",
+      "language": "en",
+      "output_path": "site/public/_visual_proof_sample/sources/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes",
+      "bs_control_room_hero": "no",
+      "bs_gov_chip": "yes"
+    },
+    {
+      "route_id": "corpus_methodology_overview",
+      "route_path": "/reference/corpus-methodology/",
+      "language": "en",
+      "output_path": "site/public/_visual_proof_sample/reference/corpus-methodology/index.html",
+      "source_required_visible": "yes",
+      "design_system_linked": "yes",
+      "bs_control_room_hero": "no",
+      "bs_gov_chip": "yes"
+    }
+  ]
+}

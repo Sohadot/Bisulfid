@@ -2,37 +2,56 @@
 
 **Date:** 2026-06-01
 
-## Ready for GitHub Pages deploy?
+## Step 1 — Visual proof first (mandatory)
 
-**Yes — after merge and full validator PASS.** Refreshed 14,000-page foundation includes 6N-D visual reconstruction. Indexation remains **CLOSED**.
+```bash
+python scripts/build.py --render-visual-proof-sample
+python scripts/validate_visual_proof_sample_l1.py
+```
 
-## Live re-check required?
+Review these 7 routes under `site/public/_visual_proof_sample/` **with human eyes**:
 
-**Yes.** Local reconstruction success does not guarantee CDN/Pages fidelity. Run **Sprint 6M-J** after deploy to confirm live hero, chips, palette, and missing-E boundary.
+- `/` (home)
+- `/what-is-bisulfid/`
+- `/de/core/mos2/` (or mapped path)
+- disambiguation map route
+- bisulfide cluster route
+- sources
+- corpus methodology
 
-## Missing-E motion enhancement?
+**Do not proceed** if the proof does not feel like the BISULFID chemical-language control room.
 
-Optional next sprint. CSS boundary animation exists in motion tokens; hero could add subtle missing-E shift when live PASS confirms base layout.
+## Step 2 — Approve or iterate
 
-## Source crystal refinement?
+If weak: improve `bisulfid-design-system/` tokens/components → re-run proof only.
 
-Candidate for **6N-E** or motion sub-sprint — richer state transitions when registry integration authorizes (not approval).
+If strong: edit `site/public/_visual_proof_sample/visual_proof_manifest.json`:
 
-## Relation lattice expansion?
+```json
+"visual_review_status": "approved"
+```
 
-Expand data-bound edges when ontology routes publish. Current lattice is CSS/SVG scaffold — no invented links.
+## Step 3 — Full refresh (only after approval)
 
-## Raw WebGL chemical-space prototype?
+```bash
+python scripts/build.py --render-public-design-system-refresh --limit 14000
+```
 
-**Wait.** Doctrine requires WebGL boundary sprint. CSS/SVG depth must PASS live verification first.
+Build engine **refuses** full refresh until proof manifest is `approved`.
 
-## Indexation blocked?
+## Step 4 — Deploy and live check
 
-**Yes.** Visual reconstruction does not authorize crawling, sitemap, or navigation opening.
+- Pages public deploy (excludes `_visual_proof_sample/` and `_integration_sample/`)
+- Sprint **6M-J** live verification
+- Indexation remains **CLOSED**
 
-## Recommended next sprint
+## Official material identity
 
-1. **Merge 6N-D** → **Pages public deploy**
-2. **Sprint 6M-J — Post-Refresh Live Site Verification**
-3. If live PASS: consider **6N-E** motion layer or lattice data-binding pilot
-4. Indexation discussion remains **blocked** until explicit gate-opening sprint
+**Carbon gray + sulfur yellow + molybdenum silver** — fixed Bisulfid palette for all future visual work.
+
+## Optional follow-ups (after live PASS)
+
+- Missing-E motion enhancement
+- Source crystal state refinement
+- Relation lattice data-bound expansion
+- WebGL prototype — **wait** until CSS/SVG proof passes live

@@ -4074,19 +4074,22 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 **Date:** 2026-06-01  
 **Branch:** `claude/sprint-6n-d-sovereign-visual-interface-reconstruction`  
 **Base:** main @ Sprint 6N-C-P1 merge  
-**Status:** Complete — sovereign visual interface reconstructed across 14,000 public foundation pages
+**Status:** In progress — design-system + templates complete; **visual proof gate active**; full 14,000 refresh **pending human proof approval**
 
-**Summary:** Sprint **6N-D** reconstructed the visible Bisulfid public interface after the first design-system refresh proved structurally valid but visually insufficient. The sprint replaced the weak text-heavy presentation with a stronger sovereign chemical-language control room interface using the fixed carbon-gray, warm sulfur-yellow, and molybdenum-silver material palette, local CSS, raw SVG, CSS perspective/depth, governance chips, source-crystal states, missing-E visual identity, and mobile-first presentation. The sprint preserved the 14,000-page public foundation, noindex posture, source-required visibility, source/claim truth, and closed sitemap/navigation/indexation gates. No external UI libraries, CDN assets, npm dependencies, tracking scripts, source approvals, claim approvals, sitemap artifacts, or navigation artifacts were introduced.
+**Visual Proof Gate:** 6N-C validators passed while live UI failed eye review. 6N-D requires `--render-visual-proof-sample` (7 routes) and `visual_review_status: approved` before `--render-public-design-system-refresh --limit 14000`.
 
-**Refresh command:** `python scripts/build.py --render-public-design-system-refresh --limit 14000`
+**Summary:** Sprint **6N-D** reconstructs the visible Bisulfid public interface using the fixed **carbon-gray, warm sulfur-yellow, and molybdenum-silver** material palette. Design-system tokens, components, SVG assets, templates, and validators are in place. The **14,000-page foundation remains on 6N-C output** until visual proof passes human review and full refresh is explicitly authorized.
 
-**Results:**
+**Proof command:** `python scripts/build.py --render-visual-proof-sample`
 
-- **14,000** foundation pages re-rendered with 6N-D visual reconstruction
+**Full refresh command (gated):** `python scripts/build.py --render-public-design-system-refresh --limit 14000`
+
+**Results (current):**
+
+- Visual proof sample: **7 routes** under `site/public/_visual_proof_sample/`
+- Public foundation: **14,000 pages** (6N-C design until proof-approved full refresh)
 - Material palette: carbon / sulfur / molybdenum
-- Control-room hero, relation lattice, term nodes, source crystal visuals
-- Governance chips replace raw text overload; raw `true`/`false` leakage removed
-- `public_launch_manifest.json`: `visual_reconstruction: true`, sprint **6N-D**
+- Full refresh: **BLOCKED** until `visual_review_status: approved`
 
 **Files updated:**
 
