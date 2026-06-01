@@ -35,9 +35,12 @@
 <meta name="bisulfid:in-navigation" content="false">
 <meta name="bisulfid:source-required" content="true">
 <meta name="bisulfid:claim-approval-state" content="no_claims_approved">
+<!-- Bisulfid proprietary design system — local assets only (Sprint 6N-B) -->
+<link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
 <!-- CSP placeholder: required before public launch per doctrine/SECURITY_POLICY.md -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-ancestors 'none'">
-<!-- No meta keywords. No tracking pixels. No external scripts. -->
+<!-- default robots posture: noindex, nofollow until publication authorization -->
+<!-- No meta keywords. No tracking pixels. No external scripts. No CDN. No npm. -->
 
   <!--
   partials/hreflang.html — Hreflang slot (Sprint 6M-B)
@@ -49,26 +52,27 @@
 <!-- x-default withheld until EN source route published and verified -->
 
 </head>
-<body class="bisulfid-frame" data-route-id="home" data-route-status="planned" data-publication-posture="public_visible_foundation">
+<body class="bisulfid-frame bs-control-room" data-route-id="home" data-route-status="planned" data-publication-posture="public_visible_foundation" data-design-system="bisulfid-frame">
   <!--
-  partials/governance_banner.html — Non-public posture visibility (Sprint 6M-B)
-  Always visible for planned/draft/non-public routes in QA and pre-launch renders.
-  Does not imply publication, indexation, sitemap, or navigation authorization.
+  partials/governance_banner.html — Non-public posture visibility (Sprint 6M-B / 6N-B)
+  Structured design-system governance banner. Does not imply publication authorization.
 -->
-<div class="governance-banner" role="status" aria-live="polite" data-qa-artifact="false">
-  <p class="governance-banner__title">Public launch foundation — controlled visibility</p>
-  <p class="governance-banner__body">14,000-page public launch foundation. Indexation CLOSED (noindex). Sitemap CLOSED. Navigation CLOSED. Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved where unresolved.</p>
-  <ul class="governance-banner__locks">
+<div class="governance-banner bs-governance-banner bs-governance-banner--noindex" role="status" aria-live="polite" data-qa-artifact="false" data-indexation-gate="closed" data-sitemap-gate="closed" data-navigation-gate="closed">
+  <img class="bs-missing-e-boundary" src="/assets/bisulfid-design-system/assets/missing-e-boundary.svg" alt="" aria-hidden="true" width="40" height="40">
+  <p class="governance-banner__title bs-governance-banner__title">Public launch foundation — controlled visibility</p>
+  <p class="governance-banner__body bs-governance-banner__body">14,000-page public launch foundation. Indexation CLOSED (noindex). Sitemap CLOSED. Navigation CLOSED. Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved where unresolved.</p>
+  <ul class="governance-banner__locks bs-governance-banner__locks">
     <li>Route status: <strong>planned</strong></li>
     <li>Publication posture: <strong>public_visible_foundation</strong></li>
     <li>Indexable: <strong>false</strong></li>
     <li>In sitemap: <strong>false</strong></li>
     <li>In navigation: <strong>false</strong></li>
-    <li>Robots: <strong>noindex, nofollow</strong></li>
+    <li class="bs-governance-banner__robots">Robots: <strong>noindex, nofollow</strong></li>
   </ul>
-  <p class="governance-banner__frame-note">
-    14,000-page governed launch corpus frame — engineering QA only when quarantined.
+  <p class="governance-banner__frame-note bs-governance-banner__posture">
+    14,000-page governed launch corpus frame — chemical-language control room interface.
     Not a launch. Not a reduced publication target.
+    <span class="bs-source-required-inline">[SOURCE REQUIRED]</span> preserved where unresolved.
   </p>
 </div>
 
@@ -106,26 +110,29 @@
   <div class="public-launch-foundation-notice" role="status" data-public-launch-foundation="14000" data-publication-posture="public_visible_foundation"><p><strong>Public launch foundation</strong> — controlled visibility only. Indexation gate: <strong>CLOSED</strong> (noindex,nofollow). Sitemap gate: <strong>CLOSED</strong>. Navigation gate: <strong>CLOSED</strong>. Source approval not implied. Claim approval not implied. Not final publication-ready. Route status: <strong>planned</strong>. 14,000-page launch foundation — scaling toward 100,000+ governed pages.</p></div>
   <main id="main-content" role="main">
     <!--
-  home.html — Gateway homepage frame (Sprint 6M-B)
-  Sovereign sulfur intelligence gateway shell for the 14,000-page launch corpus.
-  Route must remain planned until explicit publication sprint authorization.
+  home.html — Gateway homepage frame (Sprint 6M-B / 6N-B)
+  Chemical-language control room gateway with term-card identity.
 -->
 <!-- SLOT: content body -->
-<article class="home-frame" lang="en" dir="ltr">
-  <header class="home-frame__header">
-    <h1 class="home-frame__title">Bisulfid — The Missing Letter</h1>
-    <p class="home-frame__intro">**Global Sovereign Sulfur Intelligence Gateway** bisulfid.com opens as a public sulfur gateway, but compounds into a strategic industrial reference asset.</p>
-    <p class="home-frame__corpus-note">
+<article class="home-frame bs-term-card bs-term-card--source-required" lang="en" dir="ltr">
+  <header class="home-frame__header bs-term-card__header">
+    <div class="bs-language-depth" aria-label="Language depth">
+      <span class="bs-language-depth__layer bs-language-depth__layer--en">EN</span>
+      <span class="bs-language-depth__depth-indicator">Gateway · control room entry</span>
+    </div>
+    <h1 class="home-frame__title bs-term-card__title">Bisulfid — The Missing Letter</h1>
+    <p class="home-frame__intro bs-term-card__body"><strong>Global Sovereign Sulfur Intelligence Gateway</strong> bisulfid.com opens as a public sulfur gateway, but compounds into a strategic industrial reference asset.</p>
+    <p class="home-frame__corpus-note bs-term-card__disclaimer">
       Minimum launch corpus: 14,000 governed pages — gateway frame only, not a launch.
     </p>
   </header>
 
-  <section class="home-frame__term-map" aria-label="Interactive term map slot">
-    <p class="slot-empty" data-empty="true">Slot reserved — not populated in QA render.</p>
+  <section class="home-frame__term-map bs-relation-lattice" aria-label="Interactive term map slot">
+    <div class="bs-slot-empty" aria-hidden="true"></div>
   </section>
 
-  <section class="home-frame__language-entry" aria-label="Language entry points">
-    <p class="slot-empty" data-empty="true">Slot reserved — not populated in QA render.</p>
+  <section class="home-frame__language-entry bs-language-depth" aria-label="Language entry points">
+    <div class="bs-slot-empty" aria-hidden="true"></div>
   </section>
 
   <section class="home-frame__claims" aria-label="Governed claim slot">
@@ -143,7 +150,7 @@
 <nav class="internal-links" aria-label="Related governed routes">
   <h2 class="internal-links__heading">Related routes (governed)</h2>
   
-  <p class="internal-links__empty" data-empty="true">
+  <p class="internal-links__empty bs-term-card__disclaimer" data-empty="true">
     No internal links emitted — publication locks active or targets unpublished.
   </p>
 </nav>

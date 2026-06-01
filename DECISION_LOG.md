@@ -4000,3 +4000,44 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Next sprint:** **6N-C — Controlled design-system re-render** (see `main/data/DESIGN_SYSTEM_TEMPLATE_INTEGRATION_NEXT_ACTIONS.md`).
 
+---
+
+## 14,000-Page Design-System Public Refresh Completed
+
+**Date:** 2026-06-01  
+**Branch:** `claude/sprint-6n-c-controlled-14000-design-system-public-refresh`  
+**Base:** main @ Sprint 6N-B merge (`79fe30532`)  
+**Status:** Complete — full public foundation refreshed with design system
+
+**Summary:** Sprint **6N-C** performed the controlled 14,000-page public refresh using the proprietary Bisulfid design system. The sprint moved the public foundation away from browser-default rendering toward a sovereign chemical-language control room interface across the full public output while preserving noindex posture, source-required visibility, source/claim truth, and closed sitemap/navigation/indexation gates. The sprint addressed the raw Markdown and QA placeholder defects identified in live-site verification and prepared the refreshed output for a governed GitHub Pages redeploy and live re-check. No external dependencies, CDNs, npm packages, tracking scripts, source approvals, claim approvals, sitemap artifacts, or navigation artifacts were introduced.
+
+**Refresh command:** `python scripts/build.py --render-public-design-system-refresh --limit 14000`
+
+**Results:**
+
+- **14,000** foundation pages re-rendered with design-system templates
+- **14,000/14,000** pages link local design-system CSS
+- **0** raw Markdown marker files (DEF-02 closed)
+- **0** QA placeholder files (DEF-03 closed)
+- `site/public/_integration_sample/` preserved (7 routes)
+- `public_launch_manifest.json`: `design_system_refresh: true`, sprint **6N-C**
+
+**Sprint 6N-C validation:**
+
+- `validate_14000_design_system_public_refresh_l1.py`: **PASS**
+- `validate_bisulfid_design_system_integration_l1.py`: **PASS**
+- All prior L1/L2 validators: **PASS**
+
+**Files created/updated:**
+
+- `scripts/build.py` — `--render-public-design-system-refresh`
+- `scripts/validate_14000_design_system_public_refresh_l1.py`
+- `site/public/**/*.html` (14,000 foundation pages)
+- `site/public/public_launch_manifest.json`
+- Sprint reports under `main/data/`
+- `DECISION_LOG.md`
+
+**Not modified:** `routes.json`, registries, `main/content/**`, `site/_sample/**`, GitHub Pages workflow, package files, dependencies, root README.md.
+
+**Next steps:** GitHub Pages redeploy → **Sprint 6M-J — Post-Refresh Live Site Verification** (indexation remains **CLOSED**).
+

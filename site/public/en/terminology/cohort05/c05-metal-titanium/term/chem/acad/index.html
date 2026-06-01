@@ -35,9 +35,12 @@
 <meta name="bisulfid:in-navigation" content="false">
 <meta name="bisulfid:source-required" content="true">
 <meta name="bisulfid:claim-approval-state" content="no_claims_approved">
+<!-- Bisulfid proprietary design system — local assets only (Sprint 6N-B) -->
+<link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
 <!-- CSP placeholder: required before public launch per doctrine/SECURITY_POLICY.md -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-ancestors 'none'">
-<!-- No meta keywords. No tracking pixels. No external scripts. -->
+<!-- default robots posture: noindex, nofollow until publication authorization -->
+<!-- No meta keywords. No tracking pixels. No external scripts. No CDN. No npm. -->
 
   <!--
   partials/hreflang.html — Hreflang slot (Sprint 6M-B)
@@ -49,26 +52,27 @@
 <!-- x-default withheld until EN source route published and verified -->
 
 </head>
-<body class="bisulfid-frame" data-route-id="cohort05_en_c05_metal_titanium_term_chem_acad" data-route-status="planned" data-publication-posture="public_visible_foundation">
+<body class="bisulfid-frame bs-control-room" data-route-id="cohort05_en_c05_metal_titanium_term_chem_acad" data-route-status="planned" data-publication-posture="public_visible_foundation" data-design-system="bisulfid-frame">
   <!--
-  partials/governance_banner.html — Non-public posture visibility (Sprint 6M-B)
-  Always visible for planned/draft/non-public routes in QA and pre-launch renders.
-  Does not imply publication, indexation, sitemap, or navigation authorization.
+  partials/governance_banner.html — Non-public posture visibility (Sprint 6M-B / 6N-B)
+  Structured design-system governance banner. Does not imply publication authorization.
 -->
-<div class="governance-banner" role="status" aria-live="polite" data-qa-artifact="false">
-  <p class="governance-banner__title">Public launch foundation — controlled visibility</p>
-  <p class="governance-banner__body">14,000-page public launch foundation. Indexation CLOSED (noindex). Sitemap CLOSED. Navigation CLOSED. Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved where unresolved.</p>
-  <ul class="governance-banner__locks">
+<div class="governance-banner bs-governance-banner bs-governance-banner--noindex" role="status" aria-live="polite" data-qa-artifact="false" data-indexation-gate="closed" data-sitemap-gate="closed" data-navigation-gate="closed">
+  <img class="bs-missing-e-boundary" src="/assets/bisulfid-design-system/assets/missing-e-boundary.svg" alt="" aria-hidden="true" width="40" height="40">
+  <p class="governance-banner__title bs-governance-banner__title">Public launch foundation — controlled visibility</p>
+  <p class="governance-banner__body bs-governance-banner__body">14,000-page public launch foundation. Indexation CLOSED (noindex). Sitemap CLOSED. Navigation CLOSED. Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved where unresolved.</p>
+  <ul class="governance-banner__locks bs-governance-banner__locks">
     <li>Route status: <strong>planned</strong></li>
     <li>Publication posture: <strong>public_visible_foundation</strong></li>
     <li>Indexable: <strong>false</strong></li>
     <li>In sitemap: <strong>false</strong></li>
     <li>In navigation: <strong>false</strong></li>
-    <li>Robots: <strong>noindex, nofollow</strong></li>
+    <li class="bs-governance-banner__robots">Robots: <strong>noindex, nofollow</strong></li>
   </ul>
-  <p class="governance-banner__frame-note">
-    14,000-page governed launch corpus frame — engineering QA only when quarantined.
+  <p class="governance-banner__frame-note bs-governance-banner__posture">
+    14,000-page governed launch corpus frame — chemical-language control room interface.
     Not a launch. Not a reduced publication target.
+    <span class="bs-source-required-inline">[SOURCE REQUIRED]</span> preserved where unresolved.
   </p>
 </div>
 
@@ -161,17 +165,20 @@
   </div>
 
   <!--
-  partials/source_bar.html — Source attribution slot (Sprint 6M-B)
-  Emitted only when verified sources exist. Never implies approval or source-lock.
+  partials/source_bar.html — Source attribution slot (Sprint 6M-B / 6N-B)
+  Source crystal styling. Never implies approval or source-lock by default.
 -->
-<aside class="source-bar" aria-label="Source status" data-source-required="true">
-  <h2 class="source-bar__heading">Source and governance status</h2>
-  <p class="source-bar__posture">Sources and claims remain unapproved. [SOURCE REQUIRED] markers are binding.</p>
-  
-  <p class="source-bar__required" data-visible="true">
-    [SOURCE REQUIRED] markers remain binding where content requires verification.
-    This frame does not remove source requirements or approve claims.
-  </p>
+<aside class="source-bar bs-source-crystal bs-source-crystal--required" aria-label="Source status" data-source-required="true" data-claim-approval="no_claims_approved">
+  <img class="bs-source-crystal__icon" src="/assets/bisulfid-design-system/assets/source-crystal.svg" alt="" aria-hidden="true">
+  <div class="bs-source-crystal__content">
+    <h2 class="source-bar__heading bs-source-crystal__label">Source and governance status</h2>
+    <p class="source-bar__posture bs-source-crystal__state">Sources and claims remain unapproved. [SOURCE REQUIRED] markers are binding.</p>
+    
+    <p class="source-bar__required bs-source-required-inline" data-visible="true">
+      [SOURCE REQUIRED] markers remain binding where content requires verification.
+      This frame does not remove source requirements or approve claims.
+    </p>
+  </div>
 </aside>
 
   
@@ -183,7 +190,7 @@
 <nav class="internal-links" aria-label="Related governed routes">
   <h2 class="internal-links__heading">Related routes (governed)</h2>
   
-  <p class="internal-links__empty" data-empty="true">
+  <p class="internal-links__empty bs-term-card__disclaimer" data-empty="true">
     No internal links emitted — publication locks active or targets unpublished.
   </p>
 </nav>
