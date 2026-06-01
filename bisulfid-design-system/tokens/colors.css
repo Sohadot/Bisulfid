@@ -1,54 +1,74 @@
 /**
- * Bisulfid color tokens — proprietary, no external imports.
- * Chemical-language control room palette.
+ * Bisulfid material palette — carbon / sulfur / molybdenum (Sprint 6N-D).
+ * Sovereign chemical-language control room. No external imports.
  */
 :root {
-  /* Foundation background tokens */
-  --bs-color-foundation-deep: #0a0c0f;
-  --bs-color-foundation-base: #12161c;
-  --bs-color-foundation-surface: #1a2029;
-  --bs-color-foundation-elevated: #222a36;
-  --bs-color-foundation-muted: #2a3342;
+  /* Deep carbon gray — industrial density, control-room shell */
+  --bs-carbon-950: #060708;
+  --bs-carbon-900: #0c0e11;
+  --bs-carbon-800: #14181e;
+  --bs-carbon-panel: #1a2028;
 
-  /* Sulfur signal tokens */
-  --bs-color-sulfur-primary: #c9b037;
-  --bs-color-sulfur-dim: #8a7828;
-  --bs-color-sulfur-glow: rgba(201, 176, 55, 0.18);
-  --bs-color-sulfur-accent: #e8d56a;
+  /* Warm sulfur yellow — root substance signal */
+  --bs-sulfur-500: #d4a017;
+  --bs-sulfur-400: #e8c547;
+  --bs-sulfur-glow: rgba(232, 197, 71, 0.22);
 
-  /* Graphite / ink tokens */
-  --bs-color-ink-primary: #e8ecf1;
-  --bs-color-ink-secondary: #b8c0cc;
-  --bs-color-ink-muted: #7a8494;
-  --bs-color-ink-inverse: #0a0c0f;
-  --bs-color-graphite-line: #3d4654;
-  --bs-color-graphite-grid: rgba(61, 70, 84, 0.35);
+  /* Molybdenum silver — metallic future-material accent */
+  --bs-molybdenum-100: #e8ecef;
+  --bs-molybdenum-300: #b8c2cc;
+  --bs-molybdenum-500: #8a96a8;
 
-  /* Source-state tokens */
-  --bs-color-source-neutral: #6b8cae;
-  --bs-color-source-candidate: #5a9a8f;
-  --bs-color-source-verified: #4a8f7c;
-  --bs-color-source-approved-boundary: #3d7a68;
+  /* Source authority states */
+  --bs-source-required: #e07a5f;
+  --bs-source-candidate: #6a9a92;
+  --bs-source-verified: #5a8f7c;
 
-  /* Unresolved-source tokens */
-  --bs-color-source-required: #c45c4a;
-  --bs-color-source-required-bg: rgba(196, 92, 74, 0.12);
-  --bs-color-source-required-border: #a04a3a;
-  --bs-color-source-required-text: #f0b4a8;
+  /* Boundary & lattice */
+  --bs-boundary-missing-e: var(--bs-sulfur-500);
+  --bs-lattice-line: rgba(138, 150, 168, 0.35);
+  --bs-depth-violet: rgba(106, 92, 138, 0.18);
 
-  /* Language-depth tokens */
-  --bs-color-lang-en: #7aa2d4;
+  /* Legacy aliases — mapped to material palette */
+  --bs-color-foundation-deep: var(--bs-carbon-950);
+  --bs-color-foundation-base: var(--bs-carbon-900);
+  --bs-color-foundation-surface: var(--bs-carbon-800);
+  --bs-color-foundation-elevated: var(--bs-carbon-panel);
+  --bs-color-foundation-muted: #222a34;
+
+  --bs-color-sulfur-primary: var(--bs-sulfur-500);
+  --bs-color-sulfur-dim: #a88620;
+  --bs-color-sulfur-glow: var(--bs-sulfur-glow);
+  --bs-color-sulfur-accent: var(--bs-sulfur-400);
+
+  --bs-color-ink-primary: var(--bs-molybdenum-100);
+  --bs-color-ink-secondary: var(--bs-molybdenum-300);
+  --bs-color-ink-muted: var(--bs-molybdenum-500);
+  --bs-color-ink-inverse: var(--bs-carbon-950);
+  --bs-color-graphite-line: rgba(138, 150, 168, 0.28);
+  --bs-color-graphite-grid: var(--bs-lattice-line);
+
+  --bs-color-source-neutral: var(--bs-molybdenum-500);
+  --bs-color-source-candidate: var(--bs-source-candidate);
+  --bs-color-source-verified: var(--bs-source-verified);
+  --bs-color-source-approved-boundary: #4a7a68;
+
+  --bs-color-source-required: var(--bs-source-required);
+  --bs-color-source-required-bg: rgba(224, 122, 95, 0.12);
+  --bs-color-source-required-border: #b85a42;
+  --bs-color-source-required-text: #f5b8a8;
+
+  --bs-color-lang-en: #8ab4e8;
   --bs-color-lang-de: #9ab87a;
   --bs-color-lang-ar: #d4a57a;
-  --bs-color-lang-future: #8a8494;
-  --bs-color-lang-depth-1: rgba(122, 162, 212, 0.15);
-  --bs-color-lang-depth-2: rgba(154, 184, 122, 0.15);
-  --bs-color-lang-depth-3: rgba(212, 165, 122, 0.15);
+  --bs-color-lang-future: var(--bs-molybdenum-500);
+  --bs-color-lang-depth-1: rgba(138, 180, 232, 0.12);
+  --bs-color-lang-depth-2: rgba(154, 184, 122, 0.12);
+  --bs-color-lang-depth-3: rgba(212, 165, 122, 0.12);
 
-  /* Boundary / accent tokens */
-  --bs-color-boundary-spelling: #d4a017;
+  --bs-color-boundary-spelling: var(--bs-boundary-missing-e);
   --bs-color-boundary-ion: #6eb5d4;
   --bs-color-boundary-compound: #a87ad4;
-  --bs-color-accent-governance: #5c6b7a;
+  --bs-color-accent-governance: var(--bs-molybdenum-500);
   --bs-color-accent-noindex: #6a5c7a;
 }

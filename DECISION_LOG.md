@@ -4067,3 +4067,38 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Next steps:** Merge → **Pages public deploy** → **Sprint 6M-J — Post-Refresh Live Site Verification** (indexation remains **CLOSED**).
 
+---
+
+## Sovereign Visual Interface Reconstruction Completed
+
+**Date:** 2026-06-01  
+**Branch:** `claude/sprint-6n-d-sovereign-visual-interface-reconstruction`  
+**Base:** main @ Sprint 6N-C-P1 merge  
+**Status:** Complete — sovereign visual interface reconstructed across 14,000 public foundation pages
+
+**Summary:** Sprint **6N-D** reconstructed the visible Bisulfid public interface after the first design-system refresh proved structurally valid but visually insufficient. The sprint replaced the weak text-heavy presentation with a stronger sovereign chemical-language control room interface using the fixed carbon-gray, warm sulfur-yellow, and molybdenum-silver material palette, local CSS, raw SVG, CSS perspective/depth, governance chips, source-crystal states, missing-E visual identity, and mobile-first presentation. The sprint preserved the 14,000-page public foundation, noindex posture, source-required visibility, source/claim truth, and closed sitemap/navigation/indexation gates. No external UI libraries, CDN assets, npm dependencies, tracking scripts, source approvals, claim approvals, sitemap artifacts, or navigation artifacts were introduced.
+
+**Refresh command:** `python scripts/build.py --render-public-design-system-refresh --limit 14000`
+
+**Results:**
+
+- **14,000** foundation pages re-rendered with 6N-D visual reconstruction
+- Material palette: carbon / sulfur / molybdenum
+- Control-room hero, relation lattice, term nodes, source crystal visuals
+- Governance chips replace raw text overload; raw `true`/`false` leakage removed
+- `public_launch_manifest.json`: `visual_reconstruction: true`, sprint **6N-D**
+
+**Files updated:**
+
+- `bisulfid-design-system/**` — tokens, components, SVG assets, bisulfid-frame.css
+- `main/templates/**` — hero, governance chips, footer labels
+- `scripts/build.py` — display labels, manifest metadata, asset sync
+- `scripts/validate_sovereign_visual_interface_l1.py`
+- `site/public/**` (14,000 foundation + assets)
+- Sprint reports under `main/data/`
+- `DECISION_LOG.md`
+
+**Not modified:** `routes.json`, registries, `main/content/**`, `site/_sample/**`, GitHub Pages workflow, package files, dependencies, root README.md.
+
+**Next steps:** GitHub Pages redeploy → **Sprint 6M-J — Post-Refresh Live Site Verification** (indexation remains **CLOSED**).
+

@@ -1,21 +1,23 @@
 <!--
-  partials/footer.html — Footer governance language (Sprint 6M-B)
-  Links resolve only from published routes at build time. No hard-coded URLs.
+  partials/footer.html — Footer governance language (Sprint 6N-D)
 -->
 <footer class="site-footer__inner">
   <p class="footer-governance">
     {{site_name}} — sovereign sulfur intelligence reference frame.
-    Minimum launch corpus target: <strong>14,000 governed pages</strong>.
-    Current render posture: <strong>{{publication_posture}}</strong>.
-    Not publication-ready. Not a launch artifact unless explicitly authorized.
+    Minimum launch corpus: <strong>14,000 governed pages</strong>.
+    Posture: <strong>{{publication_posture_label}}</strong>.
+    Not publication-ready unless explicitly authorized.
   </p>
   <p class="footer-locks">
-    Indexation: {{indexable_flag}} · Sitemap: {{in_sitemap_flag}} · Navigation: {{in_navigation_flag}}
+    <span class="footer-lock-chip">Indexation {{gate_indexation_label}}</span>
+    <span class="footer-lock-chip">Sitemap {{gate_sitemap_label}}</span>
+    <span class="footer-lock-chip">Navigation {{gate_navigation_label}}</span>
   </p>
   <p class="footer-source-claim">
     Source verification: {{source_registry_posture}}.
-    Claim approval: {{claim_approval_state}}.
-    No approved claim is implied by this template frame.
+    Claim approval: {{claim_approval_label}} (<span class="footer-source-claim__state">{{claim_approval_state}}</span>).
+    Posture: {{publication_posture}}.
+    No approved claim is implied by this frame.
   </p>
   <p class="footer-copyright">&copy; {{copyright_year}} {{site_name}}. All rights reserved.</p>
 </footer>

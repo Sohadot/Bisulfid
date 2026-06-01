@@ -88,8 +88,10 @@ def validate_manifest() -> tuple[list[str], dict]:
         errors.append(f"manifest rendered_count != {FOUNDATION_EXACT}")
     if manifest.get("design_system_refresh") is not True:
         errors.append("manifest design_system_refresh not true")
-    if manifest.get("sprint") != "6N-C":
-        errors.append(f"manifest sprint expected 6N-C, got {manifest.get('sprint')!r}")
+    if manifest.get("sprint") not in ("6N-C", "6N-D"):
+        errors.append(f"manifest sprint expected 6N-C or 6N-D, got {manifest.get('sprint')!r}")
+    if manifest.get("sprint") == "6N-D" and manifest.get("visual_reconstruction") is not True:
+        errors.append("manifest visual_reconstruction required for sprint 6N-D")
     for gate in ("indexation_gate", "sitemap_gate", "navigation_gate"):
         if manifest.get(gate) != "closed":
             errors.append(f"manifest {gate} not closed")

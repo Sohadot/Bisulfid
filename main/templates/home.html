@@ -1,23 +1,64 @@
 <!--
-  home.html — Gateway homepage frame (Sprint 6M-B / 6N-B)
-  Chemical-language control room gateway with term-card identity.
+  home.html — Gateway control-room homepage (Sprint 6N-D)
+  Chemical-language control room with spatial hero and term-card identity.
 -->
 <!-- SLOT: content body -->
+<section class="bs-control-room-hero" aria-label="BISULFID chemical-language control room">
+  <div class="bs-control-room-hero__perspective" aria-hidden="true">
+    <img class="bs-control-room-hero__space" src="/assets/bisulfid-design-system/assets/chemical-space.svg" alt="" width="400" height="240">
+    <img class="bs-control-room-hero__boundary" src="/assets/bisulfid-design-system/assets/missing-e-boundary.svg" alt="" width="120" height="32">
+    <div class="bs-control-room-hero__nodes">
+      <div class="bs-term-node bs-term-node--center">
+        <img class="bs-term-node__glyph" src="/assets/bisulfid-design-system/assets/term-node.svg" alt="" width="40" height="40">
+        <span class="bs-term-node__label">bisulfid</span>
+        <span class="bs-term-node__meta">center</span>
+      </div>
+      <div class="bs-term-node">
+        <img class="bs-term-node__glyph" src="/assets/bisulfid-design-system/assets/term-node.svg" alt="" width="40" height="40">
+        <span class="bs-term-node__label">sulfide</span>
+        <span class="bs-term-node__meta">orbit</span>
+      </div>
+      <div class="bs-term-node bs-term-node--source-required">
+        <img class="bs-term-node__glyph" src="/assets/bisulfid-design-system/assets/term-node.svg" alt="" width="40" height="40">
+        <span class="bs-term-node__label">sulfid</span>
+        <span class="bs-term-node__marker"></span>
+      </div>
+    </div>
+  </div>
+  <div class="bs-control-room-hero__content">
+    <h1 class="bs-control-room-hero__title">{{page_h1}}</h1>
+    <p class="bs-control-room-hero__subtitle">{{gateway_intro}}</p>
+  </div>
+</section>
+
 <article class="home-frame bs-term-card {{term_card_modifier}}" lang="{{language}}" dir="{{text_direction}}">
   <header class="home-frame__header bs-term-card__header">
     <div class="bs-language-depth" aria-label="Language depth">
       <span class="bs-language-depth__layer bs-language-depth__layer--{{language}}">{{language_depth_label}}</span>
       <span class="bs-language-depth__depth-indicator">Gateway · control room entry</span>
     </div>
-    <h1 class="home-frame__title bs-term-card__title">{{page_h1}}</h1>
-    <p class="home-frame__intro bs-term-card__body">{{gateway_intro}}</p>
     <p class="home-frame__corpus-note bs-term-card__disclaimer">
-      Minimum launch corpus: 14,000 governed pages — gateway frame only, not a launch.
+      14,000 governed pages — chemical-language control room. Not a launch.
     </p>
   </header>
 
-  <section class="home-frame__term-map bs-relation-lattice" aria-label="Interactive term map slot">
-    {{interactive_term_map}}
+  <section class="home-frame__term-map bs-relation-lattice" aria-label="Relation lattice" data-edges="planned">
+    <img class="bs-relation-lattice__canvas" src="/assets/bisulfid-design-system/assets/chemical-space.svg" alt="" width="400" height="240">
+    <div class="bs-relation-lattice__nodes">
+      <div class="bs-term-node bs-term-node--center">
+        <img class="bs-term-node__glyph" src="/assets/bisulfid-design-system/assets/term-node.svg" alt="" width="40" height="40">
+        <span class="bs-term-node__label">bisulfid</span>
+      </div>
+      <div class="bs-term-node">
+        <img class="bs-term-node__glyph" src="/assets/bisulfid-design-system/assets/term-node.svg" alt="" width="40" height="40">
+        <span class="bs-term-node__label">bisulfide</span>
+      </div>
+      <div class="bs-term-node">
+        <img class="bs-term-node__glyph" src="/assets/bisulfid-design-system/assets/term-node.svg" alt="" width="40" height="40">
+        <span class="bs-term-node__label">MoS₂</span>
+      </div>
+    </div>
+    <span class="bs-relation-lattice__edge" data-link-status="active" aria-hidden="true"></span>
   </section>
 
   <section class="home-frame__language-entry bs-language-depth" aria-label="Language entry points">
@@ -27,7 +68,7 @@
   <section class="home-frame__claims" aria-label="Governed claim slot">
     <p class="home-frame__claim-boundary">
       Introductory claims require source verification. No claim approval implied.
-      {{source_required_flag}}
+      <span class="bs-source-required-inline">{{source_required_chip}}</span>
     </p>
   </section>
 

@@ -1,32 +1,72 @@
 /**
- * Bisulfid depth tokens — chemical-space layering without WebGL.
+ * Bisulfid depth tokens — CSS perspective spatial layering (Sprint 6N-D).
+ * WebGL boundary preserved in engine/README.md.
  */
 :root {
-  /* Chemical-space depth tokens */
-  --bs-depth-space-far: 0;
-  --bs-depth-space-mid: 1;
-  --bs-depth-space-near: 2;
-  --bs-depth-space-focus: 3;
+  /* Perspective container */
+  --bs-perspective-scene: 1400px;
+  --bs-perspective-tilt: 8deg;
+  --bs-perspective-limit: 1200px;
+  --bs-perspective-tilt-max: 2deg;
 
-  /* Card elevation tokens */
+  /* Spatial layer depths (translateZ) */
+  --bs-depth-space-far: -120px;
+  --bs-depth-space-mid: -40px;
+  --bs-depth-space-near: 20px;
+  --bs-depth-space-focus: 60px;
+  --bs-depth-hero-back: -80px;
+  --bs-depth-hero-mid: 0px;
+  --bs-depth-hero-front: 48px;
+
+  /* Component z-depth */
+  --bs-depth-term-node: 24px;
+  --bs-depth-source-crystal: 32px;
+  --bs-depth-lattice-plane: -60px;
+
+  /* Card elevation */
   --bs-depth-card-flat: none;
-  --bs-depth-card-raised: 0 1px 3px rgba(0, 0, 0, 0.35),
-    0 0 0 1px var(--bs-color-graphite-line);
-  --bs-depth-card-floating: 0 4px 16px rgba(0, 0, 0, 0.45),
-    0 0 0 1px var(--bs-color-graphite-line);
-  --bs-depth-card-source-required: 0 0 0 2px var(--bs-color-source-required-border);
+  --bs-depth-card-raised: 0 2px 8px rgba(0, 0, 0, 0.45),
+    0 0 0 1px var(--bs-color-graphite-line),
+    inset 0 1px 0 rgba(232, 236, 239, 0.04);
+  --bs-depth-card-floating: 0 12px 40px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(138, 150, 168, 0.2),
+    0 0 24px var(--bs-sulfur-glow);
+  --bs-depth-card-source-required: 0 0 0 2px var(--bs-color-source-required-border),
+    0 8px 24px rgba(224, 122, 95, 0.15);
 
-  /* Semantic layer depth */
+  /* Semantic stacking */
   --bs-z-governance-banner: 100;
+  --bs-z-control-room-hero: 50;
   --bs-z-source-bar: 90;
   --bs-z-term-card: 10;
   --bs-z-lattice-edge: 5;
   --bs-z-lattice-node: 20;
 
-  /*
-   * Perspective limits — CSS only in 6N-A.
-   * WebGL/WebXR uses separate engine boundary (see engine/README.md).
-   */
-  --bs-perspective-limit: 1200px;
-  --bs-perspective-tilt-max: 2deg;
+  /* Hero / control-room depth gradients */
+  --bs-depth-hero-gradient: radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      rgba(232, 197, 71, 0.08) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 90% 100%,
+      var(--bs-depth-violet) 0%,
+      transparent 50%
+    ),
+    linear-gradient(180deg, var(--bs-carbon-950) 0%, var(--bs-carbon-900) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --bs-perspective-tilt: 0deg;
+    --bs-depth-space-far: 0px;
+    --bs-depth-space-mid: 0px;
+    --bs-depth-space-near: 0px;
+    --bs-depth-space-focus: 0px;
+    --bs-depth-hero-back: 0px;
+    --bs-depth-hero-front: 0px;
+    --bs-depth-term-node: 0px;
+    --bs-depth-source-crystal: 0px;
+    --bs-depth-lattice-plane: 0px;
+  }
 }

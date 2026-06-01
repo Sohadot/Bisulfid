@@ -139,7 +139,8 @@ INTEGRATION_SAMPLE_DIR = PUBLIC_LAUNCH_FOUNDATION_DIR / "_integration_sample"
 INTEGRATION_SAMPLE_MANIFEST_NAME = "integration_sample_manifest.json"
 DESIGN_SYSTEM_SRC = ROOT / "bisulfid-design-system"
 DESIGN_SYSTEM_PUBLIC_ASSETS = PUBLIC_LAUNCH_FOUNDATION_DIR / "assets" / "bisulfid-design-system"
-DESIGN_SYSTEM_REFRESH_SPRINT = "6N-C"
+DESIGN_SYSTEM_REFRESH_SPRINT = "6N-D"
+DESIGN_SYSTEM_VISUAL_RECONSTRUCTION_SPRINT = "6N-D"
 DESIGN_SYSTEM_REFRESH_EXACT = 14000
 
 QA_HTML_PREAMBLE = """<!--
@@ -1180,8 +1181,24 @@ def build_render_context(
         "indexable_flag": "false",
         "in_sitemap_flag": "false",
         "in_navigation_flag": "false",
+        "indexable_label": "Closed",
+        "in_sitemap_label": "Closed",
+        "in_navigation_label": "Closed",
+        "gate_indexation_label": "CLOSED",
+        "gate_sitemap_label": "CLOSED",
+        "gate_navigation_label": "CLOSED",
+        "route_status_label": route.get("status", "planned"),
+        "publication_posture_label": (
+            "Public foundation"
+            if render_mode == "public_launch_foundation"
+            else route.get("status", "planned")
+        ),
         "source_required_flag": "true" if has_source_markers else "false",
+        "source_required_chip": (
+            "[SOURCE REQUIRED]" if has_source_markers else "Not flagged"
+        ),
         "claim_approval_state": "no_claims_approved",
+        "claim_approval_label": "None approved",
         "source_registry_posture": "inactive",
         "csp_policy_placeholder": "default-src 'none'; frame-ancestors 'none'",
         "site_name": "bisulfid.com",
@@ -1372,16 +1389,12 @@ def render_route_quarantined(
         preamble = RC_HTML_PREAMBLE
     elif render_mode == "public_launch_foundation":
         qa_notice = (
-            '<div class="public-launch-foundation-notice" role="status" '
-            'data-public-launch-foundation="14000" '
-            'data-publication-posture="public_visible_foundation">'
-            "<p><strong>Public launch foundation</strong> — controlled visibility only. "
-            "Indexation gate: <strong>CLOSED</strong> (noindex,nofollow). "
-            "Sitemap gate: <strong>CLOSED</strong>. Navigation gate: <strong>CLOSED</strong>. "
-            "Source approval not implied. Claim approval not implied. "
-            "Not final publication-ready. "
-            f"Route status: <strong>{html.escape(route.get('status', 'planned'))}</strong>. "
-            "14,000-page launch foundation — scaling toward 100,000+ governed pages.</p></div>"
+            '<div class="public-launch-foundation-notice bs-governance-banner__sr-summary" '
+            'role="status" data-public-launch-foundation="14000" '
+            'data-publication-posture="public_visible_foundation" aria-hidden="true">'
+            "Public launch foundation — controlled visibility. "
+            "Indexation CLOSED. Sitemap CLOSED. Navigation CLOSED."
+            "</div>"
         )
         preamble = PUBLIC_LAUNCH_HTML_PREAMBLE
     elif render_mode == "integration_sample":
@@ -1472,8 +1485,12 @@ def sync_design_system_public_assets() -> list[str]:
                 shutil.copy2(src_file, dst_file)
                 written.append(str(dst_file.relative_to(ROOT)).replace("\\", "/"))
 
+    bundle_src = DESIGN_SYSTEM_SRC / "bisulfid-frame.css"
     bundle_path = DESIGN_SYSTEM_PUBLIC_ASSETS / "bisulfid-frame.css"
-    if not bundle_path.is_file():
+    if bundle_src.is_file():
+        shutil.copy2(bundle_src, bundle_path)
+        written.append(str(bundle_path.relative_to(ROOT)).replace("\\", "/"))
+    elif not bundle_path.is_file():
         bundle_path.write_text(
             '@import url("tokens/colors.css");\n'
             '@import url("tokens/typography.css");\n'
@@ -1887,9 +1904,12 @@ def write_public_design_system_refresh_html(
     manifest = {
         "foundation_id": "public_launch_14000",
         "sprint": DESIGN_SYSTEM_REFRESH_SPRINT,
-        "previous_sprint": "6M-G",
+        "previous_sprint": "6N-C",
         "design_system_refresh": True,
-        "design_system_refresh_sprint": DESIGN_SYSTEM_REFRESH_SPRINT,
+        "design_system_refresh_sprint": "6N-C",
+        "visual_reconstruction": True,
+        "visual_reconstruction_sprint": DESIGN_SYSTEM_VISUAL_RECONSTRUCTION_SPRINT,
+        "visual_palette": "carbon-sulfur-molybdenum",
         "design_system_bundle": "/assets/bisulfid-design-system/bisulfid-frame.css",
         "target_limit": limit,
         "rendered_count": len(written),

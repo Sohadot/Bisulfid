@@ -1,6 +1,5 @@
 /**
- * Language depth — multilingual layer display.
- * EN/DE active tokens; AR/FR/ES/JA/ZH reserved for future waves.
+ * Language depth — multilingual layer chips (Sprint 6N-D).
  */
 .bs-language-depth {
   display: flex;
@@ -16,23 +15,22 @@
   padding: calc(var(--bs-space-unit) * 1) calc(var(--bs-space-unit) * 3);
   font-size: var(--bs-font-size-term-meta);
   font-weight: var(--bs-font-weight-term);
-  border-radius: calc(var(--bs-space-unit) * 1);
+  border-radius: var(--bs-gov-chip-radius);
   border: 1px solid transparent;
 }
 
 .bs-language-depth__layer--en {
   background: var(--bs-color-lang-depth-1);
   color: var(--bs-color-lang-en);
-  border-color: var(--bs-color-lang-en);
+  border-color: rgba(138, 180, 232, 0.35);
 }
 
 .bs-language-depth__layer--de {
   background: var(--bs-color-lang-depth-2);
   color: var(--bs-color-lang-de);
-  border-color: var(--bs-color-lang-de);
+  border-color: rgba(154, 184, 122, 0.35);
 }
 
-/* Future languages — inactive until wave authorized */
 .bs-language-depth__layer--ar,
 .bs-language-depth__layer--fr,
 .bs-language-depth__layer--es,
@@ -44,20 +42,12 @@
   opacity: 0.6;
 }
 
-.bs-language-depth__layer--future::after {
-  content: " (planned)";
-  font-weight: 400;
-  font-size: 0.75em;
-}
-
 .bs-language-depth__depth-indicator {
   font-size: var(--bs-font-size-source-label);
-  color: var(--bs-color-ink-muted);
+  color: var(--bs-molybdenum-500);
+  letter-spacing: 0.04em;
 }
 
-/*
- * RTL readiness: wrap with dir="rtl" and use logical properties.
- */
 [dir="rtl"] .bs-language-depth {
   flex-direction: row-reverse;
 }

@@ -1,74 +1,83 @@
 /**
- * Source crystal — visual authority object for source states.
- * Distinguishes required, candidate, verified, approved — without default approval.
+ * Source crystal — metallic authority object (Sprint 6N-D).
  */
 .bs-source-crystal {
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  align-items: flex-start;
   gap: var(--bs-space-source-marker-gap);
   padding: var(--bs-space-source-bar-block) var(--bs-space-source-bar-inline);
-  background: var(--bs-color-foundation-surface);
-  border: 1px solid var(--bs-color-source-neutral);
-  border-radius: calc(var(--bs-space-unit) * 2);
+  background: linear-gradient(
+    135deg,
+    var(--bs-carbon-800) 0%,
+    var(--bs-carbon-panel) 100%
+  );
+  border: 1px solid var(--bs-molybdenum-500);
+  border-radius: calc(var(--bs-space-unit) * 3);
   font-size: var(--bs-font-size-source-body);
   line-height: var(--bs-line-height-source);
-  transition: var(--bs-motion-source-transition);
+  box-shadow: var(--bs-depth-card-raised);
+  transform: translateZ(var(--bs-depth-source-crystal));
 }
 
 .bs-source-crystal__icon {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
   flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(138, 150, 168, 0.35));
+}
+
+.bs-source-crystal__content {
+  flex: 1;
+  min-width: 0;
 }
 
 .bs-source-crystal__label {
   font-weight: var(--bs-font-weight-source-emphasis);
   letter-spacing: var(--bs-letter-spacing-source);
+  font-size: var(--bs-font-size-term-meta);
+  text-transform: uppercase;
+  color: var(--bs-molybdenum-100);
+  margin: 0 0 calc(var(--bs-space-unit) * 1);
 }
 
 .bs-source-crystal__state {
-  font-size: var(--bs-font-size-source-label);
-  color: var(--bs-color-ink-muted);
+  font-size: var(--bs-font-size-source-body);
+  color: var(--bs-molybdenum-300);
+  margin: 0;
 }
 
-/* Source required — unresolved */
 .bs-source-crystal--required {
   border-color: var(--bs-gov-source-required-border);
-  background: var(--bs-gov-source-required-bg);
-  color: var(--bs-gov-source-required-fg);
+  background: linear-gradient(
+    135deg,
+    rgba(224, 122, 95, 0.08) 0%,
+    var(--bs-carbon-panel) 100%
+  );
+  box-shadow: var(--bs-depth-card-source-required);
 }
 
 .bs-source-crystal--required .bs-source-crystal__label::after {
   content: " — " var(--bs-gov-source-required-marker);
+  color: var(--bs-gov-source-required-fg);
 }
 
-/* Candidate — not approved */
 .bs-source-crystal--candidate {
   border-color: var(--bs-gov-source-candidate-fg);
   background: var(--bs-gov-source-candidate-bg);
 }
 
-.bs-source-crystal--candidate .bs-source-crystal__state::before {
-  content: var(--bs-gov-source-candidate-label);
-}
-
-/* Verified — evidence present, not mass publication approval */
 .bs-source-crystal--verified {
   border-color: var(--bs-color-source-verified);
 }
 
-/* Approved — registry-bound only */
 .bs-source-crystal--approved {
   border-color: var(--bs-gov-source-approved-fg);
   background: var(--bs-gov-source-approved-bg);
 }
 
-.bs-source-crystal--approved .bs-source-crystal__state::before {
-  content: var(--bs-gov-source-approved-label);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .bs-source-crystal {
     transition: none;
+    transform: none;
   }
 }
