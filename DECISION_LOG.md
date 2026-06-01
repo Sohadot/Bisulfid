@@ -4041,3 +4041,29 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Next steps:** GitHub Pages redeploy → **Sprint 6M-J — Post-Refresh Live Site Verification** (indexation remains **CLOSED**).
 
+---
+
+## Pages Artifact Sample Exclusion Patch Completed
+
+**Date:** 2026-06-01  
+**Branch:** `claude/sprint-6n-c-p1-pages-artifact-sample-exclusion-patch`  
+**Base:** main @ Sprint 6N-C merge (`5e7202fea`)  
+**Status:** Complete — deployment artifact boundary corrected
+
+**Summary:** Sprint **6N-C-P1** corrected the GitHub Pages deployment artifact boundary after the post-6N-C deploy attempt detected 14,007 HTML pages instead of the expected 14,000. The patch preserves `site/public/` as the repository public-output source while excluding `site/public/_integration_sample/` from the deployed Pages artifact. The sprint does not modify corpus routes, content, registries, design-system output pages, source/claim data, sitemap, navigation, or indexation posture. The deployment gate now protects the live site from serving integration sample pages while preserving the 14,000-page design-system public foundation.
+
+**Root cause:** Pre-patch workflow uploaded entire `site/public/` including 7 integration sample pages from Sprint 6N-B.
+
+**Fix:** Stage temporary artifact via `rsync --exclude='_integration_sample/'`; verify exactly 14,000 pages; upload staged directory only.
+
+**Files updated:**
+
+- `.github/workflows/pages-public-deploy.yml` — staged artifact with sample exclusion
+- `scripts/validate_pages_deployment_gate_l1.py` — validates staging and exclusion
+- Sprint reports under `main/data/`
+- `DECISION_LOG.md`
+
+**Not modified:** `routes.json`, registries, `main/content/**`, `site/public/**/*.html`, `site/public/assets/**`, `site/public/_integration_sample/**`, `site/_sample/**`, package files, dependencies, root README.md.
+
+**Next steps:** Merge → **Pages public deploy** → **Sprint 6M-J — Post-Refresh Live Site Verification** (indexation remains **CLOSED**).
+

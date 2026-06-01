@@ -1,7 +1,8 @@
 name: Pages public deploy
 
-# Governed GitHub Pages deployment gate (Sprint 6M-H).
-# Deploys site/public/ only — not repository root, not site/_sample/.
+# Governed GitHub Pages deployment gate (Sprint 6M-H, artifact patch 6N-C-P1).
+# Stages site/public/ into a temporary artifact excluding _integration_sample/.
+# Deploys 14,000 foundation pages only — not repository root, not site/_sample/.
 # Does not regenerate corpus, install dependencies, or mutate repository files.
 # Indexation/sitemap/navigation/source/claim gates remain CLOSED.
 
@@ -19,7 +20,7 @@ concurrency:
 
 jobs:
   deploy-public-foundation:
-    name: Deploy site/public to GitHub Pages
+    name: Deploy site/public foundation to GitHub Pages
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -28,21 +29,44 @@ jobs:
       - name: Checkout repository (read-only)
         uses: actions/checkout@v4
 
-      - name: Verify deployment artifact root exists
+      - name: Verify public source root and foundation page count
         run: |
           test -d site/public
           test -f site/public/public_launch_manifest.json
-          page_count="$(find site/public -name 'index.html' | wc -l | tr -d ' ')"
-          echo "Public foundation pages in artifact root: ${page_count}"
+          test -f site/public/CNAME
+          test -f site/public/.nojekyll
+          test -d site/public/assets/bisulfid-design-system
+          foundation_count="$(find site/public -path 'site/public/_integration_sample' -prune -o -name 'index.html' -print | wc -l | tr -d ' ')"
+          echo "Public foundation pages in repository source: ${foundation_count}"
+          test "${foundation_count}" -eq 14000
+          if test -d site/public/_integration_sample; then
+            integration_count="$(find site/public/_integration_sample -name 'index.html' | wc -l | tr -d ' ')"
+            echo "Integration sample pages (excluded from deploy): ${integration_count}"
+          fi
+
+      - name: Stage deployment artifact (exclude _integration_sample/)
+        id: stage
+        run: |
+          ARTIFACT_DIR="${RUNNER_TEMP}/pages-artifact"
+          mkdir -p "${ARTIFACT_DIR}"
+          rsync -a --exclude='_integration_sample/' site/public/ "${ARTIFACT_DIR}/"
+          page_count="$(find "${ARTIFACT_DIR}" -name 'index.html' | wc -l | tr -d ' ')"
+          echo "Deployable foundation pages in staged artifact: ${page_count}"
           test "${page_count}" -eq 14000
+          test -f "${ARTIFACT_DIR}/public_launch_manifest.json"
+          test -f "${ARTIFACT_DIR}/CNAME"
+          test -f "${ARTIFACT_DIR}/.nojekyll"
+          test -d "${ARTIFACT_DIR}/assets/bisulfid-design-system"
+          test ! -e "${ARTIFACT_DIR}/_integration_sample"
+          echo "artifact_dir=${ARTIFACT_DIR}" >> "${GITHUB_OUTPUT}"
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload site/public artifact only
+      - name: Upload staged deployment artifact only
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site/public
+          path: ${{ steps.stage.outputs.artifact_dir }}
 
       - name: Deploy to GitHub Pages
         id: deployment
