@@ -12,6 +12,8 @@ Modes:
   --render-quarantined-sample  Render deterministic 8-page QA HTML to site/_sample/ only
   --render-quarantined-rc-batch --limit N  Render non-public RC batch to site/_sample/ only
   --render-public-launch-foundation --limit N  Render controlled public launch foundation to site/public/ only
+  --render-public-design-system-refresh --limit N  Re-render public foundation with design system (Sprint 6N-C)
+  --render-integration-sample  Render design-system integration pilot to site/public/_integration_sample/
   --strict        Fail closed on validation errors
   --write-build-status  Write site/build-status.json audit artifact only
 
@@ -137,6 +139,8 @@ INTEGRATION_SAMPLE_DIR = PUBLIC_LAUNCH_FOUNDATION_DIR / "_integration_sample"
 INTEGRATION_SAMPLE_MANIFEST_NAME = "integration_sample_manifest.json"
 DESIGN_SYSTEM_SRC = ROOT / "bisulfid-design-system"
 DESIGN_SYSTEM_PUBLIC_ASSETS = PUBLIC_LAUNCH_FOUNDATION_DIR / "assets" / "bisulfid-design-system"
+DESIGN_SYSTEM_REFRESH_SPRINT = "6N-C"
+DESIGN_SYSTEM_REFRESH_EXACT = 14000
 
 QA_HTML_PREAMBLE = """<!--
   QUARANTINED NON-PUBLIC QA RENDER — NOT A LAUNCH
@@ -1670,6 +1674,27 @@ def write_quarantined_rc_batch_html(
     )
 
 
+def is_foundation_public_html_path(path: Path, public_dir: Path) -> bool:
+    """True for 14,000-page foundation HTML (excludes _integration_sample pilot)."""
+    try:
+        rel = path.relative_to(public_dir)
+    except ValueError:
+        return False
+    if not rel.parts:
+        return True
+    return rel.parts[0] != "_integration_sample"
+
+
+def clear_foundation_public_html(public_dir: Path) -> int:
+    """Clear foundation index.html only; preserve _integration_sample and assets."""
+    removed = 0
+    for existing in public_dir.rglob("index.html"):
+        if is_foundation_public_html_path(existing, public_dir):
+            existing.unlink()
+            removed += 1
+    return removed
+
+
 def write_public_launch_foundation_html(
     routes: list[dict[str, Any]],
     templates_root: Path,
@@ -1693,7 +1718,8 @@ def write_public_launch_foundation_html(
 
     public_dir.mkdir(parents=True, exist_ok=True)
     for existing in public_dir.rglob("*.html"):
-        existing.unlink()
+        if is_foundation_public_html_path(existing, public_dir):
+            existing.unlink()
 
     for route in selected_routes:
         rid = route["route_id"]
@@ -1774,6 +1800,127 @@ def write_public_launch_foundation_html(
     )
 
 
+def write_public_design_system_refresh_html(
+    routes: list[dict[str, Any]],
+    templates_root: Path,
+    public_dir: Path,
+    limit: int,
+) -> PublicLaunchResult:
+    """Re-render 14,000-page public foundation with integrated design system (Sprint 6N-C)."""
+    public_root = PUBLIC_LAUNCH_FOUNDATION_DIR.resolve()
+    if public_dir.resolve() != public_root:
+        raise ValueError(f"design system refresh dir must be site/public/: got {public_dir.resolve()}")
+    if limit != DESIGN_SYSTEM_REFRESH_EXACT:
+        raise ValueError(
+            f"design system refresh requires limit {DESIGN_SYSTEM_REFRESH_EXACT}, got {limit}"
+        )
+
+    sync_design_system_public_assets()
+
+    errors: list[str] = []
+    written: list[str] = []
+    page_records: list[dict[str, Any]] = []
+    skipped_by_category: Counter[str] = Counter()
+    language_split: Counter[str] = Counter()
+    family_split: Counter[str] = Counter()
+
+    selected_routes, selection_skipped = select_public_launch_routes(routes, templates_root, limit)
+    skipped_by_category.update(selection_skipped)
+
+    public_dir.mkdir(parents=True, exist_ok=True)
+    clear_foundation_public_html(public_dir)
+
+    for route in selected_routes:
+        rid = route["route_id"]
+        ok, reason = route_is_public_launch_eligible(route, templates_root)
+        if not ok:
+            skipped_by_category[reason] += 1
+            errors.append(f"{rid}: skipped ({reason})")
+            continue
+        try:
+            html_out = render_route_quarantined(
+                route, templates_root, render_mode="public_launch_foundation"
+            )
+        except OSError as exc:
+            skipped_by_category["render_failed"] += 1
+            errors.append(f"{rid}: render failed: {exc}")
+            continue
+
+        if "bisulfid-design-system" not in html_out:
+            errors.append(f"{rid}: missing design-system asset links in output")
+        if "bs-control-room" not in html_out:
+            errors.append(f"{rid}: missing bs-control-room in output")
+
+        rel_out = route_output_path(route, public_dir)
+        out_path = ROOT / rel_out
+        assert_public_launch_output_path(out_path)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(html_out, encoding="utf-8")
+        rel_path = str(out_path.relative_to(ROOT)).replace("\\", "/")
+        written.append(rel_path)
+
+        page_type = classify_route_page_type(route)
+        language_split[route.get("language", "unknown")] += 1
+        family_split[page_type] += 1
+
+        source_vis = (
+            "[SOURCE REQUIRED]" in html_out or "source-required-marker" in html_out
+        )
+        page_records.append({
+            "route_id": rid,
+            "route_path": route.get("path", ""),
+            "language": route.get("language", ""),
+            "page_type": page_type,
+            "template_used": route.get("template", ""),
+            "output_path": rel_path,
+            "source_required_visible": "yes" if source_vis else "no",
+            "route_status": route.get("status", "planned"),
+            "public_visibility_enabled": "yes",
+            "indexation_enabled": "no",
+            "sitemap_enabled": "no",
+            "navigation_enabled": "no",
+            "design_system_linked": "yes",
+        })
+
+    total_skipped = sum(skipped_by_category.values())
+    refresh_ts = datetime.now(timezone.utc).isoformat()
+    manifest = {
+        "foundation_id": "public_launch_14000",
+        "sprint": DESIGN_SYSTEM_REFRESH_SPRINT,
+        "previous_sprint": "6M-G",
+        "design_system_refresh": True,
+        "design_system_refresh_sprint": DESIGN_SYSTEM_REFRESH_SPRINT,
+        "design_system_bundle": "/assets/bisulfid-design-system/bisulfid-frame.css",
+        "target_limit": limit,
+        "rendered_count": len(written),
+        "skipped_count": total_skipped,
+        "skipped_by_category": dict(skipped_by_category),
+        "language_split": dict(language_split),
+        "family_split": dict(family_split),
+        "timestamp_utc": refresh_ts,
+        "design_system_refresh_timestamp_utc": refresh_ts,
+        "output_dir": str(public_dir.relative_to(ROOT)).replace("\\", "/"),
+        "indexation_gate": "closed",
+        "sitemap_gate": "closed",
+        "navigation_gate": "closed",
+        "pages": page_records,
+    }
+    manifest_path = public_dir / PUBLIC_LAUNCH_MANIFEST_NAME
+    with manifest_path.open("w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
+
+    return PublicLaunchResult(
+        rendered_count=len(written),
+        skipped_count=total_skipped,
+        written_paths=written,
+        errors=errors,
+        skipped_by_category=dict(skipped_by_category),
+        manifest_path=str(manifest_path.relative_to(ROOT)).replace("\\", "/"),
+        selected_route_ids=[r["route_id"] for r in selected_routes],
+        page_records=page_records,
+    )
+
+
 def compute_locks(routes: list[dict[str, Any]]) -> tuple[str, str, str, str]:
     published = sum(1 for r in routes if r.get("status") == "published")
     indexable = sum(1 for r in routes if r.get("indexable") is True)
@@ -1816,6 +1963,7 @@ def run_build_engine(
     render_quarantined_sample: bool = False,
     render_quarantined_rc_batch: bool = False,
     render_public_launch_foundation: bool = False,
+    render_public_design_system_refresh: bool = False,
     render_integration_sample: bool = False,
     rc_batch_limit: int = RC_BATCH_DEFAULT_LIMIT,
     public_launch_limit: int = PUBLIC_LAUNCH_FOUNDATION_TARGET,
@@ -1825,6 +1973,8 @@ def run_build_engine(
     mode = "dry-run"
     if render_public_launch_foundation:
         mode = f"render-public-launch-foundation-{public_launch_limit}"
+    elif render_public_design_system_refresh:
+        mode = f"render-public-design-system-refresh-{public_launch_limit}"
     elif render_integration_sample:
         mode = "render-integration-sample"
     elif render_quarantined_rc_batch:
@@ -1972,6 +2122,7 @@ def run_build_engine(
         render_quarantined_rc_batch,
         render_quarantined_sample,
         render_public_launch_foundation,
+        render_public_design_system_refresh,
         render_integration_sample,
     ))
     if render_modes > 1:
@@ -1995,6 +2146,30 @@ def run_build_engine(
             audit.strict_errors.append(
                 f"integration sample rendered {count} pages "
                 f"(expected {len(INTEGRATION_SAMPLE_ROUTE_IDS)})"
+            )
+
+    elif render_public_design_system_refresh:
+        pl_result = write_public_design_system_refresh_html(
+            routes, templates_root, PUBLIC_LAUNCH_FOUNDATION_DIR, public_launch_limit
+        )
+        audit.public_launch_result = pl_result
+        audit.public_html_generated = pl_result.rendered_count
+        audit.strict_errors.extend(pl_result.errors)
+        audit.output_plan_notes.append(
+            f"Design system public refresh: rendered {pl_result.rendered_count} page(s), "
+            f"skipped {pl_result.skipped_count}"
+        )
+        audit.output_plan_notes.append(f"manifest: {pl_result.manifest_path}")
+        audit.output_plan_notes.append(
+            f"output scope: {PUBLIC_LAUNCH_FOUNDATION_DIR.relative_to(ROOT)} "
+            f"(foundation only; _integration_sample preserved)"
+        )
+        for category, count in sorted(pl_result.skipped_by_category.items()):
+            audit.output_plan_notes.append(f"  skipped ({category}): {count}")
+        if strict and pl_result.rendered_count < DESIGN_SYSTEM_REFRESH_EXACT:
+            audit.strict_errors.append(
+                f"design system refresh rendered {pl_result.rendered_count} pages "
+                f"(required {DESIGN_SYSTEM_REFRESH_EXACT})"
             )
 
     elif render_public_launch_foundation:
@@ -2073,7 +2248,7 @@ def run_build_engine(
         if count == 0 and not render_errors:
             audit.strict_errors.append("quarantined sample render produced zero files")
 
-    if write_build_status and not render_quarantined_sample and not render_quarantined_rc_batch and not render_public_launch_foundation:
+    if write_build_status and not render_quarantined_sample and not render_quarantined_rc_batch and not render_public_launch_foundation and not render_public_design_system_refresh:
         output_dir.mkdir(parents=True, exist_ok=True)
         status_path = output_dir / "build-status.json"
         status_payload = {
@@ -2212,6 +2387,14 @@ def print_summary(audit: BuildAudit, strict: bool) -> None:
         print("Design system integration sample render complete.")
         print(f"  Output under {INTEGRATION_SAMPLE_DIR.relative_to(ROOT)}/ only.")
         print("  14,000-page public foundation corpus unchanged.")
+    elif audit.mode.startswith("render-public-design-system-refresh"):
+        print("Design system public refresh complete. Output under site/public/ foundation.")
+        if audit.public_launch_result:
+            print(
+                f"  Rendered: {audit.public_launch_result.rendered_count} | "
+                f"Skipped: {audit.public_launch_result.skipped_count}"
+            )
+        print("  _integration_sample/ and assets/ preserved.")
     elif audit.mode.startswith("render-public-launch-foundation"):
         print("Public launch foundation render complete. Output under site/public/ only.")
         if audit.public_launch_result:
@@ -2274,6 +2457,11 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--render-public-design-system-refresh",
+        action="store_true",
+        help="Re-render 14,000 public foundation pages with design system (noindex; gates closed).",
+    )
+    parser.add_argument(
         "--render-integration-sample",
         action="store_true",
         help="Render design-system integration pilot to site/public/_integration_sample/ only.",
@@ -2312,6 +2500,7 @@ def main(argv: list[str] | None = None) -> int:
         args.render_quarantined_sample,
         args.render_quarantined_rc_batch,
         args.render_public_launch_foundation,
+        args.render_public_design_system_refresh,
         args.render_integration_sample,
         args.write_build_status,
     )):
@@ -2324,6 +2513,7 @@ def main(argv: list[str] | None = None) -> int:
         print("RC 1500 render: python scripts/build.py --render-quarantined-rc-batch --limit 1500")
         print("RC 7500 render: python scripts/build.py --render-quarantined-rc-batch --limit 7500")
         print("Public launch foundation: python scripts/build.py --render-public-launch-foundation --limit 14000")
+        print("Design system refresh: python scripts/build.py --render-public-design-system-refresh --limit 14000")
         print("Integration sample: python scripts/build.py --render-integration-sample")
         return 0
 
@@ -2335,10 +2525,13 @@ def main(argv: list[str] | None = None) -> int:
         args.render_quarantined_sample
         or args.render_quarantined_rc_batch
         or args.render_public_launch_foundation
+        or args.render_public_design_system_refresh
         or args.render_integration_sample
     )
     public_limit = (
-        args.limit if args.render_public_launch_foundation else PUBLIC_LAUNCH_FOUNDATION_TARGET
+        args.limit
+        if (args.render_public_launch_foundation or args.render_public_design_system_refresh)
+        else PUBLIC_LAUNCH_FOUNDATION_TARGET
     )
 
     audit = run_build_engine(
@@ -2348,6 +2541,7 @@ def main(argv: list[str] | None = None) -> int:
         render_quarantined_sample=args.render_quarantined_sample,
         render_quarantined_rc_batch=args.render_quarantined_rc_batch,
         render_public_launch_foundation=args.render_public_launch_foundation,
+        render_public_design_system_refresh=args.render_public_design_system_refresh,
         render_integration_sample=args.render_integration_sample,
         rc_batch_limit=args.limit,
         public_launch_limit=public_limit,
