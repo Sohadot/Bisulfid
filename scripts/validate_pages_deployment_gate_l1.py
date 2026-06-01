@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""L1 GitHub Pages deployment gate validator — read-only, stdlib only (Sprint 6M-H).
+"""L1 GitHub Pages deployment gate validator — read-only, stdlib only (Sprint 6M-H, 6N-C-P1).
 
-Validates that the governed Pages workflow deploys site/public/ only,
+Validates that the governed Pages workflow stages site/public/ into a temporary
+artifact excluding _integration_sample/, deploys 14,000 foundation pages only,
 preserves gate separation, and does not weaken deployment safety.
 Does not modify any files.
 """
@@ -17,9 +18,11 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW_PATH = ROOT / ".github/workflows/pages-public-deploy.yml"
 PUBLIC_DIR = ROOT / "site/public"
 SAMPLE_DIR = ROOT / "site/_sample"
+INTEGRATION_SAMPLE_DIR = PUBLIC_DIR / "_integration_sample"
 MANIFEST_PATH = PUBLIC_DIR / "public_launch_manifest.json"
 CNAME_PATH = PUBLIC_DIR / "CNAME"
 NOJEKYLL_PATH = PUBLIC_DIR / ".nojekyll"
+DS_ASSETS = PUBLIC_DIR / "assets/bisulfid-design-system"
 
 PUBLIC_LAUNCH_EXACT = 14000
 
@@ -31,6 +34,12 @@ def foundation_public_html_files() -> list[Path]:
         p for p in PUBLIC_DIR.rglob("index.html")
         if not (p.relative_to(PUBLIC_DIR).parts and p.relative_to(PUBLIC_DIR).parts[0] == "_integration_sample")
     )
+
+
+def integration_sample_html_files() -> list[Path]:
+    if not INTEGRATION_SAMPLE_DIR.is_dir():
+        return []
+    return sorted(INTEGRATION_SAMPLE_DIR.rglob("index.html"))
 
 FORBIDDEN_WORKFLOW_PATTERNS = (
     re.compile(r"\bnpm\s+install\b", re.I),
@@ -49,6 +58,7 @@ FORBIDDEN_ARTIFACT_PATHS = (
     re.compile(r"path:\s*['\"]?site/_sample", re.I),
     re.compile(r"path:\s*['\"]?site['\"]?\s*$", re.I),
     re.compile(r"path:\s*['\"]?main/", re.I),
+    re.compile(r"path:\s*['\"]?site/public['\"]?\s*$", re.I),
 )
 
 REQUIRED_WORKFLOW_MARKERS = (
@@ -59,6 +69,11 @@ REQUIRED_WORKFLOW_MARKERS = (
     "site/public",
     "upload-pages-artifact",
     "deploy-pages",
+    "_integration_sample",
+    "rsync",
+    "pages-artifact",
+    "artifact_dir",
+    "14000",
 )
 
 HTML_FORBIDDEN = (
@@ -91,13 +106,20 @@ def validate_workflow(text: str) -> list[str]:
         if pattern.search(text):
             errors.append(f"workflow may deploy unsafe path: {pattern.pattern}")
 
-    if re.search(r"path:\s*['\"]?site/public['\"]?", text, re.I):
-        pass
-    else:
-        errors.append("workflow must set upload artifact path to site/public")
+    if not re.search(r"--exclude=['\"]?_integration_sample/", text):
+        errors.append("workflow must rsync with --exclude='_integration_sample/'")
+
+    if not re.search(r"steps\.stage\.outputs\.artifact_dir", text):
+        errors.append("workflow must upload staged artifact_dir, not raw site/public")
+
+    if re.search(r"path:\s*['\"]?site/public['\"]?\s*$", text, re.M):
+        errors.append("workflow must not upload site/public directly (use staged artifact)")
 
     if "environment:" in text and "github-pages" not in text:
         errors.append("workflow should target github-pages environment")
+
+    if re.search(r"on:\s*\n\s*push:", text):
+        errors.append("workflow must remain workflow_dispatch only")
 
     return errors
 
@@ -157,11 +179,15 @@ def main() -> int:
     else:
         print(".nojekyll: present")
 
+    if not DS_ASSETS.is_dir():
+        all_errors.append("site/public/assets/bisulfid-design-system/ missing")
+    else:
+        print("Design-system assets: present")
+
     public_files = foundation_public_html_files()
-    integration_count = len(list(PUBLIC_DIR.rglob("index.html"))) - len(public_files) if PUBLIC_DIR.is_dir() else 0
+    integration_files = integration_sample_html_files()
     print(f"Public foundation pages: {len(public_files)}")
-    if integration_count:
-        print(f"Integration sample pages (excluded): {integration_count}")
+    print(f"Integration sample pages (repo only, excluded from deploy): {len(integration_files)}")
     if len(public_files) != PUBLIC_LAUNCH_EXACT:
         all_errors.append(
             f"expected {PUBLIC_LAUNCH_EXACT} public pages, found {len(public_files)}"
@@ -173,6 +199,8 @@ def main() -> int:
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
         if manifest.get("rendered_count") != PUBLIC_LAUNCH_EXACT:
             all_errors.append("manifest rendered_count != 14000")
+        if manifest.get("design_system_refresh") is not True:
+            all_errors.append("manifest design_system_refresh not true")
         for gate in ("indexation_gate", "sitemap_gate", "navigation_gate"):
             if manifest.get(gate) != "closed":
                 all_errors.append(f"manifest {gate} not closed")
@@ -190,7 +218,6 @@ def main() -> int:
         all_errors.extend(validate_public_sample(path))
     print(f"Public HTML sample checked: {sample_checked}")
 
-    # Confirm _sample not referenced in workflow artifact path
     if wf_text and re.search(r"_sample", wf_text) and "site/public" not in wf_text:
         all_errors.append("workflow references _sample without site/public artifact root")
 
