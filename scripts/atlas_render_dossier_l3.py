@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sprint 99 — Render full 14K public reference dossier output."""
+"""Sprint 99/99A — Render full 14K public reference dossier output."""
 from __future__ import annotations
 
 import html
@@ -11,14 +11,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from atlas_dossier_common_l3 import (  # noqa: E402
+    STYLESHEET_PATH,
     audience_layers_html,
     build_breadcrumbs,
     build_dossier_body,
     build_internal_links_html,
-    clean_description,
-    load_classification,
+    public_lane_role,
     public_label,
-    sanitize_public_text,
+    public_summary,
     substitute,
 )
 
@@ -34,12 +34,18 @@ def read_template(rel: str) -> str:
 
 def main() -> int:
     print("=" * 60)
-    print("Sprint 99 — 14K Dossier Render")
+    print("Sprint 99A — 14K Dossier Quality Repair Render")
     print("=" * 60)
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     routes = json.loads(ROUTES_PATH.read_text(encoding="utf-8"))["routes"]
     routes_by_id = {r["route_id"]: r for r in routes}
-    classification = load_classification()
+    classification = {}
+    class_path = ROOT / "main/data/14K_CORPUS_CLASSIFICATION.json"
+    if class_path.is_file():
+        classification = {
+            r["route_id"]: r
+            for r in json.loads(class_path.read_text(encoding="utf-8"))["routes"]
+        }
     released = [r for r in ledger["records"] if r["release_status"] == "released"]
     base_tpl = read_template("base.html")
     dossier_tpl = read_template("dossier.html")
@@ -52,32 +58,32 @@ def main() -> int:
         if not route:
             errors.append(f"missing route: {rec['route_id']}")
             continue
-        cls = classification.get(rec["route_id"], {})
-        lane = rec.get("production_lane", "A")
+        cls = classification.get(rec["route_id"], {"proposed_production_lane": rec.get("production_lane", "A")})
+        lane = cls.get("proposed_production_lane", rec.get("production_lane", "A"))
         release_mode = rec.get("release_mode", "cautious_reference_dossier")
+        role = public_lane_role(lane)
         body_html = build_dossier_body(route, cls, release_mode)
         links_html = build_internal_links_html(rec.get("internal_link_targets", []), routes_by_id)
         h1 = public_label(route)
+        summary = public_summary(route, cls)
+        page_title = h1
+        if "bisulfid.com" not in page_title.lower():
+            page_title = f"{h1} — Bisulfid Atlas"
         ctx = {
             "language": route.get("language", "en"),
             "text_direction": "ltr",
-            "route_id": rec["route_id"],
-            "page_title": sanitize_public_text(
-                route.get("title", h1).replace("planned route; non-public", "").strip()
-            ),
-            "meta_description": html.escape(clean_description(route.get("description", ""))),
+            "page_title": html.escape(page_title),
+            "meta_description": html.escape(summary),
             "canonical_url": f"https://bisulfid.com{route.get('path', '/')}",
-            "page_h1": h1,
-            "atlas_role": f"Reference dossier · Lane {lane}",
-            "atlas_classification": (
-                f"Lane {lane} · {rec.get('page_type', 'dossier')} · {release_mode}"
-            ),
-            "reference_summary": clean_description(route.get("description", "")),
+            "page_h1": html.escape(h1),
+            "atlas_role": html.escape(role),
+            "atlas_category": html.escape(f"{role} · Public reference dossier"),
+            "reference_summary": html.escape(summary),
             "page_body": body_html,
             "source_posture_text": (
-                "Cautious reference dossier. No unsupported chemical, medical, safety, market, "
-                "or investment claims. Verified source packs govern factual terminology publication. "
-                "No operational purchasing or supply-chain advice appears on this page."
+                "This page is a source-governed public reference dossier. "
+                "It does not provide medical, safety, market, investment, or operational purchasing guidance. "
+                "Verified source packs govern factual terminology publication across the atlas."
             ),
             "audience_layers": audience_layers_html(route, cls),
             "internal_links": links_html,
@@ -88,6 +94,8 @@ def main() -> int:
         ctx["content"] = article
         ctx["breadcrumbs"] = substitute(breadcrumb_tpl, ctx)
         page = substitute(base_tpl, ctx)
+        if STYLESHEET_PATH not in page:
+            errors.append(f"{rec['route_id']}: missing absolute stylesheet")
         raw_path = route.get("path", "/").strip("/")
         out_path = PUBLIC_DIR / ("index.html" if not raw_path else f"{raw_path}/index.html")
         out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -95,17 +103,6 @@ def main() -> int:
         written += 1
         if (i + 1) % 2000 == 0:
             print(f"  Rendered {i + 1}/{len(released)}...")
-    report = ROOT / "main/data/14K_PUBLIC_CONTENT_QUALITY_REPORT.md"
-    report.write_text(
-        "# 14K Public Content Quality Report\n\n"
-        f"**Date:** {date.today().isoformat()}\n"
-        f"**Pages rendered:** {written}\n"
-        f"**Errors:** {len(errors)}\n\n"
-        "- Curated dossier bodies only (no governance draft markdown)\n"
-        "- Minimum 8 internal links per page via link graph\n"
-        "- index,follow on all released pages\n",
-        encoding="utf-8",
-    )
     print(f"Rendered: {written}")
     if errors:
         for e in errors[:20]:
