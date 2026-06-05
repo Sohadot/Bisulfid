@@ -1,0 +1,106 @@
+{
+  "version": "1.0.0",
+  "sprint": "98",
+  "site": "bisulfid.com",
+  "governed_by": "doctrine/SOURCE_POLICY.md",
+  "status": "architecture_active",
+  "rule": "Source packs group registered sources by scope. No invented sources. not_verified packs block factual claims requiring them.",
+  "source_packs": [
+    {
+      "source_pack_id": "SPK-LEX-EN-MW",
+      "scope": "English lexical terminology — bisulfide, sulfide family",
+      "covered_route_patterns": ["bisulfid_vs_bisulfide", "what_is_bisulfid", "en/terminology/**/term-*"],
+      "source_ids": ["SRC-MW-BISULFIDE", "SRC-MW-SULFIDE", "SRC-MW-BISULFITE"],
+      "allowed_claims": ["lexical_existence", "spelling_boundary_framing", "document_language_notes"],
+      "prohibited_claims": ["safety_handling", "medical", "market_statistics", "industrial_performance", "investment_advice"],
+      "risk_category": "low",
+      "verification_state": "not_verified",
+      "citation_fields": ["publisher", "title", "url", "retrieved_date"],
+      "publication_status": "blocked_until_verified"
+    },
+    {
+      "source_pack_id": "SPK-LEX-DE-DUDEN",
+      "scope": "German lexical terminology — Sulfid, Bisulfid forms",
+      "covered_route_patterns": ["de/terminology/**", "german_english_chemical_terms"],
+      "source_ids": ["SRC-DUDEN-SULFID"],
+      "allowed_claims": ["german_lexical_existence", "nomenclature_framing"],
+      "prohibited_claims": ["universal_suffix_rules", "safety", "medical", "market"],
+      "risk_category": "low",
+      "verification_state": "not_verified",
+      "citation_fields": ["publisher", "title", "url", "retrieved_date"],
+      "publication_status": "blocked_until_verified"
+    },
+    {
+      "source_pack_id": "SPK-NOM-IUPAC",
+      "scope": "IUPAC and nomenclature standards",
+      "covered_route_patterns": ["**/cmp-*", "**/term-chem-acad"],
+      "source_ids": ["SRC-IUPAC-NOMENCLATURE"],
+      "allowed_claims": ["nomenclature_context", "compound_naming_framing"],
+      "prohibited_claims": ["safety_thresholds", "handling_instructions", "market"],
+      "risk_category": "medium",
+      "verification_state": "not_verified",
+      "citation_fields": ["publisher", "title", "url", "section"],
+      "publication_status": "blocked_until_verified"
+    },
+    {
+      "source_pack_id": "SPK-SPEKTRUM-MOS2-DE",
+      "scope": "German MoS₂ dictionary entry — narrow verified pack",
+      "covered_route_patterns": ["de_core_mos2", "de/terminology/molybdenum-disulfide"],
+      "source_ids": ["SRC-SPEKTRUM-MOS2-DE"],
+      "allowed_claims": ["CLM-TERM-MOS2-DE-001"],
+      "prohibited_claims": ["industrial_performance", "pricing", "safety_instructions"],
+      "risk_category": "low",
+      "verification_state": "verified_limited",
+      "citation_fields": ["publisher", "title", "url", "retrieved_date"],
+      "publication_status": "narrow_release_only"
+    },
+    {
+      "source_pack_id": "SPK-GOV-REGULATORY",
+      "scope": "Government and regulatory reference databases",
+      "covered_route_patterns": ["**/gov-*", "institutional/**"],
+      "source_ids": ["SRC-PUBCHEM", "SRC-CAS-REGISTRY"],
+      "allowed_claims": ["registry_identity_framing", "document_language"],
+      "prohibited_claims": ["regulatory_advice", "compliance_directives", "safety_prescription"],
+      "risk_category": "medium",
+      "verification_state": "not_verified",
+      "citation_fields": ["publisher", "title", "url", "accession"],
+      "publication_status": "blocked_until_verified"
+    },
+    {
+      "source_pack_id": "SPK-INDUSTRY-PUB",
+      "scope": "Industry publication references",
+      "covered_route_patterns": ["**/ind-*", "industrial_sulfur_systems"],
+      "source_ids": ["SRC-ACS-IND-PUB"],
+      "allowed_claims": ["industrial_context_framing"],
+      "prohibited_claims": ["procurement", "pricing", "CAGR", "acquisition"],
+      "risk_category": "high",
+      "verification_state": "not_verified",
+      "citation_fields": ["publisher", "title", "url", "doi"],
+      "publication_status": "blocked_until_verified"
+    },
+    {
+      "source_pack_id": "SPK-MARKET-REPORT",
+      "scope": "Verified market report sources only",
+      "covered_route_patterns": ["**/economic-*", "**/investor-*"],
+      "source_ids": [],
+      "allowed_claims": [],
+      "prohibited_claims": ["CAGR", "pricing", "procurement", "investment_recommendation", "acquisition_targeting"],
+      "risk_category": "high",
+      "verification_state": "not_verified",
+      "citation_fields": ["publisher", "title", "url", "report_date"],
+      "publication_status": "blocked_no_sources"
+    },
+    {
+      "source_pack_id": "SPK-CAUTIOUS-FRAMING",
+      "scope": "Atlas hub and governance pages — structural framing without factual chemistry claims",
+      "covered_route_patterns": ["en_foundation_*", "en_index_*", "en_gov_*", "corpus_methodology_*", "home", "sources"],
+      "source_ids": [],
+      "allowed_claims": ["cautious_framing", "corpus_orientation", "methodology_explanation", "atlas_navigation"],
+      "prohibited_claims": ["unsupported_chemistry", "market_statistics", "safety_advice", "medical_claims", "investment_advice"],
+      "risk_category": "low",
+      "verification_state": "cautious_framing",
+      "citation_fields": [],
+      "publication_status": "eligible_for_atlas_hub_release"
+    }
+  ]
+}

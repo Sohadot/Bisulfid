@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "sprint": "98",
+  "site": "bisulfid.com",
+  "governed_by": "doctrine/SOURCE_POLICY.md",
+  "status": "architecture_active",
+  "rule": "No page may publish factual claims outside this library or cautious_framing rules.",
+  "claims": [
+    {
+      "claim_id": "CLM-CAUTIOUS-ATLAS-001",
+      "claim_text": "Bisulfid.com is a sovereign sulfur terminology reference atlas under governed publication rules.",
+      "claim_type": "cautious_framing",
+      "source_pack_id": "SPK-CAUTIOUS-FRAMING",
+      "allowed_page_types": ["foundation", "methodology", "atlas_hub", "gateway"],
+      "prohibited_page_types": ["terminology_node", "compound_family", "economic_context"],
+      "risk_level": "low",
+      "publication_status": "approved_framing"
+    },
+    {
+      "claim_id": "CLM-CAUTIOUS-ATLAS-002",
+      "claim_text": "BISULFID is the sovereign domain and asset identifier; BISULFIDE is the conventional English spelling family; the missing final E is a governed spelling boundary.",
+      "claim_type": "cautious_framing",
+      "source_pack_id": "SPK-CAUTIOUS-FRAMING",
+      "allowed_page_types": ["gateway", "language_boundary", "disambiguation", "foundation"],
+      "prohibited_page_types": ["material_mineral", "biotechnology_context"],
+      "risk_level": "low",
+      "publication_status": "approved_framing"
+    },
+    {
+      "claim_id": "CLM-CAUTIOUS-ATLAS-003",
+      "claim_text": "Terminology routes may remain in cautious framing until source-verified claims are approved for publication.",
+      "claim_type": "cautious_framing",
+      "source_pack_id": "SPK-CAUTIOUS-FRAMING",
+      "allowed_page_types": ["methodology", "foundation", "atlas_hub"],
+      "prohibited_page_types": ["terminology_node"],
+      "risk_level": "low",
+      "publication_status": "approved_framing"
+    },
+    {
+      "claim_id": "CLM-TERM-001",
+      "claim_text": "The English term 'bisulfide' has a lexical entry in Merriam-Webster.",
+      "claim_type": "terminology",
+      "source_pack_id": "SPK-LEX-EN-MW",
+      "allowed_page_types": ["terminology_node", "language_boundary", "disambiguation"],
+      "prohibited_page_types": ["student_explainer", "biotechnology_context"],
+      "risk_level": "low",
+      "publication_status": "blocked_pending_source_verification"
+    },
+    {
+      "claim_id": "CLM-TERM-002",
+      "claim_text": "The English term 'sulfide' has a lexical entry in Merriam-Webster.",
+      "claim_type": "terminology",
+      "source_pack_id": "SPK-LEX-EN-MW",
+      "allowed_page_types": ["terminology_node", "disambiguation"],
+      "prohibited_page_types": ["economic_context", "institutional_context"],
+      "risk_level": "low",
+      "publication_status": "blocked_pending_source_verification"
+    },
+    {
+      "claim_id": "CLM-TERM-MOS2-DE-001",
+      "claim_text": "German Lexikon der Chemie documents MoS₂ (Molybdändisulfid) as a dictionary entry.",
+      "claim_type": "terminology",
+      "source_pack_id": "SPK-SPEKTRUM-MOS2-DE",
+      "allowed_page_types": ["terminology_node", "material_mineral", "language_boundary"],
+      "prohibited_page_types": ["economic_context", "journalistic_explainer"],
+      "risk_level": "low",
+      "publication_status": "approved_narrow"
+    }
+  ]
+}

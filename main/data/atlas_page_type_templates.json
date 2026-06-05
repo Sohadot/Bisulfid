@@ -1,0 +1,146 @@
+{
+  "version": "1.0.0",
+  "sprint": "98",
+  "site": "bisulfid.com",
+  "status": "production_ready",
+  "page_types": [
+    {
+      "page_type": "terminology_node",
+      "production_lane": "A",
+      "template_file": "atlas/terminology_node.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "reference_summary", "technical_layer", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED", "planned route", "non-public", "no_claims_approved"]
+    },
+    {
+      "page_type": "language_boundary",
+      "production_lane": "B",
+      "template_file": "atlas/language_boundary.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "reference_summary", "language_layer", "spelling_boundary", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED", "planned route"]
+    },
+    {
+      "page_type": "disambiguation",
+      "production_lane": "C",
+      "template_file": "atlas/disambiguation.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "reference_summary", "boundary_explanation", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED"]
+    },
+    {
+      "page_type": "compound_family",
+      "production_lane": "D",
+      "template_file": "atlas/compound_family.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "reference_summary", "technical_layer", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED", "CAGR", "procurement"]
+    },
+    {
+      "page_type": "material_mineral",
+      "production_lane": "E",
+      "template_file": "atlas/material_mineral.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "reference_summary", "technical_layer", "material_context", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED"]
+    },
+    {
+      "page_type": "industrial_context",
+      "production_lane": "F",
+      "template_file": "atlas/industrial_context.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "reference_summary", "industrial_layer", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED", "procurement", "CAGR"]
+    },
+    {
+      "page_type": "biotechnology_context",
+      "production_lane": "G",
+      "template_file": "atlas/biotechnology_context.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "reference_summary", "context_layer", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED", "medical"]
+    },
+    {
+      "page_type": "economic_context",
+      "production_lane": "H",
+      "template_file": "atlas/economic_context.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "cautious_framing", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED", "CAGR", "investment advice", "procurement"]
+    },
+    {
+      "page_type": "journalistic_explainer",
+      "production_lane": "I",
+      "template_file": "atlas/journalistic_explainer.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "reference_summary", "research_layer", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED"]
+    },
+    {
+      "page_type": "academic_reference",
+      "production_lane": "J",
+      "template_file": "atlas/academic_reference.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "reference_summary", "technical_layer", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED"]
+    },
+    {
+      "page_type": "institutional_context",
+      "production_lane": "K",
+      "template_file": "atlas/institutional_context.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "reference_summary", "institutional_layer", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED"]
+    },
+    {
+      "page_type": "student_explainer",
+      "production_lane": "L",
+      "template_file": "atlas/student_explainer.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "reference_summary", "student_layer", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED"]
+    },
+    {
+      "page_type": "atlas_hub",
+      "production_lane": "hub",
+      "template_file": "atlas/hub.html",
+      "frame": "atlas/base.html",
+      "required_sections": ["title", "meta_description", "canonical", "breadcrumb", "atlas_role", "why_it_matters", "related_terms", "internal_links", "source_posture"],
+      "min_internal_links": 6,
+      "robots": "index,follow",
+      "forbidden_markers": ["SOURCE REQUIRED", "planned route", "non-public", "not publication-ready"]
+    }
+  ],
+  "audience_layers": [
+    "reference_summary",
+    "technical_layer",
+    "language_layer",
+    "industrial_context_layer",
+    "research_journalism_layer",
+    "student_public_layer"
+  ]
+}
