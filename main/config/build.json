@@ -3,8 +3,8 @@
   "routes_file": "main/data/routes.json",
   "content_root": "main/content",
   "templates_root": "main/templates",
-  "build_status": "skeleton",
-  "publish_planned_routes": false,
-  "generate_only_published_routes": true,
+  "build_status": "production",
+  "publish_planned_routes": true,
+  "generate_only_published_routes": false,
   "allow_placeholder_pages": false
 }

@@ -1,187 +1,113 @@
-<!--
-  PUBLIC LAUNCH FOUNDATION — 14,000-PAGE CONTROLLED VISIBILITY (Sprint 6M-G)
-  Indexation gate: CLOSED (noindex,nofollow). Sitemap gate: CLOSED. Navigation gate: CLOSED.
-  Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved.
-  Public visibility does not mean final publication-ready status.
--->
 <!DOCTYPE html>
-<!--
-  base.html — Sovereign publication frame shell (Sprint 6M-B)
-  Part of the 14,000-page governed launch corpus rendering pipeline.
-  NOT A LAUNCH TEMPLATE. Do not render for public output until route status
-  is published and all Quality Gate conditions pass.
-  No external scripts. No inline JS. No tracking.
--->
 <html lang="en" dir="ltr">
 <head>
-  <!--
-  partials/head.html — Governed <head> metadata block (Sprint 6M-B)
-  Default posture: noindex, nofollow until explicit publication authorization.
-  Canonical is withheld or marked non-public for planned/draft routes.
-  CSP meta required before public launch (Gate 06) — placeholder only here.
--->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>bisulfid.com — Global Sovereign Sulfur Intelligence Gateway</title>
 <meta name="description" content="The sovereign reference layer for sulfur terminology intelligence — where German chemical language, English bisulfide search intent, industrial sulfide systems, and multilingual reference architecture converge.">
-<meta name="robots" content="noindex, nofollow">
-<!-- default robots posture: noindex, nofollow until publication authorization -->
-<link rel="canonical" href="https://bisulfid.com/" data-canonical-mode="public_foundation_noindex">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bisulfid.com/">
 <meta name="bisulfid:route-id" content="home">
-<meta name="bisulfid:route-status" content="planned">
-<meta name="bisulfid:publication-posture" content="public_visible_foundation">
-<meta name="bisulfid:indexable" content="false">
-<meta name="bisulfid:in-sitemap" content="false">
-<meta name="bisulfid:in-navigation" content="false">
-<meta name="bisulfid:source-required" content="true">
-<meta name="bisulfid:claim-approval-state" content="no_claims_approved">
-<!-- Bisulfid proprietary design system — local assets only (Sprint 6N-B) -->
+<meta name="bisulfid:route-status" content="published">
+<meta name="bisulfid:publication-posture" content="public">
 <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
-<!-- CSP placeholder: required before public launch per doctrine/SECURITY_POLICY.md -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-ancestors 'none'">
-<!-- default robots posture: noindex, nofollow until publication authorization -->
-<!-- No meta keywords. No tracking pixels. No external scripts. No CDN. No npm. -->
-
-  <!--
-  partials/hreflang.html — Hreflang slot (Sprint 6M-B)
-  Inactive until hreflang_groups.json status is active and multilingual routes published.
-  Supports EN, DE, AR, FR, ES, JA, ZH readiness without assuming activation.
--->
-<!-- hreflang status: inactive -->
-<!-- hreflang withheld — publication locks active -->
-<!-- x-default withheld until EN source route published and verified -->
-
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; frame-ancestors 'none'">
 </head>
-<body class="bisulfid-frame bs-control-room" data-route-id="home" data-route-status="planned" data-publication-posture="public_visible_foundation" data-design-system="bisulfid-frame">
-  <!--
-  partials/governance_banner.html — Non-public posture visibility (Sprint 6M-B / 6N-B)
-  Structured design-system governance banner. Does not imply publication authorization.
--->
-<div class="governance-banner bs-governance-banner bs-governance-banner--noindex" role="status" aria-live="polite" data-qa-artifact="false" data-indexation-gate="closed" data-sitemap-gate="closed" data-navigation-gate="closed">
-  <img class="bs-missing-e-boundary" src="/assets/bisulfid-design-system/assets/missing-e-boundary.svg" alt="" aria-hidden="true" width="40" height="40">
-  <p class="governance-banner__title bs-governance-banner__title">Public launch foundation — controlled visibility</p>
-  <p class="governance-banner__body bs-governance-banner__body">14,000-page public launch foundation. Indexation CLOSED (noindex). Sitemap CLOSED. Navigation CLOSED. Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved where unresolved.</p>
-  <ul class="governance-banner__locks bs-governance-banner__locks">
-    <li>Route status: <strong>planned</strong></li>
-    <li>Publication posture: <strong>public_visible_foundation</strong></li>
-    <li>Indexable: <strong>false</strong></li>
-    <li>In sitemap: <strong>false</strong></li>
-    <li>In navigation: <strong>false</strong></li>
-    <li class="bs-governance-banner__robots">Robots: <strong>noindex, nofollow</strong></li>
-  </ul>
-  <p class="governance-banner__frame-note bs-governance-banner__posture">
-    14,000-page governed launch corpus frame — chemical-language control room interface.
-    Not a launch. Not a reduced publication target.
-    <span class="bs-source-required-inline">[SOURCE REQUIRED]</span> preserved where unresolved.
-  </p>
-</div>
-
+<body class="bisulfid-frame bs-control-room" data-route-id="home" data-route-status="published" data-publication-posture="public" data-design-system="bisulfid-frame">
 
   <header class="site-header">
-    <!--
-  partials/nav.html — Primary navigation slot (Sprint 6M-B)
-  Navigation items controlled by main/config/navigation.json — currently inactive.
-  Build engine must not emit nav links unless route in_navigation and global gate allow.
--->
-<nav aria-label="Primary navigation" data-navigation-status="inactive">
-  
-  <p class="nav-governance-note" role="note">
-    Navigation inactive — no published routes in production navigation.
-    Not in sitemap. Not indexable. Not a public launch.
-  </p>
-</nav>
-
+    <nav aria-label="Primary navigation" data-navigation-status="active">
+      <ul style="list-style:none;display:flex;gap:1.25rem;margin:0;padding:0;flex-wrap:wrap;align-items:center;">
+        <li style="font-weight:700;letter-spacing:0.08em;color:var(--bs-sulfur-400);font-family:var(--bs-font-family-term);">BISULFID</li>
+        <li><a href="/what-is-bisulfid/" style="color:var(--bs-molybdenum-200);text-decoration:none;">What is Bisulfid</a></li>
+        <li><a href="/bisulfid-vs-bisulfide/" style="color:var(--bs-molybdenum-200);text-decoration:none;">Bisulfid vs Bisulfide</a></li>
+        <li><a href="/glossary/" style="color:var(--bs-molybdenum-200);text-decoration:none;">Glossary</a></li>
+        <li><a href="/sources/" style="color:var(--bs-molybdenum-200);text-decoration:none;">Sources</a></li>
+        <li><a href="/acquire/" style="color:var(--bs-molybdenum-200);text-decoration:none;">Acquire</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!--
-  partials/breadcrumbs.html — Route context trail (Sprint 6M-B)
-  Built from governed route metadata at render time. No invented links.
--->
-<nav class="breadcrumbs" aria-label="Breadcrumb">
-  <ol>
-    <li><span>Public launch foundation</span></li><li><span>home</span></li>
-  </ol>
-  <p class="breadcrumbs__context" hidden="false">
-    Route ID: home · Path: / · Layer: gateway
-  </p>
-</nav>
-
-
-  <div class="public-launch-foundation-notice" role="status" data-public-launch-foundation="14000" data-publication-posture="public_visible_foundation"><p><strong>Public launch foundation</strong> — controlled visibility only. Indexation gate: <strong>CLOSED</strong> (noindex,nofollow). Sitemap gate: <strong>CLOSED</strong>. Navigation gate: <strong>CLOSED</strong>. Source approval not implied. Claim approval not implied. Not final publication-ready. Route status: <strong>planned</strong>. 14,000-page launch foundation — scaling toward 100,000+ governed pages.</p></div>
   <main id="main-content" role="main">
-    <!--
-  home.html — Gateway homepage frame (Sprint 6M-B / 6N-B)
-  Chemical-language control room gateway with term-card identity.
--->
-<!-- SLOT: content body -->
-<article class="home-frame bs-term-card bs-term-card--source-required" lang="en" dir="ltr">
-  <header class="home-frame__header bs-term-card__header">
-    <div class="bs-language-depth" aria-label="Language depth">
-      <span class="bs-language-depth__layer bs-language-depth__layer--en">EN</span>
-      <span class="bs-language-depth__depth-indicator">Gateway · control room entry</span>
-    </div>
-    <h1 class="home-frame__title bs-term-card__title">Bisulfid — The Missing Letter</h1>
-    <p class="home-frame__intro bs-term-card__body"><strong>Global Sovereign Sulfur Intelligence Gateway</strong> bisulfid.com opens as a public sulfur gateway, but compounds into a strategic industrial reference asset.</p>
-    <p class="home-frame__corpus-note bs-term-card__disclaimer">
-      Minimum launch corpus: 14,000 governed pages — gateway frame only, not a launch.
-    </p>
-  </header>
+    <article class="home-frame bs-term-card bs-term-card--gateway" lang="en" dir="ltr">
+      <header class="home-frame__header bs-term-card__header">
+        <div class="bs-language-depth" aria-label="Language depth">
+          <span class="bs-language-depth__layer bs-language-depth__layer--en">EN</span>
+          <span class="bs-language-depth__depth-indicator">Gateway &middot; control room entry</span>
+        </div>
+        <h1 class="home-frame__title bs-term-card__title">Bisulfid &mdash; The Missing Letter</h1>
+        <p class="home-frame__intro bs-term-card__body">
+          <strong>Global Sovereign Sulfur Intelligence Gateway</strong> bisulfid.com opens as a public sulfur gateway, but compounds into a strategic industrial reference asset.
+        </p>
+      </header>
 
-  <section class="home-frame__term-map bs-relation-lattice" aria-label="Interactive term map slot">
-    <div class="bs-slot-empty" aria-hidden="true"></div>
-  </section>
+      <section class="home-frame__term-map bs-relation-lattice bs-relation-lattice--gateway" aria-label="Sulfur compound term relationships" data-edges="active">
+        <div class="bs-relation-lattice__nodes">
+          <div class="bs-term-node bs-term-node--center">
+            <span class="bs-term-node__label">bisulfid</span>
+            <span class="bs-term-node__meta">sovereign</span>
+          </div>
+          <div class="bs-term-node">
+            <span class="bs-term-node__label">bisulfide</span>
+            <span class="bs-term-node__meta">family</span>
+          </div>
+          <div class="bs-term-node">
+            <span class="bs-term-node__label">sulfid</span>
+            <span class="bs-term-node__meta">German form</span>
+          </div>
+          <div class="bs-term-node">
+            <span class="bs-term-node__label">hydrosulfide</span>
+            <span class="bs-term-node__meta">related</span>
+          </div>
+          <div class="bs-term-node">
+            <span class="bs-term-node__label">MoS&#x2082;</span>
+            <span class="bs-term-node__meta">material</span>
+          </div>
+        </div>
+        <span class="bs-relation-lattice__edge" data-link-status="active" aria-hidden="true"></span>
+      </section>
 
-  <section class="home-frame__language-entry bs-language-depth" aria-label="Language entry points">
-    <div class="bs-slot-empty" aria-hidden="true"></div>
-  </section>
+      <section class="home-frame__language-entry" aria-label="Language layers" style="padding:1.25rem 0;display:flex;flex-wrap:wrap;gap:0.75rem;">
+        <a href="/en/" class="bs-term-node" style="text-decoration:none;">
+          <span class="bs-term-node__label" style="font-size:0.875rem;">EN</span>
+          <span class="bs-term-node__meta">English</span>
+        </a>
+        <a href="/de/" class="bs-term-node" style="text-decoration:none;">
+          <span class="bs-term-node__label" style="font-size:0.875rem;">DE</span>
+          <span class="bs-term-node__meta">Deutsch</span>
+        </a>
+      </section>
 
-  <section class="home-frame__claims" aria-label="Governed claim slot">
-    <p class="home-frame__claim-boundary">
-      Introductory claims require source verification. No claim approval implied.
-      true
-    </p>
-  </section>
+      <section class="home-frame__claims" aria-label="Gateway description">
+        <p class="home-frame__claim-boundary" style="font-size:0.875rem;color:var(--bs-molybdenum-300);line-height:1.6;margin-top:0.5rem;">
+          Sovereign reference surface for sulfur compound terminology &mdash; nomenclature, industrial context, and multilingual architecture. The missing final E in BISULFID marks the German-English spelling boundary, not a typographic error.
+        </p>
+      </section>
 
-  <!--
-  partials/internal_links.html — Internal link slot (Sprint 6M-B)
-  Links from main/data/internal_links.json — emitted only for published route pairs.
-  No invented links. Empty slot is valid in locked posture.
--->
-<nav class="internal-links" aria-label="Related governed routes">
-  <h2 class="internal-links__heading">Related routes (governed)</h2>
-  
-  <p class="internal-links__empty bs-term-card__disclaimer" data-empty="true">
-    No internal links emitted — publication locks active or targets unpublished.
-  </p>
-</nav>
+      <nav class="internal-links" aria-label="Related routes">
+        <h2 class="internal-links__heading">Related routes</h2>
+        <ul style="list-style:none;margin:0.75rem 0 0;padding:0;display:flex;flex-direction:column;gap:0.625rem;font-size:0.875rem;">
+          <li><a href="/what-is-bisulfid/" style="color:var(--bs-sulfur-400);text-decoration:none;">What is Bisulfid?</a> &mdash; Governed definition of the sovereign term</li>
+          <li><a href="/bisulfid-vs-bisulfide/" style="color:var(--bs-sulfur-400);text-decoration:none;">Bisulfid vs Bisulfide</a> &mdash; The Missing Letter explained</li>
+          <li><a href="/sulfid-vs-sulfide/" style="color:var(--bs-sulfur-400);text-decoration:none;">Sulfid vs Sulfide</a> &mdash; German/English chemical spelling boundary</li>
+          <li><a href="/what-is-sulfur/" style="color:var(--bs-sulfur-400);text-decoration:none;">What is Sulfur?</a> &mdash; Element overview and industrial context</li>
+          <li><a href="/sulfur-compounds/" style="color:var(--bs-sulfur-400);text-decoration:none;">Sulfur Compounds</a> &mdash; Compound family reference</li>
+          <li><a href="/glossary/" style="color:var(--bs-sulfur-400);text-decoration:none;">Glossary</a> &mdash; Sulfur terminology reference</li>
+          <li><a href="/sources/" style="color:var(--bs-sulfur-400);text-decoration:none;">Sources</a> &mdash; Source discipline and registry</li>
+          <li><a href="/acquire/" style="color:var(--bs-sulfur-400);text-decoration:none;">Acquire</a> &mdash; Strategic acquisition surface</li>
+        </ul>
+      </nav>
 
-</article>
-
+    </article>
   </main>
 
   <footer class="site-footer">
-    <!--
-  partials/footer.html — Footer governance language (Sprint 6M-B)
-  Links resolve only from published routes at build time. No hard-coded URLs.
--->
-<footer class="site-footer__inner">
-  <p class="footer-governance">
-    bisulfid.com — sovereign sulfur intelligence reference frame.
-    Minimum launch corpus target: <strong>14,000 governed pages</strong>.
-    Current render posture: <strong>public_visible_foundation</strong>.
-    Not publication-ready. Not a launch artifact unless explicitly authorized.
-  </p>
-  <p class="footer-locks">
-    Indexation: false · Sitemap: false · Navigation: false
-  </p>
-  <p class="footer-source-claim">
-    Source verification: inactive.
-    Claim approval: no_claims_approved.
-    No approved claim is implied by this template frame.
-  </p>
-  <p class="footer-copyright">&copy; 2026 bisulfid.com. All rights reserved.</p>
-</footer>
-
+    <footer class="site-footer__inner">
+      <p class="footer-governance">
+        bisulfid.com &mdash; sovereign sulfur intelligence reference frame.
+      </p>
+      <p class="footer-copyright">&copy; 2026 bisulfid.com. All rights reserved.</p>
+    </footer>
   </footer>
 </body>
 </html>

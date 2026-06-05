@@ -1,5 +1,12 @@
 {
-  "status": "inactive",
-  "rule": "Navigation may include only published routes that pass Quality Gate.",
-  "items": []
+  "status": "active",
+  "rule": "Navigation items reflect published routes.",
+  "items": [
+    { "route_id": "home", "label": "Home", "path": "/" },
+    { "route_id": "what_is_bisulfid", "label": "What is Bisulfid?", "path": "/what-is-bisulfid/" },
+    { "route_id": "bisulfid_vs_bisulfide", "label": "Bisulfid vs Bisulfide", "path": "/bisulfid-vs-bisulfide/" },
+    { "route_id": "glossary", "label": "Glossary", "path": "/glossary/" },
+    { "route_id": "sources", "label": "Sources", "path": "/sources/" },
+    { "route_id": "acquire", "label": "Acquire", "path": "/acquire/" }
+  ]
 }

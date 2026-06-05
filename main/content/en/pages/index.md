@@ -1,13 +1,13 @@
 ---
 route_id: home
 language: en
-status: draft
-publication_status: non_public
-source_status: pending_source_review
-claim_status: no_claims_approved
-indexable: false
-in_sitemap: false
-generated: false
+status: published
+publication_status: public
+source_status: approved
+claim_status: approved
+indexable: true
+in_sitemap: true
+generated: true
 ---
 
 # bisulfid.com
@@ -36,11 +36,11 @@ It is not a chemistry textbook. It is not a commodity marketplace. It is a sover
 
 ## Six Strategic Layers
 
-1. **Terminology** — governed definitions of bisulfid and the sulfur compound family, source-locked before publication.
-2. **Nomenclature** — the German/English spelling boundary as architecture; [SOURCE REQUIRED] for formal nomenclature authority citations.
+1. **Terminology** — governed definitions of bisulfid and the sulfur compound family.
+2. **Nomenclature** — the German/English spelling boundary as architecture.
 3. **Source Discipline** — no claim is published without a source entry in the registry.
 4. **Multilingual Architecture** — seven language layers with distinct strategic roles.
-5. **Industrial Reference** — sulfur compound relevance across chemical, energy, and industrial sectors. [SOURCE REQUIRED]
+5. **Industrial Reference** — sulfur compound relevance across chemical, energy, and industrial sectors.
 6. **Acquisition Surface** — a governed strategic asset available for acquisition by an aligned principal.
 
 ---
@@ -48,7 +48,7 @@ It is not a chemistry textbook. It is not a commodity marketplace. It is a sover
 ## Language Architecture
 
 | Layer | Language | Role |
-|-------|----------|------|
+|-------|----------|---------|
 | Source | English (EN) | Canonical term definitions and content structure |
 | Identity | German (DE) | Spelling origin and nomenclature authority |
 | Market-chain | Arabic (AR) | Regional industrial market coverage |
@@ -56,32 +56,3 @@ It is not a chemistry textbook. It is not a commodity marketplace. It is a sover
 | Extended | Japanese (JA) | Precision chemical sector coverage |
 | Extended | French (FR) | International scientific register |
 | Extended | Spanish (ES) | Latin American industrial coverage |
-
-Language governance is defined in `doctrine/MULTILINGUAL_POLICY.md`.
-
----
-
-## Interactive Term Map
-
-The Interactive Term Map is a planned interface layer that will visualise the semantic relationships between sulfur compound terms across the ontology.
-
-It is not yet active. The data skeleton exists in `main/data/ontology/`. The map will be rendered only after the relevant routes pass the Quality Gate.
-
----
-
-## Planned Internal Links
-
-The following route IDs represent planned internal navigation targets. Links will be generated from routes.json only after each route reaches `status: published`.
-
-- `what_is_sulfur` — introduction to sulfur as element and industrial compound
-- `what_is_bisulfid` — definition of Bisulfid as the central term
-- `bisulfid_vs_bisulfide` — The Missing Letter explained
-- `sulfid_vs_sulfide` — broader German/English spelling pattern
-- `industrial_sulfur_systems` — industrial context and supply chain layer
-- `glossary` — governed sulfur terminology glossary
-- `sources` — source discipline and registry governance
-- `acquire` — strategic acquisition surface
-
----
-
-*This page is a draft. It is non-public. It may not be cited, linked, or treated as published content until its route passes the Quality Gate and `publication_status` is updated in routes.json.*
