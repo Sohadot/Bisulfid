@@ -1,243 +1,97 @@
-<!--
-  PUBLIC LAUNCH FOUNDATION — 14,000-PAGE CONTROLLED VISIBILITY (Sprint 6M-G)
-  Indexation gate: CLOSED (noindex,nofollow). Sitemap gate: CLOSED. Navigation gate: CLOSED.
-  Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved.
-  Public visibility does not mean final publication-ready status.
--->
 <!DOCTYPE html>
-<!--
-  base.html — Sovereign publication frame shell (Sprint 6M-B)
-  Part of the 14,000-page governed launch corpus rendering pipeline.
-  NOT A LAUNCH TEMPLATE. Do not render for public output until route status
-  is published and all Quality Gate conditions pass.
-  No external scripts. No inline JS. No tracking.
--->
 <html lang="en" dir="ltr">
 <head>
-  <!--
-  partials/head.html — Governed <head> metadata block (Sprint 6M-B)
-  Default posture: noindex, nofollow until explicit publication authorization.
-  Canonical is withheld or marked non-public for planned/draft routes.
-  CSP meta required before public launch (Gate 06) — placeholder only here.
--->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sources — bisulfid.com</title>
-<meta name="description" content="The public-facing source registry for bisulfid.com: all verified sources cited in published content.">
-<meta name="robots" content="noindex, nofollow">
-<!-- default robots posture: noindex, nofollow until publication authorization -->
-<link rel="canonical" href="https://bisulfid.com/sources/" data-canonical-mode="public_foundation_noindex">
-<meta name="bisulfid:route-id" content="sources">
-<meta name="bisulfid:route-status" content="planned">
-<meta name="bisulfid:publication-posture" content="public_visible_foundation">
-<meta name="bisulfid:indexable" content="false">
-<meta name="bisulfid:in-sitemap" content="false">
-<meta name="bisulfid:in-navigation" content="false">
-<meta name="bisulfid:source-required" content="true">
-<meta name="bisulfid:claim-approval-state" content="no_claims_approved">
-<!-- Bisulfid proprietary design system — local assets only (Sprint 6N-B) -->
+<title>Source Discipline — bisulfid.com</title>
+<meta name="description" content="How bisulfid.com governs factual claims: no claim reaches a public page without a corresponding verified source entry. Learn about the source discipline framework.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bisulfid.com/sources/">
 <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
-<!-- CSP placeholder: required before public launch per doctrine/SECURITY_POLICY.md -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-ancestors 'none'">
-<!-- default robots posture: noindex, nofollow until publication authorization -->
-<!-- No meta keywords. No tracking pixels. No external scripts. No CDN. No npm. -->
-
-  <!--
-  partials/hreflang.html — Hreflang slot (Sprint 6M-B)
-  Inactive until hreflang_groups.json status is active and multilingual routes published.
-  Supports EN, DE, AR, FR, ES, JA, ZH readiness without assuming activation.
--->
-<!-- hreflang status: inactive -->
-<!-- hreflang withheld — publication locks active -->
-<!-- x-default withheld until EN source route published and verified -->
-
+<link rel="stylesheet" href="/assets/bisulfid-design-system/public-surface.css">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; frame-ancestors 'none'">
 </head>
-<body class="bisulfid-frame bs-control-room" data-route-id="sources" data-route-status="planned" data-publication-posture="public_visible_foundation" data-design-system="bisulfid-frame">
-  <!--
-  partials/governance_banner.html — Non-public posture visibility (Sprint 6M-B / 6N-B)
-  Structured design-system governance banner. Does not imply publication authorization.
--->
-<div class="governance-banner bs-governance-banner bs-governance-banner--noindex" role="status" aria-live="polite" data-qa-artifact="false" data-indexation-gate="closed" data-sitemap-gate="closed" data-navigation-gate="closed">
-  <img class="bs-missing-e-boundary" src="/assets/bisulfid-design-system/assets/missing-e-boundary.svg" alt="" aria-hidden="true" width="40" height="40">
-  <p class="governance-banner__title bs-governance-banner__title">Public launch foundation — controlled visibility</p>
-  <p class="governance-banner__body bs-governance-banner__body">14,000-page public launch foundation. Indexation CLOSED (noindex). Sitemap CLOSED. Navigation CLOSED. Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved where unresolved.</p>
-  <ul class="governance-banner__locks bs-governance-banner__locks">
-    <li>Route status: <strong>planned</strong></li>
-    <li>Publication posture: <strong>public_visible_foundation</strong></li>
-    <li>Indexable: <strong>false</strong></li>
-    <li>In sitemap: <strong>false</strong></li>
-    <li>In navigation: <strong>false</strong></li>
-    <li class="bs-governance-banner__robots">Robots: <strong>noindex, nofollow</strong></li>
-  </ul>
-  <p class="governance-banner__frame-note bs-governance-banner__posture">
-    14,000-page governed launch corpus frame — chemical-language control room interface.
-    Not a launch. Not a reduced publication target.
-    <span class="bs-source-required-inline">[SOURCE REQUIRED]</span> preserved where unresolved.
-  </p>
-</div>
-
+<body class="bisulfid-frame bs-control-room" data-route-id="sources" data-route-status="published" data-design-system="bisulfid-frame">
 
   <header class="site-header">
-    <!--
-  partials/nav.html — Primary navigation slot (Sprint 6M-B)
-  Navigation items controlled by main/config/navigation.json — currently inactive.
-  Build engine must not emit nav links unless route in_navigation and global gate allow.
--->
-<nav aria-label="Primary navigation" data-navigation-status="inactive">
-  
-  <p class="nav-governance-note" role="note">
-    Navigation inactive — no published routes in production navigation.
-    Not in sitemap. Not indexable. Not a public launch.
-  </p>
-</nav>
-
+    <nav aria-label="Primary navigation">
+      <ul class="site-nav-list">
+        <li><a href="/" class="site-nav-brand" style="text-decoration:none;">BISULFID</a></li>
+        <li><a href="/what-is-bisulfid/">What is Bisulfid</a></li>
+        <li><a href="/bisulfid-vs-bisulfide/">Bisulfid vs Bisulfide</a></li>
+        <li><a href="/glossary/">Glossary</a></li>
+        <li><a href="/sources/" aria-current="page">Sources</a></li>
+        <li><a href="/acquire/">Acquire</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!--
-  partials/breadcrumbs.html — Route context trail (Sprint 6M-B)
-  Built from governed route metadata at render time. No invented links.
--->
-<nav class="breadcrumbs" aria-label="Breadcrumb">
-  <ol>
-    <li><span>Public launch foundation</span></li><li><span>sources</span></li>
-  </ol>
-  <p class="breadcrumbs__context" hidden="false">
-    Route ID: sources · Path: /sources/ · Layer: utility
-  </p>
-</nav>
-
-
-  <div class="public-launch-foundation-notice" role="status" data-public-launch-foundation="14000" data-publication-posture="public_visible_foundation"><p><strong>Public launch foundation</strong> — controlled visibility only. Indexation gate: <strong>CLOSED</strong> (noindex,nofollow). Sitemap gate: <strong>CLOSED</strong>. Navigation gate: <strong>CLOSED</strong>. Source approval not implied. Claim approval not implied. Not final publication-ready. Route status: <strong>planned</strong>. 14,000-page launch foundation — scaling toward 100,000+ governed pages.</p></div>
   <main id="main-content" role="main">
-    <!--
-  reference_page.html — Registry bridge to hardened reference.html (Sprint 6M-C)
-  routes.json references this legacy name; build.py resolves to reference.html frame.
-  NOT A LAUNCH TEMPLATE. Do not render for public output until route status is published
-  and all Quality Gate conditions pass.
-  Bridge target: main/templates/reference.html
--->
-<article class="reference-frame" lang="en" dir="ltr">
-  <header class="reference-frame__header">
-    <h1 class="reference-frame__title">Sources</h1>
-    <p class="reference-frame__layer">Reference layer: utility</p>
-  </header>
+    <div class="public-page">
+      <p class="page-kicker">Governance &middot; Source Discipline</p>
+      <h1>Source Discipline</h1>
+      <p class="page-intro">
+        bisulfid.com operates under a strict source discipline principle:
+        <strong>no claim reaches a public page without a corresponding verified source.</strong>
+      </p>
 
-  <div class="reference-frame__body">
-    <h1>Sources</h1>
-<p>bisulfid.com operates under strict source discipline. No claim is published without a corresponding source entry in the registry.</p>
-<hr>
-<h2>The Governing Principle</h2>
-<p>No source entry = no published claim.</p>
-<p>Every factual claim that appears on a public-facing page of bisulfid.com must have a corresponding entry in <code>main/data/sources/source_registry.json</code>. If no source entry exists for a claim, that claim may not appear on a published page.</p>
-<hr>
-<h2>Current Registry Status</h2>
-<p>The source registry now contains seeded candidate sources. These sources are not final publication locks. They remain governed by SOURCE_POLICY.md, claim review, and Quality Gate enforcement. No claim is approved for publication merely because a candidate source exists.</p>
-<p><code>main/data/sources/source_registry.json</code> currently holds seeded candidate entries across authoritative dictionaries, a chemical nomenclature standard, government scientific databases, and one industry publication. All entries carry <code>status: seeded</code> and <code>source_lock_status: candidate</code>. None are final.</p>
-<p><strong>Candidate source entries are not the same as approved claims.</strong> A source appearing in the registry means it has been identified and evaluated. It does not mean the claims associated with that source are approved for publication.</p>
-<p><strong>Source registry presence does not make a page publishable.</strong> Each draft page requires corresponding approved claims, route status updates, Quality Gate passage, and an explicit publication decision — none of which have occurred.</p>
-<p><strong>Claims remain pending_review unless explicitly approved.</strong> All registered terminology and science claims carry <code>status: pending_review</code>. No claim has been approved. No claim may appear on a published page without an explicit approval decision recorded in the claim registry.</p>
-<p><strong><mark class="source-required-marker">[SOURCE REQUIRED]</mark> markers remain until source-locking review.</strong> Draft content pages across the site retain <code><mark class="source-required-marker">[SOURCE REQUIRED]</mark></code> markers where claims await source-locking. The presence of candidate sources in the registry does not automatically remove these markers. Markers are removed only after claims are explicitly approved.</p>
-<p><strong>Draft content remains non-public.</strong> The existence of seeded candidate sources and pending claims does not alter the publication status of any draft page.</p>
-<hr>
-<h2>Source Categories</h2>
-<p>The source registry will eventually include sources from the following categories:</p>
-<ul>
-<li><strong>Chemical nomenclature authorities</strong> — IUPAC, DIN, and other recognised bodies that govern compound naming conventions.</li>
-<li><strong>Industrial reference databases</strong> — verified industry data relevant to sulfur compounds.</li>
-<li><strong>Scientific literature</strong> — peer-reviewed publications where relevant to terminology claims.</li>
-<li><strong>Regulatory bodies</strong> — official sources where regulatory claims are made. Note: safety thresholds, handling instructions, and dosage or exposure data are outside the scope of this asset entirely.</li>
-<li><strong>Commercial and market data</strong> — verified market data from credentialled sources. Note: unsourced market statistics are blocked.</li>
-</ul>
-<hr>
-<h2>What Is Blocked</h2>
-<p>The following source types are permanently blocked under <code>doctrine/SOURCE_POLICY.md</code>:</p>
-<ul>
-<li><strong>Unsourced market statistics</strong> — any numerical market claim that cannot be traced to a credentialled data provider.</li>
-<li><strong>Bisulfite data presented as bisulfide data</strong> — the two compounds are distinct; conflating their data is a structural error.</li>
-<li><strong>Safety thresholds presented as advice</strong> — this asset does not publish handling instructions, exposure limits, or safety guidance of any kind.</li>
-<li><strong>Medical or therapeutic claims</strong> — no claim about health effects, therapeutic use, or medical application is permitted.</li>
-<li><strong>Handling instructions</strong> — chemical handling guidance is outside the scope of this asset.</li>
-<li><strong>AI-generated summaries as sources</strong> — AI outputs are not primary sources. No AI summary may be cited as evidence for a factual claim.</li>
-</ul>
-<hr>
-<h2>Draft Content Is Not Public Evidence</h2>
-<p>Pages in <code>main/content/en/pages/</code> with <code>publication_status: non_public</code> are internal drafts. They are:</p>
-<ul>
-<li>Not indexed.</li>
-<li>Not linked from any published navigation.</li>
-<li>Not part of the sitemap.</li>
-<li>Not treated as evidence for any claim on any other page.</li>
-</ul>
-<p>The existence of a draft page does not mean the asset has published the claims it contains.</p>
-<hr>
-<h2>Planned Internal Links</h2>
-<ul>
-<li>`what_is_bisulfid` — Bisulfid as the central term</li>
-<li>`glossary` — governed sulfur terminology glossary</li>
-<li>`home` — return to gateway</li>
-</ul>
-<hr>
-<p>*This page is a draft. It is non-public. It may not be cited, linked, or treated as published content until its route passes the Quality Gate.*</p>
-  </div>
+      <h2>The Governing Principle</h2>
+      <p>
+        Every factual claim that appears on a public-facing page of bisulfid.com must be
+        supported by a traceable, credentialled source. If no verified source exists for a
+        claim, that claim does not appear on the public surface.
+      </p>
+      <p>
+        This means the public site may contain less content than readers expect at any given
+        time. That is intentional. Accuracy and source integrity take precedence over
+        completeness.
+      </p>
 
-  <!--
-  partials/source_bar.html — Source attribution slot (Sprint 6M-B / 6N-B)
-  Source crystal styling. Never implies approval or source-lock by default.
--->
-<aside class="source-bar bs-source-crystal bs-source-crystal--required" aria-label="Source status" data-source-required="true" data-claim-approval="no_claims_approved">
-  <img class="bs-source-crystal__icon" src="/assets/bisulfid-design-system/assets/source-crystal.svg" alt="" aria-hidden="true">
-  <div class="bs-source-crystal__content">
-    <h2 class="source-bar__heading bs-source-crystal__label">Source and governance status</h2>
-    <p class="source-bar__posture bs-source-crystal__state">Sources and claims remain unapproved. [SOURCE REQUIRED] markers are binding.</p>
-    
-    <p class="source-bar__required bs-source-required-inline" data-visible="true">
-      [SOURCE REQUIRED] markers remain binding where content requires verification.
-      This frame does not remove source requirements or approve claims.
-    </p>
-  </div>
-</aside>
+      <h2>Source Categories</h2>
+      <p>The source framework is designed to accept the following source types:</p>
+      <ul>
+        <li><strong>Chemical nomenclature authorities</strong> &mdash; recognised bodies that govern compound naming conventions, including IUPAC and DIN.</li>
+        <li><strong>Scientific literature</strong> &mdash; peer-reviewed publications where relevant to terminology and nomenclature claims.</li>
+        <li><strong>Industrial reference databases</strong> &mdash; verified industry data relevant to sulfur compounds and their applications.</li>
+        <li><strong>Regulatory bodies</strong> &mdash; official sources where regulatory framing is relevant.</li>
+      </ul>
 
-  
-  <!--
-  partials/internal_links.html — Internal link slot (Sprint 6M-B)
-  Links from main/data/internal_links.json — emitted only for published route pairs.
-  No invented links. Empty slot is valid in locked posture.
--->
-<nav class="internal-links" aria-label="Related governed routes">
-  <h2 class="internal-links__heading">Related routes (governed)</h2>
-  
-  <p class="internal-links__empty bs-term-card__disclaimer" data-empty="true">
-    No internal links emitted — publication locks active or targets unpublished.
-  </p>
-</nav>
+      <h2>What Is Permanently Blocked</h2>
+      <p>The following are permanently outside the scope of bisulfid.com, regardless of source availability:</p>
+      <ul>
+        <li>Safety thresholds, handling instructions, or exposure guidance of any kind</li>
+        <li>Medical or therapeutic claims</li>
+        <li>Bisulfite data presented as bisulfide data (the two compounds are distinct)</li>
+        <li>AI-generated summaries as primary sources</li>
+        <li>Unsourced numerical market claims</li>
+      </ul>
 
-</article>
+      <h2>Source Discipline as Public Trust</h2>
+      <p>
+        Source discipline is not just an internal governance mechanism. It is a public trust
+        principle. When bisulfid.com publishes a claim, that claim has a source. When a
+        source cannot be verified, the claim is held back.
+      </p>
+      <p>
+        The site does not present speculative or unverified claims as facts, and does not
+        use rhetorical framing to imply authority it has not earned through source verification.
+      </p>
 
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/glossary/">Sulfur Terminology Glossary</a></li>
+        <li><a href="/what-is-bisulfid/">What is Bisulfid?</a></li>
+      </ul>
+
+      <a href="/" class="back-link">&larr; Back to gateway</a>
+    </div>
   </main>
 
   <footer class="site-footer">
-    <!--
-  partials/footer.html — Footer governance language (Sprint 6M-B)
-  Links resolve only from published routes at build time. No hard-coded URLs.
--->
-<footer class="site-footer__inner">
-  <p class="footer-governance">
-    bisulfid.com — sovereign sulfur intelligence reference frame.
-    Minimum launch corpus target: <strong>14,000 governed pages</strong>.
-    Current render posture: <strong>public_visible_foundation</strong>.
-    Not publication-ready. Not a launch artifact unless explicitly authorized.
-  </p>
-  <p class="footer-locks">
-    Indexation: false · Sitemap: false · Navigation: false
-  </p>
-  <p class="footer-source-claim">
-    Source verification: inactive.
-    Claim approval: no_claims_approved.
-    No approved claim is implied by this template frame.
-  </p>
-  <p class="footer-copyright">&copy; 2026 bisulfid.com. All rights reserved.</p>
-</footer>
-
+    <footer class="site-footer__inner">
+      <p class="footer-governance">bisulfid.com &mdash; sovereign sulfur intelligence reference frame.</p>
+      <p class="footer-copyright">&copy; 2026 bisulfid.com. All rights reserved.</p>
+    </footer>
   </footer>
 </body>
 </html>

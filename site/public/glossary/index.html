@@ -1,257 +1,155 @@
-<!--
-  PUBLIC LAUNCH FOUNDATION — 14,000-PAGE CONTROLLED VISIBILITY (Sprint 6M-G)
-  Indexation gate: CLOSED (noindex,nofollow). Sitemap gate: CLOSED. Navigation gate: CLOSED.
-  Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved.
-  Public visibility does not mean final publication-ready status.
--->
 <!DOCTYPE html>
-<!--
-  base.html — Sovereign publication frame shell (Sprint 6M-B)
-  Part of the 14,000-page governed launch corpus rendering pipeline.
-  NOT A LAUNCH TEMPLATE. Do not render for public output until route status
-  is published and all Quality Gate conditions pass.
-  No external scripts. No inline JS. No tracking.
--->
 <html lang="en" dir="ltr">
 <head>
-  <!--
-  partials/head.html — Governed <head> metadata block (Sprint 6M-B)
-  Default posture: noindex, nofollow until explicit publication authorization.
-  Canonical is withheld or marked non-public for planned/draft routes.
-  CSP meta required before public launch (Gate 06) — placeholder only here.
--->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sulfur Terminology Glossary — bisulfid.com</title>
-<meta name="description" content="The governed sulfur terminology glossary: all controlled terms, definitions, and relationships in the bisulfid.com ontology.">
-<meta name="robots" content="noindex, nofollow">
-<!-- default robots posture: noindex, nofollow until publication authorization -->
-<link rel="canonical" href="https://bisulfid.com/glossary/" data-canonical-mode="public_foundation_noindex">
-<meta name="bisulfid:route-id" content="glossary">
-<meta name="bisulfid:route-status" content="planned">
-<meta name="bisulfid:publication-posture" content="public_visible_foundation">
-<meta name="bisulfid:indexable" content="false">
-<meta name="bisulfid:in-sitemap" content="false">
-<meta name="bisulfid:in-navigation" content="false">
-<meta name="bisulfid:source-required" content="true">
-<meta name="bisulfid:claim-approval-state" content="no_claims_approved">
-<!-- Bisulfid proprietary design system — local assets only (Sprint 6N-B) -->
+<meta name="description" content="Reference glossary of sulfur compound terminology for bisulfid.com — covering bisulfid, bisulfide, sulfide, hydrosulfide, and the German/English spelling boundary.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bisulfid.com/glossary/">
 <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
-<!-- CSP placeholder: required before public launch per doctrine/SECURITY_POLICY.md -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-ancestors 'none'">
-<!-- default robots posture: noindex, nofollow until publication authorization -->
-<!-- No meta keywords. No tracking pixels. No external scripts. No CDN. No npm. -->
-
-  <!--
-  partials/hreflang.html — Hreflang slot (Sprint 6M-B)
-  Inactive until hreflang_groups.json status is active and multilingual routes published.
-  Supports EN, DE, AR, FR, ES, JA, ZH readiness without assuming activation.
--->
-<!-- hreflang status: inactive -->
-<!-- hreflang withheld — publication locks active -->
-<!-- x-default withheld until EN source route published and verified -->
-
+<link rel="stylesheet" href="/assets/bisulfid-design-system/public-surface.css">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; frame-ancestors 'none'">
 </head>
-<body class="bisulfid-frame bs-control-room" data-route-id="glossary" data-route-status="planned" data-publication-posture="public_visible_foundation" data-design-system="bisulfid-frame">
-  <!--
-  partials/governance_banner.html — Non-public posture visibility (Sprint 6M-B / 6N-B)
-  Structured design-system governance banner. Does not imply publication authorization.
--->
-<div class="governance-banner bs-governance-banner bs-governance-banner--noindex" role="status" aria-live="polite" data-qa-artifact="false" data-indexation-gate="closed" data-sitemap-gate="closed" data-navigation-gate="closed">
-  <img class="bs-missing-e-boundary" src="/assets/bisulfid-design-system/assets/missing-e-boundary.svg" alt="" aria-hidden="true" width="40" height="40">
-  <p class="governance-banner__title bs-governance-banner__title">Public launch foundation — controlled visibility</p>
-  <p class="governance-banner__body bs-governance-banner__body">14,000-page public launch foundation. Indexation CLOSED (noindex). Sitemap CLOSED. Navigation CLOSED. Source approval not implied. Claim approval not implied. [SOURCE REQUIRED] preserved where unresolved.</p>
-  <ul class="governance-banner__locks bs-governance-banner__locks">
-    <li>Route status: <strong>planned</strong></li>
-    <li>Publication posture: <strong>public_visible_foundation</strong></li>
-    <li>Indexable: <strong>false</strong></li>
-    <li>In sitemap: <strong>false</strong></li>
-    <li>In navigation: <strong>false</strong></li>
-    <li class="bs-governance-banner__robots">Robots: <strong>noindex, nofollow</strong></li>
-  </ul>
-  <p class="governance-banner__frame-note bs-governance-banner__posture">
-    14,000-page governed launch corpus frame — chemical-language control room interface.
-    Not a launch. Not a reduced publication target.
-    <span class="bs-source-required-inline">[SOURCE REQUIRED]</span> preserved where unresolved.
-  </p>
-</div>
-
+<body class="bisulfid-frame bs-control-room" data-route-id="glossary" data-route-status="published" data-design-system="bisulfid-frame">
 
   <header class="site-header">
-    <!--
-  partials/nav.html — Primary navigation slot (Sprint 6M-B)
-  Navigation items controlled by main/config/navigation.json — currently inactive.
-  Build engine must not emit nav links unless route in_navigation and global gate allow.
--->
-<nav aria-label="Primary navigation" data-navigation-status="inactive">
-  
-  <p class="nav-governance-note" role="note">
-    Navigation inactive — no published routes in production navigation.
-    Not in sitemap. Not indexable. Not a public launch.
-  </p>
-</nav>
-
+    <nav aria-label="Primary navigation">
+      <ul class="site-nav-list">
+        <li><a href="/" class="site-nav-brand" style="text-decoration:none;">BISULFID</a></li>
+        <li><a href="/what-is-bisulfid/">What is Bisulfid</a></li>
+        <li><a href="/bisulfid-vs-bisulfide/">Bisulfid vs Bisulfide</a></li>
+        <li><a href="/glossary/" aria-current="page">Glossary</a></li>
+        <li><a href="/sources/">Sources</a></li>
+        <li><a href="/acquire/">Acquire</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!--
-  partials/breadcrumbs.html — Route context trail (Sprint 6M-B)
-  Built from governed route metadata at render time. No invented links.
--->
-<nav class="breadcrumbs" aria-label="Breadcrumb">
-  <ol>
-    <li><span>Public launch foundation</span></li><li><span>glossary</span></li>
-  </ol>
-  <p class="breadcrumbs__context" hidden="false">
-    Route ID: glossary · Path: /glossary/ · Layer: terminology_system
-  </p>
-</nav>
-
-
-  <div class="public-launch-foundation-notice" role="status" data-public-launch-foundation="14000" data-publication-posture="public_visible_foundation"><p><strong>Public launch foundation</strong> — controlled visibility only. Indexation gate: <strong>CLOSED</strong> (noindex,nofollow). Sitemap gate: <strong>CLOSED</strong>. Navigation gate: <strong>CLOSED</strong>. Source approval not implied. Claim approval not implied. Not final publication-ready. Route status: <strong>planned</strong>. 14,000-page launch foundation — scaling toward 100,000+ governed pages.</p></div>
   <main id="main-content" role="main">
-    <!--
-  reference.html — Reference-layer publication frame (Sprint 6M-B / 6N-B)
-  Reference term-card framing with language depth.
--->
-<article class="reference-frame bs-term-card bs-term-card--source-required" lang="en" dir="ltr">
-  <header class="reference-frame__header bs-term-card__header">
-    <div class="bs-language-depth" aria-label="Language depth">
-      <span class="bs-language-depth__layer bs-language-depth__layer--en">EN</span>
-      <span class="bs-language-depth__depth-indicator">Reference layer · terminology_system</span>
+    <div class="public-page">
+      <p class="page-kicker">Reference &middot; Terminology</p>
+      <h1>Sulfur Terminology Glossary</h1>
+      <p class="page-intro">
+        A reference glossary covering the core sulfur compound terms and the German/English
+        spelling boundaries that define the architecture of bisulfid.com.
+      </p>
+
+      <h2>Core Terms</h2>
+      <table class="glossary-table" role="table" aria-label="Sulfur compound terminology">
+        <thead>
+          <tr>
+            <th scope="col">Term</th>
+            <th scope="col">Lang</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="term-name">Bisulfid</span><span class="term-lang">DE</span></td>
+            <td>DE</td>
+            <td>German-form spelling of bisulfide. The sovereign term of bisulfid.com. Without the final E of the English form.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Bisulfide</span><span class="term-lang">EN</span></td>
+            <td>EN</td>
+            <td>English-form spelling of the bisulfide compound class. Related to the HS&sup1;&macr; ion and sulfide chemistry.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Sulfid</span><span class="term-lang">DE</span></td>
+            <td>DE</td>
+            <td>German-form spelling of sulfide. Follows the same DE/EN suffix pattern as Bisulfid/Bisulfide.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Sulfide</span><span class="term-lang">EN</span></td>
+            <td>EN</td>
+            <td>English-form spelling. General term for sulfur-based ionic compounds. Related to S&#x00B2;&macr; and HS&sup1;&macr; ions.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Hydrosulfide</span><span class="term-lang">EN</span></td>
+            <td>EN</td>
+            <td>Alternative name for bisulfide. Refers to the HS&sup1;&macr; anion and compounds thereof.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Sodium bisulfide</span><span class="term-lang">EN</span></td>
+            <td>EN</td>
+            <td>NaSH. Common name for sodium hydrosulfide. Used in industrial applications including paper pulping and mining flotation.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Sodium hydrosulfide</span><span class="term-lang">EN</span></td>
+            <td>EN</td>
+            <td>NaSH. Systematic IUPAC-aligned name for the sodium salt of hydrogen sulfide. Also known as sodium bisulfide.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Disulfid</span><span class="term-lang">DE</span></td>
+            <td>DE</td>
+            <td>German form of disulfide. Included for DE/EN suffix pattern coverage.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Disulfide</span><span class="term-lang">EN</span></td>
+            <td>EN</td>
+            <td>Compounds containing the S&ndash;S bond. Includes organodisulfides and relevant industrial compounds.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">MoS&#x2082;</span><span class="term-lang">CHEM</span></td>
+            <td>CHEM</td>
+            <td>Molybdenum disulfide. A transition-metal dichalcogenide referenced in the bisulfid.com ontology as a material node.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Bisulfite</span><span class="term-lang">EN</span></td>
+            <td>EN</td>
+            <td><strong>Distinct from bisulfide.</strong> Relates to the HSO&#x2083;&sup1;&macr; ion. Not the same compound. Not interchangeable with bisulfide.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Oxid</span><span class="term-lang">DE</span></td>
+            <td>DE</td>
+            <td>German form of oxide. Included for DE/EN suffix boundary reference.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Chlorid</span><span class="term-lang">DE</span></td>
+            <td>DE</td>
+            <td>German form of chloride. Included for DE/EN suffix boundary reference.</td>
+          </tr>
+          <tr>
+            <td><span class="term-name">Chloride</span><span class="term-lang">EN</span></td>
+            <td>EN</td>
+            <td>English form of chloride. Paired with Chlorid for DE/EN nomenclature pattern illustration.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>The DE/EN Suffix Pattern</h2>
+      <p>
+        German chemical nomenclature systematically uses a shorter suffix for many compound
+        classes where English uses the <em>-ide</em> / <em>-ite</em> ending:
+      </p>
+      <ul>
+        <li>English <strong>bisulfide</strong> &rarr; German <strong>Bisulfid</strong></li>
+        <li>English <strong>sulfide</strong> &rarr; German <strong>Sulfid</strong></li>
+        <li>English <strong>oxide</strong> &rarr; German <strong>Oxid</strong></li>
+        <li>English <strong>chloride</strong> &rarr; German <strong>Chlorid</strong></li>
+      </ul>
+      <p>
+        bisulfid.com maps this pattern as part of its multilingual nomenclature architecture.
+        <a href="/bisulfid-vs-bisulfide/">Learn more &rarr;</a>
+      </p>
+
+      <h2>Scope Note</h2>
+      <p>
+        This glossary covers the core terms relevant to the bisulfid.com reference architecture.
+        It is not a comprehensive chemistry reference, does not constitute medical or safety
+        guidance, and does not provide handling instructions for any compound.
+      </p>
+
+      <a href="/" class="back-link">&larr; Back to gateway</a>
     </div>
-    <h1 class="reference-frame__title bs-term-card__title">Sulfur Terminology Glossary</h1>
-    <p class="reference-frame__layer bs-term-card__route-type">Reference layer: terminology_system</p>
-  </header>
-
-  <div class="reference-frame__body bs-term-card__body">
-    <h1>Sulfur Terminology Glossary</h1>
-<p><strong>Draft notice:</strong> This page is a <strong>non-public draft</strong> for internal reference infrastructure only. It is <strong>not</strong> published, <strong>not</strong> indexable, <strong>not</strong> in the sitemap, <strong>not</strong> approved for public use or citation, and <strong>not publication-ready</strong>. All definitions and scope statements below are <strong>draft review</strong> material: <strong>candidate support</strong> only until <strong>source-locking required</strong> work completes. This page does <strong>not</strong> establish formal source-locking for any claim. <strong>No claim is approved</strong> or implied approved on this page.</p>
-<hr>
-<h2>1. What this glossary is (and is not)</h2>
-<p>This file is the <strong>controlled terminology chamber</strong> for bisulfid.com: internal reference infrastructure for how governed term entries will eventually read when public glossary behavior is authorized.</p>
-<p>It is <strong>not</strong> a generic open glossary, a textbook, or a public chemistry article. It does <strong>not</strong> exhaust sulfur chemistry.</p>
-<p>The production glossary is expected to be <strong>driven by</strong> <code>sulfur_terms.json</code> and source discipline <mark class="source-required-marker">[SOURCE REQUIRED]</mark>. This draft does <strong>not</strong> modify that ontology file and does <strong>not</strong> mark any term as verified.</p>
-<hr>
-<h2>2. Distinctions this chamber enforces</h2>
-<p>The glossary separates layers that must not be collapsed during <strong>draft review</strong>:</p>
-<ul>
-<li><strong>Lexical forms</strong> - language-surface spellings and dictionary-style labels (for example German <strong>-id</strong> vs English <strong>-ide</strong> in cognate pairs) <mark class="source-required-marker">[SOURCE REQUIRED]</mark>.</li>
-<li><strong>Chemical forms</strong> - systematic or operational chemical naming intentions behind a label <mark class="source-required-marker">[SOURCE REQUIRED]</mark>.</li>
-<li><strong>Candidate source support</strong> - illustrative or teaching-backed hints usable only as <strong>candidate support</strong> until locked.</li>
-<li><strong>Approved claims</strong> - <strong>none</strong> on this page; claim registries remain <strong>inactive</strong>, and no terminology claim is treated as approved here.</li>
-<li><strong>Terms requiring stronger source-locking</strong> - any row in the controlled table marked for registry-grade work before public wording <mark class="source-required-marker">[SOURCE REQUIRED]</mark>.</li>
-<li><strong>Terms that must not be confused</strong> - explicit boundary notes (for example <strong>bisulfite</strong> vs <strong>bisulfide</strong> / sulfur anion vocabulary) kept in the table <strong>not-to-confuse</strong> column.</li>
-</ul>
-<p>This draft does <strong>not</strong> remove or satisfy <strong><code><mark class="source-required-marker">[SOURCE REQUIRED]</mark></code></strong> markers on other pages.</p>
-<hr>
-<h2>3. Operating rules for this chamber</h2>
-<ul>
-<li>Every future public-facing definition requires registry and claim workflow alignment <mark class="source-required-marker">[SOURCE REQUIRED]</mark>.</li>
-<li>Entries below are <strong>draft-level slots</strong> only, not final definitions.</li>
-<li><strong>`<mark class="source-required-marker">[SOURCE REQUIRED]</mark>`</strong> marks any factual line that is not yet approved through governed review.</li>
-</ul>
-<hr>
-<h2>4. Controlled draft entries (required term list)</h2>
-<table>
-<tr><th>Term</th><th>Role in this draft</th><th>Current support state</th><th>Boundary / not-to-confuse note</th><th>Publication status</th></tr>
-<tr><td>Bisulfid</td><td>German lexical / identity-layer anchor for the asset</td><td>Candidate DE surface form only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>Must not be collapsed into English <strong>bisulfide</strong> without DE/EN governance <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Bisulfide</td><td>English chemical / commercial label cluster</td><td>Candidate EN label; not source-locked <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>Do not equate casually with <strong>bisulfite</strong> (different ion family); see `bisulfide_hydrosulfide_sulfide` <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Sulfid</td><td>German lexical form parallel to English sulfide-class naming</td><td>Candidate DE form only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td><strong>Sulfid</strong> (lexical) vs <strong>sulfide</strong> (EN chemical) is a boundary, not a universal rule without sources <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Sulfide</td><td>English class / ion vocabulary</td><td>Candidate EN term; not source-locked <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>Must not be confused with <strong>sulfite</strong> / <strong>bisulfite</strong> families in short labels <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Hydrosulfide</td><td>English label tied to SH^- discourse in many texts</td><td>Candidate only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>Do not import safety or handling duties here <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Sodium hydrosulfide</td><td>Product / formula short language</td><td>Candidate supplier-language slot only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td><strong>Stronger source-locking required</strong> before any public identity sentence <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Sodium bisulfide</td><td>Product / formula short language</td><td>Candidate supplier-language slot only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td><strong>Stronger source-locking required</strong>; must not be merged with <strong>bisulfite</strong> salts <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Disulfid</td><td>German surface form for disulfide-class wording</td><td>Candidate DE label only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>Pair with <strong>Disulfide</strong> only under governed DE/EN review <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Disulfide</td><td>English motif label (bond / compound class)</td><td>Candidate only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>Not interchangeable with single <strong>sulfide</strong> ion vocabulary without scope checks <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Oxid</td><td>German lexical parallel in cognate pattern</td><td>Candidate DE form for pattern context only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>Illustrative <strong>-id</strong> pattern only; not a verified universal map <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Oxide</td><td>English chemical cognate in pattern discussion</td><td>Candidate EN form only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>Same caution as <strong>Oxid</strong>: pattern illustration, not approval <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Chlorid</td><td>German lexical parallel in cognate pattern</td><td>Candidate DE form only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>Do not treat pattern examples as proof for sulfur lines without sources <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Chloride</td><td>English chemical cognate in pattern discussion</td><td>Candidate EN form only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>Same scope discipline as <strong>Chlorid</strong> row <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-<tr><td>Bisulfite</td><td>Separate sulfur oxyanion family vocabulary</td><td>Candidate label only <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td><strong>Must not be confused</strong> with <strong>bisulfide</strong>, <strong>hydrosulfide</strong>, or <strong>sulfide</strong> anion vocabulary; separate disambiguation lane <mark class="source-required-marker">[SOURCE REQUIRED]</mark></td><td>non_public draft; not publication-ready</td></tr>
-</table>
-<hr>
-<h2>5. Illustrative scope clusters (non-exhaustive)</h2>
-<p><strong>Candidate</strong> clusters under review <mark class="source-required-marker">[SOURCE REQUIRED]</mark>:</p>
-<ul>
-<li>Core identity and DE/EN boundary terms aligned with `what_is_bisulfid`, `bisulfid_vs_bisulfide`, `sulfid_vs_sulfide`, `german_english_chemical_terms`.</li>
-<li>Disambiguation vocabulary for <strong>bisulfide</strong>, <strong>hydrosulfide</strong>, and <strong>sulfide</strong> (see `bisulfide_hydrosulfide_sulfide`).</li>
-</ul>
-<p>Exact inclusion rules await ontology and source work <mark class="source-required-marker">[SOURCE REQUIRED]</mark>.</p>
-<hr>
-<h2>6. Relationship to other planned routes (`route_id` only)</h2>
-<p>Routes remain <strong>planned</strong>; not public links:</p>
-<ul>
-<li>`what_is_bisulfid`, `bisulfid_vs_bisulfide`, `sulfid_vs_sulfide`, `german_english_chemical_terms`</li>
-<li>`sulfur_compounds`, `bisulfide_hydrosulfide_sulfide`</li>
-<li>`sources`</li>
-</ul>
-<hr>
-<h2>7. Publication blockers</h2>
-<p>This glossary route stays <strong>not publication-ready</strong> until <code>sulfur_terms.json</code> alignment and terminology claims are handled under active registry rules, the route passes Quality Gate, and markers are cleared only through governed review <mark class="source-required-marker">[SOURCE REQUIRED]</mark>.</p>
-<hr>
-<p>*This page is a draft. It is non-public. It may not be cited, indexed, or treated as published content until its route passes the Quality Gate.*</p>
-  </div>
-
-  <div class="bs-term-card__source-bar">
-    <!--
-  partials/source_bar.html — Source attribution slot (Sprint 6M-B / 6N-B)
-  Source crystal styling. Never implies approval or source-lock by default.
--->
-<aside class="source-bar bs-source-crystal bs-source-crystal--required" aria-label="Source status" data-source-required="true" data-claim-approval="no_claims_approved">
-  <img class="bs-source-crystal__icon" src="/assets/bisulfid-design-system/assets/source-crystal.svg" alt="" aria-hidden="true">
-  <div class="bs-source-crystal__content">
-    <h2 class="source-bar__heading bs-source-crystal__label">Source and governance status</h2>
-    <p class="source-bar__posture bs-source-crystal__state">Sources and claims remain unapproved. [SOURCE REQUIRED] markers are binding.</p>
-    
-    <p class="source-bar__required bs-source-required-inline" data-visible="true">
-      [SOURCE REQUIRED] markers remain binding where content requires verification.
-      This frame does not remove source requirements or approve claims.
-    </p>
-  </div>
-</aside>
-
-  </div>
-  
-  <!--
-  partials/internal_links.html — Internal link slot (Sprint 6M-B)
-  Links from main/data/internal_links.json — emitted only for published route pairs.
-  No invented links. Empty slot is valid in locked posture.
--->
-<nav class="internal-links" aria-label="Related governed routes">
-  <h2 class="internal-links__heading">Related routes (governed)</h2>
-  
-  <p class="internal-links__empty bs-term-card__disclaimer" data-empty="true">
-    No internal links emitted — publication locks active or targets unpublished.
-  </p>
-</nav>
-
-</article>
-
   </main>
 
   <footer class="site-footer">
-    <!--
-  partials/footer.html — Footer governance language (Sprint 6M-B)
-  Links resolve only from published routes at build time. No hard-coded URLs.
--->
-<footer class="site-footer__inner">
-  <p class="footer-governance">
-    bisulfid.com — sovereign sulfur intelligence reference frame.
-    Minimum launch corpus target: <strong>14,000 governed pages</strong>.
-    Current render posture: <strong>public_visible_foundation</strong>.
-    Not publication-ready. Not a launch artifact unless explicitly authorized.
-  </p>
-  <p class="footer-locks">
-    Indexation: false · Sitemap: false · Navigation: false
-  </p>
-  <p class="footer-source-claim">
-    Source verification: inactive.
-    Claim approval: no_claims_approved.
-    No approved claim is implied by this template frame.
-  </p>
-  <p class="footer-copyright">&copy; 2026 bisulfid.com. All rights reserved.</p>
-</footer>
-
+    <footer class="site-footer__inner">
+      <p class="footer-governance">bisulfid.com &mdash; sovereign sulfur intelligence reference frame.</p>
+      <p class="footer-copyright">&copy; 2026 bisulfid.com. All rights reserved.</p>
+    </footer>
   </footer>
 </body>
 </html>
