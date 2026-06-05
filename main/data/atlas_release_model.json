@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "sprint": "99",
+  "site": "bisulfid.com",
+  "status": "active",
+  "default_release_mode": "cautious_reference_dossier",
+  "release_modes": [
+    {
+      "mode": "source_verified_page",
+      "description": "Page may include narrowly approved factual claims tied to a verified source pack.",
+      "requires": ["verified_source_pack", "approved_claim_in_library"],
+      "indexable": true
+    },
+    {
+      "mode": "cautious_reference_dossier",
+      "description": "Public reference dossier with structure, context, and internal links only. No unsupported factual claims.",
+      "requires": ["lane_classification", "public_safe_body", "min_internal_links"],
+      "indexable": true
+    },
+    {
+      "mode": "blocked_high_risk",
+      "description": "Not indexed. Page cannot be made public-safe without false claims or acquisition/investment leakage.",
+      "requires": [],
+      "indexable": false
+    }
+  ],
+  "blocked_route_ids": ["acquire", "newsletter"],
+  "publication_chain": [
+    "release_mode_assignment",
+    "release_ledger",
+    "governed_render",
+    "sitemap_shard",
+    "validation",
+    "deployment"
+  ],
+  "min_internal_links": 8,
+  "min_body_chars": 400,
+  "sitemap_urls_per_shard": 2500
+}

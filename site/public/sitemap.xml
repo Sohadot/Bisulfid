@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
+    <loc>https://bisulfid.com/sitemap-context-001.xml</loc>
+  </sitemap>
+  <sitemap>
     <loc>https://bisulfid.com/sitemap-core.xml</loc>
   </sitemap>
   <sitemap>
     <loc>https://bisulfid.com/sitemap-languages.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>https://bisulfid.com/sitemap-context.xml</loc>
+    <loc>https://bisulfid.com/sitemap-materials.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://bisulfid.com/sitemap-terms-001.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://bisulfid.com/sitemap-terms-002.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://bisulfid.com/sitemap-terms-003.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://bisulfid.com/sitemap-terms-004.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://bisulfid.com/sitemap-terms-005.xml</loc>
   </sitemap>
 </sitemapindex>
