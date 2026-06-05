@@ -4200,26 +4200,318 @@ Its purpose is to prevent trust damage while preserving the deeper governed corp
 
 ### Next Required Phase
 
-The next phase should not be corpus expansion.
-
-The next phase should be:
-
-**Sprint 93 — Public Interface Refinement & Mobile Authority Pass**
-
-This phase should improve the public shell from "clean and functional" to "sovereign-grade and difficult to imitate" by addressing:
-
-- Mobile navigation refinement
-- Active route states
-- Glossary mobile card layout
-- Stronger homepage interface thesis
-- Better typographic hierarchy
-- More deliberate footer architecture
-- Public source-discipline presentation
-- Stronger German/English spelling-boundary interface language
-- Removal of remaining ordinary website behavior
+*(Superseded — executed as Sprint 93 through Sprint 98; see decision entries below.)*
 
 ### Permanent Decision
 
 Bisulfid.com must never again expose internal corpus governance output directly to the public surface unless explicitly approved as a public governance document.
 
 The public surface must remain small, clean, controlled, source-disciplined, and visitor-safe until the full governed corpus is ready for controlled publication.
+
+---
+
+## Decision: Public Surface Integrity Repair — Governance Decision Recorded
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Related PRs:** #92, #95  
+**Scope:** Decision-log governance continuity; public-surface repair doctrine
+
+### Context
+
+PR #92 implemented the emergency public-surface repair documented above. PR #95 recorded the same governance principle in the decision log so the separation rule between internal corpus layers and public visitor pages would not be lost across later sprints.
+
+### Decision
+
+The public surface integrity repair doctrine is a permanent governance rule, not a one-time patch. Internal draft, source-lock, validation, and publication-blocker language must never leak into public visitor pages unless a route is explicitly published as public governance documentation.
+
+### Outcome
+
+The repair rule is preserved in this decision log. Later public atlas waves (Sprint 97A, Sprint 98) inherit the same constraint: public pages must be clean, intentional, and free from governance leakage.
+
+---
+
+## Decision: Sprint 93 — Public Interface Refinement and Mobile Authority Pass
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Related PR:** #96  
+**Scope:** Public shell refinement — mobile navigation, typography, active states, homepage thesis
+
+### Context
+
+After PR #92 stabilized the visible public surface, the site remained functionally clean but not yet sovereign-grade on mobile or in navigational authority. Ordinary website behavior, weak typographic hierarchy, and incomplete mobile treatment remained visible on the small public layer.
+
+### Decision
+
+The public shell may be refined for mobile authority, active route states, glossary card treatment, stronger homepage thesis, footer architecture, and German/English spelling-boundary interface language — without publishing the 14,000-route corpus and without weakening source or claim locks.
+
+### Outcome
+
+Sprint 93 improved the repaired public surface toward a more deliberate sovereign interface. This refinement applied only to the small visible public layer, not to the governed 14K scaffold.
+
+---
+
+## Decision: Deploy Gate Alignment for Public Surface Expansion
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Related PR:** #93  
+**Scope:** GitHub Pages public deploy workflow; page-count deployment gate
+
+### Context
+
+Public-surface repairs and additions changed the number of generated public HTML files served by GitHub Pages. The deployment gate expected a fixed page count that no longer matched verified public output after `/en/index.html` and related public-surface changes.
+
+### Decision
+
+Deployment count gates may be updated to match verified generated public output, but must never be used to bypass source discipline, claim approval, corpus publication locks, or release-ledger governance.
+
+### Outcome
+
+The deploy gate was aligned so the repaired public surface could deploy successfully. Gate updates are operational alignment only — not publication authorization.
+
+---
+
+## Decision: Public Atlas Compliance Patch
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Related PR:** #96  
+**Scope:** Existing public pages, `/languages/`, sitemap, robots, public CSS
+
+### Context
+
+The repaired public surface was clean but not yet atlas-compliant. Public pages lacked several minimum atlas-page requirements: breadcrumbs, source-posture sections, sufficient internal links, active navigation state, and a truthful sitemap/robots layer.
+
+### Decision
+
+Public pages must meet atlas-page minimums before being linked or indexed. Minimums include title, meta description, canonical, breadcrumbs, source posture, meaningful internal links, and footer atlas navigation where applicable.
+
+PR #96 improved the visible public layer by:
+
+- adding `/languages/`
+- adding breadcrumbs
+- adding source-posture sections
+- adding internal links
+- improving active navigation state
+- adding glossary mobile card treatment
+- creating `robots.txt`
+- creating a truthful public `sitemap.xml`
+
+### Outcome
+
+The visible public layer became cleaner and more indexable, but still represented only a small public surface — not the full 14,000-route atlas.
+
+---
+
+## Decision: 14K Public Release Blocker Truth
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Scope:** 14,000-route corpus scaffold; publication doctrine
+
+### Context
+
+A blocker analysis established the true state of the 14K corpus:
+
+- 14,000 routes existed in `routes.json`
+- 14,002 generated HTML files existed under `site/public/`
+- source markdown files existed
+- all 14,000 routes remained `planned`
+- zero corpus routes were published as real reference pages
+- 13,971 routes required verified sources
+- almost all corpus bodies still contained `[SOURCE REQUIRED]`
+- real written reference body content did not exist at atlas scale
+
+The scaffold was governance output and structural HTML — not a completed sovereign reference atlas.
+
+### Decision
+
+The 14,000-route scaffold must not be published as if it were a completed reference atlas. Publishing boilerplate, thin, or source-required pages would violate Bisulfid's sovereign reference doctrine.
+
+Fake publication to hit page-count targets is prohibited.
+
+### Outcome
+
+The project shifted from attempting direct 14K publication toward building a source-pack, claim-library, and release-ledger-driven production system.
+
+---
+
+## Decision: Public Atlas Wave 1
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Related PR:** #97  
+**Scope:** First real public indexable atlas wave (Sprint 97A)
+
+### Context
+
+After public-surface repair and compliance patching, Bisulfid needed its first wave of real public atlas pages — not scaffold overwrites presented as live reference content.
+
+### Decision
+
+Wave-based release is acceptable only when pages are real, public-safe, internally linked, indexable, and free from governance leakage. Wave release does not authorize bulk publication of the 14K scaffold.
+
+Sprint 97A produced the first real public atlas wave:
+
+- 52 real indexable pages written
+- 39 new directories
+- 13 scaffold overwrites
+- sitemap expanded to 60 entries
+- public routes verified from sitemap
+- 14K scaffold governance left untouched
+
+### Outcome
+
+Bisulfid moved from a small repaired public surface to the first visible indexable atlas layer. The full 14,000-page corpus was not claimed live.
+
+---
+
+## Decision: Route Path Reality and Sitemap as Source of Truth
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Scope:** Public route verification; live indexing workflow
+
+### Context
+
+Live verification showed that some expected nested routes — such as `/materials/mos2/` or `/languages/sulfid-vs-sulfide/` — were not present in the public sitemap. Sprint 97A published several pages as root-level routes such as `/molybdenum-disulfide/`, `/sulfur-compounds/`, and `/sulfid-vs-sulfide/`.
+
+### Decision
+
+For live verification, Google submission, and internal release auditing, `sitemap.xml` and sitemap shards are the source of truth for currently public indexable routes. Expected route patterns must not be assumed unless present in the sitemap or release ledger.
+
+### Outcome
+
+Future route cleanup may add aliases or canonical redirects. No public indexing workflow may rely on guessed routes.
+
+---
+
+## Decision: Sprint 98 — 14K Sovereign Reference Atlas Production Pipeline
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Related PR:** #98  
+**Scope:** 14K production pipeline, source packs, claim library, release ledger, sitemap shards
+
+### Context
+
+After Wave 1, Bisulfid required an operational system to scale from a small public atlas toward the full 14,000-route reference corpus without publishing fake, thin, or unsupported pages.
+
+### Decision
+
+The path to 14K must proceed through:
+
+verified source packs → approved claims → release ledger → governed rendering → sitemap inclusion → validation → deployment
+
+No page may bypass this chain. The release ledger is the source of truth for which routes are public.
+
+Sprint 98 created the operational production system:
+
+- classified all 14,000 routes into production lanes A–M + HUB
+- released 26 clean public atlas hub pages (foundation, methodology, index maps, home, sources)
+- blocked 13,974 source-required terminology routes
+- created source-pack architecture (`main/data/source_packs/source_pack_registry.json`)
+- created claim-library architecture (`main/data/claims/claim_library.json`)
+- created page-type templates (`main/data/atlas_page_type_templates.json`, `main/templates/atlas/`)
+- created audience-layer partials
+- created internal link graph for hub pages
+- created release ledger (`main/data/release_ledger.json`)
+- created sitemap index and shards (`sitemap.xml`, `sitemap-core.xml`, `sitemap-languages.xml`, `sitemap-context.xml`)
+- created production runtime (`scripts/atlas_production_runtime_l2.py`)
+- created public-release validator (`scripts/atlas_validate_public_release_l1.py`)
+- validation passed
+- blocker reports documented why the 500-page expansion threshold was not met
+
+Hub pages use curated cautious-framing content only. Governance draft markdown is not dumped into public output.
+
+### Outcome
+
+Bisulfid now has a measurable production pipeline for scaling from hub pages toward the full 14K reference atlas without publishing fake or unsupported pages. **26 hub pages are public; 13,974 terminology routes remain blocked.** The full 14,000-page atlas is not live.
+
+---
+
+## Decision: Claim Library Lock Compliance
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Related commit:** `c07e2c3c6`  
+**Scope:** `main/data/claims/claim_library.json`, `.gitignore`
+
+### Context
+
+Sprint 98 initially failed CI in Layer 1 corpus validation because `claim_library.json` used `status: architecture_active`, while L1 claim registry governance requires all claim registry files under `main/data/claims/` to remain `inactive` unless explicitly opened by governance.
+
+### Decision
+
+`claim_library.json` must remain `status: inactive` until claim publication is explicitly authorized by governance. Architectural presence of a claim library does not imply publication readiness or route unlock.
+
+Python cache artifacts (`__pycache__/`, `*.pyc`) must never enter version control.
+
+### Outcome
+
+The claim library remains architecturally present but publication-locked. CI corpus validation passes. `.gitignore` excludes Python cache artifacts.
+
+---
+
+## Current Standing After Sprint 98
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Status:** Operational checkpoint — production pipeline live; full corpus not public
+
+### What Bisulfid.com now has
+
+- public atlas surface (repaired, refined, compliance-patched)
+- first public atlas wave (52 indexable pages, Sprint 97A)
+- Sprint 98 hub release (26 additional governed hub pages via release ledger)
+- sitemap infrastructure (index + shards)
+- source-pack architecture (8 packs defined; no invented sources)
+- claim-library architecture (publication-locked registry)
+- release ledger (source of truth for public routes)
+- 14K corpus classification (all 14,000 routes classified into production lanes)
+- validation runtime (L1 corpus validation + Sprint 98 public-release validator)
+- blocker transparency (`BLOCKERS_TO_14K_PUBLIC_RELEASE.md`)
+
+### What is not yet public
+
+- the full 14,000-page reference atlas
+- the terminology corpus at scale (13,974 routes blocked — source-required)
+- verified source-pack coverage sufficient for 500+ page expansion
+- approved claim coverage sufficient for terminology lane release
+
+The 14K route scaffold is classified and operationally measurable. It is not published as completed reference content.
+
+### Publication rule (permanent)
+
+Public release must proceed only through:
+
+1. verified source packs  
+2. approved claims  
+3. release ledger authorization  
+4. governed rendering (no governance draft leakage)  
+5. sitemap inclusion  
+6. validation pass  
+7. deployment  
+
+### Next approved path
+
+**Sprint 99 — First Verified Terminology Lane: SPK-LEX-EN-MW**
+
+This wave must:
+
+- verify one source pack (`SPK-LEX-EN-MW`)
+- approve a bounded claim set tied to that pack
+- release only terminology routes that pass release-ledger and validation rules
+
+Sprint 99 must not begin until Sprint 98 is merged, deployed, and live-verified. No terminology corpus bulk release is authorized before source-pack verification at lane scale.
