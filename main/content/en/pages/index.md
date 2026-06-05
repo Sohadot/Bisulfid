@@ -69,19 +69,16 @@ It is not yet active. The data skeleton exists in `main/data/ontology/`. The map
 
 ---
 
-## Planned Internal Links
+## Source and Claim Status
 
-The following route IDs represent planned internal navigation targets. Links will be generated from routes.json only after each route reaches `status: published`.
+Source-locking is not complete. No claim is approved. This page is non-public and not publication-ready.
 
-- `what_is_sulfur` — introduction to sulfur as element and industrial compound
-- `what_is_bisulfid` — definition of Bisulfid as the central term
-- `bisulfid_vs_bisulfide` — The Missing Letter explained
-- `sulfid_vs_sulfide` — broader German/English spelling pattern
-- `industrial_sulfur_systems` — industrial context and supply chain layer
-- `glossary` — governed sulfur terminology glossary
-- `sources` — source discipline and registry governance
-- `acquire` — strategic acquisition surface
+## Publication Blockers
 
----
+- Status: draft. Not publication-ready.
+- Indexable: false. Not indexable.
+- In sitemap: false. Not in sitemap.
+- Source verification: inactive.
+- Claim approval: no_claims_approved.
 
 *This page is a draft. It is non-public. It may not be cited, linked, or treated as published content until its route passes the Quality Gate and `publication_status` is updated in routes.json.*
