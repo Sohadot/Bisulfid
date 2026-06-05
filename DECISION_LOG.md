@@ -4105,3 +4105,121 @@ oute_id references only. Quality gate: **PASS** (anti-fake, anti-thin, anti-blog
 
 **Next steps:** GitHub Pages redeploy → **Sprint 6M-J — Post-Refresh Live Site Verification** (indexation remains **CLOSED**).
 
+
+---
+
+## Decision: Public Surface Integrity Repair After Governance Leakage
+
+**Date:** 2026-06-05
+**Asset:** Bisulfid.com
+**Decision status:** Accepted
+**Related PR:** #92
+**Scope:** `site/public/` public-facing surface only
+
+### Context
+
+After the initial homepage repair, the live public surface of bisulfid.com exposed several unacceptable public-facing defects:
+
+- `/en/` returned a GitHub Pages 404.
+- `/de/` exposed draft/governance language publicly.
+- `/what-is-bisulfid/` exposed internal publication warnings and source-required markers.
+- The homepage contained broken or unstable public interface elements.
+- Public navigation linked to routes that were not yet clean public pages.
+- The mobile interface showed default/raw HTML behavior inconsistent with the sovereign asset standard.
+
+These defects did not indicate a failure of the corpus governance system. They indicated a failure to separate the public display layer from internal draft/corpus governance outputs.
+
+### Decision
+
+Bisulfid.com will maintain a strict separation between:
+
+1. **Internal governed corpus layers** — draft, source-locked, validation-controlled, not automatically public.
+2. **Public surface pages** — clean, intentional, visitor-safe, free from internal governance warnings, broken assets, source placeholders, and non-public route leakage.
+
+The emergency repair was therefore limited to `site/public/` files and did not weaken corpus governance, route locks, source validation, or publication gates.
+
+### Implemented Public Surface Repair
+
+PR #92 repaired the visible public surface by introducing clean public pages for the currently exposed routes:
+
+- `/`
+- `/en/`
+- `/de/`
+- `/what-is-bisulfid/`
+- `/bisulfid-vs-bisulfide/`
+- `/glossary/`
+- `/sources/`
+- `/acquire/`
+
+The repair removed public exposure of:
+
+- GitHub Pages 404 from `/en/`
+- Draft/governance language from `/de/`
+- `[SOURCE REQUIRED]` public markers
+- "not public", "not indexable", "publication blocker", and similar internal state language
+- Broken image references
+- Raw/default navigation behavior
+- Public links to unrepaired/non-public routes
+
+### Governance Principle Confirmed
+
+No public-facing page may expose internal governance language unless the page itself is explicitly designed as a public governance explainer.
+
+Internal phrases such as:
+
+- `SOURCE REQUIRED`
+- `draft`
+- `not public`
+- `not indexable`
+- `publication blocker`
+- `not in sitemap`
+- `claim approval not implied`
+
+must remain inside the governance/corpus layer and must not leak into public-facing pages.
+
+Public source discipline may be explained conceptually, but not by exposing internal validation markers.
+
+### Public Linking Rule
+
+The homepage and public navigation must link only to routes that meet all of the following conditions:
+
+- The route exists.
+- The route does not return 404.
+- The route has no broken images.
+- The route does not expose draft/governance warnings.
+- The route uses the public visual shell.
+- The route is suitable for a public visitor.
+
+Routes that do not meet these conditions must remain unlinked from the public surface until repaired.
+
+### Strategic Interpretation
+
+This repair is not the final Bisulfid interface. It is a public-surface stabilization layer.
+
+Its purpose is to prevent trust damage while preserving the deeper governed corpus strategy. The site can now remain publicly visible without exposing broken routes or internal validation language, while the larger 14,000-page governed corpus remains under strict source and publication control.
+
+### Next Required Phase
+
+The next phase should not be corpus expansion.
+
+The next phase should be:
+
+**Sprint 93 — Public Interface Refinement & Mobile Authority Pass**
+
+This phase should improve the public shell from "clean and functional" to "sovereign-grade and difficult to imitate" by addressing:
+
+- Mobile navigation refinement
+- Active route states
+- Glossary mobile card layout
+- Stronger homepage interface thesis
+- Better typographic hierarchy
+- More deliberate footer architecture
+- Public source-discipline presentation
+- Stronger German/English spelling-boundary interface language
+- Removal of remaining ordinary website behavior
+
+### Permanent Decision
+
+Bisulfid.com must never again expose internal corpus governance output directly to the public surface unless explicitly approved as a public governance document.
+
+The public surface must remain small, clean, controlled, source-disciplined, and visitor-safe until the full governed corpus is ready for controlled publication.
