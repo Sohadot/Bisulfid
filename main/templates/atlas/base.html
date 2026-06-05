@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{language}}" dir="{{text_direction}}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{page_title}}</title>
+  <meta name="description" content="{{meta_description}}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{canonical_url}}">
+  <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
+</head>
+<body class="bisulfid-atlas" data-route-id="{{route_id}}" data-atlas-release="true">
+  <header class="atlas-header">
+    <nav class="atlas-header__nav" aria-label="Atlas">
+      <a class="atlas-header__brand" href="/">BISULFID</a>
+      <span class="atlas-header__tag">Sovereign Reference Atlas</span>
+    </nav>
+  </header>
+  {{breadcrumbs}}
+  <main id="main-content" class="atlas-main" role="main">
+    {{content}}
+  </main>
+  <footer class="atlas-footer">
+    {{atlas_footer_nav}}
+    <p class="atlas-footer__note">Reference-grade atlas page. Not medical, safety, or investment advice.</p>
+  </footer>
+</body>
+</html>
