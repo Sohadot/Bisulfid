@@ -2,7 +2,7 @@ name: Pages public deploy
 
 # Governed GitHub Pages deployment gate (Sprint 6M-H, artifact patch 6N-C-P1).
 # Stages site/public/ into a temporary artifact excluding _integration_sample/ and _visual_proof_sample/.
-# Deploys 14,000 foundation pages only — not repository root, not site/_sample/.
+# Deploys 14,001 foundation pages only — not repository root, not site/_sample/.
 # Does not regenerate corpus, install dependencies, or mutate repository files.
 # Indexation/sitemap/navigation/source/claim gates remain CLOSED.
 
@@ -38,7 +38,7 @@ jobs:
           test -d site/public/assets/bisulfid-design-system
           foundation_count="$(find site/public -path 'site/public/_integration_sample' -prune -o -path 'site/public/_visual_proof_sample' -prune -o -name 'index.html' -print | wc -l | tr -d ' ')"
           echo "Public foundation pages in repository source: ${foundation_count}"
-          test "${foundation_count}" -eq 14000
+          test "${foundation_count}" -eq 14001
           if test -d site/public/_integration_sample; then
             integration_count="$(find site/public/_integration_sample -name 'index.html' | wc -l | tr -d ' ')"
             echo "Integration sample pages (excluded from deploy): ${integration_count}"
@@ -56,7 +56,7 @@ jobs:
           rsync -a --exclude='_integration_sample/' --exclude='_visual_proof_sample/' site/public/ "${ARTIFACT_DIR}/"
           page_count="$(find "${ARTIFACT_DIR}" -name 'index.html' | wc -l | tr -d ' ')"
           echo "Deployable foundation pages in staged artifact: ${page_count}"
-          test "${page_count}" -eq 14000
+          test "${page_count}" -eq 14001
           test -f "${ARTIFACT_DIR}/public_launch_manifest.json"
           test -f "${ARTIFACT_DIR}/CNAME"
           test -f "${ARTIFACT_DIR}/.nojekyll"
