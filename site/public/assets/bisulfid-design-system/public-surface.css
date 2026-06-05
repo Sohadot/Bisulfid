@@ -1,0 +1,284 @@
+/**
+ * Bisulfid public surface shell — sovereign navigation, link palette, page content
+ * Sprint: Public Surface Integrity Repair
+ */
+
+/* ── Nav reset ── */
+.bs-control-room .site-nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.bs-control-room .site-nav-brand {
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  color: var(--bs-sulfur-400, #c9a227);
+  font-family: var(--bs-font-family-term, 'SF Mono', 'Fira Code', monospace);
+  font-size: 0.9375rem;
+  margin-right: 0.25rem;
+}
+
+.bs-control-room .site-nav-list a {
+  color: var(--bs-molybdenum-300, #b0bec9);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.12s;
+}
+
+.bs-control-room .site-nav-list a:hover,
+.bs-control-room .site-nav-list a:focus {
+  color: var(--bs-sulfur-400, #c9a227);
+  outline: none;
+}
+
+/* ── Global link override ── */
+.bs-control-room a {
+  color: var(--bs-sulfur-400, #c9a227);
+  text-decoration: none;
+}
+
+.bs-control-room a:hover {
+  color: var(--bs-sulfur-300, #e8c04a);
+  text-decoration: underline;
+}
+
+/* Nav links use molybdenum, not sulfur */
+.bs-control-room .site-header a {
+  color: var(--bs-molybdenum-300, #b0bec9);
+  text-decoration: none;
+}
+
+.bs-control-room .site-header a:hover {
+  color: var(--bs-sulfur-400, #c9a227);
+}
+
+/* ── Public page content shell ── */
+.public-page {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+}
+
+.public-page h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--bs-molybdenum-100, #e4ecf4);
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+}
+
+.public-page h2 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--bs-sulfur-400, #c9a227);
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--bs-color-graphite-line, #1e2830);
+}
+
+.public-page h3 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--bs-molybdenum-200, #d4dce8);
+  margin: 1.25rem 0 0.5rem;
+}
+
+.public-page p {
+  color: var(--bs-molybdenum-300, #b0bec9);
+  line-height: 1.72;
+  margin: 0 0 1rem;
+}
+
+.public-page ul,
+.public-page ol {
+  color: var(--bs-molybdenum-300, #b0bec9);
+  padding-left: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.public-page li {
+  margin-bottom: 0.375rem;
+  line-height: 1.6;
+}
+
+.public-page strong {
+  color: var(--bs-molybdenum-200, #d4dce8);
+  font-weight: 600;
+}
+
+.public-page hr {
+  border: none;
+  border-top: 1px solid var(--bs-color-graphite-line, #1e2830);
+  margin: 1.75rem 0;
+}
+
+.public-page .page-kicker {
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bs-sulfur-400, #c9a227);
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.public-page .page-intro {
+  font-size: 1rem;
+  color: var(--bs-molybdenum-200, #d4dce8);
+  line-height: 1.68;
+  margin-bottom: 1.75rem;
+}
+
+.public-page .back-link {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-size: 0.8125rem;
+  color: var(--bs-molybdenum-500, #6e7e8e);
+}
+
+.public-page .back-link:hover {
+  color: var(--bs-sulfur-400, #c9a227);
+}
+
+/* ── Glossary table ── */
+.glossary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.glossary-table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--bs-color-graphite-line, #1e2830);
+  color: var(--bs-molybdenum-400, #8a9aaa);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.glossary-table td {
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid rgba(30, 40, 48, 0.8);
+  color: var(--bs-molybdenum-300, #b0bec9);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.glossary-table tr:hover td {
+  background: rgba(201, 162, 39, 0.04);
+}
+
+.glossary-table .term-name {
+  color: var(--bs-molybdenum-100, #e4ecf4);
+  font-weight: 600;
+  font-family: var(--bs-font-family-term, monospace);
+  white-space: nowrap;
+}
+
+.glossary-table .term-lang {
+  color: var(--bs-molybdenum-500, #6e7e8e);
+  font-size: 0.75rem;
+  display: block;
+}
+
+/* ── Contact block (acquire) ── */
+.contact-block {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--bs-molybdenum-500, #6e7e8e);
+  border-radius: 0.5rem;
+  background: rgba(20, 26, 34, 0.5);
+}
+
+.contact-block p {
+  margin: 0;
+}
+
+.contact-block a {
+  color: var(--bs-sulfur-400, #c9a227);
+  font-weight: 600;
+}
+
+/* ── Language gateway (de, en) ── */
+.lang-gateway {
+  max-width: 36rem;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.lang-gateway h1 {
+  font-size: 2rem;
+  color: var(--bs-molybdenum-100, #e4ecf4);
+  margin: 0 0 0.75rem;
+}
+
+.lang-gateway .lang-code {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--bs-sulfur-400, #c9a227);
+  border-radius: 0.25rem;
+  color: var(--bs-sulfur-400, #c9a227);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.lang-gateway p {
+  color: var(--bs-molybdenum-300, #b0bec9);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.lang-gateway .gateway-cta {
+  display: inline-block;
+  margin-top: 1.25rem;
+  padding: 0.625rem 1.5rem;
+  border: 1px solid var(--bs-sulfur-400, #c9a227);
+  border-radius: 0.375rem;
+  color: var(--bs-sulfur-400, #c9a227);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.lang-gateway .gateway-cta:hover {
+  background: var(--bs-sulfur-400, #c9a227);
+  color: var(--bs-carbon-900, #0c1014);
+  text-decoration: none;
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .bs-control-room .site-nav-list {
+    gap: 0.875rem;
+  }
+
+  .public-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .glossary-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .lang-gateway {
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .lang-gateway h1 {
+    font-size: 1.625rem;
+  }
+}
