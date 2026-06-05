@@ -3,8 +3,8 @@
   "sprint": "98",
   "site": "bisulfid.com",
   "governed_by": "doctrine/SOURCE_POLICY.md",
-  "status": "architecture_active",
-  "rule": "No page may publish factual claims outside this library or cautious_framing rules.",
+  "status": "inactive",
+  "rule": "No page may publish factual claims outside this library or cautious_framing rules. Registry file status inactive locks publication use only; cautious_framing entries are governed by atlas production rules, not route publication readiness.",
   "claims": [
     {
       "claim_id": "CLM-CAUTIOUS-ATLAS-001",
