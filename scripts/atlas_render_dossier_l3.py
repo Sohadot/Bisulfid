@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sprint 99/99A/99B — Render full 14K public reference dossier output."""
+"""Sprint 99/99A/99B/99C — Render full 14K public reference dossier output."""
 from __future__ import annotations
 
 import html
@@ -14,11 +14,14 @@ from atlas_dossier_common_l3 import (  # noqa: E402
     STYLESHEET_PATH,
     atlas_lane_slug,
     audience_layers_html,
+    build_atlas_control_strip,
     build_audience_panel_html,
     build_breadcrumbs,
     build_dossier_body,
     build_internal_links_html,
+    build_lane_interface_prelude,
     build_role_panel_html,
+    public_category_label,
     public_lane_role,
     public_label,
     public_summary,
@@ -38,7 +41,7 @@ def read_template(rel: str) -> str:
 
 def main() -> int:
     print("=" * 60)
-    print("Sprint 99B — 14K Semantic Interface Dossier Render")
+    print("Sprint 99C — 14K Conceptual Interface Dossier Render")
     print("=" * 60)
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     routes = json.loads(ROUTES_PATH.read_text(encoding="utf-8"))["routes"]
@@ -74,8 +77,9 @@ def main() -> int:
         if "bisulfid.com" not in page_title.lower():
             page_title = f"{h1} — Bisulfid Atlas"
         path = route.get("path", "/")
+        lang = route.get("language", "en")
         ctx = {
-            "language": route.get("language", "en"),
+            "language": lang,
             "text_direction": "ltr",
             "page_title": html.escape(page_title),
             "meta_description": html.escape(summary),
@@ -84,8 +88,10 @@ def main() -> int:
             "atlas_role": html.escape(role),
             "atlas_lane_slug": atlas_lane_slug(lane),
             "body_semantic_classes": semantic_body_classes(lane, path),
-            "atlas_category": html.escape(f"{role} · Public Reference Dossier"),
+            "atlas_category": html.escape(public_category_label(role)),
             "reference_summary": html.escape(summary),
+            "atlas_control_strip": build_atlas_control_strip(lane, lang),
+            "lane_interface_prelude": build_lane_interface_prelude(lane, route, cls),
             "role_panel_body": build_role_panel_html(route, cls, release_mode),
             "page_body": body_html,
             "source_posture_text": (
