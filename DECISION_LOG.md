@@ -4506,12 +4506,342 @@ Public release must proceed only through:
 
 ### Next approved path
 
-**Sprint 99 — First Verified Terminology Lane: SPK-LEX-EN-MW**
+*(Superseded — executed as Sprint 99 through Sprint 99B-H; see decision entries below. SPK-LEX-EN-MW terminology lane wave was not started.)*
 
-This wave must:
+---
 
-- verify one source pack (`SPK-LEX-EN-MW`)
-- approve a bounded claim set tied to that pack
-- release only terminology routes that pass release-ledger and validation rules
+## Decision: Sprint 99 — 14K Public Reference Dossier Release
 
-Sprint 99 must not begin until Sprint 98 is merged, deployed, and live-verified. No terminology corpus bulk release is authorized before source-pack verification at lane scale.
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Related PR:** #100  
+**Scope:** 14K public reference dossier release; release ledger; sitemap shards; governed rendering
+
+### Context
+
+After Sprint 98 established the production pipeline and blocked 13,974 source-required routes, Bisulfid required a controlled public release of reference-grade dossier pages at atlas scale — without falsely presenting the corpus as fully source-verified scientific articles.
+
+### Decision
+
+Public dossier release at 14K scale is authorized only when pages use cautious reference framing, pass validation, appear in the release ledger and sitemap, and do not convert source-required terminology into unsupported scientific claims.
+
+Sprint 99 released the first full public reference dossier atlas wave:
+
+- 14,000 routes audited
+- **13,998 public dossier pages released**
+- **2 routes blocked:** `acquire`, `newsletter`
+- **13,998 sitemap URLs** across **9 shards**
+- release model distribution:
+  - `cautious_reference_dossier`: 13,846
+  - `source_verified_page`: 152
+  - `blocked_high_risk`: 2
+- validation **PASS**
+- `routes.json` **unchanged**
+- corpus governance **preserved**
+- `claim_library.json` remained **`inactive`**
+- source-required terminology corpus was **not** falsely converted into source-verified scientific articles
+
+### Honest framing (permanent)
+
+Bisulfid.com is a **public reference dossier atlas**, not 14,000 fully source-verified scientific articles. Dossier pages provide governed structure, terminology orientation, and cautious context — not primary-source scientific publication.
+
+### Outcome
+
+The 13,998-page public reference dossier atlas was released to `main` via PR #100. The full terminology corpus remains source-disciplined; only ledger-authorized dossier pages are public.
+
+---
+
+## Decision: Sprint 99A — 14K Public Dossier Quality Repair
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Related PR:** #101  
+**Scope:** Public dossier quality gate; CSS shell; forbidden-string removal; breadcrumb and footer repair
+
+### Context
+
+After Sprint 99 released 13,998 dossier pages, live and validation review found quality defects: missing sovereign stylesheet contract, visible internal machine labels, draft language, forbidden strings, duplicate breadcrumb entries, and incorrect footer hub paths.
+
+### Decision
+
+All released public dossier pages must pass a quality repair gate before further interface work or Search Console submission. Repairs must not expand the corpus, alter `routes.json`, or activate the claim library.
+
+Sprint 99A repaired all **13,998 released pages**:
+
+- sovereign CSS shell applied through `/assets/bisulfid-design-system/bisulfid-frame.css`
+- visible internal labels removed (`Lane A`, `terminology_node`, `cautious_reference_dossier`, etc.)
+- draft language removed
+- forbidden strings removed
+- duplicate breadcrumb Atlas link removed
+- footer hub paths corrected
+- validation **PASS**
+- sitemap URL count **unchanged** (13,998)
+- `routes.json` **unchanged**
+- no corpus/source-pack expansion started
+
+### Outcome
+
+PR #101 merged Sprint 99A on top of PR #100. `main` contained the quality-repaired 13,998-page public atlas.
+
+---
+
+## Decision: PR #100 and PR #101 Publication Chain
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Related PRs:** #100, #101  
+**Scope:** Merge sequence; deployment from `main`
+
+### Context
+
+Sprint 99 and Sprint 99A were delivered as sequential PRs to preserve reviewability between initial 14K release and quality repair.
+
+### Decision
+
+- **PR #100** merged Sprint 99 — 14K dossier release
+- **PR #101** merged Sprint 99A — quality repair gate
+- `main` contained the **13,998-page public atlas** after Sprint 99A
+- **Pages public deploy ran successfully from `main`** after merge
+
+### Outcome
+
+The public atlas was live-deployed with quality repairs applied. Deployment authorized only ledger-listed routes; governance files remained unchanged.
+
+---
+
+## Decision: Sprint 99B — Semantic Sovereign Shell Repair
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Scope:** Semantic interface system; CSS contract; sovereign shell; lane/domain body classes
+
+### Context
+
+After Sprint 99A, dossier pages linked `bisulfid-frame.css` but still rendered with weak or default interface behavior. Root cause: template class names (`atlas-header`, `atlas-footer`) were not aligned with design-system shell classes (`bs-control-room`, `site-header`, `site-footer`). `public-surface.css` and lane-specific semantic CSS were not chained into the frame bundle.
+
+### Decision
+
+Every public dossier page must render through a single sovereign shell contract and carry semantic lane/domain/audience classes for governed interface treatment — not decorative CSS alone.
+
+Sprint 99B implemented the semantic sovereign interface system:
+
+- **Root cause addressed:** dossier pages linked `bisulfid-frame.css`, but template classes and design-system classes were not fully aligned
+- `bisulfid-frame.css` imported `public-surface.css` and `atlas-semantic-interface.css`
+- all dossier pages moved into the sovereign shell contract:
+  `bs-control-room` → `bs-control-room__shell` → `site-header` → `#main-content` → `site-footer`
+- body classes and `data-atlas-lane` attributes introduced for semantic styling:
+  `atlas-lane-terminology`, `atlas-lane-language`, `atlas-lane-compound`, `atlas-lane-material`, `atlas-lane-methodology`, domain classes, audience classes
+- human-facing labels replaced machine-facing labels
+- strategic interface components added (`atlas-dossier-hero`, `atlas-role-panel`, `atlas-context-layer-grid`, etc.)
+- validation **PASS:**
+  - released pages: **13,998**
+  - sitemap URLs: **13,998**
+  - CSS import errors: **0**
+  - shell failures: **0**
+  - lane failures: **0**
+  - sample failures: **0**
+
+### Outcome
+
+All 13,998 dossier pages render with the sovereign semantic shell. Deep routes no longer present as raw/default HTML.
+
+---
+
+## Decision: Sprint 99B-H — Legacy Hub Semantic Shell Alignment
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Scope:** Legacy public hub entry pages; hub template; semantic shell parity with dossier pages
+
+### Context
+
+Sprint 99B validation showed all 13,998 dossier pages passing, but manual sample review found legacy hub entry routes (`/atlas/`, `/terms/`, `/compounds/`, etc.) still outside the semantic shell. These hubs are public entry points and must not present a different interface contract than dossier pages.
+
+### Decision
+
+All public hub and legacy entry pages must use the same sovereign semantic interface shell as dossier pages before Search Console submission. Hub alignment must preserve public-safe content, canonical/meta/title, and sitemap structure.
+
+Sprint 99B-H aligned legacy hub routes:
+
+- `/`
+- `/atlas/`
+- `/terms/`
+- `/compounds/`
+- `/materials/`
+- `/languages/`
+- `/methodology/`
+- `/sources/`
+- `/glossary/`
+- `/what-is-bisulfid/`
+- `/bisulfid-vs-bisulfide/`
+- `/de/`
+
+Repairs included:
+
+- hub template introduced (`main/templates/atlas/hub.html`) and aligned via `scripts/atlas_align_legacy_hubs_99bh.py`
+- forbidden strings sanitized in preserved hub body content
+- duplicate `public-surface.css` links removed (frame import chain only)
+- semantic lane/domain/audience classes applied per hub role
+- validation **PASS:**
+  - **13,998 dossier pages PASS**
+  - **12 hub entry pages PASS**
+  - sitemap **PASS**
+  - CSS import chain **PASS**
+  - hub samples **PASS**
+
+### Outcome
+
+Homepage, atlas hubs, and deep dossier routes share the same sovereign semantic shell contract.
+
+---
+
+## Decision: Deployment After Sprint 99B-H
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Related PR:** #102  
+**Branch:** `fix/sprint-99b-semantic-interface`  
+**Scope:** Semantic interface runtime; CI; Pages public deploy
+
+### Context
+
+Sprint 99B and 99B-H required a full render-align-validate cycle before live deployment.
+
+### Decision
+
+Deployment proceeds only after semantic interface runtime passes end-to-end validation.
+
+Execution record:
+
+- branch `fix/sprint-99b-semantic-interface` created
+- semantic interface runtime executed:
+  `py -3 scripts/atlas_semantic_interface_runtime_99b.py`
+- runtime result:
+  - rendered: **13,998**
+  - aligned hubs: **12**
+  - CSS import errors: **0**
+  - shell failures: **0**
+  - lane failures: **0**
+  - hub failures: **0**
+  - sample checked: **56**
+  - validation summary: **PASS**
+- **PR #102** / semantic shell fix branch passed **Corpus Governance CI**
+- **Pages public deploy #16 succeeded** from `main`
+- live site displayed the repaired semantic shell
+
+### Outcome
+
+Bisulfid.com deployed with 13,998 dossier pages and 12 aligned hub entry pages under the semantic sovereign shell.
+
+---
+
+## Decision: Critical Design Finding After Sprint 99B-H
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Accepted  
+**Scope:** Conceptual interface depth; Search Console submission pause
+
+### Context
+
+Although the site became technically valid, indexable, and semantically structured after Sprint 99B-H, manual review found the interface had become too generic. Pages retained the color palette but lost part of the earlier sovereign conceptual interface language.
+
+### Decision
+
+The issue is **not** deployment, sitemap, or indexability. The issue is **conceptual interface depth:**
+
+- missing stronger control-room feeling
+- underused sulfur/language-boundary visual system
+- weak distinction between terminology, language, materials, compound, methodology, and audience layers
+- homepage reads too much like a generic dossier
+
+**Search Console submission is intentionally paused** until conceptual interface restoration is completed.
+
+### Outcome
+
+Technical readiness and interface sovereignty are decoupled. Crawlability does not authorize Search Console submission until the distinctive sovereign chemical-language control-room interface is restored.
+
+---
+
+## Decision: Sprint 99C — Sovereign Conceptual Interface Restoration (Approved Next Phase)
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Decision status:** Approved — not yet executed  
+**Scope:** Template/CSS/copy sanitation; conceptual interface depth recovery
+
+### Context
+
+Sprint 99B-H achieved shell contract parity and validation pass, but manual review confirmed insufficient conceptual interface differentiation across atlas lanes and entry pages.
+
+### Decision
+
+**Sprint 99C is approved** as the next phase. Sprint 99C must restore the sovereign conceptual interface **without** changing route count or sitemap inventory.
+
+Sprint 99C constraints:
+
+- template/CSS/copy sanitation **only**
+- **preserve:**
+  - 13,998 public URLs
+  - 9 sitemap shards
+  - `robots.txt`
+  - `routes.json`
+  - release ledger
+  - `claim_library` inactive status
+  - corpus governance
+  - no new unsupported scientific claims
+- **must not:**
+  - start SPK-LEX-EN-MW
+  - expand source packs or claim library activation
+  - add or remove released routes
+
+### Acceptance criterion
+
+Bisulfid.com must remain **technically valid** while recovering the **distinctive sovereign chemical-language control-room interface** — terminology, language-boundary, materials, compound, methodology, and audience layers must be visually and structurally distinguishable without governance leakage.
+
+### Outcome
+
+Sprint 99C is the approved gate before Search Console submission. No new interface restoration sprint may bypass 99C.
+
+---
+
+## Current Standing After Sprint 99B-H
+
+**Date:** 2026-06-05  
+**Asset:** Bisulfid.com  
+**Status:** Live 13,998-page public reference dossier atlas — technically ready; Search Console submission paused
+
+### What Bisulfid.com now has
+
+- **live 13,998-page public reference dossier atlas**
+- sharded sitemap infrastructure (9 shards, 13,998 URLs)
+- `robots.txt`
+- CI-passing governance posture (Corpus Governance CI)
+- deployed semantic sovereign shell (dossier + hub entry pages)
+- Sprint 99B semantic interface system (lane/domain/audience classes, strategic components)
+- Sprint 99B-H legacy hub shell alignment (12 public entry routes)
+- release ledger as source of truth for public routes
+- `claim_library.json` remains **inactive**
+- `routes.json` unchanged since 14K release wave
+
+### What is intentionally paused
+
+- **Google Search Console submission** — paused until Sprint 99C restores full sovereign conceptual interface language
+- **SPK-LEX-EN-MW terminology lane wave** — not started
+- claim library activation — not authorized
+
+### Honest publication framing (permanent)
+
+Bisulfid.com is a **governed public reference dossier atlas** — not 14,000 fully source-verified scientific articles. Technical validity and crawlability do not imply conceptual interface completion.
+
+### Next approved path
+
+**Sprint 99C — Sovereign Conceptual Interface Restoration**
+
+Must recover control-room feeling, sulfur/language-boundary visual system, and lane-specific interface depth while preserving all 13,998 public URLs, sitemap inventory, and corpus governance locks.
