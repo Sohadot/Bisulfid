@@ -1,6 +1,7 @@
 /**
  * Bisulfid Atlas — Semantic Sovereign Interface System
  * Sprint 99B — lane/domain/audience contextual treatments
+ * Sprint 99C — sovereign conceptual control-room restoration
  */
 
 /* ══ Dossier shell ═══════════════════════════════════════════════════════ */
@@ -509,4 +510,271 @@ body.domain-materials .atlas-related-node-grid li a {
     content: none;
     margin: 0;
   }
+
+  .atlas-control-room-hero.bs-control-room-hero {
+    min-height: auto;
+  }
+
+  .atlas-lane-prelude {
+    margin-bottom: 1rem;
+  }
+}
+
+/* ══ Sprint 99C — Control strip ═══════════════════════════════════════════ */
+
+.atlas-control-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  padding: 0.5rem 1.25rem;
+  border-bottom: 1px solid var(--bs-color-graphite-line, #1e2830);
+  background: linear-gradient(
+    90deg,
+    rgba(224, 176, 32, 0.06) 0%,
+    rgba(14, 20, 28, 0.85) 35%,
+    rgba(14, 20, 28, 0.92) 100%
+  );
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.atlas-control-strip__brand {
+  color: var(--bs-sulfur-400, #c9a227);
+  font-weight: 700;
+  font-family: var(--bs-font-family-term, monospace);
+}
+
+.atlas-control-strip__lane {
+  color: var(--bs-molybdenum-400, #8a9aaa);
+}
+
+.atlas-control-strip__lang {
+  color: var(--bs-molybdenum-500, #6e7e8e);
+  margin-left: auto;
+}
+
+/* ══ Sprint 99C — Control-room page depth ═══════════════════════════════ */
+
+.atlas-control-room-page {
+  position: relative;
+}
+
+.bs-control-room.bisulfid-atlas .atlas-control-room-hero.bs-control-room-hero {
+  position: relative;
+  min-height: clamp(10rem, 28vw, 14rem);
+  margin-bottom: 2rem;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  border: 1px solid var(--bs-molybdenum-edge, #3a4a58);
+  background: var(--bs-carbon-950, #0a0e12);
+  box-shadow:
+    0 0 0 1px rgba(154, 168, 186, 0.08) inset,
+    0 12px 36px rgba(0, 0, 0, 0.5),
+    0 0 32px rgba(224, 176, 32, 0.05);
+}
+
+.atlas-control-room-hero .bs-control-room-hero__content {
+  position: relative;
+  z-index: 3;
+  padding: clamp(2rem, 6vw, 3rem) 1.5rem 1.75rem;
+}
+
+.atlas-control-room-hero .bs-control-room-hero__nodes {
+  opacity: 0.35;
+}
+
+.atlas-hub-command-hero.bs-control-room-hero {
+  min-height: clamp(12rem, 34vw, 16rem);
+  border-color: rgba(201, 162, 39, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(201, 162, 39, 0.12) inset,
+    0 16px 48px rgba(0, 0, 0, 0.55),
+    0 0 48px rgba(224, 176, 32, 0.08);
+}
+
+/* ══ Sprint 99C — Lane preludes ═════════════════════════════════════════ */
+
+.atlas-lane-prelude {
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.125rem;
+  border: 1px solid var(--bs-color-graphite-line, #1e2830);
+  border-radius: 0.375rem;
+  background: rgba(10, 14, 18, 0.55);
+}
+
+.atlas-lane-prelude__signal {
+  margin: 0 0 0.75rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bs-sulfur-400, #c9a227);
+  font-weight: 600;
+}
+
+.atlas-lane-prelude--command .atlas-command-lattice,
+.atlas-lane-prelude--terminology .atlas-term-lattice {
+  min-height: 5.5rem;
+  padding: 0.75rem;
+}
+
+.atlas-lane-prelude--language .bs-language-depth {
+  margin-top: 0.75rem;
+}
+
+.atlas-compound-crystal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.5rem;
+}
+
+.atlas-compound-crystal__cell {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--bs-molybdenum-500, #6e7e8e);
+  transform: rotate(45deg);
+  background: rgba(122, 158, 106, 0.12);
+}
+
+.atlas-compound-crystal__cell--parent {
+  border-color: var(--bs-sulfur-400, #c9a227);
+  box-shadow: 0 0 12px rgba(201, 162, 39, 0.25);
+}
+
+.atlas-compound-crystal__bond {
+  width: 1.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--bs-sulfur-400, #c9a227), transparent);
+}
+
+.atlas-material-strata {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.atlas-material-strata__layer {
+  height: 0.65rem;
+  border-radius: 2px;
+  border: 1px solid var(--bs-color-graphite-line, #1e2830);
+}
+
+.atlas-material-strata__layer--ore {
+  background: linear-gradient(90deg, #5a4a3a, #3a3028);
+  width: 100%;
+}
+
+.atlas-material-strata__layer--compound {
+  background: linear-gradient(90deg, #4a5a4a, #2a382a);
+  width: 88%;
+}
+
+.atlas-material-strata__layer--context {
+  background: linear-gradient(90deg, #3a4450, #242c34);
+  width: 72%;
+}
+
+.atlas-context-beacon,
+.atlas-audience-beacon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+}
+
+.atlas-context-beacon__core,
+.atlas-audience-beacon__core {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bs-molybdenum-300, #b0bec9);
+  font-family: var(--bs-font-family-term, monospace);
+}
+
+.atlas-audience-beacon__ring {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  border: 1px dashed rgba(201, 162, 39, 0.35);
+  border-radius: 50%;
+}
+
+.atlas-source-crystal-prelude {
+  margin: 0;
+  padding: 0.875rem 1rem;
+}
+
+/* ══ Sprint 99C — Lane body atmosphere ═══════════════════════════════════ */
+
+body.atlas-lane-hub .atlas-control-room-page {
+  --atlas-atmosphere: rgba(201, 162, 39, 0.04);
+}
+
+body.atlas-lane-terminology .atlas-control-room-page {
+  --atlas-atmosphere: rgba(122, 158, 106, 0.05);
+}
+
+body.atlas-lane-language .atlas-control-room-page {
+  --atlas-atmosphere: rgba(107, 140, 174, 0.06);
+}
+
+body.atlas-lane-compound .atlas-control-room-page {
+  --atlas-atmosphere: rgba(122, 158, 106, 0.07);
+}
+
+body.atlas-lane-material .atlas-control-room-page {
+  --atlas-atmosphere: rgba(138, 122, 106, 0.06);
+}
+
+body.atlas-lane-methodology .atlas-control-room-page,
+body.domain-governance .atlas-control-room-page {
+  --atlas-atmosphere: rgba(90, 106, 122, 0.07);
+}
+
+.atlas-control-room-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 20% 0%, var(--atlas-atmosphere, transparent) 0%, transparent 55%);
+  z-index: 0;
+}
+
+body.atlas-lane-language .atlas-domain-ribbon {
+  background: linear-gradient(90deg, #6b8cae 0%, var(--bs-sulfur-400, #c9a227) 45%, transparent 100%);
+  height: 4px;
+}
+
+body.atlas-lane-terminology .atlas-role-panel {
+  border-left: 3px solid var(--bs-sulfur-400, #c9a227);
+}
+
+body.atlas-lane-compound .atlas-dossier-body {
+  border-left: 2px solid rgba(122, 158, 106, 0.35);
+  padding-left: 1.25rem;
+}
+
+body.atlas-lane-material .atlas-dossier-body {
+  background: rgba(20, 18, 16, 0.2);
+  padding: 1rem 1.25rem;
+  border-radius: 0.25rem;
+}
+
+body.atlas-lane-methodology .atlas-source-posture-panel,
+body.domain-governance .atlas-source-posture-panel {
+  border: 1px solid var(--bs-color-graphite-line, #1e2830);
+  border-left: 3px solid var(--bs-molybdenum-500, #6e7e8e);
+  background: rgba(10, 14, 18, 0.6);
+}
+
+body.audience-student .atlas-lane-prelude--audience {
+  border-color: rgba(201, 162, 39, 0.25);
+}
+
+body.audience-ai .atlas-context-layer-grid__items {
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
 }

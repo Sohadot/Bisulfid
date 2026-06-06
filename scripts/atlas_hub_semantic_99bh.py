@@ -9,7 +9,28 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from atlas_dossier_common_l3 import PUBLIC_TEXT_SUBS, sanitize_public_text  # noqa: E402
+from atlas_dossier_common_l3 import (  # noqa: E402
+    PUBLIC_TEXT_SUBS,
+    build_atlas_control_strip,
+    build_lane_interface_prelude,
+    public_category_label,
+    sanitize_public_text,
+)
+
+HUB_PRELUDE_LANE: dict[str, str] = {
+    "/": "HUB",
+    "/atlas/": "HUB",
+    "/terms/": "A",
+    "/compounds/": "D",
+    "/materials/": "E",
+    "/languages/": "B",
+    "/methodology/": "K",
+    "/sources/": "K",
+    "/glossary/": "A",
+    "/what-is-bisulfid/": "A",
+    "/bisulfid-vs-bisulfide/": "B",
+    "/de/": "B",
+}
 
 TEMPLATES = ROOT / "main/templates/atlas"
 STYLESHEET_PATH = "/assets/bisulfid-design-system/bisulfid-frame.css"
@@ -367,7 +388,7 @@ def hub_role_panel_html(cfg: dict) -> str:
         f"<li>{html.escape(cfg['role'])}</li>"
         f"<li>{html.escape(lang)}</li>"
         f"<li>{html.escape(crumb)}</li>"
-        f"<li>Public Reference Dossier</li>"
+        f"<li>Source-Governed Reference</li>"
         f"</ul>"
     )
 
@@ -436,6 +457,9 @@ def build_hub_page(route_path: str, page_html: str, public_dir: Path) -> str:
     footer_nav = read_template("partials/footer_nav.html")
     breadcrumb_tpl = read_template("partials/breadcrumbs.html")
 
+    prelude_lane = HUB_PRELUDE_LANE.get(route_path, "HUB")
+    hub_route = {"path": route_path, "language": lang, "h1": page_h1, "title": page_h1}
+    hub_cls: dict = {"proposed_production_lane": prelude_lane}
     ctx = {
         "language": lang,
         "text_direction": "ltr",
@@ -446,8 +470,10 @@ def build_hub_page(route_path: str, page_html: str, public_dir: Path) -> str:
         "atlas_lane_slug": cfg["lane_slug"],
         "page_h1": html.escape(page_h1),
         "atlas_role": html.escape(hero_role if legacy_body else cfg["role"]),
-        "atlas_category": html.escape(f"{cfg['role']} · Public Reference Dossier"),
+        "atlas_category": html.escape(public_category_label(cfg["role"])),
         "reference_summary": html.escape(sanitize_public_text(summary)),
+        "atlas_control_strip": build_atlas_control_strip(prelude_lane, lang),
+        "lane_interface_prelude": build_lane_interface_prelude(prelude_lane, hub_route, hub_cls),
         "role_panel_body": hub_role_panel_html(cfg),
         "hub_body_content": sanitize_hub_html(body_content) if body_content else "<p>Atlas hub reference content.</p>",
         "audience_layers": hub_context_layers_html(cfg["role"], lang),

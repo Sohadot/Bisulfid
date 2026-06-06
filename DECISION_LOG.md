@@ -4807,15 +4807,65 @@ Bisulfid.com must remain **technically valid** while recovering the **distinctiv
 
 ### Outcome
 
-Sprint 99C is the approved gate before Search Console submission. No new interface restoration sprint may bypass 99C.
+*(Executed — see Sprint 99C decision entry below.)*
 
 ---
 
-## Current Standing After Sprint 99B-H
+## Decision: Sprint 99C — Sovereign Conceptual Interface Restoration
 
-**Date:** 2026-06-05  
+**Date:** 2026-06-06  
 **Asset:** Bisulfid.com  
-**Status:** Live 13,998-page public reference dossier atlas — technically ready; Search Console submission paused
+**Decision status:** Accepted  
+**Scope:** Template/CSS/copy sanitation; control-room conceptual interface; no URL surface change
+
+### Context
+
+After Sprint 99B-H, the public atlas was technically valid and semantically structured, but manual review found the interface too generic: control-room depth, sulfur/language-boundary visual language, and lane differentiation were under-expressed. Search Console submission remained paused.
+
+### Decision
+
+Sprint 99C restores the sovereign chemical-language control-room interface through template, CSS, and copy sanitation only — without changing the 13,998 released URL surface, sitemap inventory, or corpus governance locks.
+
+Sprint 99C applied:
+
+- **Control-room shell on every page:** `atlas-control-strip`, `bs-control-room-hero` with glow/perspective, `atlas-control-room-page`
+- **Lane-specific interface preludes** using design-system components:
+  - hub command entry (`bs-relation-lattice`, `bs-term-node`)
+  - terminology term-node lattice
+  - language missing-E boundary (`bs-missing-e-boundary-system`, `bs-language-depth`)
+  - compound crystal mapping
+  - material strata panels
+  - governance source crystal (`bs-source-crystal`)
+  - audience-layer beacons
+- **Copy repair:** removed duplicated "dossier dossier" phrasing; summaries use governed role pages
+- **CSS restoration:** Sprint 99C block in `atlas-semantic-interface.css` — lane atmosphere, hub command hero, prelude treatments
+- **Regenerated:** 13,998 dossier pages + 12 hub entry pages
+- **Preserved:** `routes.json`, release ledger, `claim_library.json` inactive, 9 sitemap shards (13,998 URLs), `robots.txt`
+- **Not started:** SPK-LEX-EN-MW, new logo, corpus/source-pack expansion
+
+Validation **PASS:**
+
+- released pages: **13,998**
+- hub entry pages: **12**
+- sitemap URLs: **13,998**
+- conceptual marker failures: **0**
+- dossier duplication failures: **0**
+- forbidden string / governance leakage: **0**
+- corpus claims L1: **PASS**
+
+Runtime: `py -3 scripts/atlas_conceptual_interface_runtime_99c.py`
+
+### Outcome
+
+Bisulfid.com retains full technical indexability while visibly recovering the sovereign chemical-language control-room identity. Hub pages read as command entries; terminology, language, materials, compound, methodology, and audience layers are structurally distinguishable. Search Console submission may proceed after manual live verification — not automatically from this sprint alone.
+
+---
+
+## Current Standing After Sprint 99C
+
+**Date:** 2026-06-06  
+**Asset:** Bisulfid.com  
+**Status:** Live 13,998-page public reference dossier atlas — technically and conceptually restored; ready for manual live verification before Search Console
 
 ### What Bisulfid.com now has
 
@@ -4823,25 +4873,23 @@ Sprint 99C is the approved gate before Search Console submission. No new interfa
 - sharded sitemap infrastructure (9 shards, 13,998 URLs)
 - `robots.txt`
 - CI-passing governance posture (Corpus Governance CI)
-- deployed semantic sovereign shell (dossier + hub entry pages)
-- Sprint 99B semantic interface system (lane/domain/audience classes, strategic components)
+- Sprint 99B semantic shell + Sprint 99C conceptual control-room interface
+- lane-specific preludes (terminology lattice, language boundary, compound crystal, material strata, governance crystal)
 - Sprint 99B-H legacy hub shell alignment (12 public entry routes)
 - release ledger as source of truth for public routes
 - `claim_library.json` remains **inactive**
 - `routes.json` unchanged since 14K release wave
 
-### What is intentionally paused
+### What remains paused
 
-- **Google Search Console submission** — paused until Sprint 99C restores full sovereign conceptual interface language
 - **SPK-LEX-EN-MW terminology lane wave** — not started
 - claim library activation — not authorized
+- new BISULFID logo — not deployed
 
 ### Honest publication framing (permanent)
 
-Bisulfid.com is a **governed public reference dossier atlas** — not 14,000 fully source-verified scientific articles. Technical validity and crawlability do not imply conceptual interface completion.
+Bisulfid.com is a **governed public reference dossier atlas** — not 14,000 fully source-verified scientific articles.
 
-### Next approved path
+### Next step
 
-**Sprint 99C — Sovereign Conceptual Interface Restoration**
-
-Must recover control-room feeling, sulfur/language-boundary visual system, and lane-specific interface depth while preserving all 13,998 public URLs, sitemap inventory, and corpus governance locks.
+Manual live verification of hub and deep-route samples, then Search Console submission when confirmed.

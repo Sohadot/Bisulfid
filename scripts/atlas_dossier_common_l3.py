@@ -266,12 +266,147 @@ def public_summary(route: dict, cls: dict) -> str:
     audience = path_audience_hint(route.get("path", ""))
     if topic:
         return (
-            f"A governed {role.lower()} dossier for {h1}, within the {topic} "
+            f"A governed {role.lower()} page for {h1}, within the {topic} "
             f"terminology family ({lang}). This page helps {audience} navigate the Bisulfid Atlas."
         )
     return (
-        f"A governed {role.lower()} dossier for {h1} within the Bisulfid Atlas. "
+        f"A governed {role.lower()} page for {h1} within the Bisulfid Atlas. "
         f"This page helps {audience} locate related terminology and context nodes."
+    )
+
+
+def public_category_label(role: str) -> str:
+    return f"{role} · Source-Governed Reference"
+
+
+def build_atlas_control_strip(lane: str, lang: str) -> str:
+    role = public_lane_role(lane)
+    return (
+        '<div class="atlas-control-strip" aria-hidden="true">'
+        '<span class="atlas-control-strip__brand">BISULFID · Chemical-Language Control Room</span>'
+        f'<span class="atlas-control-strip__lane">{html.escape(role)}</span>'
+        f'<span class="atlas-control-strip__lang">{html.escape(lang.upper())}</span>'
+        "</div>"
+    )
+
+
+def _trunc_label(text: str, limit: int = 42) -> str:
+    clean = sanitize_public_text(text)
+    return clean if len(clean) <= limit else clean[: limit - 1] + "…"
+
+
+def build_lane_interface_prelude(lane: str, route: dict, cls: dict) -> str:
+    h1 = public_label(route)
+    label = html.escape(_trunc_label(h1))
+    path = route.get("path", "/").rstrip("/")
+    lang = route.get("language", "en")
+
+    if path in {"/methodology", "/sources"}:
+        return (
+            '<section class="atlas-lane-prelude atlas-lane-prelude--governance" aria-hidden="true">'
+            '<p class="atlas-lane-prelude__signal">Governed source posture</p>'
+            '<div class="bs-source-crystal atlas-source-crystal-prelude">'
+            '<div class="bs-source-crystal__content">'
+            '<p class="bs-source-crystal__label">Source-governed reference</p>'
+            '<p class="bs-source-crystal__state">Cautious public framing without unsupported claims.</p>'
+            "</div></div></section>"
+        )
+    if lane == "HUB":
+        return (
+            '<section class="atlas-lane-prelude atlas-lane-prelude--command" aria-hidden="true">'
+            '<p class="atlas-lane-prelude__signal">Atlas command entry</p>'
+            '<div class="bs-relation-lattice atlas-command-lattice">'
+            '<div class="bs-relation-lattice__nodes">'
+            '<span class="bs-term-node"><span class="bs-term-node__meta">Hub</span>'
+            '<span class="bs-term-node__label">Atlas</span></span>'
+            '<span class="bs-relation-lattice__edge"></span>'
+            f'<span class="bs-term-node bs-term-node--center"><span class="bs-term-node__label">{label}</span></span>'
+            "</div></div></section>"
+        )
+    if lane in {"A", "C"}:
+        return (
+            '<section class="atlas-lane-prelude atlas-lane-prelude--terminology" aria-hidden="true">'
+            '<p class="atlas-lane-prelude__signal">Term-node lattice surface</p>'
+            '<div class="bs-relation-lattice atlas-term-lattice">'
+            '<div class="bs-relation-lattice__nodes">'
+            f'<span class="bs-term-node bs-term-node--center"><span class="bs-term-node__meta">Term</span>'
+            f'<span class="bs-term-node__label">{label}</span></span>'
+            "</div></div></section>"
+        )
+    if lane == "B" or lang == "de":
+        return (
+            '<section class="atlas-lane-prelude atlas-lane-prelude--language" aria-hidden="true">'
+            '<p class="atlas-lane-prelude__signal">DE/EN boundary logic</p>'
+            '<div class="bs-missing-e-boundary-system">'
+            '<p class="bs-missing-e-boundary-system__family">Missing-E boundary</p>'
+            '<div class="bs-missing-e-boundary-system__row">'
+            '<span class="bs-missing-e-boundary-system__name">BISULFIDE</span>'
+            '<span class="bs-missing-e-boundary-system__boundary"></span>'
+            '<span class="bs-missing-e-boundary-system__ghost">'
+            '<span class="bs-missing-e-boundary-system__ghost-letter">E</span></span>'
+            '<span class="bs-missing-e-boundary-system__boundary"></span>'
+            '<span class="bs-missing-e-boundary-system__name">BISULFID</span>'
+            "</div>"
+            '<p class="bs-missing-e-boundary-system__caption">Language-boundary reference</p>'
+            "</div>"
+            '<div class="bs-language-depth">'
+            '<span class="bs-language-depth__layer bs-language-depth__layer--de">DE</span>'
+            '<span class="bs-language-depth__depth-indicator">boundary</span>'
+            '<span class="bs-language-depth__layer bs-language-depth__layer--en">EN</span>'
+            "</div></section>"
+        )
+    if lane == "D":
+        return (
+            '<section class="atlas-lane-prelude atlas-lane-prelude--compound" aria-hidden="true">'
+            '<p class="atlas-lane-prelude__signal">Compound-family crystal map</p>'
+            '<div class="atlas-compound-crystal" role="presentation">'
+            '<span class="atlas-compound-crystal__cell atlas-compound-crystal__cell--parent"></span>'
+            '<span class="atlas-compound-crystal__bond"></span>'
+            '<span class="atlas-compound-crystal__cell atlas-compound-crystal__cell--child"></span>'
+            '<span class="atlas-compound-crystal__cell atlas-compound-crystal__cell--child"></span>'
+            "</div></section>"
+        )
+    if lane == "E":
+        return (
+            '<section class="atlas-lane-prelude atlas-lane-prelude--material" aria-hidden="true">'
+            '<p class="atlas-lane-prelude__signal">Material / strata logic</p>'
+            '<div class="atlas-material-strata" role="presentation">'
+            '<span class="atlas-material-strata__layer atlas-material-strata__layer--ore"></span>'
+            '<span class="atlas-material-strata__layer atlas-material-strata__layer--compound"></span>'
+            '<span class="atlas-material-strata__layer atlas-material-strata__layer--context"></span>'
+            "</div></section>"
+        )
+    if lane in {"F", "G", "H", "I"}:
+        return (
+            '<section class="atlas-lane-prelude atlas-lane-prelude--context" aria-hidden="true">'
+            '<p class="atlas-lane-prelude__signal">Context-layer positioning</p>'
+            '<div class="atlas-context-beacon" role="presentation">'
+            f'<span class="atlas-context-beacon__core">{label}</span>'
+            "</div></section>"
+        )
+    if lane in {"J", "K"}:
+        return (
+            '<section class="atlas-lane-prelude atlas-lane-prelude--governance" aria-hidden="true">'
+            '<p class="atlas-lane-prelude__signal">Governed source posture</p>'
+            '<div class="bs-source-crystal atlas-source-crystal-prelude">'
+            '<div class="bs-source-crystal__content">'
+            '<p class="bs-source-crystal__label">Source-governed reference</p>'
+            '<p class="bs-source-crystal__state">Cautious public framing without unsupported claims.</p>'
+            "</div></div></section>"
+        )
+    if lane == "L":
+        return (
+            '<section class="atlas-lane-prelude atlas-lane-prelude--audience" aria-hidden="true">'
+            '<p class="atlas-lane-prelude__signal">Audience-layer positioning</p>'
+            '<div class="atlas-audience-beacon" role="presentation">'
+            '<span class="atlas-audience-beacon__ring"></span>'
+            f'<span class="atlas-audience-beacon__core">{label}</span>'
+            "</div></section>"
+        )
+    return (
+        '<section class="atlas-lane-prelude atlas-lane-prelude--reference" aria-hidden="true">'
+        '<p class="atlas-lane-prelude__signal">Reference control surface</p>'
+        "</section>"
     )
 
 
@@ -465,7 +600,7 @@ def build_role_panel_html(route: dict, cls: dict, release_mode: str) -> str:
         f"<li>{html.escape(role)}</li>"
         f"<li>{html.escape(lang)}</li>"
         f"<li>{html.escape(parent_hub_label(route))}</li>"
-        f"<li>Public Reference Dossier</li>"
+        f"<li>Source-Governed Reference</li>"
         f"</ul>"
     )
 
@@ -509,7 +644,7 @@ def audience_layers_html(route: dict, cls: dict) -> str:
     audience = path_audience_hint(route.get("path", ""))
     return (
         f'<div class="atlas-layer atlas-layer--reference"><h3>Reference summary</h3>'
-        f"<p>{html.escape(role)} dossier for {html.escape(h1)}.</p></div>"
+        f"<p>{html.escape(role)} surface for {html.escape(h1)}.</p></div>"
         f'<div class="atlas-layer atlas-layer--technical"><h3>Technical context</h3>'
         f"<p>{html.escape(role)} placement within the governed atlas structure.</p></div>"
         f'<div class="atlas-layer atlas-layer--language"><h3>Language layer</h3>'

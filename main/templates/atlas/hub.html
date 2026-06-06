@@ -1,10 +1,17 @@
-<article class="atlas-dossier public-page atlas-hub-page" lang="{{language}}" data-atlas-lane="{{atlas_lane_slug}}">
+<article class="atlas-dossier public-page atlas-hub-page atlas-control-room-page" lang="{{language}}" data-atlas-lane="{{atlas_lane_slug}}">
+  {{lane_interface_prelude}}
   <div class="atlas-domain-ribbon" aria-hidden="true"><span class="atlas-domain-ribbon__label">{{atlas_role}}</span></div>
-  <header class="atlas-dossier-hero">
-    <p class="page-kicker atlas-dossier-hero__role">{{atlas_role}}</p>
-    <h1>{{page_h1}}</h1>
-    <p class="page-intro atlas-dossier-hero__summary">{{reference_summary}}</p>
-    <p class="atlas-dossier-hero__category">{{atlas_category}}</p>
+  <header class="atlas-dossier-hero atlas-control-room-hero bs-control-room-hero atlas-hub-command-hero">
+    <div class="bs-control-room-hero__glow" aria-hidden="true"></div>
+    <div class="bs-control-room-hero__perspective" aria-hidden="true">
+      <div class="bs-control-room-hero__nodes"></div>
+    </div>
+    <div class="bs-control-room-hero__content">
+      <p class="page-kicker atlas-dossier-hero__role bs-control-room-hero__kicker">{{atlas_role}}</p>
+      <h1 class="atlas-dossier-hero__title bs-control-room-hero__title">{{page_h1}}</h1>
+      <p class="page-intro atlas-dossier-hero__summary bs-control-room-hero__subtitle">{{reference_summary}}</p>
+      <p class="atlas-dossier-hero__category">{{atlas_category}}</p>
+    </div>
   </header>
   <section class="atlas-role-panel" aria-label="Role in the Bisulfid Atlas">
     <h2 class="atlas-role-panel__heading">Role in the Bisulfid Atlas</h2>
