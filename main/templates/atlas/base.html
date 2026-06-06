@@ -9,20 +9,31 @@
   <link rel="canonical" href="{{canonical_url}}">
   <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
 </head>
-<body class="bisulfid-atlas" data-atlas-release="true">
-  <header class="atlas-header">
-    <nav class="atlas-header__nav" aria-label="Atlas">
-      <a class="atlas-header__brand" href="/">BISULFID</a>
-      <span class="atlas-header__tag">Sovereign Reference Atlas</span>
-    </nav>
-  </header>
-  {{breadcrumbs}}
-  <main id="main-content" class="atlas-main" role="main">
-    {{content}}
-  </main>
-  <footer class="atlas-footer">
-    {{atlas_footer_nav}}
-    <p class="atlas-footer__note">Reference-grade atlas page. Not medical, safety, or investment advice.</p>
-  </footer>
+<body class="bs-control-room bisulfid-atlas {{body_semantic_classes}}" data-atlas-release="true" data-atlas-lane="{{atlas_lane_slug}}">
+  <div class="bs-control-room__shell">
+    <header class="site-header atlas-header" role="banner">
+      <nav aria-label="Atlas navigation">
+        <ul class="site-nav-list">
+          <li><a href="/" class="site-nav-brand">BISULFID</a></li>
+          <li><a href="/atlas/">Atlas</a></li>
+          <li><a href="/glossary/">Glossary</a></li>
+          <li><a href="/reference/terminology-spine-map/">Terminology</a></li>
+          <li><a href="/reference/multilingual-layer-map/">Languages</a></li>
+          <li><a href="/sources/">Sources</a></li>
+        </ul>
+      </nav>
+    </header>
+    {{breadcrumbs}}
+    <main id="main-content" role="main">
+      {{content}}
+    </main>
+    <footer class="site-footer" role="contentinfo">
+      <div class="site-footer__inner">
+        {{atlas_footer_nav}}
+        <p class="footer-identity">Bisulfid Sovereign Reference Atlas</p>
+        <p class="footer-copyright">Source-Governed Reference Page · Not medical, safety, or investment advice.</p>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>

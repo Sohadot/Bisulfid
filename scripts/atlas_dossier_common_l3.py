@@ -16,20 +16,93 @@ SITE_BASE = "https://bisulfid.com"
 STYLESHEET_PATH = "/assets/bisulfid-design-system/bisulfid-frame.css"
 
 PUBLIC_LANE_ROLES = {
-    "A": "Terminology reference",
-    "B": "Language boundary reference",
-    "C": "Disambiguation reference",
-    "D": "Compound reference",
-    "E": "Materials reference",
-    "F": "Industrial context reference",
-    "G": "Biotechnology context reference",
-    "H": "Economic context reference",
-    "I": "Journalistic context reference",
-    "J": "Academic reference",
-    "K": "Institutional context reference",
-    "L": "General-reader reference",
-    "HUB": "Atlas hub",
+    "A": "Terminology Reference",
+    "B": "Language Boundary Reference",
+    "C": "Disambiguation Reference",
+    "D": "Compound Reference",
+    "E": "Materials Reference",
+    "F": "Industrial Context",
+    "G": "Biotechnology Context",
+    "H": "Economic and Investment Context",
+    "I": "Journalism and Research Context",
+    "J": "Academic Reference",
+    "K": "Institutional Reference",
+    "L": "Student and Public Explanation",
+    "HUB": "Public Reference Dossier",
 }
+
+LANE_SEMANTIC_CLASS = {
+    "A": "atlas-lane-terminology",
+    "B": "atlas-lane-language",
+    "C": "atlas-lane-terminology",
+    "D": "atlas-lane-compound",
+    "E": "atlas-lane-material",
+    "F": "atlas-lane-industrial",
+    "G": "atlas-lane-biotech",
+    "H": "atlas-lane-economic",
+    "I": "atlas-lane-journalistic",
+    "J": "atlas-lane-academic",
+    "K": "atlas-lane-institutional",
+    "L": "atlas-lane-student",
+    "HUB": "atlas-lane-hub",
+}
+
+LANE_DOMAIN_CLASS = {
+    "A": "domain-chemistry",
+    "B": "domain-language",
+    "C": "domain-chemistry",
+    "D": "domain-chemistry",
+    "E": "domain-materials",
+    "F": "domain-industry",
+    "G": "domain-biotech",
+    "H": "domain-economics",
+    "I": "domain-journalism",
+    "J": "domain-academia",
+    "K": "domain-institutional",
+    "L": "domain-chemistry",
+    "HUB": "domain-chemistry",
+}
+
+LANE_SLUG = {
+    "A": "terminology",
+    "B": "language",
+    "C": "terminology",
+    "D": "compound",
+    "E": "material",
+    "F": "industrial",
+    "G": "biotech",
+    "H": "economic",
+    "I": "journalistic",
+    "J": "academic",
+    "K": "institutional",
+    "L": "student",
+    "HUB": "hub",
+}
+
+CSS_IMPORT_DEPENDENCIES = [
+    "tokens/colors.css",
+    "tokens/typography.css",
+    "tokens/spacing.css",
+    "tokens/motion.css",
+    "tokens/depth.css",
+    "tokens/governance.css",
+    "components/governance-banner.css",
+    "components/source-crystal.css",
+    "components/term-card.css",
+    "components/term-node.css",
+    "components/language-depth.css",
+    "components/relation-lattice.css",
+    "public-surface.css",
+    "atlas-semantic-interface.css",
+]
+
+SOVEREIGN_SHELL_MARKERS = (
+    "bs-control-room",
+    "bs-control-room__shell",
+    "site-header",
+    'id="main-content"',
+    "site-footer",
+)
 
 HUB_ROUTE_IDS = {
     "home", "sources", "corpus_methodology_overview", "internal_linking_discipline",
@@ -117,7 +190,36 @@ def sanitize_public_text(text: str) -> str:
 
 
 def public_lane_role(lane: str) -> str:
-    return PUBLIC_LANE_ROLES.get(lane, "Public reference dossier")
+    return PUBLIC_LANE_ROLES.get(lane, "Public Reference Dossier")
+
+
+def atlas_lane_slug(lane: str) -> str:
+    return LANE_SLUG.get(lane, "terminology")
+
+
+def infer_audience_classes(path: str) -> list[str]:
+    low = path.lower()
+    classes: list[str] = []
+    if any(x in low for x in ("/stu/", "aud-stu", "/child/", "child-stu")):
+        classes.append("audience-student")
+    if any(x in low for x in ("/ai/", "aud-ai", "air-ai")):
+        classes.append("audience-ai")
+    if "/acad/" in low or "/res/res" in low or "air-res" in low:
+        classes.append("audience-research")
+    if "/gov/" in low or "/inst/" in low:
+        classes.append("audience-government")
+    if "aud-anl" in low or "-anl-" in low:
+        classes.append("audience-investor")
+    return classes
+
+
+def semantic_body_classes(lane: str, path: str) -> str:
+    parts = [
+        LANE_SEMANTIC_CLASS.get(lane, "atlas-lane-terminology"),
+        LANE_DOMAIN_CLASS.get(lane, "domain-chemistry"),
+    ]
+    parts.extend(infer_audience_classes(path))
+    return " ".join(parts)
 
 
 def public_label(route: dict) -> str:
@@ -353,12 +455,28 @@ def parent_hub_label(route: dict) -> str:
     return "Bisulfid Atlas"
 
 
-def build_dossier_body(route: dict, cls: dict, release_mode: str) -> str:
-    h1 = public_label(route)
+def build_role_panel_html(route: dict, cls: dict, release_mode: str) -> str:
     lane = cls.get("proposed_production_lane", "A")
     role = public_lane_role(lane)
     lang = route.get("language", "en").upper()
-    summary = public_summary(route, cls)
+    return (
+        f'<p class="atlas-role-panel__text">{html.escape(dossier_role_text(route, cls, release_mode))}</p>'
+        f'<ul class="atlas-role-panel__meta">'
+        f"<li>{html.escape(role)}</li>"
+        f"<li>{html.escape(lang)}</li>"
+        f"<li>{html.escape(parent_hub_label(route))}</li>"
+        f"<li>Public Reference Dossier</li>"
+        f"</ul>"
+    )
+
+
+def build_audience_panel_html(lane: str, path: str) -> str:
+    items = who_this_helps(lane, path)
+    return "<ul>" + "".join(f"<li>{html.escape(i)}</li>" for i in items) + "</ul>"
+
+
+def build_dossier_body(route: dict, cls: dict, release_mode: str) -> str:
+    h1 = public_label(route)
     topic = path_topic_hint(route.get("path", ""))
     sections: list[str] = []
 
@@ -370,31 +488,10 @@ def build_dossier_body(route: dict, cls: dict, release_mode: str) -> str:
             parts.append("<ul>" + "".join(f"<li>{html.escape(b)}</li>" for b in bullets) + "</ul>")
         sections.append("\n".join(parts))
 
-    sec("Public reference summary", [summary])
-    sec("Role in the Bisulfid Atlas", [dossier_role_text(route, cls, release_mode)], [
-        f"Atlas category: {role}",
-        f"Language: {lang}",
-        f"Parent context: {parent_hub_label(route)}",
-        "Part of the Bisulfid sovereign reference atlas",
-    ])
     sec("Term and topic boundary", [topic_boundary_text(route, cls)])
     sec("Related atlas nodes", [
         f"Use the links below to move from {h1} to neighbouring terminology, language, and hub routes.",
         "Internal navigation is designed for researchers, journalists, students, and institutional readers.",
-    ])
-    sec("Context layers", [], [
-        "Reference summary — atlas orientation for this topic",
-        "Technical context — terminology placement without unverified chemical assertions",
-        "Language layer — multilingual and spelling-boundary awareness",
-        "Research and journalism layer — structured context for citation discipline",
-        "Institutional and industry layer — sector framing without operational advice",
-        "Student and public layer — clear explanation without oversimplifying chemistry",
-    ])
-    sec("Who this page helps", [], who_this_helps(lane, route.get("path", "")))
-    sec("Source and claim posture", [
-        "This public reference dossier uses cautious framing. "
-        "Factual terminology claims require verified source packs before publication.",
-        "This page does not provide medical, safety, market, investment, or operational purchasing guidance.",
     ])
     if topic:
         sec("Navigation", [
@@ -430,9 +527,15 @@ def build_breadcrumbs(route: dict) -> str:
     path = route.get("path", "/").strip("/")
     parts = path.split("/") if path else []
     items = []
-    for part in parts:
+    acc = ""
+    for i, part in enumerate(parts):
+        acc = f"{acc}/{part}" if acc else part
         label = sanitize_public_text(part.replace("-", " ").title())
-        items.append(f"<li><span>{html.escape(label)}</span></li>")
+        if i == len(parts) - 1:
+            items.append(f'<li><span aria-current="page">{html.escape(label)}</span></li>')
+        else:
+            href = f"/{acc}/"
+            items.append(f'<li><a href="{html.escape(href)}">{html.escape(label)}</a></li>')
     return "".join(items)
 
 

@@ -14,6 +14,8 @@
 @import url("components/term-node.css");
 @import url("components/language-depth.css");
 @import url("components/relation-lattice.css");
+@import url("public-surface.css");
+@import url("atlas-semantic-interface.css");
 
 /* Control-room frame shell */
 .bs-control-room {
