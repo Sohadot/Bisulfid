@@ -1,22 +1,34 @@
-<article class="atlas-page atlas-page--dossier" lang="{{language}}">
-  <header class="atlas-page__header">
-    <p class="atlas-page__role">{{atlas_role}}</p>
-    <h1 class="atlas-page__title">{{page_h1}}</h1>
-    <p class="atlas-page__summary">{{reference_summary}}</p>
-    <p class="atlas-page__category">{{atlas_category}}</p>
+<article class="atlas-dossier public-page" lang="{{language}}" data-atlas-lane="{{atlas_lane_slug}}">
+  <div class="atlas-domain-ribbon" aria-hidden="true"><span class="atlas-domain-ribbon__label">{{atlas_role}}</span></div>
+  <header class="atlas-dossier-hero">
+    <p class="page-kicker atlas-dossier-hero__role">{{atlas_role}}</p>
+    <h1>{{page_h1}}</h1>
+    <p class="page-intro atlas-dossier-hero__summary">{{reference_summary}}</p>
+    <p class="atlas-dossier-hero__category">{{atlas_category}}</p>
   </header>
-  <section class="atlas-page__body">
+  <section class="atlas-role-panel" aria-label="Role in the Bisulfid Atlas">
+    <h2 class="atlas-role-panel__heading">Role in the Bisulfid Atlas</h2>
+    {{role_panel_body}}
+  </section>
+  <section class="atlas-dossier-body" aria-label="Reference dossier">
     {{page_body}}
   </section>
-  <section class="atlas-audience-layers" aria-label="Context layers">
-    {{audience_layers}}
+  <section class="atlas-context-layer-grid" aria-label="Context layers">
+    <h2 class="atlas-context-layer-grid__heading">Context layers</h2>
+    <div class="atlas-context-layer-grid__items">
+      {{audience_layers}}
+    </div>
   </section>
-  <aside class="atlas-source-posture" aria-label="Source and claim posture">
-    <h2>Source and claim posture</h2>
-    <p>{{source_posture_text}}</p>
+  <section class="atlas-audience-panel" aria-label="Who this page helps">
+    <h2 class="atlas-audience-panel__heading">Who this page helps</h2>
+    {{audience_panel}}
+  </section>
+  <aside class="atlas-source-posture-panel source-posture" aria-label="Source and claim posture">
+    <h2 class="source-posture__heading">Source and claim posture</h2>
+    <p class="source-posture__statement">{{source_posture_text}}</p>
   </aside>
-  <nav class="atlas-internal-links" aria-label="Related atlas pages">
-    <h2>Related atlas pages</h2>
+  <nav class="atlas-related-node-grid" aria-label="Explore related pages">
+    <h2>Explore related pages</h2>
     {{internal_links}}
   </nav>
 </article>

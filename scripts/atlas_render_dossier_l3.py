@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sprint 99/99A — Render full 14K public reference dossier output."""
+"""Sprint 99/99A/99B — Render full 14K public reference dossier output."""
 from __future__ import annotations
 
 import html
@@ -12,13 +12,17 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from atlas_dossier_common_l3 import (  # noqa: E402
     STYLESHEET_PATH,
+    atlas_lane_slug,
     audience_layers_html,
+    build_audience_panel_html,
     build_breadcrumbs,
     build_dossier_body,
     build_internal_links_html,
+    build_role_panel_html,
     public_lane_role,
     public_label,
     public_summary,
+    semantic_body_classes,
     substitute,
 )
 
@@ -34,7 +38,7 @@ def read_template(rel: str) -> str:
 
 def main() -> int:
     print("=" * 60)
-    print("Sprint 99A — 14K Dossier Quality Repair Render")
+    print("Sprint 99B — 14K Semantic Interface Dossier Render")
     print("=" * 60)
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     routes = json.loads(ROUTES_PATH.read_text(encoding="utf-8"))["routes"]
@@ -69,23 +73,28 @@ def main() -> int:
         page_title = h1
         if "bisulfid.com" not in page_title.lower():
             page_title = f"{h1} — Bisulfid Atlas"
+        path = route.get("path", "/")
         ctx = {
             "language": route.get("language", "en"),
             "text_direction": "ltr",
             "page_title": html.escape(page_title),
             "meta_description": html.escape(summary),
-            "canonical_url": f"https://bisulfid.com{route.get('path', '/')}",
+            "canonical_url": f"https://bisulfid.com{path}",
             "page_h1": html.escape(h1),
             "atlas_role": html.escape(role),
-            "atlas_category": html.escape(f"{role} · Public reference dossier"),
+            "atlas_lane_slug": atlas_lane_slug(lane),
+            "body_semantic_classes": semantic_body_classes(lane, path),
+            "atlas_category": html.escape(f"{role} · Public Reference Dossier"),
             "reference_summary": html.escape(summary),
+            "role_panel_body": build_role_panel_html(route, cls, release_mode),
             "page_body": body_html,
             "source_posture_text": (
-                "This page is a source-governed public reference dossier. "
+                "This page is a Source-Governed Reference Page within the Bisulfid Atlas. "
                 "It does not provide medical, safety, market, investment, or operational purchasing guidance. "
                 "Verified source packs govern factual terminology publication across the atlas."
             ),
             "audience_layers": audience_layers_html(route, cls),
+            "audience_panel": build_audience_panel_html(lane, path),
             "internal_links": links_html,
             "breadcrumb_items": build_breadcrumbs(route),
             "atlas_footer_nav": footer_nav,
