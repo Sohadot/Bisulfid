@@ -658,7 +658,16 @@ def audience_layers_html(route: dict, cls: dict) -> str:
     )
 
 
-def build_breadcrumbs(route: dict) -> str:
+def build_breadcrumbs(route: dict, valid_paths: set[str] | None = None) -> str:
+    """Build breadcrumb list items for a route.
+
+    Intermediate path segments are only rendered as links when they resolve to a
+    real, generated page. When ``valid_paths`` is provided, an intermediate
+    segment whose accumulated path is not in that set is emitted as plain text
+    instead of an anchor, so crawlers never follow a link to a directory URL that
+    has no ``index.html`` (which would return a 404). Passing ``None`` keeps the
+    legacy behaviour of linking every intermediate segment.
+    """
     path = route.get("path", "/").strip("/")
     parts = path.split("/") if path else []
     items = []
@@ -668,6 +677,10 @@ def build_breadcrumbs(route: dict) -> str:
         label = sanitize_public_text(part.replace("-", " ").title())
         if i == len(parts) - 1:
             items.append(f'<li><span aria-current="page">{html.escape(label)}</span></li>')
+        elif valid_paths is not None and acc not in valid_paths:
+            # Intermediate level has no generated page — render as text, not a
+            # dead link, to avoid emitting a crawlable 404 target.
+            items.append(f'<li><span>{html.escape(label)}</span></li>')
         else:
             href = f"/{acc}/"
             items.append(f'<li><a href="{html.escape(href)}">{html.escape(label)}</a></li>')

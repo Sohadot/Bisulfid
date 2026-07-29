@@ -54,6 +54,14 @@ def main() -> int:
             for r in json.loads(class_path.read_text(encoding="utf-8"))["routes"]
         }
     released = [r for r in ledger["records"] if r["release_status"] == "released"]
+    # Set of real page paths (no leading/trailing slash) used to decide which
+    # breadcrumb ancestors are real links vs plain text. Combine the pages this
+    # render produces with any pages already present on disk (foundation/hub
+    # pages built by other pipeline stages, e.g. /en/, /reference/).
+    valid_paths = {r["route_path"].strip("/") for r in released}
+    for existing in PUBLIC_DIR.rglob("index.html"):
+        rel = existing.parent.relative_to(PUBLIC_DIR).as_posix()
+        valid_paths.add("" if rel == "." else rel)
     base_tpl = read_template("base.html")
     dossier_tpl = read_template("dossier.html")
     breadcrumb_tpl = read_template("partials/breadcrumbs.html")
@@ -102,7 +110,7 @@ def main() -> int:
             "audience_layers": audience_layers_html(route, cls),
             "audience_panel": build_audience_panel_html(lane, path),
             "internal_links": links_html,
-            "breadcrumb_items": build_breadcrumbs(route),
+            "breadcrumb_items": build_breadcrumbs(route, valid_paths),
             "atlas_footer_nav": footer_nav,
         }
         article = substitute(dossier_tpl, ctx)
