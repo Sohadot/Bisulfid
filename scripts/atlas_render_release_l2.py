@@ -204,6 +204,12 @@ def main() -> int:
     routes = json.loads(ROUTES_PATH.read_text(encoding="utf-8"))["routes"]
     routes_by_id = {r["route_id"]: r for r in routes}
     released = [r for r in ledger["records"] if r["release_status"] == "released"]
+    # Real page paths, so breadcrumb ancestors without a generated page render as
+    # plain text instead of a link that would resolve to a 404.
+    valid_paths = {r.get("route_path", routes_by_id.get(r["route_id"], {}).get("path", "/")).strip("/") for r in released}
+    for existing in PUBLIC_DIR.rglob("index.html"):
+        rel = existing.parent.relative_to(PUBLIC_DIR).as_posix()
+        valid_paths.add("" if rel == "." else rel)
     written = []
     errors = []
     hub_tpl = read_template("hub.html")
@@ -236,7 +242,7 @@ def main() -> int:
             "source_posture_text": "Cautious framing only. Terminology factual claims require verified source packs.",
             "audience_layers": audience_layers_html(route),
             "internal_links": links_html,
-            "breadcrumb_items": build_breadcrumbs(route),
+            "breadcrumb_items": build_breadcrumbs(route, valid_paths),
             "atlas_footer_nav": footer_nav,
         }
         for k in list(ctx.keys()):
