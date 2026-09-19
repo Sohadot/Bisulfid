@@ -1,0 +1,33 @@
+{
+  "version": "0.1.0",
+  "sprint": "morocco-ocp-sulfur-industrial-pilot-02",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "main/data/pilots/MOROCCO_OCP_SULFUR_INDUSTRIAL_PILOT_02.md", "DECISION_LOG.md"],
+  "purpose": "Smallest controlled registry of ORGANIZATION identities usable as typed relationship endpoints (endpoint_type 'organization'). Identity ONLY: a stable organization ID, canonical name, and minimal disambiguation. An organization object asserts NO industrial relationship, NO financial figure, NO sulfur fact, NO market position, NO ownership, NO acquisition, and generates NO route.",
+  "rules": [
+    "An organization record owns IDENTITY only. It never carries financial values, sulfur facts, production/market data, ownership or acquisition claims, or relationship assertions.",
+    "Creating an organization object does NOT create any relationship. 'ORG-X exists' is not 'ORG-X → does something → Y'. Relationships live in relationship_class_registry.json and require their own evidence.",
+    "An organization is NOT a geography. ORG-OCP-GROUP must never be substituted for GEO-MA (Morocco). A company is not a country.",
+    "Organization identity carries no evidence status of its own and authorizes no publication/indexation."
+  ],
+  "record_schema": {
+    "required_fields": ["organization_id", "canonical_name", "organization_type", "home_geography_context", "disambiguation"],
+    "optional_fields": ["also_known_as", "legal_form_note", "notes"],
+    "forbidden_fields": ["financials", "revenue", "sulfur_facts", "market_position", "market_share", "production", "ownership", "shareholders", "acquisition", "acquisition_targets", "relationship", "relationships", "supporting_evidence_ids", "route", "path", "url_route", "in_sitemap", "indexable", "status"],
+    "home_geography_note": "home_geography_context is a DISAMBIGUATION hint only (where the entity is headquartered/registered). It is NOT a relationship and NOT a claim that the organization equals or represents that geography."
+  },
+  "id_rules": {"production_prefix": "ORG-", "test_fixture_prefix": "TEST-ORG-"},
+  "organizations": [
+    {
+      "organization_id": "ORG-OCP-GROUP",
+      "canonical_name": "OCP Group",
+      "organization_type": "company",
+      "home_geography_context": "GEO-MA",
+      "disambiguation": "Moroccan phosphate group (OCP S.A. / OCP Group), a phosphate and phosphate-derivatives producer headquartered in Morocco. Identity endpoint only for typed relationships; not a proxy for Morocco (GEO-MA) and not asserted here to use, produce, import, or consume sulfur.",
+      "also_known_as": ["OCP S.A.", "OCP"],
+      "legal_form_note": "Legal form not asserted from a verified primary source in this pilot; recorded as a name variant only.",
+      "notes": "Registered in Pilot 02 as the smallest organization identity needed to hold the endpoint ORG-OCP-GROUP. No financial, sulfur, market, production, ownership, or relationship content is stored here (see forbidden_fields). Any ORG-OCP-GROUP → REL-* → concept relationship requires its own admitted evidence and is NOT implied by this record."
+    }
+  ]
+}

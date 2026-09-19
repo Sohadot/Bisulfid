@@ -1,0 +1,40 @@
+{
+  "version": "0.1.0",
+  "sprint": "morocco-ocp-sulfur-industrial-pilot-02",
+  "site": "bisulfid.com",
+  "status": "non_operational",
+  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "main/data/claim_activation_policy.json", "main/data/pilots/MOROCCO_OCP_SULFUR_INDUSTRIAL_PILOT_02.md", "DECISION_LOG.md"],
+  "purpose": "Pilot-scoped, NON-OPERATIONAL claim records for Pilot 02 (OCP Group x sulfur x Morocco industrial context x FY2024). Kept OUT of the canonical claim registries. All three principal claims are BLOCKED: the OCP primary documents could not be opened in this environment (Cloudflare bot-challenge; browser CA-trust change disallowed). NO figure, sentence, or value was taken from prompt text or search snippets. Supporting evidence IDs are mandatory for a SUPPORTED claim; a BLOCKED claim asserts none.",
+  "operational": false,
+  "organization_ref": "ORG-OCP-GROUP",
+  "intended_relationship_target": "ORG-OCP-GROUP -> REL-INDUSTRIAL-USER -> sulfur (FY2024-scoped). NOT created: no admitted evidence; and REL-INDUSTRIAL-USER requires primary categories (official_production_statistics / national_statistical_authority / government_scientific_database), which a single corporate self-report does not satisfy.",
+  "claims": [
+    {
+      "claim_id": "CLM-OCP-SULFUR-PURCHASE-FY2024",
+      "pilot_claim": "A — sulfur purchase accounting fact (issuer-primary)",
+      "statement_intended": "OCP's FY2024 consolidated financial statements report 'Sulfur' under raw-material purchases/purchases consumed, with the exact accounting value as printed (accounting presentation, e.g. a parenthesised amount in millions of dirhams), scoped to OCP and FY2024.",
+      "outcome": "BLOCKED",
+      "blocked_reason": "The OCP Consolidated Financial Statements at 31 December 2024 (SRC-OCP-AFR-2024) could not be opened: www.ocpgroup.ma returns a Cloudflare JS bot-challenge (HTTP 403) to curl and WebFetch, and Chromium cannot be made to trust the egress-proxy CA here without a disallowed TLS-trust change. No credentials/login/TLS-bypass were used. The exact accounting literal was therefore NOT extracted and is NOT asserted. The accounting numeric convention NUM-ACCOUNTING-PAREN-NEG is in place so that, once the PDF is obtained, a value such as '(8,344)' will be stored with its exact literal and correct signed normalization (-8344), never silently as +8344.",
+      "supporting_evidence_ids": [],
+      "scope_guard": "If unblocked: issuer's OWN accounting line only. NEVER Moroccan sulfur demand, physical consumption, import value, procurement volume, or market size."
+    },
+    {
+      "claim_id": "CLM-OCP-SULFUR-CONSUMPTION-OBS-FY2024",
+      "pilot_claim": "B — sulfur consumption operational observation (issuer-primary)",
+      "statement_intended": "OCP's 2024 report narrates that sulfur consumption volumes rose in correlation with increased sulfuric-acid production (exact issuer wording, with locator).",
+      "outcome": "BLOCKED",
+      "blocked_reason": "Requires re-opening the original OCP PDF to extract the exact sentence + locator (per sprint). Acquisition blocked (same Cloudflare challenge). The sentence was NOT extracted and is NOT asserted; no tonnage, causality, efficiency, or national demand inferred.",
+      "supporting_evidence_ids": [],
+      "scope_guard": "If unblocked: capture ONLY the narrow issuer-reported operational observation, verbatim, with locator. No tonnage/causality/efficiency/national-demand inference."
+    },
+    {
+      "claim_id": "CLM-OCP-PHOSPHATE-SULFURIC-ACID-PROCESS",
+      "pilot_claim": "C — industrial process context (issuer-primary, qualitative)",
+      "statement_intended": "Per OCP's Sustainability Integrated Report 2024, OCP's phosphate-processing operations combine phosphate rock with sulphuric acid to produce phosphoric acid, within the exact locations/scope stated by the source.",
+      "outcome": "BLOCKED",
+      "blocked_reason": "The OCP Sustainability Integrated Report 2024 (SRC-OCP-SUSTAINABILITY-2024) could not be opened (same Cloudflare challenge). The process statement was NOT extracted and is NOT asserted. Kept as a FUTURE governed qualitative knowledge assertion; NO 'sulfuric_acid' ontology concept was fabricated (sprint 10).",
+      "supporting_evidence_ids": [],
+      "scope_guard": "If unblocked: qualitative issuer-own-process context ONLY. Does not by itself prove sulfur feedstock quantities or national sulfur demand. Keep sulfuric acid as qualitative context, not a forced concept."
+    }
+  ]
+}

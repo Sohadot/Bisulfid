@@ -26,7 +26,9 @@
       { "category": "official_production_statistics", "roles": ["official_record", "primary_authoritative"], "note": "Official production figures." },
       { "category": "regulatory_instrument", "roles": ["official_record"], "note": "The governing statute/regulation/directive/standard/treaty itself; REQUIRED for current-law claims." },
       { "category": "official_standard", "roles": ["official_record", "primary_authoritative"], "note": "Official technical standard (e.g. DIN/ISO) as issued." },
-      { "category": "customs_nomenclature_authority", "roles": ["primary_authoritative", "official_record"], "note": "Authority for a customs/statistical goods NOMENCLATURE (WCO Harmonized System and its official government/intergovernmental reproductions, e.g. UN Comtrade HS reference, national customs tariffs). Added (source-qualification correction / classification-resolution) because neither 'official_standard' (technical standards like DIN/ISO) nor 'intergovernmental_trade_database' (trade FLOW data) correctly names a classification nomenclature authority. Establishes classification identity ONLY, never trade totals or scientific/market claims." }
+      { "category": "customs_nomenclature_authority", "roles": ["primary_authoritative", "official_record"], "note": "Authority for a customs/statistical goods NOMENCLATURE (WCO Harmonized System and its official government/intergovernmental reproductions, e.g. UN Comtrade HS reference, national customs tariffs). Added (source-qualification correction / classification-resolution) because neither 'official_standard' (technical standards like DIN/ISO) nor 'intergovernmental_trade_database' (trade FLOW data) correctly names a classification nomenclature authority. Establishes classification identity ONLY, never trade totals or scientific/market claims." },
+      { "category": "corporate_financial_report", "roles": ["primary_authoritative", "official_record"], "note": "The reporting entity's OWN official audited/consolidated financial statements (issuer-primary). Added (Pilot 02) because 'market_report' (third-party market analysis) and 'industry_publication' (trade press) both MISLABEL an issuer's own audited accounts. AUTHORITY IS STRICTLY LIMITED to the issuer's own disclosed financial/accounting facts: it may establish 'issuer X's FY accounts report line Y = value Z', never national statistics, import/trade value, market size, or physical volumes. Category alone is never admissible." },
+      { "category": "corporate_sustainability_report", "roles": ["primary_authoritative", "contextual"], "note": "The reporting entity's OWN official sustainability / integrated report (issuer-primary). Added (Pilot 02) because no existing category accurately names an issuer's primary non-financial disclosure. Authority limited to narrowly-scoped statements about the ISSUER'S OWN operations/processes as stated; never a universal industry fact, national production/demand, or market structure." }
     ],
     "evaluated_not_ratified_yet": [
       { "category": "official_environmental_database", "reason": "No system need yet; revisit when environment domain activates." },
@@ -53,7 +55,9 @@
     "official_production_statistics": ["official_record", "primary_authoritative"],
     "regulatory_instrument": ["official_record"],
     "official_standard": ["official_record", "primary_authoritative"],
-    "customs_nomenclature_authority": ["primary_authoritative", "official_record"]
+    "customs_nomenclature_authority": ["primary_authoritative", "official_record"],
+    "corporate_financial_report": ["primary_authoritative", "official_record"],
+    "corporate_sustainability_report": ["primary_authoritative", "contextual"]
   },
 
   "domain_admissibility": {
@@ -104,13 +108,31 @@
       "commentary_contextual_only": ["academic_teaching_reference", "industry_publication", "market_report", "peer_reviewed_journal"],
       "sufficiency": "original_instrument_required"
     },
+    "corporate_financials": {
+      "applies_to_domains": ["SD-CORPORATE-FINANCIALS"],
+      "claim_levels": ["relationship"],
+      "required_any_role": ["primary_authoritative", "official_record"],
+      "allowed_categories": ["corporate_financial_report"],
+      "forbidden_alone_categories": ["market_report", "industry_publication"],
+      "sufficiency": "single_authoritative_sufficient",
+      "issuer_primary_only": true,
+      "may_establish": ["issuer_own_accounting_line_when_scoped_to_the_issuer_and_period"],
+      "may_not_establish": ["national_trade_value", "sovereign_import_or_export_totals", "national_or_market_demand", "market_size", "physical_volume_or_tonnage_from_value", "universal_industry_fact", "another_entity_finances"],
+      "note": "A NARROW accounting line from the issuer's OWN official financial statements may use single_authoritative_sufficient FOR THAT EXACT FACT TYPE ONLY (issuer's own disclosed accounting value, scoped to the issuer and the reporting period). This does NOT alter trade/economics sufficiency: corporate accounting facts must never be routed through SD-TRADE, and this rule grants nothing about sovereign trade, national demand, or market structure."
+    },
     "industry": {
       "applies_to_domains": ["SD-INDUSTRIAL"],
       "claim_levels": ["relationship", "concept"],
-      "allowed_categories": ["industry_publication", "government_scientific_database"],
+      "allowed_categories": ["industry_publication", "government_scientific_database", "corporate_sustainability_report", "corporate_financial_report"],
+      "issuer_primary_vs_analytical": {
+        "issuer_primary_may_establish": ["narrowly_scoped_statement_about_the_issuers_OWN_operations_or_processes_as_stated"],
+        "issuer_primary_may_not_establish": ["universal_industry_fact", "morocco_wide_or_national_demand", "national_production", "global_market_structure", "sovereign_statistics"],
+        "note": "An issuer-primary disclosure (corporate_sustainability_report / corporate_financial_report) supports ONLY a narrowly-scoped statement about that issuer's own operations. It never establishes an economy-wide, national, or universal industrial fact."
+      },
       "industry_publication_may_establish": ["observed_industrial_context_when_scoped"],
       "industry_publication_may_not_establish": ["national_trade_totals", "current_law", "sovereign_statistics", "universal_scientific_performance"],
-      "sufficiency": "primary_plus_corroborating"
+      "sufficiency": "primary_plus_corroborating",
+      "broader_industrial_relationship_note": "A BROADER industrial relationship (e.g. an actor-to-commodity industrial-user relationship generalized beyond one issuer's own stated operation) still REQUIRES primary_plus_corroborating and is NOT weakened to admit an issuer's single self-report."
     }
   },
 

@@ -250,6 +250,32 @@ def validate_source_qualification():
     check(cl["this_sprint"].startswith("No registry activated"), "claim policy: nothing may be activated this sprint")
 
 
+def validate_organization():
+    path = os.path.join(DATA, "organization_registry.json")
+    if not os.path.exists(path):
+        return
+    d = load(path)
+    geo = load(os.path.join(DATA, "geography_registry.json"))
+    geo_ids = {g["geo_id"] for g in geo["geographies"]}
+    req = set(d["record_schema"]["required_fields"])
+    forbidden = set(d["record_schema"]["forbidden_fields"])
+    seen = set()
+    for o in d["organizations"]:
+        oid = o["organization_id"]
+        check(oid.startswith("ORG-"), f"organization {oid}: bad id prefix")
+        check(oid not in seen, f"organization {oid}: duplicate id")
+        seen.add(oid)
+        for f in req:
+            check(f in o, f"organization {oid}: missing required field '{f}'")
+        leaked = forbidden.intersection(o.keys())
+        check(not leaked, f"organization {oid}: identity record carries forbidden field(s) {sorted(leaked)} (financials/relationship/route etc.)")
+        # An organization is NOT a geography: no ORG id may collide with a geo id.
+        check(oid not in geo_ids, f"organization {oid}: organization id must never equal a geography id")
+        # home_geography_context is a disambiguation hint that must resolve, but is not a relationship.
+        hg = o.get("home_geography_context")
+        check(hg in geo_ids, f"organization {oid}: home_geography_context '{hg}' must resolve to a geography id (disambiguation only)")
+
+
 def validate_classification():
     path = os.path.join(DATA, "classification_registry.json")
     if not os.path.exists(path):
@@ -311,6 +337,7 @@ def main():
     validate_information_gain()
     validate_source_qualification()
     validate_classification()
+    validate_organization()
     print(f"    (ran {CHECKS} checks)")
     print("=" * 56)
     if ERRORS:

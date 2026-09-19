@@ -7,20 +7,44 @@ convention id. Convention is SOURCE-SPECIFIC: it is never inferred from language
 country, or file extension, and there is NO silent French fallback.
 
 Governed conventions:
-  NUM-FR-DOT-THOUSANDS : dot '.' = thousands separator (French report). '9.108' -> 9108.
-  NUM-EN-DOT-DECIMAL   : dot '.' = decimal point (English/international). '1.099' -> 1.099.
-  NUM-PLAIN-INT        : plain integer, no grouping/decimal. '9108' -> 9108.
+  NUM-FR-DOT-THOUSANDS     : dot '.' = thousands separator (French report). '9.108' -> 9108.
+  NUM-EN-DOT-DECIMAL       : dot '.' = decimal point (English/international). '1.099' -> 1.099.
+  NUM-PLAIN-INT            : plain integer, no grouping/decimal. '9108' -> 9108.
+  NUM-ACCOUNTING-PAREN-NEG : accounting presentation — comma '.' = thousands, dot = decimal,
+                             and PARENTHESES mean NEGATIVE. '(8,344)' -> -8344 (signed);
+                             '8,344' -> 8344. Parentheses are NEVER silently dropped: a
+                             parenthesized literal MUST normalize to a negative value. A
+                             positive magnitude for prose is DERIVED via magnitude() and must
+                             be labelled as magnitude, never stored as a competing normalized_value.
 
 Pure; no I/O; unwired from CI.
 """
 
 import re
 
-GOVERNED_CONVENTIONS = {"NUM-FR-DOT-THOUSANDS", "NUM-EN-DOT-DECIMAL", "NUM-PLAIN-INT"}
+GOVERNED_CONVENTIONS = {"NUM-FR-DOT-THOUSANDS", "NUM-EN-DOT-DECIMAL", "NUM-PLAIN-INT", "NUM-ACCOUNTING-PAREN-NEG"}
 
 _FR_GROUPED = re.compile(r"^[+-]?\d{1,3}(\.\d{3})+$")
 _PLAIN_INT = re.compile(r"^[+-]?\d+$")
 _EN_DECIMAL = re.compile(r"^[+-]?\d{1,3}(,\d{3})*(\.\d+)?$")  # optional comma-thousands, dot-decimal
+_ACCT_MAG = re.compile(r"^\d{1,3}(,\d{3})*(\.\d+)?$")         # comma-thousands, optional dot-decimal magnitude
+
+
+def _acct_parse(s):
+    """Parse an accounting literal -> (signed_value, error). Parentheses => negative."""
+    negative = False
+    body = s
+    if body.startswith("(") and body.endswith(")"):
+        negative = True
+        body = body[1:-1].strip()
+    elif body.startswith("-"):
+        negative = True
+        body = body[1:].strip()
+    if not _ACCT_MAG.match(body):
+        return (None, f"'{s}' is not an accounting literal (comma-thousands, parentheses=negative)")
+    v = float(body.replace(",", ""))
+    v = int(v) if v.is_integer() else v
+    return (-v if negative else v, None)
 
 
 def normalize(literal, convention_id):
@@ -43,7 +67,17 @@ def normalize(literal, convention_id):
         if _PLAIN_INT.match(s):
             return (int(s), None)
         return (None, f"'{s}' is not a plain integer")
+    if convention_id == "NUM-ACCOUNTING-PAREN-NEG":
+        return _acct_parse(s)
     return (None, f"unknown numeric_convention_id '{convention_id}'")
+
+
+def magnitude(value):
+    """Absolute magnitude of a signed accounting value, for prose use ONLY.
+    The caller MUST label the result as a magnitude; it is never the stored normalized truth."""
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        return None
+    return abs(value)
 
 
 # Backwards-compatible helper (Morocco convention) used by earlier correction tests.

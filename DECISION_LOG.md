@@ -5210,3 +5210,35 @@ New **admission-closure 19/19**; classification resolution 17/17; source admissi
 
 ### Not started
 Pilot 02; GCC/China/Germany; language localization; Moroccan national-code acquisition; trade sufficiency-policy amendment; domain evidence-activation; source-locking; any route/claim activation.
+
+---
+
+## Pilot 02 — Morocco OCP Sulfur Industrial Chain
+
+**Date:** 2026-09-19
+**Baseline:** commit `c2c390b670`. Purpose: test whether BISULFID can REPRESENT a real industrial actor (OCP Group) and its relationship to sulfur without turning corporate disclosures into national statistics/market claims. Scope "OCP × sulfur × Morocco industrial context × FY2024", max 3 claims. Issuer-primary OCP official disclosures only. No public page/route/indexation/14K, no GCC/China/Germany, no Arabic/French lexeme expansion, no Pilot 03, no PR.
+
+### Outcome: governance success by withholding
+The corporate-actor governance architecture was built and PROVES correct withholding. **All three principal claims are BLOCKED** because the OCP primary PDFs could not be opened in this environment: `www.ocpgroup.ma` serves a Cloudflare JS bot-challenge (HTTP 403) to curl and WebFetch, and Chromium could not be granted trust of the egress-proxy CA without a TLS-trust change that the environment disallowed (attempt denied). No credentials, login, or TLS-verification bypass were used (parallels the douane.gov.ma block in Pilot 01). **No figure/sentence was taken from prompt text or search snippets.**
+
+### Built (acquisition-independent architecture)
+- **Organization registry** (`organization_registry.json`): `ORG-OCP-GROUP` identity ONLY (canonical name + disambiguation). Forbids financials/market/ownership/relationship/route fields; forbids ID collision with a geography. Creating the org implies NO relationship, and OCP is never substitutable for GEO-MA.
+- **Two governed source categories** (`corporate_financial_report`, `corporate_sustainability_report`), authority strictly limited to the issuer's own disclosed facts (issuer-primary, not market/industry press). Added to policy + registry vocabulary (no drift).
+- **New domain `SD-CORPORATE-FINANCIALS`** (distinct from SD-TRADE): a narrow issuer accounting line may use `single_authoritative_sufficient` for that exact fact type; trade/economics sufficiency unchanged (`primary_plus_corroborating`). **SD-INDUSTRIAL** now distinguishes issuer-primary vs analytical; broader industrial relationships still require corroboration.
+- **Accounting numeric convention `NUM-ACCOUNTING-PAREN-NEG`** (`numeric_normalization.py` + policy): comma-thousands, dot-decimal, PARENTHESES = NEGATIVE. `(8,344)` → signed `-8344`; a `magnitude()` helper yields a labelled positive for prose only. Validator rejects a parenthesised literal stored as positive (no silent parentheses drop).
+- **Two OCP sources registered** (`SRC-OCP-AFR-2024`, `SRC-OCP-SUSTAINABILITY-2024`) with `identity_revision`, status **seeded** / lock **candidate**. C1–C8 identity verification attempted; **C1 (reachable) FAILS** here → not verified.
+- **Two deny-by-default qualifications** (`QUAL-OCP-AFR-001` SD-CORPORATE-FINANCIALS/quantitative; `QUAL-OCP-SUS-001` SD-INDUSTRIAL/qualitative), state **candidate** (source unverified + scope unreviewable) → not admissible.
+- **Non-operational Pilot-02 claim store** (`PILOT_02_claims.json`): Claims A/B/C all BLOCKED, `supporting_evidence_ids: []`.
+
+### Not created / not asserted
+- No evidence records (nothing extracted). No `ORG-OCP-GROUP → REL-INDUSTRIAL-USER → sulfur` instance (no admitted evidence; and REL-INDUSTRIAL-USER requires primary production/statistical/scientific categories a single corporate self-report cannot satisfy — not weakened). No `sulfuric_acid` ontology concept fabricated. The sulfur price statement is OUT OF SCOPE and not ingested (unresolved prose/figure inconsistency; requires original-page recheck).
+- Independence: the two reports share the issuer → recorded as **non-independent**; corroboration-requiring patterns correctly return `evidence_collecting`.
+
+### Derived state
+No admitted evidence → posture `evidence_collecting` → **Contract-C = (not_public, noindex)**.
+
+### Tests
+`pilot_02_tests.py` (26 proofs) PASS; all prior suites regress green — Pilot-01 admission-closure 19/19, classification 17/17, source admission 21/21, Pilot 01 16/16, correction 14/14, Contract C 7/7, relationship grammar 8/8, scaffolding + concept↔lexeme validators PASS; **wired L0/L1/L2 CI PASS**. Sources now 17 seeded + 3 verified (unchanged verified set) + 2 new OCP seeded; **all locks candidate**.
+
+### Blocked — needs a decision
+Extracting the three OCP facts needs either (a) a permitted way for Chromium to trust the egress-proxy CA so it can clear the Cloudflare challenge, or (b) the user supplying the two official OCP PDFs. Until then Claims A/B/C stay BLOCKED. No Pilot 03.

@@ -80,6 +80,42 @@
       "jurisdiction_limitation": null,
       "temporal_boundary": null,
       "note": "Promoted reviewed -> qualified_narrow this sprint: source identity verified AND scope reviewed, so the narrow, explicitly-enumerated classification-identity scope is ratified. Domain corrected SD-NOMENCLATURE -> SD-CUSTOMS-CLASSIFICATION (goods-classification nomenclature is a customs/statistical fact, NOT chemical naming). Admissible ONLY within HS classification identity / exclusion boundary. Must NEVER qualify Morocco trade totals, trade-flow value, industrial demand, scientific properties, market forecasts, or a Moroccan national code. qualified_narrow admits at the admission gate but implies NO claim approval, NO source-locking, NO route publication, NO indexation."
+    },
+    {
+      "qualification_id": "QUAL-OCP-AFR-001",
+      "source_id": "SRC-OCP-AFR-2024",
+      "qualified_against_source_revision": "rev-2026-09-19-1",
+      "applicable_subject_domains": ["SD-CORPORATE-FINANCIALS"],
+      "permitted_evidence_kinds": ["quantitative"],
+      "permitted_claim_levels": ["relationship"],
+      "evidence_roles": ["primary_authoritative"],
+      "scope": "PROPOSED (not reviewed): OCP's own FY2024 consolidated-statement accounting line for sulfur under raw-material purchases/purchases consumed, scoped to OCP and FY2024, exactly as printed (accounting presentation preserved). Scope review is BLOCKED because the original PDF could not be opened in this environment (Cloudflare challenge).",
+      "allowed_uses": ["issuer_own_accounting_line_ocp_fy2024"],
+      "prohibited_uses": ["morocco_trade_totals", "national_or_market_demand", "market_size", "physical_tonnage_from_value", "another_entity_finances", "sovereign_statistics", "route_publication", "claim_approval_by_itself", "source_locking_by_itself"],
+      "qualification_state": "candidate",
+      "review_date": "2026-09-19",
+      "geography_limitation": null,
+      "jurisdiction_limitation": null,
+      "temporal_boundary": {"valid_from": "2024-01-01", "valid_to": "2024-12-31"},
+      "note": "State 'candidate' (deny-by-default): source is seeded/unverified AND scope could not be reviewed against the artifact (acquisition blocked). NOT admissible. Even once verified, SD-CORPORATE-FINANCIALS grants only OCP's own accounting facts — never Morocco trade totals, national demand, market size, or tonnage."
+    },
+    {
+      "qualification_id": "QUAL-OCP-SUS-001",
+      "source_id": "SRC-OCP-SUSTAINABILITY-2024",
+      "qualified_against_source_revision": "rev-2026-09-19-1",
+      "applicable_subject_domains": ["SD-INDUSTRIAL"],
+      "permitted_evidence_kinds": ["qualitative"],
+      "permitted_claim_levels": ["relationship"],
+      "evidence_roles": ["primary_authoritative"],
+      "scope": "PROPOSED (not reviewed): narrowly-scoped statement about OCP's OWN phosphate-processing operations (phosphate rock + sulphuric acid -> phosphoric acid) within the exact locations/scope stated by OCP's sustainability report. Scope review is BLOCKED (original PDF not openable here).",
+      "allowed_uses": ["issuer_own_process_context_ocp"],
+      "prohibited_uses": ["financial_amount", "universal_industry_fact", "national_production_or_demand", "global_market_structure", "morocco_wide_conclusion", "route_publication", "claim_approval_by_itself", "source_locking_by_itself"],
+      "qualification_state": "candidate",
+      "review_date": "2026-09-19",
+      "geography_limitation": null,
+      "jurisdiction_limitation": null,
+      "temporal_boundary": null,
+      "note": "State 'candidate' (deny-by-default): source seeded/unverified AND scope unreviewed (acquisition blocked). NOT admissible. A sustainability report may never establish a financial amount, and issuer-primary supports only OCP's own stated operations, never a national/universal industrial fact."
     }
   ]
 }

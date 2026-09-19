@@ -59,8 +59,10 @@
     "governed_convention_ids": {
       "NUM-FR-DOT-THOUSANDS": "dot '.' is a THOUSANDS separator (9.108 = 9108); comma ',' decimal. (Office des Changes FR report.)",
       "NUM-EN-DOT-DECIMAL": "dot '.' is a DECIMAL point (1.099 = 1.099); comma optional thousands.",
-      "NUM-PLAIN-INT": "plain integer, no grouping or decimal."
+      "NUM-PLAIN-INT": "plain integer, no grouping or decimal.",
+      "NUM-ACCOUNTING-PAREN-NEG": "accounting presentation: comma ',' THOUSANDS, dot '.' decimal, and PARENTHESES mean NEGATIVE. '(8,344)' normalizes to the SIGNED value -8344; '8,344' to 8344. (IFRS corporate financial statements, e.g. OCP Group.) Parentheses are NEVER silently dropped; a positive magnitude for prose is DERIVED (magnitude()) and must be explicitly labelled as a magnitude, never stored as a competing normalized_value."
     },
+    "accounting_sign_law": "For NUM-ACCOUNTING-PAREN-NEG, source_literal preserves the exact printed form INCLUDING parentheses; normalized_value carries the correct sign (parenthesized => negative). A validator MUST reject a parenthesized literal stored as a positive normalized_value (silent parentheses drop).",
     "declaration_rule": "Each quantitative evidence record MUST declare numeric_convention_id. A record with quantitative measures but no governed convention id FAILS. The convention is NEVER inferred from language, country, or file extension, and there is NO silent French fallback.",
     "source_specific": "Normalization convention is per-source/per-record; a French source does not imply dot-thousands. Each record records its own convention id.",
     "validator": "scripts/governance_scaffolding/numeric_normalization.py catches ambiguous source-literals used as naive machine floats (e.g. '9.108' stored as 9.108).",
