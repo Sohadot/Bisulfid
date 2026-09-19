@@ -5100,7 +5100,7 @@ Office des Changes (Royaume du Maroc), *Commerce extérieur du Maroc — Rapport
 ### Results (3 claims)
 - **A — HS classification identity: BLOCKED.** No HS code in the source; no authoritative classification source fetched; label "Soufres bruts et non raffinés" is a crude/unrefined **subset** of the `sulfur` concept. Not fabricated from memory.
 - **B — import observation: PROVEN.** Morocco recorded imports of "Soufres bruts et non raffinés" in 2024.
-- **C — quantitative measure: PARTIAL.** 2024 value = **9.102 MDH** (variant 9.108 MDH; Asia 8.737 MDH), avg unit price **1.099 DH/T** — exactly as printed. **Tonnage BLOCKED** (not stated; not derived).
+- **C — quantitative measure: PARTIAL.** 2024 **TOTAL import value = 9108 MDH** (T1-10; source literal "9.108", dot = thousands separator), avg unit price **1099 DH/T** (literal "1.099"). ATPA-with-payment 9102 MDH (T3-4) and Asia-origin 8737 MDH (T4-9) are **different scopes**, not variants. **Tonnage BLOCKED** (not stated; not derived). *[Corrected 2026-09-19 — see Pilot 01 Data Semantics Correction below.]*
 
 ### Governed outcome (computed, not targeted)
 Qualification `QUAL-OC-MA-TRADE-001` = **`reviewed`** (new source not identity-verified → not admitting); and `SD-TRADE` requires primary_plus_corroborating with only one non-independent official source. Governed **evidence posture = `evidence_collecting`**; relationship `REL-INST-MA-SULFUR-IMPORT-2024` = `evidence_collecting`; **Contract-C = `(not_public, noindex)`**.
@@ -5115,10 +5115,38 @@ Qualification `QUAL-OC-MA-TRADE-001` = **`reviewed`** (new source not identity-v
 1. `primary_plus_corroborating` may be too strict for a narrowly-scoped recorded-observation claim from the national official statistics authority (independent corroboration effectively does not exist — Comtrade/ITC/WITS derive from the same chain). Proposed `single_official_record_sufficient` pattern — deferred.
 2. A defined verification path for a new official source is needed before Pilot 02.
 3. Quantitative trade admission depends on a classification (HS) identity the summary report lacks → a classification-acquisition step must precede it.
-4. Within-source variance (9.102 vs 9.108 MDH) is recorded conflict-tolerantly, not reconciled.
+4. Locale numeric normalization + scope discipline (dots are thousands separators; 9108 total vs 9102 ATPA vs 8737 Asia are different scopes, not variants). *[Corrected 2026-09-19.]*
 
 ### Tests
 Pilot 01 chain **16/16**; source admission enforcement 21/21; scaffolding, concept↔lexeme, relationship grammar 8/8, Contract C 7/7; existing Corpus Governance CI (L0/L1/L2) all PASS. Existing source statuses/locks unchanged (now 15 seeded + 1 verified; all candidate).
 
 ### Not started
 Pilot 02 (Morocco Industrial Chain / OCP); GCC/China/Germany; language localization; classification acquisition; policy amendments.
+
+---
+
+## Pilot 01 — Data Semantics Correction
+
+**Date:** 2026-09-19
+**Scope:** correction only. No new source, no HS classification acquisition, no Pilot 02, no change to source status/lock, claim activation, routes, public HTML, sitemap, robots, indexation, or the 14K. No PR.
+**Baseline:** commit `976f25a055`.
+
+Two data-semantics defects in Pilot 01 were corrected after an independent re-check of the official Office des Changes PDF (scope identities confirmed against the extracted text: ATPA appears 51×; T1-10 / T3-4 / T4-9 present):
+
+1. **Locale numeric normalization.** The report's dots are **thousands separators**. Every quantitative measure now stores `source_literal` + `normalized_value` + `unit` + a `numeric_convention` note. Corrected series:
+   - **TOTAL imports (T1-10):** 2022 `18.768`=18768, 2023 `8.007`=8007, **2024 `9.108`=9108 MDH**; Δ `+1.101`=+1101 MDH / +13,8%.
+   - **Average unit price (G1-5):** 2023 `1.231`=1231, **2024 `1.099`=1099 DH/T**.
+2. **False "9.102 vs 9.108" conflict removed.** They are different **scopes**, not variants:
+   - **9102 MDH** = ATPA-with-payment customs regime (**T3-4**) — ancillary, `customs_regime=ATPA_with_payment`, never substitutes for total.
+   - **8737 MDH** = Asia-origin subset (**T4-9**) — ancillary, `origin=Asia`, not a world total.
+   - The total-import series (18.768/8.007/9.108) and the ATPA series (18.758/7.994/9.102) are no longer mixed.
+
+**Quantity:** `quantity_change_pct = 27.4`; `absolute_quantity_tonnes = null` (not derived).
+**Classification:** Claim A remains **BLOCKED**; the source label is narrower than the generic `sulfur` concept.
+**Relationship & Contract-C:** `REL-INST-MA-SULFUR-IMPORT-2024` remains `evidence_collecting`; **Contract-C = (not_public, noindex)** (unchanged).
+
+**Numeric-normalization law added:** `evidence_admission_policy.json` (quantitative_normalization_law) + `scripts/governance_scaffolding/numeric_normalization.py`, wired into the scaffolding validator so any locale-literal used as a naive machine float is caught. Convention is source-specific.
+
+**Artifacts corrected:** `EVD-MA-SULFUR-IMPORT-2024.json`, `PILOT_01_claims.json`, `MOROCCO_SULFUR_TRADE_PILOT_01.md`, `PILOT_01_source_acquisition_dossier.md`, this DECISION_LOG Pilot 01 entry (lines above), evidence-admission policy, validators.
+
+**Tests:** Pilot 01 correction 14/14 (incl. no-variant-framing guard); Pilot 01 16/16; source admission 21/21; scaffolding, concept↔lexeme, relationship grammar 8/8, Contract C 7/7; existing L0/L1/L2 PASS. Source statuses/locks unchanged (15 seeded + 1 verified; all candidate).

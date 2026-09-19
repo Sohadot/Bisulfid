@@ -52,8 +52,16 @@
 
   "quantitative_admission": {
     "required_provenance": ["metric", "definition", "value", "unit", "geography", "period", "methodology", "classification_or_code", "revision_status", "source_locator"],
-    "trade_evidence_additional": ["reporter", "partner", "flow", "commodity_classification", "code_and_version", "quantity_or_value", "unit", "year_or_period"],
-    "note": "No Morocco/any records created this sprint."
+    "trade_evidence_additional": ["reporter", "partner", "flow", "commodity_classification", "code_and_version", "quantity_or_value", "unit", "year_or_period"]
+  },
+  "quantitative_normalization_law": {
+    "rule": "Every quantitative measure from a locale-formatted source MUST store distinct source_literal (string, as printed), normalized_value (machine number), and unit, plus a numeric_convention note. A locale literal must never be used directly as a machine number.",
+    "conventions": {
+      "fr_dot_thousands": "French-report tables/graphs: dot '.' is a THOUSANDS separator (9.108 = 9108); comma ',' is the decimal (percentages)."
+    },
+    "source_specific": "Normalization convention is per-source; do not assume future French (or other) sources share it. Each source records its own convention.",
+    "validator": "scripts/governance_scaffolding/numeric_normalization.py catches ambiguous source-literals used as naive machine floats (e.g. '9.108' stored as 9.108).",
+    "scope_separation": "Different source scopes (total vs customs-regime vs geographic-origin) are distinct measures, never variants of one another and never reconciled."
   },
 
   "legal_regulatory_admission": {

@@ -8,7 +8,7 @@
 ## PROVEN (supported by the official source)
 - **Product label identity (source-internal):** Morocco's official trade statistics record a product line labelled **"Soufres bruts et non raffinés"** (crude & unrefined sulfurs).
 - **Claim B — import observation:** Morocco **recorded imports** of "Soufres bruts et non raffinés" in **calendar year 2024** (Office des Changes annual report; multiple tables + a supplier-country table).
-- **Claim C — quantitative measure (value + unit price):** 2024 import **value = 9.102 MDH** (principaux produits importés table; variant **9.108 MDH** in the produits-bruts table); **average unit price = 1.099 DH/T**; from Asia = 8.737 MDH. Exactly as printed.
+- **Claim C — quantitative measure (value + unit price):** 2024 **TOTAL import value = 9108 MDH** (T1-10; source literal "9.108", dot = thousands separator); **average unit price = 1099 DH/T** (G1-5; literal "1.099"). Different scopes, kept separate: **ATPA-with-payment = 9102 MDH** (T3-4), **Asia-origin = 8737 MDH** (T4-9) — neither is the total. Absolute tonnage BLOCKED (only +27,4% change printed).
 
 ## NOT PROVEN (intentionally not inferred)
 - Morocco "depends on" / is a "major importer of" sulfur — analytical, out of scope.
@@ -24,7 +24,7 @@
 1. **Corroboration vs. sovereign primary source.** For a narrowly-scoped "recorded import exists" observation, the **national official trade authority is itself the primary record**; genuinely independent corroboration effectively does not exist (UN Comtrade / ITC / WITS derive from the same national reporting chain → **non-independent**). Requiring `primary_plus_corroborating` here may be **too strict**. Proposed (separately): a `single_official_record_sufficient` pattern for narrowly-scoped recorded-observation claims from a qualified national statistics authority, distinct from analytical/market claims. **Not applied.**
 2. **New-source admission floor.** A brand-new official source cannot admit evidence until it clears identity verification (state must reach `qualified`/`qualified_narrow`). This is correct, but the pilot shows we need a defined **verification path for a new official source** (who verifies, against what) before Pilot 02.
 3. **Classification dependency.** Trade quantitative evidence needs an HS/nomenclature identity the national summary report does not carry. A **classification-acquisition step** (WCO/ADII) must precede quantitative trade admission.
-4. **Within-source variance.** Two official tables give 9.102 vs 9.108 MDH; the architecture records both (conflict-tolerant) rather than forcing one.
+4. **Locale numeric normalization + scope discipline.** The report's dots are thousands separators (9.108 = 9108 MDH; 1.099 = 1099 DH/T). Evidence now stores `source_literal` + `normalized_value` + `unit`, validated by a source-specific normalization law. The earlier "9.102 vs 9.108 variance/conflict" reading was WRONG: 9108 = total imports (T1-10), 9102 = ATPA-with-payment regime (T3-4), 8737 = Asia origin (T4-9) — three different scopes, never variants and never reconciled.
 
 ## Derived states
 - **Evidence posture (governed derivation):** `evidence_collecting`.

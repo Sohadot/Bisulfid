@@ -150,6 +150,12 @@ def validate_evidence():
             check(not leaked, f"evidence {name}: contains forbidden field(s) {sorted(leaked)}")
             for f in req:
                 check(f in rec, f"evidence {name}: missing required field '{f}'")
+            # Numeric-normalization law: source_literal vs normalized_value must be consistent
+            # (catches locale thousands-separators used as naive floats).
+            import importlib
+            nn = importlib.import_module("numeric_normalization")
+            nerrs = nn.validate_evidence_numbers(rec)
+            check(not nerrs, f"evidence {name}: numeric normalization errors {nerrs}")
     # Fixtures: must be test-only, synthetic, non-governed, and carry no forbidden fields.
     fx_dir = os.path.join(ev_dir, "fixtures")
     if os.path.isdir(fx_dir):

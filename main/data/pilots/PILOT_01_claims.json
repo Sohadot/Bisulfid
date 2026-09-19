@@ -26,9 +26,9 @@
     {
       "claim_id": "CLM-MA-SULFUR-IMPORT-MEASURE-2024",
       "pilot_claim": "C — quantitative import measure",
-      "statement": "Official recorded 2024 import VALUE of 'Soufres bruts et non raffinés' (reporter Morocco, flow imports, partner Monde) = 9.102 MDH (principaux produits importés table; variant 9.108 MDH in the produits-bruts table); average unit price = 1.099 DH/T. Absolute quantity in tonnes is NOT stated by the source.",
-      "outcome": "PARTIALLY_SUPPORTED (value + unit price supported; tonnage BLOCKED)",
-      "scope_guard": "Value and unit price exactly as printed. Tonnage NOT derived from value/price. No industrial-demand inference.",
+      "statement": "Official recorded 2024 TOTAL import VALUE of 'Soufres bruts et non raffinés' (reporter Morocco, flow imports, partner Monde, table T1-10) = 9108 MDH (source literal '9.108'; dot = thousands separator); average unit price = 1099 DH/T (G1-5, source literal '1.099'). Absolute quantity in tonnes is NOT stated by the source (only a +27,4% quantity change).",
+      "outcome": "PARTIALLY_SUPPORTED (total value + unit price supported; tonnage BLOCKED)",
+      "scope_guard": "TOTAL imports (T1-10) only. The ATPA-with-payment figure (9102 MDH, T3-4) and the Asia-origin figure (8737 MDH, T4-9) are DIFFERENT SCOPES, not variants of the total, and must never substitute for it. Value/price exactly as printed and normalized (thousands separators). Tonnage NOT derived from value/price. No industrial-demand inference.",
       "supporting_evidence_ids": ["EVD-MA-SULFUR-IMPORT-2024"]
     }
   ]

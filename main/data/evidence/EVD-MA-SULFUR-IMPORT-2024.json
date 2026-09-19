@@ -12,7 +12,7 @@
   "geography": ["GEO-MA"],
   "jurisdiction": null,
   "language_of_evidence": "fr",
-  "claim_scope": "Office des Changes, Commerce extérieur du Maroc — Rapport annuel 2024: Morocco recorded imports of 'Soufres bruts et non raffinés' in 2024, with official import VALUE and average UNIT PRICE as printed. Absolute quantity in tonnes is NOT stated by the source and is not derived here.",
+  "claim_scope": "Office des Changes, Commerce extérieur du Maroc — Rapport annuel 2024: Morocco recorded imports of the source-labelled product 'Soufres bruts et non raffinés' in 2024. Primary measure = TOTAL recorded imports (T1-10). Average unit price from G1-5. Absolute tonnage NOT stated and NOT derived. The source label is narrower than the general 'sulfur' concept; classification identity is unacquired.",
   "source_id": "SRC-OC-MA-TRADE",
   "claim_id": "CLM-MA-SULFUR-IMPORT-MEASURE-2024",
   "evidence_role": "official_record",
@@ -36,19 +36,57 @@
     ]
   },
   "quantitative": {
-    "metric": "official recorded import value of 'Soufres bruts et non raffinés', reporter Morocco, flow imports, partner=Monde",
-    "value_2024": "9.102",
-    "unit": "MDH (millions de dirhams / MAD millions)",
-    "value_2024_variant": "9.108",
-    "value_variant_note": "Two official tables report 9.102 MDH (principaux produits importés, part 5,5%) and 9.108 MDH (produits bruts breakdown, part 59,5%). Within-source variation by aggregation scope; recorded, not reconciled.",
-    "value_2023": "7.994",
-    "value_2022": "18.758",
-    "variation_2024_vs_2023": "+1.108 MDH / +13,9%",
-    "partner_asia_value_2024": "8.737 MDH (Total Asie table)",
-    "average_unit_price_2024": "1.099 DH/T",
-    "average_unit_price_2023": "1.231 DH/T",
-    "quantity_tonnes_2024": null,
-    "quantity_note": "Absolute tonnage NOT stated by the source. The report gives only a quantity CHANGE (+27,4%) and the unit price. Tonnage is NOT derived from value/price (forbidden without approved methodology).",
+    "numeric_convention": "fr_dot_thousands: in this French report's tables/graphs the dot is a THOUSANDS separator (e.g. '9.108' = 9108) and the comma is the decimal (percentages). Normalization is source-specific.",
+    "unit_glossary": {"MDH": "millions de dirhams (MAD millions)", "DH/T": "dirhams per tonne"},
+    "primary_measure": {
+      "metric": "TOTAL recorded imports value of 'Soufres bruts et non raffinés', reporter=Morocco, flow=imports, partner=Monde",
+      "table_ref": "T1-10",
+      "partner_scope": "Monde",
+      "unit": "MDH",
+      "series": {
+        "2022": {"source_literal": "18.768", "normalized_value": 18768},
+        "2023": {"source_literal": "8.007", "normalized_value": 8007},
+        "2024": {"source_literal": "9.108", "normalized_value": 9108}
+      },
+      "change_2024_vs_2023": {"source_literal": "+1.101", "normalized_value": 1101, "pct": 13.8}
+    },
+    "average_unit_price": {
+      "metric": "average import unit price of crude sulfur (G1-5)",
+      "unit": "DH/T",
+      "series": {
+        "2023": {"source_literal": "1.231", "normalized_value": 1231},
+        "2024": {"source_literal": "1.099", "normalized_value": 1099}
+      }
+    },
+    "quantity": {
+      "quantity_change_pct": 27.4,
+      "absolute_quantity_tonnes": null,
+      "note": "Report states imported quantities rose +27,4%; absolute 2024 tonnage is NOT printed and is NOT derived from value/price."
+    },
+    "ancillary_scoped": [
+      {
+        "scope": "customs_regime=ATPA_with_payment",
+        "table_ref": "T3-4 (Importations en ATPA avec paiement par principaux produits)",
+        "unit": "MDH",
+        "series": {
+          "2022": {"source_literal": "18.758", "normalized_value": 18758},
+          "2023": {"source_literal": "7.994", "normalized_value": 7994},
+          "2024": {"source_literal": "9.102", "normalized_value": 9102}
+        },
+        "change_2024_vs_2023": {"source_literal": "+1.108", "normalized_value": 1108, "pct": 13.9},
+        "note": "ATPA-with-payment customs regime ONLY. This is NOT total imports and must never substitute for the T1-10 total (9108 MDH). Retained as explicitly-scoped ancillary context."
+      },
+      {
+        "scope": "origin=Asia",
+        "table_ref": "T4-9",
+        "unit": "MDH",
+        "series": {
+          "2024": {"source_literal": "8.737", "normalized_value": 8737}
+        },
+        "change_2024_vs_2023": {"source_literal": "+1.540", "normalized_value": 1540, "pct": 21.4},
+        "note": "Asia-origin geographic SUBSET only. NOT a world-total Morocco measurement."
+      }
+    ],
     "methodology": "Official Moroccan foreign-trade statistics compiled by Office des Changes; figures as printed in the 2024 annual report.",
     "revision_status": "as_published_in_annual_report_2024; provisional/final wording not located in the extracted tables — not asserted as final"
   },
