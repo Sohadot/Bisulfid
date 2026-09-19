@@ -1,0 +1,48 @@
+{
+  "version": "0.1.0",
+  "sprint": "source-qualification-evidence-admission",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": [
+    "main/data/SOURCE_QUALIFICATION_PROTOCOL.md",
+    "doctrine/SOURCE_POLICY.md",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Source-USE qualification: what exact kinds of evidence/claims a specific source is qualified to support, scoped. Distinct from source IDENTITY (source_registry.json) and source CATEGORY. A verified source is NOT universally authoritative.",
+  "one_owner_rule": "A qualification references exactly one source_id and duplicates NO bibliographic metadata (title/publisher/url/doi/dates/author live only in source_registry.json).",
+  "qualification_states": {
+    "candidate": { "entry": "proposed scope, not reviewed", "owner": "source governance", "allowed_transitions": ["reviewed", "suspended", "superseded"], "regression": "n/a", "effect_on_admission": "NOT admissible" },
+    "reviewed": { "entry": "scope reviewed against source; not yet ratified", "owner": "source governance", "allowed_transitions": ["qualified_narrow", "qualified", "suspended", "superseded", "candidate"], "regression": "-> candidate on new doubt", "effect_on_admission": "NOT admissible" },
+    "qualified_narrow": { "entry": "ratified for a narrow, explicitly enumerated scope only", "owner": "source governance", "allowed_transitions": ["qualified", "suspended", "superseded", "reviewed"], "regression": "-> suspended/reviewed", "effect_on_admission": "admissible ONLY within the enumerated scope" },
+    "qualified": { "entry": "ratified for the full stated scope", "owner": "source governance", "allowed_transitions": ["qualified_narrow", "suspended", "superseded"], "regression": "-> qualified_narrow/suspended", "effect_on_admission": "admissible within stated scope" },
+    "suspended": { "entry": "temporarily withdrawn (source moved/stale/doubt)", "owner": "source governance", "allowed_transitions": ["reviewed", "superseded", "qualified_narrow", "qualified"], "regression": "downstream privilege must move to <= prior", "effect_on_admission": "NOT admissible" },
+    "superseded": { "entry": "replaced by a newer qualification/source edition", "owner": "source governance", "allowed_transitions": [], "regression": "terminal; provenance preserved", "effect_on_admission": "NOT admissible" }
+  },
+  "no_state_implies_publication": "No qualification state authorizes route publication or indexation. Publication is derived by Contract C from independent postures.",
+  "qualification_record_schema": {
+    "required_fields": ["qualification_id", "source_id", "applicable_subject_domains", "permitted_evidence_kinds", "permitted_claim_levels", "scope", "allowed_uses", "prohibited_uses", "qualification_state", "review_date"],
+    "optional_fields": ["geography_limitation", "jurisdiction_limitation", "source_edition", "temporal_boundary", "evidence_roles"],
+    "forbidden_fields": ["title", "publisher", "url", "doi", "publication_date", "author_or_organization", "category"]
+  },
+  "id_rules": { "production_prefix": "QUAL-", "test_fixture_prefix": "TEST-QUAL-" },
+  "qualifications": [
+    {
+      "qualification_id": "QUAL-SPEKTRUM-MOS2-DE-001",
+      "source_id": "SRC-SPEKTRUM-MOS2-DE",
+      "applicable_subject_domains": ["SD-TERMINOLOGY", "SD-LINGUISTICS"],
+      "permitted_evidence_kinds": ["terminological"],
+      "permitted_claim_levels": ["lexeme"],
+      "evidence_roles": ["primary_authoritative"],
+      "scope": "German Lexikon der Chemie (Spektrum.de) dictionary-entry observation for the MoS2 concept, German-language lexical form only. Mirrors the source's existing reviewed use_for; broadens nothing.",
+      "allowed_uses": ["lexeme_level_terminology_reference_de", "cautious_terminology_framing_de_dictionary_entry"],
+      "prohibited_uses": ["concept_level_chemical_claim", "market_data", "safety_prescriptive", "medical", "procurement_or_trade", "production_or_industrial_performance", "EN_only_authority", "formal_IUPAC_nomenclature_authority", "route_publication", "claim_approval_by_itself", "source_locking_by_itself"],
+      "qualification_state": "qualified_narrow",
+      "review_date": "2026-09-19",
+      "geography_limitation": null,
+      "jurisdiction_limitation": null,
+      "source_edition": "Spektrum Lexikon der Chemie online entry (Molybdän(IV)-sulfid)",
+      "temporal_boundary": null,
+      "note": "Language de is NOT geography DE. This qualification grants no geography. It does not change the source's status or source_lock_status."
+    }
+  ]
+}

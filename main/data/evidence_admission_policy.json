@@ -1,0 +1,69 @@
+{
+  "version": "0.1.0",
+  "sprint": "source-qualification-evidence-admission",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "main/data/evidence/evidence_schema.json", "DECISION_LOG.md"],
+  "purpose": "Governs how an evidence assertion is admitted: review lifecycle, locators, temporal/version governance, regression, conflict, and kind-specific provenance requirements.",
+
+  "evidence_review_lifecycle": {
+    "unreviewed": { "meaning": "Record exists; assertion not checked.", "requires": [], "admits": false },
+    "extracted": { "meaning": "Observation faithfully extracted with a locator/context.", "requires": ["locator_present"], "admits": false },
+    "scope_reviewed": { "meaning": "Reviewer confirms the statement does not exceed the source, targets the correct concept/lexeme/relationship, correct domain, and correct geography/jurisdiction/time boundary.", "requires": ["extracted", "no_scope_exceedance", "correct_target_level", "correct_domain", "correct_boundary"], "admits": false },
+    "evidence_verified": { "meaning": "Fully admitted evidence.", "requires": ["scope_reviewed", "valid_source_use_qualification", "provenance_complete_for_source_type", "no_prohibited_use_conflict"], "admits": true, "must_not_imply": ["claim_approval", "claim_registry_activation", "route_publication", "indexation"] }
+  },
+
+  "locator_requirements_by_source_type": {
+    "authoritative_dictionary": ["entry_headword", "edition_or_access_date", "url_or_reference"],
+    "chemical_nomenclature_standard": ["rule_or_section", "edition_year"],
+    "government_scientific_database": ["record_or_accession_id", "field_or_property", "retrieval_date"],
+    "peer_reviewed_journal": ["doi_or_citation", "section_or_figure_or_table", "page_where_applicable"],
+    "official_customs_data": ["reporter", "period", "classification_code_and_version", "dataset_series", "retrieval_date"],
+    "official_trade_statistics": ["dataset_series", "period", "classification_code_and_version", "retrieval_date"],
+    "national_statistical_authority": ["table_or_series_id", "period", "retrieval_date"],
+    "intergovernmental_trade_database": ["dataset", "reporter_partner_flow", "commodity_code_and_version", "period", "retrieval_date"],
+    "official_production_statistics": ["series_id", "period", "retrieval_date"],
+    "regulatory_instrument": ["jurisdiction", "instrument_id", "article_or_provision", "version_or_consolidation_date"],
+    "official_standard": ["standard_id", "clause_or_section", "edition_year"],
+    "industry_publication": ["title", "date", "section_or_page"],
+    "market_report": ["publisher", "title", "date", "page_or_table"],
+    "academic_teaching_reference": ["institution", "document", "section_where_applicable"],
+    "principle": "Type-specific, not universal. A serious reader must be able to reconstruct exactly where the evidence came from."
+  },
+
+  "version_temporal_governance": {
+    "fields": ["source_version_or_edition", "publication_date", "retrieval_date", "last_qualification_review", "evidence_applicable_period", "valid_from", "valid_to", "superseded_by", "amended_or_repealed_where_applicable"],
+    "revalidation_trigger": "Per source class, not one universal expiry. Trade/statistics revalidate on new release; legal instruments on amendment/repeal; dictionary/nomenclature on new edition; scientific on retraction/superseding study.",
+    "no_universal_expiry": true
+  },
+
+  "regression_rules": {
+    "triggers": ["source_disappeared", "source_moved", "source_superseded", "source_corrected", "source_stale", "source_lost_authority", "source_previously_mis_scoped"],
+    "qualification_transition": "qualified/qualified_narrow -> review_required(reviewed)/suspended/superseded (never deleted).",
+    "downstream_effect": "Evidence, claims, knowledge objects, and Contract-C state move to EQUAL OR LOWER privilege, never higher. Provenance is preserved.",
+    "monotonic_direction": "regression_never_raises_privilege"
+  },
+
+  "conflicting_evidence": {
+    "principle": "BISULFID represents disagreement; it does not force a single winner by narrative preference.",
+    "supported_representations": ["competing_evidence_records", "narrowed_claims", "temporal_split", "jurisdiction_split", "contested_status", "unresolved_claim", "transparent_publication_of_disagreement_where_appropriate"],
+    "reason_axes": ["methodology", "period", "jurisdiction", "classification", "definition", "genuine_scientific_disagreement"]
+  },
+
+  "quantitative_admission": {
+    "required_provenance": ["metric", "definition", "value", "unit", "geography", "period", "methodology", "classification_or_code", "revision_status", "source_locator"],
+    "trade_evidence_additional": ["reporter", "partner", "flow", "commodity_classification", "code_and_version", "quantity_or_value", "unit", "year_or_period"],
+    "note": "No Morocco/any records created this sprint."
+  },
+
+  "legal_regulatory_admission": {
+    "required_provenance": ["jurisdiction", "authority", "instrument", "instrument_type", "article_or_provision_or_section", "effective_date", "status_current_amended_repealed_draft", "valid_from", "valid_to", "last_verification_date", "official_source"],
+    "commentary_rule": "Secondary legal commentary provides context, never substitutes for the governing instrument when claiming current legal status.",
+    "no_legal_advice": true
+  },
+
+  "scientific_admission": {
+    "evidence_roles": ["primary_experimental_study", "systematic_or_review_article", "authoritative_scientific_database", "standard", "technical_or_reference_handbook", "academic_teaching_material"],
+    "scope_inflation_prohibited": "'study observed X under conditions Y' must NOT become 'X is universally true'. Scope/conditions are preserved on the evidence record."
+  }
+}

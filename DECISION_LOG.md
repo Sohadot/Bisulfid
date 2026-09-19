@@ -5009,3 +5009,50 @@ concept_eligible (6): `sulfur`, `sulfide`, `disulfide`, `hydrosulfide`, `hydroge
 `molybdenum_disulfide` (concept_eligible) → `LEX-DE-MOS2-001` (`observed_usage`, de, `registration_state=registered`, no backlinks) → `EVD-MOS2-DE-001` (lexeme-level; `claim_scope` mirrors the approved claim) → `SRC-SPEKTRUM-MOS2-DE` (verified; lock **candidate**, unchanged) → `CLM-TERM-MOS2-DE-001` (approved; registry **inactive**, unchanged). **Derived Contract-C state = (not_public, noindex).**
 
 Validators/tests: scaffolding PASS (153 checks); concept↔lexeme PASS (47 checks); relationship grammar tests PASS (8/8, synthetic; correct directions accepted, reversed rejected); Contract C property tests PASS (7/7); existing Corpus Governance CI (L0/L1/L2) PASS (unaffected).
+
+---
+
+## Sprint — Source Qualification & Evidence Admission Protocol
+
+**Date:** 2026-09-19
+**Scope:** design + minimal schema + validators. No 14K route, release ledger, ontology, public HTML, sitemap, robots, Search Console, indexation, source status/lock, or claim status changed. No external source acquired. No relationship instance. No registry activated. No PR.
+**Baseline:** commit `41aeb1f56f`.
+
+### Ratified principles
+
+1. **Source authority is use-scoped.** A verified/locked source is not universally authoritative.
+2. **Source category alone is insufficient** to admit evidence.
+3. **Source identity, source-use qualification, evidence review, claim approval, and publication are distinct layers** — none silently implies another.
+4. **Evidence admission is domain/claim-level/scope aware** (`admissible(source, qualification, context)` is deterministic; category alone never returns admissible).
+5. **Qualification can regress without deleting history;** downstream privilege moves equal-or-lower, never higher.
+6. **Official/original evidence is mandatory where official status itself is claimed** (current-law → governing instrument; importer/exporter → official records, not market/industry pubs alone).
+7. **Source qualification never authorizes route publication.**
+
+*No external factual claim (trade/geography/etc.) is ratified.*
+
+### `source_lock_status` decision — Option B
+
+Remains a bibliographic/source-record stability lock (historical Sprint 5N-R meaning preserved) and is **explicitly insufficient** without a source-use qualification. Not modified this sprint (all 15 stay `candidate`).
+
+### Architecture created (machine-readable, unwired from deploy/CI)
+
+- `source_use_qualification_registry.json` — use-scoped qualification (states candidate→reviewed→qualified_narrow→qualified, +suspended/superseded); references exactly one source; duplicates no bibliographic metadata. One record: `QUAL-SPEKTRUM-MOS2-DE-001` (qualified_narrow), mirroring the already-reviewed Spektrum MoS₂ scope — broadens nothing.
+- `source_admissibility_policy.json` — evidence roles; 7 newly-ratified categories (policy vocabulary only, not written to source_registry); category→role map; domain admissibility matrix; sufficiency patterns; 9 hard rules.
+- `evidence_admission_policy.json` — evidence-review lifecycle transitions; type-specific locators; version/temporal/freshness; regression; conflicting-evidence representation; quantitative/legal/scientific admission provenance.
+- `claim_activation_policy.json` — four independent claim layers; finding that registry-wide activation is too coarse; scoped per-claim activation **proposal** (not applied). Nothing activated.
+- `SOURCE_QUALIFICATION_PROTOCOL.md` + `SOURCE_REGISTRY_QUALIFICATION_AUDIT.md` (design + 15-source audit).
+- `scripts/governance_scaffolding/source_admissibility.py` + `source_admissibility_tests.py`.
+
+### 15-source audit outcome
+
+14 sources `seeded` → **no qualification granted** (pending scope review). 1 source (`SRC-SPEKTRUM-MOS2-DE`, verified) → one narrow qualification mirroring its reviewed boundary. No `use_for` broadened; no source promoted for reputation.
+
+### MoS₂ result
+
+`admissible()` = True for the German dictionary-entry terminology/lexeme boundary only; False for concept/scientific/economic/publication uses. `EVD-MOS2-DE-001` stays `scope_reviewed` (not upgraded). Source status/lock, claim, activation, route, release **unchanged**. **Contract-C derived state = (not_public, noindex).**
+
+Validators/tests: scaffolding PASS; concept↔lexeme PASS; relationship grammar PASS (8/8); Contract C PASS (7/7); **source admissibility PASS (13/13 proofs)**; existing Corpus Governance CI (L0/L1/L2) PASS (unaffected).
+
+### Unresolved before real evidence acquisition
+
+Admission rules for the 7 new categories into `source_registry.json`; the scoped per-claim activation mechanism; possible `source_lock_status` deprecation (Option C); corroboration thresholds per domain; biomedical claim-restriction specifics.

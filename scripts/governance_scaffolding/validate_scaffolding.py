@@ -175,6 +175,49 @@ def validate_information_gain():
     check(not bad_keys, f"information_gain: no threshold/weight field may be defined this sprint (found keys {bad_keys})")
 
 
+def validate_source_qualification():
+    reg = load(os.path.join(DATA, "sources", "source_registry.json"))
+    source_ids = {s["source_id"] for s in reg["sources"]}
+    q = load(os.path.join(DATA, "source_use_qualification_registry.json"))
+    valid_states = set(q["qualification_states"].keys())
+    forbidden = set(q["qualification_record_schema"]["forbidden_fields"])
+    seen = set()
+    for x in q["qualifications"]:
+        qid = x["qualification_id"]
+        check(qid.startswith("QUAL-"), f"qualification {qid}: bad id prefix")
+        check(qid not in seen, f"qualification {qid}: duplicate id")
+        seen.add(qid)
+        # references exactly one registered source
+        check(isinstance(x.get("source_id"), str) and x["source_id"] in source_ids,
+              f"qualification {qid}: source_id must reference exactly one registered source")
+        # no bibliographic duplication
+        leaked = forbidden.intersection(x.keys())
+        check(not leaked, f"qualification {qid}: duplicates bibliographic field(s) {sorted(leaked)}")
+        # valid state; none implies publication
+        check(x.get("qualification_state") in valid_states, f"qualification {qid}: bad state")
+        check("route_publication" in x.get("prohibited_uses", []) or x.get("qualification_state") in ("candidate", "reviewed"),
+              f"qualification {qid}: admissible qualification must explicitly prohibit route_publication")
+
+    pol = load(os.path.join(DATA, "source_admissibility_policy.json"))
+    check("source_category_alone_never_admissible" in pol["hard_rules"], "policy: missing category-alone hard rule")
+    check("prohibited_use_always_vetoes" in pol["hard_rules"], "policy: missing prohibited-use veto rule")
+    # every ratified category has default roles
+    ratified = set(pol["ratified_source_categories"]["existing_confirmed"]) | \
+        {c["category"] for c in pol["ratified_source_categories"]["newly_ratified"]}
+    for c in ratified:
+        check(c in pol["category_default_roles"], f"policy: category '{c}' missing default roles")
+
+    ep = load(os.path.join(DATA, "evidence_admission_policy.json"))
+    ev = ep["evidence_review_lifecycle"]["evidence_verified"]
+    check(ev.get("admits") is True, "evidence policy: evidence_verified must admit")
+    check("route_publication" in ev.get("must_not_imply", []), "evidence policy: verified must not imply publication")
+    check(ep["regression_rules"]["monotonic_direction"] == "regression_never_raises_privilege",
+          "evidence policy: regression must never raise privilege")
+
+    cl = load(os.path.join(DATA, "claim_activation_policy.json"))
+    check(cl["this_sprint"].startswith("No registry activated"), "claim policy: nothing may be activated this sprint")
+
+
 def main():
     print("=== Governance scaffolding validator (new artifacts only) ===")
     validate_subject_domain()
@@ -183,6 +226,7 @@ def main():
     validate_relationship_classes()
     validate_evidence()
     validate_information_gain()
+    validate_source_qualification()
     print(f"    (ran {CHECKS} checks)")
     print("=" * 56)
     if ERRORS:

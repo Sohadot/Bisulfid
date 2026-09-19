@@ -1,0 +1,128 @@
+{
+  "version": "0.1.0",
+  "sprint": "source-qualification-evidence-admission",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "doctrine/SOURCE_POLICY.md", "DECISION_LOG.md"],
+  "purpose": "Deterministic, use-scoped source admissibility. Answers admissible(source, qualification, evidence_context) with a reason. Source category ALONE never grants admissibility.",
+
+  "evidence_roles": {
+    "primary_authoritative": "Strongest source for the specific question (e.g. dictionary for lexical existence; customs data for recorded imports).",
+    "official_record": "Official government/intergovernmental record (customs, statistics, instruments).",
+    "primary_scientific": "Primary peer-reviewed experimental/observational study.",
+    "secondary_scholarly": "Review/handbook/teaching material summarizing primary work.",
+    "corroborating": "Independent support that strengthens but does not alone establish.",
+    "contextual": "Explains/frames; never establishes a sovereign/official/scientific fact alone.",
+    "historical": "Establishes a past state, explicitly time-bounded."
+  },
+
+  "ratified_source_categories": {
+    "existing_confirmed": ["authoritative_dictionary", "chemical_nomenclature_standard", "government_scientific_database", "regulatory_body", "peer_reviewed_journal", "industry_publication", "market_report", "academic_teaching_reference"],
+    "newly_ratified": [
+      { "category": "official_customs_data", "roles": ["official_record", "primary_authoritative"], "note": "Recorded import/export flows." },
+      { "category": "official_trade_statistics", "roles": ["official_record", "primary_authoritative"], "note": "Official aggregated trade statistics." },
+      { "category": "national_statistical_authority", "roles": ["official_record", "primary_authoritative"], "note": "National statistics office outputs." },
+      { "category": "intergovernmental_trade_database", "roles": ["official_record", "primary_authoritative"], "note": "e.g. intergovernmental trade databases." },
+      { "category": "official_production_statistics", "roles": ["official_record", "primary_authoritative"], "note": "Official production figures." },
+      { "category": "regulatory_instrument", "roles": ["official_record"], "note": "The governing statute/regulation/directive/standard/treaty itself; REQUIRED for current-law claims." },
+      { "category": "official_standard", "roles": ["official_record", "primary_authoritative"], "note": "Official technical standard (e.g. DIN/ISO) as issued." }
+    ],
+    "evaluated_not_ratified_yet": [
+      { "category": "official_environmental_database", "reason": "No system need yet; revisit when environment domain activates." },
+      { "category": "official_health_authority", "reason": "Revisit only with biomedical program + high claim restriction." },
+      { "category": "patent_database", "reason": "Distinct evidentiary role unclear for current scope." },
+      { "category": "technical_standard", "reason": "Overlaps official_standard; avoid duplicate taxonomy until distinct need shown." }
+    ],
+    "note": "Newly-ratified categories are ADDED TO POLICY VOCABULARY only. They are NOT written into source_registry.json approved categories and NO source uses them yet. Admission of a real source under any of these awaits a later Source Qualification acquisition sprint."
+  },
+
+  "category_default_roles": {
+    "authoritative_dictionary": ["primary_authoritative", "secondary_scholarly"],
+    "chemical_nomenclature_standard": ["primary_authoritative", "official_record"],
+    "government_scientific_database": ["primary_authoritative", "corroborating"],
+    "regulatory_body": ["official_record"],
+    "peer_reviewed_journal": ["primary_scientific", "secondary_scholarly"],
+    "industry_publication": ["contextual", "corroborating"],
+    "market_report": ["contextual"],
+    "academic_teaching_reference": ["secondary_scholarly", "contextual"],
+    "official_customs_data": ["official_record", "primary_authoritative"],
+    "official_trade_statistics": ["official_record", "primary_authoritative"],
+    "national_statistical_authority": ["official_record", "primary_authoritative"],
+    "intergovernmental_trade_database": ["official_record", "primary_authoritative"],
+    "official_production_statistics": ["official_record", "primary_authoritative"],
+    "regulatory_instrument": ["official_record"],
+    "official_standard": ["official_record", "primary_authoritative"]
+  },
+
+  "domain_admissibility": {
+    "terminology_linguistics": {
+      "applies_to_domains": ["SD-TERMINOLOGY", "SD-LINGUISTICS", "SD-NOMENCLATURE"],
+      "claim_levels": ["lexeme"],
+      "required_any_role": ["primary_authoritative", "secondary_scholarly"],
+      "allowed_categories": ["authoritative_dictionary", "chemical_nomenclature_standard", "academic_teaching_reference"],
+      "sufficiency": "single_authoritative_sufficient"
+    },
+    "chemistry_materials_physics": {
+      "applies_to_domains": ["SD-CHEMISTRY", "SD-INORGANIC-CHEMISTRY", "SD-MATERIALS-SCIENCE", "SD-PHYSICS"],
+      "claim_levels": ["concept"],
+      "required_any_role": ["primary_scientific", "primary_authoritative"],
+      "allowed_categories": ["peer_reviewed_journal", "government_scientific_database", "chemical_nomenclature_standard", "official_standard"],
+      "forbidden_alone_categories": ["authoritative_dictionary", "academic_teaching_reference", "industry_publication", "market_report"],
+      "sufficiency": "primary_plus_corroborating"
+    },
+    "biology_biomedical": {
+      "applies_to_domains": ["SD-BIOLOGY", "SD-BIOMEDICAL"],
+      "claim_levels": ["concept"],
+      "required_any_role": ["primary_scientific", "official_record"],
+      "allowed_categories": ["peer_reviewed_journal", "government_scientific_database", "official_health_authority"],
+      "hard_prohibited_uses": ["medical", "medical_advice", "dosage", "therapeutic_claim"],
+      "sufficiency": "primary_plus_corroborating"
+    },
+    "trade_economics": {
+      "applies_to_domains": ["SD-TRADE", "SD-ECONOMICS"],
+      "claim_levels": ["relationship"],
+      "required_any_role": ["official_record", "primary_authoritative"],
+      "allowed_categories": ["official_customs_data", "official_trade_statistics", "national_statistical_authority", "intergovernmental_trade_database", "official_production_statistics"],
+      "contextual_only_categories": ["market_report", "industry_publication"],
+      "sufficiency": "primary_plus_corroborating"
+    },
+    "regulation_government": {
+      "applies_to_domains": ["SD-REGULATION"],
+      "claim_levels": ["concept", "relationship"],
+      "current_law_requires_category": ["regulatory_instrument"],
+      "commentary_contextual_only": ["academic_teaching_reference", "industry_publication", "market_report", "peer_reviewed_journal"],
+      "sufficiency": "original_instrument_required"
+    },
+    "industry": {
+      "applies_to_domains": ["SD-INDUSTRIAL"],
+      "claim_levels": ["relationship", "concept"],
+      "allowed_categories": ["industry_publication", "government_scientific_database"],
+      "industry_publication_may_establish": ["observed_industrial_context_when_scoped"],
+      "industry_publication_may_not_establish": ["national_trade_totals", "current_law", "sovereign_statistics", "universal_scientific_performance"],
+      "sufficiency": "primary_plus_corroborating"
+    }
+  },
+
+  "evidence_sufficiency_patterns": {
+    "single_authoritative_sufficient": "One primary-authoritative source establishes the fact (e.g. dictionary entry -> lexical existence).",
+    "primary_plus_corroborating": "One primary/official source plus >=1 independent corroborating record.",
+    "multi_source_synthesis": "Several independent evidence records for a complex analytical claim.",
+    "original_instrument_required": "The governing instrument itself is required (current legal/regulatory status).",
+    "explicit_source_exclusion": "A named category is forbidden for a particular claim regardless of other support."
+  },
+
+  "hard_rules": [
+    "source_category_alone_never_admissible",
+    "prohibited_use_always_vetoes",
+    "qualification_required_for_admissibility_and_for_evidence_verified",
+    "qualification_scope_cannot_be_silently_broadened",
+    "lexeme_qualification_cannot_satisfy_concept_scientific_or_economic_claims",
+    "contextual_only_categories_cannot_alone_establish_importer_or_exporter",
+    "current_law_claims_require_official_instrument",
+    "suspended_or_superseded_qualification_is_not_admissible",
+    "admissibility_never_implies_claim_approval_or_publication"
+  ],
+
+  "admissibility_inputs": ["source_category", "qualification_scope", "permitted_and_prohibited_use", "subject_domain", "evidence_kind", "claim_level", "geography", "jurisdiction", "temporal_scope", "source_version", "evidence_role"],
+  "layer_independence": "admissible(...) answers ONLY 'may this evidence be admitted?'. It never returns claim approval, claim-registry activation, route publication, or indexation — those are separate, later, independent decisions."
+}
