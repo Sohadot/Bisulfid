@@ -4943,3 +4943,40 @@ Sprint 99 (2026-06-05) authorized the release of 13,998 dossier pages under "cau
 - `scripts/governance_scaffolding/` (Contract C derive spec + 7 property tests + scaffolding validator; **unwired from deploy/CI**)
 
 Contract C property tests: PASS (7/7, 23,040 combinations). Scaffolding validator: PASS (105 checks). Existing Corpus Governance CI (L0/L1/L2) re-run: PASS (unaffected).
+
+---
+
+## Sprint — Concept ↔ Lexeme Resolution
+
+**Date:** 2026-09-19
+**Scope:** design + minimal schema. No 14K route, release ledger, public HTML, sitemap, robots, Search Console, indexation posture, source status, or claim status modified. The live ontology `sulfur_terms.json` is **not mutated**. No new public routes. No PR.
+**Baseline:** `DOCTRINE_TO_CORPUS_RECONCILIATION.md`, `BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md` (incl. IP-16), scaffolding commit `ae7980fe06`.
+
+### Ratified (narrow)
+
+1. **Concept and Lexeme are distinct semantic object types.**
+2. **Concepts are language-neutral;** internal `concept_id` strings are identifiers, not language claims.
+3. **Lexemes are language-specific naming forms;** every lexeme resolves to exactly one governed concept.
+4. **Evidence and claims attach to the semantic level they actually support** (`claim_level ∈ {concept, lexeme, relationship}`); lexical evidence can never satisfy a concept-level chemical claim.
+5. **Lexeme existence does not create a URL** (Knowledge Object Before URL remains absolute).
+6. **Chosen model: Option B** — concept graph stays in `main/data/ontology/sulfur_terms.json`; a new `main/data/lexeme_registry.json` holds lexemes (least disruptive, cleanest multilingual scaling, no duplicated authority). Full rationale + ontology-node audit/migration mapping: `main/data/CONCEPT_LEXEME_MODEL.md`.
+
+### NOT ratified (remain provisional)
+
+- Any collapse of `sodium_bisulfide`/`sodium_hydrosulfide` (needs equivalence evidence);
+- the HS⁻ grouping of `bisulfid`/`bisulfide`/`hydrosulfide` (high-risk; migration);
+- folding `molybdenum_disulfide_mos2` into a formula-alias lexeme (recommended; deferred to migration);
+- source-lock workflow, claim-registry activation, 14K disposition — unchanged from prior sprints.
+
+### Schema corrections (no real legacy data depended on them)
+
+- **Evidence schema:** generic `entities` → explicit `concept_ids` + `lexeme_ids`; added `claim_level`; **`risk_class` removed** (no independent meaning vs route/claim/source risk — `CONCEPT_LEXEME_MODEL.md` §7); `source_type`/`used_by`/`confidence` remain forbidden.
+- **`GEO-GULF` → `GEO-GCC`** ("GCC member states") — its members were exactly the six GCC states; a broader Gulf-region scope, if needed, will be a separate governed object.
+- **Jurisdiction model separated** into distinct `jurisdiction` → `authority` → `instrument` records (a jurisdiction is no longer "authority + instrument"); all record lists empty.
+- **Trade/economic relationship classes** (importer/exporter/producer/industrial_user) now require **primary authoritative** source categories; `market_report`/`industry_publication` reclassified secondary/contextual. Proposed new source-taxonomy categories (`official_customs_data`, `official_trade_statistics`, `national_statistical_authority`, `intergovernmental_trade_database`, `official_production_statistics`) are recorded as **proposals only** — not added to `source_registry.json`, no sources invented.
+
+### First real governed evidence object (created; NOT published)
+
+Chain: `molybdenum_disulfide` (concept) → `LEX-DE-MOS2-001` "Molybdän(IV)-sulfid" (lexeme) → `EVD-MOS2-DE-001` (lexeme-level, terminological, de) → `SRC-SPEKTRUM-MOS2-DE` (verified; lock **candidate**, unchanged) → `CLM-TERM-MOS2-DE-001` (approved; registry **inactive**, unchanged). Created strictly within already-verified source and already-approved claim scope; changes no source/claim status; authorizes no route. **Derived Contract-C state = (not_public, noindex).**
+
+Validators: scaffolding PASS (131 checks); concept↔lexeme PASS (16 checks, 1 lexeme, 1 governed evidence record); Contract C property tests PASS (7/7); existing Corpus Governance CI (L0/L1/L2) PASS (unaffected).

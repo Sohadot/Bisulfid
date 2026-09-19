@@ -63,13 +63,24 @@ def validate_geography():
         check(x["geo_id"].startswith("GEO-"), f"geography: bad id prefix {x['geo_id']}")
         leaked = forbidden.intersection(x.keys())
         check(not leaked, f"geography: {x['geo_id']} carries forbidden relationship/evidence field(s): {sorted(leaked)}")
+    # GCC/Gulf naming must be unambiguous (concept-lexeme-resolution correction).
+    check("GEO-GCC" in ids, "geography: GEO-GCC (GCC member states) must exist")
+    check("GEO-GULF" not in ids, "geography: ambiguous GEO-GULF must be renamed to GEO-GCC")
 
 
 def validate_jurisdiction():
     d = load(os.path.join(DATA, "jurisdiction_registry.json"))
     check(d.get("jurisdictions") == [], "jurisdiction: no jurisdictions may be seeded this sprint")
+    check(d.get("authorities") == [], "jurisdiction: no authorities may be seeded this sprint")
     check(d.get("instruments") == [], "jurisdiction: no active instruments this sprint")
-    check("instrument_schema" in d, "jurisdiction: instrument_schema missing")
+    # Roles must not overlap: jurisdiction record must NOT carry 'authority'.
+    jreq = set(d.get("jurisdiction_record_schema", {}).get("required_fields", []))
+    check("authority" not in jreq, "jurisdiction: jurisdiction record must not include 'authority' (role overlap)")
+    check("authority_record_schema" in d, "jurisdiction: authority_record_schema missing")
+    check("instrument_record_schema" in d, "jurisdiction: instrument_record_schema missing")
+    ireq = set(d.get("instrument_record_schema", {}).get("required_fields", []))
+    check({"jurisdiction_id", "authority_id"}.issubset(ireq),
+          "jurisdiction: instrument must reference both jurisdiction_id and authority_id")
 
 
 def validate_relationship_classes():
@@ -80,20 +91,37 @@ def validate_relationship_classes():
     for x in d["relationship_classes"]:
         check(x["relationship_class_id"].startswith("REL-"), f"relationship_class: bad id prefix {x['relationship_class_id']}")
         check(x["state"] == "registered", f"relationship_class: {x['relationship_class_id']} must be 'registered'")
+    # Trade/economic classes must require PRIMARY authoritative evidence, not market/industry pubs alone.
+    check("proposed_source_categories" in d, "relationship_class: proposed_source_categories (source-taxonomy gap) missing")
+    by_id = {x["relationship_class_id"]: x for x in d["relationship_classes"]}
+    for rid in ("REL-IMPORTER", "REL-EXPORTER", "REL-PRODUCER", "REL-INDUSTRIAL-USER"):
+        rc = by_id.get(rid, {})
+        prim = set(rc.get("primary_evidence_required", []))
+        check(prim and not prim.issubset({"market_report", "industry_publication"}),
+              f"relationship_class: {rid} must require a primary authoritative source category")
 
 
 def validate_evidence():
     schema = load(os.path.join(DATA, "evidence", "evidence_schema.json"))
     forbidden = set(schema["forbidden_fields"].keys())
-    check(forbidden == {"source_type", "used_by", "confidence"},
-          f"evidence: forbidden_fields must be exactly source_type/used_by/confidence, got {sorted(forbidden)}")
-    check(schema["records_in_this_sprint"].startswith("NONE"),
-          "evidence: schema must declare NO governed records this sprint")
+    check(forbidden == {"source_type", "used_by", "confidence", "entities", "risk_class"},
+          f"evidence: forbidden_fields must be source_type/used_by/confidence/entities/risk_class, got {sorted(forbidden)}")
+    # required fields use concept_ids (not generic 'entities') and carry no risk_class.
+    req = set(schema["fields"]["required_all_kinds"])
+    check("concept_ids" in req and "claim_level" in req, "evidence: schema must require concept_ids and claim_level")
+    check("entities" not in req and "risk_class" not in req, "evidence: schema must NOT require entities or risk_class")
 
     ev_dir = os.path.join(DATA, "evidence")
-    # No real (governed) evidence record: any EVD-*.json at the top level is forbidden.
-    real_records = [n for n in os.listdir(ev_dir) if n.endswith(".json") and n.startswith("EVD-")]
-    check(not real_records, f"evidence: real governed record(s) present {real_records} — forbidden this sprint")
+    # Governed evidence records (EVD-*.json) are now permitted; structural + forbidden-field checks here,
+    # cross-registry resolution + claim-level rules in validate_concept_lexeme.py.
+    for name in os.listdir(ev_dir):
+        if name.endswith(".json") and name.startswith("EVD-"):
+            rec = load(os.path.join(ev_dir, name))
+            check(rec.get("governed") is True, f"evidence {name}: governed record must set governed=true")
+            leaked = forbidden.intersection(rec.keys())
+            check(not leaked, f"evidence {name}: contains forbidden field(s) {sorted(leaked)}")
+            for f in req:
+                check(f in rec, f"evidence {name}: missing required field '{f}'")
     # Fixtures: must be test-only, synthetic, non-governed, and carry no forbidden fields.
     fx_dir = os.path.join(ev_dir, "fixtures")
     if os.path.isdir(fx_dir):

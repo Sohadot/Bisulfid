@@ -21,19 +21,25 @@
   },
   "evidence_review_posture_values": ["unreviewed", "extracted", "scope_reviewed", "evidence_verified"],
   "evidence_kinds": ["terminological", "scientific", "quantitative", "legal_regulatory", "qualitative"],
+  "claim_levels": ["concept", "lexeme", "relationship"],
+  "level_rules": {
+    "concept": "Concept-level claim (e.g. 'Concept X has formula Y'). REQUIRES evidence_kind in {scientific, quantitative, legal_regulatory}. A terminological/lexical entry can NOT satisfy a concept-level claim.",
+    "lexeme": "Lexeme-level claim (e.g. 'source S records lexical form X'). REQUIRES evidence_kind == 'terminological' AND non-empty lexeme_ids.",
+    "relationship": "Relationship-level claim. REQUIRES a non-null 'relationship' reference (relationship_instance_id)."
+  },
   "fields": {
     "required_all_kinds": [
       "evidence_id",
       "evidence_kind",
+      "claim_level",
       "governed",
-      "entities",
+      "concept_ids",
       "subject_domain",
       "language_of_evidence",
       "claim_scope",
       "source_id",
       "retrieval_date",
       "evidence_review_posture",
-      "risk_class",
       "allowed_uses",
       "prohibited_uses"
     ],
@@ -49,8 +55,8 @@
     "reference_fields_resolve_to": {
       "source_id": "main/data/sources/source_registry.json",
       "claim_id": "main/data/claims/*.json",
-      "entities": "main/data/ontology/ (concept/entity IDs; lexeme IDs pending Concept<->Lexeme ratification)",
-      "lexeme_ids": "PENDING Concept<->Lexeme ratification (IP-9); no governed lexeme IDs exist yet",
+      "concept_ids": "main/data/ontology/sulfur_terms.json (term_id, governed as language-neutral concept)",
+      "lexeme_ids": "main/data/lexeme_registry.json (stable governed lexeme IDs; free-text is not permitted)",
       "relationship": "main/data/relationship_class_registry.json (relationship_instance_id)",
       "subject_domain": "main/data/subject_domain_registry.json",
       "geography": "main/data/geography_registry.json",
@@ -62,11 +68,14 @@
       "legal_regulatory": { "required_block": "legal", "legal_fields": ["jurisdiction", "authority", "instrument", "instrument_type", "effective_date", "amendment_state", "valid_from", "valid_to"] }
     }
   },
+  "concept_lexeme_separation": "Generic 'entities' is REPLACED by explicit 'concept_ids' (language-neutral) and optional 'lexeme_ids' (language-specific). This makes it impossible to accidentally attach a lexical source to a concept-level chemical claim: a concept-level claim requires non-terminological evidence_kind (level_rules).",
   "forbidden_fields": {
     "source_type": "REMOVED. Authoritative in source_registry.json; derive from source_id. Storing it here creates drift.",
     "used_by": "REMOVED as an editable field. Links are one-directional (knowledge objects/claims -> evidence_ids). The reverse (evidence -> consumers) is DERIVED by an index/validator.",
-    "confidence": "REMOVED. Ungoverned subjective scoring is not permitted. Use evidence_review_posture, source lock status, risk_class, temporal_scope, allowed/prohibited_uses instead."
+    "confidence": "REMOVED. Ungoverned subjective scoring is not permitted.",
+    "entities": "REPLACED by concept_ids + lexeme_ids (Concept<->Lexeme resolution). Generic 'entities' hides concept-vs-lexeme semantics and is forbidden.",
+    "risk_class": "REMOVED. Evidence-level 'risk' had no independent meaning distinct from route risk / claim risk / source limitations (see CONCEPT_LEXEME_MODEL.md §7). Use evidence_review_posture, source lock, allowed/prohibited_uses, temporal_scope."
   },
   "missing_value_law": "Absent data is stored as explicit null/missing, never synthesized. A schema is never completed by inventing a value.",
-  "records_in_this_sprint": "NONE. No real (governed) evidence record is created. The real MoS2 chain awaits a governed lexeme_id (Concept<->Lexeme ratification, IP-9/IP-16.3). Only test-only fixtures exist under fixtures/."
+  "records_in_this_sprint": "ONE governed record: EVD-MOS2-DE-001 (lexeme-level German terminology evidence for concept molybdenum_disulfide via lexeme LEX-DE-MOS2-001). Created after the Concept<->Lexeme model was ratified and a stable governed lexeme_id exists. It changes NO source or claim status and authorizes NO route; derived Contract-C state = (not_public, noindex). Test-only fixtures live under fixtures/."
 }

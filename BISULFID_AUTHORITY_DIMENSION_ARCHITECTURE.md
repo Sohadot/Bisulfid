@@ -613,3 +613,7 @@ The earlier text was inconsistent (one place said "four," another "six"). Reconc
 
 ---
 *Authority & Dimension Reconciliation + Architecture Integrity Pass (incl. IP-16) — READ-ONLY design package. No production files modified.*
+
+---
+
+> **Update — Concept↔Lexeme Resolution sprint (2026-09-19).** The Concept↔Lexeme question left open in IP-9/IP-10 is now resolved (Option B): concepts stay language-neutral in `sulfur_terms.json`; lexemes live in the new `main/data/lexeme_registry.json`. The Deliverable-3 evidence schema is updated accordingly — generic `entities` → `concept_ids` + `lexeme_ids`, new `claim_level ∈ {concept,lexeme,relationship}`, and **`risk_class` removed** (no independent meaning). The first real governed evidence record (`EVD-MOS2-DE-001`, lexeme-level) now exists and derives to `(not_public, noindex)`. Full design, ontology-node audit, and the GEO/jurisdiction/source-taxonomy corrections: `main/data/CONCEPT_LEXEME_MODEL.md` and the DECISION_LOG entry of the same date.

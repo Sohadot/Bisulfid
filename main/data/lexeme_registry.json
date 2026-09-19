@@ -1,0 +1,53 @@
+{
+  "version": "0.1.0",
+  "sprint": "concept-lexeme-resolution",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "model": "Option B — concept ontology (main/data/ontology/sulfur_terms.json) + separate lexeme registry",
+  "governed_by": [
+    "main/data/CONCEPT_LEXEME_MODEL.md",
+    "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "A lexeme is a language-specific naming form that refers to a language-neutral concept. lexeme -> names -> concept. A concept may have many lexemes; a lexeme belongs to one language/locale context.",
+  "rules": [
+    "Every lexeme MUST resolve to exactly one governed concept (concept_id is a term_id in main/data/ontology/sulfur_terms.json).",
+    "concept_id is an identifier, NOT a language claim. Concepts are language-neutral.",
+    "Lexeme language is a fact about the naming form; it is distinct from the language of any source.",
+    "A lexeme NEVER creates a route or URL. Knowledge Object Before URL is absolute.",
+    "Free-text strings must not substitute for lexeme IDs in governed evidence; evidence references lexeme_id.",
+    "Only lexemes genuinely supported by current evidence/claim scope are instantiated."
+  ],
+  "concept_binding": "concept_id resolves to main/data/ontology/sulfur_terms.json term_id (governed henceforth as a language-neutral concept record).",
+  "lexical_relationship_types": [
+    "preferred", "accepted", "historical", "synonym", "alternative_spelling",
+    "formula_alias", "translated_equivalent", "partial_equivalence", "false_friend",
+    "nomenclature_controlled", "observed_usage", "deprecated"
+  ],
+  "lexeme_posture_values": ["candidate", "evidence_backed"],
+  "id_rules": {
+    "production_prefix": "LEX-",
+    "test_fixture_prefix": "TEST-LEX-",
+    "rule": "Production lexeme IDs start 'LEX-'. Test fixtures start 'TEST-LEX-'. A governed lexeme MUST NOT use a TEST- identifier."
+  },
+  "lexeme_record_schema": {
+    "required_fields": ["lexeme_id", "concept_id", "language", "display_form", "lexical_relationship_type", "status"],
+    "optional_fields": ["script", "locale", "normalized_form", "notes", "source_ids", "evidence_ids"],
+    "forbidden_fields": ["path", "route", "url", "route_id", "in_sitemap", "indexable"]
+  },
+  "lexemes": [
+    {
+      "lexeme_id": "LEX-DE-MOS2-001",
+      "concept_id": "molybdenum_disulfide",
+      "language": "de",
+      "script": "Latn",
+      "display_form": "Molybdän(IV)-sulfid",
+      "normalized_form": "molybdaen(iv)-sulfid",
+      "lexical_relationship_type": "accepted",
+      "status": "evidence_backed",
+      "source_ids": ["SRC-SPEKTRUM-MOS2-DE"],
+      "evidence_ids": ["EVD-MOS2-DE-001"],
+      "notes": "German specialist-dictionary (Spektrum Lexikon der Chemie) accepted lexical form for the MoS2 concept. Lexeme-level only; not a concept-level chemical claim. Public URL NOT authorized."
+    }
+  ]
+}

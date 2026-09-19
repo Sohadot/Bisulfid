@@ -16,15 +16,30 @@
     "Relationship classes/instances never generate routes by themselves."
   ],
   "instance_qualification_states": ["unqualified", "evidence_collecting", "evidence_qualified"],
+  "proposed_source_categories": {
+    "note": "Schema-integrity PROPOSAL only (concept-lexeme-resolution sprint). These primary/authoritative categories are NOT yet added to source_registry.json's approved categories, and NO sources are invented. Adding them is a later, separately-approved governance step. Trade/economic relationship INSTANCES must not be qualified by market_report/industry_publication alone.",
+    "primary_authoritative": [
+      "official_customs_data",
+      "official_trade_statistics",
+      "national_statistical_authority",
+      "intergovernmental_trade_database",
+      "official_production_statistics"
+    ],
+    "secondary_contextual_only": [
+      "market_report",
+      "industry_publication"
+    ]
+  },
+  "evidence_strength_rule": "For importer/exporter/producer/industrial_user instances, at least one PRIMARY authoritative source is required to reach evidence_qualified; secondary_contextual sources may add context but never establish the instance alone.",
   "relationship_instance_schema": {
     "required_fields": ["relationship_instance_id", "relationship_class_id", "entity_id", "target_ref", "qualification_state", "evidence_ids", "temporal_scope"],
     "note": "evidence_ids MUST be non-empty for qualification_state == 'evidence_qualified'."
   },
   "relationship_classes": [
-    { "relationship_class_id": "REL-IMPORTER", "label": "importer", "definition": "Entity/place imports the substance.", "directionality": "entity->geography", "evidence_requirement": ["government_scientific_database", "market_report", "industry_publication"], "state": "registered" },
-    { "relationship_class_id": "REL-EXPORTER", "label": "exporter", "definition": "Entity/place exports the substance.", "directionality": "entity->geography", "evidence_requirement": ["government_scientific_database", "market_report", "industry_publication"], "state": "registered" },
-    { "relationship_class_id": "REL-PRODUCER", "label": "producer", "definition": "Entity/place produces the substance.", "directionality": "entity->geography", "evidence_requirement": ["government_scientific_database", "industry_publication"], "state": "registered" },
-    { "relationship_class_id": "REL-INDUSTRIAL-USER", "label": "industrial_user", "definition": "Entity/place uses the substance industrially.", "directionality": "entity->geography", "evidence_requirement": ["industry_publication", "government_scientific_database"], "state": "registered" },
+    { "relationship_class_id": "REL-IMPORTER", "label": "importer", "definition": "Entity/place imports the substance.", "directionality": "entity->geography", "primary_evidence_required": ["official_customs_data", "official_trade_statistics", "intergovernmental_trade_database", "national_statistical_authority"], "secondary_contextual": ["market_report", "industry_publication"], "state": "registered" },
+    { "relationship_class_id": "REL-EXPORTER", "label": "exporter", "definition": "Entity/place exports the substance.", "directionality": "entity->geography", "primary_evidence_required": ["official_customs_data", "official_trade_statistics", "intergovernmental_trade_database", "national_statistical_authority"], "secondary_contextual": ["market_report", "industry_publication"], "state": "registered" },
+    { "relationship_class_id": "REL-PRODUCER", "label": "producer", "definition": "Entity/place produces the substance.", "directionality": "entity->geography", "primary_evidence_required": ["official_production_statistics", "national_statistical_authority", "government_scientific_database"], "secondary_contextual": ["industry_publication", "market_report"], "state": "registered" },
+    { "relationship_class_id": "REL-INDUSTRIAL-USER", "label": "industrial_user", "definition": "Entity/place uses the substance industrially.", "directionality": "entity->geography", "primary_evidence_required": ["official_production_statistics", "national_statistical_authority", "government_scientific_database"], "secondary_contextual": ["industry_publication", "market_report"], "state": "registered" },
     { "relationship_class_id": "REL-PROCESSING-CENTER", "label": "processing_center", "definition": "Place processes/transforms the substance.", "directionality": "entity->geography", "evidence_requirement": ["industry_publication"], "state": "registered" },
     { "relationship_class_id": "REL-MANUFACTURING-CENTER", "label": "manufacturing_center", "definition": "Place manufactures derived products.", "directionality": "entity->geography", "evidence_requirement": ["industry_publication"], "state": "registered" },
     { "relationship_class_id": "REL-SUPPLY-CHAIN-NODE", "label": "supply_chain_node", "definition": "Place is a node in the supply chain.", "directionality": "entity->geography", "evidence_requirement": ["industry_publication", "government_scientific_database"], "state": "registered" },

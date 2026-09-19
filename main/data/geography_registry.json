@@ -21,7 +21,7 @@
     { "geo_id": "GEO-DE", "label": "Germany", "iso_3166_1_alpha2": "DE", "type": "country" },
     { "geo_id": "GEO-MA", "label": "Morocco", "iso_3166_1_alpha2": "MA", "type": "country" },
     { "geo_id": "GEO-CN", "label": "China", "iso_3166_1_alpha2": "CN", "type": "country" },
-    { "geo_id": "GEO-GULF", "label": "Gulf region", "type": "region", "members_iso": ["SA", "AE", "QA", "KW", "BH", "OM"] },
+    { "geo_id": "GEO-GCC", "label": "GCC member states", "type": "organization_membership", "members_iso": ["SA", "AE", "QA", "KW", "BH", "OM"], "note": "Exactly the six Gulf Cooperation Council member states. Renamed from GEO-GULF (vocabulary integrity, concept-lexeme-resolution sprint): a broader 'Gulf region' geographic scope, if ever needed, will be defined as a separate governed object with its own explicit scope, not silently equated to GCC membership." },
     { "geo_id": "GEO-GLOBAL", "label": "Global", "type": "supra" }
   ]
 }

@@ -7,19 +7,33 @@
     "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
     "DECISION_LOG.md"
   ],
-  "purpose": "Schema + minimal structure for future legal/regulatory reference. jurisdiction answers 'which authority/legal system governs this specific statement?'. Distinct from geography (a jurisdiction is an authority+instrument, not a place).",
+  "purpose": "Schema + minimal structure for future legal/regulatory reference. Three DISTINCT object types, not conflated (corrected in concept-lexeme-resolution sprint).",
+  "model": "jurisdiction (legal system / scope) --contains/governs context for--> authority (issuing/administering body) --issues/administers--> instrument (statute/regulation/standard/guidance/directive/treaty). An instrument belongs to a jurisdiction and has an issuing authority. A jurisdiction is NOT 'authority + instrument'.",
+  "semantic_roles": {
+    "jurisdiction": "The legal/regulatory scope or legal system (e.g. Germany, EU, Morocco as legal systems).",
+    "authority": "The institution/body exercising authority within a jurisdiction.",
+    "instrument": "The concrete statute, regulation, directive, standard, guidance, or treaty."
+  },
   "rules": [
     "Schema and identity structure only in this sprint.",
-    "No active instruments and no legal claims are added.",
+    "No jurisdictions, authorities, or instruments are added (all lists empty).",
     "Guidance is not law; a draft instrument is not in force; a repealed instrument is not current.",
     "Historical instrument states must remain distinguishable from currently effective states.",
     "This registry never provides legal advice; reference/context only."
   ],
   "jurisdiction_states": ["registered"],
-  "instrument_schema": {
+  "jurisdiction_record_schema": {
+    "required_fields": ["jurisdiction_id", "label", "legal_system", "state"],
+    "note": "'authority' is NOT a field of a jurisdiction record; authorities are separate records referencing jurisdiction_id."
+  },
+  "authority_record_schema": {
+    "required_fields": ["authority_id", "label", "jurisdiction_id", "state"]
+  },
+  "instrument_record_schema": {
     "required_fields": [
+      "instrument_id",
       "jurisdiction_id",
-      "authority",
+      "authority_id",
       "instrument",
       "instrument_type",
       "effective_date",
@@ -32,9 +46,7 @@
     "instrument_types": ["statute", "regulation", "standard", "guidance", "directive", "treaty"],
     "amendment_states": ["in_force", "amended", "repealed", "draft"]
   },
-  "jurisdiction_record_schema": {
-    "required_fields": ["jurisdiction_id", "label", "authority", "legal_system", "state"]
-  },
   "jurisdictions": [],
+  "authorities": [],
   "instruments": []
 }
