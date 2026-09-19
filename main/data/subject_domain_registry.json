@@ -1,0 +1,44 @@
+{
+  "version": "0.1.0",
+  "sprint": "authority-dimension-impl-1",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": [
+    "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
+    "DOCTRINE_TO_CORPUS_RECONCILIATION.md",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Governed subject-domain vocabulary. A subject_domain answers 'what field of knowledge is this evidence/object about?'. It is distinct from reference_layer (presentation/evidence standard), audience, and page_type.",
+  "rules": [
+    "Controlled vocabulary existence is separate from evidence-active use.",
+    "A domain may be 'registered' without implying BISULFID currently holds verified evidence in that domain.",
+    "A domain becomes 'evidence_active' only when >=1 verified evidence record (main/data/evidence/) references it. This sprint activates none.",
+    "Domains never generate routes.",
+    "New domains enter only by evidence-backed amendment recorded in DECISION_LOG.",
+    "This registry does not assert any factual content; it names fields of knowledge only."
+  ],
+  "domain_states": ["registered", "evidence_active"],
+  "seed_provenance": "Seed vocabulary drawn from existing ontology signals (chemical_field, industrial_signal, safety_context) in main/data/ontology/sulfur_terms.json. Seeding the vocabulary name is not an evidence claim.",
+  "subject_domains": [
+    { "subject_domain_id": "SD-CHEMISTRY", "label": "Chemistry", "state": "registered", "reserved_future": false, "seeded_from": "ontology.chemical_field", "notes": "Vocabulary registered; not asserting evidence-active content." },
+    { "subject_domain_id": "SD-INORGANIC-CHEMISTRY", "label": "Inorganic chemistry", "state": "registered", "reserved_future": false, "seeded_from": "ontology.chemical_field", "notes": "Vocabulary registered." },
+    { "subject_domain_id": "SD-NOMENCLATURE", "label": "Chemical nomenclature", "state": "registered", "reserved_future": false, "seeded_from": "ontology.chemical_field", "notes": "Vocabulary registered." },
+    { "subject_domain_id": "SD-MATERIALS-SCIENCE", "label": "Materials science", "state": "registered", "reserved_future": false, "seeded_from": "ontology.chemical_field", "notes": "Vocabulary registered." },
+    { "subject_domain_id": "SD-INDUSTRIAL", "label": "Industrial context", "state": "registered", "reserved_future": false, "seeded_from": "ontology.industrial_signal", "notes": "Vocabulary registered." },
+    { "subject_domain_id": "SD-LINGUISTICS", "label": "Linguistics", "state": "registered", "reserved_future": false, "seeded_from": "doctrine.terminology_intelligence", "notes": "Vocabulary registered (DE/EN chemical-language work)." },
+    { "subject_domain_id": "SD-TERMINOLOGY", "label": "Terminology", "state": "registered", "reserved_future": false, "seeded_from": "doctrine.terminology_intelligence", "notes": "Vocabulary registered." },
+    { "subject_domain_id": "SD-SAFETY-CONTEXT", "label": "Safety context (non-prescriptive)", "state": "registered", "reserved_future": false, "seeded_from": "ontology.safety_context", "notes": "Governed, non-prescriptive framing only." },
+
+    { "subject_domain_id": "SD-PHYSICS", "label": "Physics", "state": "registered", "reserved_future": true, "seeded_from": null, "notes": "Reserved future domain. No verified evidence yet; not evidence_active." },
+    { "subject_domain_id": "SD-BIOLOGY", "label": "Biology", "state": "registered", "reserved_future": true, "seeded_from": null, "notes": "Reserved future domain. No verified evidence yet." },
+    { "subject_domain_id": "SD-BIOMEDICAL", "label": "Biomedical research", "state": "registered", "reserved_future": true, "seeded_from": null, "notes": "Reserved future domain. High claim restrictions apply when activated." },
+    { "subject_domain_id": "SD-AGRICULTURE", "label": "Agriculture", "state": "registered", "reserved_future": true, "seeded_from": null, "notes": "Reserved future domain." },
+    { "subject_domain_id": "SD-ENVIRONMENT", "label": "Environment", "state": "registered", "reserved_future": true, "seeded_from": null, "notes": "Reserved future domain." },
+    { "subject_domain_id": "SD-MINING", "label": "Mining", "state": "registered", "reserved_future": true, "seeded_from": null, "notes": "Reserved future domain." },
+    { "subject_domain_id": "SD-ENERGY", "label": "Energy", "state": "registered", "reserved_future": true, "seeded_from": null, "notes": "Reserved future domain." },
+    { "subject_domain_id": "SD-ECONOMICS", "label": "Economics", "state": "registered", "reserved_future": true, "seeded_from": null, "notes": "Reserved future domain. No verified economic sources exist yet." },
+    { "subject_domain_id": "SD-TRADE", "label": "Trade", "state": "registered", "reserved_future": true, "seeded_from": null, "notes": "Reserved future domain. No verified trade/customs sources exist yet." },
+    { "subject_domain_id": "SD-LOGISTICS", "label": "Logistics", "state": "registered", "reserved_future": true, "seeded_from": null, "notes": "Reserved future domain." },
+    { "subject_domain_id": "SD-REGULATION", "label": "Regulation", "state": "registered", "reserved_future": true, "seeded_from": null, "notes": "Reserved future domain. Requires jurisdiction-level provenance when activated." }
+  ]
+}

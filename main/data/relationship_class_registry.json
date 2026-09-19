@@ -1,0 +1,36 @@
+{
+  "version": "0.1.0",
+  "sprint": "authority-dimension-impl-1",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": [
+    "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Separates relationship-CLASS vocabulary (governed schema concepts) from relationship-INSTANCE truth (requires evidence).",
+  "rules": [
+    "A relationship class is a controlled schema concept and may exist without asserting any instance.",
+    "The existence of a class does NOT depend on a supporting source.",
+    "A relationship INSTANCE (e.g. 'ENTITY-X -> importer -> Morocco -> period Y') requires evidence references and is NOT created in this sprint.",
+    "When introduced later, every relationship instance must carry >=1 evidence_id.",
+    "Relationship classes/instances never generate routes by themselves."
+  ],
+  "instance_qualification_states": ["unqualified", "evidence_collecting", "evidence_qualified"],
+  "relationship_instance_schema": {
+    "required_fields": ["relationship_instance_id", "relationship_class_id", "entity_id", "target_ref", "qualification_state", "evidence_ids", "temporal_scope"],
+    "note": "evidence_ids MUST be non-empty for qualification_state == 'evidence_qualified'."
+  },
+  "relationship_classes": [
+    { "relationship_class_id": "REL-IMPORTER", "label": "importer", "definition": "Entity/place imports the substance.", "directionality": "entity->geography", "evidence_requirement": ["government_scientific_database", "market_report", "industry_publication"], "state": "registered" },
+    { "relationship_class_id": "REL-EXPORTER", "label": "exporter", "definition": "Entity/place exports the substance.", "directionality": "entity->geography", "evidence_requirement": ["government_scientific_database", "market_report", "industry_publication"], "state": "registered" },
+    { "relationship_class_id": "REL-PRODUCER", "label": "producer", "definition": "Entity/place produces the substance.", "directionality": "entity->geography", "evidence_requirement": ["government_scientific_database", "industry_publication"], "state": "registered" },
+    { "relationship_class_id": "REL-INDUSTRIAL-USER", "label": "industrial_user", "definition": "Entity/place uses the substance industrially.", "directionality": "entity->geography", "evidence_requirement": ["industry_publication", "government_scientific_database"], "state": "registered" },
+    { "relationship_class_id": "REL-PROCESSING-CENTER", "label": "processing_center", "definition": "Place processes/transforms the substance.", "directionality": "entity->geography", "evidence_requirement": ["industry_publication"], "state": "registered" },
+    { "relationship_class_id": "REL-MANUFACTURING-CENTER", "label": "manufacturing_center", "definition": "Place manufactures derived products.", "directionality": "entity->geography", "evidence_requirement": ["industry_publication"], "state": "registered" },
+    { "relationship_class_id": "REL-SUPPLY-CHAIN-NODE", "label": "supply_chain_node", "definition": "Place is a node in the supply chain.", "directionality": "entity->geography", "evidence_requirement": ["industry_publication", "government_scientific_database"], "state": "registered" },
+    { "relationship_class_id": "REL-RESEARCH-CENTER", "label": "research_center", "definition": "Place hosts research relevant to the entity.", "directionality": "entity->geography", "evidence_requirement": ["peer_reviewed_journal", "academic_teaching_reference"], "state": "registered" },
+    { "relationship_class_id": "REL-TERMINOLOGY-ORIGIN", "label": "terminology_origin", "definition": "Place/language is the origin of a lexical form of the entity.", "directionality": "lexeme->geography", "evidence_requirement": ["authoritative_dictionary", "chemical_nomenclature_standard"], "state": "registered" },
+    { "relationship_class_id": "REL-REGULATORY-JURISDICTION", "label": "regulatory_jurisdiction", "definition": "Jurisdiction governs a statement about the entity.", "directionality": "entity->jurisdiction", "evidence_requirement": ["regulatory_instrument"], "state": "registered" }
+  ],
+  "relationship_instances": []
+}

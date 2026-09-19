@@ -1,0 +1,72 @@
+{
+  "version": "0.1.0",
+  "sprint": "authority-dimension-impl-1",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": [
+    "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Atomic evidence schema. An evidence record is the join between a source and a claim, carrying reconstructable provenance. Chain: source -> evidence assertion -> claim -> knowledge object.",
+  "one_owner_law": "One fact -> one authoritative owner -> all other representations derived. Evidence never copies authoritative data owned by another registry.",
+  "id_rules": {
+    "production_prefix": "EVD-",
+    "test_fixture_prefix": "TEST-EVD-",
+    "rule": "Production evidence IDs MUST start with 'EVD-'. Test fixtures MUST start with 'TEST-EVD-' and set governed=false, test_fixture=true. Production inventories exclude test fixtures. A production record MUST NOT use a TEST- identifier and MUST NOT reference TEST- source/claim/entity IDs."
+  },
+  "posture_separation": {
+    "source_posture": "Owned by main/data/sources/source_registry.json (status, source_lock_status). NOT stored here.",
+    "evidence_review_posture": "Owned by THIS record. Whether this specific fact was extracted correctly, scoped correctly, and reviewed.",
+    "claim_posture": "Owned by main/data/claims/*.json. NOT stored here."
+  },
+  "evidence_review_posture_values": ["unreviewed", "extracted", "scope_reviewed", "evidence_verified"],
+  "evidence_kinds": ["terminological", "scientific", "quantitative", "legal_regulatory", "qualitative"],
+  "fields": {
+    "required_all_kinds": [
+      "evidence_id",
+      "evidence_kind",
+      "governed",
+      "entities",
+      "subject_domain",
+      "language_of_evidence",
+      "claim_scope",
+      "source_id",
+      "retrieval_date",
+      "evidence_review_posture",
+      "risk_class",
+      "allowed_uses",
+      "prohibited_uses"
+    ],
+    "optional_common": [
+      "lexeme_ids",
+      "relationship",
+      "geography",
+      "jurisdiction",
+      "claim_id",
+      "publication_date",
+      "temporal_scope"
+    ],
+    "reference_fields_resolve_to": {
+      "source_id": "main/data/sources/source_registry.json",
+      "claim_id": "main/data/claims/*.json",
+      "entities": "main/data/ontology/ (concept/entity IDs; lexeme IDs pending Concept<->Lexeme ratification)",
+      "lexeme_ids": "PENDING Concept<->Lexeme ratification (IP-9); no governed lexeme IDs exist yet",
+      "relationship": "main/data/relationship_class_registry.json (relationship_instance_id)",
+      "subject_domain": "main/data/subject_domain_registry.json",
+      "geography": "main/data/geography_registry.json",
+      "jurisdiction": "main/data/jurisdiction_registry.json"
+    },
+    "temporal_scope": { "fields": ["as_of", "valid_from", "valid_to"] },
+    "kind_specific": {
+      "quantitative": { "required_block": "quantitative", "quantitative_fields": ["metric", "definition", "unit", "value", "geography", "period", "classification_code", "methodology", "revision_state"] },
+      "legal_regulatory": { "required_block": "legal", "legal_fields": ["jurisdiction", "authority", "instrument", "instrument_type", "effective_date", "amendment_state", "valid_from", "valid_to"] }
+    }
+  },
+  "forbidden_fields": {
+    "source_type": "REMOVED. Authoritative in source_registry.json; derive from source_id. Storing it here creates drift.",
+    "used_by": "REMOVED as an editable field. Links are one-directional (knowledge objects/claims -> evidence_ids). The reverse (evidence -> consumers) is DERIVED by an index/validator.",
+    "confidence": "REMOVED. Ungoverned subjective scoring is not permitted. Use evidence_review_posture, source lock status, risk_class, temporal_scope, allowed/prohibited_uses instead."
+  },
+  "missing_value_law": "Absent data is stored as explicit null/missing, never synthesized. A schema is never completed by inventing a value.",
+  "records_in_this_sprint": "NONE. No real (governed) evidence record is created. The real MoS2 chain awaits a governed lexeme_id (Concept<->Lexeme ratification, IP-9/IP-16.3). Only test-only fixtures exist under fixtures/."
+}

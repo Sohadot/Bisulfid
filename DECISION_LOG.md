@@ -4893,3 +4893,53 @@ Bisulfid.com is a **governed public reference dossier atlas** — not 14,000 ful
 ### Next step
 
 Manual live verification of hub and deep-route samples, then Search Console submission when confirmed.
+
+---
+
+## Sprint — Authority & Dimension Reconciliation (implementation 1: governance scaffolding)
+
+**Date:** 2026-09-19
+**Scope:** governance scaffolding only. No production data, HTML, sitemap, robots, Search Console, route publication/indexation flags, source statuses, claim statuses, ontology, or corpus content modified. No new public routes. No PR.
+**Baseline:** `DOCTRINE_TO_CORPUS_RECONCILIATION.md` v2; `BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md` incl. Architecture Integrity Pass (IP-1…IP-16).
+
+### Ratified principle (owner-approved) — Contract C: Derived Canonical State
+
+The following **principles** are ratified as the target authority architecture:
+
+1. **Publication and indexation are derived states**, not hand-set flags. Deploy, sitemap, and robots consume only the derived state.
+2. **No single legacy file independently controls indexation.**
+3. **`routes.json` owns governed route posture.**
+4. **`release_ledger.json` owns release authorization + the historical release record.**
+5. **Source, evidence, claim, validation, and Information-Gain are independent veto/eligibility inputs** to the derived state; each can veto, none alone can promote.
+6. **Knowledge Object Before URL** — an independent URL is promoted only after evidence sufficiency AND Information-Gain review; a knowledge object may otherwise remain a module, section, relationship edge, table/data record, or machine-readable node.
+7. **Semantic dimensions remain distinct** — entity, subject_domain, reference_layer, audience, page_type, language, geography, jurisdiction, relationship, temporal_scope, evidence — and none alone creates a URL.
+8. **Source ≠ Evidence ≠ Claim** — three independently-owned postures.
+9. **One fact → one authoritative owner** — every other representation is derived (no duplicated authoritative fields).
+10. **Vocabulary existence ≠ relationship-instance truth** — a place/domain/relationship-class may be registered without evidence; an instantiated relationship requires evidence.
+
+### Historical fact preserved
+
+Sprint 99 (2026-06-05) authorized the release of 13,998 dossier pages under "cautious reference framing" and declared the release ledger the public-route source of truth. **This remains a historical fact and is not erased.** Contract C supersedes only its *operational effect on indexation*; the existing corpus is **not** de-indexed by this entry, and its indexation will be recomputed from true postures only under a later, separately-approved sprint.
+
+### NOT ratified here (remain provisional — must not be treated as settled doctrine)
+
+- Concept↔Lexeme representation (blocks any ontology mutation and any real MoS₂ evidence record);
+- source-lock workflow;
+- claim-registry activation policy;
+- final subject-domain admissions (which reserved domains become evidence_active);
+- final relationship-class admissions and any relationship instances;
+- new audience admissions;
+- 14K disposition policy;
+- the exact Contract C transition constants / non-factual-class certification list.
+
+### Scaffolding created this sprint (control infrastructure only)
+
+- `main/data/subject_domain_registry.json` (registered vocabulary; none evidence_active)
+- `main/data/geography_registry.json` (place identities only; no evidence state)
+- `main/data/jurisdiction_registry.json` (schema + identity; no active instruments)
+- `main/data/relationship_class_registry.json` (classes only; zero instances)
+- `main/data/evidence/` (schema + README + test-only fixtures; **no real evidence record**; `EVD-MOS2-DE-001` deferred pending Concept↔Lexeme ratification)
+- `main/data/information_gain/calibration_pairs.json` (empty; five labels; no threshold)
+- `scripts/governance_scaffolding/` (Contract C derive spec + 7 property tests + scaffolding validator; **unwired from deploy/CI**)
+
+Contract C property tests: PASS (7/7, 23,040 combinations). Scaffolding validator: PASS (105 checks). Existing Corpus Governance CI (L0/L1/L2) re-run: PASS (unaffected).

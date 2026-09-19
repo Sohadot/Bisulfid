@@ -1,0 +1,40 @@
+{
+  "version": "0.1.0",
+  "sprint": "authority-dimension-impl-1",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": [
+    "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Schema + minimal structure for future legal/regulatory reference. jurisdiction answers 'which authority/legal system governs this specific statement?'. Distinct from geography (a jurisdiction is an authority+instrument, not a place).",
+  "rules": [
+    "Schema and identity structure only in this sprint.",
+    "No active instruments and no legal claims are added.",
+    "Guidance is not law; a draft instrument is not in force; a repealed instrument is not current.",
+    "Historical instrument states must remain distinguishable from currently effective states.",
+    "This registry never provides legal advice; reference/context only."
+  ],
+  "jurisdiction_states": ["registered"],
+  "instrument_schema": {
+    "required_fields": [
+      "jurisdiction_id",
+      "authority",
+      "instrument",
+      "instrument_type",
+      "effective_date",
+      "amendment_state",
+      "valid_from",
+      "valid_to",
+      "as_of",
+      "last_verification_date"
+    ],
+    "instrument_types": ["statute", "regulation", "standard", "guidance", "directive", "treaty"],
+    "amendment_states": ["in_force", "amended", "repealed", "draft"]
+  },
+  "jurisdiction_record_schema": {
+    "required_fields": ["jurisdiction_id", "label", "authority", "legal_system", "state"]
+  },
+  "jurisdictions": [],
+  "instruments": []
+}

@@ -1,0 +1,27 @@
+{
+  "version": "0.1.0",
+  "sprint": "authority-dimension-impl-1",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": [
+    "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Controlled place identities only. geography answers 'which place participates in a supported relationship?'. It is distinct from language (de != Germany).",
+  "rules": [
+    "This registry identifies controlled PLACES only.",
+    "The existence of a place is NOT an evidentiary claim.",
+    "Evidence qualification belongs to relationship INSTANCES (relationship_class_registry + evidence records), NEVER to a geography record.",
+    "A geography record MUST NOT carry any relationship/evidence-status field.",
+    "Geography never generates routes.",
+    "Germany, Morocco, China, Gulf states etc. exist as places regardless of whether BISULFID holds any evidence about them."
+  ],
+  "forbidden_geography_fields": ["evidence_state", "relationship_status", "qualified", "evidence_qualified", "reserved"],
+  "geographies": [
+    { "geo_id": "GEO-DE", "label": "Germany", "iso_3166_1_alpha2": "DE", "type": "country" },
+    { "geo_id": "GEO-MA", "label": "Morocco", "iso_3166_1_alpha2": "MA", "type": "country" },
+    { "geo_id": "GEO-CN", "label": "China", "iso_3166_1_alpha2": "CN", "type": "country" },
+    { "geo_id": "GEO-GULF", "label": "Gulf region", "type": "region", "members_iso": ["SA", "AE", "QA", "KW", "BH", "OM"] },
+    { "geo_id": "GEO-GLOBAL", "label": "Global", "type": "supra" }
+  ]
+}

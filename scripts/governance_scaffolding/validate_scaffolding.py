@@ -1,0 +1,158 @@
+"""
+Validator for the governance-scaffolding artifacts created in
+sprint authority-dimension-impl-1.
+
+Scope: validates ONLY the NEW architecture artifacts this sprint introduced.
+It does NOT read or validate the legacy 14K corpus, routes.json, release_ledger,
+sources, claims, ontology, sitemaps, robots, or site/public. It is NOT wired into
+the CI workflow and produces no hard-fail against pre-existing production files.
+
+Checks (per BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md IP-5/IP-6/IP-11/IP-16):
+  - registries parse; IDs unique; enum values valid;
+  - subject_domain: no domain marked evidence_active this sprint;
+  - geography: records carry NO relationship/evidence-status field;
+  - relationship_class: no relationship instances this sprint;
+  - jurisdiction: no active instruments this sprint;
+  - evidence schema forbids source_type / editable used_by / confidence;
+  - production evidence IDs start EVD-; fixtures start TEST-EVD- and are non-governed;
+  - no real (governed) evidence record exists;
+  - information_gain calibration is empty and defines the five labels; no threshold.
+
+Exit code 0 = all pass, 1 = any failure.
+"""
+
+import json
+import os
+import sys
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+DATA = os.path.join(ROOT, "main", "data")
+
+ERRORS = []
+CHECKS = 0
+
+
+def check(cond, msg):
+    global CHECKS
+    CHECKS += 1
+    if not cond:
+        ERRORS.append(msg)
+
+
+def load(path):
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def validate_subject_domain():
+    d = load(os.path.join(DATA, "subject_domain_registry.json"))
+    ids = [x["subject_domain_id"] for x in d["subject_domains"]]
+    check(len(ids) == len(set(ids)), "subject_domain: duplicate IDs")
+    for x in d["subject_domains"]:
+        check(x["state"] in d["domain_states"], f"subject_domain: bad state {x.get('subject_domain_id')}")
+        check(x["state"] != "evidence_active", f"subject_domain: {x['subject_domain_id']} must not be evidence_active this sprint")
+        check(x["subject_domain_id"].startswith("SD-"), f"subject_domain: bad id prefix {x['subject_domain_id']}")
+
+
+def validate_geography():
+    d = load(os.path.join(DATA, "geography_registry.json"))
+    ids = [x["geo_id"] for x in d["geographies"]]
+    check(len(ids) == len(set(ids)), "geography: duplicate IDs")
+    forbidden = set(d.get("forbidden_geography_fields", []))
+    for x in d["geographies"]:
+        check(x["geo_id"].startswith("GEO-"), f"geography: bad id prefix {x['geo_id']}")
+        leaked = forbidden.intersection(x.keys())
+        check(not leaked, f"geography: {x['geo_id']} carries forbidden relationship/evidence field(s): {sorted(leaked)}")
+
+
+def validate_jurisdiction():
+    d = load(os.path.join(DATA, "jurisdiction_registry.json"))
+    check(d.get("jurisdictions") == [], "jurisdiction: no jurisdictions may be seeded this sprint")
+    check(d.get("instruments") == [], "jurisdiction: no active instruments this sprint")
+    check("instrument_schema" in d, "jurisdiction: instrument_schema missing")
+
+
+def validate_relationship_classes():
+    d = load(os.path.join(DATA, "relationship_class_registry.json"))
+    ids = [x["relationship_class_id"] for x in d["relationship_classes"]]
+    check(len(ids) == len(set(ids)), "relationship_class: duplicate IDs")
+    check(d.get("relationship_instances") == [], "relationship_class: no relationship INSTANCES this sprint")
+    for x in d["relationship_classes"]:
+        check(x["relationship_class_id"].startswith("REL-"), f"relationship_class: bad id prefix {x['relationship_class_id']}")
+        check(x["state"] == "registered", f"relationship_class: {x['relationship_class_id']} must be 'registered'")
+
+
+def validate_evidence():
+    schema = load(os.path.join(DATA, "evidence", "evidence_schema.json"))
+    forbidden = set(schema["forbidden_fields"].keys())
+    check(forbidden == {"source_type", "used_by", "confidence"},
+          f"evidence: forbidden_fields must be exactly source_type/used_by/confidence, got {sorted(forbidden)}")
+    check(schema["records_in_this_sprint"].startswith("NONE"),
+          "evidence: schema must declare NO governed records this sprint")
+
+    ev_dir = os.path.join(DATA, "evidence")
+    # No real (governed) evidence record: any EVD-*.json at the top level is forbidden.
+    real_records = [n for n in os.listdir(ev_dir) if n.endswith(".json") and n.startswith("EVD-")]
+    check(not real_records, f"evidence: real governed record(s) present {real_records} — forbidden this sprint")
+    # Fixtures: must be test-only, synthetic, non-governed, and carry no forbidden fields.
+    fx_dir = os.path.join(ev_dir, "fixtures")
+    if os.path.isdir(fx_dir):
+        for name in os.listdir(fx_dir):
+            if not name.endswith(".json"):
+                continue
+            rec = load(os.path.join(fx_dir, name))
+            check(rec.get("evidence_id", "").startswith("TEST-EVD-"),
+                  f"evidence fixture {name}: id must start TEST-EVD-")
+            check(rec.get("governed") is False, f"evidence fixture {name}: governed must be false")
+            check(rec.get("test_fixture") is True, f"evidence fixture {name}: test_fixture must be true")
+            check(rec.get("source_id", "").startswith("TEST-"),
+                  f"evidence fixture {name}: must reference a synthetic TEST- source_id")
+            leaked = forbidden.intersection(rec.keys())
+            check(not leaked, f"evidence fixture {name}: contains forbidden field(s) {sorted(leaked)}")
+
+
+def _keys_recursive(obj):
+    """Yield every mapping key anywhere in a nested JSON structure."""
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            yield k
+            yield from _keys_recursive(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from _keys_recursive(v)
+
+
+def validate_information_gain():
+    d = load(os.path.join(DATA, "information_gain", "calibration_pairs.json"))
+    check(d.get("pairs") == [], "information_gain: pairs must be empty this sprint")
+    check(set(d.get("labels", [])) == {
+        "true_duplicate", "near_duplicate", "valid_sibling",
+        "valid_localization", "valid_domain_specific_reference"
+    }, "information_gain: five canonical labels required")
+    # No threshold may be *defined* (as a key/field). The word may appear in prose rules
+    # (which explicitly state none is defined), so inspect KEYS, not serialized text.
+    bad_keys = [k for k in _keys_recursive(d) if "threshold" in k.lower() or "weight" in k.lower()]
+    check(not bad_keys, f"information_gain: no threshold/weight field may be defined this sprint (found keys {bad_keys})")
+
+
+def main():
+    print("=== Governance scaffolding validator (new artifacts only) ===")
+    validate_subject_domain()
+    validate_geography()
+    validate_jurisdiction()
+    validate_relationship_classes()
+    validate_evidence()
+    validate_information_gain()
+    print(f"    (ran {CHECKS} checks)")
+    print("=" * 56)
+    if ERRORS:
+        print(f"RESULT: FAIL ({len(ERRORS)} error(s))")
+        for e in ERRORS:
+            print(f"  - {e}")
+        return 1
+    print("RESULT: PASS — all scaffolding artifacts valid")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

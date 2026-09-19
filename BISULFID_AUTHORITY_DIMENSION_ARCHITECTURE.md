@@ -404,13 +404,16 @@ R12 otherwise (e.g. evidence_not_required but claim still
 **Exhaustiveness argument (property-spec, not code):**
 - Every input value appears in at least one guard; R0 (withdrawal) and RL (legacy) take highest precedence; R1–R5 catch all "any-blocking" values; R6–R9 partition the remaining `reference_draft`/`ig`/`evidence-sufficient` cases for **new** objects; R10–R11 are the only two doorways to `public_indexable`; **R12 is a catch-all SAFE DEFAULT** so **no combination is unmatched.** The default is now **`not_public`** (the most restrictive state), never a silent `public_noindex`.
 - **Reachability:** every canonical state is returned by ≥1 rule — `not_public` (R0–R8,R12), `public_noindex` (RL, R9), `public_indexable` (R10–R11); `noindex` and `index_approved` both reachable (R10/R11 with `hold=none`). `index_candidate` was removed (IP-16.1) precisely because no rule returns it.
-- **Property tests to encode (design):**
+- **Property tests to encode — CANONICAL SET = SEVEN (⚠ reconciled, IP-16.4).** *Reconciliation of the earlier "four vs six" inconsistency:* the original draft named four (totality, monotonic veto, all-green, hold isolation); IP-16.2 correctly added two genuinely necessary invariants (new-object law, legacy isolation); the implementation approval additionally requires an explicit **determinism** test. Two additions beyond the original four are therefore justified and named below; the canonical set is **seven**, each with a precise invariant:
   1. *Totality:* for the full Cartesian product of input values, `derive` returns exactly one `(publication_state, indexation_state)` — no exception, no null.
-  2. *Monotonic veto:* flipping any single posture to a blocking value never *raises* the output above its prior level.
-  3. *Indexable requires all-green:* `index_approved` ⇒ legacy=`none` ∧ governance=`governed` ∧ validation=`validated` ∧ release=`authorized` ∧ ig∈{passed,not_required} ∧ hold=none ∧ ((evidence_locked ∧ claim_approved*) ∨ non-factual-certified).
-  4. *Hold isolation:* `indexation_hold=held` changes only `indexation_state`, never `publication_state`.
-  5. *New-object law (IP-16.2):* for `legacy=none`, no `reference_draft`/`ig_not_reviewed`/`ig_failed` route is ever public → new objects reach a URL only after evidence sufficiency **and** IG.
-  6. *Legacy isolation:* `legacy_public_holding` ⇒ output is exactly `(public_noindex, noindex)` (never index), is rejected by validator for any newly created route, and is overridden only by withdrawal (R0).
+  2. *Determinism:* identical inputs always yield identical outputs (pure function, no hidden state).
+  3. *Monotonic veto:* flipping any single posture to a blocking value never *raises* the output above its prior level.
+  4. *All-green indexability:* `index_approved` ⇒ legacy=`none` ∧ governance=`governed` ∧ validation=`validated` ∧ release=`authorized` ∧ ig∈{passed,not_required} ∧ hold=none ∧ ((evidence_locked ∧ claim_approved*) ∨ non-factual-certified).
+  5. *Hold isolation:* `indexation_hold=held` changes only `indexation_state`, never `publication_state`.
+  6. *New-object law (IP-16.2):* for `legacy=none`, no `reference_draft`/`ig_not_reviewed`/`ig_failed` route is ever public → new objects reach a URL only after evidence sufficiency **and** IG.
+  7. *Legacy isolation:* `legacy_public_holding` ⇒ output is exactly `(public_noindex, noindex)` (never index), is rejected by validator for any newly created route, and is overridden only by withdrawal (R0).
+
+  *Implemented as exactly these seven in `scripts/governance_scaffolding/contract_c_property_tests.py`; result PASS over 23,040 combinations.*
 
 ## IP-2 — Release authorization: withdrawal vs suspension (non-overlapping terms)
 
@@ -549,7 +552,7 @@ Decisions 2–6 (supersession-with-history, semantic dimensions, new registries,
 - Which **reserved domains / relationship classes** activate, and **new-audience** admissions.
 
 **Is Contract C now a total deterministic state machine?**
-**Yes — as a specification.** With Information-Gain as an explicit input, the ordered rules R0–R12 include a catch-all SAFE DEFAULT, so every combination of input postures maps to exactly one `(publication_state, indexation_state)`; four property tests (totality, monotonic veto, all-green-for-index, hold-isolation) are specified. It is deterministic and total on paper; it is **not implemented**, and its constants are not yet ratified.
+**Yes — as a specification, now also implemented and passing.** With Information-Gain as an explicit input, the ordered rules R0–R12 include a catch-all SAFE DEFAULT, so every combination of input postures maps to exactly one `(publication_state, indexation_state)`; the **canonical seven** property tests (totality, determinism, monotonic veto, all-green indexability, hold isolation, new-object law, legacy isolation — reconciled in IP-16.4) are specified and PASS over 23,040 combinations in `scripts/governance_scaffolding/`. It is deterministic and total; it remains **unwired from deploy/CI**, and its transition constants are not yet ratified.
 
 **Does MoS₂ require an ontology mutation, or only evidence/lexeme linkage?**
 **Only an evidence/lexeme linkage.** The correct path is a single atomic evidence assertion (German lexeme → Spektrum source → `CLM-TERM-MOS2-DE-001` → concept). **No `language_vector` change and no `source_ids` mutation is justified**, and both are removed from the first sprint until the Concept↔Lexeme audit is decided.
@@ -580,11 +583,14 @@ concept_id ↔ lexeme_id → evidence_id → source_id → claim_id
 ```
 A free-text lexical string is never a substitute for a governed lexeme ID.
 
+### IP-16.4 — Property-test count reconciled to seven
+The earlier text was inconsistent (one place said "four," another "six"). Reconciled: the canonical set is **seven** — Totality, Determinism, Monotonic veto, All-green indexability, Hold isolation, New-object law, Legacy isolation. Justification: the original four omitted the two invariants IP-16.2 introduced (new-object law, legacy isolation) and the determinism check the implementation requires; these are genuinely necessary and now defined with precise invariants (IP-1 list). Implemented verbatim in `scripts/governance_scaffolding/contract_c_property_tests.py` (PASS, 23,040 combinations). No test was invented without a named invariant.
+
 ### Revised first implementation sprint (final — scaffolding only)
 1. Append the **principle-only** Contract C entry to `DECISION_LOG.md`.
 2. Create the four semantic registries: `subject_domain_registry.json`, `geography_registry.json`, `jurisdiction_registry.json`, `relationship_class_registry.json` (vocabulary defined; instances empty).
 3. Create the empty atomic evidence architecture: directory + schema + spec + schema validators/tests; **test-only fixtures only; no real evidence object.**
-4. Create the final Contract-C `derive()` specification + property tests (six, IP-1), **unwired from deploy.**
+4. Create the final Contract-C `derive()` specification + the **canonical seven** property tests (IP-16.4), **unwired from deploy.**
 5. Create the empty Information-Gain calibration dataset/schema.
 6. **No Concept/Lexeme records.**
 7. **No ontology modification.**

@@ -1,0 +1,40 @@
+{
+  "version": "0.1.0",
+  "sprint": "authority-dimension-impl-1",
+  "site": "bisulfid.com",
+  "status": "empty_scaffold",
+  "governed_by": [
+    "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Calibration dataset scaffold for the Information Gain Gate. The gate answers 'does this knowledge surface independently add something worth preserving and retrieving?' — never 'did we rewrite the prose enough?'.",
+  "rules": [
+    "No arbitrary numeric similarity threshold is defined or ratified in this sprint.",
+    "No 14K classification is performed in this sprint.",
+    "Thresholds/weights are ratified only after labelled-pair calibration (DECISION_LOG).",
+    "Textual similarity is one diagnostic signal among many, never a standalone blocker and never an optimization target."
+  ],
+  "labels": [
+    "true_duplicate",
+    "near_duplicate",
+    "valid_sibling",
+    "valid_localization",
+    "valid_domain_specific_reference"
+  ],
+  "signals": [
+    "evidence_set_overlap",
+    "claim_set_overlap",
+    "source_set_overlap",
+    "relationship_difference",
+    "geography_jurisdiction_difference",
+    "temporal_difference",
+    "module_section_overlap",
+    "user_task_difference",
+    "textual_similarity"
+  ],
+  "pair_record_schema": {
+    "required_fields": ["pair_id", "route_a", "route_b", "label", "signals", "labeler", "labeled_at"],
+    "note": "signals is an object keyed by the signal names above."
+  },
+  "pairs": []
+}
