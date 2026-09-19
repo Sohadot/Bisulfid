@@ -57,10 +57,10 @@ def main():
     ok("7_pct_not_tonnage", q["quantity"]["quantity_change_pct"] == 27.4)
     # 8 no absolute tonnage created
     ok("8_no_tonnage", q["quantity"]["absolute_quantity_tonnes"] is None)
-    # 9 classification remains blocked
+    # 9 classification: Moroccan mapping remains blocked (HS side later proven in the classification sprint -> PARTIAL)
     pc = load("pilots", "PILOT_01_claims.json")
     a = next(c for c in pc["claims"] if c["claim_id"] == "CLM-MA-SULFUR-HS-CLASS")
-    ok("9_classification_blocked", a["outcome"] == "BLOCKED" and ev["locator"]["classification_code"] is None)
+    ok("9_moroccan_classification_blocked", a["outcome"] in ("BLOCKED", "PARTIAL") and ev["locator"]["classification_code"] is None)
     # 10 generic sulfur relationship remains evidence_collecting
     rels = load("relationship_class_registry.json")
     inst = next(i for i in rels["relationship_instances"] if i["relationship_instance_id"] == "REL-INST-MA-SULFUR-IMPORT-2024")

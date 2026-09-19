@@ -62,6 +62,24 @@
       "jurisdiction_limitation": null,
       "temporal_boundary": {"valid_from": "2024-01-01", "valid_to": "2024-12-31"},
       "note": "State 'reviewed' (NOT qualified): the source is brand-new (source status seeded / lock candidate) and has not undergone full governed identity verification, so its use-qualification cannot yet admit. Admission is therefore correctly withheld at the qualification gate. Even if it were qualified_narrow, the SD-TRADE domain requires primary_plus_corroborating and only one non-independent official source exists, so evidence posture would still be evidence_collecting (see pilot report policy finding)."
+    },
+    {
+      "qualification_id": "QUAL-UN-HS2022-001",
+      "source_id": "SRC-UN-COMTRADE-HS2022",
+      "qualified_against_source_revision": "rev-2026-09-19-1",
+      "applicable_subject_domains": ["SD-NOMENCLATURE"],
+      "permitted_evidence_kinds": ["classification"],
+      "permitted_claim_levels": ["classification"],
+      "evidence_roles": ["primary_authoritative"],
+      "scope": "Harmonized System 2022 (H6) classification/nomenclature identity ONLY: heading/subheading code and official English description, and the 2503/2802 exclusion boundary. Reviewed this sprint against the official UN Comtrade H6 reference.",
+      "allowed_uses": ["hs_classification_identity", "hs_exclusion_boundary"],
+      "prohibited_uses": ["morocco_trade_totals", "trade_flow_value", "sulfur_industrial_demand", "market_forecast", "scientific_property_claim", "moroccan_national_code", "route_publication", "claim_approval_by_itself", "source_locking_by_itself"],
+      "qualification_state": "reviewed",
+      "review_date": "2026-09-19",
+      "geography_limitation": null,
+      "jurisdiction_limitation": null,
+      "temporal_boundary": null,
+      "note": "State 'reviewed' (new source, seeded/candidate, not identity-verified). Classification-only. Must NEVER qualify for Morocco trade totals, industrial demand, scientific properties, or market forecasts. HS classification is a distinct fact type from the trade-value evidence."
     }
   ]
 }

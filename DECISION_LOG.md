@@ -5150,3 +5150,35 @@ Two data-semantics defects in Pilot 01 were corrected after an independent re-ch
 **Artifacts corrected:** `EVD-MA-SULFUR-IMPORT-2024.json`, `PILOT_01_claims.json`, `MOROCCO_SULFUR_TRADE_PILOT_01.md`, `PILOT_01_source_acquisition_dossier.md`, this DECISION_LOG Pilot 01 entry (lines above), evidence-admission policy, validators.
 
 **Tests:** Pilot 01 correction 14/14 (incl. no-variant-framing guard); Pilot 01 16/16; source admission 21/21; scaffolding, concept↔lexeme, relationship grammar 8/8, Contract C 7/7; existing L0/L1/L2 PASS. Source statuses/locks unchanged (15 seeded + 1 verified; all candidate).
+
+---
+
+## Pilot 01 — Classification Resolution
+
+**Date:** 2026-09-19
+**Baseline:** commit `da896cf0b7`. Two purposes: (A) source-specific numeric normalization fix; (B) commodity-classification identity. No Pilot 02, no OCP, no GCC/China/Germany, no route/sitemap/robots/indexation/public-HTML/14K change. No existing source status/lock change; no claim activation. No PR.
+
+### A. Source-specific numeric normalization (bug fixed)
+`numeric_normalization.py` rebuilt with governed convention ids — `NUM-FR-DOT-THOUSANDS`, `NUM-EN-DOT-DECIMAL`, `NUM-PLAIN-INT`. Each quantitative evidence record MUST declare `numeric_convention_id`; a record with measures but no governed convention **fails** — no silent French fallback, never inferred from language/country/extension. Morocco evidence declares `NUM-FR-DOT-THOUSANDS`. Policy updated (`evidence_admission_policy.json`). An English `1.099` is now normalized to 1.099, not 1099.
+
+### B. Classification identity
+- **HS 2022 — PROVEN** from the official **UN Comtrade H6 reference** (WCO HS 2022; WCO artifact itself interactive/not fetchable): **2503.00 = "Sulphur of all kinds; other than sublimed, precipitated and colloidal sulphur"**; excluded forms → **2802.00**; chapter 25. Object `CLS-HS2022-2503-00`.
+- **Moroccan national code / OdC-label→HS mapping — BLOCKED** (douane.gov.ma WAF/access-restricted; no login workaround). The OdC "Soufres bruts et non raffinés" is modelled as a `statistical_product_grouping` (`CLS-MA-ODC-SOUFRES-BRUTS`); label↔2503 is a hypothesis only.
+- **Claim A: BLOCKED → PARTIAL** (HS side proven; Moroccan mapping blocked).
+- **Claim B/C:** unchanged (B proven; C total 9108 MDH / 1099 DH/T; tonnage blocked).
+- **Relationship** `GEO-MA → REL-IMPORTER → sulfur`: stays **evidence_collecting** (Outcome 2 — OdC→HS mapping unproven, so the generic `sulfur` object is not upgraded); trade sufficiency policy **unchanged**.
+
+### Taxonomy amendment
+Added governed category **`customs_nomenclature_authority`** (policy + source-registry vocabulary; validator no-drift) rather than mislabel HS as a scientific/technical standard (§M). Registered `SRC-UN-COMTRADE-HS2022` (seeded/candidate, identity_revision) with classification-only qualification `QUAL-UN-HS2022-001` (state `reviewed`; prohibits Morocco trade totals / industrial / scientific / market).
+
+### New governed object
+`classification_registry.json` (minimal: system → version → code → official_label → exclusions; HS6 and national_code kept as distinct nullable fields; statistical grouping vs HS commodity distinguished).
+
+### Contract-C
+Derived evidence posture `evidence_collecting`; **Contract-C = (not_public, noindex)** (unchanged).
+
+### Tests
+Classification resolution **17/17**; source admission 21/21; Pilot 01 16/16; Pilot 01 correction 14/14; scaffolding, concept↔lexeme, relationship grammar 8/8, Contract C 7/7; existing L0/L1/L2 PASS. Sources now 16 seeded + 1 verified; all candidate (existing statuses/locks unchanged).
+
+### Not started
+Pilot 02 (OCP / Morocco Industrial Chain); GCC/China/Germany; language localization; Moroccan national-code acquisition; trade sufficiency-policy amendment.

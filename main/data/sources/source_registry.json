@@ -44,7 +44,8 @@
     "intergovernmental_trade_database",
     "official_production_statistics",
     "regulatory_instrument",
-    "official_standard"
+    "official_standard",
+    "customs_nomenclature_authority"
   ],
   "source_categories_note": "Vocabulary only. The last 7 categories were ratified into the admissibility policy (source-qualification-evidence-admission) and added here so future acquisition can register sources under them. NO source uses them yet. Adding them changed no source status or lock.",
   "identity_revision_note": "identity_revision is a governed, immutable revision id for a source's bibliographic identity. A source-use qualification records qualified_against_source_revision; if identity_revision changes, that qualification becomes review-required. Added incrementally (only where a qualification depends on it) without touching status/lock.",
@@ -544,6 +545,38 @@
         "Product label used by the source is 'Soufres bruts et non raffinés' (crude and unrefined sulfurs) — a subset of the general sulfur concept; classification-to-concept mapping is PARTIAL (see pilot report)."
       ],
       "notes": "Office des Changes is Morocco's official foreign-trade statistics authority. Category official_trade_statistics (aggregated official statistics), not official_customs_data (line-level customs declarations are administered by ADII). Retrieved 2026-09-19. Bibliographic/identity reference only. Not verified, not locked, not claim-approved, not published."
+    },
+    {
+      "source_id": "SRC-UN-COMTRADE-HS2022",
+      "identity_revision": "rev-2026-09-19-1",
+      "category": "customs_nomenclature_authority",
+      "publisher": "United Nations (UN Comtrade / UNSD) — official reference for the WCO Harmonized System 2022 (H6)",
+      "title": "Harmonized System 2022 (H6) classification reference — UN Comtrade reference file H6.json",
+      "author_or_organization": "United Nations Statistics Division / UN Comtrade, hosting the WCO Harmonized System 2022 nomenclature (WCO is the underlying classification authority)",
+      "url": "https://comtradeapi.un.org/files/v1/app/reference/H6.json",
+      "language": "en",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-09-19",
+      "use_for": [
+        "Harmonized System 2022 (H6) classification/nomenclature identity — heading/subheading code and official English description",
+        "classification exclusion boundary between 2503 and 2802"
+      ],
+      "do_not_use_for": [
+        "Morocco trade totals or any trade-flow value",
+        "industrial demand or market forecasting",
+        "scientific/chemical property claims",
+        "Moroccan national tariff code (not in this artifact)",
+        "route publication by itself",
+        "claim approval by itself",
+        "source-locking by itself"
+      ],
+      "risk_notes": [
+        "WCO's own online artifacts (wcotradetools.org / HS Online) are interactive/authentication-gated and were not directly fetchable; the official UN Comtrade H6 reference (an official intergovernmental reproduction of WCO HS 2022) was used instead. WCO remains the underlying authority.",
+        "Category customs_nomenclature_authority added this sprint (taxonomy amendment) to avoid mislabeling a nomenclature authority as a scientific/technical standard. Vocabulary-only; no existing source changed.",
+        "NEW source; status seeded / lock candidate per existing SOURCE_POLICY. identity_revision set at first registration."
+      ],
+      "notes": "Official UN Comtrade reference file for HS 2022 (H6). Retrieved 2026-09-19 via direct download of the public reference JSON (no credentials). Classification identity only. Not verified, not locked, not claim-approved, not published."
     }
   ]
 }

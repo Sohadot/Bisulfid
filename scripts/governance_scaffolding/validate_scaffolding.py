@@ -250,6 +250,33 @@ def validate_source_qualification():
     check(cl["this_sprint"].startswith("No registry activated"), "claim policy: nothing may be activated this sprint")
 
 
+def validate_classification():
+    path = os.path.join(DATA, "classification_registry.json")
+    if not os.path.exists(path):
+        return
+    reg = load(os.path.join(DATA, "sources", "source_registry.json"))
+    source_ids = {s["source_id"] for s in reg["sources"]}
+    d = load(path)
+    req = set(d["record_schema"]["required_fields"])
+    forbidden = set(d["record_schema"]["forbidden_fields"])
+    seen = set()
+    for c in d["classifications"]:
+        cid = c["classification_id"]
+        check(cid.startswith("CLS-"), f"classification {cid}: bad id prefix")
+        check(cid not in seen, f"classification {cid}: duplicate id")
+        seen.add(cid)
+        for f in req:
+            check(f in c, f"classification {cid}: missing required field '{f}'")
+        check(not forbidden.intersection(c.keys()), f"classification {cid}: forbidden field present")
+        check(c.get("source_id") in source_ids, f"classification {cid}: source_id does not resolve")
+        # HS6 and national code must be distinct fields, never conflated
+        if "hs6" in c and "national_code" in c:
+            check("hs6" in c and "national_code" in c, f"classification {cid}: hs6/national_code must be separate")
+        # A statistical product grouping must not silently carry an HS code as its own code
+        if c.get("object_type") == "statistical_product_grouping":
+            check(c.get("code") is None, f"classification {cid}: statistical grouping must not assert a single HS code as its own")
+
+
 def main():
     print("=== Governance scaffolding validator (new artifacts only) ===")
     validate_subject_domain()
@@ -259,6 +286,7 @@ def main():
     validate_evidence()
     validate_information_gain()
     validate_source_qualification()
+    validate_classification()
     print(f"    (ran {CHECKS} checks)")
     print("=" * 56)
     if ERRORS:

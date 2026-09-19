@@ -5,7 +5,8 @@
   "evidence_kind": "quantitative",
   "claim_level": "relationship",
   "concept_ids": ["sulfur"],
-  "object_scope_note": "The source product label is 'Soufres bruts et non raffinés' (crude and unrefined sulfurs) — a SUBSET of the general 'sulfur' concept. Classification-to-concept mapping is PARTIAL; no HS code is stated by the source.",
+  "object_scope_note": "The source product label is 'Soufres bruts et non raffinés' (crude and unrefined sulfurs) — a SUBSET of the general 'sulfur' concept. HS side now established (CLS-HS2022-2503-00 = HS 2022 2503.00, excl. sublimed/precipitated/colloidal → 2802.00), but the Moroccan produit-remarquable → HS mapping is UNPROVEN (access-restricted). Relationship stays evidence_collecting.",
+  "classification_ref": {"hs": "CLS-HS2022-2503-00", "moroccan_grouping": "CLS-MA-ODC-SOUFRES-BRUTS", "mapping_status": "moroccan_to_hs_mapping_unproven"},
   "lexeme_ids": [],
   "relationship": "REL-INST-MA-SULFUR-IMPORT-2024",
   "subject_domain": ["SD-TRADE"],
@@ -36,7 +37,8 @@
     ]
   },
   "quantitative": {
-    "numeric_convention": "fr_dot_thousands: in this French report's tables/graphs the dot is a THOUSANDS separator (e.g. '9.108' = 9108) and the comma is the decimal (percentages). Normalization is source-specific.",
+    "numeric_convention_id": "NUM-FR-DOT-THOUSANDS",
+    "numeric_convention": "NUM-FR-DOT-THOUSANDS: in this French report's tables/graphs the dot is a THOUSANDS separator (e.g. '9.108' = 9108) and the comma is the decimal (percentages). Convention is declared per-record and source-specific; the validator uses this id, never a language/country fallback.",
     "unit_glossary": {"MDH": "millions de dirhams (MAD millions)", "DH/T": "dirhams per tonne"},
     "primary_measure": {
       "metric": "TOTAL recorded imports value of 'Soufres bruts et non raffinés', reporter=Morocco, flow=imports, partner=Monde",

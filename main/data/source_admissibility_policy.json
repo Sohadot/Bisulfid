@@ -25,7 +25,8 @@
       { "category": "intergovernmental_trade_database", "roles": ["official_record", "primary_authoritative"], "note": "e.g. intergovernmental trade databases." },
       { "category": "official_production_statistics", "roles": ["official_record", "primary_authoritative"], "note": "Official production figures." },
       { "category": "regulatory_instrument", "roles": ["official_record"], "note": "The governing statute/regulation/directive/standard/treaty itself; REQUIRED for current-law claims." },
-      { "category": "official_standard", "roles": ["official_record", "primary_authoritative"], "note": "Official technical standard (e.g. DIN/ISO) as issued." }
+      { "category": "official_standard", "roles": ["official_record", "primary_authoritative"], "note": "Official technical standard (e.g. DIN/ISO) as issued." },
+      { "category": "customs_nomenclature_authority", "roles": ["primary_authoritative", "official_record"], "note": "Authority for a customs/statistical goods NOMENCLATURE (WCO Harmonized System and its official government/intergovernmental reproductions, e.g. UN Comtrade HS reference, national customs tariffs). Added (source-qualification correction / classification-resolution) because neither 'official_standard' (technical standards like DIN/ISO) nor 'intergovernmental_trade_database' (trade FLOW data) correctly names a classification nomenclature authority. Establishes classification identity ONLY, never trade totals or scientific/market claims." }
     ],
     "evaluated_not_ratified_yet": [
       { "category": "official_environmental_database", "reason": "No system need yet; revisit when environment domain activates." },
@@ -51,7 +52,8 @@
     "intergovernmental_trade_database": ["official_record", "primary_authoritative"],
     "official_production_statistics": ["official_record", "primary_authoritative"],
     "regulatory_instrument": ["official_record"],
-    "official_standard": ["official_record", "primary_authoritative"]
+    "official_standard": ["official_record", "primary_authoritative"],
+    "customs_nomenclature_authority": ["primary_authoritative", "official_record"]
   },
 
   "domain_admissibility": {

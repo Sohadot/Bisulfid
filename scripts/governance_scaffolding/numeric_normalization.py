@@ -1,39 +1,59 @@
 """
-Numeric normalization law for locale-formatted quantitative evidence.
+Source-specific numeric normalization for quantitative evidence.
 
 A quantitative measure must distinguish source_literal (string, as printed) from
-normalized_value (machine number) and unit, and record the source numeric convention.
-This module catches the specific failure of using an ambiguous locale literal
-(e.g. French "9.108" where the dot is a THOUSANDS separator) directly as a machine
-float. Normalization is SOURCE-SPECIFIC; do not assume all sources share a convention.
+normalized_value (machine number) and unit, AND declare a governed numeric
+convention id. Convention is SOURCE-SPECIFIC: it is never inferred from language,
+country, or file extension, and there is NO silent French fallback.
+
+Governed conventions:
+  NUM-FR-DOT-THOUSANDS : dot '.' = thousands separator (French report). '9.108' -> 9108.
+  NUM-EN-DOT-DECIMAL   : dot '.' = decimal point (English/international). '1.099' -> 1.099.
+  NUM-PLAIN-INT        : plain integer, no grouping/decimal. '9108' -> 9108.
 
 Pure; no I/O; unwired from CI.
 """
 
 import re
 
-# A French-grouped integer literal: 1-3 digits, then groups of exactly 3 digits, dot-separated.
-FR_GROUPED = re.compile(r"^[+-]?\d{1,3}(\.\d{3})+$")
-# A plain integer literal (no grouping).
-PLAIN_INT = re.compile(r"^[+-]?\d+$")
+GOVERNED_CONVENTIONS = {"NUM-FR-DOT-THOUSANDS", "NUM-EN-DOT-DECIMAL", "NUM-PLAIN-INT"}
+
+_FR_GROUPED = re.compile(r"^[+-]?\d{1,3}(\.\d{3})+$")
+_PLAIN_INT = re.compile(r"^[+-]?\d+$")
+_EN_DECIMAL = re.compile(r"^[+-]?\d{1,3}(,\d{3})*(\.\d+)?$")  # optional comma-thousands, dot-decimal
 
 
-def normalize_fr_grouped(literal):
-    """Normalize a French dot-thousands-grouped literal to an int.
-    '9.108' -> 9108 ; '18.768' -> 18768 ; '+1.101' -> 1101 ; '1.099' -> 1099.
-    Returns int, or None if the literal is not a grouped/plain integer."""
+def normalize(literal, convention_id):
+    """Return (value, error). value is an int/float when parseable, else None with an error."""
     if not isinstance(literal, str):
-        return None
+        return (None, "source_literal must be a string")
     s = literal.strip()
-    if FR_GROUPED.match(s):
-        return int(s.replace(".", ""))
-    if PLAIN_INT.match(s):
-        return int(s)
-    return None
+    if convention_id == "NUM-FR-DOT-THOUSANDS":
+        if _FR_GROUPED.match(s):
+            return (int(s.replace(".", "")), None)
+        if _PLAIN_INT.match(s):
+            return (int(s), None)
+        return (None, f"'{s}' is not a FR grouped/plain integer")
+    if convention_id == "NUM-EN-DOT-DECIMAL":
+        if _EN_DECIMAL.match(s):
+            v = float(s.replace(",", ""))
+            return (int(v) if v.is_integer() else v, None)
+        return (None, f"'{s}' is not an EN decimal/thousands literal")
+    if convention_id == "NUM-PLAIN-INT":
+        if _PLAIN_INT.match(s):
+            return (int(s), None)
+        return (None, f"'{s}' is not a plain integer")
+    return (None, f"unknown numeric_convention_id '{convention_id}'")
+
+
+# Backwards-compatible helper (Morocco convention) used by earlier correction tests.
+def normalize_fr_grouped(literal):
+    v, _ = normalize(literal, "NUM-FR-DOT-THOUSANDS")
+    return v
 
 
 def iter_measures(obj, path="$"):
-    """Yield (path, dict) for every mapping that carries both source_literal and normalized_value."""
+    """Yield (path, dict) for every mapping carrying both source_literal and normalized_value."""
     if isinstance(obj, dict):
         if "source_literal" in obj and "normalized_value" in obj:
             yield (path, obj)
@@ -44,34 +64,33 @@ def iter_measures(obj, path="$"):
             yield from iter_measures(v, f"{path}[{i}]")
 
 
-def validate_measure(m, convention="fr_dot_thousands"):
-    """Return a list of errors for a single {source_literal, normalized_value[, unit]} measure."""
+def _convention_of(evidence_record):
+    q = evidence_record.get("quantitative") or {}
+    return q.get("numeric_convention_id") or evidence_record.get("numeric_convention_id")
+
+
+def validate_evidence_numbers(evidence_record):
+    """Validate normalization for an evidence record using its DECLARED convention.
+    Fails (no silent fallback) if quantitative measures exist without a governed convention."""
     errs = []
-    lit = m.get("source_literal")
-    nv = m.get("normalized_value")
-    if not isinstance(lit, str):
-        errs.append("source_literal must be a string")
-        return errs
-    if not isinstance(nv, (int, float)) or isinstance(nv, bool):
-        errs.append("normalized_value must be numeric")
-        return errs
-    if convention == "fr_dot_thousands":
-        expected = normalize_fr_grouped(lit)
-        if expected is None:
-            # not a grouped/plain integer literal; nothing to enforce here
-            return errs
+    measures = list(iter_measures(evidence_record))
+    if not measures:
+        return errs  # nothing quantitative to normalize
+    conv = _convention_of(evidence_record)
+    if conv is None:
+        return [f"$: quantitative measures present but no governed numeric_convention_id declared "
+                f"(source-specific; no French fallback)"]
+    if conv not in GOVERNED_CONVENTIONS:
+        return [f"$: numeric_convention_id '{conv}' is not a governed convention {sorted(GOVERNED_CONVENTIONS)}"]
+    for path, m in measures:
+        lit, nv = m.get("source_literal"), m.get("normalized_value")
+        if not isinstance(lit, str):
+            errs.append(f"{path}: source_literal must be a string"); continue
+        if not isinstance(nv, (int, float)) or isinstance(nv, bool):
+            errs.append(f"{path}: normalized_value must be numeric"); continue
+        expected, e = normalize(lit, conv)
+        if e:
+            errs.append(f"{path}: {e}"); continue
         if nv != expected:
-            errs.append(f"normalized_value {nv} != grouped-normalized {expected} for literal '{lit}'")
-        # catch the classic bug: literal '9.108' stored as the naive float 9.108
-        if "." in lit and isinstance(nv, float) and abs(nv - float(lit)) < 1e-9 and nv != expected:
-            errs.append(f"ambiguous literal '{lit}' stored as naive float {nv} (dot is a thousands separator)")
-    return errs
-
-
-def validate_evidence_numbers(evidence_record, convention="fr_dot_thousands"):
-    """Validate every source_literal/normalized_value pair inside an evidence record."""
-    errs = []
-    for path, m in iter_measures(evidence_record):
-        for e in validate_measure(m, convention):
-            errs.append(f"{path}: {e}")
+            errs.append(f"{path}: normalized_value {nv} != {expected} for '{lit}' under {conv}")
     return errs

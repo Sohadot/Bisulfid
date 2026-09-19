@@ -56,10 +56,13 @@
   },
   "quantitative_normalization_law": {
     "rule": "Every quantitative measure from a locale-formatted source MUST store distinct source_literal (string, as printed), normalized_value (machine number), and unit, plus a numeric_convention note. A locale literal must never be used directly as a machine number.",
-    "conventions": {
-      "fr_dot_thousands": "French-report tables/graphs: dot '.' is a THOUSANDS separator (9.108 = 9108); comma ',' is the decimal (percentages)."
+    "governed_convention_ids": {
+      "NUM-FR-DOT-THOUSANDS": "dot '.' is a THOUSANDS separator (9.108 = 9108); comma ',' decimal. (Office des Changes FR report.)",
+      "NUM-EN-DOT-DECIMAL": "dot '.' is a DECIMAL point (1.099 = 1.099); comma optional thousands.",
+      "NUM-PLAIN-INT": "plain integer, no grouping or decimal."
     },
-    "source_specific": "Normalization convention is per-source; do not assume future French (or other) sources share it. Each source records its own convention.",
+    "declaration_rule": "Each quantitative evidence record MUST declare numeric_convention_id. A record with quantitative measures but no governed convention id FAILS. The convention is NEVER inferred from language, country, or file extension, and there is NO silent French fallback.",
+    "source_specific": "Normalization convention is per-source/per-record; a French source does not imply dot-thousands. Each record records its own convention id.",
     "validator": "scripts/governance_scaffolding/numeric_normalization.py catches ambiguous source-literals used as naive machine floats (e.g. '9.108' stored as 9.108).",
     "scope_separation": "Different source scopes (total vs customs-regime vs geographic-origin) are distinct measures, never variants of one another and never reconciled."
   },

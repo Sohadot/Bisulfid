@@ -1,0 +1,59 @@
+{
+  "version": "0.1.0",
+  "sprint": "pilot-01-classification-resolution",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "main/data/pilots/MOROCCO_SULFUR_CLASSIFICATION_RESOLUTION.md", "DECISION_LOG.md"],
+  "purpose": "Minimal governed classification knowledge objects: classification_system -> classification_version -> code -> official_label -> scope/exclusions. Distinct from concept, lexeme, and statistical-product-grouping objects. Only what Pilot 01 needs.",
+  "object_types": ["hs_heading", "hs_subheading", "national_tariff_code", "statistical_product_grouping"],
+  "record_schema": {
+    "required_fields": ["classification_id", "classification_system", "classification_version", "object_type", "code", "official_label", "source_id", "locator"],
+    "optional_fields": ["exclusions", "excluded_forms_go_to", "hs6", "national_code", "maps_to_concept", "mapping_status", "notes"],
+    "forbidden_fields": ["path", "route", "url_route", "in_sitemap", "indexable"]
+  },
+  "classifications": [
+    {
+      "classification_id": "CLS-HS2022-2503-00",
+      "classification_system": "WCO Harmonized System (HS)",
+      "classification_version": "HS 2022 (H6)",
+      "object_type": "hs_subheading",
+      "code": "2503.00",
+      "hs6": "2503.00",
+      "heading": "25.03",
+      "national_code": null,
+      "official_label": "Sulphur of all kinds; other than sublimed, precipitated and colloidal sulphur",
+      "exclusions": ["sublimed sulphur", "precipitated sulphur", "colloidal sulphur"],
+      "excluded_forms_go_to": {"code": "2802.00", "official_label": "Sulphur; sublimed or precipitated, colloidal sulphur"},
+      "chapter": {"code": "25", "label": "Salt; sulphur; earths, stone; plastering materials, lime and cement"},
+      "source_id": "SRC-UN-COMTRADE-HS2022",
+      "locator": {
+        "artifact": "UN Comtrade HS 2022 (H6) reference file H6.json",
+        "url": "https://comtradeapi.un.org/files/v1/app/reference/H6.json",
+        "codes_quoted": ["2503", "250300", "2802", "280200", "25"],
+        "retrieval_date": "2026-09-19"
+      },
+      "maps_to_concept": "sulfur",
+      "mapping_status": "concept_mapping_partial: 2503.00 is a SCOPED SUBSET of the general 'sulfur' concept (excludes sublimed/precipitated/colloidal forms, which are 2802.00). The HS side is PROVEN.",
+      "notes": "International HS identity established from the official UN Comtrade H6 reference (official reproduction of WCO HS 2022; WCO is the underlying authority). WCO's own artifact was interactive/gated and not directly fetched."
+    },
+    {
+      "classification_id": "CLS-MA-ODC-SOUFRES-BRUTS",
+      "classification_system": "Office des Changes (Maroc) — produit remarquable / nomenclature SH marocaine",
+      "classification_version": "2024 annual report nomenclature (Moroccan SH; version/edition unconfirmed)",
+      "object_type": "statistical_product_grouping",
+      "code": null,
+      "hs6": null,
+      "national_code": null,
+      "official_label": "Soufres bruts et non raffinés",
+      "source_id": "SRC-OC-MA-TRADE",
+      "locator": {
+        "artifact": "Office des Changes — Rapport annuel Commerce extérieur 2024",
+        "note": "The report presents 'Soufres bruts et non raffinés' as a produit-remarquable statistical line; it does NOT print an SH code."
+      },
+      "maps_to_hs": "CLS-HS2022-2503-00",
+      "mapping_status": "UNPROVEN / BLOCKED (hypothesis-only): the exact Moroccan national SH code and the official mapping of this produit-remarquable label to HS were NOT acquired (douane.gov.ma tariff endpoints are WAF/access-restricted; no login workaround per policy). The label text ('bruts et non raffinés' = crude and unrefined) is CONSISTENT with HS 2503 scope, but this correspondence remains UNPROVEN — a hypothesis, not an official mapping.",
+      "object_grouping_note": "Treated as a statistical product grouping (produit remarquable), NOT confirmed as a single HS commodity. HS6 and any national code are kept as distinct nullable fields and must never be conflated.",
+      "notes": "Moroccan side remains unresolved; Claim A is therefore PARTIAL, not fully supported."
+    }
+  ]
+}
