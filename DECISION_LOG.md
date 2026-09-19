@@ -4980,3 +4980,32 @@ Contract C property tests: PASS (7/7, 23,040 combinations). Scaffolding validato
 Chain: `molybdenum_disulfide` (concept) → `LEX-DE-MOS2-001` "Molybdän(IV)-sulfid" (lexeme) → `EVD-MOS2-DE-001` (lexeme-level, terminological, de) → `SRC-SPEKTRUM-MOS2-DE` (verified; lock **candidate**, unchanged) → `CLM-TERM-MOS2-DE-001` (approved; registry **inactive**, unchanged). Created strictly within already-verified source and already-approved claim scope; changes no source/claim status; authorizes no route. **Derived Contract-C state = (not_public, noindex).**
 
 Validators: scaffolding PASS (131 checks); concept↔lexeme PASS (16 checks, 1 lexeme, 1 governed evidence record); Contract C property tests PASS (7/7); existing Corpus Governance CI (L0/L1/L2) PASS (unaffected).
+
+---
+
+## Sprint — Semantic Integrity Hardening
+
+**Date:** 2026-09-19
+**Scope:** narrow hardening of the NEW governance architecture only. No 14K route, release ledger, public HTML, sitemap, robots, Search Console, indexation, source status, or claim status changed. Live ontology `sulfur_terms.json` **not** mutated. No new public URL. No source acquisition. No relationship instances. No PR.
+**Baseline:** commit `c299af81c1`.
+
+### Ratified (narrow)
+
+1. **The lexeme registry owns lexical identity, not evidence backlinks.** `source_ids`/`evidence_ids` removed from lexeme records; reverse `lexeme→evidence` view is derived. One relationship fact → one authoritative direction → reverse edges derived.
+2. **Lexeme registration state ≠ evidence support.** `registration_state` is the manual lexical-identity fact; evidence support is derived from the evidence store (single authority).
+3. **Concept eligibility is explicitly governed.** New sidecar `main/data/ontology_node_roles.json`; existence of a legacy ontology term_id does **not** make it a Concept target. Only `concept_eligible` nodes may be `concept_id` targets.
+4. **Relationship facts use typed subject → predicate → object semantics;** endpoint contracts per class; inverse views derived; the data encodes the real proposition direction.
+5. **Language and geography are orthogonal;** geography is never derived from a lexeme's language.
+6. **Evidence transformations cannot broaden an approved claim's scope** (MoS₂ narrowed `accepted` → `observed_usage`; `claim_scope` mirrors `CLM-TERM-MOS2-DE-001`; the approved claim was not modified).
+
+*No specific trade/geography fact is ratified.*
+
+### Ontology node roles (all 14 legacy nodes classified; ontology unchanged)
+
+concept_eligible (6): `sulfur`, `sulfide`, `disulfide`, `hydrosulfide`, `hydrogen_sulfide`, `molybdenum_disulfide`. legacy_lexeme (2): `sulfid`, `disulfid`. conflated_pending_migration (4): `bisulfid`, `bisulfide`, `sodium_bisulfide`, `sodium_hydrosulfide`. notation_alias (1): `molybdenum_disulfide_mos2`. control_object (1): `bisulfite_disambiguation`.
+
+### MoS₂ chain (unchanged status; still not published)
+
+`molybdenum_disulfide` (concept_eligible) → `LEX-DE-MOS2-001` (`observed_usage`, de, `registration_state=registered`, no backlinks) → `EVD-MOS2-DE-001` (lexeme-level; `claim_scope` mirrors the approved claim) → `SRC-SPEKTRUM-MOS2-DE` (verified; lock **candidate**, unchanged) → `CLM-TERM-MOS2-DE-001` (approved; registry **inactive**, unchanged). **Derived Contract-C state = (not_public, noindex).**
+
+Validators/tests: scaffolding PASS (153 checks); concept↔lexeme PASS (47 checks); relationship grammar tests PASS (8/8, synthetic; correct directions accepted, reversed rejected); Contract C property tests PASS (7/7); existing Corpus Governance CI (L0/L1/L2) PASS (unaffected).

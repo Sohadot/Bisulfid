@@ -50,14 +50,30 @@ def main():
     print("=== Concept <-> Lexeme semantic validator ===")
 
     ontology = load(os.path.join(DATA, "ontology", "sulfur_terms.json"))
-    concept_ids = {t["term_id"] for t in ontology["terms"]}
+    all_term_ids = {t["term_id"] for t in ontology["terms"]}
+
+    # Concept eligibility is governed by the sidecar, NOT by mere existence in the ontology.
+    roles = load(os.path.join(DATA, "ontology_node_roles.json"))
+    valid_roles = set(roles["roles"])
+    role_of = {}
+    for nr in roles["node_roles"]:
+        check(nr["role"] in valid_roles, f"ontology_node_roles: bad role '{nr['role']}' for {nr['term_id']}")
+        check(nr["term_id"] in all_term_ids, f"ontology_node_roles: {nr['term_id']} not in ontology")
+        role_of[nr["term_id"]] = nr["role"]
+    # completeness: every ontology node classified exactly once
+    check(set(role_of) == all_term_ids,
+          f"ontology_node_roles: must classify every ontology node exactly once (missing {sorted(all_term_ids - set(role_of))})")
+    concept_eligible = {tid for tid, r in role_of.items() if r == "concept_eligible"}
+    check(len(concept_eligible) == roles.get("concept_eligible_count"),
+          "ontology_node_roles: concept_eligible_count mismatch")
 
     languages = load(os.path.join(DATA, "languages.json"))
     lang_codes = {l["code"] for l in languages["languages"]}
 
     lexreg = load(os.path.join(DATA, "lexeme_registry.json"))
     valid_rel_types = set(lexreg["lexical_relationship_types"])
-    route_fields = set(lexreg["lexeme_record_schema"]["forbidden_fields"])
+    valid_reg_states = set(lexreg["registration_states"])
+    forbidden_lex_fields = set(lexreg["lexeme_record_schema"]["forbidden_fields"])
 
     lex_ids = set()
     for lx in lexreg["lexemes"]:
@@ -65,21 +81,23 @@ def main():
         check(lid.startswith("LEX-"), f"lexeme {lid}: id must start LEX-")
         check(lid not in lex_ids, f"lexeme {lid}: duplicate id")
         lex_ids.add(lid)
-        # resolves to exactly one governed concept
-        check(lx["concept_id"] in concept_ids,
-              f"lexeme {lid}: concept_id '{lx['concept_id']}' does not resolve to an ontology concept")
+        # resolves to exactly one CONCEPT-ELIGIBLE node (existence alone is not enough)
+        check(lx["concept_id"] in concept_eligible,
+              f"lexeme {lid}: concept_id '{lx['concept_id']}' is not concept-eligible (role='{role_of.get(lx['concept_id'], 'UNKNOWN')}')")
         # language valid
         check(lx["language"] in lang_codes, f"lexeme {lid}: language '{lx['language']}' not in languages.json")
         # relationship type governed
         check(lx["lexical_relationship_type"] in valid_rel_types,
               f"lexeme {lid}: bad lexical_relationship_type '{lx['lexical_relationship_type']}'")
-        # no cycle/confusion: a concept id is not reused as a lexeme id
+        # registration state governed (separate from derived evidence support)
+        check(lx.get("registration_state") in valid_reg_states,
+              f"lexeme {lid}: bad/missing registration_state")
+        # no cycle/confusion
         check(lx["concept_id"] != lid, f"lexeme {lid}: concept_id must differ from lexeme_id")
-        # concept carries no language semantics: concept_id is a bare ontology id (no lang tag),
-        # confirmed by it being in the ontology's term_id set (which are language-neutral concepts).
-        # lexeme never generates a URL
-        leaked = route_fields.intersection(lx.keys())
-        check(not leaked, f"lexeme {lid}: carries forbidden route/URL field(s) {sorted(leaked)}")
+        # one-fact-one-owner + language!=geography + no URL: lexeme must carry no forbidden field
+        # (source_ids/evidence_ids backlinks, geography, route/url fields, legacy 'status').
+        leaked = forbidden_lex_fields.intersection(lx.keys())
+        check(not leaked, f"lexeme {lid}: carries forbidden field(s) {sorted(leaked)} (backlinks/geography/url/status)")
 
     # Governed evidence records
     sources = load(os.path.join(DATA, "sources", "source_registry.json"))
@@ -101,9 +119,10 @@ def main():
         governed_records += 1
         rec = load(os.path.join(ev_dir, name))
         eid = rec.get("evidence_id", name)
-        # concept_ids resolve
+        # concept_ids must resolve to a CONCEPT-ELIGIBLE node (not merely any ontology term)
         for cid in rec.get("concept_ids", []):
-            check(cid in concept_ids, f"evidence {eid}: concept_id '{cid}' does not resolve to ontology")
+            check(cid in concept_eligible,
+                  f"evidence {eid}: concept_id '{cid}' is not concept-eligible (role='{role_of.get(cid, 'UNKNOWN')}')")
         # lexeme_ids resolve to registry (free-text forbidden)
         for lxid in rec.get("lexeme_ids", []) or []:
             check(lxid in lex_ids, f"evidence {eid}: lexeme_id '{lxid}' not a governed lexeme (free-text forbidden)")

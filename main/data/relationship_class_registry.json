@@ -1,23 +1,45 @@
 {
-  "version": "0.1.0",
-  "sprint": "authority-dimension-impl-1",
+  "version": "0.2.0",
+  "sprint": "semantic-integrity-hardening",
   "site": "bisulfid.com",
   "status": "scaffolding_active",
   "governed_by": [
     "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
+    "main/data/CONCEPT_LEXEME_MODEL.md",
     "DECISION_LOG.md"
   ],
-  "purpose": "Separates relationship-CLASS vocabulary (governed schema concepts) from relationship-INSTANCE truth (requires evidence).",
+  "purpose": "Separates relationship-CLASS vocabulary (governed schema concepts) from relationship-INSTANCE truth (requires evidence). Instances use typed subject -> predicate -> object semantics so the data encodes the actual direction of the proposition.",
   "rules": [
-    "A relationship class is a controlled schema concept and may exist without asserting any instance.",
-    "The existence of a class does NOT depend on a supporting source.",
-    "A relationship INSTANCE (e.g. 'ENTITY-X -> importer -> Morocco -> period Y') requires evidence references and is NOT created in this sprint.",
-    "When introduced later, every relationship instance must carry >=1 evidence_id.",
-    "Relationship classes/instances never generate routes by themselves."
+    "A relationship class is a controlled schema concept and may exist without asserting any instance; class existence does NOT depend on a source.",
+    "A relationship INSTANCE requires >=1 evidence reference and is NOT created in this sprint.",
+    "Instances are directed propositions: subject --predicate--> object. The representation MUST encode the real direction (e.g. GEO-MA --imports--> molybdenum_disulfide = 'Morocco imports [the substance]', never the reverse).",
+    "Inverse views (e.g. 'imported_by') are DERIVED, never stored as a second authoritative fact.",
+    "Endpoint types are controlled; each class declares allowed subject_types and object_types.",
+    "Language is orthogonal to geography; a lexeme's language never implies a geography endpoint."
   ],
+  "endpoint_types": ["concept", "lexeme", "geography", "jurisdiction", "authority", "organization"],
   "instance_qualification_states": ["unqualified", "evidence_collecting", "evidence_qualified"],
+  "relationship_instance_schema": {
+    "required_fields": [
+      "relationship_instance_id",
+      "relationship_class_id",
+      "subject_ref",
+      "subject_type",
+      "object_ref",
+      "object_type",
+      "qualification_state",
+      "evidence_ids",
+      "temporal_scope"
+    ],
+    "direction": "subject_ref (subject_type) --[relationship_class_id]--> object_ref (object_type)",
+    "notes": [
+      "subject_type must be in the class's allowed subject_types; object_type in its allowed object_types.",
+      "evidence_ids MUST be non-empty for qualification_state == 'evidence_qualified'.",
+      "No inverse instance is stored; inverse is derived."
+    ]
+  },
   "proposed_source_categories": {
-    "note": "Schema-integrity PROPOSAL only (concept-lexeme-resolution sprint). These primary/authoritative categories are NOT yet added to source_registry.json's approved categories, and NO sources are invented. Adding them is a later, separately-approved governance step. Trade/economic relationship INSTANCES must not be qualified by market_report/industry_publication alone.",
+    "note": "Schema-integrity PROPOSAL only. NOT added to source_registry.json; no sources invented. Ratified by a later Source Qualification sprint.",
     "primary_authoritative": [
       "official_customs_data",
       "official_trade_statistics",
@@ -25,27 +47,20 @@
       "intergovernmental_trade_database",
       "official_production_statistics"
     ],
-    "secondary_contextual_only": [
-      "market_report",
-      "industry_publication"
-    ]
+    "secondary_contextual_only": ["market_report", "industry_publication"]
   },
-  "evidence_strength_rule": "For importer/exporter/producer/industrial_user instances, at least one PRIMARY authoritative source is required to reach evidence_qualified; secondary_contextual sources may add context but never establish the instance alone.",
-  "relationship_instance_schema": {
-    "required_fields": ["relationship_instance_id", "relationship_class_id", "entity_id", "target_ref", "qualification_state", "evidence_ids", "temporal_scope"],
-    "note": "evidence_ids MUST be non-empty for qualification_state == 'evidence_qualified'."
-  },
+  "evidence_strength_rule": "For importer/exporter/producer/industrial_user instances, >=1 PRIMARY authoritative source is required to reach evidence_qualified; secondary_contextual sources add context but never establish the instance alone.",
   "relationship_classes": [
-    { "relationship_class_id": "REL-IMPORTER", "label": "importer", "definition": "Entity/place imports the substance.", "directionality": "entity->geography", "primary_evidence_required": ["official_customs_data", "official_trade_statistics", "intergovernmental_trade_database", "national_statistical_authority"], "secondary_contextual": ["market_report", "industry_publication"], "state": "registered" },
-    { "relationship_class_id": "REL-EXPORTER", "label": "exporter", "definition": "Entity/place exports the substance.", "directionality": "entity->geography", "primary_evidence_required": ["official_customs_data", "official_trade_statistics", "intergovernmental_trade_database", "national_statistical_authority"], "secondary_contextual": ["market_report", "industry_publication"], "state": "registered" },
-    { "relationship_class_id": "REL-PRODUCER", "label": "producer", "definition": "Entity/place produces the substance.", "directionality": "entity->geography", "primary_evidence_required": ["official_production_statistics", "national_statistical_authority", "government_scientific_database"], "secondary_contextual": ["industry_publication", "market_report"], "state": "registered" },
-    { "relationship_class_id": "REL-INDUSTRIAL-USER", "label": "industrial_user", "definition": "Entity/place uses the substance industrially.", "directionality": "entity->geography", "primary_evidence_required": ["official_production_statistics", "national_statistical_authority", "government_scientific_database"], "secondary_contextual": ["industry_publication", "market_report"], "state": "registered" },
-    { "relationship_class_id": "REL-PROCESSING-CENTER", "label": "processing_center", "definition": "Place processes/transforms the substance.", "directionality": "entity->geography", "evidence_requirement": ["industry_publication"], "state": "registered" },
-    { "relationship_class_id": "REL-MANUFACTURING-CENTER", "label": "manufacturing_center", "definition": "Place manufactures derived products.", "directionality": "entity->geography", "evidence_requirement": ["industry_publication"], "state": "registered" },
-    { "relationship_class_id": "REL-SUPPLY-CHAIN-NODE", "label": "supply_chain_node", "definition": "Place is a node in the supply chain.", "directionality": "entity->geography", "evidence_requirement": ["industry_publication", "government_scientific_database"], "state": "registered" },
-    { "relationship_class_id": "REL-RESEARCH-CENTER", "label": "research_center", "definition": "Place hosts research relevant to the entity.", "directionality": "entity->geography", "evidence_requirement": ["peer_reviewed_journal", "academic_teaching_reference"], "state": "registered" },
-    { "relationship_class_id": "REL-TERMINOLOGY-ORIGIN", "label": "terminology_origin", "definition": "Place/language is the origin of a lexical form of the entity.", "directionality": "lexeme->geography", "evidence_requirement": ["authoritative_dictionary", "chemical_nomenclature_standard"], "state": "registered" },
-    { "relationship_class_id": "REL-REGULATORY-JURISDICTION", "label": "regulatory_jurisdiction", "definition": "Jurisdiction governs a statement about the entity.", "directionality": "entity->jurisdiction", "evidence_requirement": ["regulatory_instrument"], "state": "registered" }
+    { "relationship_class_id": "REL-IMPORTER", "label": "imports", "proposition": "subject (place/organization) imports object (substance/concept)", "subject_types": ["geography", "organization"], "object_types": ["concept"], "primary_evidence_required": ["official_customs_data", "official_trade_statistics", "intergovernmental_trade_database", "national_statistical_authority"], "secondary_contextual": ["market_report", "industry_publication"], "state": "registered" },
+    { "relationship_class_id": "REL-EXPORTER", "label": "exports", "proposition": "subject (place/organization) exports object (substance/concept)", "subject_types": ["geography", "organization"], "object_types": ["concept"], "primary_evidence_required": ["official_customs_data", "official_trade_statistics", "intergovernmental_trade_database", "national_statistical_authority"], "secondary_contextual": ["market_report", "industry_publication"], "state": "registered" },
+    { "relationship_class_id": "REL-PRODUCER", "label": "produces", "proposition": "subject (place/organization) produces object (substance/concept)", "subject_types": ["geography", "organization"], "object_types": ["concept"], "primary_evidence_required": ["official_production_statistics", "national_statistical_authority", "government_scientific_database"], "secondary_contextual": ["industry_publication", "market_report"], "state": "registered" },
+    { "relationship_class_id": "REL-INDUSTRIAL-USER", "label": "industrially_uses", "proposition": "subject (place/organization) uses object (substance/concept) industrially", "subject_types": ["geography", "organization"], "object_types": ["concept"], "primary_evidence_required": ["official_production_statistics", "national_statistical_authority", "government_scientific_database"], "secondary_contextual": ["industry_publication", "market_report"], "state": "registered" },
+    { "relationship_class_id": "REL-PROCESSING-CENTER", "label": "processes", "proposition": "subject (place/organization) processes object (substance/concept)", "subject_types": ["geography", "organization"], "object_types": ["concept"], "primary_evidence_required": ["official_production_statistics", "industry_publication"], "secondary_contextual": ["market_report"], "state": "registered" },
+    { "relationship_class_id": "REL-MANUFACTURING-CENTER", "label": "manufactures_with", "proposition": "subject (place/organization) manufactures products using object (substance/concept)", "subject_types": ["geography", "organization"], "object_types": ["concept"], "primary_evidence_required": ["official_production_statistics", "industry_publication"], "secondary_contextual": ["market_report"], "state": "registered" },
+    { "relationship_class_id": "REL-SUPPLY-CHAIN-NODE", "label": "is_supply_chain_node_for", "proposition": "subject (place/organization) is a supply-chain node for object (substance/concept)", "subject_types": ["geography", "organization"], "object_types": ["concept"], "primary_evidence_required": ["official_trade_statistics", "government_scientific_database", "industry_publication"], "secondary_contextual": ["market_report"], "state": "registered" },
+    { "relationship_class_id": "REL-RESEARCH-CENTER", "label": "researches", "proposition": "subject (place/organization) conducts research on object (substance/concept)", "subject_types": ["geography", "organization"], "object_types": ["concept"], "primary_evidence_required": ["peer_reviewed_journal", "academic_teaching_reference"], "secondary_contextual": ["industry_publication"], "state": "registered" },
+    { "relationship_class_id": "REL-TERMINOLOGY-ORIGIN", "label": "has_terminology_context_in", "proposition": "subject (lexeme) has an evidence-qualified terminology-usage context in object (geography). NOTE: this is separate from the lexeme's LANGUAGE; a German-language lexeme does not imply a Germany context — that requires its own evidence.", "subject_types": ["lexeme"], "object_types": ["geography"], "primary_evidence_required": ["authoritative_dictionary", "chemical_nomenclature_standard", "peer_reviewed_journal"], "secondary_contextual": ["academic_teaching_reference"], "state": "registered" },
+    { "relationship_class_id": "REL-REGULATORY-JURISDICTION", "label": "regulates", "proposition": "subject (jurisdiction) regulates object (substance/concept) via a governed instrument", "subject_types": ["jurisdiction"], "object_types": ["concept"], "primary_evidence_required": ["regulatory_instrument"], "secondary_contextual": [], "state": "registered" }
   ],
   "relationship_instances": []
 }

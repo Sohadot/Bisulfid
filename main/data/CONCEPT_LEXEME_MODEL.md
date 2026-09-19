@@ -105,3 +105,20 @@ claim_id:    CLM-TERM-MOS2-DE-001   (approved; registry terminology_claims.json 
 ## 9. Public-URL independence (unchanged, absolute)
 
 Creating a lexeme or evidence record creates **no** URL. `Knowledge Object Before URL` holds: a `/{language}/{term}/` surface is promoted only via evidence sufficiency + Information-Gain review under Contract C.
+
+---
+
+## 10. Semantic Integrity Hardening (sprint update, 2026-09-19)
+
+Four drift risks were closed while the system held only the one MoS₂ chain:
+
+1. **One-fact-one-owner in the lexeme model.** `source_ids`/`evidence_ids` were **removed** from lexeme records (now forbidden fields). The lexeme registry owns lexical identity only; evidence owns `evidence→lexeme/source/claim`. The reverse view `lexeme→evidence` is **derived** (scan evidence store), never stored.
+2. **Registration vs derived support.** `lexeme.status = evidence_backed` was replaced by `registration_state` (lexical-identity state, manual). Whether a lexeme is evidence-supported is a **derived** fact from the evidence store — a single authority for that question.
+3. **Concept eligibility is governed, not implied by existence.** New sidecar `main/data/ontology_node_roles.json` classifies all 14 legacy nodes; only `concept_eligible` nodes may be `concept_id` targets. Roles assigned: **concept_eligible (6):** sulfur, sulfide, disulfide, hydrosulfide, hydrogen_sulfide, molybdenum_disulfide · **legacy_lexeme (2):** sulfid, disulfid · **conflated_pending_migration (4):** bisulfid, bisulfide, sodium_bisulfide, sodium_hydrosulfide · **notation_alias (1):** molybdenum_disulfide_mos2 · **control_object (1):** bisulfite_disambiguation. The ontology itself is **not** mutated.
+4. **MoS₂ claim not broadened.** `lexical_relationship_type` narrowed **`accepted` → `observed_usage`** (the approved claim establishes only that a dictionary entry exists supporting cautious framing, not a general "accepted" status). The evidence `claim_scope` now mirrors `CLM-TERM-MOS2-DE-001` verbatim in scope. The approved claim was **not** modified.
+
+**Relationship grammar (before any instance exists).** Instances are typed directed propositions `subject_ref(subject_type) --[class]--> object_ref(object_type)` with controlled `endpoint_types` {concept, lexeme, geography, jurisdiction, authority, organization}. Each class declares allowed `subject_types`/`object_types`, so a reversed proposition (e.g. concept as subject of `REL-IMPORTER`) is structurally rejected. Canonical orientations: `GEO-* --imports/exports/produces/uses--> concept`; `LEX-* --terminology_context--> geography` (**separate from the lexeme's language**); `jurisdiction --regulates--> concept`. Inverse views are derived; both directions are never stored.
+
+**Language ⟂ Geography.** A `LEX-DE-*` lexeme is German-**language**, not Germany-**geography**. Geography is never derived from lexeme language; it requires its own evidence-qualified relationship. Enforced by forbidding a geography field on lexeme records.
+
+**Corrections to prior scaffolding:** `GEO-GULF → GEO-GCC` (§5); jurisdiction split into `jurisdiction → authority → instrument` (§5); trade/economic relationship classes require primary authoritative source categories (§6, proposals only). `risk_class` removed from evidence (§7).

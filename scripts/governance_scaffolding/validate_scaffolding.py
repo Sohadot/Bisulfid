@@ -99,6 +99,18 @@ def validate_relationship_classes():
         prim = set(rc.get("primary_evidence_required", []))
         check(prim and not prim.issubset({"market_report", "industry_publication"}),
               f"relationship_class: {rid} must require a primary authoritative source category")
+    # Typed subject/predicate/object grammar: endpoint contracts must be well-formed.
+    endpoint_types = set(d.get("endpoint_types", []))
+    check(endpoint_types, "relationship_class: endpoint_types vocabulary missing")
+    for x in d["relationship_classes"]:
+        rid = x["relationship_class_id"]
+        st = set(x.get("subject_types", []))
+        ot = set(x.get("object_types", []))
+        check(st and st.issubset(endpoint_types), f"relationship_class: {rid} subject_types must be non-empty and drawn from endpoint_types")
+        check(ot and ot.issubset(endpoint_types), f"relationship_class: {rid} object_types must be non-empty and drawn from endpoint_types")
+    ischema = set(d.get("relationship_instance_schema", {}).get("required_fields", []))
+    check({"subject_ref", "subject_type", "object_ref", "object_type"}.issubset(ischema),
+          "relationship_class: instance schema must use typed subject/object endpoints")
 
 
 def validate_evidence():
