@@ -67,19 +67,19 @@
       "qualification_id": "QUAL-UN-HS2022-001",
       "source_id": "SRC-UN-COMTRADE-HS2022",
       "qualified_against_source_revision": "rev-2026-09-19-1",
-      "applicable_subject_domains": ["SD-NOMENCLATURE"],
+      "applicable_subject_domains": ["SD-CUSTOMS-CLASSIFICATION"],
       "permitted_evidence_kinds": ["classification"],
       "permitted_claim_levels": ["classification"],
       "evidence_roles": ["primary_authoritative"],
-      "scope": "Harmonized System 2022 (H6) classification/nomenclature identity ONLY: heading/subheading code and official English description, and the 2503/2802 exclusion boundary. Reviewed this sprint against the official UN Comtrade H6 reference.",
+      "scope": "Harmonized System 2022 (H6) classification/nomenclature identity ONLY: heading/subheading code and official English description, and the 2503/2802 exclusion boundary. Reviewed against the official UN Comtrade H6 reference; source identity verified (SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md).",
       "allowed_uses": ["hs_classification_identity", "hs_exclusion_boundary"],
       "prohibited_uses": ["morocco_trade_totals", "trade_flow_value", "sulfur_industrial_demand", "market_forecast", "scientific_property_claim", "moroccan_national_code", "route_publication", "claim_approval_by_itself", "source_locking_by_itself"],
-      "qualification_state": "reviewed",
+      "qualification_state": "qualified_narrow",
       "review_date": "2026-09-19",
       "geography_limitation": null,
       "jurisdiction_limitation": null,
       "temporal_boundary": null,
-      "note": "State 'reviewed' (new source, seeded/candidate, not identity-verified). Classification-only. Must NEVER qualify for Morocco trade totals, industrial demand, scientific properties, or market forecasts. HS classification is a distinct fact type from the trade-value evidence."
+      "note": "Promoted reviewed -> qualified_narrow this sprint: source identity verified AND scope reviewed, so the narrow, explicitly-enumerated classification-identity scope is ratified. Domain corrected SD-NOMENCLATURE -> SD-CUSTOMS-CLASSIFICATION (goods-classification nomenclature is a customs/statistical fact, NOT chemical naming). Admissible ONLY within HS classification identity / exclusion boundary. Must NEVER qualify Morocco trade totals, trade-flow value, industrial demand, scientific properties, market forecasts, or a Moroccan national code. qualified_narrow admits at the admission gate but implies NO claim approval, NO source-locking, NO route publication, NO indexation."
     }
   ]
 }

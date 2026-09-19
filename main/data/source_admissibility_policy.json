@@ -88,6 +88,15 @@
       "contextual_only_categories": ["market_report", "industry_publication"],
       "sufficiency": "primary_plus_corroborating"
     },
+    "customs_classification": {
+      "applies_to_domains": ["SD-CUSTOMS-CLASSIFICATION"],
+      "claim_levels": ["classification"],
+      "required_any_role": ["primary_authoritative", "official_record"],
+      "allowed_categories": ["customs_nomenclature_authority", "official_customs_data", "intergovernmental_trade_database"],
+      "contextual_only_categories": ["market_report", "industry_publication"],
+      "sufficiency": "single_authoritative_sufficient",
+      "note": "A goods-classification IDENTITY (an HS heading/subheading code and its official label, or a national tariff code) is established by ONE authoritative nomenclature authority — the nomenclature is definitional, not a contested empirical measurement — so the pattern is single_authoritative_sufficient (unlike trade_economics totals, which stay primary_plus_corroborating). This domain establishes classification identity/boundaries ONLY: never trade totals, never a chemical/scientific property, never current law. A trade-flow source (official_trade_statistics) is NOT in allowed_categories here: recording imports of a labelled product does not make a source an authority for the classification nomenclature itself."
+    },
     "regulation_government": {
       "applies_to_domains": ["SD-REGULATION"],
       "claim_levels": ["concept", "relationship"],

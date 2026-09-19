@@ -12,11 +12,11 @@
       "pilot_claim": "A — classification identity",
       "statement_intended": "Under an applicable official trade nomenclature, commodity code X represents the exact official sulfur commodity description Z.",
       "outcome": "PARTIAL",
-      "wco_hs_side": "PROVEN — Under HS 2022 (UN Comtrade H6 official reference), subheading 2503.00 = 'Sulphur of all kinds; other than sublimed, precipitated and colloidal sulphur'. The excluded forms (sublimed/precipitated/colloidal) are 2802.00. (classification object CLS-HS2022-2503-00.)",
-      "moroccan_mapping_side": "NOT PROVEN / BLOCKED — the exact Moroccan national SH code and the official mapping of the Office des Changes produit-remarquable 'Soufres bruts et non raffinés' to HS were not acquired (douane.gov.ma tariff endpoints WAF/access-restricted; no login workaround). Label↔2503 correspondence is a hypothesis only. (classification object CLS-MA-ODC-SOUFRES-BRUTS.)",
-      "reason": "Claim A is promoted only to the level actually proved: the international HS 2022 identity is supported; the Moroccan-code/mapping half remains blocked. Nothing asserted from model memory.",
+      "wco_hs_side": "ADMITTED (evidence_sufficient; not locked, not published) — Under HS 2022 (UN Comtrade H6 official reference), subheading 2503.00 = 'Sulphur of all kinds; other than sublimed, precipitated and colloidal sulphur'; the excluded forms (sublimed/precipitated/colloidal) are 2802.00. Backed by admitted classification evidence EVD-HS2022-2503-00 (admissible=TRUE via qualified_narrow QUAL-UN-HS2022-001; derived classification posture evidence_sufficient). Classification object: CLS-HS2022-2503-00.",
+      "moroccan_mapping_side": "NOT PROVEN / BLOCKED — the exact Moroccan national SH code and the official mapping of the Office des Changes produit-remarquable 'Soufres bruts et non raffinés' to HS were not acquired (douane.gov.ma tariff endpoints WAF/access-restricted; no login workaround). Label↔2503 correspondence is a hypothesis only; no admitted classification evidence (CLS-MA-ODC-SOUFRES-BRUTS.supporting_evidence_ids is empty). (classification object CLS-MA-ODC-SOUFRES-BRUTS.)",
+      "reason": "Claim A is promoted only to the level actually established through the governed admission path: the international HS 2022 identity is now supported by ADMITTED classification evidence (EVD-HS2022-2503-00); the Moroccan-code/mapping half remains blocked with no admitted evidence. Wording softened from bare 'PROVEN' to the governed evidence posture (admitted / evidence_sufficient, NOT locked, NOT published). Nothing asserted from model memory.",
       "supporting_classification_ids": ["CLS-HS2022-2503-00", "CLS-MA-ODC-SOUFRES-BRUTS"],
-      "supporting_evidence_ids": []
+      "supporting_evidence_ids": ["EVD-HS2022-2503-00"]
     },
     {
       "claim_id": "CLM-MA-SULFUR-IMPORT-OBS-2024",

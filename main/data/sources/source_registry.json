@@ -25,6 +25,26 @@
         "current_status": "verified",
         "target_status_after_guardrail_transition": "verified",
         "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-UN-COMTRADE-HS2022",
+        "evidence_sprint": "pilot-01-evidence-admission-closure",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Bibliographic/identity verification only (identity checklist passed). NOT source-locking, claim approval, route publication, indexation, or registry activation. source_lock_status remains candidate."
+      },
+      {
+        "source_id": "SRC-OC-MA-TRADE",
+        "evidence_sprint": "pilot-01-evidence-admission-closure",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Bibliographic/identity verification only (identity checklist passed). Its use-qualification QUAL-OC-MA-TRADE-001 remains 'reviewed' (NOT promoted): identity verification of the source is a separate act from ratifying a use-qualification, and the trade path's admission/sufficiency is deliberately unchanged. source_lock_status remains candidate."
       }
     ],
     "next_charter": "Validator policy update sprint to permit verification_limited posture with individual verified rows while publication, claim, and route locks remain LOCKED"
@@ -521,7 +541,7 @@
       "author_or_organization": "Office des Changes — Royaume du Maroc (official foreign-trade statistics authority)",
       "url": "https://www.oc.gov.ma/sites/default/files/2025-07/Rapport%20Commerce%20Ext%C3%A9rieur%202024%20VF.pdf",
       "language": "fr",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-09-19",
       "use_for": [
@@ -540,11 +560,12 @@
         "source-locking by itself"
       ],
       "risk_notes": [
-        "NEW source acquired in Pilot 01 (Morocco x Sulfur Trade). Status seeded / lock candidate per existing SOURCE_POLICY (registered, unverified). identity_revision set at first registration (no incremental exception).",
+        "NEW source acquired in Pilot 01 (Morocco x Sulfur Trade). identity_revision set at first registration (no incremental exception).",
         "Interactive database (services.oc.gov.ma/DataBase/CommerceExterieur/login) is authentication-gated and was NOT used; the static official annual report PDF was used as the primary official artifact.",
-        "Product label used by the source is 'Soufres bruts et non raffinés' (crude and unrefined sulfurs) — a subset of the general sulfur concept; classification-to-concept mapping is PARTIAL (see pilot report)."
+        "Product label used by the source is 'Soufres bruts et non raffinés' (crude and unrefined sulfurs) — a subset of the general sulfur concept; classification-to-concept mapping is PARTIAL (see pilot report).",
+        "Identity verification (pilot-01-evidence-admission-closure): bibliographic status seeded -> verified under verification_limited posture (SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md; listed in verification_ready_sources). source_lock_status stays candidate. This is bibliographic identity verification ONLY — not source-locking, claim approval, route publication, indexation, or registry activation. Its use-qualification QUAL-OC-MA-TRADE-001 was NOT promoted (remains 'reviewed'); the trade path's admission/sufficiency is unchanged."
       ],
-      "notes": "Office des Changes is Morocco's official foreign-trade statistics authority. Category official_trade_statistics (aggregated official statistics), not official_customs_data (line-level customs declarations are administered by ADII). Retrieved 2026-09-19. Bibliographic/identity reference only. Not verified, not locked, not claim-approved, not published."
+      "notes": "Office des Changes is Morocco's official foreign-trade statistics authority. Category official_trade_statistics (aggregated official statistics), not official_customs_data (line-level customs declarations are administered by ADII). Retrieved 2026-09-19. Bibliographic/identity reference only. Identity verified (status verified, lock candidate); not source-locked, not claim-approved, not published."
     },
     {
       "source_id": "SRC-UN-COMTRADE-HS2022",
@@ -555,7 +576,7 @@
       "author_or_organization": "United Nations Statistics Division / UN Comtrade, hosting the WCO Harmonized System 2022 nomenclature (WCO is the underlying classification authority)",
       "url": "https://comtradeapi.un.org/files/v1/app/reference/H6.json",
       "language": "en",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-09-19",
       "use_for": [
@@ -573,10 +594,11 @@
       ],
       "risk_notes": [
         "WCO's own online artifacts (wcotradetools.org / HS Online) are interactive/authentication-gated and were not directly fetchable; the official UN Comtrade H6 reference (an official intergovernmental reproduction of WCO HS 2022) was used instead. WCO remains the underlying authority.",
-        "Category customs_nomenclature_authority added this sprint (taxonomy amendment) to avoid mislabeling a nomenclature authority as a scientific/technical standard. Vocabulary-only; no existing source changed.",
-        "NEW source; status seeded / lock candidate per existing SOURCE_POLICY. identity_revision set at first registration."
+        "Category customs_nomenclature_authority added (taxonomy amendment) to avoid mislabeling a nomenclature authority as a scientific/technical standard. Vocabulary-only; no existing source changed.",
+        "NEW source; identity_revision set at first registration.",
+        "Identity verification (pilot-01-evidence-admission-closure): re-fetched the same public reference JSON (no credentials) and re-confirmed publisher, URL, artifact identity, and the quoted 2503/2802 codes/labels against the checklist; bibliographic status seeded -> verified under verification_limited posture (SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md; listed in verification_ready_sources). source_lock_status stays candidate. Bibliographic identity verification ONLY — not source-locking, claim approval, route publication, indexation, or registry activation."
       ],
-      "notes": "Official UN Comtrade reference file for HS 2022 (H6). Retrieved 2026-09-19 via direct download of the public reference JSON (no credentials). Classification identity only. Not verified, not locked, not claim-approved, not published."
+      "notes": "Official UN Comtrade reference file for HS 2022 (H6). Retrieved 2026-09-19 via direct download of the public reference JSON (no credentials). Classification identity only. Identity verified (status verified, lock candidate); not source-locked, not claim-approved, not published."
     }
   ]
 }

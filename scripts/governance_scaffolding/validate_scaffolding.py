@@ -256,6 +256,14 @@ def validate_classification():
         return
     reg = load(os.path.join(DATA, "sources", "source_registry.json"))
     source_ids = {s["source_id"] for s in reg["sources"]}
+    # Classification evidence records: one-fact-one-owner means the SOURCE binding lives here,
+    # and a classification object references it via supporting_evidence_ids (never source_id).
+    ev_dir = os.path.join(DATA, "evidence")
+    class_evidence = {}
+    for name in os.listdir(ev_dir):
+        if name.endswith(".json") and name.startswith("EVD-"):
+            rec = load(os.path.join(ev_dir, name))
+            class_evidence[rec.get("evidence_id", name)] = rec
     d = load(path)
     req = set(d["record_schema"]["required_fields"])
     forbidden = set(d["record_schema"]["forbidden_fields"])
@@ -267,8 +275,24 @@ def validate_classification():
         seen.add(cid)
         for f in req:
             check(f in c, f"classification {cid}: missing required field '{f}'")
-        check(not forbidden.intersection(c.keys()), f"classification {cid}: forbidden field present")
-        check(c.get("source_id") in source_ids, f"classification {cid}: source_id does not resolve")
+        leaked = forbidden.intersection(c.keys())
+        check(not leaked, f"classification {cid}: forbidden field(s) present {sorted(leaked)}")
+        # one-fact-one-owner: no direct source_id on a classification object
+        check("source_id" not in c, f"classification {cid}: must not carry source_id (use supporting_evidence_ids -> evidence)")
+        # supporting_evidence_ids must be a list; each entry resolves to a classification-kind evidence
+        # record whose own source_id resolves. An EMPTY list is allowed (identity unproven/blocked).
+        sev = c.get("supporting_evidence_ids", [])
+        check(isinstance(sev, list), f"classification {cid}: supporting_evidence_ids must be a list")
+        for eid in sev if isinstance(sev, list) else []:
+            ev = class_evidence.get(eid)
+            check(ev is not None, f"classification {cid}: supporting evidence '{eid}' not found")
+            if ev is not None:
+                check(ev.get("evidence_kind") == "classification",
+                      f"classification {cid}: supporting evidence '{eid}' must be classification-kind")
+                check(ev.get("source_id") in source_ids,
+                      f"classification {cid}: supporting evidence '{eid}' source_id does not resolve")
+                check(cid in (ev.get("classification_ids") or []),
+                      f"classification {cid}: supporting evidence '{eid}' must reference this classification back in classification_ids")
         # HS6 and national code must be distinct fields, never conflated
         if "hs6" in c and "national_code" in c:
             check("hs6" in c and "national_code" in c, f"classification {cid}: hs6/national_code must be separate")

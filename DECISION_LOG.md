@@ -5182,3 +5182,31 @@ Classification resolution **17/17**; source admission 21/21; Pilot 01 16/16; Pil
 
 ### Not started
 Pilot 02 (OCP / Morocco Industrial Chain); GCC/China/Germany; language localization; Moroccan national-code acquisition; trade sufficiency-policy amendment.
+
+---
+
+## Pilot 01 — Evidence Admission Closure
+
+**Date:** 2026-09-19
+**Baseline:** commit `cb3ed350b6`. Purpose: make the classification path obey **Source → Qualification → Evidence → Claim** (like the trade path), so the HS identity is *admitted evidence*, not a bare assertion. No Pilot 02, no new external source (the two Pilot-01 sources were re-fetched for identity verification only), no OCP/GCC/China/Germany, no route/sitemap/robots/indexation/public-HTML/14K change, no claim activation, no source-locking, no PR.
+
+### What changed
+- **New governed subject domain `SD-CUSTOMS-CLASSIFICATION`** (`subject_domain_registry.json`), distinct from the chemical `SD-NOMENCLATURE`: goods/customs/statistical classification is a different fact type from chemical naming. State `registered` (domain evidence-activation deliberately deferred; no publication effect).
+- **Evidence schema extended** (`evidence/evidence_schema.json`): `evidence_kind = classification`, `claim_level = classification`, reference field `classification_ids → classification_registry.json`, and a classification level-rule (requires kind `classification` + non-empty `classification_ids`).
+- **Domain admissibility policy for SD-CUSTOMS-CLASSIFICATION** (`source_admissibility_policy.json`): sufficiency `single_authoritative_sufficient` (a nomenclature identity is definitional, not a contested measurement — unlike trade totals). Allowed categories = nomenclature/customs authorities; trade-statistics sources are **not** allowed to establish the nomenclature.
+- **Real classification evidence `EVD-HS2022-2503-00`** created, binding `SRC-UN-COMTRADE-HS2022` / `QUAL-UN-HS2022-001` / `CLS-HS2022-2503-00`. `admissible()` returns **TRUE**; review posture `evidence_verified` (only because admissible TRUE).
+- **One-fact-one-owner for classification objects** (`classification_registry.json`): `source_id` is now **forbidden** on a classification object; the source binding lives on the evidence record, referenced via `supporting_evidence_ids`. `CLS-HS2022-2503-00.supporting_evidence_ids = ["EVD-HS2022-2503-00"]`; `CLS-MA-ODC-SOUFRES-BRUTS.supporting_evidence_ids = []` (Moroccan mapping stays **UNPROVEN/BLOCKED**).
+- **Source identity verification** (`SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md`, C1–C8) applied to **exactly the two Pilot-01 sources**: both re-fetched (UN Comtrade H6 JSON re-confirmed 250300/280200 verbatim; OdC PDF HTTP 200 / `application/pdf` / `%PDF-`). Both `status: seeded → verified` under `verification_limited`, **lock stays `candidate`**, added to `verification_ready_sources`. No credentials, no gate bypass.
+- **Qualification promotion:** `QUAL-UN-HS2022-001` `reviewed → qualified_narrow` (identity verified + narrow scope reviewed), domain moved `SD-NOMENCLATURE → SD-CUSTOMS-CLASSIFICATION`. `QUAL-OC-MA-TRADE-001` **deliberately NOT promoted** (stays `reviewed`) — the trade path is unchanged.
+- **Claim A** (`PILOT_01_claims.json`): HS side now references `supporting_evidence_ids = ["EVD-HS2022-2503-00"]` (not classification IDs as a substitute); wording softened from bare "PROVEN" to the governed posture ("ADMITTED / evidence_sufficient, not locked, not published"); outcome stays **PARTIAL**; Moroccan side stays blocked.
+- **SOURCE_POLICY drift audit** (`SOURCE_POLICY_DRIFT_AUDIT.md`, D1–D6) + minimum-sync "Supersession & Layering" pointer appended to `doctrine/SOURCE_POLICY.md`. No core rule changed.
+
+### Derived state (governed, not asserted)
+- Classification path: `admissible=TRUE` → posture **`evidence_sufficient`** (NOT `evidence_locked`, because source lock is `candidate`) → **Contract-C = (not_public, noindex)**.
+- Trade path: **unchanged** — sufficiency `primary_plus_corroborating`, posture `evidence_collecting`, qualification `reviewed`, `admissible=FALSE` → Contract-C = (not_public, noindex).
+
+### Tests
+New **admission-closure 19/19**; classification resolution 17/17; source admission 21/21; Pilot 01 16/16; Pilot 01 correction 14/14; scaffolding + concept↔lexeme validators PASS; relationship grammar 8/8; Contract C 7/7. **Wired CI** (L0/L1/L2 incl. `validate_source_registry_lock_l1.py`) PASS. Sources now 15 seeded + **3 verified** (SPEKTRUM, OC-MA, UN-COMTRADE); **all `source_lock_status = candidate`**.
+
+### Not started
+Pilot 02; GCC/China/Germany; language localization; Moroccan national-code acquisition; trade sufficiency-policy amendment; domain evidence-activation; source-locking; any route/claim activation.

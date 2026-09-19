@@ -1,0 +1,52 @@
+{
+  "evidence_id": "EVD-HS2022-2503-00",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "classification",
+  "claim_level": "classification",
+  "concept_ids": ["sulfur"],
+  "object_scope_note": "HS 2022 subheading 2503.00 is a SCOPED SUBSET of the general 'sulfur' concept: it excludes sublimed/precipitated/colloidal sulphur (those are 2802.00). This record establishes the CLASSIFICATION identity/boundary only, not a chemical property of the concept and not any trade quantity.",
+  "classification_ids": ["CLS-HS2022-2503-00"],
+  "lexeme_ids": [],
+  "subject_domain": ["SD-CUSTOMS-CLASSIFICATION"],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "claim_scope": "Under the WCO Harmonized System 2022 (H6), heading 25.03 / subheading 2503.00 = 'Sulphur of all kinds; other than sublimed, precipitated and colloidal sulphur'; the excluded forms (sublimed/precipitated/colloidal) are 2802.00 = 'Sulphur; sublimed or precipitated, colloidal sulphur'. Establishes the international HS classification identity and the 2503/2802 exclusion boundary ONLY. Says nothing about any national tariff code, any trade quantity/value, or any chemical property.",
+  "source_id": "SRC-UN-COMTRADE-HS2022",
+  "claim_id": "CLM-MA-SULFUR-HS-CLASS",
+  "retrieval_date": "2026-09-19",
+  "publication_date": null,
+  "temporal_scope": {"as_of": "2026-09-19", "valid_from": null, "valid_to": null},
+  "evidence_review_posture": "evidence_verified",
+  "locator": {
+    "system": "UN Comtrade HS 2022 (H6) reference file H6.json (official intergovernmental reproduction of WCO HS 2022; WCO is the underlying authority)",
+    "url": "https://comtradeapi.un.org/files/v1/app/reference/H6.json",
+    "classification_system": "WCO Harmonized System (HS)",
+    "classification_version": "HS 2022 (H6)",
+    "codes_quoted": {
+      "250300": "Sulphur of all kinds; other than sublimed, precipitated and colloidal sulphur",
+      "280200": "Sulphur; sublimed or precipitated, colloidal sulphur",
+      "25": "Salt; sulphur; earths, stone; plastering materials, lime and cement"
+    },
+    "retrieval_date": "2026-09-19",
+    "reverification_date": "2026-09-19",
+    "reverification_note": "Re-fetched the public reference JSON (6940 rows, no credentials) during source identity verification; 250300/280200 labels re-confirmed verbatim (SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md)."
+  },
+  "evidence_role": "primary_authoritative",
+  "allowed_uses": ["hs_classification_identity", "hs_exclusion_boundary"],
+  "prohibited_uses": [
+    "morocco_trade_totals",
+    "trade_flow_value",
+    "moroccan_national_code",
+    "concept_level_chemical_claim",
+    "scientific_property_claim",
+    "sulfur_industrial_demand",
+    "market_forecast",
+    "legal_or_regulatory_claim",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED this sprint: qualification QUAL-UN-HS2022-001 is qualified_narrow (source identity verified), so admissible() returns TRUE for the classification-identity use. Domain SD-CUSTOMS-CLASSIFICATION sufficiency is single_authoritative_sufficient, so one authoritative nomenclature-authority record makes the classification evidence-sufficient. NOT evidence_locked (source_lock_status is candidate, not locked). Admission authorizes NO claim activation, NO route, NO indexation. Contract-C derived state stays (not_public, noindex). The Moroccan produit-remarquable -> HS mapping remains UNPROVEN/BLOCKED and is not part of this record."
+}

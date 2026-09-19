@@ -36,6 +36,7 @@ def main():
     hs = cls["CLS-HS2022-2503-00"]
     odc = cls["CLS-MA-ODC-SOUFRES-BRUTS"]
     ev = load("evidence", "EVD-MA-SULFUR-IMPORT-2024.json")
+    hs_ev = load("evidence", "EVD-HS2022-2503-00.json")
     rels = load("relationship_class_registry.json")
     inst = next(i for i in rels["relationship_instances"] if i["relationship_instance_id"] == "REL-INST-MA-SULFUR-IMPORT-2024")
     pol = load("source_admissibility_policy.json")
@@ -64,19 +65,24 @@ def main():
     q_hs = quals["QUAL-UN-HS2022-001"]
     ok("8_wco_not_trade", "morocco_trade_totals" in q_hs["prohibited_uses"] and "trade_flow_value" in q_hs["prohibited_uses"]
        and "SD-TRADE" not in q_hs["applicable_subject_domains"])
-    # 9 Moroccan trade source cannot independently establish WCO classification
+    # 9 Moroccan trade source cannot independently establish WCO classification;
+    #   HS classification source binding lives on the evidence record (one-fact-one-owner)
     q_tr = quals["QUAL-OC-MA-TRADE-001"]
     ok("9_trade_not_classification", "hs_classification_identity" not in q_tr["allowed_uses"]
        and "classification" not in q_tr["permitted_evidence_kinds"]
-       and hs["source_id"] == "SRC-UN-COMTRADE-HS2022")
+       and "source_id" not in hs
+       and hs["supporting_evidence_ids"] == ["EVD-HS2022-2503-00"]
+       and hs_ev["source_id"] == "SRC-UN-COMTRADE-HS2022")
     # 10 national code and HS6 never silently conflated
     ok("10_no_code_conflation", hs["hs6"] == "2503.00" and hs["national_code"] is None and odc["hs6"] is None and odc["national_code"] is None)
     # 11 statistical product grouping vs HS commodity distinguishable
     ok("11_grouping_vs_commodity", odc["object_type"] == "statistical_product_grouping" and odc["code"] is None
        and hs["object_type"] == "hs_subheading")
-    # 12 Claim A promoted only to level proved (PARTIAL)
+    # 12 Claim A promoted only to level established via the governed admission path (PARTIAL);
+    #    HS side wording softened from bare 'PROVEN' to the governed posture (ADMITTED)
     ok("12_claim_a_partial", pc["CLM-MA-SULFUR-HS-CLASS"]["outcome"] == "PARTIAL"
-       and "PROVEN" in pc["CLM-MA-SULFUR-HS-CLASS"]["wco_hs_side"]
+       and "ADMITTED" in pc["CLM-MA-SULFUR-HS-CLASS"]["wco_hs_side"]
+       and "EVD-HS2022-2503-00" in pc["CLM-MA-SULFUR-HS-CLASS"]["supporting_evidence_ids"]
        and ("BLOCKED" in pc["CLM-MA-SULFUR-HS-CLASS"]["moroccan_mapping_side"] or "NOT PROVEN" in pc["CLM-MA-SULFUR-HS-CLASS"]["moroccan_mapping_side"]))
     # 13 relationship remains period-bounded
     ts = inst["temporal_scope"]

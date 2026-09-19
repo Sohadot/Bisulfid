@@ -106,5 +106,5 @@
     "source_locking_by_itself",
     "claim_approval_by_itself"
   ],
-  "governance_note": "Evidence captured from the official source with a reconstructable locator. NOT admitted this sprint: qualification QUAL-OC-MA-TRADE-001 is state 'reviewed' (source seeded/unverified), so admissible() withholds; and SD-TRADE requires primary_plus_corroborating with no independent second source. Derived evidence posture = evidence_collecting. Authorizes no claim activation and no route. Contract-C state = (not_public, noindex)."
+  "governance_note": "Evidence captured from the official source with a reconstructable locator. NOT admitted: although the source's bibliographic IDENTITY is now verified (status verified, lock candidate — SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md), its use-qualification QUAL-OC-MA-TRADE-001 remains 'reviewed' (deliberately NOT promoted), so admissible() still withholds; and SD-TRADE requires primary_plus_corroborating with no independent second source. Derived evidence posture = evidence_collecting (unchanged). Authorizes no claim activation and no route. Contract-C state = (not_public, noindex)."
 }

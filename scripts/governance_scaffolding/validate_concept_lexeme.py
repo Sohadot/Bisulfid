@@ -102,6 +102,11 @@ def main():
     # Governed evidence records
     sources = load(os.path.join(DATA, "sources", "source_registry.json"))
     source_ids = {s["source_id"] for s in sources["sources"]}
+    # Classification registry ids (for classification-level evidence resolution)
+    classification_ids = set()
+    cls_path = os.path.join(DATA, "classification_registry.json")
+    if os.path.exists(cls_path):
+        classification_ids = {c["classification_id"] for c in load(cls_path)["classifications"]}
     claim_ids = set()
     claims_dir = os.path.join(DATA, "claims")
     for name in os.listdir(claims_dir):
@@ -150,6 +155,12 @@ def main():
             check(bool(rec.get("lexeme_ids")), f"evidence {eid}: lexeme-level requires non-empty lexeme_ids")
         elif level == "relationship":
             check(rec.get("relationship"), f"evidence {eid}: relationship-level requires a relationship reference")
+        elif level == "classification":
+            check(kind == "classification", f"evidence {eid}: classification-level requires classification evidence_kind")
+            check(bool(rec.get("classification_ids")), f"evidence {eid}: classification-level requires non-empty classification_ids")
+            for clsid in rec.get("classification_ids", []) or []:
+                check(clsid in classification_ids,
+                      f"evidence {eid}: classification_id '{clsid}' does not resolve to classification_registry")
         else:
             check(False, f"evidence {eid}: invalid claim_level '{level}'")
 

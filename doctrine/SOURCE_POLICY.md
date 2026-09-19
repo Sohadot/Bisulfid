@@ -102,3 +102,16 @@ Source coverage is validated by:
 - `validate_claims.py`
 
 Gate 04 of the Quality Gate requires zero unsourced published claims.
+
+---
+
+## Supersession & Layering (2026-09-19)
+
+This document remains the doctrinal authority on **what may be claimed and sourced**. Several of its *mechanisms* have since been elaborated into machine-governed registries. The full mapping is in `main/data/SOURCE_POLICY_DRIFT_AUDIT.md`; in brief:
+
+- **Approved source categories** — the authoritative, extensible vocabulary now lives in `main/data/source_admissibility_policy.json` (`ratified_source_categories`) and `main/data/sources/source_registry.json` (`source_categories`). **Category alone is never admissible.**
+- **Claim ↔ source linking** — links are one-directional and two-hop: claim → `supporting_evidence_ids` → evidence → `source_id`. Sources carry no `linked_claims`; reverse links are **derived**, never stored (the evidence schema forbids `used_by`).
+- **Sourcing vs. publication** — publication/indexation is **not** implied by a sourced claim; it is derived independently by **Contract C** from six postures. This doc governs sourcing; Contract C governs publication.
+- **Lifecycle** — a source's bibliographic `status` (`seeded`→`verified` under `verification_limited`), its `source_lock_status` (`candidate`→`locked`), and its use-qualification state are **separate**. "Verified" is identity only — not locked, approved, or publishable.
+
+Nothing above weakens the Core Rule, the Permanently Blocked Content list, or the AI-is-not-a-source rule; those are reaffirmed and, via admissibility + Contract C, strengthened.

@@ -7,9 +7,10 @@
   "purpose": "Minimal governed classification knowledge objects: classification_system -> classification_version -> code -> official_label -> scope/exclusions. Distinct from concept, lexeme, and statistical-product-grouping objects. Only what Pilot 01 needs.",
   "object_types": ["hs_heading", "hs_subheading", "national_tariff_code", "statistical_product_grouping"],
   "record_schema": {
-    "required_fields": ["classification_id", "classification_system", "classification_version", "object_type", "code", "official_label", "source_id", "locator"],
-    "optional_fields": ["exclusions", "excluded_forms_go_to", "hs6", "national_code", "maps_to_concept", "mapping_status", "notes"],
-    "forbidden_fields": ["path", "route", "url_route", "in_sitemap", "indexable"]
+    "required_fields": ["classification_id", "classification_system", "classification_version", "object_type", "code", "official_label", "supporting_evidence_ids", "locator"],
+    "optional_fields": ["exclusions", "excluded_forms_go_to", "hs6", "national_code", "maps_to_concept", "maps_to_hs", "mapping_status", "attestation_note", "object_grouping_note", "chapter", "heading", "notes"],
+    "forbidden_fields": ["path", "route", "url_route", "in_sitemap", "indexable", "source_id"],
+    "one_owner_note": "A classification object does NOT carry source_id directly (source_id is forbidden). One fact -> one owner: the source binding lives on the classification EVIDENCE record (main/data/evidence/EVD-*.json), and the classification object references it via supporting_evidence_ids. supporting_evidence_ids resolves to classification-kind evidence records; an empty list means the classification IDENTITY is not (yet) supported by admitted evidence (e.g. an unproven/blocked mapping)."
   },
   "classifications": [
     {
@@ -25,7 +26,7 @@
       "exclusions": ["sublimed sulphur", "precipitated sulphur", "colloidal sulphur"],
       "excluded_forms_go_to": {"code": "2802.00", "official_label": "Sulphur; sublimed or precipitated, colloidal sulphur"},
       "chapter": {"code": "25", "label": "Salt; sulphur; earths, stone; plastering materials, lime and cement"},
-      "source_id": "SRC-UN-COMTRADE-HS2022",
+      "supporting_evidence_ids": ["EVD-HS2022-2503-00"],
       "locator": {
         "artifact": "UN Comtrade HS 2022 (H6) reference file H6.json",
         "url": "https://comtradeapi.un.org/files/v1/app/reference/H6.json",
@@ -33,8 +34,8 @@
         "retrieval_date": "2026-09-19"
       },
       "maps_to_concept": "sulfur",
-      "mapping_status": "concept_mapping_partial: 2503.00 is a SCOPED SUBSET of the general 'sulfur' concept (excludes sublimed/precipitated/colloidal forms, which are 2802.00). The HS side is PROVEN.",
-      "notes": "International HS identity established from the official UN Comtrade H6 reference (official reproduction of WCO HS 2022; WCO is the underlying authority). WCO's own artifact was interactive/gated and not directly fetched."
+      "mapping_status": "concept_mapping_partial: 2503.00 is a SCOPED SUBSET of the general 'sulfur' concept (excludes sublimed/precipitated/colloidal forms, which are 2802.00). HS-side identity is ADMITTED (evidence EVD-HS2022-2503-00; admissible=TRUE, evidence_sufficient) — not merely asserted; not source-locked and not published.",
+      "notes": "International HS identity carried by the classification evidence record EVD-HS2022-2503-00 (source SRC-UN-COMTRADE-HS2022, official UN Comtrade H6 reproduction of WCO HS 2022; WCO is the underlying authority; WCO's own artifact was interactive/gated and not directly fetched). Source binding lives on the evidence record, not here (one-fact-one-owner)."
     },
     {
       "classification_id": "CLS-MA-ODC-SOUFRES-BRUTS",
@@ -45,13 +46,14 @@
       "hs6": null,
       "national_code": null,
       "official_label": "Soufres bruts et non raffinés",
-      "source_id": "SRC-OC-MA-TRADE",
+      "supporting_evidence_ids": [],
       "locator": {
         "artifact": "Office des Changes — Rapport annuel Commerce extérieur 2024",
         "note": "The report presents 'Soufres bruts et non raffinés' as a produit-remarquable statistical line; it does NOT print an SH code."
       },
+      "attestation_note": "supporting_evidence_ids is EMPTY on purpose: no admitted CLASSIFICATION-kind evidence supports this grouping's classification identity. The label's EXISTENCE as an official statistical line is separately attested by the trade evidence EVD-MA-SULFUR-IMPORT-2024 (quantitative, not classification), but that does not establish a classification code or an HS mapping. Classification identity therefore stays UNPROVEN.",
       "maps_to_hs": "CLS-HS2022-2503-00",
-      "mapping_status": "UNPROVEN / BLOCKED (hypothesis-only): the exact Moroccan national SH code and the official mapping of this produit-remarquable label to HS were NOT acquired (douane.gov.ma tariff endpoints are WAF/access-restricted; no login workaround per policy). The label text ('bruts et non raffinés' = crude and unrefined) is CONSISTENT with HS 2503 scope, but this correspondence remains UNPROVEN — a hypothesis, not an official mapping.",
+      "mapping_status": "UNPROVEN / BLOCKED (hypothesis-only): the exact Moroccan national SH code and the official mapping of this produit-remarquable label to HS were NOT acquired (douane.gov.ma tariff endpoints are WAF/access-restricted; no login workaround per policy). The label text ('bruts et non raffinés' = crude and unrefined) is CONSISTENT with HS 2503 scope, but this correspondence remains UNPROVEN — a hypothesis, not an official mapping. supporting_evidence_ids is empty (no admitted classification evidence).",
       "object_grouping_note": "Treated as a statistical product grouping (produit remarquable), NOT confirmed as a single HS commodity. HS6 and any national code are kept as distinct nullable fields and must never be conflated.",
       "notes": "Moroccan side remains unresolved; Claim A is therefore PARTIAL, not fully supported."
     }

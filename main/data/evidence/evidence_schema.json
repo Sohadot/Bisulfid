@@ -20,12 +20,13 @@
     "claim_posture": "Owned by main/data/claims/*.json. NOT stored here."
   },
   "evidence_review_posture_values": ["unreviewed", "extracted", "scope_reviewed", "evidence_verified"],
-  "evidence_kinds": ["terminological", "scientific", "quantitative", "legal_regulatory", "qualitative"],
-  "claim_levels": ["concept", "lexeme", "relationship"],
+  "evidence_kinds": ["terminological", "scientific", "quantitative", "legal_regulatory", "qualitative", "classification"],
+  "claim_levels": ["concept", "lexeme", "relationship", "classification"],
   "level_rules": {
     "concept": "Concept-level claim (e.g. 'Concept X has formula Y'). REQUIRES evidence_kind in {scientific, quantitative, legal_regulatory}. A terminological/lexical entry can NOT satisfy a concept-level claim.",
     "lexeme": "Lexeme-level claim (e.g. 'source S records lexical form X'). REQUIRES evidence_kind == 'terminological' AND non-empty lexeme_ids.",
-    "relationship": "Relationship-level claim. REQUIRES a non-null 'relationship' reference (relationship_instance_id)."
+    "relationship": "Relationship-level claim. REQUIRES a non-null 'relationship' reference (relationship_instance_id).",
+    "classification": "Classification-identity claim (e.g. 'under HS 2022 subheading 2503.00 = <official label>'). REQUIRES evidence_kind == 'classification' AND non-empty classification_ids. A classification-level record establishes the identity/boundary of a goods-classification code ONLY; it never establishes trade totals, scientific properties, or a chemical-concept fact."
   },
   "fields": {
     "required_all_kinds": [
@@ -46,6 +47,7 @@
     "optional_common": [
       "lexeme_ids",
       "relationship",
+      "classification_ids",
       "geography",
       "jurisdiction",
       "claim_id",
@@ -58,6 +60,7 @@
       "concept_ids": "main/data/ontology/sulfur_terms.json (term_id, governed as language-neutral concept)",
       "lexeme_ids": "main/data/lexeme_registry.json (stable governed lexeme IDs; free-text is not permitted)",
       "relationship": "main/data/relationship_class_registry.json (relationship_instance_id)",
+      "classification_ids": "main/data/classification_registry.json (classification_id; required non-empty for a classification-level record)",
       "subject_domain": "main/data/subject_domain_registry.json",
       "geography": "main/data/geography_registry.json",
       "jurisdiction": "main/data/jurisdiction_registry.json"
