@@ -37,8 +37,17 @@
     "peer_reviewed_journal",
     "industry_publication",
     "market_report",
-    "academic_teaching_reference"
+    "academic_teaching_reference",
+    "official_customs_data",
+    "official_trade_statistics",
+    "national_statistical_authority",
+    "intergovernmental_trade_database",
+    "official_production_statistics",
+    "regulatory_instrument",
+    "official_standard"
   ],
+  "source_categories_note": "Vocabulary only. The last 7 categories were ratified into the admissibility policy (source-qualification-evidence-admission) and added here so future acquisition can register sources under them. NO source uses them yet. Adding them changed no source status or lock.",
+  "identity_revision_note": "identity_revision is a governed, immutable revision id for a source's bibliographic identity. A source-use qualification records qualified_against_source_revision; if identity_revision changes, that qualification becomes review-required. Added incrementally (only where a qualification depends on it) without touching status/lock.",
   "blocked_source_uses": [
     "bisulfite_data_as_bisulfide_data",
     "market_statistics_without_verified_source",
@@ -464,6 +473,7 @@
     },
     {
       "source_id": "SRC-SPEKTRUM-MOS2-DE",
+      "identity_revision": "rev-2026-05-30-1",
       "category": "authoritative_dictionary",
       "publisher": "Spektrum Akademischer Verlag, Heidelberg",
       "title": "Molybdän(IV)-sulfid - Lexikon der Chemie",

@@ -1,14 +1,16 @@
 """
-Deterministic source admissibility (source-qualification-evidence-admission sprint).
+Deterministic source admissibility + evidence-posture derivation
+(source-qualification-evidence-admission -> admission-enforcement-closure).
 
-admissible(context) -> (bool, reason). Reads:
-  - main/data/sources/source_registry.json      (source -> category; identity)
-  - main/data/source_use_qualification_registry.json  (use-scoped qualification)
-  - main/data/source_admissibility_policy.json  (roles, category roles, domain matrix, hard rules)
+Pure, read-only, unwired from deploy/CI. Enforces every input the API advertises:
+allowed_uses (allowlist), prohibited_uses (veto), allowed_categories, evidence_role,
+geography_limitation, jurisdiction_limitation, temporal_boundary, source revision,
+plus domain rules. Category ALONE never admits. Admissibility never implies claim
+approval, activation, publication, or indexation.
 
-Pure w.r.t. governance state: reads only, changes nothing, wired to nothing.
-Source category ALONE never returns admissible. Admissibility never implies claim
-approval, claim-registry activation, route publication, or indexation.
+Also derives evidence_posture (evidence_collecting|evidence_sufficient|evidence_locked)
+and evaluates sufficiency patterns, so Contract C's evidence input is governed, not
+manually asserted.
 """
 
 import json
@@ -16,6 +18,12 @@ import os
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DATA = os.path.join(ROOT, "main", "data")
+
+GOVERNED_EVIDENCE_ROLES = {
+    "primary_authoritative", "official_record", "primary_scientific",
+    "secondary_scholarly", "corroborating", "contextual", "historical",
+}
+ADMITTING_QUAL_STATES = {"qualified", "qualified_narrow"}
 
 
 def _load(*parts):
@@ -28,7 +36,9 @@ def load_all():
     qual = _load("source_use_qualification_registry.json")
     pol = _load("source_admissibility_policy.json")
     return {
+        "source_by_id": {s["source_id"]: s for s in reg["sources"]},
         "category_by_source": {s["source_id"]: s.get("category") for s in reg["sources"]},
+        "revision_by_source": {s["source_id"]: s.get("identity_revision") for s in reg["sources"]},
         "qual_by_id": {q["qualification_id"]: q for q in qual["qualifications"]},
         "category_roles": pol["category_default_roles"],
         "domains": pol["domain_admissibility"],
@@ -44,9 +54,7 @@ def _domain_rule(domains_policy, subject_domain):
 
 
 def admissible(context, data=None):
-    """context: {source_id, qualification_id, subject_domain, evidence_kind,
-    claim_level, intended_use?, geography?, jurisdiction?, temporal_scope?}.
-    Returns (bool, reason)."""
+    """Return (bool, reason). Deny-by-default; every advertised input is enforced."""
     d = data or load_all()
     sid = context.get("source_id")
     qid = context.get("qualification_id")
@@ -55,26 +63,36 @@ def admissible(context, data=None):
         return (False, f"unknown source_id '{sid}'")
     category = d["category_by_source"][sid]
 
-    # HARD RULE: category alone is never enough — a covering qualification is required.
+    # (11) category alone never admits: a covering qualification is mandatory.
     if not qid:
         return (False, "source category alone is not admissible: no source-use qualification supplied")
     q = d["qual_by_id"].get(qid)
     if q is None:
         return (False, f"unknown qualification '{qid}'")
-    # qualification must reference exactly this source
     if q["source_id"] != sid:
         return (False, f"qualification '{qid}' does not reference source '{sid}'")
-
-    # qualification state must currently admit
-    if q["qualification_state"] not in ("qualified", "qualified_narrow"):
+    if q["qualification_state"] not in ADMITTING_QUAL_STATES:
         return (False, f"qualification state '{q['qualification_state']}' is not admissible")
 
-    # prohibited use always vetoes
-    intended = context.get("intended_use")
-    if intended and intended in q.get("prohibited_uses", []):
-        return (False, f"intended_use '{intended}' is in qualification prohibited_uses (veto)")
+    # (10) source revision must match what was qualified (else review-required).
+    q_rev = q.get("qualified_against_source_revision")
+    s_rev = d["revision_by_source"].get(sid)
+    if q_rev is not None:
+        if s_rev is None:
+            return (False, f"source '{sid}' has no identity_revision but qualification expects '{q_rev}' (review-required)")
+        if s_rev != q_rev:
+            return (False, f"source revision mismatch: source '{s_rev}' != qualified '{q_rev}' (review-required)")
 
-    # scope cannot be silently broadened: domain / evidence_kind / claim_level must be permitted
+    # (1/2) intended_use: allowlist first, then veto.
+    intended = context.get("intended_use")
+    if not intended:
+        return (False, "intended_use must be explicit for a scoped qualification (deny by default)")
+    if intended in q.get("prohibited_uses", []):
+        return (False, f"intended_use '{intended}' is in qualification prohibited_uses (veto)")
+    if intended not in q.get("allowed_uses", []):
+        return (False, f"intended_use '{intended}' not in qualification allowed_uses (deny by default)")
+
+    # scope cannot broaden
     sd = context.get("subject_domain")
     if sd not in q.get("applicable_subject_domains", []):
         return (False, f"subject_domain '{sd}' outside qualification scope {q.get('applicable_subject_domains')}")
@@ -84,26 +102,138 @@ def admissible(context, data=None):
     if cl not in q.get("permitted_claim_levels", []):
         return (False, f"claim_level '{cl}' not permitted by qualification")
 
-    # domain admissibility: category must be able to play a required role and not be excluded
+    # (3) evidence_role: declared, governed, permitted by qualification, offered by category.
+    role = context.get("evidence_role")
+    if not role:
+        return (False, "evidence_role must be declared by the evidence assertion")
+    if role not in GOVERNED_EVIDENCE_ROLES:
+        return (False, f"evidence_role '{role}' not in governed vocabulary")
+    if role not in q.get("evidence_roles", []):
+        return (False, f"evidence_role '{role}' not permitted by qualification {qid}")
+    cat_roles = set(d["category_roles"].get(category, []))
+    if role not in cat_roles:
+        return (False, f"evidence_role '{role}' incompatible with source category '{category}' roles {sorted(cat_roles)}")
+
+    # domain rule
     rule = _domain_rule(d["domains"], sd)
     if rule is None:
         return (False, f"no domain admissibility rule for subject_domain '{sd}'")
     if cl not in rule.get("claim_levels", []):
-        return (False, f"claim_level '{cl}' not admissible for domain '{sd}' (allowed {rule.get('claim_levels')})")
-    cat_roles = set(d["category_roles"].get(category, []))
-    # explicit exclusions
+        return (False, f"claim_level '{cl}' not admissible for domain '{sd}'")
+
+    # (13) current-law legal context: only a governing instrument establishes current law.
+    legal_ctx = context.get("legal_context")
+    req_cat = rule.get("current_law_requires_category")
+    if req_cat:
+        if legal_ctx == "current_law" and category not in req_cat:
+            return (False, f"current-law claim requires official instrument category {req_cat}, not '{category}'")
+
+    # (2) allowed_categories allowlist for the domain (role compatibility is additional, not a substitute).
+    allowed_cats = rule.get("allowed_categories")
+    if allowed_cats is not None and category not in allowed_cats:
+        return (False, f"category '{category}' not in domain '{sd}' allowed_categories {allowed_cats}")
     if category in rule.get("forbidden_alone_categories", []):
         return (False, f"category '{category}' cannot alone establish a {sd} {cl}-level claim")
     if category in rule.get("contextual_only_categories", []):
         return (False, f"category '{category}' is contextual-only for {sd}; cannot alone establish the relationship")
-    # current-law special rule
-    req_cat = rule.get("current_law_requires_category")
-    if req_cat and category not in req_cat:
-        return (False, f"current-law/regulation claim requires an official instrument category {req_cat}, not '{category}'")
-    # required role
-    required_roles = set(rule.get("required_any_role", []))
-    if required_roles and not (cat_roles & required_roles):
-        return (False, f"category '{category}' (roles {sorted(cat_roles)}) lacks a required role {sorted(required_roles)} for {sd}/{cl}")
 
-    return (True, f"admissible: source '{sid}' via qualification '{qid}' for {sd}/{cl}/{context.get('evidence_kind')} "
+    # role must satisfy domain required role
+    required_roles = set(rule.get("required_any_role", []))
+    if required_roles and role not in required_roles:
+        return (False, f"evidence_role '{role}' does not satisfy domain '{sd}' required roles {sorted(required_roles)}")
+
+    # (4) geography enforcement
+    geo = context.get("geography")
+    if geo:
+        gl = q.get("geography_limitation")
+        if not gl:
+            return (False, f"context asserts geography '{geo}' but qualification grants no geography (language != geography)")
+        allowed_geo = gl if isinstance(gl, list) else [gl]
+        if geo not in allowed_geo:
+            return (False, f"geography '{geo}' outside qualification geography_limitation {allowed_geo}")
+
+    # (5) jurisdiction enforcement
+    jur = context.get("jurisdiction")
+    if jur:
+        jl = q.get("jurisdiction_limitation")
+        if not jl:
+            return (False, f"context asserts jurisdiction '{jur}' but qualification grants no jurisdiction")
+        allowed_jur = jl if isinstance(jl, list) else [jl]
+        if jur not in allowed_jur:
+            return (False, f"jurisdiction '{jur}' outside qualification jurisdiction_limitation {allowed_jur}")
+
+    # (6) temporal boundary enforcement
+    tb = q.get("temporal_boundary")
+    if tb:
+        as_of = (context.get("temporal_scope") or {}).get("as_of")
+        claims_current = context.get("claims_current", False)
+        historical = context.get("historical_evidence", False)
+        if claims_current and not historical:
+            return (False, "qualification is time-bounded; a current-state claim from a bounded source needs historical_evidence=True")
+        vf, vt = tb.get("valid_from"), tb.get("valid_to")
+        if as_of is not None and vf is not None and as_of < vf:
+            return (False, f"temporal: as_of {as_of} before qualification valid_from {vf}")
+        if as_of is not None and vt is not None and as_of > vt:
+            return (False, f"temporal: as_of {as_of} after qualification valid_to {vt}")
+
+    return (True, f"admissible: '{sid}' via '{qid}' role={role} for {sd}/{cl}/{context.get('evidence_kind')} "
                   f"(does NOT imply claim approval, activation, or publication)")
+
+
+# ---------------------------------------------------------------------------
+# Sufficiency evaluator + evidence-posture derivation (governed, pure).
+# ---------------------------------------------------------------------------
+
+def _independent(u1, u2):
+    """Two evidence units are NOT independent if they share source/dataset/publisher/study."""
+    for key in ("source_id", "dataset", "publisher", "underlying_study"):
+        a, b = u1.get(key), u2.get(key)
+        if a is not None and a == b:
+            return False
+    return True
+
+
+def _has_independent_pair(primary_units, corroborating_units):
+    for p in primary_units:
+        for c in corroborating_units:
+            if _independent(p, c):
+                return True
+    return False
+
+
+def evaluate_sufficiency(units, pattern):
+    """units: list of admitted evidence units {role, source_id, category, dataset?, excluded?}.
+    Returns (bool, reason). Excluded units never count."""
+    u = [x for x in units if not x.get("excluded")]
+    if pattern == "single_authoritative_sufficient":
+        ok = any(x.get("role") == "primary_authoritative" for x in u)
+        return (ok, "primary_authoritative present" if ok else "no primary_authoritative record")
+    if pattern == "primary_plus_corroborating":
+        primary = [x for x in u if x.get("role") in ("primary_authoritative", "official_record", "primary_scientific")]
+        corrob = [x for x in u if x.get("role") in ("corroborating", "official_record", "primary_authoritative", "primary_scientific")]
+        ok = bool(primary) and _has_independent_pair(primary, corrob)
+        return (ok, "primary + independent corroboration" if ok else "needs a primary and a genuinely independent corroborating record")
+    if pattern == "original_instrument_required":
+        ok = any(x.get("category") == "regulatory_instrument" or x.get("is_instrument") for x in u)
+        return (ok, "governing instrument present" if ok else "governing instrument required")
+    if pattern == "multi_source_synthesis":
+        return (False, "governance_threshold_required: multi_source_synthesis threshold not yet ratified")
+    if pattern == "explicit_source_exclusion":
+        return (False, "explicit_source_exclusion is a constraint, not a standalone sufficiency pattern")
+    return (False, f"unknown sufficiency pattern '{pattern}'")
+
+
+def derive_evidence_posture(units, pattern, lock_required_for_locked=True):
+    """Governed derivation of Contract C's evidence input. units carry:
+    {admitted, review_posture, qualification_state, source_locked, role, source_id, category, dataset?, excluded?}.
+    Returns 'evidence_collecting' | 'evidence_sufficient' | 'evidence_locked'."""
+    admitted = [u for u in units
+                if u.get("admitted") and u.get("qualification_state") in ADMITTING_QUAL_STATES and not u.get("excluded")]
+    suff_admitted, _ = evaluate_sufficiency(admitted, pattern)
+    if not suff_admitted:
+        return "evidence_collecting"
+    verified = [u for u in admitted if u.get("review_posture") == "evidence_verified"]
+    suff_verified, _ = evaluate_sufficiency(verified, pattern)
+    if suff_verified and (not lock_required_for_locked or all(u.get("source_locked") for u in verified)):
+        return "evidence_locked"
+    return "evidence_sufficient"

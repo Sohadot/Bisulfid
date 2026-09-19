@@ -178,6 +178,8 @@ def validate_information_gain():
 def validate_source_qualification():
     reg = load(os.path.join(DATA, "sources", "source_registry.json"))
     source_ids = {s["source_id"] for s in reg["sources"]}
+    revision_of = {s["source_id"]: s.get("identity_revision") for s in reg["sources"]}
+    registry_categories = set(reg["source_categories"])
     q = load(os.path.join(DATA, "source_use_qualification_registry.json"))
     valid_states = set(q["qualification_states"].keys())
     forbidden = set(q["qualification_record_schema"]["forbidden_fields"])
@@ -190,9 +192,14 @@ def validate_source_qualification():
         # references exactly one registered source
         check(isinstance(x.get("source_id"), str) and x["source_id"] in source_ids,
               f"qualification {qid}: source_id must reference exactly one registered source")
-        # no bibliographic duplication
+        # no bibliographic duplication (incl. source_edition)
         leaked = forbidden.intersection(x.keys())
         check(not leaked, f"qualification {qid}: duplicates bibliographic field(s) {sorted(leaked)}")
+        # source revision ownership: qualification references the source's identity_revision, not bibliographic strings
+        qrev = x.get("qualified_against_source_revision")
+        check(qrev is not None, f"qualification {qid}: missing qualified_against_source_revision")
+        check(qrev == revision_of.get(x.get("source_id")),
+              f"qualification {qid}: revision '{qrev}' != source identity_revision '{revision_of.get(x.get('source_id'))}'")
         # valid state; none implies publication
         check(x.get("qualification_state") in valid_states, f"qualification {qid}: bad state")
         check("route_publication" in x.get("prohibited_uses", []) or x.get("qualification_state") in ("candidate", "reviewed"),
@@ -202,10 +209,13 @@ def validate_source_qualification():
     check("source_category_alone_never_admissible" in pol["hard_rules"], "policy: missing category-alone hard rule")
     check("prohibited_use_always_vetoes" in pol["hard_rules"], "policy: missing prohibited-use veto rule")
     # every ratified category has default roles
-    ratified = set(pol["ratified_source_categories"]["existing_confirmed"]) | \
-        {c["category"] for c in pol["ratified_source_categories"]["newly_ratified"]}
+    newly = {c["category"] for c in pol["ratified_source_categories"]["newly_ratified"]}
+    ratified = set(pol["ratified_source_categories"]["existing_confirmed"]) | newly
     for c in ratified:
         check(c in pol["category_default_roles"], f"policy: category '{c}' missing default roles")
+    # NO DRIFT: policy-ratified categories must all exist in the source-registry vocabulary, and vice versa.
+    check(ratified == registry_categories,
+          f"policy/source-registry category drift: policy_only={sorted(ratified - registry_categories)} registry_only={sorted(registry_categories - ratified)}")
 
     ep = load(os.path.join(DATA, "evidence_admission_policy.json"))
     ev = ep["evidence_review_lifecycle"]["evidence_verified"]

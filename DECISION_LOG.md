@@ -5056,3 +5056,32 @@ Validators/tests: scaffolding PASS; concept↔lexeme PASS; relationship grammar 
 ### Unresolved before real evidence acquisition
 
 Admission rules for the 7 new categories into `source_registry.json`; the scoped per-claim activation mechanism; possible `source_lock_status` deprecation (Option C); corroboration thresholds per domain; biomedical claim-restriction specifics.
+
+---
+
+## Sprint — Admission Enforcement Closure
+
+**Date:** 2026-09-19
+**Scope:** enforcement only (make `admissible()` enforce the ratified policy). No 14K route, release ledger, ontology, public HTML, sitemap, robots, Search Console, indexation, claim status, or existing source status/lock change. No external source acquired. No relationship instance. No registry activated. No PR.
+**Baseline:** commit `47fa8b5d29`.
+
+### What changed (executable enforcement, still unwired from deploy/CI)
+
+- `admissible()` now enforces **every advertised input**: `allowed_uses` is an **allowlist** (deny-by-default) with `prohibited_uses` as absolute veto; domain `allowed_categories` allowlist (role is an *additional* constraint, not a substitute); declared+permitted `evidence_role`; `geography_limitation`, `jurisdiction_limitation`, `temporal_boundary`; and source-revision match. Category alone still never admits.
+- **Source-version ownership (one-fact-one-owner fix):** removed `source_edition` (bibliographic string) from the qualification; added immutable `identity_revision` to the source record (`SRC-SPEKTRUM-MOS2-DE` = `rev-2026-05-30-1`); qualification now carries only `qualified_against_source_revision`. Revision mismatch → review-required (not admissible).
+- **Governed `derive_evidence_posture()`** replaces manual assertion of Contract C's evidence input, from admission + review posture + qualification state + source lock + sufficiency + regression. **Qualification suspension regresses** posture automatically (never `evidence_locked`).
+- **Executable sufficiency evaluator** for the five patterns, with an **independence** rule (same source/dataset/publisher/study cannot self-corroborate); `multi_source_synthesis` returns `governance_threshold_required` (cannot silently pass).
+- **Category vocabulary reconciled:** the 7 ratified categories added to `source_registry.json` `source_categories` (**vocabulary only**, no source uses them, no status/lock change); validator now fails on policy↔registry category drift.
+- **Legal context field:** current-law claims require an official instrument; not every regulation-domain sentence is a current-law claim.
+
+### MoS₂
+
+`admissible()` = True only for `cautious_terminology_framing_de_dictionary_entry` (de terminology/lexeme, role primary_authoritative); denies unspecified/other/concept/industry/market/trade uses, Germany-geography inference, jurisdiction inference, temporal-out-of-range, revision mismatch, and publication. `derive_evidence_posture` = `evidence_sufficient` (source lock still `candidate`), so **Contract-C state = (not_public, noindex)**. No source/claim status changed.
+
+### Tests
+
+Source admission enforcement **21/21**; scaffolding validator, concept↔lexeme, relationship grammar (8/8), Contract C (7/7), and existing Corpus Governance CI (L0/L1/L2) all PASS.
+
+### Still unresolved before acquisition
+
+Real-source admission rules per new category; scoped per-claim activation; `source_lock_status` deprecation (Option C); per-domain corroboration/`multi_source_synthesis` thresholds; biomedical claim restrictions.

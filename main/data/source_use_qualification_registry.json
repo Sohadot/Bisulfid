@@ -20,15 +20,17 @@
   },
   "no_state_implies_publication": "No qualification state authorizes route publication or indexation. Publication is derived by Contract C from independent postures.",
   "qualification_record_schema": {
-    "required_fields": ["qualification_id", "source_id", "applicable_subject_domains", "permitted_evidence_kinds", "permitted_claim_levels", "scope", "allowed_uses", "prohibited_uses", "qualification_state", "review_date"],
-    "optional_fields": ["geography_limitation", "jurisdiction_limitation", "source_edition", "temporal_boundary", "evidence_roles"],
-    "forbidden_fields": ["title", "publisher", "url", "doi", "publication_date", "author_or_organization", "category"]
+    "required_fields": ["qualification_id", "source_id", "qualified_against_source_revision", "applicable_subject_domains", "permitted_evidence_kinds", "permitted_claim_levels", "scope", "allowed_uses", "prohibited_uses", "qualification_state", "review_date"],
+    "optional_fields": ["geography_limitation", "jurisdiction_limitation", "temporal_boundary", "evidence_roles"],
+    "forbidden_fields": ["title", "publisher", "url", "doi", "publication_date", "author_or_organization", "category", "source_edition"],
+    "revision_rule": "qualified_against_source_revision MUST equal the referenced source's identity_revision (owned by source_registry.json). If the source identity_revision changes, this qualification becomes review-required (not admissible). The qualification stores only the revision id, never human-readable bibliographic identity."
   },
   "id_rules": { "production_prefix": "QUAL-", "test_fixture_prefix": "TEST-QUAL-" },
   "qualifications": [
     {
       "qualification_id": "QUAL-SPEKTRUM-MOS2-DE-001",
       "source_id": "SRC-SPEKTRUM-MOS2-DE",
+      "qualified_against_source_revision": "rev-2026-05-30-1",
       "applicable_subject_domains": ["SD-TERMINOLOGY", "SD-LINGUISTICS"],
       "permitted_evidence_kinds": ["terminological"],
       "permitted_claim_levels": ["lexeme"],
@@ -40,9 +42,8 @@
       "review_date": "2026-09-19",
       "geography_limitation": null,
       "jurisdiction_limitation": null,
-      "source_edition": "Spektrum Lexikon der Chemie online entry (Molybdän(IV)-sulfid)",
       "temporal_boundary": null,
-      "note": "Language de is NOT geography DE. This qualification grants no geography. It does not change the source's status or source_lock_status."
+      "note": "Language de is NOT geography DE. This qualification grants no geography. Source bibliographic identity/edition is owned by source_registry.json (SRC-SPEKTRUM-MOS2-DE, identity_revision rev-2026-05-30-1); this record stores only the revision reference. It does not change the source's status or source_lock_status."
     }
   ]
 }
