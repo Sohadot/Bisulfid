@@ -55,7 +55,7 @@ Rules, in strict precedence (first matching rule wins):
 1. **Floor rule (most restrictive wins).** If ANY of these hold → `publication_state = not_public`, `indexation_state = noindex`:
    - `governance_posture ∈ {planned, relationship_qualified}`
    - `evidence_posture ∈ {evidence_collecting}` while any factual line is `source_required`
-   - `claim_posture ∈ {claim_pending, claim_forbidden, claim_required_unresolved}`
+   - `claim_posture ∈ {claim_pending, claim_forbidden}` (⚠ enum corrected — `claim_required_unresolved` was a v1 stray name, removed; see [Integrity Pass §3](#ip-3--posture-enum-canonicalization))
    - `validation_posture ∈ {not_validated, validation_failed}`
 2. **Public-but-noindex rule.** If `governance_posture ∈ {reference_draft, governed}` AND `validation_posture = validated` AND (`evidence_posture ∈ {evidence_sufficient, evidence_locked, evidence_not_required}`) AND `release_authorization = authorized` AND **Information-Gain review not yet passed** → `public_noindex` / `noindex`. *(Reachable for humans/agents, excluded from sitemap.)*
 3. **Reference-indexable rule.** `public_indexable` / `index_approved` **only if ALL** hold:
@@ -65,7 +65,7 @@ Rules, in strict precedence (first matching rule wins):
    - `validation_posture = validated`
    - `release_authorization = authorized`
    - **Information-Gain review = passed** (Deliverable 7)
-4. **Withdrawal override.** `release_authorization = withdrawn` forces at most `public_noindex` regardless of other layers (fast rollback path that never deletes the route).
+4. **Withdrawal override.** `release_authorization = withdrawn` → **`not_public` / `noindex`** (⚠ **corrected in [Integrity Pass §2](#ip-2--release-authorization-withdrawal-vs-suspension)** — v1 wrongly said "at most public_noindex," which broke the veto guarantee; a separate `indexation_hold` concept covers "authorized but temporarily out of search"). `not_authorized` on any otherwise-green combination also → `not_public` / `noindex` (never falls through).
 
 **Anti-fork guarantee:** reaching `public_indexable` requires the simultaneous, independent consent of the registry, the evidence store, the claim registry, the validators, the release ledger, *and* the Information-Gain gate. No one file can promote a page; every one can veto it.
 
@@ -151,7 +151,7 @@ source_registry.json → evidence/<id>.json → claims/*.json → ontology entit
   "publication_date": "YYYY-MM-DD | null",
   "retrieval_date": "YYYY-MM-DD",
   "temporal_scope": { "as_of": "…|null", "valid_from": "…|null", "valid_to": "…|open|null" },
-  "verification_state": "seeded|verified|locked",   // reuses source_registry vocabulary
+  "evidence_review_posture": "unreviewed|extracted|scope_reviewed|evidence_verified", // ⚠ RENAMED from v1 "verification_state" — evidence review is NOT source verification; see Integrity Pass §5. Do NOT reuse source_registry vocabulary.
   "confidence": "high|medium|low",
   "risk_class": "low|medium|high",
   "allowed_uses": [...],
@@ -237,10 +237,10 @@ One end-to-end trace through the architecture. **Nothing is changed, locked, act
 | Step | Object (actual repo record) | State today | Contract-C posture | Verdict |
 |---|---|---|---|---|
 | Source | `SRC-SPEKTRUM-MOS2-DE` (Spektrum Lexikon der Chemie, MoS₂, de) | `verification_state: verified`, **`source_lock_status: candidate`** | evidence input present but **not locked** | ⚠ blocks `evidence_locked` |
-| Source pack | `SPK-SPEKTRUM-MOS2-DE` | status **None** (not verified) | not a verified pack | ⚠ pack not verified |
+| Source pack | `SPK-SPEKTRUM-MOS2-DE` | **`verification_state: verified_limited`, `publication_status: narrow_release_only`** (registry `status: architecture_active`) — ⚠ **corrected, [Integrity Pass §8](#ip-8--corrected-mos-source-pack-interpretation)**; v1 wrongly read "status None = not verified" | a *narrow-verified* pack, not a general-release pack | ✓ verified-limited, but **not** route-publication authorization |
 | Evidence object | *(does not exist yet — no `evidence/` store)* | absent | `evidence_posture` cannot reach `sufficient/locked` via the atomic store | ⚠ store not built (this sprint only specifies it) |
 | Claim | `CLM-TERM-MOS2-DE-001` → source `SRC-SPEKTRUM-MOS2-DE`, route `de_core_mos2` | **`status: approved`** but in **`terminology_claims.json` (`status: inactive`)**; `prohibited_uses` include "route publication", "source-locking by itself" | claim approved **but registry inactive** | ⚠ blocks `claim` layer (registry not active) |
-| Ontology entity | `molybdenum_disulfide` / `molybdenum_disulfide_mos2` | `status: planned`, **`source_ids: []`**, `language_vector: ["en"]` | entity **not linked to the source**; language mismatch (evidence is `de`, entity tagged `en`) | ⚠ entity↔source link missing; language vector gap |
+| Ontology entity | `molybdenum_disulfide` / `molybdenum_disulfide_mos2` | `status: planned`, `source_ids: []`, `language_vector: ["en"]` | ⚠ **NOT a data-integrity error** — [Integrity Pass §9/§10/§11](#ip-9--concept--lexeme-ontology-analysis). This is a **Concept↔Lexeme semantics question**: a narrow German lexeme source should link via an *evidence assertion*, not by mutating an en-tagged concept node. | **open semantic question**, no mutation justified yet |
 | Route | `de_core_mos2` → `/de/terminology/molybdenum-disulfide/` | `status: planned`, `indexable:false`, `in_sitemap:false`, `required_claim_groups:["terminology_claims"]` | `governance_posture: planned` | ⚠ blocks `governed` |
 | Validation | — | not validated for this route | `not_validated` | ⚠ blocks |
 | Release auth | release ledger | this DE route not among the 13,998 EN dossier releases | `not_authorized` | ⚠ blocks |
@@ -277,7 +277,7 @@ Assemble candidate pairs (drawn from the existing 14K + planned pilots) hand-lab
 | `sitemap_policy.json`, sitemap generators (`atlas_generate_sitemaps_*`), `generate_robots.py` | **Replace** inputs: consume derived `indexation_state` only | single derived source |
 | `main/data/evidence/` | **New** store (D3) | atomic provenance |
 | `subject_domain_registry.json`, `geography_registry.json`, `jurisdiction_registry.json`, `relationship_class_registry.json` | **New** registries (D2/D4/D5) | first-class dimensions |
-| `ontology/sulfur_terms.json` | **Extend** entities with `source_ids` links + correct `language_vector`; add domain tags feeding the domain registry seed | fix MoS₂-type gaps |
+| `ontology/sulfur_terms.json` | ⚠ **DEFERRED — no mutation until the Concept↔Lexeme audit resolves (Integrity Pass §9–§11).** The v1 "extend `source_ids` + correct `language_vector`" items are **removed** from the approved first sprint. | semantics unestablished; do not "repair" |
 | `claims/*.json` + `source_registry.json` | **No change this sprint**; later: activation policy + source-lock workflow | governance decision pending |
 | Corpus generators (`generate_14000_…`, `generate_7500_…`, `generate_1500_…`) | **Deprecate** for public generation; replace with evidence→object→surface composer | kill Route→Template→Text |
 | CI (`corpus-governance-ci.yml`) | **Add** derived-state + ledger↔routes consistency checks in **audit/report-only** mode first | no hard-fail on historical mismatch |
@@ -319,7 +319,7 @@ Assemble candidate pairs (drawn from the existing 14K + planned pilots) hand-lab
 - **Semantic dimension contract** — 11 dimensions with owners and non-overlap rules; domain permanently separated from reference_layer; "no dimension creates a URL" is constitutional.
 - **Evidence architecture** — atomic schema bridging source→evidence→claim→entity/relationship→object→surface, with kind-specific field profiles and a strict missing-value law.
 - **Geography/relationship & temporal/jurisdiction models** — wired as evidence-qualified relationship systems; the Germany/Morocco/Gulf/China traps are closed by rule.
-- **MoS₂ proof trace** — the architecture correctly explains why the strongest object is still not publishable, and surfaced two concrete data gaps (ontology entity `source_ids: []`; `de` evidence vs `en` entity language vector).
+- **MoS₂ proof trace** — the architecture correctly explains why the strongest object is still not publishable. (⚠ The two "data gaps" v1 named are reclassified as an **open Concept↔Lexeme semantic question**, not errors to fix — Integrity Pass §9–§11.)
 - **Information-Gain** — signal set + calibration methodology defined; no arbitrary threshold.
 - **Knowledge-object-before-URL** — ratified as law.
 
@@ -336,7 +336,7 @@ Design/scaffolding only — **no public HTML, sitemap, robots, or indexation cha
 - `DECISION_LOG.md` — append the Deliverable-9 ratification entry.
 - **New (empty/seed) registries:** `main/data/subject_domain_registry.json`, `main/data/geography_registry.json`, `main/data/jurisdiction_registry.json`, `main/data/relationship_class_registry.json`.
 - **New store:** `main/data/evidence/` with `EVD-MOS2-DE-001.json` as the single seed record (from the existing verified source; no status change).
-- `main/data/ontology/sulfur_terms.json` — link `molybdenum_disulfide*` `source_ids` and correct `language_vector` (data-integrity fix; no publication effect).
+- ~~`main/data/ontology/sulfur_terms.json` — link `source_ids` / correct `language_vector`~~ **REMOVED from the first sprint (Integrity Pass §11).** No ontology mutation until the Concept↔Lexeme audit is decided by the owner.
 - **New spec docs** for the derived-state function + calibration dataset skeleton (`main/data/information_gain/calibration_pairs.json`, empty).
 - **No change** to `routes.json`, `release_ledger.json`, `site/public/**`, sitemaps, robots, source statuses, claim statuses, CI behavior.
 
@@ -347,4 +347,209 @@ Stand up the **governance scaffolding** only: ratify Contract C in the log; crea
 Design package complete. **Not implemented.** No state engine built, no 14K migration, no source collection at scale, no indexation change, no production PR. Awaiting owner review and explicit approval of the first implementation sprint.
 
 ---
-*Authority & Dimension Reconciliation — READ-ONLY design package. No production files modified.*
+---
+
+# Architecture Integrity Pass
+
+**READ-ONLY precision pass · 2026-09-19.** No production files, registries, ontology, evidence files, or DECISION_LOG modified. This section is **authoritative** wherever it corrects earlier deliverables. It closes state-machine ambiguities and prevents duplicated authority inside the evidence model.
+
+## IP-1 — Contract C as a total, exhaustive state machine
+
+Information Gain is now an **explicit input posture**, not an out-of-band check.
+
+**Six input postures (exclusive owners):**
+| Posture | Owner | Values |
+|---|---|---|
+| `governance_posture` | `routes.json` | `planned` · `relationship_qualified` · `reference_draft` · `governed` |
+| `evidence_posture` (derived from source eligibility + evidence review — IP-5) | evidence store + `source_registry.json` | `evidence_not_required` · `evidence_collecting` · `evidence_sufficient` · `evidence_locked` |
+| `claim_posture` | `claims/*.json` | `claim_not_required` · `claim_pending` · `claim_approved_narrow` · `claim_approved` · `claim_forbidden` |
+| `validation_posture` | validators / Quality Gate | `not_validated` · `validated` · `validation_failed` |
+| `information_gain_posture` | **Information-Gain reviewer (governance role)** | `ig_not_required` · `ig_not_reviewed` · `ig_passed` · `ig_failed` |
+| `release_authorization` | `release_ledger.json` | `not_authorized` · `authorized` · `withdrawn` |
+
+Plus one **independent indexation modifier** (IP-2): `indexation_hold ∈ {none, held}`, owner = SEO/governance role.
+
+**Total derive function** `derive(governance, evidence, claim, validation, ig, release, hold) → (publication_state, indexation_state)`, evaluated by first match; the ordered rules are provably exhaustive:
+
+```
+R0  release == withdrawn                                  -> (not_public,      noindex)
+R1  release == not_authorized                             -> (not_public,      noindex)
+R2  governance ∈ {planned, relationship_qualified}        -> (not_public,      noindex)
+R3  validation ∈ {not_validated, validation_failed}       -> (not_public,      noindex)
+R4  claim ∈ {claim_pending, claim_forbidden}              -> (not_public,      noindex)
+R5  evidence == evidence_collecting                       -> (not_public,      noindex)
+    # From here: governance ∈ {reference_draft, governed}, validation == validated,
+    # claim ∈ {not_required, approved_narrow, approved}, evidence ∈ {not_required, sufficient, locked},
+    # release == authorized.
+R6  governance == reference_draft                         -> (public_noindex,  noindex)
+R7  ig ∈ {ig_not_reviewed}                                -> (public_noindex,  noindex)
+R8  ig == ig_failed                                       -> (public_noindex,  noindex)
+    # From here: governance == governed AND ig ∈ {ig_passed, ig_not_required}.
+R9  evidence == evidence_sufficient (not yet locked)      -> (public_noindex,  noindex)
+R10 (factual path)  evidence == evidence_locked
+     AND claim ∈ {claim_approved, claim_approved_narrow}  -> (public_indexable, index_approved*)
+R11 (non-factual path, IP-4) evidence == evidence_not_required
+     AND claim == claim_not_required
+     AND non_factual_class_certified == true              -> (public_indexable, index_approved*)
+R12 otherwise (e.g. evidence_not_required but claim still
+     required, or mixed) -> SAFE DEFAULT                  -> (public_noindex,  noindex)
+*  indexation_state = noindex if indexation_hold == held, else index_approved   (IP-2)
+```
+
+**Exhaustiveness argument (property-spec, not code):**
+- Every input value appears in at least one guard; R0–R5 catch all "any-blocking" values; R6–R9 partition the remaining `reference_draft`/`ig`/`evidence-sufficient` cases; R10–R11 are the only two doorways to `public_indexable`; **R12 is a catch-all SAFE DEFAULT** so **no combination is unmatched.** The default is the *most restrictive publishable-adjacent* state (`public_noindex`), never `index`.
+- **Property tests to encode (design):**
+  1. *Totality:* for the full Cartesian product of input values, `derive` returns exactly one `(publication_state, indexation_state)` — no exception, no null.
+  2. *Monotonic veto:* flipping any single posture to a blocking value never *raises* the output above its prior level.
+  3. *Indexable requires all-green:* `index_approved` ⇒ governance=`governed` ∧ validation=`validated` ∧ release=`authorized` ∧ ig∈{passed,not_required} ∧ hold=none ∧ ((evidence_locked ∧ claim_approved*) ∨ non-factual-certified).
+  4. *Hold isolation:* `indexation_hold=held` changes only `indexation_state`, never `publication_state`.
+
+## IP-2 — Release authorization: withdrawal vs suspension (non-overlapping terms)
+
+The five terms now have disjoint meanings:
+| Term | Owner | Effect |
+|---|---|---|
+| **authorization** | release_ledger | permission to be public at all (`authorized`/`not_authorized`) |
+| **publication** | derived | whether content is served (`not_public`/`public_noindex`/`public_indexable`) |
+| **indexation** | derived | whether search may index (`noindex`/`index_candidate`/`index_approved`) |
+| **withdrawal** | release_ledger | authorization revoked → **`not_public` + `noindex`** (content pulled; corrects v1's "at most public_noindex") |
+| **suspension / `indexation_hold`** | SEO-governance role | authorization **intact**, page stays served, but temporarily **out of search** (`indexation_state = noindex`) |
+
+"Keep an authorized page public but out of search" is now `indexation_hold=held`, **not** withdrawal. `not_authorized` is explicitly handled by R1 (never falls through).
+
+## IP-3 — Posture-enum canonicalization
+
+Audited every state name across posture definitions, transition tables, `derive()`, migration map, and the DECISION_LOG draft. Canonical enums are exactly those in IP-1. Corrections:
+- **Removed** the stray `claim_required_unresolved` (v1 floor rule); the unresolved case is `claim_pending`.
+- `evidence` uses the IP-1 four values only (no `source_required_unresolved` inside evidence; that condition lives in source posture, IP-5).
+- Each name is now **defined once, used consistently**; no aliasing of semantically distinct states.
+
+## IP-4 — Non-factual indexable pages (narrow, no loophole)
+
+Some methodology / navigation / governance / corpus-orientation pages make **no externally factual assertion** and legitimately need no source-bound claim. They may reach `public_indexable` via **R11**, but only under a hard gate:
+- The route's **`page_type` belongs to a governed `non_factual_class`** (e.g. `PT_METHODOLOGY_GOVERNANCE`, `PT_MULTILINGUAL_HUB`, index/map, corpus-status) **AND**
+- a **validator certifies `non_factual_class_certified = true`** — i.e. it contains no sentence asserting an external fact that would require evidence (no chemistry/economic/legal/quantitative claim). **AND** governance=`governed`, validation=`validated`, release=`authorized`, ig∈{passed,not_required}, hold=none.
+- `evidence_not_required` / `claim_not_required` are **only** honored for such certified classes. **A factual page cannot self-declare them** — the certifier inspects content and fails any page that makes an evidence-bearing assertion. This is *not* a rescue path for thin dossier pages (they assert facts and would fail certification, and would fail Information-Gain regardless).
+
+## IP-5 — Source vs Evidence vs Claim: three independent postures
+
+The atomic chain is redefined so no layer duplicates another's authority:
+
+```
+source  →  evidence assertion  →  claim  →  knowledge object
+```
+| Posture | Question | Owner (sole writer) | States |
+|---|---|---|---|
+| **source posture** | Is the *source* identified, authoritative for the permitted use, and locked? | `source_registry.json` (`status`, `source_lock_status`) | `seeded` · `verified` · `verified_limited` · lock: `candidate`/`locked` |
+| **evidence_review_posture** | Was *this specific fact* extracted correctly from that source and scope-reviewed? | evidence record | `unreviewed` · `extracted` · `scope_reviewed` · `evidence_verified` |
+| **claim posture** | Is the *statement we intend to make* approved for its use? | `claims/*.json` | per IP-1 |
+
+**Derived `evidence_posture`** (used by Contract C) is a function of **both** source eligibility/lock **and** `evidence_review_posture` — e.g. `evidence_locked` requires `source_lock_status=locked` **and** `evidence_review_posture=evidence_verified`. They remain independent facts owned by different files; neither is copied into the other. This removes the v1 error of reusing `source_registry` verification vocabulary inside evidence files.
+
+## IP-6 — De-duplicated evidence fields (one fact, one owner)
+
+Applying *one fact → one authoritative owner → all else derived*:
+- **`source_type` REMOVED from the evidence schema** — it is authoritative in `source_registry.json`; evidence **references `source_id` and derives** the type. (No drift.)
+- **`used_by` REMOVED as an editable field.** Links are one-directional: **knowledge objects / claims → evidence_ids**. The reverse (`evidence → consumers`) is **derived by an index/validator**, never hand-maintained. (Prevents a second two-authority fork at the evidence layer.)
+- General audit result: no other evidence field copies authoritative data from source/claim/ontology; all cross-references are by ID.
+
+## IP-7 — `confidence` governed or removed
+
+`confidence: high|medium|low` had no methodology → **removed from the minimal schema** for now. BISULFID will not expose subjective confidence labels. Evidentiary limitation is expressed instead by **governed, defined facts**: `evidence_review_posture`, `source.status`/`source_lock_status`, `risk_class`, and explicit `temporal_scope`/`allowed_uses`/`prohibited_uses`. A future `confidence` may return only with a written rubric (what it measures, who assigns it, criteria per level, whether it affects publication).
+
+## IP-8 — Corrected MoS₂ source-pack interpretation
+
+**Corrected (verified against `source_pack_registry.json`):** `SPK-SPEKTRUM-MOS2-DE` has **`verification_state: verified_limited`** and **`publication_status: narrow_release_only`**; the registry's own `status` is `architecture_active`. v1's "status None → not verified" was wrong (it looked for a generic `status` key that packs don't carry). **However, the conclusion stands:** `verified_limited` / `narrow_release_only` is *not* route-publication authorization — it explicitly scopes a narrow German dictionary entry (`allowed_claims: [CLM-TERM-MOS2-DE-001]`, `covered_route_patterns: [de_core_mos2]`) and does not, by itself, satisfy Contract C's `release_authorization`, `evidence_locked`, active-claim-registry, validation, or Information-Gain requirements. The MoS₂ proof-trace verdict (**not publishable**) is unchanged.
+
+## IP-9 — Concept ↔ Lexeme ontology analysis
+
+Auditing `sulfur_terms.json`, the ontology currently **conflates two things** in one node type:
+- a **language-neutral Concept/Entity** (the chemical/material thing), and
+- a **language-specific Lexeme/Term** (a textual form naming it), via `language_vector`.
+
+Evidence: nodes like `sulfid` (`["de"]`) vs `sulfide` (`["en"]`) are really *lexemes* of one concept, while `molybdenum_disulfide` (`["en"]`) is being used as *both* the concept and its English lexeme. This conflation is safe at EN/DE scale but breaks when AR/ZH/JA/FR/ES arrive (a concept cannot "be" one language).
+
+**Proposed minimal distinction (design only, no ontology change now):**
+```
+Concept/Entity   (language-neutral)   e.g. CONCEPT: molybdenum_disulfide (MoS₂)
+   has-lexeme →  Lexeme (en): "Molybdenum disulfide"
+   has-lexeme →  Lexeme (de): "Molybdän(IV)-sulfid"
+```
+Claims and evidence attach at the correct level: a **lexeme-level** claim (German dictionary form) vs a **concept-level** claim (identity/chemistry). This can likely be represented **within** `sulfur_terms.json` by adding an explicit `node_type: concept|lexeme` and a `concept_ref` on lexeme nodes — a *minimal* layering, not a new ontology. Final choice (in-file typing vs a small separate lexical layer) is an **owner semantics decision**, deferred.
+
+## IP-10 — Does MoS₂ require an ontology mutation? (No — evidence/lexeme linkage)
+
+`ontology.source_ids` semantics are **undefined today** — it could mean "source proves entity existence," "proves a lexical form," "supports the node generally," or "supports a relationship." Until defined, attaching the **narrow German Spektrum source** to the **en-tagged concept node** would **overstate** what the source proves (a German lexeme entry ≠ proof of the language-neutral entity). Therefore:
+- **The correct linkage is via an atomic evidence assertion:** `German lexeme "Molybdän(IV)-sulfid" → EVD (Spektrum) → CLM-TERM-MOS2-DE-001 → concept molybdenum_disulfide`.
+- **No `language_vector` change and no `source_ids` mutation is justified.** The MoS₂ "gaps" are **not data-integrity errors**; they are symptoms of the unresolved Concept↔Lexeme boundary (IP-9).
+
+## IP-11 — Vocabulary registration vs instance evidence-qualification
+
+Distinguish **existence of a controlled term** from **truth of an instantiated use**. Evidence is required only for the latter.
+
+| Layer | Requires evidence to exist? | Requires evidence to be *used/asserted*? |
+|---|---|---|
+| **subject_domain** vocabulary (`registered`/`reserved`) | No — may register `physics` as a future domain | Yes — `evidence_active` domain requires a verified evidence record using it |
+| **geography** record (controlled place identity) | No — Germany/Morocco/China exist as places | — |
+| **relationship_class** (`importer`, `producer`, `terminology_origin`, …) | No — class is a schema concept, governed independently | — |
+| **relationship *instance*** `entity → class → geography → period` | — | **Yes** — e.g. `ENTITY-X → importer → Morocco → 2025` needs a verified source |
+
+**Refined geography model (corrects v1):** a place is **not** `reserved|evidence_qualified`. Instead:
+- **geography record** = controlled place identity (always simply "exists").
+- **relationship instance** carries the qualification: `unqualified | evidence_collecting | evidence_qualified`.
+
+This removes the confusion between *"we have not proved a sulfur relationship with Morocco"* and *"Morocco is not a qualified geography."* Morocco is a valid place; the **relationship instance** is what remains `evidence_collecting`. Same split applies to subject_domain (reserved name vs evidence-active) and relationship-class (defined class vs evidenced instance).
+
+## IP — Revised first implementation sprint file list (supersedes Deliverable 8 / final report)
+
+Scaffolding only; **no public HTML, sitemap, robots, indexation, source status, or claim status changes:**
+- `DECISION_LOG.md` — append the **principle-only** ratification (IP-15 below).
+- **New empty/seed registries:** `subject_domain_registry.json` (with `registered` vs `evidence_active` split), `geography_registry.json` (place identities only), `jurisdiction_registry.json`, `relationship_class_registry.json` (classes defined, instances empty).
+- **New evidence store** `main/data/evidence/` with **one seed record** `EVD-MOS2-DE-001` linking the **German lexeme → Spektrum source → CLM-TERM-MOS2-DE-001 → concept** (per IP-10), using `evidence_review_posture` (IP-5), **no `source_type`/`used_by`/`confidence`** (IP-6/IP-7). No source/claim status changed.
+- **Derived-state function specification + property tests** (IP-1) as spec artifacts, **unwired from deploy**.
+- **Information-Gain calibration skeleton** `main/data/information_gain/calibration_pairs.json` (empty).
+- **REMOVED from the sprint (deferred to owner decision):** any `ontology/sulfur_terms.json` mutation — no `language_vector` change, no `source_ids` addition (IP-9/IP-10).
+- **No change** to `routes.json`, `release_ledger.json`, `site/public/**`, sitemaps, robots, CI behavior.
+
+## IP-15 — Revised ratification draft (principle vs implementation constants)
+
+Replace Deliverable 9's Decision 1 wording so the log claims only what is settled:
+
+> **Ratified principle (owner-approved):** Contract C — Derived Canonical State — is the target publication authority: publication and indexation are **derived**; **no single legacy file (`routes.json` or `release_ledger.json`) independently controls indexation**; `routes.json` owns governed route posture, `release_ledger.json` owns release authorization + history, evidence/claim/validation/Information-Gain own knowledge sufficiency.
+>
+> **NOT yet ratified (pending this integrity pass being implemented and reviewed):** the exact transition constants and the total `derive` truth table (IP-1); withdrawal vs `indexation_hold` semantics (IP-2); the non-factual indexable path (IP-4); source/evidence/claim posture separation constants (IP-5); and the ontology **Concept↔Lexeme** semantics (IP-9). These are **implementation constants**, ratified only after the total state machine and the Concept/Lexeme decision are finalized.
+
+Decisions 2–6 (supersession-with-history, semantic dimensions, new registries, knowledge-object-before-URL, no-arbitrary-IG-threshold) stand as principles.
+
+---
+
+# Integrity Pass — Final Report
+
+**Which architecture decisions are now truly final:**
+- Contract C **as a principle** (derived state; no single legacy file controls indexation).
+- The **six-input + hold** posture model with **Information-Gain as an explicit posture** (IP-1).
+- **Withdrawal = `not_public`+`noindex`; suspension = `indexation_hold`** (IP-2) — terms disjoint.
+- **Source ≠ Evidence ≠ Claim** as three independently-owned postures (IP-5).
+- **One-fact-one-owner**: `source_type` and `used_by` removed/derived; `confidence` removed (IP-6/IP-7).
+- **Vocabulary existence ≠ instance truth**; geography qualification lives on the **relationship instance**, not the place (IP-11).
+- **Knowledge-object-before-URL** law (unchanged).
+
+**Which semantics remain unresolved (need owner judgment):**
+- Ontology **Concept↔Lexeme** boundary — in-file `node_type` layering vs a small separate lexical layer (IP-9). *Blocks any MoS₂ ontology touch.*
+- Exact **derive() transition constants** and the certified **`non_factual_class`** list (IP-1/IP-4).
+- **Source-lock workflow + claim-registry activation** policy (unchanged from prior sprint).
+- Which **reserved domains / relationship classes** activate, and **new-audience** admissions.
+
+**Is Contract C now a total deterministic state machine?**
+**Yes — as a specification.** With Information-Gain as an explicit input, the ordered rules R0–R12 include a catch-all SAFE DEFAULT, so every combination of input postures maps to exactly one `(publication_state, indexation_state)`; four property tests (totality, monotonic veto, all-green-for-index, hold-isolation) are specified. It is deterministic and total on paper; it is **not implemented**, and its constants are not yet ratified.
+
+**Does MoS₂ require an ontology mutation, or only evidence/lexeme linkage?**
+**Only an evidence/lexeme linkage.** The correct path is a single atomic evidence assertion (German lexeme → Spektrum source → `CLM-TERM-MOS2-DE-001` → concept). **No `language_vector` change and no `source_ids` mutation is justified**, and both are removed from the first sprint until the Concept↔Lexeme audit is decided.
+
+**Revised exact scope of the first implementation sprint:**
+Governance **scaffolding only** — append the *principle-only* DECISION_LOG entry (IP-15); create the four new registries (with vocabulary-vs-instance splits); create the evidence store with the single `EVD-MOS2-DE-001` record (IP-5/IP-6/IP-7 schema); lay down the derive() **spec + property tests** unwired from deploy; create the empty Information-Gain calibration file. **No ontology mutation, no public HTML, no sitemap/robots/indexation change, no source/claim status change, no CI hard-fail, no PR.**
+
+**Stop.** Design updated. Implementation **not** begun.
+
+---
+*Authority & Dimension Reconciliation + Architecture Integrity Pass — READ-ONLY design package. No production files modified.*
