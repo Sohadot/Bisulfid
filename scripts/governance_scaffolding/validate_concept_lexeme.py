@@ -110,6 +110,15 @@ def main():
             for c in cj.get("claims", []):
                 if isinstance(c, dict) and c.get("claim_id"):
                     claim_ids.add(c["claim_id"])
+    # Pilot-scoped (non-operational) claim records live under main/data/pilots/*claims*.json.
+    pilots_dir = os.path.join(DATA, "pilots")
+    if os.path.isdir(pilots_dir):
+        for name in os.listdir(pilots_dir):
+            if name.endswith(".json") and "claims" in name.lower():
+                cj = load(os.path.join(pilots_dir, name))
+                for c in cj.get("claims", []):
+                    if isinstance(c, dict) and c.get("claim_id"):
+                        claim_ids.add(c["claim_id"])
 
     ev_dir = os.path.join(DATA, "evidence")
     governed_records = 0

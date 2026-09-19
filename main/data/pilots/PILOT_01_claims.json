@@ -1,0 +1,35 @@
+{
+  "version": "0.1.0",
+  "sprint": "morocco-sulfur-trade-pilot-01",
+  "site": "bisulfid.com",
+  "status": "non_operational",
+  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "main/data/claim_activation_policy.json", "DECISION_LOG.md"],
+  "purpose": "Pilot-scoped, NON-OPERATIONAL claim records for Pilot 01. Kept OUT of the canonical claim registries because per-claim operational activation is unresolved (claim_activation_policy.json). Individually reviewed; none is operational, none is published.",
+  "operational": false,
+  "claims": [
+    {
+      "claim_id": "CLM-MA-SULFUR-HS-CLASS",
+      "pilot_claim": "A — classification identity",
+      "statement_intended": "Under an applicable official trade nomenclature, commodity code X represents the exact official sulfur commodity description Z.",
+      "outcome": "BLOCKED",
+      "reason": "The Office des Changes 2024 annual report states NO HS/nomenclature code for sulfur; it uses the product label 'Soufres bruts et non raffinés'. No authoritative classification source (WCO/ADII) was fetched in this pilot. Additionally the label is a crude/unrefined SUBSET of the general 'sulfur' concept, so even a label-to-concept mapping is only partial. Not asserted from model memory (inadmissible AI summary).",
+      "supporting_evidence_ids": []
+    },
+    {
+      "claim_id": "CLM-MA-SULFUR-IMPORT-OBS-2024",
+      "pilot_claim": "B — Morocco import observation",
+      "statement": "Morocco recorded imports of the product 'Soufres bruts et non raffinés' during calendar year 2024 (official Office des Changes statistics).",
+      "outcome": "SUPPORTED_BY_EVIDENCE (non-operational)",
+      "scope_guard": "Existence of official recorded import activity only. NOT 'Morocco depends on sulfur imports', NOT 'major importer', NOT 'needs sulfur for phosphates'.",
+      "supporting_evidence_ids": ["EVD-MA-SULFUR-IMPORT-2024"]
+    },
+    {
+      "claim_id": "CLM-MA-SULFUR-IMPORT-MEASURE-2024",
+      "pilot_claim": "C — quantitative import measure",
+      "statement": "Official recorded 2024 import VALUE of 'Soufres bruts et non raffinés' (reporter Morocco, flow imports, partner Monde) = 9.102 MDH (principaux produits importés table; variant 9.108 MDH in the produits-bruts table); average unit price = 1.099 DH/T. Absolute quantity in tonnes is NOT stated by the source.",
+      "outcome": "PARTIALLY_SUPPORTED (value + unit price supported; tonnage BLOCKED)",
+      "scope_guard": "Value and unit price exactly as printed. Tonnage NOT derived from value/price. No industrial-demand inference.",
+      "supporting_evidence_ids": ["EVD-MA-SULFUR-IMPORT-2024"]
+    }
+  ]
+}

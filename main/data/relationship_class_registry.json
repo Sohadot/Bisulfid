@@ -62,5 +62,19 @@
     { "relationship_class_id": "REL-TERMINOLOGY-ORIGIN", "label": "has_terminology_context_in", "proposition": "subject (lexeme) has an evidence-qualified terminology-usage context in object (geography). NOTE: this is separate from the lexeme's LANGUAGE; a German-language lexeme does not imply a Germany context — that requires its own evidence.", "subject_types": ["lexeme"], "object_types": ["geography"], "primary_evidence_required": ["authoritative_dictionary", "chemical_nomenclature_standard", "peer_reviewed_journal"], "secondary_contextual": ["academic_teaching_reference"], "state": "registered" },
     { "relationship_class_id": "REL-REGULATORY-JURISDICTION", "label": "regulates", "proposition": "subject (jurisdiction) regulates object (substance/concept) via a governed instrument", "subject_types": ["jurisdiction"], "object_types": ["concept"], "primary_evidence_required": ["regulatory_instrument"], "secondary_contextual": [], "state": "registered" }
   ],
-  "relationship_instances": []
+  "relationship_instances": [
+    {
+      "relationship_instance_id": "REL-INST-MA-SULFUR-IMPORT-2024",
+      "relationship_class_id": "REL-IMPORTER",
+      "subject_ref": "GEO-MA",
+      "subject_type": "geography",
+      "object_ref": "sulfur",
+      "object_type": "concept",
+      "qualification_state": "evidence_collecting",
+      "evidence_ids": ["EVD-MA-SULFUR-IMPORT-2024"],
+      "temporal_scope": {"as_of": null, "valid_from": "2024-01-01", "valid_to": "2024-12-31"},
+      "object_scope_note": "Object is the general 'sulfur' concept, but the underlying source label is 'Soufres bruts et non raffinés' (crude/unrefined subset). Mapping is PARTIAL; not qualified.",
+      "note": "First real trade relationship instance (Pilot 01). Direction: Morocco (subject) imports sulfur (object) — GEO-MA --REL-IMPORTER--> sulfur. NOT timeless: bounded to 2024. qualification_state=evidence_collecting (NOT evidence_qualified): SD-TRADE requires primary_plus_corroborating and only one non-independent official source exists; the source-use qualification is 'reviewed' (not admitting). Authorizes no publication. Derived Contract-C state = (not_public, noindex)."
+    }
+  ]
 }

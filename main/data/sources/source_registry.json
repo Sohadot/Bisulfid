@@ -510,6 +510,40 @@
         "Guardrail policy update Sprint 5N-S: bibliographic status verified under verification_limited — not claim approval, source-locking, route publication, or registry activation."
       ],
       "notes": "Spektrum Lexikon der Chemie. Entry: Molybdän(IV)-sulfid, in Lexikon der Chemie. Access date 2026-05-30. Route scope: de_core_mos2. Bibliographic reference only; no full copyrighted text copied. Verification review Sprint 5N-Q: evidence supports verified posture for dictionary-entry terminology scope only. Guardrail transition Sprint 5N-S: bibliographic status verified; source_lock_status candidate; not claim approval or source-locking."
+    },
+    {
+      "source_id": "SRC-OC-MA-TRADE",
+      "identity_revision": "rev-2026-09-19-1",
+      "category": "official_trade_statistics",
+      "publisher": "Office des Changes (Royaume du Maroc)",
+      "title": "Commerce extérieur du Maroc — Rapport annuel 2024 / Base de données du commerce extérieur",
+      "author_or_organization": "Office des Changes — Royaume du Maroc (official foreign-trade statistics authority)",
+      "url": "https://www.oc.gov.ma/sites/default/files/2025-07/Rapport%20Commerce%20Ext%C3%A9rieur%202024%20VF.pdf",
+      "language": "fr",
+      "status": "seeded",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-09-19",
+      "use_for": [
+        "official Moroccan foreign-trade statistics observation (reporter=Morocco)",
+        "official recorded import value/unit-price for the product label as printed, within the reviewed 2024 annual-report scope"
+      ],
+      "do_not_use_for": [
+        "HS code / classification identity (no HS code stated in this document)",
+        "sulfur industrial demand or phosphate economics",
+        "company procurement or investor conclusions",
+        "global sulfur supply or market forecasting",
+        "derived tonnage from value/price",
+        "legal or regulatory claims",
+        "route publication by itself",
+        "claim approval by itself",
+        "source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source acquired in Pilot 01 (Morocco x Sulfur Trade). Status seeded / lock candidate per existing SOURCE_POLICY (registered, unverified). identity_revision set at first registration (no incremental exception).",
+        "Interactive database (services.oc.gov.ma/DataBase/CommerceExterieur/login) is authentication-gated and was NOT used; the static official annual report PDF was used as the primary official artifact.",
+        "Product label used by the source is 'Soufres bruts et non raffinés' (crude and unrefined sulfurs) — a subset of the general sulfur concept; classification-to-concept mapping is PARTIAL (see pilot report)."
+      ],
+      "notes": "Office des Changes is Morocco's official foreign-trade statistics authority. Category official_trade_statistics (aggregated official statistics), not official_customs_data (line-level customs declarations are administered by ADII). Retrieved 2026-09-19. Bibliographic/identity reference only. Not verified, not locked, not claim-approved, not published."
     }
   ]
 }

@@ -223,6 +223,54 @@ def evaluate_sufficiency(units, pattern):
     return (False, f"unknown sufficiency pattern '{pattern}'")
 
 
+def trade_quant_classification_ok(evidence_record):
+    """Rule: quantitative trade evidence MUST carry a commodity classification code/version.
+    Returns True only if the evidence locator provides classification_code AND classification_system."""
+    loc = evidence_record.get("locator") or {}
+    return bool(loc.get("classification_code")) and bool(loc.get("classification_system"))
+
+
+def build_admission_unit(evidence_record, qualification_id, intended_use, data=None):
+    """Production bridge: build an evidence unit whose `admitted` flag is COMPUTED by
+    admissible(), never taken from the input. A caller cannot forge admitted=true.
+    Returns (unit, reason)."""
+    d = data or load_all()
+    sid = evidence_record["source_id"]
+    q = d["qual_by_id"].get(qualification_id, {})
+    ctx = {
+        "source_id": sid,
+        "qualification_id": qualification_id,
+        "subject_domain": (evidence_record.get("subject_domain") or [None])[0],
+        "evidence_kind": evidence_record.get("evidence_kind"),
+        "claim_level": evidence_record.get("claim_level"),
+        "evidence_role": evidence_record.get("evidence_role"),
+        "intended_use": intended_use,
+        "geography": (evidence_record.get("geography") or [None])[0],
+        "jurisdiction": evidence_record.get("jurisdiction"),
+        "temporal_scope": evidence_record.get("temporal_scope"),
+    }
+    admitted, reason = admissible(ctx, d)
+    unit = {
+        "admitted": admitted,                                   # COMPUTED, not trusted from input
+        "review_posture": evidence_record.get("evidence_review_posture"),
+        "qualification_state": q.get("qualification_state"),
+        "source_locked": d["source_by_id"].get(sid, {}).get("source_lock_status") == "locked",
+        "role": evidence_record.get("evidence_role"),
+        "source_id": sid,
+        "category": d["category_by_source"].get(sid),
+    }
+    return unit, reason
+
+
+def derive_evidence_posture_governed(evidence_bindings, pattern, data=None):
+    """Production evidence-posture derivation. evidence_bindings: list of
+    (evidence_record, qualification_id, intended_use). Units are built via the
+    admission bridge (admitted is recomputed), so a forged admitted=true is ignored."""
+    d = data or load_all()
+    units = [build_admission_unit(ev, qid, use, d)[0] for (ev, qid, use) in evidence_bindings]
+    return derive_evidence_posture(units, pattern)
+
+
 def derive_evidence_posture(units, pattern, lock_required_for_locked=True):
     """Governed derivation of Contract C's evidence input. units carry:
     {admitted, review_posture, qualification_state, source_locked, role, source_id, category, dataset?, excluded?}.

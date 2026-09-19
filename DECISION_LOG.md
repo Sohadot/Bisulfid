@@ -5085,3 +5085,40 @@ Source admission enforcement **21/21**; scaffolding validator, concept↔lexeme,
 ### Still unresolved before acquisition
 
 Real-source admission rules per new category; scoped per-claim activation; `source_lock_status` deprecation (Option C); per-domain corroboration/`multi_source_synthesis` thresholds; biomedical claim restrictions.
+
+---
+
+## Pilot 01 — Morocco × Sulfur Trade (first real evidence acquisition)
+
+**Date:** 2026-09-19
+**Scope:** `GEO-MA × sulfur × SD-TRADE`, relationship `GEO-MA → REL-IMPORTER → sulfur`. Max 3 claims. No public page, route, sitemap, robots, indexation, 14K, OCP, GCC/China/Germany, or language expansion. No existing source/claim status/lock changed. No claim registry activated. No PR.
+**Baseline:** commit `bc20510d4c`.
+
+### Source acquired (official)
+Office des Changes (Royaume du Maroc), *Commerce extérieur du Maroc — Rapport annuel 2024* (official PDF). Registered canonically as `SRC-OC-MA-TRADE`, **category `official_trade_statistics`**, `status: seeded`, `source_lock_status: candidate`, `identity_revision: rev-2026-09-19-1`. The login-gated interactive database was not used; no credentials in git. **SOURCE_POLICY preflight:** existing governance permits canonical **seeded (registered/unverified)** registration (14 seeded precedents; all CI stayed green), so canonical registration was used — with `identity_revision` from first registration (no incremental exception).
+
+### Results (3 claims)
+- **A — HS classification identity: BLOCKED.** No HS code in the source; no authoritative classification source fetched; label "Soufres bruts et non raffinés" is a crude/unrefined **subset** of the `sulfur` concept. Not fabricated from memory.
+- **B — import observation: PROVEN.** Morocco recorded imports of "Soufres bruts et non raffinés" in 2024.
+- **C — quantitative measure: PARTIAL.** 2024 value = **9.102 MDH** (variant 9.108 MDH; Asia 8.737 MDH), avg unit price **1.099 DH/T** — exactly as printed. **Tonnage BLOCKED** (not stated; not derived).
+
+### Governed outcome (computed, not targeted)
+Qualification `QUAL-OC-MA-TRADE-001` = **`reviewed`** (new source not identity-verified → not admitting); and `SD-TRADE` requires primary_plus_corroborating with only one non-independent official source. Governed **evidence posture = `evidence_collecting`**; relationship `REL-INST-MA-SULFUR-IMPORT-2024` = `evidence_collecting`; **Contract-C = `(not_public, noindex)`**.
+
+### Ratified (narrow)
+- Source authority is use-scoped and admission is deterministic; a brand-new official source does not admit evidence until identity-verified.
+- Trade relationships are directed, period-bounded, evidence-referenced (`GEO-MA → imports → sulfur`, 2024); language ≠ geography still holds.
+- Evidence posture is **derived via the admission bridge** (a forged `admitted:true` is ignored).
+- **No trade/geography fact is ratified as published.** Nothing activated.
+
+### Policy findings (report only; NOT applied)
+1. `primary_plus_corroborating` may be too strict for a narrowly-scoped recorded-observation claim from the national official statistics authority (independent corroboration effectively does not exist — Comtrade/ITC/WITS derive from the same chain). Proposed `single_official_record_sufficient` pattern — deferred.
+2. A defined verification path for a new official source is needed before Pilot 02.
+3. Quantitative trade admission depends on a classification (HS) identity the summary report lacks → a classification-acquisition step must precede it.
+4. Within-source variance (9.102 vs 9.108 MDH) is recorded conflict-tolerantly, not reconciled.
+
+### Tests
+Pilot 01 chain **16/16**; source admission enforcement 21/21; scaffolding, concept↔lexeme, relationship grammar 8/8, Contract C 7/7; existing Corpus Governance CI (L0/L1/L2) all PASS. Existing source statuses/locks unchanged (now 15 seeded + 1 verified; all candidate).
+
+### Not started
+Pilot 02 (Morocco Industrial Chain / OCP); GCC/China/Germany; language localization; classification acquisition; policy amendments.

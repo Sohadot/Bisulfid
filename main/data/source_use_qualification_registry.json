@@ -44,6 +44,24 @@
       "jurisdiction_limitation": null,
       "temporal_boundary": null,
       "note": "Language de is NOT geography DE. This qualification grants no geography. Source bibliographic identity/edition is owned by source_registry.json (SRC-SPEKTRUM-MOS2-DE, identity_revision rev-2026-05-30-1); this record stores only the revision reference. It does not change the source's status or source_lock_status."
+    },
+    {
+      "qualification_id": "QUAL-OC-MA-TRADE-001",
+      "source_id": "SRC-OC-MA-TRADE",
+      "qualified_against_source_revision": "rev-2026-09-19-1",
+      "applicable_subject_domains": ["SD-TRADE"],
+      "permitted_evidence_kinds": ["quantitative"],
+      "permitted_claim_levels": ["relationship"],
+      "evidence_roles": ["official_record"],
+      "scope": "Office des Changes 2024 annual report: official Moroccan recorded-import observation and official value/unit-price measure for the printed product label 'Soufres bruts et non raffinés', reporter=Morocco, flow=imports, period=2024. Scope reviewed this sprint (I verified the exact figures + page locators in the official PDF).",
+      "allowed_uses": ["official_recorded_import_observation_ma", "official_import_value_measure_ma"],
+      "prohibited_uses": ["hs_classification_identity", "sulfur_industrial_demand", "phosphate_economics", "procurement_or_investor_conclusions", "global_supply_or_market_forecast", "derived_tonnage_from_value_price", "legal_or_regulatory_claim", "route_publication", "claim_approval_by_itself", "source_locking_by_itself"],
+      "qualification_state": "reviewed",
+      "review_date": "2026-09-19",
+      "geography_limitation": ["GEO-MA"],
+      "jurisdiction_limitation": null,
+      "temporal_boundary": {"valid_from": "2024-01-01", "valid_to": "2024-12-31"},
+      "note": "State 'reviewed' (NOT qualified): the source is brand-new (source status seeded / lock candidate) and has not undergone full governed identity verification, so its use-qualification cannot yet admit. Admission is therefore correctly withheld at the qualification gate. Even if it were qualified_narrow, the SD-TRADE domain requires primary_plus_corroborating and only one non-independent official source exists, so evidence posture would still be evidence_collecting (see pilot report policy finding)."
     }
   ]
 }

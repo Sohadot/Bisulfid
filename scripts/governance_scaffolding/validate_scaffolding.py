@@ -87,7 +87,23 @@ def validate_relationship_classes():
     d = load(os.path.join(DATA, "relationship_class_registry.json"))
     ids = [x["relationship_class_id"] for x in d["relationship_classes"]]
     check(len(ids) == len(set(ids)), "relationship_class: duplicate IDs")
-    check(d.get("relationship_instances") == [], "relationship_class: no relationship INSTANCES this sprint")
+    # Relationship instances are permitted from Pilot 01 onward; each must obey the typed
+    # subject->predicate->object grammar and carry evidence references.
+    import importlib
+    rg = importlib.import_module("relationship_grammar")
+    class_ids = {x["relationship_class_id"] for x in d["relationship_classes"]}
+    valid_qstates = set(d["instance_qualification_states"])
+    for inst in d.get("relationship_instances", []):
+        rid = inst.get("relationship_instance_id", "?")
+        errs = rg.validate_instance(inst, d)
+        check(not errs, f"relationship instance {rid}: grammar errors {errs}")
+        check(inst.get("relationship_class_id") in class_ids, f"relationship instance {rid}: unknown class")
+        check(inst.get("qualification_state") in valid_qstates, f"relationship instance {rid}: bad qualification_state")
+        check(bool(inst.get("evidence_ids")), f"relationship instance {rid}: must carry evidence_ids")
+        check(isinstance(inst.get("temporal_scope"), dict), f"relationship instance {rid}: temporal_scope required (not timeless)")
+        # evidence_qualified requires non-empty evidence (grammar checks this too)
+        if inst.get("qualification_state") == "evidence_qualified":
+            check(bool(inst.get("evidence_ids")), f"relationship instance {rid}: evidence_qualified needs evidence")
     for x in d["relationship_classes"]:
         check(x["relationship_class_id"].startswith("REL-"), f"relationship_class: bad id prefix {x['relationship_class_id']}")
         check(x["state"] == "registered", f"relationship_class: {x['relationship_class_id']} must be 'registered'")
