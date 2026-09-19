@@ -38,7 +38,7 @@ Publication is derived from six *input* postures plus one *authorization*, produ
 | 4 | **validation_posture** | validators / Quality Gate | `not_validated` · `validated` · `validation_failed` | Do all 11 gates + corpus validators pass for this route? |
 | 5 | **release_authorization** | `release_ledger.json` | `not_authorized` · `authorized` · `withdrawn` (+ append-only history) | Has an owner-level decision authorized public release? |
 | 6 | **publication_state** (DERIVED) | derived-state function (read-only to all) | `not_public` · `public_noindex` · `public_indexable` | What deploy may do. |
-| 7 | **indexation_state** (DERIVED) | derived-state function | `noindex` · `index_candidate` · `index_approved` | What sitemap/robots may do. |
+| 7 | **indexation_state** (DERIVED) | derived-state function | `noindex` · `index_approved` (⚠ `index_candidate` **removed** — unreachable; see [Integrity Pass §IP-16.1](#ip-16--final-consistency-corrections)) | What sitemap/robots may do. |
 
 **Key invariant:** layers 6–7 are **computed**, never written by hand and never stored as an editable source of truth. `routes.json.indexable` and `release_ledger.indexable` are *demoted from decisions to inputs* (or removed in favor of the postures above; see Migration Map).
 
@@ -335,7 +335,7 @@ Assemble candidate pairs (drawn from the existing 14K + planned pilots) hand-lab
 Design/scaffolding only — **no public HTML, sitemap, robots, or indexation changes:**
 - `DECISION_LOG.md` — append the Deliverable-9 ratification entry.
 - **New (empty/seed) registries:** `main/data/subject_domain_registry.json`, `main/data/geography_registry.json`, `main/data/jurisdiction_registry.json`, `main/data/relationship_class_registry.json`.
-- **New store:** `main/data/evidence/` with `EVD-MOS2-DE-001.json` as the single seed record (from the existing verified source; no status change).
+- **New store:** `main/data/evidence/` — directory + schema + validators + **test-only fixtures** (clearly marked non-governed). ⚠ **No real `EVD-MOS2-DE-001` record** (IP-16.3: no evidence object until a governed lexeme ID exists).
 - ~~`main/data/ontology/sulfur_terms.json` — link `source_ids` / correct `language_vector`~~ **REMOVED from the first sprint (Integrity Pass §11).** No ontology mutation until the Concept↔Lexeme audit is decided by the owner.
 - **New spec docs** for the derived-state function + calibration dataset skeleton (`main/data/information_gain/calibration_pairs.json`, empty).
 - **No change** to `routes.json`, `release_ledger.json`, `site/public/**`, sitemaps, robots, source statuses, claim statuses, CI behavior.
@@ -367,42 +367,50 @@ Information Gain is now an **explicit input posture**, not an out-of-band check.
 | `information_gain_posture` | **Information-Gain reviewer (governance role)** | `ig_not_required` · `ig_not_reviewed` · `ig_passed` · `ig_failed` |
 | `release_authorization` | `release_ledger.json` | `not_authorized` · `authorized` · `withdrawn` |
 
-Plus one **independent indexation modifier** (IP-2): `indexation_hold ∈ {none, held}`, owner = SEO/governance role.
+Plus two **independent modifiers**:
+- (IP-2) `indexation_hold ∈ {none, held}`, owner = SEO/governance role — suspends indexation without changing publication.
+- (⚠ IP-16.2) `legacy_holding ∈ {none, legacy_public_holding}`, owner = migration governance — a **migration-only** flag, assignable **only** to a route that was publicly deployed **before Contract C ratification** and whose disposition is incomplete. It **never grants indexation**, **cannot be assigned to a newly created route**, and **expires** when the route is consolidated, promoted, redirected, or retired.
 
-**Total derive function** `derive(governance, evidence, claim, validation, ig, release, hold) → (publication_state, indexation_state)`, evaluated by first match; the ordered rules are provably exhaustive:
+**Total derive function** `derive(governance, evidence, claim, validation, ig, release, hold, legacy) → (publication_state, indexation_state)`, evaluated by first match; the ordered rules are provably exhaustive:
 
 ```
 R0  release == withdrawn                                  -> (not_public,      noindex)
+RL  legacy == legacy_public_holding                       -> (public_noindex,  noindex)
+      # migration-only (IP-16.2). Precondition enforced by validator: route.pre_ratification_public == true
+      # AND route is NOT newly created. Never index. Withdrawal (R0) still overrides. Not reachable for new objects.
 R1  release == not_authorized                             -> (not_public,      noindex)
 R2  governance ∈ {planned, relationship_qualified}        -> (not_public,      noindex)
 R3  validation ∈ {not_validated, validation_failed}       -> (not_public,      noindex)
 R4  claim ∈ {claim_pending, claim_forbidden}              -> (not_public,      noindex)
 R5  evidence == evidence_collecting                       -> (not_public,      noindex)
-    # From here: governance ∈ {reference_draft, governed}, validation == validated,
+    # From here: legacy == none, governance ∈ {reference_draft, governed}, validation == validated,
     # claim ∈ {not_required, approved_narrow, approved}, evidence ∈ {not_required, sufficient, locked},
     # release == authorized.
-R6  governance == reference_draft                         -> (public_noindex,  noindex)
-R7  ig ∈ {ig_not_reviewed}                                -> (public_noindex,  noindex)
-R8  ig == ig_failed                                       -> (public_noindex,  noindex)
+R6  governance == reference_draft                         -> (not_public,      noindex)   # ⚠ IP-16.2: NEW objects are not public while drafting (Knowledge-Object-Before-URL)
+R7  ig == ig_not_reviewed                                 -> (not_public,      noindex)   # ⚠ IP-16.2: no URL before IG review
+R8  ig == ig_failed                                       -> (not_public,      noindex)   # ⚠ IP-16.2: IG failure = does not justify an independent URL (becomes module/section/edge/node/consolidation input)
     # From here: governance == governed AND ig ∈ {ig_passed, ig_not_required}.
-R9  evidence == evidence_sufficient (not yet locked)      -> (public_noindex,  noindex)
+R9  evidence == evidence_sufficient (not yet locked)      -> (public_noindex,  noindex)   # passed IG + evidence sufficiency; awaits source-lock to index
 R10 (factual path)  evidence == evidence_locked
      AND claim ∈ {claim_approved, claim_approved_narrow}  -> (public_indexable, index_approved*)
 R11 (non-factual path, IP-4) evidence == evidence_not_required
      AND claim == claim_not_required
      AND non_factual_class_certified == true              -> (public_indexable, index_approved*)
 R12 otherwise (e.g. evidence_not_required but claim still
-     required, or mixed) -> SAFE DEFAULT                  -> (public_noindex,  noindex)
+     required, or mixed) -> SAFE DEFAULT                  -> (not_public,      noindex)   # ⚠ IP-16.2: default denies a URL, never a silent public_noindex
 *  indexation_state = noindex if indexation_hold == held, else index_approved   (IP-2)
 ```
 
 **Exhaustiveness argument (property-spec, not code):**
-- Every input value appears in at least one guard; R0–R5 catch all "any-blocking" values; R6–R9 partition the remaining `reference_draft`/`ig`/`evidence-sufficient` cases; R10–R11 are the only two doorways to `public_indexable`; **R12 is a catch-all SAFE DEFAULT** so **no combination is unmatched.** The default is the *most restrictive publishable-adjacent* state (`public_noindex`), never `index`.
+- Every input value appears in at least one guard; R0 (withdrawal) and RL (legacy) take highest precedence; R1–R5 catch all "any-blocking" values; R6–R9 partition the remaining `reference_draft`/`ig`/`evidence-sufficient` cases for **new** objects; R10–R11 are the only two doorways to `public_indexable`; **R12 is a catch-all SAFE DEFAULT** so **no combination is unmatched.** The default is now **`not_public`** (the most restrictive state), never a silent `public_noindex`.
+- **Reachability:** every canonical state is returned by ≥1 rule — `not_public` (R0–R8,R12), `public_noindex` (RL, R9), `public_indexable` (R10–R11); `noindex` and `index_approved` both reachable (R10/R11 with `hold=none`). `index_candidate` was removed (IP-16.1) precisely because no rule returns it.
 - **Property tests to encode (design):**
   1. *Totality:* for the full Cartesian product of input values, `derive` returns exactly one `(publication_state, indexation_state)` — no exception, no null.
   2. *Monotonic veto:* flipping any single posture to a blocking value never *raises* the output above its prior level.
-  3. *Indexable requires all-green:* `index_approved` ⇒ governance=`governed` ∧ validation=`validated` ∧ release=`authorized` ∧ ig∈{passed,not_required} ∧ hold=none ∧ ((evidence_locked ∧ claim_approved*) ∨ non-factual-certified).
+  3. *Indexable requires all-green:* `index_approved` ⇒ legacy=`none` ∧ governance=`governed` ∧ validation=`validated` ∧ release=`authorized` ∧ ig∈{passed,not_required} ∧ hold=none ∧ ((evidence_locked ∧ claim_approved*) ∨ non-factual-certified).
   4. *Hold isolation:* `indexation_hold=held` changes only `indexation_state`, never `publication_state`.
+  5. *New-object law (IP-16.2):* for `legacy=none`, no `reference_draft`/`ig_not_reviewed`/`ig_failed` route is ever public → new objects reach a URL only after evidence sufficiency **and** IG.
+  6. *Legacy isolation:* `legacy_public_holding` ⇒ output is exactly `(public_noindex, noindex)` (never index), is rejected by validator for any newly created route, and is overridden only by withdrawal (R0).
 
 ## IP-2 — Release authorization: withdrawal vs suspension (non-overlapping terms)
 
@@ -411,7 +419,7 @@ The five terms now have disjoint meanings:
 |---|---|---|
 | **authorization** | release_ledger | permission to be public at all (`authorized`/`not_authorized`) |
 | **publication** | derived | whether content is served (`not_public`/`public_noindex`/`public_indexable`) |
-| **indexation** | derived | whether search may index (`noindex`/`index_candidate`/`index_approved`) |
+| **indexation** | derived | whether search may index (`noindex`/`index_approved`) |
 | **withdrawal** | release_ledger | authorization revoked → **`not_public` + `noindex`** (content pulled; corrects v1's "at most public_noindex") |
 | **suspension / `indexation_hold`** | SEO-governance role | authorization **intact**, page stays served, but temporarily **out of search** (`indexation_state = noindex`) |
 
@@ -505,7 +513,7 @@ This removes the confusion between *"we have not proved a sulfur relationship wi
 Scaffolding only; **no public HTML, sitemap, robots, indexation, source status, or claim status changes:**
 - `DECISION_LOG.md` — append the **principle-only** ratification (IP-15 below).
 - **New empty/seed registries:** `subject_domain_registry.json` (with `registered` vs `evidence_active` split), `geography_registry.json` (place identities only), `jurisdiction_registry.json`, `relationship_class_registry.json` (classes defined, instances empty).
-- **New evidence store** `main/data/evidence/` with **one seed record** `EVD-MOS2-DE-001` linking the **German lexeme → Spektrum source → CLM-TERM-MOS2-DE-001 → concept** (per IP-10), using `evidence_review_posture` (IP-5), **no `source_type`/`used_by`/`confidence`** (IP-6/IP-7). No source/claim status changed.
+- **New evidence store** `main/data/evidence/` — directory + schema (IP-5 `evidence_review_posture`; **no `source_type`/`used_by`/`confidence`**, IP-6/IP-7) + schema validators + **test-only fixtures only**. ⚠ **No real `EVD-MOS2-DE-001` record** — deferred to the *next* sprint, after the Concept↔Lexeme representation is ratified and a governed lexeme ID exists (IP-16.3). No source/claim status changed.
 - **Derived-state function specification + property tests** (IP-1) as spec artifacts, **unwired from deploy**.
 - **Information-Gain calibration skeleton** `main/data/information_gain/calibration_pairs.json` (empty).
 - **REMOVED from the sprint (deferred to owner decision):** any `ontology/sulfur_terms.json` mutation — no `language_vector` change, no `source_ids` addition (IP-9/IP-10).
@@ -547,9 +555,55 @@ Decisions 2–6 (supersession-with-history, semantic dimensions, new registries,
 **Only an evidence/lexeme linkage.** The correct path is a single atomic evidence assertion (German lexeme → Spektrum source → `CLM-TERM-MOS2-DE-001` → concept). **No `language_vector` change and no `source_ids` mutation is justified**, and both are removed from the first sprint until the Concept↔Lexeme audit is decided.
 
 **Revised exact scope of the first implementation sprint:**
-Governance **scaffolding only** — append the *principle-only* DECISION_LOG entry (IP-15); create the four new registries (with vocabulary-vs-instance splits); create the evidence store with the single `EVD-MOS2-DE-001` record (IP-5/IP-6/IP-7 schema); lay down the derive() **spec + property tests** unwired from deploy; create the empty Information-Gain calibration file. **No ontology mutation, no public HTML, no sitemap/robots/indexation change, no source/claim status change, no CI hard-fail, no PR.**
+Governance **scaffolding only** — append the *principle-only* DECISION_LOG entry (IP-15); create the four new registries (with vocabulary-vs-instance splits); create the evidence **directory + schema + validators + test-only fixtures** (⚠ **no real evidence object**, IP-16.3); lay down the derive() **spec + property tests** unwired from deploy; create the empty Information-Gain calibration file. **No Concept/Lexeme records, no ontology mutation, no public HTML, no sitemap/robots/indexation change, no source/claim status change, no CI hard-fail, no PR.** The real MoS₂ evidence record is the first object of the *next* sprint, after Concept↔Lexeme ratification.
 
 **Stop.** Design updated. Implementation **not** begun.
 
 ---
-*Authority & Dimension Reconciliation + Architecture Integrity Pass — READ-ONLY design package. No production files modified.*
+
+## IP-16 — Final consistency corrections
+
+**READ-ONLY. 2026-09-19.** Three small closures; authoritative where they touch earlier text.
+
+### IP-16.1 — `index_candidate` removed (unreachable)
+No R-rule ever returned `index_candidate`. Rather than keep an unreachable state, it is **removed** from the canonical `indexation_state` enum. **Canonical enums are now:** `publication_state ∈ {not_public, public_noindex, public_indexable}`; `indexation_state ∈ {noindex, index_approved}`. Every canonical state is reachable (IP-1 reachability line).
+
+### IP-16.2 — Knowledge-Object-Before-URL enforced in the state machine
+The ratified law — *"independent URL promotion occurs only after evidence sufficiency AND Information-Gain review"* — is now enforced by `derive()`, not just stated. For **new** objects (`legacy=none`): `reference_draft → not_public/noindex` (R6), `ig_not_reviewed → not_public/noindex` (R7), `ig_failed → not_public/noindex` (R8), and the SAFE DEFAULT is `not_public` (R12). An IG failure means the object does **not** justify an independent URL; it may instead become a module, section, relationship edge, table/data object, machine-readable node, or a consolidation input.
+
+**Legacy isolation (new-object law not weakened for legacy debt).** A separate migration-only posture `legacy_public_holding` (rule RL) keeps *already-public, pre-ratification* 14K URLs reachable as `public_noindex` during controlled migration. Its validator-enforced requirements: (a) route was publicly deployed **before** Contract C ratification; (b) disposition not yet complete; (c) **never grants indexation**; (d) **cannot be assigned to a newly created route**; (e) **expires** on consolidation / promotion / redirect / retire. This cleanly separates *new publication eligibility* from *temporary preservation of historically public URLs*, so `public_noindex` cannot become the next loophole for weak new pages.
+
+### IP-16.3 — No real MoS₂ evidence object before a governed lexeme ID
+The German lexeme "Molybdän(IV)-sulfid" has **no governed identity/ID** yet, because the Concept↔Lexeme decision (IP-9) is unresolved. Creating `EVD-MOS2-DE-001` now would make the first **semantic orphan** in the evidence system (an evidence record whose subject is an ungoverned, free-text lexical string). Therefore `EVD-MOS2-DE-001` is **removed from the first sprint.** The first sprint may create only the evidence **directory, schema, schema validators, and explicitly test-only fixtures** (non-governed). The real chain is created in the *next* sprint, after Concept↔Lexeme ratification, with stable IDs:
+```
+concept_id ↔ lexeme_id → evidence_id → source_id → claim_id
+```
+A free-text lexical string is never a substitute for a governed lexeme ID.
+
+### Revised first implementation sprint (final — scaffolding only)
+1. Append the **principle-only** Contract C entry to `DECISION_LOG.md`.
+2. Create the four semantic registries: `subject_domain_registry.json`, `geography_registry.json`, `jurisdiction_registry.json`, `relationship_class_registry.json` (vocabulary defined; instances empty).
+3. Create the empty atomic evidence architecture: directory + schema + spec + schema validators/tests; **test-only fixtures only; no real evidence object.**
+4. Create the final Contract-C `derive()` specification + property tests (six, IP-1), **unwired from deploy.**
+5. Create the empty Information-Gain calibration dataset/schema.
+6. **No Concept/Lexeme records.**
+7. **No ontology modification.**
+8. **No route/release/source/claim state change.**
+9. **No HTML/sitemap/robots/indexation change.**
+10. **No CI hard-fail.** (No PR.)
+
+---
+
+# Integrity Pass — Closing Answer
+
+1. **Final canonical enums.** `publication_state ∈ {not_public, public_noindex, public_indexable}`; `indexation_state ∈ {noindex, index_approved}`. (Inputs: governance, evidence, claim, validation, information_gain, release_authorization; modifiers: indexation_hold, legacy_holding.)
+2. **Every canonical state reachable?** Yes. `not_public` ← R0–R8/R12; `public_noindex` ← RL (legacy) and R9; `public_indexable` ← R10/R11; `noindex` and `index_approved` both reachable via R10/R11 (with/without `indexation_hold`). The unreachable `index_candidate` was removed.
+3. **Behavior of `reference_draft` / `ig_not_reviewed` / `ig_failed` for NEW objects.** All three → **`not_public / noindex`.** New objects are never public before evidence sufficiency **and** IG; an IG failure denies an independent URL (the object becomes a module/section/edge/table/node/consolidation input).
+4. **Legacy `public_noindex` isolation.** Only routes carrying the migration-only `legacy_public_holding` flag (pre-ratification, already-public, disposition incomplete) may sit at `public_noindex` via RL; it never grants index, cannot be assigned to a new route, and expires on disposition. New-object rules are unchanged by it, so `public_noindex` is not a loophole for weak new pages.
+5. **MoS₂ evidence.** Confirmed: **no real MoS₂ evidence object will be created before a governed lexeme ID exists.** The first sprint builds only the evidence directory/schema/validators and test-only fixtures; `EVD-MOS2-DE-001` is deferred to the post-Concept↔Lexeme sprint with stable `concept_id ↔ lexeme_id → evidence_id → source_id → claim_id`.
+6. **Final first-sprint file scope.** `DECISION_LOG.md` (principle-only entry) · four new registries (`subject_domain_registry.json`, `geography_registry.json`, `jurisdiction_registry.json`, `relationship_class_registry.json`) · `main/data/evidence/` (dir + schema + validators + test-only fixtures) · derive() spec + property-test files · empty `main/data/information_gain/calibration_pairs.json`. **Untouched:** ontology, `routes.json`, `release_ledger.json`, sources, claims, `site/public/**`, sitemaps, robots, CI behavior.
+
+**Stop.** Design updated; implementation **not** begun.
+
+---
+*Authority & Dimension Reconciliation + Architecture Integrity Pass (incl. IP-16) — READ-ONLY design package. No production files modified.*
