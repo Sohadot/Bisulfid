@@ -23,6 +23,26 @@ CLAIM = ("claim_not_required", "claim_pending", "claim_approved_narrow", "claim_
 VALIDATION = ("not_validated", "validated", "validation_failed")
 IG = ("ig_not_required", "ig_not_reviewed", "ig_passed", "ig_failed")
 RELEASE = ("not_authorized", "authorized", "withdrawn")
+
+# Governed Information-Gain postures ratified by the IG Governance Ratification sprint
+# (see main/data/information_gain/ig_governance_policy.json). These are a RICHER route-
+# distinctness vocabulary produced by information_gain_gate.evaluate(); Contract C does not
+# re-decide IG — it only normalizes a governed posture down to its canonical route-gate
+# meaning so the same derive() gate applies. The canonical IG domain above is unchanged, so
+# the exhaustive property suite (contract_c_property_tests.py) is unaffected.
+#   ig_reviewed_pass        -> a positive independent-reference classification warrants a route.
+#   ig_reviewed_no_new_route -> reviewed; near_duplicate/module/true_duplicate -> NO new route.
+#   ig_review_required      -> reviewed but unresolved/fail-closed -> NO new route.
+IG_GOVERNED_ALIASES = ("ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required")
+_IG_NORMALIZE = {
+    "ig_reviewed_pass": "ig_passed",
+    "ig_reviewed_no_new_route": "ig_failed",
+    "ig_review_required": "ig_not_reviewed",
+}
+
+# The ONLY IG postures that permit an independent URL. Everything else — ig_not_reviewed,
+# ig_failed, an unmapped/unknown value — denies (fail-closed).
+_IG_ROUTE_ELIGIBLE = ("ig_passed", "ig_not_required")
 HOLD = ("none", "held")
 LEGACY = ("none", "legacy_public_holding")
 NON_FACTUAL_CERTIFIED = (False, True)
@@ -56,6 +76,11 @@ def derive(
     Every valid combination of canonical inputs returns exactly one
     (publication_state, indexation_state) pair. See IP-1 for the rule listing.
     """
+    # Normalize a governed IG posture down to its canonical route-gate meaning. Contract C
+    # never re-runs the IG evaluation; it only reads the ratified posture. Unknown/unmapped
+    # values are left as-is and are denied by the fail-closed allow-list at R7.
+    ig = _IG_NORMALIZE.get(ig, ig)
+
     # R0 — withdrawal overrides everything (including legacy holding).
     if release == "withdrawn":
         return ("not_public", "noindex")
@@ -94,12 +119,10 @@ def derive(
     if governance == "reference_draft":
         return ("not_public", "noindex")
 
-    # R7 — no URL before Information-Gain review (IP-16.2).
-    if ig == "ig_not_reviewed":
-        return ("not_public", "noindex")
-
-    # R8 — IG failure denies an independent URL (IP-16.2).
-    if ig == "ig_failed":
+    # R7 — an independent URL requires a route-eligible IG posture. This is a positive
+    # allow-list, so ig_not_reviewed, ig_failed, a normalized no-new-route/review-required
+    # posture, and any unknown value all deny (fail-closed) — IP-16.2.
+    if ig not in _IG_ROUTE_ELIGIBLE:
         return ("not_public", "noindex")
 
     # From here: governance == governed, ig in {ig_passed, ig_not_required}.

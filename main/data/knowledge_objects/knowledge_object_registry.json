@@ -8,7 +8,7 @@
   "one_fact_one_owner": "Evidence owns source literals/measurements/locators/uncertainty/scope. Claims own governed propositions/boundaries. A Knowledge Object owns ONLY: which claims belong together, which evidence supports them, conceptual organization, scope boundaries, unresolved/excluded areas, and reference role. No numeric value is copied into a KO as a second editable truth; display values are DERIVED from evidence.",
   "record_schema": {
     "required_fields": ["knowledge_object_id", "entity_ids", "subject_domains", "knowledge_role", "claim_bindings", "claim_ids", "evidence_ids", "scope", "language_neutral", "claim_source", "postures", "derived_contract_c"],
-    "optional_fields": ["boundary_evidence_ids", "unresolved_fields", "excluded_claim_classes", "temporal_scope", "distinct_from", "notes"],
+    "optional_fields": ["boundary_evidence_ids", "unresolved_fields", "excluded_claim_classes", "temporal_scope", "distinct_from", "ig_resolution", "notes"],
     "forbidden_fields": ["route", "path", "url", "url_route", "in_sitemap", "indexable", "html", "source_literal", "normalized_value"],
     "posture_fields": ["governance_posture", "evidence_posture", "claim_posture", "validation_posture", "information_gain_posture", "release_authorization"],
     "note": "derived_contract_c is a DERIVED projection of postures via contract_c_derive.derive(); it is documentation only and must equal the recomputed value (validated by tests). It is never a manual authorization."
@@ -57,20 +57,36 @@
           "reason": "The German lexical chain is a TERMINOLOGY knowledge role (a German dictionary-entry observation), a different subject domain (SD-TERMINOLOGY/SD-LINGUISTICS), a different evidence set (Spektrum), and a different reference task. It is NOT merged into this scientific object."
         }
       },
+      "ig_resolution": {
+        "policy_ref": "main/data/information_gain/ig_governance_policy.json",
+        "policy_version": "1.0.0",
+        "evaluated_by": "scripts/governance_scaffolding/information_gain_gate.py:evaluate",
+        "object_informational_validity": "object_valid_governed",
+        "object_validity_basis": "PAIR-KO-MOS2-SCI-vs-DE-LEXICAL",
+        "object_validity_reason": "The KO holds distinct governed knowledge (formula/structure/lattice with disjoint evidence/claims/sources) versus the German lexical object; it is worth governing and retrieving. This is OBJECT validity, not a routing decision.",
+        "new_route_distinctness": "no_new_route_warranted",
+        "new_route_classification": "near_duplicate",
+        "new_route_governing_comparison": "PAIR-KO-MOS2-SCI-vs-LEGACY-SCI-ROUTE",
+        "new_route_reason": "Against the nearest same-task existing surface (legacy /molybdenum-disulfide/) the candidate is near_duplicate: same reference task, so no NEW independent URL is warranted. Only new-route distinctness feeds the Contract-C information_gain_posture.",
+        "internal_composition": "module_relationship",
+        "internal_composition_basis": "PAIR-KO-MOS2-FORMULA-vs-STRUCTURE-MODULE",
+        "internal_composition_reason": "Formula/structure/lattice are modules of ONE object, never sibling URLs.",
+        "separation_note": "Object informational validity (valid) and new-route distinctness (no new route) are DISTINCT questions and are not conflated. A valid object need not earn its own URL."
+      },
       "postures": {
         "governance_posture": "reference_draft",
         "evidence_posture": "evidence_sufficient",
         "claim_posture": "claim_pending",
         "validation_posture": "not_validated",
-        "information_gain_posture": "ig_not_reviewed",
+        "information_gain_posture": "ig_reviewed_no_new_route",
         "release_authorization": "not_authorized"
       },
       "posture_notes": {
         "evidence_posture": "DERIVED via the admission engine over the bound evidence (A/B/C each evidence_sufficient; aggregate = evidence_sufficient). Source locks remain candidate, so NO evidence_locked.",
         "claim_posture": "claim_pending — the bound claims are pilot_non_operational and are NOT promoted into an active canonical claim registry by this sprint.",
-        "information_gain_posture": "ig_not_reviewed — a completed human-readable IG review exists (see publication candidate + report), but current governance ratifies no non-numeric IG pass authority, so the posture stays ig_not_reviewed pending ratification."
+        "information_gain_posture": "ig_reviewed_no_new_route — under the ratified IG authority (ig_governance_policy.json v1.0.0) the gate classifies new-route distinctness as near_duplicate versus the legacy same-task route, so no NEW independent URL is warranted. The object is nonetheless informationally valid (see ig_resolution.object_informational_validity). This posture is NOT ig_reviewed_pass. contract_c_derive.py normalizes it to the canonical ig_failed route-gate input."
       },
-      "derived_contract_c": {"publication_state": "not_public", "indexation_state": "noindex", "derived_by": "scripts/governance_scaffolding/contract_c_derive.py derive(reference_draft, evidence_sufficient, claim_pending, not_validated, ig_not_reviewed, not_authorized)"},
+      "derived_contract_c": {"publication_state": "not_public", "indexation_state": "noindex", "derived_by": "scripts/governance_scaffolding/contract_c_derive.py derive(reference_draft, evidence_sufficient, claim_pending, not_validated, ig_reviewed_no_new_route, not_authorized)"},
       "notes": "First production Knowledge Object (Reference Production 01). Aggregates Pilot-03 governed scientific claims/evidence without re-owning facts. Authorizes NO route/HTML/sitemap/indexation; Knowledge-Object-Before-URL is absolute."
     }
   ]

@@ -5442,3 +5442,31 @@ No Reference Production in this commit.
 
 ### Stop
 No public route. No Reference Production 02.
+
+---
+
+## IG Governance Ratification
+
+**Date:** 2026-09-20
+**Baseline:** commit `9b3746d8ad` (Reference Production 01). Ratifies a machine-discoverable, deterministic, non-numeric Information-Gain decision authority. NOT a publication/route/acquisition/migration sprint. No web, no new sources, no band gap, no route/HTML/sitemap/robots/release-ledger/legacy change, no claim activation, no source lock, no PR. **Policy version: `IG-GOVERNANCE 1.0.0`.**
+
+**Durable decisions:**
+1. **Ratified IG authority exists and is machine-discoverable.** `main/data/information_gain/ig_governance_policy.json` (`status: ratified`, `version: 1.0.0`) + the deterministic engine `scripts/governance_scaffolding/information_gain_gate.py:evaluate`. This is the ONLY sanctioned way to move an IG posture toward a pass.
+2. **Four governed route-distinctness classifications:** `valid_domain_specific_reference` (positive independent value → route-eligible), `near_duplicate` (same task → no new route), `module_relationship` (endpoints are modules of one object → no sibling URLs), `unresolved` (fail-closed → human review).
+3. **Multi-signal, semantic.** Decision signals: evidence/claim/source overlap, relationship/geography-jurisdiction/temporal difference, module-section overlap, user-task difference. Signal values are CATEGORICAL (disjoint/low/partial/high/na), never numbers.
+4. **Numeric authority is machine-discoverably PROHIBITED.** No threshold/weight/cutoff/score is defined or permitted (validator forbids those key substrings anywhere in the policy or fixtures). Textual similarity is `diagnostic_only`; it can never decide a classification and never upgrades a same-task surface. "Not a duplicate" alone is NOT independent reference value.
+5. **Deterministic, fail-closed evaluation.** `evaluate()` returns `classification / posture / route_eligible / reasons / signals_considered / unresolved_signals / endpoints / policy_version`. Missing/unknown required signals, self-comparison, or ambiguous/contradictory signals → `unresolved` / `ig_review_required`, never a pass. Same inputs → same output.
+6. **`ig_reviewed_pass` posture ratified — necessary-not-sufficient and positive-only.** Granted ONLY for a positive independent-reference classification (valid_domain_specific_reference / valid_sibling / valid_localization) with no unresolved signals. `near_duplicate`, `module_relationship`, and `unresolved` are NEVER eligible for a sibling-route pass. Passing IG never makes an object public by itself.
+7. **Gate separation preserved.** IG classifies route-distinctness and object validity ONLY. It may not mutate evidence/claim/independence/admissibility/source-lock/validation/Contract-C/release/indexation, routes, sitemap, robots, the release ledger, or legacy visibility. Contract-C (`contract_c_derive.py`) stays canonical; IG only supplies one input posture.
+8. **RP01 pairs re-evaluated under the ratified authority:** Pair 1 (KO vs `de_core_mos2`) → `valid_domain_specific_reference` (pass-capable); Pair 2 (KO vs legacy `/molybdenum-disulfide/`) → `near_duplicate`; Pair 3 (formula vs structure modules) → `module_relationship` (supersedes the RP01 near_duplicate seed label). `calibration_pairs.json` upgraded to governed fixtures (v0.3.0) the gate MUST reproduce.
+9. **KO-level IG posture resolved by SEPARATING object informational validity from new-route distinctness.** `KO-MOS2-SCIENTIFIC-001.ig_resolution`: `object_informational_validity = object_valid_governed` (distinct governed knowledge vs the German lexical object) BUT `new_route_distinctness = no_new_route_warranted` (near_duplicate vs the legacy same-task route). A valid object need not earn its own URL.
+10. **Contract-C recomputed, never hand-edited, still closed.** KO/PC `information_gain_posture = ig_reviewed_no_new_route`; `contract_c_derive.py` normalizes governed IG postures to canonical route-gate inputs (`ig_reviewed_pass→ig_passed`, `ig_reviewed_no_new_route→ig_failed`, `ig_review_required→ig_not_reviewed`) and now uses a fail-closed positive allow-list for route eligibility. Derived Contract-C = **(not_public, noindex)** (governance `reference_draft` alone denies a URL). PC disposition updated to `governed_reference_no_new_route`.
+11. **One-Fact-One-Owner held.** The IG layer carries NO scientific values (no source_literal/normalized_value/measurements). Evidence still owns literals; claims own propositions; the KO owns composition/scope; IG owns route-distinctness classification only.
+12. **Nothing published, no scope creep.** No route, HTML, sitemap, robots, release-ledger, or legacy-visibility change; no claim activation; no source lock; Pilot 01/02/03 claim outcomes and all evidence values unchanged; the legacy 14K corpus is NOT made authoritative over the Knowledge Object model. No Reference Production 02.
+
+**Contract-C engine change (canonical property suite unaffected):** the exhaustive `IG` domain is unchanged, so `contract_c_property_tests.py` (23040 combinations) still passes all 7 canonical properties; governed postures are handled by normalization + a fail-closed allow-list, and any unknown IG value now denies a URL.
+
+**Tests:** new `ig_governance_tests.py` (25 proofs) PASS; `validate_scaffolding` extended with `validate_information_gain_governance()` (759 checks) PASS; `reference_production_tests.py` updated to the ratified posture/disposition; all Pilot-01/02/03 + independence + Contract-C property + governance regressions green; wired L0/L1/L2 CI PASS.
+
+### Stop
+No public route. No Reference Production 02. IG ratified; nothing published.

@@ -228,6 +228,119 @@ def validate_information_gain():
         check(p.get("labeler") and p.get("labeled_at"), f"IG pair {pid}: labeler and labeled_at required")
 
 
+def validate_information_gain_governance():
+    """Ratified IG authority: policy discoverable, non-numeric, fail-closed; fixtures reproduced;
+    postures gated; IG never authorizes publication; Contract-C stays derived."""
+    ppath = os.path.join(DATA, "information_gain", "ig_governance_policy.json")
+    if not os.path.exists(ppath):
+        return
+    import importlib
+    gate = importlib.import_module("information_gain_gate")
+    cc = importlib.import_module("contract_c_derive")
+    policy = load(ppath)
+    # policy discoverability + version
+    check(policy.get("status") == "ratified", "IG policy: must be ratified")
+    check(bool(policy.get("version")), "IG policy: must carry a version")
+    class_ids = set(policy.get("classification_ids", []))
+    post_ids = set(policy.get("posture_ids", []))
+    check(class_ids == {"valid_domain_specific_reference", "near_duplicate", "module_relationship", "unresolved"},
+          f"IG policy: governed classifications wrong ({sorted(class_ids)})")
+    check(post_ids == {"ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required"},
+          f"IG policy: governed postures wrong ({sorted(post_ids)})")
+    # only positive classifications are route-eligible; only ig_reviewed_pass is a route posture
+    positive = set(gate.POSITIVE_CLASSIFICATIONS)
+    for c in policy["classifications"]:
+        if c["route_eligible"]:
+            check(c["classification"] in positive,
+                  f"IG policy: route-eligible classification '{c['classification']}' is not a positive independent-reference value")
+    for p in policy["postures"]:
+        if p["route_eligible"]:
+            check(p["posture"] == "ig_reviewed_pass", f"IG policy: only ig_reviewed_pass may be route-eligible, not '{p['posture']}'")
+    # near_duplicate / module_relationship are NEVER a sibling-route pass
+    for cid in ("near_duplicate", "module_relationship"):
+        check(gate._posture_for(cid, policy) == ("ig_reviewed_no_new_route", False),
+              f"IG policy: {cid} must map to ig_reviewed_no_new_route/not-route-eligible")
+    # numeric authority prohibited (flag + no threshold/weight/cutoff/score key anywhere)
+    nap = policy.get("numeric_authority_prohibited", {})
+    check(nap.get("prohibited") is True and nap.get("textual_similarity_role") == "diagnostic_only",
+          "IG policy: must prohibit numeric authority and mark textual_similarity diagnostic_only")
+    cp = load(os.path.join(DATA, "information_gain", "calibration_pairs.json"))
+    bad = [k for k in list(_keys_recursive(policy)) + list(_keys_recursive(cp))
+           if any(s in k.lower() for s in ("threshold", "weight", "cutoff", "score"))]
+    check(not bad, f"IG: no numeric threshold/weight/cutoff/score field permitted (found {bad})")
+    # unknown classification/posture fail closed
+    check(gate._posture_for("unknown_class_xyz", policy) == ("ig_review_required", False),
+          "IG gate: unknown classification must fail closed")
+
+    # resolve endpoints against real routes/objects
+    koreg = load(os.path.join(DATA, "knowledge_objects", "knowledge_object_registry.json"))
+    ko_ids = {k["knowledge_object_id"] for k in koreg["knowledge_objects"]}
+    _routes_obj = load(os.path.join(DATA, "routes.json"))
+    routes = _routes_obj if isinstance(_routes_obj, list) else _routes_obj.get("routes", [])
+    route_ids = {r.get("route_id") for r in routes}
+
+    def endpoint(p, s):
+        return p.get(f"object_{s}") or p.get(f"route_{s}")
+
+    def resolves(v):
+        return str(v).split("#")[0] in ko_ids or str(v).split("#")[0] in route_ids
+
+    seen_ids = set()
+    seen_endpoints = {}
+    v = policy["version"]
+    check(cp.get("policy_version") == v, "IG calibration: policy_version must match the ratified policy")
+    for p in cp.get("pairs", []):
+        pid = p.get("pair_id", "?")
+        check(pid not in seen_ids, f"IG fixture {pid}: duplicate pair_id")
+        seen_ids.add(pid)
+        a, b = endpoint(p, "a"), endpoint(p, "b")
+        check(a is not None and b is not None, f"IG fixture {pid}: must supply both endpoints")
+        check(a != b, f"IG fixture {pid}: self-comparison (A == B) is not information gain")
+        check(resolves(a) and resolves(b), f"IG fixture {pid}: an endpoint does not resolve to a real route/object")
+        # contradiction: same endpoint set, different expected classification
+        key = frozenset([str(a), str(b)])
+        prior = seen_endpoints.get(key)
+        check(prior is None or prior == p.get("expected_classification"),
+              f"IG fixture {pid}: contradictory expected classification for the same endpoint pair")
+        seen_endpoints[key] = p.get("expected_classification")
+        if p.get("fixture_kind") == "normative":
+            check(p.get("expected_classification") in class_ids, f"IG fixture {pid}: unknown expected_classification")
+            check(p.get("expected_posture") in post_ids, f"IG fixture {pid}: unknown expected_posture")
+            # expected route-eligibility must be consistent with a positive classification only
+            check(bool(p.get("expected_route_eligible")) == (p.get("expected_classification") in positive),
+                  f"IG fixture {pid}: expected_route_eligible inconsistent with classification")
+            res = gate.evaluate(p, policy)
+            check(res["classification"] == p["expected_classification"]
+                  and res["posture"] == p["expected_posture"]
+                  and res["route_eligible"] == p["expected_route_eligible"],
+                  f"IG fixture {pid}: gate output {res['classification']}/{res['posture']}/{res['route_eligible']} != expected")
+            # a pass may never carry unresolved signals
+            check(not (res["route_eligible"] and res["unresolved_signals"]),
+                  f"IG fixture {pid}: route-eligible with unresolved signals (must fail closed)")
+
+    # KO/PC: IG posture is governed; Contract-C stays DERIVED and non-public; IG never publishes
+    for ko in koreg["knowledge_objects"]:
+        p = ko["postures"]
+        if p.get("information_gain_posture") in cc.IG_GOVERNED_ALIASES + cc.IG:
+            recomputed = cc.derive(governance=p["governance_posture"], evidence=p["evidence_posture"],
+                                   claim=p["claim_posture"], validation=p["validation_posture"],
+                                   ig=p["information_gain_posture"], release=p["release_authorization"])
+            dc = ko["derived_contract_c"]
+            check((dc["publication_state"], dc["indexation_state"]) == recomputed,
+                  f"KO {ko['knowledge_object_id']}: derived_contract_c != recomputed (manual Contract-C forbidden)")
+            check(recomputed[0] == "not_public",
+                  f"KO {ko['knowledge_object_id']}: IG must not authorize publication")
+        igr = ko.get("ig_resolution")
+        if igr is not None:
+            check(igr.get("policy_version") == v, f"KO {ko['knowledge_object_id']}: ig_resolution.policy_version mismatch")
+            check(igr.get("object_informational_validity") in
+                  set(policy["object_validity_vs_route_distinctness"]["object_informational_validity_values"]),
+                  f"KO {ko['knowledge_object_id']}: bad object_informational_validity")
+            check(igr.get("new_route_distinctness") in
+                  set(policy["object_validity_vs_route_distinctness"]["new_route_distinctness_values"]),
+                  f"KO {ko['knowledge_object_id']}: bad new_route_distinctness")
+
+
 def validate_source_qualification():
     reg = load(os.path.join(DATA, "sources", "source_registry.json"))
     source_ids = {s["source_id"] for s in reg["sources"]}
@@ -451,6 +564,7 @@ def main():
     validate_relationship_classes()
     validate_evidence()
     validate_information_gain()
+    validate_information_gain_governance()
     validate_source_qualification()
     validate_classification()
     validate_organization()

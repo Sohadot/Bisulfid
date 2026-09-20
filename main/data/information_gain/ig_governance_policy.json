@@ -1,0 +1,137 @@
+{
+  "policy_id": "IG-GOVERNANCE",
+  "version": "1.0.0",
+  "status": "ratified",
+  "site": "bisulfid.com",
+  "sprint": "ig-governance-ratification",
+  "ratified_at": "2026-09-20",
+  "governed_by": [
+    "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
+    "scripts/governance_scaffolding/contract_c_derive.py",
+    "scripts/governance_scaffolding/information_gain_gate.py",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Ratifies a machine-discoverable, deterministic, NON-NUMERIC Information-Gain decision authority. The gate answers 'does a candidate knowledge surface add distinct governed knowledge OR a distinct reference task that warrants an independent, retrievable URL?' — never 'was the prose rewritten enough?'. It is the ONLY sanctioned way to move an Information-Gain posture toward a pass; the evaluation lives in scripts/governance_scaffolding/information_gain_gate.py.",
+  "authority": {
+    "decision_engine": "scripts/governance_scaffolding/information_gain_gate.py:evaluate",
+    "deterministic": true,
+    "non_numeric": true,
+    "fail_closed": true,
+    "note": "Same inputs always yield the same classification/posture. There is no randomness, no learned weighting, and no numeric similarity cutoff. Anything the gate cannot resolve on governed multi-signal evidence returns unresolved (ig_review_required), never a pass."
+  },
+  "gate_separation": {
+    "statement": "The Information-Gain gate classifies route-distinctness and object informational validity ONLY. It has no authority over any other governance dimension.",
+    "ig_may_not_mutate": [
+      "evidence records or evidence_posture",
+      "claim records, claim outcomes, or claim_posture",
+      "source independence / admissibility",
+      "source_lock_status",
+      "validation_posture",
+      "Contract-C derivation (contract_c_derive.py remains canonical; IG only supplies one input posture)",
+      "release_authorization",
+      "indexation_state",
+      "routes.json, sitemap, robots, or the release ledger",
+      "legacy 14K route visibility"
+    ],
+    "ig_cannot_authorize_publication": "A passing IG posture (ig_reviewed_pass) is necessary-not-sufficient for a URL. Publication/indexation still require every other Contract-C gate (governed governance, evidence_locked for indexation, claim approved, validated, release authorized). IG passing an object never makes it public on its own."
+  },
+  "signals": {
+    "model": "multi-signal semantic",
+    "decision_signals": [
+      "evidence_set_overlap",
+      "claim_set_overlap",
+      "source_set_overlap",
+      "relationship_difference",
+      "geography_jurisdiction_difference",
+      "temporal_difference",
+      "module_section_overlap",
+      "user_task_difference"
+    ],
+    "diagnostic_signals": [
+      "textual_similarity"
+    ],
+    "required_for_resolution": [
+      "evidence_set_overlap",
+      "claim_set_overlap",
+      "source_set_overlap",
+      "relationship_difference",
+      "module_section_overlap",
+      "user_task_difference"
+    ],
+    "optional_signals": [
+      "geography_jurisdiction_difference",
+      "temporal_difference"
+    ],
+    "signal_values_are_categorical": true,
+    "categorical_vocabulary": {
+      "overlap": ["disjoint", "low", "partial", "high"],
+      "difference": ["low", "partial", "high", "na"]
+    },
+    "note": "Signal values are qualitative categories, never numbers. If any required signal is missing or unrecognized, the evaluation fails closed (unresolved)."
+  },
+  "numeric_authority_prohibited": {
+    "prohibited": true,
+    "textual_similarity_role": "diagnostic_only",
+    "statement": "No numeric similarity cutoff, score, ratio, or signal weighting is defined, ratified, or permitted to produce a PASS or a FAIL. Textual similarity is one diagnostic signal among many; it can NEVER independently decide a classification and can never upgrade a same-task surface to a pass. 'Not a textual duplicate' is NOT sufficient evidence of independent reference value.",
+    "forbidden_field_substrings": ["threshold", "weight", "cutoff", "score"]
+  },
+  "classifications": [
+    {
+      "classification": "valid_domain_specific_reference",
+      "route_eligible": true,
+      "meaning": "Positive, independent reference value: distinct governed knowledge (disjoint evidence/claim/source sets) AND a distinct reference task versus the compared surface. Deleting one endpoint loses governed knowledge the other does not hold. Warrants an independent URL.",
+      "yields_posture": "ig_reviewed_pass"
+    },
+    {
+      "classification": "near_duplicate",
+      "route_eligible": false,
+      "meaning": "The candidate serves the SAME reference task as an existing governed or legacy surface. No positive independent value for a NEW url. The object's value is realized by governing the topic, not by minting a second URL.",
+      "yields_posture": "ig_reviewed_no_new_route"
+    },
+    {
+      "classification": "module_relationship",
+      "route_eligible": false,
+      "meaning": "The two endpoints are modules/sections of ONE coherent Knowledge Object (e.g. formula vs structure of the same entity). They must remain modules of one object, never separate sibling URLs.",
+      "yields_posture": "ig_reviewed_no_new_route"
+    },
+    {
+      "classification": "unresolved",
+      "route_eligible": false,
+      "meaning": "The gate could not resolve on governed multi-signal evidence (missing/unknown required signals, self-comparison, contradictory signals, or only textual similarity distinguishes the endpoints). Fail-closed: requires human review.",
+      "yields_posture": "ig_review_required"
+    }
+  ],
+  "classification_ids": ["valid_domain_specific_reference", "near_duplicate", "module_relationship", "unresolved"],
+  "additional_positive_labels": {
+    "note": "The calibration LABEL taxonomy (labels[] in calibration_pairs.json) also recognizes valid_sibling and valid_localization as positive independent-reference values. When the gate is extended to detect them they map to ig_reviewed_pass (route_eligible). true_duplicate maps to ig_reviewed_no_new_route.",
+    "route_eligible_labels": ["valid_domain_specific_reference", "valid_sibling", "valid_localization"],
+    "not_route_eligible_labels": ["true_duplicate", "near_duplicate"]
+  },
+  "postures": [
+    {
+      "posture": "ig_reviewed_pass",
+      "route_eligible": true,
+      "eligibility_rule": "Granted ONLY when the route-distinctness classification is a positive independent-reference value (valid_domain_specific_reference, valid_sibling, or valid_localization) AND there are no unresolved signals. 'Not a duplicate' alone is insufficient — positive independent reference value is required. near_duplicate, module_relationship, and unresolved are NEVER eligible for a sibling-route pass.",
+      "contract_c_input": "ig_passed"
+    },
+    {
+      "posture": "ig_reviewed_no_new_route",
+      "route_eligible": false,
+      "eligibility_rule": "Assigned when the object was reviewed and classified near_duplicate, module_relationship, or true_duplicate: reviewed, but no NEW independent route is warranted. The object may still be informationally valid (see object_informational_validity).",
+      "contract_c_input": "ig_failed"
+    },
+    {
+      "posture": "ig_review_required",
+      "route_eligible": false,
+      "eligibility_rule": "Assigned when the evaluation is unresolved (fail-closed). Requires human review before any further IG progression.",
+      "contract_c_input": "ig_not_reviewed"
+    }
+  ],
+  "posture_ids": ["ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required"],
+  "object_validity_vs_route_distinctness": {
+    "statement": "Two SEPARATE questions must not be conflated. (1) OBJECT INFORMATIONAL VALIDITY: does the object hold distinct governed knowledge worth retaining and retrieving at all? (2) NEW-ROUTE DISTINCTNESS: does it warrant its own independent URL alongside the nearest existing same-task surface? An object can be informationally valid (question 1 = valid) yet not warrant a new route (question 2 = near_duplicate vs a legacy same-task surface). Only NEW-ROUTE DISTINCTNESS feeds the Contract-C information_gain_posture.",
+    "object_informational_validity_values": ["object_valid_governed", "object_not_distinct", "object_validity_unresolved"],
+    "new_route_distinctness_values": ["new_route_warranted", "no_new_route_warranted", "new_route_distinctness_unresolved"]
+  },
+  "notes": "This policy ratifies the authority; contract_c_derive.py normalizes the postures above to canonical Contract-C IG inputs. No route, HTML, sitemap, robots, release-ledger, or legacy-visibility change is authorized by ratifying IG."
+}

@@ -175,10 +175,12 @@ def main():
     ok("21_no_legacy_holding", "legacy_public_holding" not in json.dumps(ko) and "legacy_public_holding" not in json.dumps(pc))
 
     # 22 publication-candidate is an internal candidate, never published/indexable
+    # (IG posture/disposition ratified in the ig-governance-ratification sprint: the gate
+    # finds no NEW route warranted, so the posture is ig_reviewed_no_new_route, NOT a pass).
     ok("22_candidate_not_published", pc["status"] == "internal_candidate"
-       and pc["proposed_disposition"] == "independent_reference_candidate"
+       and pc["proposed_disposition"] == "governed_reference_no_new_route"
        and "published" in pc["not_disposition"] and "indexable" in pc["not_disposition"]
-       and pc["postures"]["information_gain_posture"] == "ig_not_reviewed")
+       and pc["postures"]["information_gain_posture"] == "ig_reviewed_no_new_route")
 
     print("=" * 56)
     if FAIL:
