@@ -7,7 +7,7 @@
 ## Source availability
 
 - **OCP Consolidated Financial Statements at 31 December 2024 (IFRS)** — original PDF **uploaded**. Identity **verified** (C1–C8; independent auditors' report present). `SRC-OCP-AFR-2024` → status **verified**, lock **candidate**.
-- **OCP Sustainability Integrated Report 2024** — **not uploaded**. `SRC-OCP-SUSTAINABILITY-2024` stays **seeded** (C1 fails). Claim C therefore stays BLOCKED.
+- **OCP Sustainability Integrated Report 2024** — direct **page-excerpt uploaded** (original report page 20; pages 305–306 for assurance bounding). Identity **verified** (C1–C8 for the excerpt scope). `SRC-OCP-SUSTAINABILITY-2024` → status **verified**, lock **candidate**.
 
 ## Proven (issuer-primary, admitted evidence)
 
@@ -15,10 +15,11 @@
   - **Sulfur — FY2024 source literal `(8,344)` → signed `-8344` MDH**; FY2023 `(8,088)` → `-8088` MDH (`NUM-ACCOUNTING-PAREN-NEG`). Derived magnitude 8,344 MDH is prose-only, not stored as competing truth.
   - Means only: *OCP's own consolidated statements report Sulfur under raw-material purchases/purchases consumed at the source-presented amount of (8,344) million dirhams.* NOT import value, NOT physical tonnage, NOT Morocco demand, NOT market size.
 - **Claim B — sulfur consumption observation** (`CLM-OCP-SULFUR-CONSUMPTION-OBS-FY2024`, evidence `EVD-OCP-SULFUR-CONSUMPTION-FY2024`). Verbatim MD&A sentence (page 21): *"sulfur consumption volumes increased in correlation with the rise in sulfuric acid production."* Supported as an **issuer-reported operational observation**, FY2024-scoped. No tonnage, percentage, causal elasticity, or national consumption inferred.
+- **Claim C — industrial process context** (`CLM-OCP-PHOSPHATE-SULFURIC-ACID-PROCESS`, evidence `EVD-OCP-PHOSPHATE-PROCESS-2024`). Verbatim page-20 statement: OCP's phosphate processing at **Jorf Lasfar and Safi** combines phosphate rock with sulphuric acid to create phosphoric acid; these sites are equipped with sulphuric-acid and phosphoric-acid production lines. Supported as **issuer-primary, organization-scoped, site-scoped process CONTEXT**. Does not by itself prove sulfur feedstock quantities or national demand. `sulphuric acid`/`phosphoric acid` kept as qualitative text; **no `sulfuric_acid` concept fabricated**.
 
 ## Blocked
 
-- **Claim C — industrial process context** (`CLM-OCP-PHOSPHATE-SULFURIC-ACID-PROCESS`): **BLOCKED**. The Sustainability Integrated Report 2024 PDF was not uploaded; the process/site statement (phosphate rock + sulphuric acid → phosphoric acid; Jorf Lasfar / Safi) was **not** extracted or asserted. Financial evidence cannot substitute for the sustainability process evidence. No `sulfuric_acid` ontology concept was fabricated. Site-scope requirement (Jorf Lasfar, Safi) is recorded as the target for when the sustainability PDF is supplied.
+- None. Claims A, B, C are all supported at their reviewed scope (A & B from the audited financial statements; C from the sustainability page-excerpt). Broader inferences (tonnage, national demand, market size, an upgraded relationship) remain out of scope by policy, not by acquisition.
 
 ## Source inconsistency (quarantined, excluded from admitted claims)
 
@@ -32,11 +33,11 @@ The same page-21 paragraph states sulfur purchases "decreased by 256 million dir
 
 ## Relationship
 
-`REL-INST-OCP-SULFUR-FY2024`: **ORG-OCP-GROUP → REL-INDUSTRIAL-USER → sulfur**, FY2024-bounded, `qualification_state = evidence_collecting`, evidence_ids = [purchase, consumption]. **Not upgraded** to `evidence_qualified`: REL-INDUSTRIAL-USER requires primary production/statistical/scientific categories plus **independent** corroboration; OCP is a single issuer and its two reports are not independent. Policy not weakened.
+`REL-INST-OCP-SULFUR-FY2024`: **ORG-OCP-GROUP → REL-INDUSTRIAL-USER → sulfur**, FY2024-bounded, `qualification_state = evidence_collecting`, evidence_ids = [purchase, consumption, phosphate-process]. **Not upgraded** to `evidence_qualified`: REL-INDUSTRIAL-USER requires primary production/statistical/scientific categories plus **independent** corroboration; OCP is a single issuer and all three records are not independent. Policy not weakened.
 
 ## Independence
 
-The financial report and the (absent) sustainability report share the issuer (OCP Group). They are **not** independent corroboration. The financial statements being independently audited does not make OCP and OCP-Sustainability two independent publishers. The independence evaluator returns **not independent** for two OCP units; the relationship correctly stays `evidence_collecting`.
+The financial report and the sustainability report share the issuer (OCP Group). They are **not** independent corroboration. The financial statements being independently audited, and the sustainability report carrying (metric-scoped) third-party assurance, does not make OCP's reports independent publishers of each other. The independence evaluator returns **not independent** for the OCP units; the relationship correctly stays `evidence_collecting`.
 
 ## Evidence postures (via the real admission bridge)
 
@@ -44,7 +45,12 @@ The financial report and the (absent) sustainability report share the issuer (OC
 |---|---|---|---|---|---|---|
 | `EVD-OCP-SULFUR-PURCHASE-FY2024` | yes | `QUAL-OCP-AFR-001` qualified_narrow | **True** | evidence_verified | single_authoritative_sufficient | **evidence_sufficient** (not locked — lock candidate) |
 | `EVD-OCP-SULFUR-CONSUMPTION-FY2024` | yes | `QUAL-OCP-AFR-001` qualified_narrow | **True** | evidence_verified | primary_plus_corroborating | **evidence_collecting** (single issuer) |
+| `EVD-OCP-PHOSPHATE-PROCESS-2024` | yes | `QUAL-OCP-SUS-001` qualified_narrow | **True** | evidence_verified | primary_plus_corroborating | **evidence_collecting** (single issuer) |
 | Relationship `REL-INST-OCP-SULFUR-FY2024` | — | — | — | — | primary_plus_corroborating | **evidence_collecting** |
+
+## Third-party assurance bounding (Claim C source)
+
+The sustainability report's third-party assurance (pages 305–306: ISO 14064-1/-3, "reasonable assurance", GUTcert, Berlin 29 Jul 2025) covers **environmental metrics only** — GHG emissions (Scope 1: 3,365,208 tCO₂e; Scope 2: 767,239; Scope 3: 16,255,947; Total 20,388,394), clean-electricity use ratio (80.00%), waste-management ratios (99.06% / 15.03%), non-conventional-waters use ratio (66.89%). It does **not** assure the page-20 industrial-process statement (Claim C), which is issuer-reported but **unassured**. These assured environmental metrics are **out of Pilot-02 scope** and are **not** admitted as Pilot-02 claims.
 
 Because source locks remain **candidate**, no branch is `evidence_locked`.
 
@@ -60,6 +66,5 @@ Because source locks remain **candidate**, no branch is `evidence_locked`.
 
 ## Next possible expansion (not started)
 
-- Supply the **Sustainability Integrated Report 2024** PDF to complete Claim C (site-scoped Jorf Lasfar/Safi process context), keeping its third-party assurance scoped to the assured metrics only.
 - Independent corroboration (official production/statistical/scientific) would be required to move `REL-INST-OCP-SULFUR-FY2024` beyond `evidence_collecting`.
 - A governed `sulfuric_acid` concept only if concept-governance independently authorizes it. No Pilot 03.

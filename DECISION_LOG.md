@@ -5280,3 +5280,31 @@ Purchase: admitted True, evidence_verified, evidence_sufficient (lock candidate 
 
 ### Stop
 No Pilot 03.
+
+---
+
+## Pilot 02 — Claim C Completion (Sustainability page-excerpt)
+
+**Date:** 2026-09-20
+**Baseline:** commit `9aee972f95`. The user supplied a direct **page-excerpt** of the original OCP Sustainability Integrated Report 2024 (original report **page 20** = industrial-process statement; **pages 305–306** = third-party assurance, for bounding only). Completed only the previously-blocked Claim C chain (`SRC-OCP-SUSTAINABILITY-2024 → QUAL-OCP-SUS-001 → evidence → Claim C`). Claims A/B untouched; architecture unchanged; no Pilot 03. Extracted verbatim from the original excerpt (pdfminer.six); nothing from prompt text.
+
+### Source verification (§1)
+`SRC-OCP-SUSTAINABILITY-2024`: C1–C8 **PASS** against the page-excerpt → status `seeded → verified`, **lock stays candidate**, added to `verification_ready_sources`. Verification ≠ qualification/admission/claim/publication.
+
+### Qualification (§2)
+`QUAL-OCP-SUS-001` promoted `candidate → qualified_narrow` for the reviewed use `issuer_own_process_context_ocp` (SD-INDUSTRIAL, qualitative), site-scoped Jorf Lasfar/Safi. Prohibits financial amount, sulfur feedstock quantity, national/market demand, universal/chemistry claims, and third-party assurance of the process statement.
+
+### Claim C — industrial process (SUPPORTED)
+Evidence `EVD-OCP-PHOSPHATE-PROCESS-2024`, verbatim **page 20**: OCP's phosphate processing at **Jorf Lasfar and Safi** combines phosphate rock with sulphuric acid to create phosphoric acid; sites equipped with sulphuric-acid and phosphoric-acid production lines. Issuer-primary, organization-scoped, site-scoped. admissible()=True; SD-INDUSTRIAL primary_plus_corroborating → **evidence_collecting** (third OCP-issuer, non-independent). No `sulfuric_acid` ontology concept fabricated (kept as qualitative text).
+
+### Assurance bounding (§ user instruction)
+Pages 305–306 third-party assurance (ISO 14064-1/-3, "reasonable assurance", GUTcert, Berlin 29 Jul 2025) is scoped to **environmental metrics only** — GHG (Scope 1/2/3 CO₂e), clean-electricity use ratio (80.00%), waste ratios, non-conventional-waters ratio. Recorded in the evidence's `assurance_bounding` block (`assured_metrics_are_pilot02_claims: false`). It does **NOT** assure the page-20 process statement, and those metrics are **not** admitted as Pilot-02 claims.
+
+### Relationship / independence / Contract-C
+`REL-INST-OCP-SULFUR-FY2024` now carries 3 issuer evidence_ids (purchase, consumption, process); stays **evidence_collecting** (same-issuer non-independence; policy not weakened; not `GEO-MA`). Contract-C = **(not_public, noindex)** everywhere. No route/claim activation, no source-lock.
+
+### Tests
+`pilot_02_tests.py` updated (Claim C supported; site scope; assurance bounded; sustainability≠financial; no sulfuric_acid concept) — PASS; all prior governance + Pilot-01 suites regress green; **wired L0/L1/L2 CI PASS**. Sources now **5 verified** (SPEKTRUM, OC-MA, UN-COMTRADE, OCP-AFR, OCP-SUSTAINABILITY) — all locks candidate.
+
+### Stop
+Pilot 02 is complete: Claims A, B, C all supported at their reviewed scope; relationship evidence_collecting; nothing published. No Pilot 03.

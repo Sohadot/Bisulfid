@@ -55,6 +55,16 @@
         "target_status_after_guardrail_transition": "verified",
         "source_lock_status_unchanged": "candidate",
         "note": "Identity verified against the ORIGINAL uploaded PDF (C1-C8 pass): consolidated FY2024 statements with an independent auditors' report; Note 4.2.2 figures confirmed verbatim. Bibliographic/identity verification only — NOT source-locking, claim approval, route publication, indexation, or registry activation. source_lock_status remains candidate."
+      },
+      {
+        "source_id": "SRC-OCP-SUSTAINABILITY-2024",
+        "evidence_sprint": "pilot-02-claim-c-completion",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Identity verified against a direct PAGE-EXCERPT of the original report (page 20 process statement; pages 305-306 third-party assurance) supplied by the user (C1-C8 pass for the excerpt scope). Bibliographic/identity verification only — NOT source-locking, claim approval, route publication, indexation, or registry activation. source_lock_status remains candidate. The third-party assurance (pages 305-306) is scoped to environmental metrics (GHG, clean-electricity, waste, water) and does NOT assure the page-20 industrial-process statement."
       }
     ],
     "next_charter": "Validator policy update sprint to permit verification_limited posture with individual verified rows while publication, claim, and route locks remain LOCKED"
@@ -654,11 +664,11 @@
       "author_or_organization": "OCP Group (OCP S.A.), the reporting entity (issuer-primary sustainability/integrated report)",
       "url": "https://www.ocpgroup.ma/sites/default/files/2025-12/OCP_Sustainbility_Report-2024.pdf",
       "language": "en",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
-      "last_reviewed": "2026-09-19",
+      "last_reviewed": "2026-09-20",
       "use_for": [
-        "issuer-primary, narrowly-scoped statements about OCP's OWN operations/processes as stated in OCP's sustainability report (pending source-identity verification and scope review)"
+        "issuer-primary, narrowly-scoped statement about OCP's OWN phosphate-processing operations as stated on original report page 20 (phosphate rock combined with sulphuric acid to create phosphoric acid; Jorf Lasfar and Safi platforms)"
       ],
       "do_not_use_for": [
         "a financial amount (a sustainability report is not the financial statements)",
@@ -669,11 +679,12 @@
         "source-locking by itself"
       ],
       "risk_notes": [
-        "NEW source located in Pilot 02. Registered from first canonical registration with identity_revision. Status seeded / lock candidate (registered, UNVERIFIED).",
-        "IDENTITY VERIFICATION STILL INCOMPLETE in the Pilot-02 completion sprint (2026-09-20): only the OCP Consolidated Financial Statements PDF was uploaded; the Sustainability Integrated Report 2024 PDF was NOT among the local uploads. C1 (original artifact available) therefore FAILS -> status stays seeded (NOT verified).",
-        "Because the original sustainability PDF was not available, the process statement (Claim C: phosphate rock + sulphuric acid -> phosphoric acid, Jorf Lasfar/Safi) remains BLOCKED; nothing extracted from prompt text or search snippets. No sulfuric_acid ontology concept fabricated."
+        "NEW source located in Pilot 02. Registered from first canonical registration with identity_revision rev-2026-09-19-1 (bibliographic work: OCP Sustainability Integrated Report 2024); unchanged.",
+        "IDENTITY VERIFIED (2026-09-20) against a direct PAGE-EXCERPT of the original report supplied by the user (original report page 20 = the phosphate-processing statement; pages 305-306 = third-party assurance). C1-C8 pass for the excerpt scope; extraction verbatim (pdfminer.six). No credentials/login/TLS bypass. status seeded -> verified under verification_limited (listed in verification_ready_sources); source_lock_status stays candidate. The verification covers the supplied excerpt pages; the full-report body beyond these pages is not asserted.",
+        "ASSURANCE BOUNDING: the third-party assurance on pages 305-306 (ISO 14064-1/-3, 'reasonable assurance', GUTcert, Berlin 29 Jul 2025) is scoped to environmental metrics ONLY — GHG emissions (Scope 1/2/3 CO2e), clean-electricity use ratio (80.00%), waste-management ratios, non-conventional-waters use ratio. It does NOT assure the page-20 industrial-process statement (Claim C), which is issuer-reported but unassured. Those assured environmental metrics are OUT OF Pilot-02 scope and are NOT admitted as Pilot-02 claims.",
+        "No sulfuric_acid ontology concept fabricated; sulphuric/phosphoric acid kept as qualitative text."
       ],
-      "notes": "OCP Group's own official Sustainability Integrated Report 2024 (issuer-primary). Category corporate_sustainability_report (authority limited to OCP's own stated operations). Located via official OCP domain; acquisition of the file bytes is blocked (Cloudflare challenge). Not verified, not locked, not claim-approved, not published."
+      "notes": "OCP Group's own official Sustainability Integrated Report 2024 (issuer-primary). Category corporate_sustainability_report (authority limited to OCP's own stated operations). Identity verified against a direct page-excerpt of the original report; status verified, lock candidate. Not source-locked, not claim-approved, not published."
     }
   ]
 }

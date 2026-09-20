@@ -4,7 +4,7 @@
   "site": "bisulfid.com",
   "status": "non_operational",
   "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "main/data/claim_activation_policy.json", "main/data/pilots/MOROCCO_OCP_SULFUR_INDUSTRIAL_PILOT_02.md", "DECISION_LOG.md"],
-  "purpose": "Pilot-scoped, NON-OPERATIONAL claim records for Pilot 02 (OCP Group x sulfur x Morocco industrial context x FY2024). Kept OUT of the canonical claim registries. Claims A and B are now SUPPORTED from the ORIGINAL uploaded OCP financial statements; Claim C stays BLOCKED because the Sustainability Integrated Report PDF was NOT uploaded. Supporting evidence IDs are mandatory for a supported claim; organization identity / source existence do NOT count as evidence. Claim approval does not authorize publication.",
+  "purpose": "Pilot-scoped, NON-OPERATIONAL claim records for Pilot 02 (OCP Group x sulfur x Morocco industrial context x FY2024). Kept OUT of the canonical claim registries. Claims A and B are SUPPORTED from the ORIGINAL OCP consolidated financial statements; Claim C is now SUPPORTED from a direct page-excerpt (original report page 20) of the OCP Sustainability Integrated Report 2024. Supporting evidence IDs are mandatory for a supported claim; organization identity / source existence do NOT count as evidence. Claim approval does not authorize publication.",
   "operational": false,
   "organization_ref": "ORG-OCP-GROUP",
   "relationship_ref": "REL-INST-OCP-SULFUR-FY2024",
@@ -35,10 +35,10 @@
     {
       "claim_id": "CLM-OCP-PHOSPHATE-SULFURIC-ACID-PROCESS",
       "pilot_claim": "C — industrial process context (issuer-primary, qualitative)",
-      "statement_intended": "Per OCP's Sustainability Integrated Report 2024, OCP's phosphate-processing platforms (Jorf Lasfar, Safi) combine phosphate rock with sulphuric acid to produce phosphoric acid, within the exact locations/scope stated by the source.",
-      "outcome": "BLOCKED",
-      "blocked_reason": "The Sustainability Integrated Report 2024 PDF was NOT among the local uploads (only the Consolidated Financial Statements PDF was provided). Per non-fabrication, the process/site statement was NOT extracted or asserted from prompt text or memory. Financial evidence cannot replace the sustainability process evidence. No 'sulfuric_acid' ontology concept was fabricated.",
-      "supporting_evidence_ids": []
+      "statement": "Per OCP's Sustainability Integrated Report 2024 (original report page 20), OCP's phosphate processing takes place at two platforms located in Jorf Lasfar and Safi, where phosphate rock is combined with sulphuric acid to create phosphoric acid; these sites are equipped with sulphuric-acid and phosphoric-acid production lines.",
+      "outcome": "SUPPORTED_BY_EVIDENCE (non-operational)",
+      "scope_guard": "Issuer-primary, organization-scoped, site-scoped (Jorf Lasfar, Safi) process CONTEXT only. Does NOT by itself prove sulfur feedstock quantities or national sulfur demand. 'sulphuric acid'/'phosphoric acid' kept as qualitative text; no 'sulfuric_acid' ontology concept fabricated. The page-305/306 third-party assurance (GHG/clean-electricity/waste/water metrics) does NOT assure this process statement.",
+      "supporting_evidence_ids": ["EVD-OCP-PHOSPHATE-PROCESS-2024"]
     }
   ]
 }

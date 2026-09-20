@@ -107,15 +107,15 @@
       "permitted_evidence_kinds": ["qualitative"],
       "permitted_claim_levels": ["relationship"],
       "evidence_roles": ["primary_authoritative"],
-      "scope": "PROPOSED (not reviewed): narrowly-scoped statement about OCP's OWN phosphate-processing operations (phosphate rock + sulphuric acid -> phosphoric acid) within the exact locations/scope stated by OCP's sustainability report. Scope review is BLOCKED (original PDF not openable here).",
+      "scope": "REVIEWED against a direct page-excerpt of the original report (2026-09-20). One narrowly-enumerated issuer-primary use: OCP's OWN phosphate-processing statement on original report page 20 (phosphate rock combined with sulphuric acid to create phosphoric acid; sites equipped with sulphuric-acid and phosphoric-acid production lines) at the stated platforms Jorf Lasfar and Safi. Nothing beyond this exact site-scoped process context.",
       "allowed_uses": ["issuer_own_process_context_ocp"],
-      "prohibited_uses": ["financial_amount", "universal_industry_fact", "national_production_or_demand", "global_market_structure", "morocco_wide_conclusion", "route_publication", "claim_approval_by_itself", "source_locking_by_itself"],
-      "qualification_state": "candidate",
-      "review_date": "2026-09-19",
+      "prohibited_uses": ["financial_amount", "sulfur_feedstock_quantity", "national_production_or_demand", "global_market_structure", "morocco_wide_conclusion", "universal_industry_fact", "generic_chemistry_claim", "third_party_assurance_of_process_statement", "route_publication", "claim_approval_by_itself", "source_locking_by_itself"],
+      "qualification_state": "qualified_narrow",
+      "review_date": "2026-09-20",
       "geography_limitation": null,
       "jurisdiction_limitation": null,
       "temporal_boundary": null,
-      "note": "State 'candidate' (deny-by-default): source seeded/unverified AND scope unreviewed (acquisition blocked). NOT admissible. A sustainability report may never establish a financial amount, and issuer-primary supports only OCP's own stated operations, never a national/universal industrial fact."
+      "note": "Promoted candidate -> qualified_narrow (2026-09-20): source identity verified AND scope reviewed against the original page-excerpt. Admissible ONLY for the site-scoped issuer-own process-context use. A sustainability report may NEVER establish a financial amount (that is the financial statements), a sulfur feedstock quantity, national/market demand, or a universal industrial/chemistry fact. The page-305/306 third-party assurance covers environmental metrics only and does NOT assure this process statement. qualified_narrow admits at the admission gate but implies NO claim approval, NO source-locking, NO route publication, NO indexation."
     }
   ]
 }

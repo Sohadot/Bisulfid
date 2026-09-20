@@ -53,6 +53,7 @@ def main():
     onto = load("ontology", "sulfur_terms.json")
     purchase = load("evidence", "EVD-OCP-SULFUR-PURCHASE-FY2024.json")
     consumption = load("evidence", "EVD-OCP-SULFUR-CONSUMPTION-FY2024.json")
+    process = load("evidence", "EVD-OCP-PHOSPHATE-PROCESS-2024.json")
     pstore = load("pilots", "PILOT_02_claims.json")
     claims = {c["claim_id"]: c for c in pstore["claims"]}
 
@@ -67,15 +68,16 @@ def main():
        and inst["subject_ref"] == "ORG-OCP-GROUP" and inst["subject_type"] == "organization")
 
     # --- source verification / qualification ---
-    # 3 financial source verified but lock stays candidate; sustainability stays seeded
+    # 3 both OCP sources verified but lock stays candidate (verification != lock)
     ok("3_verified_not_locked", srcs["SRC-OCP-AFR-2024"]["status"] == "verified"
        and srcs["SRC-OCP-AFR-2024"]["source_lock_status"] == "candidate"
-       and srcs["SRC-OCP-SUSTAINABILITY-2024"]["status"] == "seeded")
+       and srcs["SRC-OCP-SUSTAINABILITY-2024"]["status"] == "verified"
+       and srcs["SRC-OCP-SUSTAINABILITY-2024"]["source_lock_status"] == "candidate")
     ok("3b_no_source_locked", all(s.get("source_lock_status") == "candidate" for s in srcs.values()))
 
-    # 4 financial qualification promoted to qualified_narrow; sustainability stays candidate
+    # 4 both OCP qualifications promoted to qualified_narrow (each for their reviewed uses)
     ok("4_qual_states", quals["QUAL-OCP-AFR-001"]["qualification_state"] == "qualified_narrow"
-       and quals["QUAL-OCP-SUS-001"]["qualification_state"] == "candidate")
+       and quals["QUAL-OCP-SUS-001"]["qualification_state"] == "qualified_narrow")
 
     # --- Claim A: accounting semantics ---
     fy = purchase["quantitative"]["primary_measure"]["series"]
@@ -133,16 +135,37 @@ def main():
        and admissible({**base, "subject_domain": "SD-INDUSTRIAL", "evidence_kind": "qualitative",
                        "intended_use": "sulfur_price_directional_claim"}, d)[0] is False)
 
-    # --- Claim C blocked; no substitution ---
+    # --- Claim C: SUPPORTED (issuer process context), site-scoped, assurance-bounded ---
     cC = claims["CLM-OCP-PHOSPHATE-SULFURIC-ACID-PROCESS"]
-    ok("12_claimC_blocked", cC["outcome"] == "BLOCKED" and cC["supporting_evidence_ids"] == [])
-    # financial evidence cannot replace the process evidence: SD-INDUSTRIAL process use is not in allowed_uses
-    ok("12b_financial_not_process", admissible({**base, "subject_domain": "SD-INDUSTRIAL", "evidence_kind": "qualitative",
+    ok("12_claimC_supported", str(cC["outcome"]).startswith("SUPPORTED")
+       and cC["supporting_evidence_ids"] == ["EVD-OCP-PHOSPHATE-PROCESS-2024"])
+    uP, rP = build_admission_unit(process, "QUAL-OCP-SUS-001", "issuer_own_process_context_ocp", d)
+    ok("12b_process_admitted", uP["admitted"] is True, rP)
+    pc_posture = derive_evidence_posture_governed(
+        [(process, "QUAL-OCP-SUS-001", "issuer_own_process_context_ocp")], "primary_plus_corroborating", d)
+    ok("12c_process_collecting", pc_posture == "evidence_collecting", pc_posture)
+    # site scope retained (Jorf Lasfar & Safi) in verbatim + site_scope field
+    vb = process["locator"]["verbatim_statement"]
+    ok("12d_site_scope", process.get("site_scope") == ["Jorf Lasfar", "Safi"] and "Jorf Lasfar" in vb and "Safi" in vb)
+    # financial evidence cannot replace the process evidence (process use not in AFR allowed_uses)
+    ok("12e_financial_not_process", admissible({**base, "subject_domain": "SD-INDUSTRIAL", "evidence_kind": "qualitative",
                        "intended_use": "issuer_own_process_context_ocp"}, d)[0] is False)
+    # sustainability evidence cannot establish a financial amount (its qual is SD-INDUSTRIAL/qualitative only)
+    ok("12f_sustainability_not_financial", admissible({"source_id": "SRC-OCP-SUSTAINABILITY-2024",
+        "qualification_id": "QUAL-OCP-SUS-001", "subject_domain": "SD-CORPORATE-FINANCIALS",
+        "evidence_kind": "quantitative", "claim_level": "relationship", "evidence_role": "primary_authoritative",
+        "intended_use": "issuer_own_accounting_line_ocp_fy2024"}, d)[0] is False)
+    # third-party assurance is bounded: it does NOT assure the process statement, and assured metrics are not Pilot-02 claims
+    ab = process["assurance_bounding"]
+    ok("12g_assurance_bounded", ab.get("assured_metrics_are_pilot02_claims") is False and "does_not_assure" in ab
+       and "third_party_assurance_of_process_statement" in process["prohibited_uses"])
+    supported_all = " ".join(str(c.get("statement", "")) for c in claims.values() if str(c.get("outcome", "")).startswith("SUPPORTED")).lower()
+    ok("12h_assured_metrics_not_claimed", "80.00" not in supported_all and "clean electricity" not in supported_all
+       and "20,388,394" not in supported_all and "co2e" not in supported_all)
     # no sulfuric_acid concept fabricated
     elig = {n["term_id"] for n in onto_roles["node_roles"] if n["role"] == "concept_eligible"}
     all_terms = {t["term_id"] for t in onto["terms"]}
-    ok("12c_no_sulfuric_acid_concept", "sulfuric_acid" not in elig and "sulfuric_acid" not in all_terms)
+    ok("12i_no_sulfuric_acid_concept", "sulfuric_acid" not in elig and "sulfuric_acid" not in all_terms)
 
     # 13 sustainability evidence cannot support the accounting value (even if hypothetically qualified)
     d13 = load_all()
@@ -160,7 +183,7 @@ def main():
     # 14 grammar valid; evidence_collecting; FY2024-bounded; NOT evidence_qualified
     ok("14a_grammar_valid", validate_instance(inst, rels) == [])
     ok("14b_period_bounded", inst["temporal_scope"]["valid_from"] == "2024-01-01" and inst["temporal_scope"]["valid_to"] == "2024-12-31")
-    ok("14c_not_qualified", inst["qualification_state"] == "evidence_collecting")
+    ok("14c_not_qualified", inst["qualification_state"] == "evidence_collecting" and len(inst["evidence_ids"]) == 3)
     # reversed direction rejected (sulfur cannot be the subject of REL-INDUSTRIAL-USER)
     rev = {**inst, "subject_ref": "sulfur", "subject_type": "concept", "object_ref": "ORG-OCP-GROUP", "object_type": "organization"}
     ok("14d_reverse_rejected", validate_instance(rev, rels) != [])

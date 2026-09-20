@@ -84,6 +84,25 @@ Scope: the two OCP sources, verified against the **original uploaded PDFs** prov
 
 Effect: `QUAL-OCP-AFR-001` promoted `candidate → qualified_narrow` for two explicitly-reviewed issuer-primary uses (FY2024 accounting sulfur line; FY2024 sulfur-consumption operational observation). Verification does **not** imply source-lock (stays candidate), claim approval, or publication.
 
-### SRC-OCP-SUSTAINABILITY-2024 — **FAIL at C1 → status stays `seeded`**
+### SRC-OCP-SUSTAINABILITY-2024 — **FAIL at C1 (2026-09-20 first pass) → later PASS**
 
-The Sustainability Integrated Report 2024 PDF was **not** among the uploads (only the financial statements were provided). C1 (original artifact available) fails, so identity is not verified and `QUAL-OCP-SUS-001` stays `candidate`. Claim C remains BLOCKED. The audited financial report does **not** substitute for the sustainability source, and the sustainability report's third-party assurance (scoped to metrics such as GHG/clean electricity) would in any case **not** assure the industrial-process statement.
+First completion pass: the Sustainability Integrated Report 2024 PDF was not among the uploads → C1 failed → status stayed `seeded`, `QUAL-OCP-SUS-001` stayed `candidate`, Claim C BLOCKED.
+
+### SRC-OCP-SUSTAINABILITY-2024 — **PASS (2026-09-20, page-excerpt supplied) → status `verified`**
+
+A direct page-excerpt of the original report was then supplied (original report **page 20** = industrial-process statement; **pages 305–306** = third-party assurance).
+
+| Item | Result |
+|---|---|
+| C1 reachable | PASS — original page-excerpt PDF supplied locally. |
+| C2 type | PASS — valid PDF (5 extractable pages). |
+| C3 publisher | PASS — OCP Group (OCP S.A.). |
+| C4 title/edition | PASS — Sustainability Integrated Report 2024 (page-excerpt; page 305 folio and 'Sustainability Report 2024' present). |
+| C5 verbatim | PASS — page 20: "…two platforms located in Jorf Lasfar and Safi. During processing, phosphate rock is combined with sulphuric acid to create phosphoric acid…These processing sites are equipped with sulphuric acid and phosphoric acid production lines…". |
+| C6 no bypass | PASS — original local excerpt; no credentials/login/TLS bypass. |
+| C7 identity_revision | PASS — `rev-2026-09-19-1`. |
+| C8 guardrails | PASS — lock candidate; listed in verification_ready_sources; posture verification_limited. |
+
+**Assurance bounding (pages 305–306):** third-party assurance (ISO 14064-1/-3, "reasonable assurance", GUTcert, Berlin 29 Jul 2025) covers **environmental metrics only** — GHG emissions (Scope 1/2/3 CO₂e), clean-electricity use ratio (80.00%), waste-management ratios, non-conventional-waters use ratio. It does **not** assure the page-20 industrial-process statement, which is issuer-reported but unassured. Those assured metrics are out of Pilot-02 scope and are not admitted as Pilot-02 claims.
+
+Effect: `QUAL-OCP-SUS-001` promoted `candidate → qualified_narrow` for the site-scoped issuer-own process-context use. Verification does **not** imply source-lock (stays candidate), claim approval, or publication.
