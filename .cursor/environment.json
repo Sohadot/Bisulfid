@@ -1,0 +1,17 @@
+{
+  "name": "bisulfid.com",
+  "install": "sudo ln -sf \"$(command -v python3)\" /usr/local/bin/python",
+  "terminals": [
+    {
+      "name": "dev-server",
+      "command": "python scripts/serve.py",
+      "description": "Serves the generated site/ directory at http://localhost:8000/. The public homepage is at /public/."
+    }
+  ],
+  "ports": [
+    {
+      "name": "dev-server",
+      "port": 8000
+    }
+  ]
+}
