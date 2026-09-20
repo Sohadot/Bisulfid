@@ -1,0 +1,35 @@
+{
+  "evidence_id": "EVD-MOS2-FORMULA-NIST",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": ["molybdenum_disulfide"],
+  "lexeme_ids": [],
+  "subject_domain": ["SD-INORGANIC-CHEMISTRY"],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "claim_scope": "The NIST Chemistry WebBook record for CAS 1317-33-5 (title 'molybdenum disulphide') records the formula as MoS2 (molecular weight 160.09 amu). Independent government-database corroboration of the MoS2 formula identity ONLY.",
+  "source_id": "SRC-NIST-MOS2",
+  "claim_id": "CLM-MOS2-FORMULA",
+  "retrieval_date": "2026-09-20",
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "primary_authoritative",
+  "scientific_scope": {
+    "fact_type": "chemical_identity_formula",
+    "material_form": "not form-specific",
+    "method": "authoritative chemical database record (NIST Chemistry WebBook, SRD 69)",
+    "conditions": "n/a for a composition-identity fact"
+  },
+  "locator": {
+    "system": "NIST Chemistry WebBook",
+    "cas": "1317-33-5",
+    "fields_quoted": {"Formula": "MoS2", "molecularWeight": "160.09 amu", "title": "molybdenum disulphide"},
+    "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=1317-33-5",
+    "retrieval_date": "2026-09-20"
+  },
+  "allowed_uses": ["chemical_formula_identity"],
+  "prohibited_uses": ["crystal_structure_identity", "band_gap", "lattice_parameter", "density", "electronic_or_optical_property", "lexeme_or_terminology", "route_publication", "source_locking_by_itself", "claim_approval_by_itself"],
+  "governance_note": "ADMITTED: SRC-NIST-MOS2 verified; QUAL-NIST-MOS2-001 qualified_narrow for 'chemical_formula_identity'; admissible() TRUE. Independent corroboration (NIST vs PubChem/NIH) for Claim A -> with the PubChem primary, primary_plus_corroborating is satisfied -> evidence_sufficient (not locked). Authorizes NO claim activation, route, or indexation. Contract-C = (not_public, noindex)."
+}

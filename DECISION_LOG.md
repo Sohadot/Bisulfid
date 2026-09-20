@@ -5337,3 +5337,36 @@ OCP sulfur relationship stays **evidence_collecting** (two same-issuer direct re
 
 ### Stop
 No Pilot 03.
+
+---
+
+## Pilot 03 — MoS₂ Scientific Reference Chain
+
+**Date:** 2026-09-20
+**Baseline:** commit `fc72d805f4`. Third real evidence pilot: test the concept-level SCIENTIFIC/materials evidence path for `molybdenum_disulfide`, independently of the German lexical chain (which is untouched). Max three concept-level claims. No Morocco/GCC/China/Germany expansion, no 14K, no routes, no publication/indexation, no weakening of source/evidence rules, no new ontology concept, no PR. All facts extracted verbatim from authoritative sources (PubChem REST, NIST WebBook, Crystallography Open Database CIFs); no AI summaries/snippets as evidence.
+
+### Sources acquired (4; all verified, lock candidate — existing categories, no new category)
+- `SRC-PUBCHEM-MOS2` (government_scientific_database) — PubChem CID 14823 → MoS2, MW 160.1, CAS 1317-33-5.
+- `SRC-NIST-MOS2` (government_scientific_database) — NIST WebBook CAS 1317-33-5 → MoS2, MW 160.09 amu (independent of PubChem).
+- `SRC-COD-MOS2-DICKINSON-1923` (peer_reviewed_journal via COD 1010993) — Dickinson & Pauling, JACS 45,1466 (1923), doi 10.1021/ja01659a020 → 2H-MoS2 P6₃/mmc, a=3.15(2), c=12.30(7) Å.
+- `SRC-COD-MOS2-ACTACRYST-1983` (peer_reviewed_journal via COD 9007660) — Schönfeld, Huang & Moss, Acta Cryst. B 39,404 (1983), doi 10.1107/S0108768183002645 → 2H-MoS2 P6₃/mmc, a=3.161, c=12.295 Å.
+
+Roles: databases `primary_authoritative`, primary determinations `primary_scientific` (already governed; no vocabulary extension needed). Four use-scoped qualifications promoted candidate→qualified_narrow (formula-only for the databases; structure+lattice for the crystallography, band gap explicitly prohibited — §14).
+
+### Three claims / outcomes
+- **Claim A — formula MoS₂** (`CLM-MOS2-FORMULA`): **SUPPORTED**; PubChem + NIST independent → primary_plus_corroborating → evidence_sufficient.
+- **Claim B — 2H structure P6₃/mmc, layered** (`CLM-MOS2-STRUCTURE-2H`): **SUPPORTED**; two independent primary determinations → evidence_sufficient. 3R (R3m) kept distinct; monolayer out of scope.
+- **Claim C — lattice parameter a of 2H-MoS₂** (`CLM-MOS2-LATTICE-A-2H`): **SUPPORTED_CONDITIONAL**; a=3.15(2) Å (1923) and 3.161 Å (1983) preserved separately (no averaging); 2H-bulk scope; NUM-EN-DOT-DECIMAL normalization with uncertainty; evidence_sufficient.
+- **Band gap**: NOT asserted — form-dependent (bulk indirect vs monolayer direct) and authoritative primary source not openly retrievable here; recorded as a future target (§18).
+
+### Separation / scope guarantees
+Spektrum lexical source cannot support A/B/C; scientific sources cannot establish a lexeme (regression tests). Polytype/form scope retained (2H; 3R/monolayer distinguished, veto enforced). Existing chemistry sufficiency (primary_plus_corroborating) NOT weakened. molybdenum_disulfide concept unchanged; no new concept created.
+
+### Postures / Contract-C
+All six records admissible()=True, evidence_verified, lock candidate → never evidence_locked. Per-claim posture A/B/C = evidence_sufficient. **Contract-C = (not_public, noindex)** everywhere. No route/claim activation/source-lock.
+
+### Tests
+`pilot_03_tests.py` (23 proofs) PASS; all Pilot-01/Pilot-02/governance regressions green; wired L0/L1/L2 CI PASS. Sources now 9 verified (all locks candidate).
+
+### Stop
+No Pilot 04.

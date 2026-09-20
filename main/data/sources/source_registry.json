@@ -65,6 +65,46 @@
         "target_status_after_guardrail_transition": "verified",
         "source_lock_status_unchanged": "candidate",
         "note": "Identity verified against a direct PAGE-EXCERPT of the original report (page 20 process statement; pages 305-306 third-party assurance) supplied by the user (C1-C8 pass for the excerpt scope). Bibliographic/identity verification only — NOT source-locking, claim approval, route publication, indexation, or registry activation. source_lock_status remains candidate. The third-party assurance (pages 305-306) is scoped to environmental metrics (GHG, clean-electricity, waste, water) and does NOT assure the page-20 industrial-process statement."
+      },
+      {
+        "source_id": "SRC-PUBCHEM-MOS2",
+        "evidence_sprint": "pilot-03-mos2-scientific-reference",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Identity verified via PubChem REST (CID 14823 -> MoS2). Bibliographic/identity verification only; lock candidate."
+      },
+      {
+        "source_id": "SRC-NIST-MOS2",
+        "evidence_sprint": "pilot-03-mos2-scientific-reference",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Identity verified via NIST Chemistry WebBook (CAS 1317-33-5 -> MoS2). Independent of PubChem. Lock candidate."
+      },
+      {
+        "source_id": "SRC-COD-MOS2-DICKINSON-1923",
+        "evidence_sprint": "pilot-03-mos2-scientific-reference",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Identity verified via COD CIF 1010993 (Dickinson & Pauling 1923; 2H-MoS2 P6_3/mmc). Lock candidate."
+      },
+      {
+        "source_id": "SRC-COD-MOS2-ACTACRYST-1983",
+        "evidence_sprint": "pilot-03-mos2-scientific-reference",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Identity verified via COD CIF 9007660 (Schonfeld, Huang & Moss 1983; 2H-MoS2 P6_3/mmc). Independent of the 1923 determination. Lock candidate."
       }
     ],
     "next_charter": "Validator policy update sprint to permit verification_limited posture with individual verified rows while publication, claim, and route locks remain LOCKED"
@@ -685,6 +725,122 @@
         "No sulfuric_acid ontology concept fabricated; sulphuric/phosphoric acid kept as qualitative text."
       ],
       "notes": "OCP Group's own official Sustainability Integrated Report 2024 (issuer-primary). Category corporate_sustainability_report (authority limited to OCP's own stated operations). Identity verified against a direct page-excerpt of the original report; status verified, lock candidate. Not source-locked, not claim-approved, not published."
+    },
+    {
+      "source_id": "SRC-PUBCHEM-MOS2",
+      "identity_revision": "rev-2026-09-20-1",
+      "category": "government_scientific_database",
+      "publisher": "PubChem / NIH (National Center for Biotechnology Information)",
+      "title": "Molybdenum disulfide (PubChem Compound CID 14823)",
+      "author_or_organization": "PubChem, U.S. National Library of Medicine / NIH",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/compound/14823",
+      "language": "en",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-09-20",
+      "use_for": [
+        "chemical-identity/formula reference for molybdenum disulfide (MoS2) where directly supported by the PubChem compound record (CID 14823, CAS 1317-33-5)"
+      ],
+      "do_not_use_for": [
+        "crystal structure / polytype identity",
+        "band gap or other physical/material properties",
+        "lattice parameters",
+        "German or any lexical/terminology claim",
+        "route publication / claim approval / source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Pilot 03). Identity verified 2026-09-20 via the PubChem REST PUG API (CID 14823 -> MolecularFormula 'MoS2', MolecularWeight '160.1', title 'MOLYBDENUM DISULFIDE', CAS 1317-33-5). No credentials. status verified under verification_limited (verification_ready_sources); source_lock_status candidate.",
+        "Government scientific database: authoritative for chemical IDENTITY, not for materials properties or crystal structure."
+      ],
+      "notes": "PubChem (NIH) compound record for molybdenum disulfide. Government scientific database. Category government_scientific_database (existing vocabulary; no new category). Identity verified, lock candidate; not claim-approved, not published."
+    },
+    {
+      "source_id": "SRC-NIST-MOS2",
+      "identity_revision": "rev-2026-09-20-1",
+      "category": "government_scientific_database",
+      "publisher": "NIST (National Institute of Standards and Technology) Chemistry WebBook",
+      "title": "Molybdenum disulphide (NIST Chemistry WebBook, CAS 1317-33-5)",
+      "author_or_organization": "NIST Chemistry WebBook, SRD 69",
+      "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=1317-33-5",
+      "language": "en",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-09-20",
+      "use_for": [
+        "independent government-database corroboration of the molybdenum disulfide (MoS2) chemical-identity/formula where directly supported by the NIST WebBook record (CAS 1317-33-5)"
+      ],
+      "do_not_use_for": [
+        "crystal structure / polytype identity",
+        "band gap or other physical/material properties",
+        "lattice parameters",
+        "lexical/terminology claim",
+        "route publication / claim approval / source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Pilot 03). Identity verified 2026-09-20 via NIST Chemistry WebBook (CAS 1317-33-5 -> Formula 'MoS2', molecularWeight '160.09 amu', title 'molybdenum disulphide'). No credentials. status verified under verification_limited; lock candidate.",
+        "Independent of PubChem (different publisher: NIST vs NIH/NCBI) -> usable as corroboration for the formula identity."
+      ],
+      "notes": "NIST Chemistry WebBook record for molybdenum disulphide. Government scientific database. Existing category government_scientific_database. Identity verified, lock candidate; not claim-approved, not published."
+    },
+    {
+      "source_id": "SRC-COD-MOS2-DICKINSON-1923",
+      "identity_revision": "rev-2026-09-20-1",
+      "category": "peer_reviewed_journal",
+      "publisher": "Journal of the American Chemical Society (accessed via Crystallography Open Database, COD entry 1010993)",
+      "title": "The crystal structure of molybdenite (2H-MoS2) — Dickinson & Pauling (1923)",
+      "author_or_organization": "Dickinson, R. G.; Pauling, L.",
+      "url": "https://www.crystallography.net/cod/1010993.html",
+      "doi": "10.1021/ja01659a020",
+      "language": "en",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-09-20",
+      "use_for": [
+        "primary crystallographic determination of the 2H-MoS2 (molybdenite) structure: hexagonal space group P 6_3/m m c (No. 194), and its lattice parameters a and c, exactly as recorded (a = 3.15(2) Angstrom, c = 12.30(7) Angstrom), for the 2H polytype only"
+      ],
+      "do_not_use_for": [
+        "band gap or any electronic/optical property",
+        "density or other non-structural property",
+        "chemical-formula identity as a primary source (use the chemistry databases)",
+        "3R, 1T or monolayer/few-layer forms (this determination is 2H bulk)",
+        "lexical/terminology claim",
+        "route publication / claim approval / source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Pilot 03). Foundational single-crystal determination (JACS 45, 1466-1471, 1923; doi 10.1021/ja01659a020). Retrieved 2026-09-20 as COD CIF file 1010993 (open, no credentials). Verbatim: space group 'P 63/m m c', No. 194; a=b=3.15(2), c=12.30(7), gamma=120.",
+        "Scope: 2H-MoS2 (molybdenite) ONLY. A separate polytype (3R, R3m) exists in COD and must never be conflated."
+      ],
+      "notes": "Peer-reviewed crystallographic determination accessed via the Crystallography Open Database (COD 1010993). Existing category peer_reviewed_journal (COD is the retrieval artifact, not a new source category). Identity verified, lock candidate; not claim-approved, not published."
+    },
+    {
+      "source_id": "SRC-COD-MOS2-ACTACRYST-1983",
+      "identity_revision": "rev-2026-09-20-1",
+      "category": "peer_reviewed_journal",
+      "publisher": "Acta Crystallographica Section B (accessed via Crystallography Open Database, COD entry 9007660)",
+      "title": "Anharmonic thermal vibrations and structure of 2H-MoS2 — Schonfeld, Huang & Moss (1983)",
+      "author_or_organization": "Schonfeld, B.; Huang, J. J.; Moss, S. C.",
+      "url": "https://www.crystallography.net/cod/9007660.html",
+      "doi": "10.1107/S0108768183002645",
+      "language": "en",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-09-20",
+      "use_for": [
+        "independent primary crystallographic corroboration of the 2H-MoS2 structure (space group P 6_3/m m c, No. 194) and lattice parameters, exactly as recorded (a = 3.161 Angstrom, c = 12.295 Angstrom), 2H polytype only"
+      ],
+      "do_not_use_for": [
+        "band gap or any electronic/optical property",
+        "density or other non-structural property",
+        "chemical-formula identity as a primary source",
+        "3R, 1T or monolayer/few-layer forms (2H bulk determination)",
+        "lexical/terminology claim",
+        "route publication / claim approval / source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Pilot 03). Independent primary determination (Acta Cryst. B 39, 404, 1983; doi 10.1107/S0108768183002645). Retrieved 2026-09-20 as COD CIF file 9007660 (open, no credentials). Verbatim: 'P 63/m m c'; a=3.161, c=12.295, gamma=120.",
+        "Independent of the Dickinson & Pauling (1923) determination (different authors/journal/year) -> usable as corroboration for the 2H structure and lattice parameter."
+      ],
+      "notes": "Peer-reviewed crystallographic determination accessed via COD 9007660. Existing category peer_reviewed_journal. Identity verified, lock candidate; not claim-approved, not published."
     }
   ]
 }

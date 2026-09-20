@@ -1,0 +1,40 @@
+{
+  "evidence_id": "EVD-MOS2-LATTICE-A-ACTACRYST",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": ["molybdenum_disulfide"],
+  "lexeme_ids": [],
+  "subject_domain": ["SD-MATERIALS-SCIENCE"],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "claim_scope": "The in-plane hexagonal lattice parameter a of 2H-MoS2 as determined by Schonfeld, Huang & Moss (1983; COD 9007660): a = 3.161 Angstrom. Independent determination; scoped to 2H (bulk). Coexists with the 1923 value (3.15(2)) without forced consensus.",
+  "source_id": "SRC-COD-MOS2-ACTACRYST-1983",
+  "claim_id": "CLM-MOS2-LATTICE-A-2H",
+  "retrieval_date": "2026-09-20",
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "primary_scientific",
+  "scientific_scope": {
+    "property": "hexagonal lattice parameter a",
+    "material_form": "2H-MoS2, bulk single crystal",
+    "polytype": "2H",
+    "method": "single-crystal X-ray diffraction (1983)",
+    "conditions": "ambient (as recorded)",
+    "form_scope_rule": "2H-bulk value; must NOT be attached to monolayer/few-layer or 3R MoS2."
+  },
+  "quantitative": {
+    "numeric_convention_id": "NUM-EN-DOT-DECIMAL",
+    "numeric_convention": "NUM-EN-DOT-DECIMAL: dot '.' is the decimal point; value in angstrom.",
+    "primary_measure": {
+      "property": "lattice_parameter_a",
+      "unit": "angstrom",
+      "printed": "3.161",
+      "series": {"value": {"source_literal": "3.161", "normalized_value": 3.161}}
+    }
+  },
+  "allowed_uses": ["lattice_parameter_2h"],
+  "prohibited_uses": ["band_gap", "density", "electronic_or_optical_property", "chemical_formula_identity_as_primary", "polytype_3r_or_1t_or_monolayer", "unit_conversion_without_governed_layer", "lexeme_or_terminology", "route_publication", "source_locking_by_itself", "claim_approval_by_itself"],
+  "governance_note": "ADMITTED: SRC-COD-MOS2-ACTACRYST-1983 verified; QUAL-COD-MOS2-ACTACRYST-001 qualified_narrow for 'lattice_parameter_2h'; admissible() TRUE. Independent corroboration of the lattice parameter. The 1923 (3.15(2)) and 1983 (3.161) values are preserved separately; no winner is chosen. Not evidence_locked. Contract-C = (not_public, noindex)."
+}

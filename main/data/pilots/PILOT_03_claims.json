@@ -1,0 +1,49 @@
+{
+  "version": "0.1.0",
+  "sprint": "mos2-scientific-reference-pilot-03",
+  "site": "bisulfid.com",
+  "status": "non_operational",
+  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "main/data/claim_activation_policy.json", "main/data/pilots/MOS2_SCIENTIFIC_REFERENCE_PILOT_03.md", "DECISION_LOG.md"],
+  "purpose": "Pilot-scoped, NON-OPERATIONAL concept-level SCIENTIFIC claims for Pilot 03 (molybdenum_disulfide). Kept OUT of the canonical claim registries. All three are concept-level scientific claims established from authoritative databases / primary crystallographic literature, independently of the German lexical chain. Supporting evidence IDs are mandatory. Claim approval does not authorize publication.",
+  "operational": false,
+  "concept_id": "molybdenum_disulfide",
+  "lexical_separation_note": "The lexical chain (molybdenum_disulfide -> LEX-DE-MOS2-001 -> EVD-MOS2-DE-001 -> SRC-SPEKTRUM-MOS2-DE) is UNTOUCHED and is NOT used to support any of these scientific claims. SRC-SPEKTRUM-MOS2-DE remains German-terminology-only.",
+  "claims": [
+    {
+      "claim_id": "CLM-MOS2-FORMULA",
+      "pilot_claim": "A — chemical identity / formula",
+      "claim_level": "concept",
+      "statement": "Molybdenum disulfide has the molecular formula MoS2.",
+      "outcome": "SUPPORTED_BY_EVIDENCE (non-operational)",
+      "sufficiency": "primary_plus_corroborating satisfied (two independent government scientific databases)",
+      "scope_guard": "Chemical composition identity only. Not structure, not a physical property.",
+      "supporting_evidence_ids": ["EVD-MOS2-FORMULA-PUBCHEM", "EVD-MOS2-FORMULA-NIST"]
+    },
+    {
+      "claim_id": "CLM-MOS2-STRUCTURE-2H",
+      "pilot_claim": "B — crystal/structural identity",
+      "claim_level": "concept",
+      "statement": "In its 2H polytype (molybdenite), molybdenum disulfide crystallizes in the hexagonal space group P 6_3/m m c (No. 194) as a layered structure (a = b ~ 3.15-3.16 Angstrom, c ~ 12.3 Angstrom, gamma = 120 deg).",
+      "outcome": "SUPPORTED_BY_EVIDENCE (non-operational)",
+      "sufficiency": "primary_plus_corroborating satisfied (two independent primary crystallographic determinations, 1923 + 1983)",
+      "polytype_scope": "2H ONLY. The 3R polytype (space group R3m, c ~ 18.3 Angstrom) is DISTINCT and must not be conflated; monolayer/few-layer forms are out of scope.",
+      "scope_guard": "Structural identity of 2H-MoS2. Not a numeric-property claim beyond the identity; not an electronic property.",
+      "supporting_evidence_ids": ["EVD-MOS2-STRUCTURE-DICKINSON", "EVD-MOS2-STRUCTURE-ACTACRYST"]
+    },
+    {
+      "claim_id": "CLM-MOS2-LATTICE-A-2H",
+      "pilot_claim": "C — one physical/material property (lattice parameter a)",
+      "claim_level": "concept",
+      "statement": "The in-plane hexagonal lattice parameter a of 2H-MoS2 (bulk) is reported as 3.15(2) Angstrom (Dickinson & Pauling 1923) and 3.161 Angstrom (Schonfeld, Huang & Moss 1983).",
+      "outcome": "SUPPORTED_CONDITIONAL (2H bulk; independent determinations coexist)",
+      "sufficiency": "primary_plus_corroborating satisfied; values preserved separately (no averaging, no forced single value)",
+      "form_scope": "2H bulk ONLY. A monolayer/few-layer or 3R value must never substitute for this.",
+      "numeric_normalization": "NUM-EN-DOT-DECIMAL; source_literal and normalized_value stored distinctly; uncertainty (0.02 A on the 1923 value) preserved; no unit conversion.",
+      "conflict_handling": "The two determinations agree within uncertainty (~3.15-3.161 A); both are kept as coexisting evidence records rather than reconciled to one scalar.",
+      "supporting_evidence_ids": ["EVD-MOS2-LATTICE-A-DICKINSON", "EVD-MOS2-LATTICE-A-ACTACRYST"]
+    }
+  ],
+  "not_attempted_property_band_gap": {
+    "note": "Band gap was considered for Claim C but NOT attempted as an admitted claim: it is strongly form-dependent (bulk 2H is an indirect-gap semiconductor; monolayer MoS2 is a direct-gap semiconductor), and an authoritative PRIMARY source with the exact values/conditions was not openly retrievable in this environment (peer-reviewed publisher pages gated; no AI summaries or search snippets used as evidence). Recorded as a future scientific-evidence + form-scope target (see report). No band-gap value is asserted."
+  }
+}

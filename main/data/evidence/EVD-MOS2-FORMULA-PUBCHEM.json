@@ -1,0 +1,36 @@
+{
+  "evidence_id": "EVD-MOS2-FORMULA-PUBCHEM",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": ["molybdenum_disulfide"],
+  "lexeme_ids": [],
+  "subject_domain": ["SD-INORGANIC-CHEMISTRY"],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "claim_scope": "PubChem compound record CID 14823 (title 'MOLYBDENUM DISULFIDE', CAS 1317-33-5) records the molecular formula of molybdenum disulfide as MoS2 (molecular weight 160.1). Establishes chemical-identity/formula ONLY — not crystal structure, polytype, or any physical property.",
+  "source_id": "SRC-PUBCHEM-MOS2",
+  "claim_id": "CLM-MOS2-FORMULA",
+  "retrieval_date": "2026-09-20",
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "primary_authoritative",
+  "scientific_scope": {
+    "fact_type": "chemical_identity_formula",
+    "material_form": "not form-specific (formula is a composition identity for the compound)",
+    "method": "authoritative chemical database record (PubChem, computed/curated identity)",
+    "conditions": "n/a for a composition-identity fact"
+  },
+  "locator": {
+    "system": "PubChem REST (PUG) compound property record",
+    "record_id": "CID 14823",
+    "cas": "1317-33-5",
+    "fields_quoted": {"MolecularFormula": "MoS2", "MolecularWeight": "160.1", "title": "MOLYBDENUM DISULFIDE"},
+    "url": "https://pubchem.ncbi.nlm.nih.gov/compound/14823",
+    "retrieval_date": "2026-09-20"
+  },
+  "allowed_uses": ["chemical_formula_identity"],
+  "prohibited_uses": ["crystal_structure_identity", "band_gap", "lattice_parameter", "density", "electronic_or_optical_property", "german_lexeme_or_terminology", "route_publication", "source_locking_by_itself", "claim_approval_by_itself"],
+  "governance_note": "ADMITTED: SRC-PUBCHEM-MOS2 verified; QUAL-PUBCHEM-MOS2-001 qualified_narrow for 'chemical_formula_identity'; admissible() TRUE. Domain chemistry_materials_physics sufficiency = primary_plus_corroborating: this is the PRIMARY record; independent corroboration is EVD-MOS2-FORMULA-NIST. Not evidence_locked (lock candidate). Authorizes NO claim activation, NO route, NO indexation. Contract-C = (not_public, noindex)."
+}

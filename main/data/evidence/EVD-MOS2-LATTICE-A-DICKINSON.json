@@ -1,0 +1,41 @@
+{
+  "evidence_id": "EVD-MOS2-LATTICE-A-DICKINSON",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": ["molybdenum_disulfide"],
+  "lexeme_ids": [],
+  "subject_domain": ["SD-MATERIALS-SCIENCE"],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "claim_scope": "The in-plane hexagonal lattice parameter a of 2H-MoS2 as determined by Dickinson & Pauling (1923; COD 1010993): a = 3.15(2) Angstrom. ONE material property, scoped to the 2H polytype (bulk). Not a monolayer/few-layer or 3R value.",
+  "source_id": "SRC-COD-MOS2-DICKINSON-1923",
+  "claim_id": "CLM-MOS2-LATTICE-A-2H",
+  "retrieval_date": "2026-09-20",
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "primary_scientific",
+  "scientific_scope": {
+    "property": "hexagonal lattice parameter a",
+    "material_form": "2H-MoS2 (molybdenite), bulk single crystal",
+    "polytype": "2H",
+    "method": "X-ray crystal-structure determination (1923)",
+    "conditions": "ambient (temperature not separately recorded in the 1923 determination)",
+    "form_scope_rule": "This a is a 2H-bulk value; it must NOT be attached to monolayer/few-layer MoS2 or to the 3R polytype."
+  },
+  "quantitative": {
+    "numeric_convention_id": "NUM-EN-DOT-DECIMAL",
+    "numeric_convention": "NUM-EN-DOT-DECIMAL: dot '.' is the decimal point; the value is a length in angstrom. The parenthetical '(2)' is the standard uncertainty in the last digit (0.02 A), stored separately, not part of the machine value.",
+    "primary_measure": {
+      "property": "lattice_parameter_a",
+      "unit": "angstrom",
+      "printed_with_uncertainty": "3.15(2)",
+      "uncertainty": 0.02,
+      "series": {"value": {"source_literal": "3.15", "normalized_value": 3.15}}
+    }
+  },
+  "allowed_uses": ["lattice_parameter_2h"],
+  "prohibited_uses": ["band_gap", "density", "electronic_or_optical_property", "chemical_formula_identity_as_primary", "polytype_3r_or_1t_or_monolayer", "unit_conversion_without_governed_layer", "lexeme_or_terminology", "route_publication", "source_locking_by_itself", "claim_approval_by_itself"],
+  "governance_note": "ADMITTED: SRC-COD-MOS2-DICKINSON-1923 verified; QUAL-COD-MOS2-DICKINSON-001 qualified_narrow for 'lattice_parameter_2h'; admissible() TRUE. PRIMARY value; corroborating determination = EVD-MOS2-LATTICE-A-ACTACRYST (a = 3.161). Values are preserved separately (no averaging, no forced single value). Not evidence_locked. Contract-C = (not_public, noindex)."
+}
