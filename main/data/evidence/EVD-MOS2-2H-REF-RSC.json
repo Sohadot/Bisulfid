@@ -1,0 +1,49 @@
+{
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": [
+    "molybdenum_disulfide"
+  ],
+  "lexeme_ids": [],
+  "subject_domain": [
+    "SD-MATERIALS-SCIENCE"
+  ],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "retrieval_date": "2026-09-20",
+  "evidence_review_posture": "evidence_verified",
+  "evidence_id": "EVD-MOS2-2H-REF-RSC",
+  "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+  "claim_id": "CLM-MOS2-STRUCTURE-2H",
+  "evidence_role": "secondary_scholarly",
+  "claim_scope": "RSC Advances 2015 review reference for the 2H polytype: space group P63/mmc, stacking AbA BaB, approximate lattice parameters a = 3.15 A and c = 12.30 A (as reviewed). Secondary-scholarly corroboration/context for the 2H structural identity; NOT a primary determination.",
+  "scientific_scope": {
+    "component": "2H_structural_reference",
+    "polytype": "2H",
+    "space_group": "P63/mmc",
+    "stacking": "AbA BaB",
+    "reviewed_lattice_text": "a = 3.15 A and c = 12.30 A (review reference, not a primary measurement)",
+    "source_type": "peer-reviewed review (secondary)"
+  },
+  "locator": {
+    "system": "RSC Advances 2015, Table 1 (uploaded PDF)",
+    "doi": "10.1039/C4RA11852A",
+    "verbatim": "2H ... P63/mmc ... AbA BaB ... a = 3.15 A and c = 12.30 A (ref. 35)"
+  },
+  "allowed_uses": [
+    "crystal_structure_identity_2h"
+  ],
+  "prohibited_uses": [
+    "primary_experimental_determination",
+    "band_gap",
+    "polytype_3r_or_1t_or_monolayer",
+    "numerical_physical_property_universal",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED (secondary_scholarly) via QUAL-RSC-MOS2-REVIEW-001 for 'crystal_structure_identity_2h'. Secondary corroboration/context ONLY; does not replace the primary crystallographic evidence. Lattice values are review reference text, not primary measures. Contract-C=(not_public,noindex)."
+}

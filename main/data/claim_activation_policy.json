@@ -1,0 +1,34 @@
+{
+  "version": "0.1.0",
+  "sprint": "source-qualification-evidence-admission",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "doctrine/SOURCE_POLICY.md", "DECISION_LOG.md"],
+  "purpose": "Separates the four independent claim-side decisions so none silently implies another. NOTHING is activated in this sprint.",
+
+  "layers": {
+    "claim_review": { "question": "Is this particular claim sufficiently supported by admitted evidence?", "owner": "claim governance", "per": "claim" },
+    "claim_approval": { "question": "Has governance approved this exact claim boundary?", "owner": "claim governance", "per": "claim", "note": "e.g. CLM-TERM-MOS2-DE-001 is approved at claim level." },
+    "claim_registry_operational_activation": { "question": "May APPROVED claims from this registry be consumed by reference surfaces?", "owner": "governance", "per": "registry (currently coarse) — see scoped proposal", "current_state": "ALL registries inactive" },
+    "route_publication": { "question": "May a particular knowledge surface use them publicly?", "owner": "Contract C derived state", "per": "route" }
+  },
+
+  "independence_invariants": [
+    "evidence_verified does NOT imply claim_review passed",
+    "claim_review does NOT imply claim_approval",
+    "claim_approval does NOT imply claim_registry_operational_activation",
+    "claim_registry_operational_activation does NOT imply route_publication",
+    "an approved claim in an inactive registry is NOT consumable"
+  ],
+
+  "coarseness_finding": "Current registries carry a single registry-wide status: inactive|active. This is too coarse: it cannot activate one approved, admitted claim without activating an entire registry of mostly pending claims.",
+
+  "scoped_activation_proposal": {
+    "status": "PROPOSAL ONLY — not applied this sprint; activates nothing",
+    "mechanism": "Replace registry-wide activation with per-claim operational activation gated on: claim_approval == approved AND every supporting evidence record is evidence_verified with a valid source-use qualification AND no prohibited-use conflict. Registry-level 'active' would then mean 'this registry MAY contain individually-activatable claims', not 'all its claims are live'.",
+    "activation_record_fields_future": ["claim_id", "activation_state", "supporting_evidence_ids", "qualification_ids", "activated_by", "activated_at"],
+    "regression": "If any supporting evidence or qualification regresses, the claim's operational activation regresses to inactive (never raises)."
+  },
+
+  "this_sprint": "No registry activated. No claim approved or changed. No activation records created. CLM-TERM-MOS2-DE-001 remains approved-but-not-activated (terminology_claims.json status: inactive)."
+}

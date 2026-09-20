@@ -1,0 +1,62 @@
+{
+  "version": "0.1.0",
+  "sprint": "pilot-03-scientific-provenance-closure",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "main/data/pilots/MOS2_SCIENTIFIC_REFERENCE_PILOT_03.md", "DECISION_LOG.md"],
+  "purpose": "Lightweight governed ORIGINATING-WORK lineage identifiers. A retrieval artifact (a database record, a journal PDF, an excerpt) is NOT the originating scientific work. A source record points to its originating_work_id here. Scientific INDEPENDENCE is judged on originating_work lineage: two artifacts reproducing the same work are ONE lineage; genuinely distinct works are independent. This is a minimal lineage registry, NOT a citation graph.",
+  "rules": [
+    "retrieval repository != originating scientific work; different URLs/repositories != independent science.",
+    "Same originating_work_id (reached via different artifacts) => NOT independent (deduplicated for sufficiency).",
+    "related_work_ids records conservative shared-lineage (shared authors/data), also treated as NOT independent.",
+    "This registry asserts no scientific fact; it names works and their relationships only."
+  ],
+  "id_rules": {"prefix": "WORK-"},
+  "work_types": ["primary_experimental", "secondary_review", "academic_thesis"],
+  "works": [
+    {
+      "work_id": "WORK-DICKINSON-PAULING-1923",
+      "work_type": "primary_experimental",
+      "authors": ["Dickinson, R. G.", "Pauling, L."],
+      "title": "The Crystal Structure of Molybdenite",
+      "venue": "Journal of the American Chemical Society 45, 1466-1471",
+      "year": 1923,
+      "doi": "10.1021/ja01659a020",
+      "related_work_ids": [],
+      "notes": "Foundational primary X-ray crystallographic determination of molybdenite (MoS2)."
+    },
+    {
+      "work_id": "WORK-SCHONFELD-HUANG-MOSS-1983",
+      "work_type": "primary_experimental",
+      "authors": ["Schonfeld, B.", "Huang, J. J.", "Moss, S. C."],
+      "title": "Anisotropic Mean-Square Displacements (MSD) in Single Crystals of 2H- and 3R-MoS2",
+      "venue": "Acta Crystallographica Section B 39, 404-407",
+      "year": 1983,
+      "doi": "10.1107/S0108768183002645",
+      "related_work_ids": ["WORK-HUANG-1981"],
+      "notes": "Primary determination. Shares author J. J. Huang and advisor S. C. Moss (University of Houston) with the 1981 thesis WORK-HUANG-1981 -> conservatively NOT independent of it."
+    },
+    {
+      "work_id": "WORK-SONG-PARK-CHOI-2015",
+      "work_type": "secondary_review",
+      "authors": ["Song, Intek", "Park, Chibeom", "Choi, Hee Cheul"],
+      "title": "Synthesis and properties of molybdenum disulphide: from bulk to atomic layers",
+      "venue": "RSC Advances 5, 7495-7514",
+      "year": 2015,
+      "doi": "10.1039/C4RA11852A",
+      "related_work_ids": [],
+      "notes": "Peer-reviewed REVIEW (secondary synthesis), not a primary experimental determination."
+    },
+    {
+      "work_id": "WORK-HUANG-1981",
+      "work_type": "academic_thesis",
+      "authors": ["Huang, Jen-Jer"],
+      "title": "X-ray Study of Anisotropic Vibrations in MoS2",
+      "venue": "M.S. thesis, Department of Physics, University of Houston",
+      "year": 1981,
+      "doi": null,
+      "related_work_ids": ["WORK-SCHONFELD-HUANG-MOSS-1983"],
+      "notes": "M.S. thesis by J. J. Huang (advisor S. C. Moss). Experimental lineage leading to the 1983 Acta paper -> conservatively NOT independent of WORK-SCHONFELD-HUANG-MOSS-1983."
+    }
+  ]
+}

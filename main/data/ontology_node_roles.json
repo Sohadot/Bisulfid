@@ -1,0 +1,42 @@
+{
+  "version": "0.1.0",
+  "sprint": "semantic-integrity-hardening",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": [
+    "main/data/CONCEPT_LEXEME_MODEL.md",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Sidecar semantic-role classification for existing main/data/ontology/sulfur_terms.json nodes. It governs WHICH existing ontology term_ids may currently be used as concept_id targets by the new evidence/lexeme system. It creates NO new concepts and duplicates NO ontology identity; it only references existing term_ids. The legacy ontology is NOT mutated.",
+  "rule": "Only nodes with role 'concept_eligible' may be targeted as concept_id by lexeme or evidence records. Existence of a term_id does NOT imply concept eligibility.",
+  "roles": [
+    "concept_eligible",
+    "legacy_lexeme",
+    "conflated_pending_migration",
+    "notation_alias",
+    "control_object",
+    "unresolved"
+  ],
+  "node_roles": [
+    { "term_id": "sulfur", "role": "concept_eligible", "note": "Element S — clear language-neutral concept." },
+    { "term_id": "sulfide", "role": "concept_eligible", "note": "S²⁻ class — concept; 'sulfide' is its EN lexeme (migration)." },
+    { "term_id": "disulfide", "role": "concept_eligible", "note": "S–S / disulfide class — concept." },
+    { "term_id": "hydrosulfide", "role": "concept_eligible", "note": "HS⁻ ion — concept (IUPAC-preferred name for the anion)." },
+    { "term_id": "hydrogen_sulfide", "role": "concept_eligible", "note": "H₂S — concept." },
+    { "term_id": "molybdenum_disulfide", "role": "concept_eligible", "note": "MoS₂ — concept; chain target for the first governed evidence." },
+
+    { "term_id": "sulfid", "role": "legacy_lexeme", "note": "German lexeme of the sulfide concept; not a concept target." },
+    { "term_id": "disulfid", "role": "legacy_lexeme", "note": "German lexeme of the disulfide concept; not a concept target." },
+
+    { "term_id": "bisulfid", "role": "conflated_pending_migration", "note": "Center node; HS⁻ identity vs distinct-term question unresolved (high risk). Not a concept target yet." },
+    { "term_id": "bisulfide", "role": "conflated_pending_migration", "note": "EN form ≈ hydrosulfide (HS⁻); grouping unresolved. Not a concept target yet." },
+    { "term_id": "sodium_bisulfide", "role": "conflated_pending_migration", "note": "NaHS naming inherits the bisulfide/hydrosulfide ambiguity; concept identity pending." },
+    { "term_id": "sodium_hydrosulfide", "role": "conflated_pending_migration", "note": "Candidate synonym of sodium_bisulfide (NaHS); equivalence unproven. Not a concept target yet." },
+
+    { "term_id": "molybdenum_disulfide_mos2", "role": "notation_alias", "note": "'MoS₂' formula/notation alias of molybdenum_disulfide; recommend fold into a formula_alias lexeme (migration). Not a concept target." },
+
+    { "term_id": "bisulfite_disambiguation", "role": "control_object", "note": "Disambiguation/control object (bisulfite ≠ bisulfide). Not a concept target." }
+  ],
+  "concept_eligible_count": 6,
+  "audit_reference": "main/data/CONCEPT_LEXEME_MODEL.md §2 (ontology node audit & migration mapping)."
+}

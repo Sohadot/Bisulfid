@@ -4893,3 +4893,580 @@ Bisulfid.com is a **governed public reference dossier atlas** — not 14,000 ful
 ### Next step
 
 Manual live verification of hub and deep-route samples, then Search Console submission when confirmed.
+
+---
+
+## Sprint — Authority & Dimension Reconciliation (implementation 1: governance scaffolding)
+
+**Date:** 2026-09-19
+**Scope:** governance scaffolding only. No production data, HTML, sitemap, robots, Search Console, route publication/indexation flags, source statuses, claim statuses, ontology, or corpus content modified. No new public routes. No PR.
+**Baseline:** `DOCTRINE_TO_CORPUS_RECONCILIATION.md` v2; `BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md` incl. Architecture Integrity Pass (IP-1…IP-16).
+
+### Ratified principle (owner-approved) — Contract C: Derived Canonical State
+
+The following **principles** are ratified as the target authority architecture:
+
+1. **Publication and indexation are derived states**, not hand-set flags. Deploy, sitemap, and robots consume only the derived state.
+2. **No single legacy file independently controls indexation.**
+3. **`routes.json` owns governed route posture.**
+4. **`release_ledger.json` owns release authorization + the historical release record.**
+5. **Source, evidence, claim, validation, and Information-Gain are independent veto/eligibility inputs** to the derived state; each can veto, none alone can promote.
+6. **Knowledge Object Before URL** — an independent URL is promoted only after evidence sufficiency AND Information-Gain review; a knowledge object may otherwise remain a module, section, relationship edge, table/data record, or machine-readable node.
+7. **Semantic dimensions remain distinct** — entity, subject_domain, reference_layer, audience, page_type, language, geography, jurisdiction, relationship, temporal_scope, evidence — and none alone creates a URL.
+8. **Source ≠ Evidence ≠ Claim** — three independently-owned postures.
+9. **One fact → one authoritative owner** — every other representation is derived (no duplicated authoritative fields).
+10. **Vocabulary existence ≠ relationship-instance truth** — a place/domain/relationship-class may be registered without evidence; an instantiated relationship requires evidence.
+
+### Historical fact preserved
+
+Sprint 99 (2026-06-05) authorized the release of 13,998 dossier pages under "cautious reference framing" and declared the release ledger the public-route source of truth. **This remains a historical fact and is not erased.** Contract C supersedes only its *operational effect on indexation*; the existing corpus is **not** de-indexed by this entry, and its indexation will be recomputed from true postures only under a later, separately-approved sprint.
+
+### NOT ratified here (remain provisional — must not be treated as settled doctrine)
+
+- Concept↔Lexeme representation (blocks any ontology mutation and any real MoS₂ evidence record);
+- source-lock workflow;
+- claim-registry activation policy;
+- final subject-domain admissions (which reserved domains become evidence_active);
+- final relationship-class admissions and any relationship instances;
+- new audience admissions;
+- 14K disposition policy;
+- the exact Contract C transition constants / non-factual-class certification list.
+
+### Scaffolding created this sprint (control infrastructure only)
+
+- `main/data/subject_domain_registry.json` (registered vocabulary; none evidence_active)
+- `main/data/geography_registry.json` (place identities only; no evidence state)
+- `main/data/jurisdiction_registry.json` (schema + identity; no active instruments)
+- `main/data/relationship_class_registry.json` (classes only; zero instances)
+- `main/data/evidence/` (schema + README + test-only fixtures; **no real evidence record**; `EVD-MOS2-DE-001` deferred pending Concept↔Lexeme ratification)
+- `main/data/information_gain/calibration_pairs.json` (empty; five labels; no threshold)
+- `scripts/governance_scaffolding/` (Contract C derive spec + 7 property tests + scaffolding validator; **unwired from deploy/CI**)
+
+Contract C property tests: PASS (7/7, 23,040 combinations). Scaffolding validator: PASS (105 checks). Existing Corpus Governance CI (L0/L1/L2) re-run: PASS (unaffected).
+
+---
+
+## Sprint — Concept ↔ Lexeme Resolution
+
+**Date:** 2026-09-19
+**Scope:** design + minimal schema. No 14K route, release ledger, public HTML, sitemap, robots, Search Console, indexation posture, source status, or claim status modified. The live ontology `sulfur_terms.json` is **not mutated**. No new public routes. No PR.
+**Baseline:** `DOCTRINE_TO_CORPUS_RECONCILIATION.md`, `BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md` (incl. IP-16), scaffolding commit `ae7980fe06`.
+
+### Ratified (narrow)
+
+1. **Concept and Lexeme are distinct semantic object types.**
+2. **Concepts are language-neutral;** internal `concept_id` strings are identifiers, not language claims.
+3. **Lexemes are language-specific naming forms;** every lexeme resolves to exactly one governed concept.
+4. **Evidence and claims attach to the semantic level they actually support** (`claim_level ∈ {concept, lexeme, relationship}`); lexical evidence can never satisfy a concept-level chemical claim.
+5. **Lexeme existence does not create a URL** (Knowledge Object Before URL remains absolute).
+6. **Chosen model: Option B** — concept graph stays in `main/data/ontology/sulfur_terms.json`; a new `main/data/lexeme_registry.json` holds lexemes (least disruptive, cleanest multilingual scaling, no duplicated authority). Full rationale + ontology-node audit/migration mapping: `main/data/CONCEPT_LEXEME_MODEL.md`.
+
+### NOT ratified (remain provisional)
+
+- Any collapse of `sodium_bisulfide`/`sodium_hydrosulfide` (needs equivalence evidence);
+- the HS⁻ grouping of `bisulfid`/`bisulfide`/`hydrosulfide` (high-risk; migration);
+- folding `molybdenum_disulfide_mos2` into a formula-alias lexeme (recommended; deferred to migration);
+- source-lock workflow, claim-registry activation, 14K disposition — unchanged from prior sprints.
+
+### Schema corrections (no real legacy data depended on them)
+
+- **Evidence schema:** generic `entities` → explicit `concept_ids` + `lexeme_ids`; added `claim_level`; **`risk_class` removed** (no independent meaning vs route/claim/source risk — `CONCEPT_LEXEME_MODEL.md` §7); `source_type`/`used_by`/`confidence` remain forbidden.
+- **`GEO-GULF` → `GEO-GCC`** ("GCC member states") — its members were exactly the six GCC states; a broader Gulf-region scope, if needed, will be a separate governed object.
+- **Jurisdiction model separated** into distinct `jurisdiction` → `authority` → `instrument` records (a jurisdiction is no longer "authority + instrument"); all record lists empty.
+- **Trade/economic relationship classes** (importer/exporter/producer/industrial_user) now require **primary authoritative** source categories; `market_report`/`industry_publication` reclassified secondary/contextual. Proposed new source-taxonomy categories (`official_customs_data`, `official_trade_statistics`, `national_statistical_authority`, `intergovernmental_trade_database`, `official_production_statistics`) are recorded as **proposals only** — not added to `source_registry.json`, no sources invented.
+
+### First real governed evidence object (created; NOT published)
+
+Chain: `molybdenum_disulfide` (concept) → `LEX-DE-MOS2-001` "Molybdän(IV)-sulfid" (lexeme) → `EVD-MOS2-DE-001` (lexeme-level, terminological, de) → `SRC-SPEKTRUM-MOS2-DE` (verified; lock **candidate**, unchanged) → `CLM-TERM-MOS2-DE-001` (approved; registry **inactive**, unchanged). Created strictly within already-verified source and already-approved claim scope; changes no source/claim status; authorizes no route. **Derived Contract-C state = (not_public, noindex).**
+
+Validators: scaffolding PASS (131 checks); concept↔lexeme PASS (16 checks, 1 lexeme, 1 governed evidence record); Contract C property tests PASS (7/7); existing Corpus Governance CI (L0/L1/L2) PASS (unaffected).
+
+---
+
+## Sprint — Semantic Integrity Hardening
+
+**Date:** 2026-09-19
+**Scope:** narrow hardening of the NEW governance architecture only. No 14K route, release ledger, public HTML, sitemap, robots, Search Console, indexation, source status, or claim status changed. Live ontology `sulfur_terms.json` **not** mutated. No new public URL. No source acquisition. No relationship instances. No PR.
+**Baseline:** commit `c299af81c1`.
+
+### Ratified (narrow)
+
+1. **The lexeme registry owns lexical identity, not evidence backlinks.** `source_ids`/`evidence_ids` removed from lexeme records; reverse `lexeme→evidence` view is derived. One relationship fact → one authoritative direction → reverse edges derived.
+2. **Lexeme registration state ≠ evidence support.** `registration_state` is the manual lexical-identity fact; evidence support is derived from the evidence store (single authority).
+3. **Concept eligibility is explicitly governed.** New sidecar `main/data/ontology_node_roles.json`; existence of a legacy ontology term_id does **not** make it a Concept target. Only `concept_eligible` nodes may be `concept_id` targets.
+4. **Relationship facts use typed subject → predicate → object semantics;** endpoint contracts per class; inverse views derived; the data encodes the real proposition direction.
+5. **Language and geography are orthogonal;** geography is never derived from a lexeme's language.
+6. **Evidence transformations cannot broaden an approved claim's scope** (MoS₂ narrowed `accepted` → `observed_usage`; `claim_scope` mirrors `CLM-TERM-MOS2-DE-001`; the approved claim was not modified).
+
+*No specific trade/geography fact is ratified.*
+
+### Ontology node roles (all 14 legacy nodes classified; ontology unchanged)
+
+concept_eligible (6): `sulfur`, `sulfide`, `disulfide`, `hydrosulfide`, `hydrogen_sulfide`, `molybdenum_disulfide`. legacy_lexeme (2): `sulfid`, `disulfid`. conflated_pending_migration (4): `bisulfid`, `bisulfide`, `sodium_bisulfide`, `sodium_hydrosulfide`. notation_alias (1): `molybdenum_disulfide_mos2`. control_object (1): `bisulfite_disambiguation`.
+
+### MoS₂ chain (unchanged status; still not published)
+
+`molybdenum_disulfide` (concept_eligible) → `LEX-DE-MOS2-001` (`observed_usage`, de, `registration_state=registered`, no backlinks) → `EVD-MOS2-DE-001` (lexeme-level; `claim_scope` mirrors the approved claim) → `SRC-SPEKTRUM-MOS2-DE` (verified; lock **candidate**, unchanged) → `CLM-TERM-MOS2-DE-001` (approved; registry **inactive**, unchanged). **Derived Contract-C state = (not_public, noindex).**
+
+Validators/tests: scaffolding PASS (153 checks); concept↔lexeme PASS (47 checks); relationship grammar tests PASS (8/8, synthetic; correct directions accepted, reversed rejected); Contract C property tests PASS (7/7); existing Corpus Governance CI (L0/L1/L2) PASS (unaffected).
+
+---
+
+## Sprint — Source Qualification & Evidence Admission Protocol
+
+**Date:** 2026-09-19
+**Scope:** design + minimal schema + validators. No 14K route, release ledger, ontology, public HTML, sitemap, robots, Search Console, indexation, source status/lock, or claim status changed. No external source acquired. No relationship instance. No registry activated. No PR.
+**Baseline:** commit `41aeb1f56f`.
+
+### Ratified principles
+
+1. **Source authority is use-scoped.** A verified/locked source is not universally authoritative.
+2. **Source category alone is insufficient** to admit evidence.
+3. **Source identity, source-use qualification, evidence review, claim approval, and publication are distinct layers** — none silently implies another.
+4. **Evidence admission is domain/claim-level/scope aware** (`admissible(source, qualification, context)` is deterministic; category alone never returns admissible).
+5. **Qualification can regress without deleting history;** downstream privilege moves equal-or-lower, never higher.
+6. **Official/original evidence is mandatory where official status itself is claimed** (current-law → governing instrument; importer/exporter → official records, not market/industry pubs alone).
+7. **Source qualification never authorizes route publication.**
+
+*No external factual claim (trade/geography/etc.) is ratified.*
+
+### `source_lock_status` decision — Option B
+
+Remains a bibliographic/source-record stability lock (historical Sprint 5N-R meaning preserved) and is **explicitly insufficient** without a source-use qualification. Not modified this sprint (all 15 stay `candidate`).
+
+### Architecture created (machine-readable, unwired from deploy/CI)
+
+- `source_use_qualification_registry.json` — use-scoped qualification (states candidate→reviewed→qualified_narrow→qualified, +suspended/superseded); references exactly one source; duplicates no bibliographic metadata. One record: `QUAL-SPEKTRUM-MOS2-DE-001` (qualified_narrow), mirroring the already-reviewed Spektrum MoS₂ scope — broadens nothing.
+- `source_admissibility_policy.json` — evidence roles; 7 newly-ratified categories (policy vocabulary only, not written to source_registry); category→role map; domain admissibility matrix; sufficiency patterns; 9 hard rules.
+- `evidence_admission_policy.json` — evidence-review lifecycle transitions; type-specific locators; version/temporal/freshness; regression; conflicting-evidence representation; quantitative/legal/scientific admission provenance.
+- `claim_activation_policy.json` — four independent claim layers; finding that registry-wide activation is too coarse; scoped per-claim activation **proposal** (not applied). Nothing activated.
+- `SOURCE_QUALIFICATION_PROTOCOL.md` + `SOURCE_REGISTRY_QUALIFICATION_AUDIT.md` (design + 15-source audit).
+- `scripts/governance_scaffolding/source_admissibility.py` + `source_admissibility_tests.py`.
+
+### 15-source audit outcome
+
+14 sources `seeded` → **no qualification granted** (pending scope review). 1 source (`SRC-SPEKTRUM-MOS2-DE`, verified) → one narrow qualification mirroring its reviewed boundary. No `use_for` broadened; no source promoted for reputation.
+
+### MoS₂ result
+
+`admissible()` = True for the German dictionary-entry terminology/lexeme boundary only; False for concept/scientific/economic/publication uses. `EVD-MOS2-DE-001` stays `scope_reviewed` (not upgraded). Source status/lock, claim, activation, route, release **unchanged**. **Contract-C derived state = (not_public, noindex).**
+
+Validators/tests: scaffolding PASS; concept↔lexeme PASS; relationship grammar PASS (8/8); Contract C PASS (7/7); **source admissibility PASS (13/13 proofs)**; existing Corpus Governance CI (L0/L1/L2) PASS (unaffected).
+
+### Unresolved before real evidence acquisition
+
+Admission rules for the 7 new categories into `source_registry.json`; the scoped per-claim activation mechanism; possible `source_lock_status` deprecation (Option C); corroboration thresholds per domain; biomedical claim-restriction specifics.
+
+---
+
+## Sprint — Admission Enforcement Closure
+
+**Date:** 2026-09-19
+**Scope:** enforcement only (make `admissible()` enforce the ratified policy). No 14K route, release ledger, ontology, public HTML, sitemap, robots, Search Console, indexation, claim status, or existing source status/lock change. No external source acquired. No relationship instance. No registry activated. No PR.
+**Baseline:** commit `47fa8b5d29`.
+
+### What changed (executable enforcement, still unwired from deploy/CI)
+
+- `admissible()` now enforces **every advertised input**: `allowed_uses` is an **allowlist** (deny-by-default) with `prohibited_uses` as absolute veto; domain `allowed_categories` allowlist (role is an *additional* constraint, not a substitute); declared+permitted `evidence_role`; `geography_limitation`, `jurisdiction_limitation`, `temporal_boundary`; and source-revision match. Category alone still never admits.
+- **Source-version ownership (one-fact-one-owner fix):** removed `source_edition` (bibliographic string) from the qualification; added immutable `identity_revision` to the source record (`SRC-SPEKTRUM-MOS2-DE` = `rev-2026-05-30-1`); qualification now carries only `qualified_against_source_revision`. Revision mismatch → review-required (not admissible).
+- **Governed `derive_evidence_posture()`** replaces manual assertion of Contract C's evidence input, from admission + review posture + qualification state + source lock + sufficiency + regression. **Qualification suspension regresses** posture automatically (never `evidence_locked`).
+- **Executable sufficiency evaluator** for the five patterns, with an **independence** rule (same source/dataset/publisher/study cannot self-corroborate); `multi_source_synthesis` returns `governance_threshold_required` (cannot silently pass).
+- **Category vocabulary reconciled:** the 7 ratified categories added to `source_registry.json` `source_categories` (**vocabulary only**, no source uses them, no status/lock change); validator now fails on policy↔registry category drift.
+- **Legal context field:** current-law claims require an official instrument; not every regulation-domain sentence is a current-law claim.
+
+### MoS₂
+
+`admissible()` = True only for `cautious_terminology_framing_de_dictionary_entry` (de terminology/lexeme, role primary_authoritative); denies unspecified/other/concept/industry/market/trade uses, Germany-geography inference, jurisdiction inference, temporal-out-of-range, revision mismatch, and publication. `derive_evidence_posture` = `evidence_sufficient` (source lock still `candidate`), so **Contract-C state = (not_public, noindex)**. No source/claim status changed.
+
+### Tests
+
+Source admission enforcement **21/21**; scaffolding validator, concept↔lexeme, relationship grammar (8/8), Contract C (7/7), and existing Corpus Governance CI (L0/L1/L2) all PASS.
+
+### Still unresolved before acquisition
+
+Real-source admission rules per new category; scoped per-claim activation; `source_lock_status` deprecation (Option C); per-domain corroboration/`multi_source_synthesis` thresholds; biomedical claim restrictions.
+
+---
+
+## Pilot 01 — Morocco × Sulfur Trade (first real evidence acquisition)
+
+**Date:** 2026-09-19
+**Scope:** `GEO-MA × sulfur × SD-TRADE`, relationship `GEO-MA → REL-IMPORTER → sulfur`. Max 3 claims. No public page, route, sitemap, robots, indexation, 14K, OCP, GCC/China/Germany, or language expansion. No existing source/claim status/lock changed. No claim registry activated. No PR.
+**Baseline:** commit `bc20510d4c`.
+
+### Source acquired (official)
+Office des Changes (Royaume du Maroc), *Commerce extérieur du Maroc — Rapport annuel 2024* (official PDF). Registered canonically as `SRC-OC-MA-TRADE`, **category `official_trade_statistics`**, `status: seeded`, `source_lock_status: candidate`, `identity_revision: rev-2026-09-19-1`. The login-gated interactive database was not used; no credentials in git. **SOURCE_POLICY preflight:** existing governance permits canonical **seeded (registered/unverified)** registration (14 seeded precedents; all CI stayed green), so canonical registration was used — with `identity_revision` from first registration (no incremental exception).
+
+### Results (3 claims)
+- **A — HS classification identity: BLOCKED.** No HS code in the source; no authoritative classification source fetched; label "Soufres bruts et non raffinés" is a crude/unrefined **subset** of the `sulfur` concept. Not fabricated from memory.
+- **B — import observation: PROVEN.** Morocco recorded imports of "Soufres bruts et non raffinés" in 2024.
+- **C — quantitative measure: PARTIAL.** 2024 **TOTAL import value = 9108 MDH** (T1-10; source literal "9.108", dot = thousands separator), avg unit price **1099 DH/T** (literal "1.099"). ATPA-with-payment 9102 MDH (T3-4) and Asia-origin 8737 MDH (T4-9) are **different scopes**, not variants. **Tonnage BLOCKED** (not stated; not derived). *[Corrected 2026-09-19 — see Pilot 01 Data Semantics Correction below.]*
+
+### Governed outcome (computed, not targeted)
+Qualification `QUAL-OC-MA-TRADE-001` = **`reviewed`** (new source not identity-verified → not admitting); and `SD-TRADE` requires primary_plus_corroborating with only one non-independent official source. Governed **evidence posture = `evidence_collecting`**; relationship `REL-INST-MA-SULFUR-IMPORT-2024` = `evidence_collecting`; **Contract-C = `(not_public, noindex)`**.
+
+### Ratified (narrow)
+- Source authority is use-scoped and admission is deterministic; a brand-new official source does not admit evidence until identity-verified.
+- Trade relationships are directed, period-bounded, evidence-referenced (`GEO-MA → imports → sulfur`, 2024); language ≠ geography still holds.
+- Evidence posture is **derived via the admission bridge** (a forged `admitted:true` is ignored).
+- **No trade/geography fact is ratified as published.** Nothing activated.
+
+### Policy findings (report only; NOT applied)
+1. `primary_plus_corroborating` may be too strict for a narrowly-scoped recorded-observation claim from the national official statistics authority (independent corroboration effectively does not exist — Comtrade/ITC/WITS derive from the same chain). Proposed `single_official_record_sufficient` pattern — deferred.
+2. A defined verification path for a new official source is needed before Pilot 02.
+3. Quantitative trade admission depends on a classification (HS) identity the summary report lacks → a classification-acquisition step must precede it.
+4. Locale numeric normalization + scope discipline (dots are thousands separators; 9108 total vs 9102 ATPA vs 8737 Asia are different scopes, not variants). *[Corrected 2026-09-19.]*
+
+### Tests
+Pilot 01 chain **16/16**; source admission enforcement 21/21; scaffolding, concept↔lexeme, relationship grammar 8/8, Contract C 7/7; existing Corpus Governance CI (L0/L1/L2) all PASS. Existing source statuses/locks unchanged (now 15 seeded + 1 verified; all candidate).
+
+### Not started
+Pilot 02 (Morocco Industrial Chain / OCP); GCC/China/Germany; language localization; classification acquisition; policy amendments.
+
+---
+
+## Pilot 01 — Data Semantics Correction
+
+**Date:** 2026-09-19
+**Scope:** correction only. No new source, no HS classification acquisition, no Pilot 02, no change to source status/lock, claim activation, routes, public HTML, sitemap, robots, indexation, or the 14K. No PR.
+**Baseline:** commit `976f25a055`.
+
+Two data-semantics defects in Pilot 01 were corrected after an independent re-check of the official Office des Changes PDF (scope identities confirmed against the extracted text: ATPA appears 51×; T1-10 / T3-4 / T4-9 present):
+
+1. **Locale numeric normalization.** The report's dots are **thousands separators**. Every quantitative measure now stores `source_literal` + `normalized_value` + `unit` + a `numeric_convention` note. Corrected series:
+   - **TOTAL imports (T1-10):** 2022 `18.768`=18768, 2023 `8.007`=8007, **2024 `9.108`=9108 MDH**; Δ `+1.101`=+1101 MDH / +13,8%.
+   - **Average unit price (G1-5):** 2023 `1.231`=1231, **2024 `1.099`=1099 DH/T**.
+2. **False "9.102 vs 9.108" conflict removed.** They are different **scopes**, not variants:
+   - **9102 MDH** = ATPA-with-payment customs regime (**T3-4**) — ancillary, `customs_regime=ATPA_with_payment`, never substitutes for total.
+   - **8737 MDH** = Asia-origin subset (**T4-9**) — ancillary, `origin=Asia`, not a world total.
+   - The total-import series (18.768/8.007/9.108) and the ATPA series (18.758/7.994/9.102) are no longer mixed.
+
+**Quantity:** `quantity_change_pct = 27.4`; `absolute_quantity_tonnes = null` (not derived).
+**Classification:** Claim A remains **BLOCKED**; the source label is narrower than the generic `sulfur` concept.
+**Relationship & Contract-C:** `REL-INST-MA-SULFUR-IMPORT-2024` remains `evidence_collecting`; **Contract-C = (not_public, noindex)** (unchanged).
+
+**Numeric-normalization law added:** `evidence_admission_policy.json` (quantitative_normalization_law) + `scripts/governance_scaffolding/numeric_normalization.py`, wired into the scaffolding validator so any locale-literal used as a naive machine float is caught. Convention is source-specific.
+
+**Artifacts corrected:** `EVD-MA-SULFUR-IMPORT-2024.json`, `PILOT_01_claims.json`, `MOROCCO_SULFUR_TRADE_PILOT_01.md`, `PILOT_01_source_acquisition_dossier.md`, this DECISION_LOG Pilot 01 entry (lines above), evidence-admission policy, validators.
+
+**Tests:** Pilot 01 correction 14/14 (incl. no-variant-framing guard); Pilot 01 16/16; source admission 21/21; scaffolding, concept↔lexeme, relationship grammar 8/8, Contract C 7/7; existing L0/L1/L2 PASS. Source statuses/locks unchanged (15 seeded + 1 verified; all candidate).
+
+---
+
+## Pilot 01 — Classification Resolution
+
+**Date:** 2026-09-19
+**Baseline:** commit `da896cf0b7`. Two purposes: (A) source-specific numeric normalization fix; (B) commodity-classification identity. No Pilot 02, no OCP, no GCC/China/Germany, no route/sitemap/robots/indexation/public-HTML/14K change. No existing source status/lock change; no claim activation. No PR.
+
+### A. Source-specific numeric normalization (bug fixed)
+`numeric_normalization.py` rebuilt with governed convention ids — `NUM-FR-DOT-THOUSANDS`, `NUM-EN-DOT-DECIMAL`, `NUM-PLAIN-INT`. Each quantitative evidence record MUST declare `numeric_convention_id`; a record with measures but no governed convention **fails** — no silent French fallback, never inferred from language/country/extension. Morocco evidence declares `NUM-FR-DOT-THOUSANDS`. Policy updated (`evidence_admission_policy.json`). An English `1.099` is now normalized to 1.099, not 1099.
+
+### B. Classification identity
+- **HS 2022 — PROVEN** from the official **UN Comtrade H6 reference** (WCO HS 2022; WCO artifact itself interactive/not fetchable): **2503.00 = "Sulphur of all kinds; other than sublimed, precipitated and colloidal sulphur"**; excluded forms → **2802.00**; chapter 25. Object `CLS-HS2022-2503-00`.
+- **Moroccan national code / OdC-label→HS mapping — BLOCKED** (douane.gov.ma WAF/access-restricted; no login workaround). The OdC "Soufres bruts et non raffinés" is modelled as a `statistical_product_grouping` (`CLS-MA-ODC-SOUFRES-BRUTS`); label↔2503 is a hypothesis only.
+- **Claim A: BLOCKED → PARTIAL** (HS side proven; Moroccan mapping blocked).
+- **Claim B/C:** unchanged (B proven; C total 9108 MDH / 1099 DH/T; tonnage blocked).
+- **Relationship** `GEO-MA → REL-IMPORTER → sulfur`: stays **evidence_collecting** (Outcome 2 — OdC→HS mapping unproven, so the generic `sulfur` object is not upgraded); trade sufficiency policy **unchanged**.
+
+### Taxonomy amendment
+Added governed category **`customs_nomenclature_authority`** (policy + source-registry vocabulary; validator no-drift) rather than mislabel HS as a scientific/technical standard (§M). Registered `SRC-UN-COMTRADE-HS2022` (seeded/candidate, identity_revision) with classification-only qualification `QUAL-UN-HS2022-001` (state `reviewed`; prohibits Morocco trade totals / industrial / scientific / market).
+
+### New governed object
+`classification_registry.json` (minimal: system → version → code → official_label → exclusions; HS6 and national_code kept as distinct nullable fields; statistical grouping vs HS commodity distinguished).
+
+### Contract-C
+Derived evidence posture `evidence_collecting`; **Contract-C = (not_public, noindex)** (unchanged).
+
+### Tests
+Classification resolution **17/17**; source admission 21/21; Pilot 01 16/16; Pilot 01 correction 14/14; scaffolding, concept↔lexeme, relationship grammar 8/8, Contract C 7/7; existing L0/L1/L2 PASS. Sources now 16 seeded + 1 verified; all candidate (existing statuses/locks unchanged).
+
+### Not started
+Pilot 02 (OCP / Morocco Industrial Chain); GCC/China/Germany; language localization; Moroccan national-code acquisition; trade sufficiency-policy amendment.
+
+---
+
+## Pilot 01 — Evidence Admission Closure
+
+**Date:** 2026-09-19
+**Baseline:** commit `cb3ed350b6`. Purpose: make the classification path obey **Source → Qualification → Evidence → Claim** (like the trade path), so the HS identity is *admitted evidence*, not a bare assertion. No Pilot 02, no new external source (the two Pilot-01 sources were re-fetched for identity verification only), no OCP/GCC/China/Germany, no route/sitemap/robots/indexation/public-HTML/14K change, no claim activation, no source-locking, no PR.
+
+### What changed
+- **New governed subject domain `SD-CUSTOMS-CLASSIFICATION`** (`subject_domain_registry.json`), distinct from the chemical `SD-NOMENCLATURE`: goods/customs/statistical classification is a different fact type from chemical naming. State `registered` (domain evidence-activation deliberately deferred; no publication effect).
+- **Evidence schema extended** (`evidence/evidence_schema.json`): `evidence_kind = classification`, `claim_level = classification`, reference field `classification_ids → classification_registry.json`, and a classification level-rule (requires kind `classification` + non-empty `classification_ids`).
+- **Domain admissibility policy for SD-CUSTOMS-CLASSIFICATION** (`source_admissibility_policy.json`): sufficiency `single_authoritative_sufficient` (a nomenclature identity is definitional, not a contested measurement — unlike trade totals). Allowed categories = nomenclature/customs authorities; trade-statistics sources are **not** allowed to establish the nomenclature.
+- **Real classification evidence `EVD-HS2022-2503-00`** created, binding `SRC-UN-COMTRADE-HS2022` / `QUAL-UN-HS2022-001` / `CLS-HS2022-2503-00`. `admissible()` returns **TRUE**; review posture `evidence_verified` (only because admissible TRUE).
+- **One-fact-one-owner for classification objects** (`classification_registry.json`): `source_id` is now **forbidden** on a classification object; the source binding lives on the evidence record, referenced via `supporting_evidence_ids`. `CLS-HS2022-2503-00.supporting_evidence_ids = ["EVD-HS2022-2503-00"]`; `CLS-MA-ODC-SOUFRES-BRUTS.supporting_evidence_ids = []` (Moroccan mapping stays **UNPROVEN/BLOCKED**).
+- **Source identity verification** (`SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md`, C1–C8) applied to **exactly the two Pilot-01 sources**: both re-fetched (UN Comtrade H6 JSON re-confirmed 250300/280200 verbatim; OdC PDF HTTP 200 / `application/pdf` / `%PDF-`). Both `status: seeded → verified` under `verification_limited`, **lock stays `candidate`**, added to `verification_ready_sources`. No credentials, no gate bypass.
+- **Qualification promotion:** `QUAL-UN-HS2022-001` `reviewed → qualified_narrow` (identity verified + narrow scope reviewed), domain moved `SD-NOMENCLATURE → SD-CUSTOMS-CLASSIFICATION`. `QUAL-OC-MA-TRADE-001` **deliberately NOT promoted** (stays `reviewed`) — the trade path is unchanged.
+- **Claim A** (`PILOT_01_claims.json`): HS side now references `supporting_evidence_ids = ["EVD-HS2022-2503-00"]` (not classification IDs as a substitute); wording softened from bare "PROVEN" to the governed posture ("ADMITTED / evidence_sufficient, not locked, not published"); outcome stays **PARTIAL**; Moroccan side stays blocked.
+- **SOURCE_POLICY drift audit** (`SOURCE_POLICY_DRIFT_AUDIT.md`, D1–D6) + minimum-sync "Supersession & Layering" pointer appended to `doctrine/SOURCE_POLICY.md`. No core rule changed.
+
+### Derived state (governed, not asserted)
+- Classification path: `admissible=TRUE` → posture **`evidence_sufficient`** (NOT `evidence_locked`, because source lock is `candidate`) → **Contract-C = (not_public, noindex)**.
+- Trade path: **unchanged** — sufficiency `primary_plus_corroborating`, posture `evidence_collecting`, qualification `reviewed`, `admissible=FALSE` → Contract-C = (not_public, noindex).
+
+### Tests
+New **admission-closure 19/19**; classification resolution 17/17; source admission 21/21; Pilot 01 16/16; Pilot 01 correction 14/14; scaffolding + concept↔lexeme validators PASS; relationship grammar 8/8; Contract C 7/7. **Wired CI** (L0/L1/L2 incl. `validate_source_registry_lock_l1.py`) PASS. Sources now 15 seeded + **3 verified** (SPEKTRUM, OC-MA, UN-COMTRADE); **all `source_lock_status = candidate`**.
+
+### Not started
+Pilot 02; GCC/China/Germany; language localization; Moroccan national-code acquisition; trade sufficiency-policy amendment; domain evidence-activation; source-locking; any route/claim activation.
+
+---
+
+## Pilot 02 — Morocco OCP Sulfur Industrial Chain
+
+**Date:** 2026-09-19
+**Baseline:** commit `c2c390b670`. Purpose: test whether BISULFID can REPRESENT a real industrial actor (OCP Group) and its relationship to sulfur without turning corporate disclosures into national statistics/market claims. Scope "OCP × sulfur × Morocco industrial context × FY2024", max 3 claims. Issuer-primary OCP official disclosures only. No public page/route/indexation/14K, no GCC/China/Germany, no Arabic/French lexeme expansion, no Pilot 03, no PR.
+
+### Outcome: governance success by withholding
+The corporate-actor governance architecture was built and PROVES correct withholding. **All three principal claims are BLOCKED** because the OCP primary PDFs could not be opened in this environment: `www.ocpgroup.ma` serves a Cloudflare JS bot-challenge (HTTP 403) to curl and WebFetch, and Chromium could not be granted trust of the egress-proxy CA without a TLS-trust change that the environment disallowed (attempt denied). No credentials, login, or TLS-verification bypass were used (parallels the douane.gov.ma block in Pilot 01). **No figure/sentence was taken from prompt text or search snippets.**
+
+### Built (acquisition-independent architecture)
+- **Organization registry** (`organization_registry.json`): `ORG-OCP-GROUP` identity ONLY (canonical name + disambiguation). Forbids financials/market/ownership/relationship/route fields; forbids ID collision with a geography. Creating the org implies NO relationship, and OCP is never substitutable for GEO-MA.
+- **Two governed source categories** (`corporate_financial_report`, `corporate_sustainability_report`), authority strictly limited to the issuer's own disclosed facts (issuer-primary, not market/industry press). Added to policy + registry vocabulary (no drift).
+- **New domain `SD-CORPORATE-FINANCIALS`** (distinct from SD-TRADE): a narrow issuer accounting line may use `single_authoritative_sufficient` for that exact fact type; trade/economics sufficiency unchanged (`primary_plus_corroborating`). **SD-INDUSTRIAL** now distinguishes issuer-primary vs analytical; broader industrial relationships still require corroboration.
+- **Accounting numeric convention `NUM-ACCOUNTING-PAREN-NEG`** (`numeric_normalization.py` + policy): comma-thousands, dot-decimal, PARENTHESES = NEGATIVE. `(8,344)` → signed `-8344`; a `magnitude()` helper yields a labelled positive for prose only. Validator rejects a parenthesised literal stored as positive (no silent parentheses drop).
+- **Two OCP sources registered** (`SRC-OCP-AFR-2024`, `SRC-OCP-SUSTAINABILITY-2024`) with `identity_revision`, status **seeded** / lock **candidate**. C1–C8 identity verification attempted; **C1 (reachable) FAILS** here → not verified.
+- **Two deny-by-default qualifications** (`QUAL-OCP-AFR-001` SD-CORPORATE-FINANCIALS/quantitative; `QUAL-OCP-SUS-001` SD-INDUSTRIAL/qualitative), state **candidate** (source unverified + scope unreviewable) → not admissible.
+- **Non-operational Pilot-02 claim store** (`PILOT_02_claims.json`): Claims A/B/C all BLOCKED, `supporting_evidence_ids: []`.
+
+### Not created / not asserted
+- No evidence records (nothing extracted). No `ORG-OCP-GROUP → REL-INDUSTRIAL-USER → sulfur` instance (no admitted evidence; and REL-INDUSTRIAL-USER requires primary production/statistical/scientific categories a single corporate self-report cannot satisfy — not weakened). No `sulfuric_acid` ontology concept fabricated. The sulfur price statement is OUT OF SCOPE and not ingested (unresolved prose/figure inconsistency; requires original-page recheck).
+- Independence: the two reports share the issuer → recorded as **non-independent**; corroboration-requiring patterns correctly return `evidence_collecting`.
+
+### Derived state
+No admitted evidence → posture `evidence_collecting` → **Contract-C = (not_public, noindex)**.
+
+### Tests
+`pilot_02_tests.py` (26 proofs) PASS; all prior suites regress green — Pilot-01 admission-closure 19/19, classification 17/17, source admission 21/21, Pilot 01 16/16, correction 14/14, Contract C 7/7, relationship grammar 8/8, scaffolding + concept↔lexeme validators PASS; **wired L0/L1/L2 CI PASS**. Sources now 17 seeded + 3 verified (unchanged verified set) + 2 new OCP seeded; **all locks candidate**.
+
+### Blocked — needs a decision
+Extracting the three OCP facts needs either (a) a permitted way for Chromium to trust the egress-proxy CA so it can clear the Cloudflare challenge, or (b) the user supplying the two official OCP PDFs. Until then Claims A/B/C stay BLOCKED. No Pilot 03.
+
+---
+
+## Pilot 02 — Evidence Completion (from original uploaded PDF)
+
+**Date:** 2026-09-20
+**Baseline:** commit `4a685bc2a9`. The user supplied the **original OCP Consolidated Financial Statements at 31 December 2024** PDF locally (the Sustainability Integrated Report PDF was NOT supplied). Completed only the previously-blocked Pilot-02 chain; architecture unchanged; no Pilot 03. Everything extracted verbatim from the original PDF (pdfminer.six via the local crypto-stub workaround); nothing taken from prompt text or search snippets.
+
+### Source verification (§1)
+- `SRC-OCP-AFR-2024`: C1–C8 **PASS** against the original PDF (independent auditors' report present; Note 4.2.2 figures verbatim). status `seeded → verified`, **lock stays candidate**, added to `verification_ready_sources`. Verification ≠ qualification/admission/claim/publication. (Uploaded file's edition datestamp 20 Mar 2025 vs URL 27 Mar 2025 — same FY2024 work; `identity_revision` unchanged.)
+- `SRC-OCP-SUSTAINABILITY-2024`: **C1 FAILS** (PDF not uploaded) → stays `seeded`; `QUAL-OCP-SUS-001` stays `candidate`.
+
+### Qualification (§2)
+`QUAL-OCP-AFR-001` promoted `candidate → qualified_narrow` for two explicitly-reviewed issuer-primary uses (FY2024 accounting sulfur line; FY2024 sulfur-consumption observation), domains `[SD-CORPORATE-FINANCIALS, SD-INDUSTRIAL]`, kinds `[quantitative, qualitative]`. Prohibits Morocco/national/market demand, import value, tonnage-from-value, and the sulfur price statement.
+
+### Claim A — sulfur accounting amount (§3) — SUPPORTED
+Evidence `EVD-OCP-SULFUR-PURCHASE-FY2024` from **Note 4.2.2, "Purchases consumed", "In millions of dirhams", page 21**: **Sulfur FY2024 source literal `(8,344)` → signed `-8344` MDH; FY2023 `(8,088)` → `-8088` MDH** (`NUM-ACCOUNTING-PAREN-NEG`). Derived magnitude 8,344 (prose only). 'Sulfuric acid' `(2,364)` kept as a **distinct** line, not merged. Means only OCP's own accounting line — not import value / tonnage / Morocco demand / market size. admissible()=True; single_authoritative_sufficient → **evidence_sufficient** (not locked).
+
+### Claim B — sulfur consumption observation (§4) — SUPPORTED
+Evidence `EVD-OCP-SULFUR-CONSUMPTION-FY2024`, verbatim (p21): *"sulfur consumption volumes increased in correlation with the rise in sulfuric acid production."* Issuer-reported, FY2024-scoped. No tonnage/percentage/causality/national inference. admissible()=True; SD-INDUSTRIAL primary_plus_corroborating → relationship stays **evidence_collecting**.
+
+### Price inconsistency quarantined (§5)
+Same paragraph: "drop in price per ton" but prints **$127/T CFR (2024) vs $113/T CFR (2023)** (rise, not drop), and "decreased by 256" while the Note 4.2.2 magnitude rises 8,088→8,344. Recorded in `EVD-OCP-SULFUR-CONSUMPTION-FY2024.quarantined_not_admitted` (`excluded_from_claims: true`, `resolution: none`). Not silently fixed, years not reversed, no external knowledge, not used to explain Claim A. A test proves it cannot be promoted without an explicit resolution step.
+
+### Claim C — industrial process (§6) — BLOCKED
+Sustainability PDF not uploaded → not extracted/asserted. Financial evidence cannot substitute. No `sulfuric_acid` concept fabricated. Site scope (Jorf Lasfar/Safi) recorded as the target for when the PDF is supplied.
+
+### Relationship (§7) + independence (§8)
+`REL-INST-OCP-SULFUR-FY2024`: **ORG-OCP-GROUP → REL-INDUSTRIAL-USER → sulfur**, FY2024-bounded, `evidence_collecting` (NOT `evidence_qualified`). Not `GEO-MA → … → sulfur`. Same-issuer reports are **not** independent; policy not weakened.
+
+### Postures (§9) / Contract-C (§13)
+Purchase: admitted True, evidence_verified, evidence_sufficient (lock candidate → not locked). Consumption/relationship: admitted True, evidence_collecting. **Contract-C = (not_public, noindex)** everywhere. No publication/route/sitemap/robots/indexation/14K change.
+
+### Tests (§11)
+`pilot_02_tests.py` rewritten (37 assertions) PASS; all prior governance + Pilot-01 suites regress green; **wired L0/L1/L2 CI PASS**. Sources now 3 verified (SPEKTRUM, OC-MA/UN-COMTRADE, **+ OCP-AFR**), all locks candidate; SRC-OCP-SUSTAINABILITY-2024 still seeded.
+
+### Stop
+No Pilot 03.
+
+---
+
+## Pilot 02 — Claim C Completion (Sustainability page-excerpt)
+
+**Date:** 2026-09-20
+**Baseline:** commit `9aee972f95`. The user supplied a direct **page-excerpt** of the original OCP Sustainability Integrated Report 2024 (original report **page 20** = industrial-process statement; **pages 305–306** = third-party assurance, for bounding only). Completed only the previously-blocked Claim C chain (`SRC-OCP-SUSTAINABILITY-2024 → QUAL-OCP-SUS-001 → evidence → Claim C`). Claims A/B untouched; architecture unchanged; no Pilot 03. Extracted verbatim from the original excerpt (pdfminer.six); nothing from prompt text.
+
+### Source verification (§1)
+`SRC-OCP-SUSTAINABILITY-2024`: C1–C8 **PASS** against the page-excerpt → status `seeded → verified`, **lock stays candidate**, added to `verification_ready_sources`. Verification ≠ qualification/admission/claim/publication.
+
+### Qualification (§2)
+`QUAL-OCP-SUS-001` promoted `candidate → qualified_narrow` for the reviewed use `issuer_own_process_context_ocp` (SD-INDUSTRIAL, qualitative), site-scoped Jorf Lasfar/Safi. Prohibits financial amount, sulfur feedstock quantity, national/market demand, universal/chemistry claims, and third-party assurance of the process statement.
+
+### Claim C — industrial process (SUPPORTED)
+Evidence `EVD-OCP-PHOSPHATE-PROCESS-2024`, verbatim **page 20**: OCP's phosphate processing at **Jorf Lasfar and Safi** combines phosphate rock with sulphuric acid to create phosphoric acid; sites equipped with sulphuric-acid and phosphoric-acid production lines. Issuer-primary, organization-scoped, site-scoped. admissible()=True; SD-INDUSTRIAL primary_plus_corroborating → **evidence_collecting** (third OCP-issuer, non-independent). No `sulfuric_acid` ontology concept fabricated (kept as qualitative text).
+
+### Assurance bounding (§ user instruction)
+Pages 305–306 third-party assurance (ISO 14064-1/-3, "reasonable assurance", GUTcert, Berlin 29 Jul 2025) is scoped to **environmental metrics only** — GHG (Scope 1/2/3 CO₂e), clean-electricity use ratio (80.00%), waste ratios, non-conventional-waters ratio. Recorded in the evidence's `assurance_bounding` block (`assured_metrics_are_pilot02_claims: false`). It does **NOT** assure the page-20 process statement, and those metrics are **not** admitted as Pilot-02 claims.
+
+### Relationship / independence / Contract-C
+`REL-INST-OCP-SULFUR-FY2024` now carries 3 issuer evidence_ids (purchase, consumption, process); stays **evidence_collecting** (same-issuer non-independence; policy not weakened; not `GEO-MA`). Contract-C = **(not_public, noindex)** everywhere. No route/claim activation, no source-lock.
+
+### Tests
+`pilot_02_tests.py` updated (Claim C supported; site scope; assurance bounded; sustainability≠financial; no sulfuric_acid concept) — PASS; all prior governance + Pilot-01 suites regress green; **wired L0/L1/L2 CI PASS**. Sources now **5 verified** (SPEKTRUM, OC-MA, UN-COMTRADE, OCP-AFR, OCP-SUSTAINABILITY) — all locks candidate.
+
+### Stop
+Pilot 02 is complete: Claims A, B, C all supported at their reviewed scope; relationship evidence_collecting; nothing published. No Pilot 03.
+
+---
+
+## Pilot 02 — Direct vs Contextual Evidence Correction
+
+**Date:** 2026-09-20
+**Baseline:** commit `26c16be8be`. Narrow semantic correction: the page-20 phosphate-process record was being counted as a third DIRECT evidence unit on the sulfur relationship, but page 20 asserts sulphuric-acid processing, not elemental sulfur use. No source re-acquisition; Claims A/B/C support unchanged; no Pilot 03; no `sulfuric_acid` concept.
+
+### Chosen binding model (§1)
+Relationship instances now bind evidence as **`evidence_ids` = DIRECT-only** (backward-compatible field; the only slot that can satisfy sufficiency or raise posture) plus a new optional **`context_evidence_ids` = CONTEXT** (never fills a slot, never raises posture). The combined view is **derived** (`relationship_grammar.combined_evidence_ids`), never stored as duplicate truth. Schema documents this in `relationship_instance_schema.evidence_binding_model` (incl. no-overlap and no-duplicate rules).
+
+`REL-INST-OCP-SULFUR-FY2024`:
+- direct (`evidence_ids`): `EVD-OCP-SULFUR-PURCHASE-FY2024`, `EVD-OCP-SULFUR-CONSUMPTION-FY2024`
+- context (`context_evidence_ids`): `EVD-OCP-PHOSPHATE-PROCESS-2024`
+
+### Evidence record correction (§2)
+`EVD-OCP-PHOSPHATE-PROCESS-2024` now carries `evidence_binding: "context"` (+ `relationship_binding: "context_only"`) and a `concept_binding_note`: `concept_ids=["sulfur"]` binds it (as CONTEXT) to the sulfur relationship and does NOT claim the page-20 source mentions elemental sulfur. Claim C stays SUPPORTED at its own scope. No `sulfuric_acid` concept created.
+
+### Sufficiency evaluator (§3)
+`evaluate_sufficiency` and `derive_evidence_posture`/`derive_evidence_posture_governed` now exclude any unit with `binding == "context"` (like `excluded`); `build_admission_unit` reads `evidence_binding` from the record (default `direct`). `validate_scaffolding` enforces: direct slot never holds a context-tagged record, `context_evidence_ids` entries must be tagged `context`, and no record is both.
+
+### Preserved outcome (§4)
+OCP sulfur relationship stays **evidence_collecting** (two same-issuer direct records, no independent corroboration, locks candidate). Claim C stays SUPPORTED. Contract-C = **(not_public, noindex)**.
+
+### Tests (§5)
+`pilot_02_tests.py` extended (18a–c direct/context split + derived view; 19a/b context cannot fill a sufficiency slot; 20 context cannot raise posture; 21 removing context cannot erase Claim C) — PASS; all prior governance + Pilot-01 suites regress green; **wired L0/L1/L2 CI PASS**.
+
+### Stop
+No Pilot 03.
+
+---
+
+## Pilot 03 — MoS₂ Scientific Reference Chain
+
+**Date:** 2026-09-20
+**Baseline:** commit `fc72d805f4`. Third real evidence pilot: test the concept-level SCIENTIFIC/materials evidence path for `molybdenum_disulfide`, independently of the German lexical chain (which is untouched). Max three concept-level claims. No Morocco/GCC/China/Germany expansion, no 14K, no routes, no publication/indexation, no weakening of source/evidence rules, no new ontology concept, no PR. All facts extracted verbatim from authoritative sources (PubChem REST, NIST WebBook, Crystallography Open Database CIFs); no AI summaries/snippets as evidence.
+
+### Sources acquired (4; all verified, lock candidate — existing categories, no new category)
+- `SRC-PUBCHEM-MOS2` (government_scientific_database) — PubChem CID 14823 → MoS2, MW 160.1, CAS 1317-33-5.
+- `SRC-NIST-MOS2` (government_scientific_database) — NIST WebBook CAS 1317-33-5 → MoS2, MW 160.09 amu (independent of PubChem).
+- `SRC-COD-MOS2-DICKINSON-1923` (peer_reviewed_journal via COD 1010993) — Dickinson & Pauling, JACS 45,1466 (1923), doi 10.1021/ja01659a020 → 2H-MoS2 P6₃/mmc, a=3.15(2), c=12.30(7) Å.
+- `SRC-COD-MOS2-ACTACRYST-1983` (peer_reviewed_journal via COD 9007660) — Schönfeld, Huang & Moss, Acta Cryst. B 39,404 (1983), doi 10.1107/S0108768183002645 → 2H-MoS2 P6₃/mmc, a=3.161, c=12.295 Å.
+
+Roles: databases `primary_authoritative`, primary determinations `primary_scientific` (already governed; no vocabulary extension needed). Four use-scoped qualifications promoted candidate→qualified_narrow (formula-only for the databases; structure+lattice for the crystallography, band gap explicitly prohibited — §14).
+
+### Three claims / outcomes
+- **Claim A — formula MoS₂** (`CLM-MOS2-FORMULA`): **SUPPORTED**; PubChem + NIST independent → primary_plus_corroborating → evidence_sufficient.
+- **Claim B — 2H structure P6₃/mmc, layered** (`CLM-MOS2-STRUCTURE-2H`): **SUPPORTED**; two independent primary determinations → evidence_sufficient. 3R (R3m) kept distinct; monolayer out of scope.
+- **Claim C — lattice parameter a of 2H-MoS₂** (`CLM-MOS2-LATTICE-A-2H`): **SUPPORTED_CONDITIONAL**; a=3.15(2) Å (1923) and 3.161 Å (1983) preserved separately (no averaging); 2H-bulk scope; NUM-EN-DOT-DECIMAL normalization with uncertainty; evidence_sufficient.
+- **Band gap**: NOT asserted — form-dependent (bulk indirect vs monolayer direct) and authoritative primary source not openly retrievable here; recorded as a future target (§18).
+
+### Separation / scope guarantees
+Spektrum lexical source cannot support A/B/C; scientific sources cannot establish a lexeme (regression tests). Polytype/form scope retained (2H; 3R/monolayer distinguished, veto enforced). Existing chemistry sufficiency (primary_plus_corroborating) NOT weakened. molybdenum_disulfide concept unchanged; no new concept created.
+
+### Postures / Contract-C
+All six records admissible()=True, evidence_verified, lock candidate → never evidence_locked. Per-claim posture A/B/C = evidence_sufficient. **Contract-C = (not_public, noindex)** everywhere. No route/claim activation/source-lock.
+
+### Tests
+`pilot_03_tests.py` (23 proofs) PASS; all Pilot-01/Pilot-02/governance regressions green; wired L0/L1/L2 CI PASS. Sources now 9 verified (all locks candidate).
+
+### Stop
+No Pilot 04.
+
+---
+
+## Pilot 03 — Scientific Provenance Closure
+
+**Date:** 2026-09-20
+**Baseline:** commit `de5651706c`. Narrow closure correcting the scientific-provenance model using uploaded primary/review artifacts (RSC 2015 review PDF; Huang 1981 thesis PDF; Acta 1983 page-404 excerpt; Dickinson & Pauling 1923 first-page excerpt; COD 1010993 CIF). No new claim, no acquisition beyond the uploads, no policy weakening, no publication, no Pilot 04. Pilots 01/02 untouched.
+
+**Durable rule (general):** scientific-source provenance now separates the **retrieval artifact** from the **originating scientific work**. A source records `originating_work_id` (see `originating_work_registry.json`); scientific **independence is evaluated on originating-work lineage**, not on source_id/URL/repository. A database reproduction of a publication does **not** create an independent scientific source (same-work records are deduplicated for sufficiency); genuinely distinct works are independent; conservatively-related works (shared authors/data) are not independent. This applies to future scientific ingestion.
+
+**Mechanisms added/changed:**
+- New categories `crystallographic_database` (COD retrieval records; role `authoritative_database`) and `academic_thesis` (role secondary_scholarly). New governed evidence role `authoritative_database`.
+- `originating_work_registry.json` (WORK-DICKINSON-PAULING-1923, WORK-SCHONFELD-HUANG-MOSS-1983, WORK-SONG-PARK-CHOI-2015, WORK-HUANG-1981; related_work_ids Huang↔1983).
+- `_independent()` now also returns not-independent on same/related originating_work; `build_admission_unit` carries lineage; `evaluate_sufficiency` counts `authoritative_database` as primary-grade and `secondary_scholarly` as corroboration-only. Chemistry domain admits the new roles/categories; sufficiency (`primary_plus_corroborating`) NOT weakened.
+- COD sources re-modelled to crystallographic_database + originating_work_id + originating DOI (identity_revision → rev-2026-09-20-2; quals updated). New sources: RSC review (peer_reviewed_journal/secondary_scholarly), Acta-1983 excerpt & JACS-1923 excerpt (peer_reviewed_journal/primary_scientific, excerpt-scoped), Huang thesis (academic_thesis). All verified, lock candidate.
+
+**Claims:** A reworded ("The formula of molybdenum disulfide is MoS2"; PubChem field name preserved) — SUPPORTED. B made component-aware (layered / 2H-naming / space-group-lattice), `layered` retained and directly evidenced, 2H/3R distinction preserved (3R in a separate boundary record, never on the 2H claim), Dickinson 1923 NOT credited with the modern "2H" label — SUPPORTED. C unchanged (2H-bulk a: 3.15(2) & 3.161 Å, coexisting) — SUPPORTED_CONDITIONAL. Band gap remains out of scope.
+
+**Postures / Contract-C:** all admitted records evidence_verified, lock candidate → never evidence_locked; Contract-C = (not_public, noindex) everywhere.
+
+**Tests:** `pilot_03_tests.py` extended to 34 proofs (§26 component + §27 provenance); all Pilot-01/Pilot-02/governance regressions green; wired L0/L1/L2 CI PASS.
+
+### Stop
+No Pilot 04. No Reference Production in this commit.
+
+---
+
+## Pre-Production Independence Semantics Hardening
+
+**Date:** 2026-09-20
+**Baseline:** commit `46a5902df5`. One cross-domain engine gap closed before production: `build_admission_unit()` did not propagate corporate/dataset lineage, while `_independent()` used a global publisher veto that is both under- and over-broad. No new sources, no changed claim outcomes, no Pilot 04, no Reference Production.
+
+**Durable law — evidence independence is DOMAIN-SEMANTIC, not URL/publisher-semantic:**
+- **same source** → never independent;
+- **science** → originating-work / data lineage (`originating_work_id` + `related_work_ids`); a database copy and the article of the same work are ONE lineage; two DISTINCT works from the same journal CAN be independent;
+- **corporate** → issuer lineage (`issuer_id`, e.g. `ORG-OCP-GROUP`); same issuer ⇒ not independent even with different source_ids; different issuers are not collapsed by matching category;
+- **trade/statistical** → governed `dataset_id` / `underlying_study_id` release lineage (never invented where unknown).
+- **Free-text publisher/URL equality is NOT a universal independence key.**
+
+**Changes:**
+- `_independent()` re-typed to the keys above; global publisher veto removed.
+- `build_admission_unit()` now propagates governed independence metadata: `independence_domain` (derived from subject_domain), `originating_work_id`, `related_work_ids`, `issuer_id`, `dataset_id`. `load_all()` exposes `issuer_by_source` / `dataset_by_source`.
+- Backfill: the two OCP sources bound to `issuer_id = ORG-OCP-GROUP` (preserving AFR + Sustainability = same-issuer, not independent). MoS2 keeps originating-work lineage; Pilot 01 trade sources get no invented dataset lineage.
+- Policy: `evidence_independence_model` block added to `source_admissibility_policy.json` (machine-discoverable).
+
+**Unchanged outcomes:** Pilot 01 (trade evidence_collecting), Pilot 02 (relationship evidence_collecting), Pilot 03 A/B/C (evidence_sufficient / conditional). Contract-C = (not_public, noindex) everywhere.
+
+**Tests:** new `independence_semantics_tests.py` (13 proofs) PASS; all Pilot-01/02/03 + governance regressions green; wired L0/L1/L2 CI PASS.
+
+### Stop
+No Reference Production in this commit.
+
+---
+
+## Reference Production 01 — MoS₂ Scientific Knowledge Object
+
+**Date:** 2026-09-20
+**Baseline:** commit `48f4b7e583`. First REFERENCE PRODUCTION sprint (Pilots 01/02/03 closed). Exercises Evidence → Claim Set → Knowledge Object → Information Gain review → Publication Candidate. No web/acquisition, no band gap, no route/HTML/sitemap/robots/indexation, no claim activation, no source lock, no PR.
+
+**Durable decisions:**
+- The pilot phase is closed; the first production **Knowledge Object** exists: `KO-MOS2-SCIENTIFIC-001` (`main/data/knowledge_objects/`), aggregating Pilot-03 governed scientific claims/evidence for `molybdenum_disulfide` (formula; layered 2H P6₃/mmc structure; 2H-bulk lattice a).
+- **Knowledge Objects aggregate governed claims/evidence but do NOT re-own facts** (One-Fact-One-Owner): evidence owns literals/measurements/uncertainty; claims own propositions; the KO owns composition/scope/boundaries/reference-role only. Raw values (`source_literal`/`normalized_value`) and route/url/html are forbidden KO fields; display values derive from evidence.
+- **Information Gain is semantic and multi-signal, never prose-similarity optimization.** `calibration_pairs.json` seeded with 3 real pairs (schema extended for governed `object_a/object_b` endpoints); textual_similarity is diagnostic only; **no numeric threshold/weight** is introduced. Findings: the scientific KO is a `valid_domain_specific_reference` vs the German lexical MoS2 object; formula/structure/property are MODULES of one object (`near_duplicate` if split into URLs); the KO shares the legacy `/molybdenum-disulfide/` task so a new URL is not warranted.
+- **No URL exists before a legitimate IG decision.** Current governance ratifies no non-numeric IG-pass authority, so `information_gain_posture = ig_not_reviewed` even though the human-readable IG review is complete. Publication candidate `PC-MOS2-SCIENTIFIC-001` = `internal_candidate`, disposition `independent_reference_candidate` (never published/indexable).
+- **Legacy 14K visibility rules do not authorize new objects.** Contract-C is DERIVED via `contract_c_derive.py` = **(not_public, noindex)** (governance reference_draft + ig_not_reviewed); the derived value is recomputed and checked, never manually authorized. `PUBLICATION_GATE_MODEL_14000.md` and similar historical artifacts do not govern this object.
+
+**Postures:** evidence_posture evidence_sufficient (derived; source locks candidate → never evidence_locked); claim_posture claim_pending (pilot non-operational); validation not_validated; ig_not_reviewed; release not_authorized. Nearest legacy routes (comparison only, unmodified): `molybdenum_disulfide`, `de_core_mos2`, `de_molybdenum_disulfide`, ~150 `cohort02_en_molybdenum_disulfide_*`.
+
+**Tests:** `reference_production_tests.py` (22 proofs) PASS; `validate_scaffolding` KO + IG checks added; all Pilot-01/02/03 + independence + governance regressions green; wired L0/L1/L2 CI PASS.
+
+### Stop
+No public route. No Reference Production 02.
+
+---
+
+## IG Governance Ratification
+
+**Date:** 2026-09-20
+**Baseline:** commit `9b3746d8ad` (Reference Production 01). Ratifies a machine-discoverable, deterministic, non-numeric Information-Gain decision authority. NOT a publication/route/acquisition/migration sprint. No web, no new sources, no band gap, no route/HTML/sitemap/robots/release-ledger/legacy change, no claim activation, no source lock, no PR. **Policy version: `IG-GOVERNANCE 1.0.0`.**
+
+**Durable decisions:**
+1. **Ratified IG authority exists and is machine-discoverable.** `main/data/information_gain/ig_governance_policy.json` (`status: ratified`, `version: 1.0.0`) + the deterministic engine `scripts/governance_scaffolding/information_gain_gate.py:evaluate`. This is the ONLY sanctioned way to move an IG posture toward a pass.
+2. **Four governed route-distinctness classifications:** `valid_domain_specific_reference` (positive independent value → route-eligible), `near_duplicate` (same task → no new route), `module_relationship` (endpoints are modules of one object → no sibling URLs), `unresolved` (fail-closed → human review).
+3. **Multi-signal, semantic.** Decision signals: evidence/claim/source overlap, relationship/geography-jurisdiction/temporal difference, module-section overlap, user-task difference. Signal values are CATEGORICAL (disjoint/low/partial/high/na), never numbers.
+4. **Numeric authority is machine-discoverably PROHIBITED.** No threshold/weight/cutoff/score is defined or permitted (validator forbids those key substrings anywhere in the policy or fixtures). Textual similarity is `diagnostic_only`; it can never decide a classification and never upgrades a same-task surface. "Not a duplicate" alone is NOT independent reference value.
+5. **Deterministic, fail-closed evaluation.** `evaluate()` returns `classification / posture / route_eligible / reasons / signals_considered / unresolved_signals / endpoints / policy_version`. Missing/unknown required signals, self-comparison, or ambiguous/contradictory signals → `unresolved` / `ig_review_required`, never a pass. Same inputs → same output.
+6. **`ig_reviewed_pass` posture ratified — necessary-not-sufficient and positive-only.** Granted ONLY for a positive independent-reference classification (valid_domain_specific_reference / valid_sibling / valid_localization) with no unresolved signals. `near_duplicate`, `module_relationship`, and `unresolved` are NEVER eligible for a sibling-route pass. Passing IG never makes an object public by itself.
+7. **Gate separation preserved.** IG classifies route-distinctness and object validity ONLY. It may not mutate evidence/claim/independence/admissibility/source-lock/validation/Contract-C/release/indexation, routes, sitemap, robots, the release ledger, or legacy visibility. Contract-C (`contract_c_derive.py`) stays canonical; IG only supplies one input posture.
+8. **RP01 pairs re-evaluated under the ratified authority:** Pair 1 (KO vs `de_core_mos2`) → `valid_domain_specific_reference` (pass-capable); Pair 2 (KO vs legacy `/molybdenum-disulfide/`) → `near_duplicate`; Pair 3 (formula vs structure modules) → `module_relationship` (supersedes the RP01 near_duplicate seed label). `calibration_pairs.json` upgraded to governed fixtures (v0.3.0) the gate MUST reproduce.
+9. **KO-level IG posture resolved by SEPARATING object informational validity from new-route distinctness.** `KO-MOS2-SCIENTIFIC-001.ig_resolution`: `object_informational_validity = object_valid_governed` (distinct governed knowledge vs the German lexical object) BUT `new_route_distinctness = no_new_route_warranted` (near_duplicate vs the legacy same-task route). A valid object need not earn its own URL.
+10. **Contract-C recomputed, never hand-edited, still closed.** KO/PC `information_gain_posture = ig_reviewed_no_new_route`; `contract_c_derive.py` normalizes governed IG postures to canonical route-gate inputs (`ig_reviewed_pass→ig_passed`, `ig_reviewed_no_new_route→ig_failed`, `ig_review_required→ig_not_reviewed`) and now uses a fail-closed positive allow-list for route eligibility. Derived Contract-C = **(not_public, noindex)** (governance `reference_draft` alone denies a URL). PC disposition updated to `governed_reference_no_new_route`.
+11. **One-Fact-One-Owner held.** The IG layer carries NO scientific values (no source_literal/normalized_value/measurements). Evidence still owns literals; claims own propositions; the KO owns composition/scope; IG owns route-distinctness classification only.
+12. **Nothing published, no scope creep.** No route, HTML, sitemap, robots, release-ledger, or legacy-visibility change; no claim activation; no source lock; Pilot 01/02/03 claim outcomes and all evidence values unchanged; the legacy 14K corpus is NOT made authoritative over the Knowledge Object model. No Reference Production 02.
+
+**Contract-C engine change (canonical property suite unaffected):** the exhaustive `IG` domain is unchanged, so `contract_c_property_tests.py` (23040 combinations) still passes all 7 canonical properties; governed postures are handled by normalization + a fail-closed allow-list, and any unknown IG value now denies a URL.
+
+**Tests:** new `ig_governance_tests.py` (25 proofs) PASS; `validate_scaffolding` extended with `validate_information_gain_governance()` (759 checks) PASS; `reference_production_tests.py` updated to the ratified posture/disposition; all Pilot-01/02/03 + independence + Contract-C property + governance regressions green; wired L0/L1/L2 CI PASS.
+
+### Stop
+No public route. No Reference Production 02. IG ratified; nothing published.

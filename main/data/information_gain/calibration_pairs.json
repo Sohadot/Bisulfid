@@ -1,0 +1,133 @@
+{
+  "version": "0.3.0",
+  "sprint": "ig-governance-ratification",
+  "site": "bisulfid.com",
+  "status": "governed_fixtures",
+  "policy_ref": "main/data/information_gain/ig_governance_policy.json",
+  "policy_version": "1.0.0",
+  "governed_by": [
+    "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
+    "main/data/information_gain/ig_governance_policy.json",
+    "main/data/reference_production/REFERENCE_PRODUCTION_01_MOS2.md",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Governed calibration/fixture dataset for the ratified Information Gain gate (information_gain_gate.evaluate). Each pair is a fixture the gate MUST reproduce: it carries the expected governed classification, posture, and route-eligibility. The gate answers 'does this knowledge surface independently add distinct governed knowledge or a distinct reference task worth a separate retrievable URL?' — never 'did we rewrite the prose enough?'.",
+  "rules": [
+    "No arbitrary numeric similarity cutoff is defined or ratified. IG decisions are semantic and multi-signal.",
+    "Textual similarity is ONE diagnostic signal among many, never a standalone blocker and never an optimization target.",
+    "No numeric cutoff or signal weighting field is permitted; IG decisions are semantic (enforced by the validator).",
+    "Normative fixtures MUST be reproduced by information_gain_gate.evaluate at the referenced policy_version.",
+    "Pairs seeded here are REAL, derived from the Reference Production 01 (MoS2) exercise and re-evaluated under the ratified authority."
+  ],
+  "labels": [
+    "true_duplicate",
+    "near_duplicate",
+    "valid_sibling",
+    "valid_localization",
+    "valid_domain_specific_reference"
+  ],
+  "governed_classifications": ["valid_domain_specific_reference", "near_duplicate", "module_relationship", "unresolved"],
+  "governed_postures": ["ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required"],
+  "signals": [
+    "evidence_set_overlap",
+    "claim_set_overlap",
+    "source_set_overlap",
+    "relationship_difference",
+    "geography_jurisdiction_difference",
+    "temporal_difference",
+    "module_section_overlap",
+    "user_task_difference",
+    "textual_similarity"
+  ],
+  "pair_record_schema": {
+    "required_fields": ["pair_id", "label", "expected_classification", "expected_posture", "expected_route_eligible", "fixture_kind", "signals", "labeler", "labeled_at"],
+    "endpoints_rule": "Each pair has TWO endpoints. An endpoint is either a route (route_a / route_b = a routes.json route_id) OR a governed object (object_a / object_b = a governed object ref such as a knowledge_object_id, optionally suffixed '#<module>'). Every pair MUST supply endpoint A (route_a or object_a) and endpoint B (route_b or object_b), and A != B.",
+    "label_note": "'label' is the calibration SIMILARITY label (one of labels[]). 'expected_classification' is the governed ROUTE-DISTINCTNESS outcome (one of governed_classifications[]) that the gate must return. They are different axes: e.g. formula-vs-structure modules read as near_duplicate surfaces (similarity) but classify as module_relationship (routing).",
+    "signals_note": "signals is an object keyed by the signal names above; values are qualitative (disjoint/low/partial/high/na). textual_similarity carries 'diagnostic_only' and never decides.",
+    "fixture_kind_note": "'normative' fixtures MUST be reproduced by the gate; 'diagnostic' fixtures illustrate a behavior without asserting a governed pass.",
+    "numeric_scoring_rule": "No numeric similarity cutoff or signal weighting field is permitted; IG decisions are semantic."
+  },
+  "pairs": [
+    {
+      "pair_id": "PAIR-KO-MOS2-SCI-vs-DE-LEXICAL",
+      "object_a": "KO-MOS2-SCIENTIFIC-001",
+      "endpoint_a_type": "knowledge_object",
+      "route_b": "de_core_mos2",
+      "endpoint_b_type": "route",
+      "label": "valid_domain_specific_reference",
+      "expected_classification": "valid_domain_specific_reference",
+      "expected_posture": "ig_reviewed_pass",
+      "expected_route_eligible": true,
+      "fixture_kind": "normative",
+      "policy_version": "1.0.0",
+      "signals": {
+        "evidence_set_overlap": "disjoint",
+        "claim_set_overlap": "disjoint",
+        "source_set_overlap": "disjoint",
+        "relationship_difference": "high",
+        "geography_jurisdiction_difference": "na (both none)",
+        "temporal_difference": "na",
+        "module_section_overlap": "low",
+        "user_task_difference": "high",
+        "textual_similarity": "diagnostic_only (both name MoS2; not decisive)"
+      },
+      "rationale": "The scientific KO (formula/structure/lattice; sources PubChem/NIST/COD/RSC; concept-level claims) and the German lexical surface (Spektrum dictionary-entry observation; lexeme LEX-DE-MOS2-001; terminology claim CLM-TERM-MOS2-DE-001) share NO governed evidence, claims, or sources and serve different reference tasks. Deleting one loses governed knowledge the other does not hold. Positive independent reference value -> route-eligible.",
+      "labeler": "ig-governance-ratification (re-evaluated under ratified authority)",
+      "labeled_at": "2026-09-20"
+    },
+    {
+      "pair_id": "PAIR-KO-MOS2-SCI-vs-LEGACY-SCI-ROUTE",
+      "object_a": "KO-MOS2-SCIENTIFIC-001",
+      "endpoint_a_type": "knowledge_object",
+      "route_b": "molybdenum_disulfide",
+      "endpoint_b_type": "route",
+      "label": "near_duplicate",
+      "expected_classification": "near_duplicate",
+      "expected_posture": "ig_reviewed_no_new_route",
+      "expected_route_eligible": false,
+      "fixture_kind": "normative",
+      "policy_version": "1.0.0",
+      "signals": {
+        "evidence_set_overlap": "disjoint (legacy route carries NO governed evidence)",
+        "claim_set_overlap": "disjoint (legacy route carries NO governed claims)",
+        "source_set_overlap": "disjoint",
+        "relationship_difference": "low",
+        "geography_jurisdiction_difference": "na",
+        "temporal_difference": "na",
+        "module_section_overlap": "high (same MoS2 scientific-reference task)",
+        "user_task_difference": "low (same task: scientific identity of MoS2)",
+        "textual_similarity": "diagnostic_only"
+      },
+      "rationale": "The legacy 14K route /molybdenum-disulfide/ targets the SAME scientific-reference task but holds no governed knowledge. Because the tasks coincide, a NEW independent URL alongside it is not warranted (near_duplicate): the KO's value is realized by governing that topic, not by minting a second URL. This pair does NOT authorize retiring/migrating the legacy route (out of scope); it is a comparison candidate only.",
+      "labeler": "ig-governance-ratification (re-evaluated under ratified authority)",
+      "labeled_at": "2026-09-20"
+    },
+    {
+      "pair_id": "PAIR-KO-MOS2-FORMULA-vs-STRUCTURE-MODULE",
+      "object_a": "KO-MOS2-SCIENTIFIC-001#formula",
+      "endpoint_a_type": "knowledge_object_module",
+      "object_b": "KO-MOS2-SCIENTIFIC-001#structure",
+      "endpoint_b_type": "knowledge_object_module",
+      "label": "near_duplicate",
+      "expected_classification": "module_relationship",
+      "expected_posture": "ig_reviewed_no_new_route",
+      "expected_route_eligible": false,
+      "fixture_kind": "normative",
+      "policy_version": "1.0.0",
+      "signals": {
+        "evidence_set_overlap": "partial",
+        "claim_set_overlap": "disjoint (different claims)",
+        "source_set_overlap": "partial",
+        "relationship_difference": "low",
+        "geography_jurisdiction_difference": "na",
+        "temporal_difference": "na",
+        "module_section_overlap": "high",
+        "user_task_difference": "low (one coherent reference task: MoS2 scientific identity)",
+        "textual_similarity": "diagnostic_only"
+      },
+      "rationale": "Formula and structure serve ONE coherent reference task about the same entity; they are MODULES of one Knowledge Object, not independent sibling URLs. Re-evaluated under the ratified authority this is a module_relationship (the endpoints share a base object), superseding the RP01 seed label of near_duplicate. (Same conclusion for the lattice-parameter module.)",
+      "labeler": "ig-governance-ratification (re-evaluated under ratified authority)",
+      "labeled_at": "2026-09-20"
+    }
+  ]
+}

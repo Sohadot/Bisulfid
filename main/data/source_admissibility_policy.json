@@ -1,0 +1,178 @@
+{
+  "version": "0.1.0",
+  "sprint": "source-qualification-evidence-admission",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "doctrine/SOURCE_POLICY.md", "DECISION_LOG.md"],
+  "purpose": "Deterministic, use-scoped source admissibility. Answers admissible(source, qualification, evidence_context) with a reason. Source category ALONE never grants admissibility.",
+
+  "evidence_roles": {
+    "primary_authoritative": "Strongest source for the specific question (e.g. dictionary for lexical existence; customs data for recorded imports).",
+    "official_record": "Official government/intergovernmental record (customs, statistics, instruments).",
+    "primary_scientific": "Primary peer-reviewed experimental/observational study.",
+    "secondary_scholarly": "Review/handbook/teaching material summarizing primary work.",
+    "corroborating": "Independent support that strengthens but does not alone establish.",
+    "contextual": "Explains/frames; never establishes a sovereign/official/scientific fact alone.",
+    "historical": "Establishes a past state, explicitly time-bounded."
+  },
+
+  "ratified_source_categories": {
+    "existing_confirmed": ["authoritative_dictionary", "chemical_nomenclature_standard", "government_scientific_database", "regulatory_body", "peer_reviewed_journal", "industry_publication", "market_report", "academic_teaching_reference"],
+    "newly_ratified": [
+      { "category": "official_customs_data", "roles": ["official_record", "primary_authoritative"], "note": "Recorded import/export flows." },
+      { "category": "official_trade_statistics", "roles": ["official_record", "primary_authoritative"], "note": "Official aggregated trade statistics." },
+      { "category": "national_statistical_authority", "roles": ["official_record", "primary_authoritative"], "note": "National statistics office outputs." },
+      { "category": "intergovernmental_trade_database", "roles": ["official_record", "primary_authoritative"], "note": "e.g. intergovernmental trade databases." },
+      { "category": "official_production_statistics", "roles": ["official_record", "primary_authoritative"], "note": "Official production figures." },
+      { "category": "regulatory_instrument", "roles": ["official_record"], "note": "The governing statute/regulation/directive/standard/treaty itself; REQUIRED for current-law claims." },
+      { "category": "official_standard", "roles": ["official_record", "primary_authoritative"], "note": "Official technical standard (e.g. DIN/ISO) as issued." },
+      { "category": "customs_nomenclature_authority", "roles": ["primary_authoritative", "official_record"], "note": "Authority for a customs/statistical goods NOMENCLATURE (WCO Harmonized System and its official government/intergovernmental reproductions, e.g. UN Comtrade HS reference, national customs tariffs). Added (source-qualification correction / classification-resolution) because neither 'official_standard' (technical standards like DIN/ISO) nor 'intergovernmental_trade_database' (trade FLOW data) correctly names a classification nomenclature authority. Establishes classification identity ONLY, never trade totals or scientific/market claims." },
+      { "category": "corporate_financial_report", "roles": ["primary_authoritative", "official_record"], "note": "The reporting entity's OWN official audited/consolidated financial statements (issuer-primary). Added (Pilot 02) because 'market_report' (third-party market analysis) and 'industry_publication' (trade press) both MISLABEL an issuer's own audited accounts. AUTHORITY IS STRICTLY LIMITED to the issuer's own disclosed financial/accounting facts: it may establish 'issuer X's FY accounts report line Y = value Z', never national statistics, import/trade value, market size, or physical volumes. Category alone is never admissible." },
+      { "category": "corporate_sustainability_report", "roles": ["primary_authoritative", "contextual"], "note": "The reporting entity's OWN official sustainability / integrated report (issuer-primary). Added (Pilot 02) because no existing category accurately names an issuer's primary non-financial disclosure. Authority limited to narrowly-scoped statements about the ISSUER'S OWN operations/processes as stated; never a universal industry fact, national production/demand, or market structure." },
+      { "category": "crystallographic_database", "roles": ["authoritative_database"], "note": "A curated crystallographic-data REPOSITORY record (e.g. a Crystallography Open Database CIF) that faithfully represents an originating scientific work's structured crystal data. Added (Pilot 03) because the retrieval artifact is a DATABASE record, NOT the peer-reviewed journal article itself (retrieval repository != originating scientific work). The role is authoritative_database; the originating peer-reviewed determination is recorded as the source's originating_work_id lineage. Scientific independence is judged on originating_work, so two database records reproducing the SAME work never count as independent." },
+      { "category": "academic_thesis", "roles": ["secondary_scholarly"], "note": "A university thesis/dissertation (e.g. an M.S. thesis). Added (Pilot 03). Scholarly SUPPORTING provenance only: it may corroborate/contextualize but must NOT substitute for peer-reviewed or authoritative evidence when policy requires it, and never counts as a primary experimental determination for sufficiency." }
+    ],
+    "evaluated_not_ratified_yet": [
+      { "category": "official_environmental_database", "reason": "No system need yet; revisit when environment domain activates." },
+      { "category": "official_health_authority", "reason": "Revisit only with biomedical program + high claim restriction." },
+      { "category": "patent_database", "reason": "Distinct evidentiary role unclear for current scope." },
+      { "category": "technical_standard", "reason": "Overlaps official_standard; avoid duplicate taxonomy until distinct need shown." }
+    ],
+    "note": "Newly-ratified categories are ADDED TO POLICY VOCABULARY only. They are NOT written into source_registry.json approved categories and NO source uses them yet. Admission of a real source under any of these awaits a later Source Qualification acquisition sprint."
+  },
+
+  "category_default_roles": {
+    "authoritative_dictionary": ["primary_authoritative", "secondary_scholarly"],
+    "chemical_nomenclature_standard": ["primary_authoritative", "official_record"],
+    "government_scientific_database": ["primary_authoritative", "corroborating"],
+    "regulatory_body": ["official_record"],
+    "peer_reviewed_journal": ["primary_scientific", "secondary_scholarly"],
+    "industry_publication": ["contextual", "corroborating"],
+    "market_report": ["contextual"],
+    "academic_teaching_reference": ["secondary_scholarly", "contextual"],
+    "official_customs_data": ["official_record", "primary_authoritative"],
+    "official_trade_statistics": ["official_record", "primary_authoritative"],
+    "national_statistical_authority": ["official_record", "primary_authoritative"],
+    "intergovernmental_trade_database": ["official_record", "primary_authoritative"],
+    "official_production_statistics": ["official_record", "primary_authoritative"],
+    "regulatory_instrument": ["official_record"],
+    "official_standard": ["official_record", "primary_authoritative"],
+    "customs_nomenclature_authority": ["primary_authoritative", "official_record"],
+    "corporate_financial_report": ["primary_authoritative", "official_record"],
+    "corporate_sustainability_report": ["primary_authoritative", "contextual"],
+    "crystallographic_database": ["authoritative_database"],
+    "academic_thesis": ["secondary_scholarly"]
+  },
+
+  "domain_admissibility": {
+    "terminology_linguistics": {
+      "applies_to_domains": ["SD-TERMINOLOGY", "SD-LINGUISTICS", "SD-NOMENCLATURE"],
+      "claim_levels": ["lexeme"],
+      "required_any_role": ["primary_authoritative", "secondary_scholarly"],
+      "allowed_categories": ["authoritative_dictionary", "chemical_nomenclature_standard", "academic_teaching_reference"],
+      "sufficiency": "single_authoritative_sufficient"
+    },
+    "chemistry_materials_physics": {
+      "applies_to_domains": ["SD-CHEMISTRY", "SD-INORGANIC-CHEMISTRY", "SD-MATERIALS-SCIENCE", "SD-PHYSICS"],
+      "claim_levels": ["concept"],
+      "required_any_role": ["primary_scientific", "primary_authoritative", "authoritative_database", "secondary_scholarly"],
+      "allowed_categories": ["peer_reviewed_journal", "government_scientific_database", "chemical_nomenclature_standard", "official_standard", "crystallographic_database", "academic_thesis"],
+      "forbidden_alone_categories": ["authoritative_dictionary", "academic_teaching_reference", "industry_publication", "market_report"],
+      "sufficiency": "primary_plus_corroborating",
+      "role_notes": "authoritative_database (crystallographic DB records) and secondary_scholarly (reviews/theses) are ADMISSIBLE, but sufficiency still requires a PRIMARY-grade record (primary_scientific / primary_authoritative / authoritative_database) plus an INDEPENDENT corroborating record (independence judged on originating_work lineage). A secondary_scholarly source can corroborate but never establish a concept-level scientific claim alone; an academic_thesis is supporting provenance and never substitutes for peer-reviewed/authoritative evidence."
+    },
+    "biology_biomedical": {
+      "applies_to_domains": ["SD-BIOLOGY", "SD-BIOMEDICAL"],
+      "claim_levels": ["concept"],
+      "required_any_role": ["primary_scientific", "official_record"],
+      "allowed_categories": ["peer_reviewed_journal", "government_scientific_database", "official_health_authority"],
+      "hard_prohibited_uses": ["medical", "medical_advice", "dosage", "therapeutic_claim"],
+      "sufficiency": "primary_plus_corroborating"
+    },
+    "trade_economics": {
+      "applies_to_domains": ["SD-TRADE", "SD-ECONOMICS"],
+      "claim_levels": ["relationship"],
+      "required_any_role": ["official_record", "primary_authoritative"],
+      "allowed_categories": ["official_customs_data", "official_trade_statistics", "national_statistical_authority", "intergovernmental_trade_database", "official_production_statistics"],
+      "contextual_only_categories": ["market_report", "industry_publication"],
+      "sufficiency": "primary_plus_corroborating"
+    },
+    "customs_classification": {
+      "applies_to_domains": ["SD-CUSTOMS-CLASSIFICATION"],
+      "claim_levels": ["classification"],
+      "required_any_role": ["primary_authoritative", "official_record"],
+      "allowed_categories": ["customs_nomenclature_authority", "official_customs_data", "intergovernmental_trade_database"],
+      "contextual_only_categories": ["market_report", "industry_publication"],
+      "sufficiency": "single_authoritative_sufficient",
+      "note": "A goods-classification IDENTITY (an HS heading/subheading code and its official label, or a national tariff code) is established by ONE authoritative nomenclature authority — the nomenclature is definitional, not a contested empirical measurement — so the pattern is single_authoritative_sufficient (unlike trade_economics totals, which stay primary_plus_corroborating). This domain establishes classification identity/boundaries ONLY: never trade totals, never a chemical/scientific property, never current law. A trade-flow source (official_trade_statistics) is NOT in allowed_categories here: recording imports of a labelled product does not make a source an authority for the classification nomenclature itself."
+    },
+    "regulation_government": {
+      "applies_to_domains": ["SD-REGULATION"],
+      "claim_levels": ["concept", "relationship"],
+      "current_law_requires_category": ["regulatory_instrument"],
+      "commentary_contextual_only": ["academic_teaching_reference", "industry_publication", "market_report", "peer_reviewed_journal"],
+      "sufficiency": "original_instrument_required"
+    },
+    "corporate_financials": {
+      "applies_to_domains": ["SD-CORPORATE-FINANCIALS"],
+      "claim_levels": ["relationship"],
+      "required_any_role": ["primary_authoritative", "official_record"],
+      "allowed_categories": ["corporate_financial_report"],
+      "forbidden_alone_categories": ["market_report", "industry_publication"],
+      "sufficiency": "single_authoritative_sufficient",
+      "issuer_primary_only": true,
+      "may_establish": ["issuer_own_accounting_line_when_scoped_to_the_issuer_and_period"],
+      "may_not_establish": ["national_trade_value", "sovereign_import_or_export_totals", "national_or_market_demand", "market_size", "physical_volume_or_tonnage_from_value", "universal_industry_fact", "another_entity_finances"],
+      "note": "A NARROW accounting line from the issuer's OWN official financial statements may use single_authoritative_sufficient FOR THAT EXACT FACT TYPE ONLY (issuer's own disclosed accounting value, scoped to the issuer and the reporting period). This does NOT alter trade/economics sufficiency: corporate accounting facts must never be routed through SD-TRADE, and this rule grants nothing about sovereign trade, national demand, or market structure."
+    },
+    "industry": {
+      "applies_to_domains": ["SD-INDUSTRIAL"],
+      "claim_levels": ["relationship", "concept"],
+      "allowed_categories": ["industry_publication", "government_scientific_database", "corporate_sustainability_report", "corporate_financial_report"],
+      "issuer_primary_vs_analytical": {
+        "issuer_primary_may_establish": ["narrowly_scoped_statement_about_the_issuers_OWN_operations_or_processes_as_stated"],
+        "issuer_primary_may_not_establish": ["universal_industry_fact", "morocco_wide_or_national_demand", "national_production", "global_market_structure", "sovereign_statistics"],
+        "note": "An issuer-primary disclosure (corporate_sustainability_report / corporate_financial_report) supports ONLY a narrowly-scoped statement about that issuer's own operations. It never establishes an economy-wide, national, or universal industrial fact."
+      },
+      "industry_publication_may_establish": ["observed_industrial_context_when_scoped"],
+      "industry_publication_may_not_establish": ["national_trade_totals", "current_law", "sovereign_statistics", "universal_scientific_performance"],
+      "sufficiency": "primary_plus_corroborating",
+      "broader_industrial_relationship_note": "A BROADER industrial relationship (e.g. an actor-to-commodity industrial-user relationship generalized beyond one issuer's own stated operation) still REQUIRES primary_plus_corroborating and is NOT weakened to admit an issuer's single self-report."
+    }
+  },
+
+  "evidence_sufficiency_patterns": {
+    "single_authoritative_sufficient": "One primary-authoritative source establishes the fact (e.g. dictionary entry -> lexical existence).",
+    "primary_plus_corroborating": "One primary/official source plus >=1 independent corroborating record.",
+    "multi_source_synthesis": "Several independent evidence records for a complex analytical claim.",
+    "original_instrument_required": "The governing instrument itself is required (current legal/regulatory status).",
+    "explicit_source_exclusion": "A named category is forbidden for a particular claim regardless of other support."
+  },
+
+  "hard_rules": [
+    "source_category_alone_never_admissible",
+    "prohibited_use_always_vetoes",
+    "qualification_required_for_admissibility_and_for_evidence_verified",
+    "qualification_scope_cannot_be_silently_broadened",
+    "lexeme_qualification_cannot_satisfy_concept_scientific_or_economic_claims",
+    "contextual_only_categories_cannot_alone_establish_importer_or_exporter",
+    "current_law_claims_require_official_instrument",
+    "suspended_or_superseded_qualification_is_not_admissible",
+    "admissibility_never_implies_claim_approval_or_publication"
+  ],
+
+  "admissibility_inputs": ["source_category", "qualification_scope", "permitted_and_prohibited_use", "subject_domain", "evidence_kind", "claim_level", "geography", "jurisdiction", "temporal_scope", "source_version", "evidence_role"],
+  "layer_independence": "admissible(...) answers ONLY 'may this evidence be admitted?'. It never returns claim approval, claim-registry activation, route publication, or indexation — those are separate, later, independent decisions.",
+  "evidence_independence_model": {
+    "principle": "Evidence independence for corroboration is DOMAIN-SEMANTIC, judged on explicit governed lineage keys — never on free-text publisher equality or URL strings.",
+    "keys": {
+      "always": "same source_id => NOT independent.",
+      "science": "same or conservatively-related originating_work_id => NOT independent (retrieval artifact != originating scientific work; a database copy and the article of the same work are one lineage). Two DISTINCT works from the same journal/publisher CAN be independent.",
+      "corporate": "same issuer_id (e.g. ORG-OCP-GROUP) => NOT independent; two reports from the same issuer are not independent corroboration merely because source_ids differ. Different issuers are not collapsed by matching category.",
+      "trade_statistical": "same governed dataset_id / underlying_study_id => NOT independent (shared release lineage). Lineage is never invented where unknown."
+    },
+    "not_a_key": "journal/publisher name and URL are metadata only; neither is a universal independence key.",
+    "admission_unit_fields": ["independence_domain", "originating_work_id", "related_work_ids", "issuer_id", "dataset_id"],
+    "implemented_in": "scripts/governance_scaffolding/source_admissibility.py (_independent, build_admission_unit, load_all)."
+  }
+}

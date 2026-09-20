@@ -1,0 +1,110 @@
+{
+  "evidence_id": "EVD-MA-SULFUR-IMPORT-2024",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "quantitative",
+  "claim_level": "relationship",
+  "concept_ids": ["sulfur"],
+  "object_scope_note": "The source product label is 'Soufres bruts et non raffinés' (crude and unrefined sulfurs) — a SUBSET of the general 'sulfur' concept. HS side now established (CLS-HS2022-2503-00 = HS 2022 2503.00, excl. sublimed/precipitated/colloidal → 2802.00), but the Moroccan produit-remarquable → HS mapping is UNPROVEN (access-restricted). Relationship stays evidence_collecting.",
+  "classification_ref": {"hs": "CLS-HS2022-2503-00", "moroccan_grouping": "CLS-MA-ODC-SOUFRES-BRUTS", "mapping_status": "moroccan_to_hs_mapping_unproven"},
+  "lexeme_ids": [],
+  "relationship": "REL-INST-MA-SULFUR-IMPORT-2024",
+  "subject_domain": ["SD-TRADE"],
+  "geography": ["GEO-MA"],
+  "jurisdiction": null,
+  "language_of_evidence": "fr",
+  "claim_scope": "Office des Changes, Commerce extérieur du Maroc — Rapport annuel 2024: Morocco recorded imports of the source-labelled product 'Soufres bruts et non raffinés' in 2024. Primary measure = TOTAL recorded imports (T1-10). Average unit price from G1-5. Absolute tonnage NOT stated and NOT derived. The source label is narrower than the general 'sulfur' concept; classification identity is unacquired.",
+  "source_id": "SRC-OC-MA-TRADE",
+  "claim_id": "CLM-MA-SULFUR-IMPORT-MEASURE-2024",
+  "evidence_role": "official_record",
+  "publication_date": "2025-07",
+  "retrieval_date": "2026-09-19",
+  "temporal_scope": {"as_of": null, "valid_from": "2024-01-01", "valid_to": "2024-12-31"},
+  "evidence_review_posture": "scope_reviewed",
+  "locator": {
+    "system": "Office des Changes — Rapport annuel Commerce extérieur du Maroc 2024 (official PDF)",
+    "url": "https://www.oc.gov.ma/sites/default/files/2025-07/Rapport%20Commerce%20Ext%C3%A9rieur%202024%20VF.pdf",
+    "reporter": "Maroc (Morocco)",
+    "flow": "importations",
+    "product_label_verbatim": "Soufres bruts et non raffinés",
+    "classification_code": null,
+    "classification_system": null,
+    "retrieval_date": "2026-09-19",
+    "table_references": [
+      "Principaux produits importés table (part 5,5% of total imports)",
+      "Produits bruts breakdown table (part 59,5%)",
+      "G1-5 Evolution du prix moyen du soufre brut"
+    ]
+  },
+  "quantitative": {
+    "numeric_convention_id": "NUM-FR-DOT-THOUSANDS",
+    "numeric_convention": "NUM-FR-DOT-THOUSANDS: in this French report's tables/graphs the dot is a THOUSANDS separator (e.g. '9.108' = 9108) and the comma is the decimal (percentages). Convention is declared per-record and source-specific; the validator uses this id, never a language/country fallback.",
+    "unit_glossary": {"MDH": "millions de dirhams (MAD millions)", "DH/T": "dirhams per tonne"},
+    "primary_measure": {
+      "metric": "TOTAL recorded imports value of 'Soufres bruts et non raffinés', reporter=Morocco, flow=imports, partner=Monde",
+      "table_ref": "T1-10",
+      "partner_scope": "Monde",
+      "unit": "MDH",
+      "series": {
+        "2022": {"source_literal": "18.768", "normalized_value": 18768},
+        "2023": {"source_literal": "8.007", "normalized_value": 8007},
+        "2024": {"source_literal": "9.108", "normalized_value": 9108}
+      },
+      "change_2024_vs_2023": {"source_literal": "+1.101", "normalized_value": 1101, "pct": 13.8}
+    },
+    "average_unit_price": {
+      "metric": "average import unit price of crude sulfur (G1-5)",
+      "unit": "DH/T",
+      "series": {
+        "2023": {"source_literal": "1.231", "normalized_value": 1231},
+        "2024": {"source_literal": "1.099", "normalized_value": 1099}
+      }
+    },
+    "quantity": {
+      "quantity_change_pct": 27.4,
+      "absolute_quantity_tonnes": null,
+      "note": "Report states imported quantities rose +27,4%; absolute 2024 tonnage is NOT printed and is NOT derived from value/price."
+    },
+    "ancillary_scoped": [
+      {
+        "scope": "customs_regime=ATPA_with_payment",
+        "table_ref": "T3-4 (Importations en ATPA avec paiement par principaux produits)",
+        "unit": "MDH",
+        "series": {
+          "2022": {"source_literal": "18.758", "normalized_value": 18758},
+          "2023": {"source_literal": "7.994", "normalized_value": 7994},
+          "2024": {"source_literal": "9.102", "normalized_value": 9102}
+        },
+        "change_2024_vs_2023": {"source_literal": "+1.108", "normalized_value": 1108, "pct": 13.9},
+        "note": "ATPA-with-payment customs regime ONLY. This is NOT total imports and must never substitute for the T1-10 total (9108 MDH). Retained as explicitly-scoped ancillary context."
+      },
+      {
+        "scope": "origin=Asia",
+        "table_ref": "T4-9",
+        "unit": "MDH",
+        "series": {
+          "2024": {"source_literal": "8.737", "normalized_value": 8737}
+        },
+        "change_2024_vs_2023": {"source_literal": "+1.540", "normalized_value": 1540, "pct": 21.4},
+        "note": "Asia-origin geographic SUBSET only. NOT a world-total Morocco measurement."
+      }
+    ],
+    "methodology": "Official Moroccan foreign-trade statistics compiled by Office des Changes; figures as printed in the 2024 annual report.",
+    "revision_status": "as_published_in_annual_report_2024; provisional/final wording not located in the extracted tables — not asserted as final"
+  },
+  "allowed_uses": ["official_import_value_measure_ma"],
+  "prohibited_uses": [
+    "concept_level_chemical_claim",
+    "hs_classification_identity",
+    "derived_tonnage_from_value_price",
+    "sulfur_industrial_demand",
+    "phosphate_economics",
+    "procurement_or_investor_conclusions",
+    "global_supply_or_market_forecast",
+    "legal_or_regulatory_claim",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "Evidence captured from the official source with a reconstructable locator. NOT admitted: although the source's bibliographic IDENTITY is now verified (status verified, lock candidate — SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md), its use-qualification QUAL-OC-MA-TRADE-001 remains 'reviewed' (deliberately NOT promoted), so admissible() still withholds; and SD-TRADE requires primary_plus_corroborating with no independent second source. Derived evidence posture = evidence_collecting (unchanged). Authorizes no claim activation and no route. Contract-C state = (not_public, noindex)."
+}

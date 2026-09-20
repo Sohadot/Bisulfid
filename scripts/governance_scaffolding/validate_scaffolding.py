@@ -1,0 +1,585 @@
+"""
+Validator for the governance-scaffolding artifacts created in
+sprint authority-dimension-impl-1.
+
+Scope: validates ONLY the NEW architecture artifacts this sprint introduced.
+It does NOT read or validate the legacy 14K corpus, routes.json, release_ledger,
+sources, claims, ontology, sitemaps, robots, or site/public. It is NOT wired into
+the CI workflow and produces no hard-fail against pre-existing production files.
+
+Checks (per BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md IP-5/IP-6/IP-11/IP-16):
+  - registries parse; IDs unique; enum values valid;
+  - subject_domain: no domain marked evidence_active this sprint;
+  - geography: records carry NO relationship/evidence-status field;
+  - relationship_class: no relationship instances this sprint;
+  - jurisdiction: no active instruments this sprint;
+  - evidence schema forbids source_type / editable used_by / confidence;
+  - production evidence IDs start EVD-; fixtures start TEST-EVD- and are non-governed;
+  - no real (governed) evidence record exists;
+  - information_gain calibration is empty and defines the five labels; no threshold.
+
+Exit code 0 = all pass, 1 = any failure.
+"""
+
+import json
+import os
+import sys
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+DATA = os.path.join(ROOT, "main", "data")
+
+ERRORS = []
+CHECKS = 0
+
+
+def check(cond, msg):
+    global CHECKS
+    CHECKS += 1
+    if not cond:
+        ERRORS.append(msg)
+
+
+def load(path):
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def validate_subject_domain():
+    d = load(os.path.join(DATA, "subject_domain_registry.json"))
+    ids = [x["subject_domain_id"] for x in d["subject_domains"]]
+    check(len(ids) == len(set(ids)), "subject_domain: duplicate IDs")
+    for x in d["subject_domains"]:
+        check(x["state"] in d["domain_states"], f"subject_domain: bad state {x.get('subject_domain_id')}")
+        check(x["state"] != "evidence_active", f"subject_domain: {x['subject_domain_id']} must not be evidence_active this sprint")
+        check(x["subject_domain_id"].startswith("SD-"), f"subject_domain: bad id prefix {x['subject_domain_id']}")
+
+
+def validate_geography():
+    d = load(os.path.join(DATA, "geography_registry.json"))
+    ids = [x["geo_id"] for x in d["geographies"]]
+    check(len(ids) == len(set(ids)), "geography: duplicate IDs")
+    forbidden = set(d.get("forbidden_geography_fields", []))
+    for x in d["geographies"]:
+        check(x["geo_id"].startswith("GEO-"), f"geography: bad id prefix {x['geo_id']}")
+        leaked = forbidden.intersection(x.keys())
+        check(not leaked, f"geography: {x['geo_id']} carries forbidden relationship/evidence field(s): {sorted(leaked)}")
+    # GCC/Gulf naming must be unambiguous (concept-lexeme-resolution correction).
+    check("GEO-GCC" in ids, "geography: GEO-GCC (GCC member states) must exist")
+    check("GEO-GULF" not in ids, "geography: ambiguous GEO-GULF must be renamed to GEO-GCC")
+
+
+def validate_jurisdiction():
+    d = load(os.path.join(DATA, "jurisdiction_registry.json"))
+    check(d.get("jurisdictions") == [], "jurisdiction: no jurisdictions may be seeded this sprint")
+    check(d.get("authorities") == [], "jurisdiction: no authorities may be seeded this sprint")
+    check(d.get("instruments") == [], "jurisdiction: no active instruments this sprint")
+    # Roles must not overlap: jurisdiction record must NOT carry 'authority'.
+    jreq = set(d.get("jurisdiction_record_schema", {}).get("required_fields", []))
+    check("authority" not in jreq, "jurisdiction: jurisdiction record must not include 'authority' (role overlap)")
+    check("authority_record_schema" in d, "jurisdiction: authority_record_schema missing")
+    check("instrument_record_schema" in d, "jurisdiction: instrument_record_schema missing")
+    ireq = set(d.get("instrument_record_schema", {}).get("required_fields", []))
+    check({"jurisdiction_id", "authority_id"}.issubset(ireq),
+          "jurisdiction: instrument must reference both jurisdiction_id and authority_id")
+
+
+def validate_relationship_classes():
+    d = load(os.path.join(DATA, "relationship_class_registry.json"))
+    ids = [x["relationship_class_id"] for x in d["relationship_classes"]]
+    check(len(ids) == len(set(ids)), "relationship_class: duplicate IDs")
+    # Relationship instances are permitted from Pilot 01 onward; each must obey the typed
+    # subject->predicate->object grammar and carry evidence references.
+    import importlib
+    rg = importlib.import_module("relationship_grammar")
+    class_ids = {x["relationship_class_id"] for x in d["relationship_classes"]}
+    valid_qstates = set(d["instance_qualification_states"])
+    # Evidence-binding map: EVD id -> evidence_binding (default 'direct'). Used to enforce that
+    # a DIRECT slot (evidence_ids) never holds a context-bound record, and vice versa.
+    ev_dir = os.path.join(DATA, "evidence")
+    binding_of = {}
+    for name in os.listdir(ev_dir):
+        if name.endswith(".json") and name.startswith("EVD-"):
+            rec = load(os.path.join(ev_dir, name))
+            binding_of[rec.get("evidence_id", name)] = rec.get("evidence_binding", "direct")
+    for inst in d.get("relationship_instances", []):
+        rid = inst.get("relationship_instance_id", "?")
+        errs = rg.validate_instance(inst, d)
+        check(not errs, f"relationship instance {rid}: grammar errors {errs}")
+        check(inst.get("relationship_class_id") in class_ids, f"relationship instance {rid}: unknown class")
+        check(inst.get("qualification_state") in valid_qstates, f"relationship instance {rid}: bad qualification_state")
+        check(bool(inst.get("evidence_ids")), f"relationship instance {rid}: must carry evidence_ids (DIRECT)")
+        check(isinstance(inst.get("temporal_scope"), dict), f"relationship instance {rid}: temporal_scope required (not timeless)")
+        # evidence_qualified requires non-empty DIRECT evidence (grammar checks this too)
+        if inst.get("qualification_state") == "evidence_qualified":
+            check(bool(inst.get("evidence_ids")), f"relationship instance {rid}: evidence_qualified needs DIRECT evidence")
+        # DIRECT vs CONTEXT binding integrity:
+        direct = list(inst.get("evidence_ids", []) or [])
+        context = list(inst.get("context_evidence_ids", []) or [])
+        check(not (set(direct) & set(context)), f"relationship instance {rid}: a record cannot be both direct and context evidence")
+        for eid in direct:
+            check(binding_of.get(eid, "direct") != "context",
+                  f"relationship instance {rid}: DIRECT slot holds context-bound evidence '{eid}' (must go in context_evidence_ids)")
+        for eid in context:
+            check(binding_of.get(eid) == "context",
+                  f"relationship instance {rid}: context_evidence_ids '{eid}' is not tagged evidence_binding=='context'")
+    for x in d["relationship_classes"]:
+        check(x["relationship_class_id"].startswith("REL-"), f"relationship_class: bad id prefix {x['relationship_class_id']}")
+        check(x["state"] == "registered", f"relationship_class: {x['relationship_class_id']} must be 'registered'")
+    # Trade/economic classes must require PRIMARY authoritative evidence, not market/industry pubs alone.
+    check("proposed_source_categories" in d, "relationship_class: proposed_source_categories (source-taxonomy gap) missing")
+    by_id = {x["relationship_class_id"]: x for x in d["relationship_classes"]}
+    for rid in ("REL-IMPORTER", "REL-EXPORTER", "REL-PRODUCER", "REL-INDUSTRIAL-USER"):
+        rc = by_id.get(rid, {})
+        prim = set(rc.get("primary_evidence_required", []))
+        check(prim and not prim.issubset({"market_report", "industry_publication"}),
+              f"relationship_class: {rid} must require a primary authoritative source category")
+    # Typed subject/predicate/object grammar: endpoint contracts must be well-formed.
+    endpoint_types = set(d.get("endpoint_types", []))
+    check(endpoint_types, "relationship_class: endpoint_types vocabulary missing")
+    for x in d["relationship_classes"]:
+        rid = x["relationship_class_id"]
+        st = set(x.get("subject_types", []))
+        ot = set(x.get("object_types", []))
+        check(st and st.issubset(endpoint_types), f"relationship_class: {rid} subject_types must be non-empty and drawn from endpoint_types")
+        check(ot and ot.issubset(endpoint_types), f"relationship_class: {rid} object_types must be non-empty and drawn from endpoint_types")
+    ischema = set(d.get("relationship_instance_schema", {}).get("required_fields", []))
+    check({"subject_ref", "subject_type", "object_ref", "object_type"}.issubset(ischema),
+          "relationship_class: instance schema must use typed subject/object endpoints")
+
+
+def validate_evidence():
+    schema = load(os.path.join(DATA, "evidence", "evidence_schema.json"))
+    forbidden = set(schema["forbidden_fields"].keys())
+    check(forbidden == {"source_type", "used_by", "confidence", "entities", "risk_class"},
+          f"evidence: forbidden_fields must be source_type/used_by/confidence/entities/risk_class, got {sorted(forbidden)}")
+    # required fields use concept_ids (not generic 'entities') and carry no risk_class.
+    req = set(schema["fields"]["required_all_kinds"])
+    check("concept_ids" in req and "claim_level" in req, "evidence: schema must require concept_ids and claim_level")
+    check("entities" not in req and "risk_class" not in req, "evidence: schema must NOT require entities or risk_class")
+
+    ev_dir = os.path.join(DATA, "evidence")
+    # Governed evidence records (EVD-*.json) are now permitted; structural + forbidden-field checks here,
+    # cross-registry resolution + claim-level rules in validate_concept_lexeme.py.
+    for name in os.listdir(ev_dir):
+        if name.endswith(".json") and name.startswith("EVD-"):
+            rec = load(os.path.join(ev_dir, name))
+            check(rec.get("governed") is True, f"evidence {name}: governed record must set governed=true")
+            leaked = forbidden.intersection(rec.keys())
+            check(not leaked, f"evidence {name}: contains forbidden field(s) {sorted(leaked)}")
+            for f in req:
+                check(f in rec, f"evidence {name}: missing required field '{f}'")
+            # Numeric-normalization law: source_literal vs normalized_value must be consistent
+            # (catches locale thousands-separators used as naive floats).
+            import importlib
+            nn = importlib.import_module("numeric_normalization")
+            nerrs = nn.validate_evidence_numbers(rec)
+            check(not nerrs, f"evidence {name}: numeric normalization errors {nerrs}")
+    # Fixtures: must be test-only, synthetic, non-governed, and carry no forbidden fields.
+    fx_dir = os.path.join(ev_dir, "fixtures")
+    if os.path.isdir(fx_dir):
+        for name in os.listdir(fx_dir):
+            if not name.endswith(".json"):
+                continue
+            rec = load(os.path.join(fx_dir, name))
+            check(rec.get("evidence_id", "").startswith("TEST-EVD-"),
+                  f"evidence fixture {name}: id must start TEST-EVD-")
+            check(rec.get("governed") is False, f"evidence fixture {name}: governed must be false")
+            check(rec.get("test_fixture") is True, f"evidence fixture {name}: test_fixture must be true")
+            check(rec.get("source_id", "").startswith("TEST-"),
+                  f"evidence fixture {name}: must reference a synthetic TEST- source_id")
+            leaked = forbidden.intersection(rec.keys())
+            check(not leaked, f"evidence fixture {name}: contains forbidden field(s) {sorted(leaked)}")
+
+
+def _keys_recursive(obj):
+    """Yield every mapping key anywhere in a nested JSON structure."""
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            yield k
+            yield from _keys_recursive(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from _keys_recursive(v)
+
+
+def validate_information_gain():
+    d = load(os.path.join(DATA, "information_gain", "calibration_pairs.json"))
+    labels = {"true_duplicate", "near_duplicate", "valid_sibling",
+              "valid_localization", "valid_domain_specific_reference"}
+    signal_names = set(d.get("signals", []))
+    check(set(d.get("labels", [])) == labels, "information_gain: five canonical labels required")
+    # No threshold/weight may be *defined* (as a key/field). The word may appear in prose rules
+    # (which explicitly state none is defined), so inspect KEYS, not serialized text.
+    bad_keys = [k for k in _keys_recursive(d) if "threshold" in k.lower() or "weight" in k.lower()]
+    check(not bad_keys, f"information_gain: no threshold/weight field may be defined (found keys {bad_keys})")
+    # Seeded pairs (reference-production-01 onward) must conform: real endpoints, governed label,
+    # governed signal keys, labeler/date. textual_similarity may never be the only non-trivial signal.
+    for p in d.get("pairs", []):
+        pid = p.get("pair_id", "?")
+        check(bool(pid) and pid.startswith("PAIR-"), f"IG pair {pid}: bad/missing pair_id")
+        check(p.get("label") in labels, f"IG pair {pid}: label '{p.get('label')}' not governed")
+        a = p.get("route_a") or p.get("object_a")
+        b = p.get("route_b") or p.get("object_b")
+        check(bool(a) and bool(b), f"IG pair {pid}: must supply endpoint A (route_a/object_a) and B (route_b/object_b)")
+        sig = p.get("signals")
+        check(isinstance(sig, dict) and set(sig.keys()).issubset(signal_names),
+              f"IG pair {pid}: signals must be an object keyed by governed signal names")
+        check("textual_similarity" in sig, f"IG pair {pid}: textual_similarity must be recorded (diagnostic)")
+        check(p.get("labeler") and p.get("labeled_at"), f"IG pair {pid}: labeler and labeled_at required")
+
+
+def validate_information_gain_governance():
+    """Ratified IG authority: policy discoverable, non-numeric, fail-closed; fixtures reproduced;
+    postures gated; IG never authorizes publication; Contract-C stays derived."""
+    ppath = os.path.join(DATA, "information_gain", "ig_governance_policy.json")
+    if not os.path.exists(ppath):
+        return
+    import importlib
+    gate = importlib.import_module("information_gain_gate")
+    cc = importlib.import_module("contract_c_derive")
+    policy = load(ppath)
+    # policy discoverability + version
+    check(policy.get("status") == "ratified", "IG policy: must be ratified")
+    check(bool(policy.get("version")), "IG policy: must carry a version")
+    class_ids = set(policy.get("classification_ids", []))
+    post_ids = set(policy.get("posture_ids", []))
+    check(class_ids == {"valid_domain_specific_reference", "near_duplicate", "module_relationship", "unresolved"},
+          f"IG policy: governed classifications wrong ({sorted(class_ids)})")
+    check(post_ids == {"ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required"},
+          f"IG policy: governed postures wrong ({sorted(post_ids)})")
+    # only positive classifications are route-eligible; only ig_reviewed_pass is a route posture
+    positive = set(gate.POSITIVE_CLASSIFICATIONS)
+    for c in policy["classifications"]:
+        if c["route_eligible"]:
+            check(c["classification"] in positive,
+                  f"IG policy: route-eligible classification '{c['classification']}' is not a positive independent-reference value")
+    for p in policy["postures"]:
+        if p["route_eligible"]:
+            check(p["posture"] == "ig_reviewed_pass", f"IG policy: only ig_reviewed_pass may be route-eligible, not '{p['posture']}'")
+    # near_duplicate / module_relationship are NEVER a sibling-route pass
+    for cid in ("near_duplicate", "module_relationship"):
+        check(gate._posture_for(cid, policy) == ("ig_reviewed_no_new_route", False),
+              f"IG policy: {cid} must map to ig_reviewed_no_new_route/not-route-eligible")
+    # numeric authority prohibited (flag + no threshold/weight/cutoff/score key anywhere)
+    nap = policy.get("numeric_authority_prohibited", {})
+    check(nap.get("prohibited") is True and nap.get("textual_similarity_role") == "diagnostic_only",
+          "IG policy: must prohibit numeric authority and mark textual_similarity diagnostic_only")
+    cp = load(os.path.join(DATA, "information_gain", "calibration_pairs.json"))
+    bad = [k for k in list(_keys_recursive(policy)) + list(_keys_recursive(cp))
+           if any(s in k.lower() for s in ("threshold", "weight", "cutoff", "score"))]
+    check(not bad, f"IG: no numeric threshold/weight/cutoff/score field permitted (found {bad})")
+    # unknown classification/posture fail closed
+    check(gate._posture_for("unknown_class_xyz", policy) == ("ig_review_required", False),
+          "IG gate: unknown classification must fail closed")
+
+    # resolve endpoints against real routes/objects
+    koreg = load(os.path.join(DATA, "knowledge_objects", "knowledge_object_registry.json"))
+    ko_ids = {k["knowledge_object_id"] for k in koreg["knowledge_objects"]}
+    _routes_obj = load(os.path.join(DATA, "routes.json"))
+    routes = _routes_obj if isinstance(_routes_obj, list) else _routes_obj.get("routes", [])
+    route_ids = {r.get("route_id") for r in routes}
+
+    def endpoint(p, s):
+        return p.get(f"object_{s}") or p.get(f"route_{s}")
+
+    def resolves(v):
+        return str(v).split("#")[0] in ko_ids or str(v).split("#")[0] in route_ids
+
+    seen_ids = set()
+    seen_endpoints = {}
+    v = policy["version"]
+    check(cp.get("policy_version") == v, "IG calibration: policy_version must match the ratified policy")
+    for p in cp.get("pairs", []):
+        pid = p.get("pair_id", "?")
+        check(pid not in seen_ids, f"IG fixture {pid}: duplicate pair_id")
+        seen_ids.add(pid)
+        a, b = endpoint(p, "a"), endpoint(p, "b")
+        check(a is not None and b is not None, f"IG fixture {pid}: must supply both endpoints")
+        check(a != b, f"IG fixture {pid}: self-comparison (A == B) is not information gain")
+        check(resolves(a) and resolves(b), f"IG fixture {pid}: an endpoint does not resolve to a real route/object")
+        # contradiction: same endpoint set, different expected classification
+        key = frozenset([str(a), str(b)])
+        prior = seen_endpoints.get(key)
+        check(prior is None or prior == p.get("expected_classification"),
+              f"IG fixture {pid}: contradictory expected classification for the same endpoint pair")
+        seen_endpoints[key] = p.get("expected_classification")
+        if p.get("fixture_kind") == "normative":
+            check(p.get("expected_classification") in class_ids, f"IG fixture {pid}: unknown expected_classification")
+            check(p.get("expected_posture") in post_ids, f"IG fixture {pid}: unknown expected_posture")
+            # expected route-eligibility must be consistent with a positive classification only
+            check(bool(p.get("expected_route_eligible")) == (p.get("expected_classification") in positive),
+                  f"IG fixture {pid}: expected_route_eligible inconsistent with classification")
+            res = gate.evaluate(p, policy)
+            check(res["classification"] == p["expected_classification"]
+                  and res["posture"] == p["expected_posture"]
+                  and res["route_eligible"] == p["expected_route_eligible"],
+                  f"IG fixture {pid}: gate output {res['classification']}/{res['posture']}/{res['route_eligible']} != expected")
+            # a pass may never carry unresolved signals
+            check(not (res["route_eligible"] and res["unresolved_signals"]),
+                  f"IG fixture {pid}: route-eligible with unresolved signals (must fail closed)")
+
+    # KO/PC: IG posture is governed; Contract-C stays DERIVED and non-public; IG never publishes
+    for ko in koreg["knowledge_objects"]:
+        p = ko["postures"]
+        if p.get("information_gain_posture") in cc.IG_GOVERNED_ALIASES + cc.IG:
+            recomputed = cc.derive(governance=p["governance_posture"], evidence=p["evidence_posture"],
+                                   claim=p["claim_posture"], validation=p["validation_posture"],
+                                   ig=p["information_gain_posture"], release=p["release_authorization"])
+            dc = ko["derived_contract_c"]
+            check((dc["publication_state"], dc["indexation_state"]) == recomputed,
+                  f"KO {ko['knowledge_object_id']}: derived_contract_c != recomputed (manual Contract-C forbidden)")
+            check(recomputed[0] == "not_public",
+                  f"KO {ko['knowledge_object_id']}: IG must not authorize publication")
+        igr = ko.get("ig_resolution")
+        if igr is not None:
+            check(igr.get("policy_version") == v, f"KO {ko['knowledge_object_id']}: ig_resolution.policy_version mismatch")
+            check(igr.get("object_informational_validity") in
+                  set(policy["object_validity_vs_route_distinctness"]["object_informational_validity_values"]),
+                  f"KO {ko['knowledge_object_id']}: bad object_informational_validity")
+            check(igr.get("new_route_distinctness") in
+                  set(policy["object_validity_vs_route_distinctness"]["new_route_distinctness_values"]),
+                  f"KO {ko['knowledge_object_id']}: bad new_route_distinctness")
+
+
+def validate_source_qualification():
+    reg = load(os.path.join(DATA, "sources", "source_registry.json"))
+    source_ids = {s["source_id"] for s in reg["sources"]}
+    revision_of = {s["source_id"]: s.get("identity_revision") for s in reg["sources"]}
+    registry_categories = set(reg["source_categories"])
+    q = load(os.path.join(DATA, "source_use_qualification_registry.json"))
+    valid_states = set(q["qualification_states"].keys())
+    forbidden = set(q["qualification_record_schema"]["forbidden_fields"])
+    seen = set()
+    for x in q["qualifications"]:
+        qid = x["qualification_id"]
+        check(qid.startswith("QUAL-"), f"qualification {qid}: bad id prefix")
+        check(qid not in seen, f"qualification {qid}: duplicate id")
+        seen.add(qid)
+        # references exactly one registered source
+        check(isinstance(x.get("source_id"), str) and x["source_id"] in source_ids,
+              f"qualification {qid}: source_id must reference exactly one registered source")
+        # no bibliographic duplication (incl. source_edition)
+        leaked = forbidden.intersection(x.keys())
+        check(not leaked, f"qualification {qid}: duplicates bibliographic field(s) {sorted(leaked)}")
+        # source revision ownership: qualification references the source's identity_revision, not bibliographic strings
+        qrev = x.get("qualified_against_source_revision")
+        check(qrev is not None, f"qualification {qid}: missing qualified_against_source_revision")
+        check(qrev == revision_of.get(x.get("source_id")),
+              f"qualification {qid}: revision '{qrev}' != source identity_revision '{revision_of.get(x.get('source_id'))}'")
+        # valid state; none implies publication
+        check(x.get("qualification_state") in valid_states, f"qualification {qid}: bad state")
+        check("route_publication" in x.get("prohibited_uses", []) or x.get("qualification_state") in ("candidate", "reviewed"),
+              f"qualification {qid}: admissible qualification must explicitly prohibit route_publication")
+
+    pol = load(os.path.join(DATA, "source_admissibility_policy.json"))
+    check("source_category_alone_never_admissible" in pol["hard_rules"], "policy: missing category-alone hard rule")
+    check("prohibited_use_always_vetoes" in pol["hard_rules"], "policy: missing prohibited-use veto rule")
+    # every ratified category has default roles
+    newly = {c["category"] for c in pol["ratified_source_categories"]["newly_ratified"]}
+    ratified = set(pol["ratified_source_categories"]["existing_confirmed"]) | newly
+    for c in ratified:
+        check(c in pol["category_default_roles"], f"policy: category '{c}' missing default roles")
+    # NO DRIFT: policy-ratified categories must all exist in the source-registry vocabulary, and vice versa.
+    check(ratified == registry_categories,
+          f"policy/source-registry category drift: policy_only={sorted(ratified - registry_categories)} registry_only={sorted(registry_categories - ratified)}")
+
+    ep = load(os.path.join(DATA, "evidence_admission_policy.json"))
+    ev = ep["evidence_review_lifecycle"]["evidence_verified"]
+    check(ev.get("admits") is True, "evidence policy: evidence_verified must admit")
+    check("route_publication" in ev.get("must_not_imply", []), "evidence policy: verified must not imply publication")
+    check(ep["regression_rules"]["monotonic_direction"] == "regression_never_raises_privilege",
+          "evidence policy: regression must never raise privilege")
+
+    cl = load(os.path.join(DATA, "claim_activation_policy.json"))
+    check(cl["this_sprint"].startswith("No registry activated"), "claim policy: nothing may be activated this sprint")
+
+
+def validate_knowledge_objects():
+    path = os.path.join(DATA, "knowledge_objects", "knowledge_object_registry.json")
+    if not os.path.exists(path):
+        return
+    import importlib
+    cc = importlib.import_module("contract_c_derive")
+    reg = load(path)
+    req = set(reg["record_schema"]["required_fields"])
+    forbidden = set(reg["record_schema"]["forbidden_fields"])
+    # resolve helpers
+    onto_roles = load(os.path.join(DATA, "ontology_node_roles.json"))
+    concept_eligible = {n["term_id"] for n in onto_roles["node_roles"] if n["role"] == "concept_eligible"}
+    ev_dir = os.path.join(DATA, "evidence")
+    ev_ids = {load(os.path.join(ev_dir, n)).get("evidence_id") for n in os.listdir(ev_dir) if n.startswith("EVD-") and n.endswith(".json")}
+    # pilot claim ids
+    claim_ids = set()
+    pilots = os.path.join(DATA, "pilots")
+    for n in os.listdir(pilots):
+        if n.endswith(".json") and "claims" in n.lower():
+            for c in load(os.path.join(pilots, n)).get("claims", []):
+                if c.get("claim_id"):
+                    claim_ids.add(c["claim_id"])
+    for ko in reg["knowledge_objects"]:
+        kid = ko["knowledge_object_id"]
+        check(kid.startswith("KO-"), f"KO {kid}: bad id prefix")
+        for f in req:
+            check(f in ko, f"KO {kid}: missing required field '{f}'")
+        leaked = forbidden.intersection(ko.keys())
+        check(not leaked, f"KO {kid}: forbidden field(s) {sorted(leaked)} (KO must not own routes/urls/raw values)")
+        for e in ko.get("entity_ids", []):
+            check(e in concept_eligible, f"KO {kid}: entity_id '{e}' not concept-eligible")
+        for cid in ko.get("claim_ids", []):
+            check(cid in claim_ids, f"KO {kid}: claim_id '{cid}' does not resolve to a pilot claim")
+        for eid in ko.get("evidence_ids", []) + ko.get("boundary_evidence_ids", []):
+            check(eid in ev_ids, f"KO {kid}: evidence_id '{eid}' does not resolve")
+        # KO references existing claims; it does not invent facts (no evidence value fields)
+        check(ko.get("claim_source") == "pilot_non_operational",
+              f"KO {kid}: claim_source must be pilot_non_operational (claims not activated)")
+        # German lexical evidence must NOT be merged into a scientific KO
+        if ko.get("knowledge_role") == "scientific_reference":
+            check("EVD-MOS2-DE-001" not in ko.get("evidence_ids", []),
+                  f"KO {kid}: German lexical evidence must not be merged into a scientific KO")
+        # 3R boundary evidence stays boundary-only (never a claim binding)
+        bound_claim_ev = {e for cb in ko.get("claim_bindings", []) for e in cb.get("evidence_ids", [])}
+        check("EVD-MOS2-3R-BOUNDARY-RSC" not in bound_claim_ev,
+              f"KO {kid}: 3R boundary evidence must not support a claim binding")
+        # derived Contract-C must EQUAL the recomputed value (never a manual authorization)
+        p = ko["postures"]
+        recomputed = cc.derive(governance=p["governance_posture"], evidence=p["evidence_posture"],
+                               claim=p["claim_posture"], validation=p["validation_posture"],
+                               ig=p["information_gain_posture"], release=p["release_authorization"])
+        dc = ko["derived_contract_c"]
+        check((dc["publication_state"], dc["indexation_state"]) == recomputed,
+              f"KO {kid}: derived_contract_c {dc} != recomputed {recomputed}")
+        check(recomputed == ("not_public", "noindex"), f"KO {kid}: a reference_draft/ig_not_reviewed KO must be not_public/noindex")
+
+
+def validate_scientific_provenance():
+    """Pilot-03 closure: retrieval artifact != originating scientific work."""
+    wpath = os.path.join(DATA, "originating_work_registry.json")
+    if not os.path.exists(wpath):
+        return
+    works = load(wpath)
+    work_ids = set()
+    for w in works["works"]:
+        wid = w["work_id"]
+        check(wid.startswith("WORK-"), f"work {wid}: bad id prefix")
+        check(wid not in work_ids, f"work {wid}: duplicate id")
+        work_ids.add(wid)
+    for w in works["works"]:
+        for r in w.get("related_work_ids", []) or []:
+            check(r in work_ids, f"work {w['work_id']}: related_work_id '{r}' does not resolve")
+    reg = load(os.path.join(DATA, "sources", "source_registry.json"))
+    for s in reg["sources"]:
+        owid = s.get("originating_work_id")
+        if owid is not None:
+            check(owid in work_ids, f"source {s['source_id']}: originating_work_id '{owid}' does not resolve")
+        # A COD / crystallographic retrieval artifact must NOT be classified as a journal article.
+        if s.get("retrieval_repository", "").upper().startswith("CRYSTALLOGRAPHY OPEN DATABASE") or s.get("cod_entry"):
+            check(s.get("category") == "crystallographic_database",
+                  f"source {s['source_id']}: a COD retrieval artifact must be category crystallographic_database, not '{s.get('category')}'")
+            check(owid is not None, f"source {s['source_id']}: COD record must carry originating_work_id")
+            check(s.get("originating_doi"), f"source {s['source_id']}: COD record must retain originating DOI")
+
+
+def validate_organization():
+    path = os.path.join(DATA, "organization_registry.json")
+    if not os.path.exists(path):
+        return
+    d = load(path)
+    geo = load(os.path.join(DATA, "geography_registry.json"))
+    geo_ids = {g["geo_id"] for g in geo["geographies"]}
+    req = set(d["record_schema"]["required_fields"])
+    forbidden = set(d["record_schema"]["forbidden_fields"])
+    seen = set()
+    for o in d["organizations"]:
+        oid = o["organization_id"]
+        check(oid.startswith("ORG-"), f"organization {oid}: bad id prefix")
+        check(oid not in seen, f"organization {oid}: duplicate id")
+        seen.add(oid)
+        for f in req:
+            check(f in o, f"organization {oid}: missing required field '{f}'")
+        leaked = forbidden.intersection(o.keys())
+        check(not leaked, f"organization {oid}: identity record carries forbidden field(s) {sorted(leaked)} (financials/relationship/route etc.)")
+        # An organization is NOT a geography: no ORG id may collide with a geo id.
+        check(oid not in geo_ids, f"organization {oid}: organization id must never equal a geography id")
+        # home_geography_context is a disambiguation hint that must resolve, but is not a relationship.
+        hg = o.get("home_geography_context")
+        check(hg in geo_ids, f"organization {oid}: home_geography_context '{hg}' must resolve to a geography id (disambiguation only)")
+
+
+def validate_classification():
+    path = os.path.join(DATA, "classification_registry.json")
+    if not os.path.exists(path):
+        return
+    reg = load(os.path.join(DATA, "sources", "source_registry.json"))
+    source_ids = {s["source_id"] for s in reg["sources"]}
+    # Classification evidence records: one-fact-one-owner means the SOURCE binding lives here,
+    # and a classification object references it via supporting_evidence_ids (never source_id).
+    ev_dir = os.path.join(DATA, "evidence")
+    class_evidence = {}
+    for name in os.listdir(ev_dir):
+        if name.endswith(".json") and name.startswith("EVD-"):
+            rec = load(os.path.join(ev_dir, name))
+            class_evidence[rec.get("evidence_id", name)] = rec
+    d = load(path)
+    req = set(d["record_schema"]["required_fields"])
+    forbidden = set(d["record_schema"]["forbidden_fields"])
+    seen = set()
+    for c in d["classifications"]:
+        cid = c["classification_id"]
+        check(cid.startswith("CLS-"), f"classification {cid}: bad id prefix")
+        check(cid not in seen, f"classification {cid}: duplicate id")
+        seen.add(cid)
+        for f in req:
+            check(f in c, f"classification {cid}: missing required field '{f}'")
+        leaked = forbidden.intersection(c.keys())
+        check(not leaked, f"classification {cid}: forbidden field(s) present {sorted(leaked)}")
+        # one-fact-one-owner: no direct source_id on a classification object
+        check("source_id" not in c, f"classification {cid}: must not carry source_id (use supporting_evidence_ids -> evidence)")
+        # supporting_evidence_ids must be a list; each entry resolves to a classification-kind evidence
+        # record whose own source_id resolves. An EMPTY list is allowed (identity unproven/blocked).
+        sev = c.get("supporting_evidence_ids", [])
+        check(isinstance(sev, list), f"classification {cid}: supporting_evidence_ids must be a list")
+        for eid in sev if isinstance(sev, list) else []:
+            ev = class_evidence.get(eid)
+            check(ev is not None, f"classification {cid}: supporting evidence '{eid}' not found")
+            if ev is not None:
+                check(ev.get("evidence_kind") == "classification",
+                      f"classification {cid}: supporting evidence '{eid}' must be classification-kind")
+                check(ev.get("source_id") in source_ids,
+                      f"classification {cid}: supporting evidence '{eid}' source_id does not resolve")
+                check(cid in (ev.get("classification_ids") or []),
+                      f"classification {cid}: supporting evidence '{eid}' must reference this classification back in classification_ids")
+        # HS6 and national code must be distinct fields, never conflated
+        if "hs6" in c and "national_code" in c:
+            check("hs6" in c and "national_code" in c, f"classification {cid}: hs6/national_code must be separate")
+        # A statistical product grouping must not silently carry an HS code as its own code
+        if c.get("object_type") == "statistical_product_grouping":
+            check(c.get("code") is None, f"classification {cid}: statistical grouping must not assert a single HS code as its own")
+
+
+def main():
+    print("=== Governance scaffolding validator (new artifacts only) ===")
+    validate_subject_domain()
+    validate_geography()
+    validate_jurisdiction()
+    validate_relationship_classes()
+    validate_evidence()
+    validate_information_gain()
+    validate_information_gain_governance()
+    validate_source_qualification()
+    validate_classification()
+    validate_organization()
+    validate_scientific_provenance()
+    validate_knowledge_objects()
+    print(f"    (ran {CHECKS} checks)")
+    print("=" * 56)
+    if ERRORS:
+        print(f"RESULT: FAIL ({len(ERRORS)} error(s))")
+        for e in ERRORS:
+            print(f"  - {e}")
+        return 1
+    print("RESULT: PASS — all scaffolding artifacts valid")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

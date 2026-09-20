@@ -1,0 +1,51 @@
+{
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": [
+    "molybdenum_disulfide"
+  ],
+  "lexeme_ids": [],
+  "subject_domain": [
+    "SD-MATERIALS-SCIENCE"
+  ],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "retrieval_date": "2026-09-20",
+  "evidence_review_posture": "evidence_verified",
+  "evidence_id": "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT",
+  "source_id": "SRC-JACS-MOLYBDENITE-1923-EXCERPT",
+  "claim_id": "CLM-MOS2-STRUCTURE-2H",
+  "evidence_role": "primary_scientific",
+  "claim_scope": "Dickinson & Pauling (1923) first-page EXCERPT: the mineral molybdenite, MoS2, occurs in hexagonal crystals with basal cleavage, studied by X-ray. Primary-scientific support (excerpt-scoped) for the molybdenite / MoS2 / HEXAGONAL identity underpinning the (later-named) 2H structure. Does NOT establish the modern '2H' label.",
+  "scientific_scope": {
+    "components": [
+      "molybdenite_identity",
+      "mos2",
+      "hexagonal"
+    ],
+    "artifact": "first-page (p.1466) excerpt only",
+    "modern_2h_label_present": false,
+    "source_type": "peer-reviewed primary (excerpt)"
+  },
+  "locator": {
+    "system": "J. Am. Chem. Soc. 45, 1466-1471 (1923), first-page excerpt image",
+    "doi": "10.1021/ja01659a020",
+    "verbatim": "The mineral molybdenite, MoS2, is described as occurring in hexagonal crystals with a very complete basal cleavage. A study of its crystal structure has been carried out using X-ray spectral photographs and Laue photographs."
+  },
+  "allowed_uses": [
+    "molybdenite_mos2_hexagonal_identity"
+  ],
+  "prohibited_uses": [
+    "modern_2h_label",
+    "facts_from_unseen_pages",
+    "lattice_parameter_as_primary",
+    "band_gap",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED (primary_scientific) via QUAL-JACS-MOLYBDENITE-1923-EXCERPT-001. Excerpt-scoped; the 1923 first page does NOT use '2H'. Same originating work (WORK-DICKINSON-PAULING-1923) as the COD 1010993 record -> NOT independent of it. Contract-C=(not_public,noindex)."
+}

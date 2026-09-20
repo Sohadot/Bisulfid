@@ -1,0 +1,55 @@
+{
+  "version": "0.2.0",
+  "sprint": "semantic-integrity-hardening",
+  "site": "bisulfid.com",
+  "status": "scaffolding_active",
+  "model": "Option B — concept ontology (main/data/ontology/sulfur_terms.json) + separate lexeme registry",
+  "governed_by": [
+    "main/data/CONCEPT_LEXEME_MODEL.md",
+    "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "A lexeme is a language-specific naming form that refers to a language-neutral concept. lexeme -> names -> concept.",
+  "rules": [
+    "The lexeme registry owns LEXICAL IDENTITY only.",
+    "It does NOT own evidence/source linkage. Forward links (evidence -> lexeme, evidence -> source, evidence -> claim) are owned by the evidence store. The reverse view (lexeme -> supporting evidence) is DERIVED by an index/validator/query, never stored here. One relationship fact -> one authoritative direction -> reverse edges derived.",
+    "Every lexeme MUST resolve to exactly one CONCEPT-ELIGIBLE ontology node (see main/data/ontology_node_roles.json). Existence of an ontology term_id does NOT make it a valid concept target.",
+    "concept_id is an identifier, NOT a language claim. Concepts are language-neutral.",
+    "Lexeme language is ORTHOGONAL to geography: a LEX-DE-* lexeme is German-LANGUAGE, not Germany-GEOGRAPHY. Geography is never derived from lexeme language; it is a separate evidence-qualified relationship.",
+    "registration_state is the lexeme's lexical-identity state (manually governed). Whether a lexeme is evidence-supported is a DERIVED fact computed from the evidence store, never a second manually-editable authority.",
+    "A lexeme NEVER creates a route or URL. Knowledge Object Before URL is absolute.",
+    "Free-text strings must not substitute for lexeme IDs in governed evidence."
+  ],
+  "concept_binding": "concept_id resolves to a concept-eligible term_id in main/data/ontology/sulfur_terms.json (per ontology_node_roles.json).",
+  "evidence_support_is_derived": true,
+  "derived_view_note": "lexeme -> supporting evidence is computed by scanning main/data/evidence/*.json for records whose lexeme_ids contain this lexeme_id. It is not stored on the lexeme.",
+  "lexical_relationship_types": [
+    "preferred", "accepted", "historical", "synonym", "alternative_spelling",
+    "formula_alias", "translated_equivalent", "partial_equivalence", "false_friend",
+    "nomenclature_controlled", "observed_usage", "deprecated"
+  ],
+  "registration_states": ["registered", "deprecated"],
+  "id_rules": {
+    "production_prefix": "LEX-",
+    "test_fixture_prefix": "TEST-LEX-",
+    "rule": "Production lexeme IDs start 'LEX-'. Test fixtures start 'TEST-LEX-'. A governed lexeme MUST NOT use a TEST- identifier."
+  },
+  "lexeme_record_schema": {
+    "required_fields": ["lexeme_id", "concept_id", "language", "display_form", "lexical_relationship_type", "registration_state"],
+    "optional_fields": ["script", "locale", "normalized_form", "notes"],
+    "forbidden_fields": ["source_ids", "evidence_ids", "geography", "geo_id", "path", "route", "url", "route_id", "in_sitemap", "indexable", "status"]
+  },
+  "lexemes": [
+    {
+      "lexeme_id": "LEX-DE-MOS2-001",
+      "concept_id": "molybdenum_disulfide",
+      "language": "de",
+      "script": "Latn",
+      "display_form": "Molybdän(IV)-sulfid",
+      "normalized_form": "molybdaen(iv)-sulfid",
+      "lexical_relationship_type": "observed_usage",
+      "registration_state": "registered",
+      "notes": "Form observed in a German Lexikon der Chemie (Spektrum.de) dictionary entry for the MoS2 concept. 'observed_usage' — the narrowest supported relationship: the approved claim (CLM-TERM-MOS2-DE-001) establishes only that a dictionary entry exists supporting cautious terminology framing, NOT a general 'accepted' German-form status. Lexeme-level, German-language (not Germany-geography). Public URL NOT authorized. Evidence support is derived from the evidence store, not stored here."
+    }
+  ]
+}

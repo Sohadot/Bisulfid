@@ -1,0 +1,53 @@
+{
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": [
+    "molybdenum_disulfide"
+  ],
+  "lexeme_ids": [],
+  "subject_domain": [
+    "SD-MATERIALS-SCIENCE"
+  ],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "retrieval_date": "2026-09-20",
+  "evidence_review_posture": "evidence_verified",
+  "evidence_id": "EVD-MOS2-POLYTYPES-RSC",
+  "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+  "claim_id": "CLM-MOS2-STRUCTURE-2H",
+  "evidence_role": "secondary_scholarly",
+  "claim_scope": "RSC Advances 2015 review states MoS2 has three known polytypes - 1T, 2H, and 3R - distinguished by the coordination of Mo and by layer stacking (2H and 3R: trigonal-prismatic; 1T: octahedral). Secondary-scholarly framework establishing the polytype distinction.",
+  "scientific_scope": {
+    "component": "polytype_framework",
+    "polytypes": [
+      "1T",
+      "2H",
+      "3R"
+    ],
+    "distinguished_by": [
+      "Mo coordination",
+      "layer stacking"
+    ],
+    "source_type": "peer-reviewed review (secondary)"
+  },
+  "locator": {
+    "system": "RSC Advances 2015 (uploaded PDF)",
+    "doi": "10.1039/C4RA11852A",
+    "verbatim": "three known polytypes - namely 1T, 2H, and 3R - of MoS2 ... 2H and 3R commonly have trigonal prismatic coordination (D3h) of molybdenum atoms, but they have different stacking order."
+  },
+  "allowed_uses": [
+    "mos2_polytype_framework"
+  ],
+  "prohibited_uses": [
+    "primary_experimental_determination",
+    "band_gap",
+    "numerical_physical_property_universal",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED (secondary_scholarly) via QUAL-RSC-MOS2-REVIEW-001 for 'mos2_polytype_framework'. Establishes the 1T/2H/3R distinction (Claim B polytype scope). Separate atomic record from the layered evidence. Contract-C=(not_public,noindex)."
+}

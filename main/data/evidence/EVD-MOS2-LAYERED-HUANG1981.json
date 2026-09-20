@@ -1,0 +1,50 @@
+{
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": [
+    "molybdenum_disulfide"
+  ],
+  "lexeme_ids": [],
+  "subject_domain": [
+    "SD-MATERIALS-SCIENCE"
+  ],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "retrieval_date": "2026-09-20",
+  "evidence_review_posture": "evidence_verified",
+  "evidence_id": "EVD-MOS2-LAYERED-HUANG1981",
+  "source_id": "SRC-HUANG-THESIS-1981",
+  "claim_id": "CLM-MOS2-STRUCTURE-2H",
+  "evidence_role": "secondary_scholarly",
+  "claim_scope": "Huang (1981) M.S. thesis: 2H-MoS2 has a sandwich-like/layered structure, is hexagonal, with A-B-A layer stacking; first investigated by Dickinson & Pauling. SUPPORTING scholarly/experimental provenance for the layered / 2H-terminology components; NOT peer-reviewed and NOT an independent primary determination.",
+  "scientific_scope": {
+    "components": [
+      "layered_sandwich",
+      "2H_terminology",
+      "hexagonal",
+      "ABA_stacking"
+    ],
+    "source_type": "academic M.S. thesis (supporting, not peer-reviewed)"
+  },
+  "locator": {
+    "system": "J. J. Huang, M.S. thesis, University of Houston (1981), uploaded PDF",
+    "verbatim": "Molybdenite, 2H-MoS2, whose structure was first investigated by Dickinson and Pauling. The 2H-MoS2 is hexagonal and the structure is characterized by MoS2 layers with A-B-A stacking ... c = 12.30 A and a = 3.15 A ... sandwich-like layer stacking."
+  },
+  "allowed_uses": [
+    "layered_structure_mos2",
+    "mos2_2h_terminology_supporting"
+  ],
+  "prohibited_uses": [
+    "peer_reviewed_corroboration_substitute",
+    "primary_experimental_determination",
+    "independent_corroboration_of_1983_work",
+    "band_gap",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED (secondary_scholarly, supporting) via QUAL-HUANG-THESIS-1981-001. Academic thesis: supporting provenance only; never substitutes for peer-reviewed/authoritative evidence; related lineage (WORK-HUANG-1981 <-> WORK-SCHONFELD-HUANG-MOSS-1983) -> not independent of the 1983 work. Contract-C=(not_public,noindex)."
+}

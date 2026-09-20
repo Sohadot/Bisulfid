@@ -1,0 +1,67 @@
+{
+  "evidence_id": "EVD-OCP-SULFUR-PURCHASE-FY2024",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "quantitative",
+  "claim_level": "relationship",
+  "concept_ids": ["sulfur"],
+  "object_scope_note": "The measured object is OCP's OWN accounting line 'Sulfur' within Note 4.2.2 'Purchases consumed'. It is the general 'sulfur' concept as named by the issuer. This is an ISSUER ACCOUNTING FACT (OCP's own books), never an import value, physical tonnage, Morocco/national demand, or market size.",
+  "distinct_lines_not_merged": "In the same Note 4.2.2 table, 'Sulfuric acid' is a SEPARATE raw-material line (FY2024 printed '(2,364)'); it is NOT sulfur and is deliberately NOT included in this record's measures. 'Ammonia' (FY2024 '(8,609)') and 'KCL' are likewise distinct lines.",
+  "lexeme_ids": [],
+  "relationship": "REL-INST-OCP-SULFUR-FY2024",
+  "subject_domain": ["SD-CORPORATE-FINANCIALS"],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "claim_scope": "OCP Group's FY2024 consolidated financial statements (Note 4.2.2, 'Analysis of purchases consumed and external charges', 'Purchases consumed', 'In millions of dirhams', page 21) present 'Sulfur' under Purchases of raw materials with a source amount of (8,344) for FY2024 and (8,088) for FY2023. Establishes OCP's OWN disclosed accounting line ONLY. Does NOT establish sulfur import value, physical sulfur tonnage, Morocco/national sulfur demand, or sulfur market size.",
+  "source_id": "SRC-OCP-AFR-2024",
+  "claim_id": "CLM-OCP-SULFUR-PURCHASE-FY2024",
+  "retrieval_date": "2026-09-20",
+  "publication_date": "2025-03",
+  "temporal_scope": {"as_of": null, "valid_from": "2024-01-01", "valid_to": "2024-12-31"},
+  "evidence_role": "primary_authoritative",
+  "evidence_review_posture": "evidence_verified",
+  "locator": {
+    "system": "OCP Group — Consolidated Financial Statements at 31 December 2024 (IFRS), original uploaded PDF",
+    "note_reference": "Note 4.2.2 — Analysis of purchases consumed and external charges; sub-block 'Purchases consumed'",
+    "unit_basis_verbatim": "In millions of dirhams",
+    "line_label_verbatim": "Sulfur",
+    "page": 21,
+    "retrieval_date": "2026-09-20",
+    "extraction_method": "verbatim text extraction from the original PDF (pdfminer.six); figures re-checked against the Note 4.2.2 table"
+  },
+  "quantitative": {
+    "numeric_convention_id": "NUM-ACCOUNTING-PAREN-NEG",
+    "numeric_convention": "NUM-ACCOUNTING-PAREN-NEG: comma ',' thousands, dot '.' decimal, PARENTHESES = NEGATIVE. '(8,344)' is stored verbatim as source_literal and normalized to the SIGNED value -8344. Parentheses are never silently dropped.",
+    "unit_glossary": {"MDH": "millions de dirhams / millions of dirhams (MAD millions)"},
+    "primary_measure": {
+      "metric": "OCP 'Sulfur' line under 'Purchases of raw materials' (Purchases consumed), Note 4.2.2",
+      "unit": "MDH",
+      "accounting_presentation": "amounts shown in accounting parentheses (a purchase/charge is presented as a negative)",
+      "series": {
+        "2024": {"source_literal": "(8,344)", "normalized_value": -8344},
+        "2023": {"source_literal": "(8,088)", "normalized_value": -8088}
+      }
+    },
+    "magnitude_derived": {
+      "fy2024_magnitude_mdh": 8344,
+      "fy2023_magnitude_mdh": 8088,
+      "label": "DERIVED magnitude = |normalized_value|, for prose only. NOT an independent editable truth; the signed normalized_value is the stored fact."
+    }
+  },
+  "allowed_uses": ["issuer_own_accounting_line_ocp_fy2024"],
+  "prohibited_uses": [
+    "sulfur_import_value",
+    "physical_tonnage_from_value",
+    "morocco_trade_totals",
+    "national_or_market_demand",
+    "market_size",
+    "another_entity_finances",
+    "sulfur_price_directional_claim",
+    "concept_level_chemical_claim",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED: source SRC-OCP-AFR-2024 identity verified; qualification QUAL-OCP-AFR-001 qualified_narrow for use 'issuer_own_accounting_line_ocp_fy2024'; admissible() TRUE. Domain SD-CORPORATE-FINANCIALS sufficiency single_authoritative_sufficient -> this issuer accounting line is evidence_sufficient. NOT evidence_locked (source_lock_status candidate). Feeds relationship REL-INST-OCP-SULFUR-FY2024 (which stays evidence_collecting for lack of independent corroboration). Authorizes NO claim activation, NO route, NO indexation. Contract-C = (not_public, noindex)."
+}

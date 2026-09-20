@@ -1,0 +1,67 @@
+{
+  "version": "0.1.0",
+  "sprint": "reference-production-01-mos2",
+  "site": "bisulfid.com",
+  "status": "internal_candidate",
+  "governed_by": ["main/data/knowledge_objects/knowledge_object_registry.json", "main/data/information_gain/calibration_pairs.json", "scripts/governance_scaffolding/contract_c_derive.py", "DECISION_LOG.md"],
+  "purpose": "Non-public Publication-Candidate record for KO-MOS2-SCIENTIFIC-001. A Publication Candidate is a governed INTERNAL object, NOT a published route. It records postures, the IG review, the derived Contract-C result, blockers, and a proposed disposition. It authorizes NO route/HTML/sitemap/indexation.",
+  "publication_candidate_id": "PC-MOS2-SCIENTIFIC-001",
+  "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
+  "postures": {
+    "governance_posture": "reference_draft",
+    "evidence_posture": "evidence_sufficient",
+    "claim_posture": "claim_pending",
+    "validation_posture": "not_validated",
+    "information_gain_posture": "ig_reviewed_no_new_route",
+    "release_authorization": "not_authorized"
+  },
+  "derived_contract_c": {"publication_state": "not_public", "indexation_state": "noindex"},
+  "ig_resolution": {
+    "policy_ref": "main/data/information_gain/ig_governance_policy.json",
+    "policy_version": "1.0.0",
+    "evaluated_by": "scripts/governance_scaffolding/information_gain_gate.py:evaluate",
+    "object_informational_validity": "object_valid_governed",
+    "new_route_distinctness": "no_new_route_warranted",
+    "new_route_classification": "near_duplicate",
+    "posture_result": "ig_reviewed_no_new_route",
+    "note": "Under the ratified IG authority the object is informationally valid (distinct governed knowledge vs the German lexical object) but does NOT warrant a NEW independent URL versus the legacy same-task route (near_duplicate). These two findings are distinct and are not conflated."
+  },
+  "ig_review": {
+    "reviewer": "reference-production-01 human-readable semantic review; re-evaluated under ratified authority (ig-governance-ratification)",
+    "reviewed_at": "2026-09-20",
+    "policy_version": "1.0.0",
+    "method": "multi-signal semantic (evidence/claim/source/task); NO numeric score; NO threshold; textual similarity diagnostic only",
+    "questions": {
+      "1_knowledge_lost_if_absent": "The only governed, sourced scientific identity+bulk-structure knowledge BISULFID holds for MoS2 (formula MoS2; layered; 2H P6_3/mmc; 2H-bulk lattice a). No other governed object/surface holds it.",
+      "2_already_represented_elsewhere": "No. Legacy 14K MoS2 routes carry NO governed evidence/claims; the German lexical object carries only a terminology observation.",
+      "3_distinct_evidence_set": "Yes — PubChem/NIST/COD(1923,1983)/RSC/Acta-excerpt/JACS-excerpt/Huang; disjoint from the Spektrum lexical evidence.",
+      "4_distinct_claim_set": "Yes — concept-level scientific claims (CLM-MOS2-FORMULA / -STRUCTURE-2H / -LATTICE-A-2H), disjoint from CLM-TERM-MOS2-DE-001.",
+      "5_distinct_reference_task": "Yes — 'scientific identity + bulk structure of MoS2', distinct from 'German terminology observation' and from ungoverned legacy pages.",
+      "6_internally_coherent_one_object": "Yes — formula, structure, and lattice are one coherent scientific-identity task about one entity.",
+      "7_split_formula_structure_property_into_urls": "No — they are MODULES of one object; separate URLs would be near-duplicate redundant surfaces (see PAIR-KO-MOS2-FORMULA-vs-STRUCTURE-MODULE).",
+      "8_distinct_from_german_lexical_object": "Yes — valid_domain_specific_reference (see PAIR-KO-MOS2-SCI-vs-DE-LEXICAL)."
+    },
+    "calibration_pairs": ["PAIR-KO-MOS2-SCI-vs-DE-LEXICAL", "PAIR-KO-MOS2-SCI-vs-LEGACY-SCI-ROUTE", "PAIR-KO-MOS2-FORMULA-vs-STRUCTURE-MODULE"],
+    "conclusion": "The KO holds distinct governed knowledge and a distinct reference task (independent reference value); it should be ONE object (not split into per-fact URLs); it is distinct from the German lexical object. Same-task overlap with the legacy /molybdenum-disulfide/ route means a NEW independent URL is not warranted — the KO's value is realized by governing that topic, not by minting a second URL.",
+    "authority_to_pass": "RATIFIED — the Information Gain gate (ig_governance_policy.json v1.0.0, information_gain_gate.py) is now the governed, deterministic, non-numeric authority. Under it this object does NOT reach ig_reviewed_pass: new-route distinctness classifies as near_duplicate vs the legacy same-task route, so the posture is ig_reviewed_no_new_route (object valid; no new URL). ig_reviewed_pass is reserved for a positive independent-reference classification (valid_domain_specific_reference / valid_sibling / valid_localization) with no unresolved signals; 'not a duplicate' alone is insufficient."
+  },
+  "nearest_legacy_routes": [
+    {"route_id": "molybdenum_disulfide", "path": "/molybdenum-disulfide/", "relation": "same scientific-reference task; ungoverned legacy page"},
+    {"route_id": "de_core_mos2", "path": "/de/terminology/molybdenum-disulfide/", "relation": "German lexical surface (the lexical chain's route scope); different task/domain"},
+    {"route_id": "de_molybdenum_disulfide", "path": "/de/molybdenum-disulfide/", "relation": "German vocabulary variant"},
+    {"route_id": "cohort02_en_molybdenum_disulfide_cmp_chem_acad", "path": "/en/terminology/molybdenum-disulfide/cmp/chem/acad/", "relation": "one of ~150 cohort02 thin audience/module variants (comparison candidates only)"}
+  ],
+  "proposed_disposition": "governed_reference_no_new_route",
+  "not_disposition": ["published", "indexable", "public_noindex", "new_independent_route"],
+  "disposition_note": "The object is a valid governed reference (object_valid_governed) and is RETAINED and governed, but the ratified IG gate finds no NEW independent URL warranted (near_duplicate vs the legacy same-task route). It is therefore NOT an independent_reference_candidate under current comparison; that would require a positive independent-reference classification (ig_reviewed_pass).",
+  "blockers_before_any_url": [
+    "information_gain_posture is ig_reviewed_no_new_route (near_duplicate vs the legacy same-task route) — a NEW independent URL requires ig_reviewed_pass (a positive independent-reference classification with no unresolved signals) under the ratified authority",
+    "claim_posture is claim_pending — the pilot claims are non-operational and not activated in any canonical claim registry",
+    "validation_posture is not_validated",
+    "release_authorization is not_authorized",
+    "source_lock_status is candidate for all sources (evidence not evidence_locked) — indexation additionally requires evidence_locked",
+    "no route/HTML/sitemap/robots artifact exists or is authorized by this sprint"
+  ],
+  "authorizes": "nothing public — internal candidate only",
+  "notes": "Contract-C derived (not manually written) = (not_public, noindex). Legacy 14K visibility artifacts (e.g. PUBLICATION_GATE_MODEL_14000.md) do NOT govern this object; contract_c_derive.py is canonical."
+}

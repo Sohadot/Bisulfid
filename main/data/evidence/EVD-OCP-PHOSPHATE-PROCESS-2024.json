@@ -1,0 +1,60 @@
+{
+  "evidence_id": "EVD-OCP-PHOSPHATE-PROCESS-2024",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "qualitative",
+  "claim_level": "relationship",
+  "evidence_binding": "context",
+  "relationship_binding": "context_only",
+  "concept_ids": ["sulfur"],
+  "concept_binding_note": "concept_ids=['sulfur'] records that this evidence is bound (as CONTEXT) to the sulfur relationship REL-INST-OCP-SULFUR-FY2024. It does NOT assert that the page-20 SOURCE mentions or proves ELEMENTAL sulfur — page 20 establishes sulphuric-acid processing, not elemental sulfur use. Because evidence_binding=='context', this record can never be counted as DIRECT sulfur evidence and never fills a relationship sufficiency slot (enforced by the sufficiency evaluator and validator).",
+  "object_scope_note": "Issuer-reported INDUSTRIAL-CHAIN CONTEXT for OCP's sulfur use: original report page 20 states OCP's phosphate processing combines phosphate rock with sulphuric acid to create phosphoric acid at Jorf Lasfar and Safi. It situates (as context) OCP's sulfur consumption in OCP's phosphate processing; direct sulfur evidence is EVD-OCP-SULFUR-PURCHASE-FY2024 and EVD-OCP-SULFUR-CONSUMPTION-FY2024. It does NOT by itself establish elemental sulfur use, sulfur feedstock quantities, national/market sulfur demand, or a universal chemistry fact. 'sulphuric acid' / 'phosphoric acid' are kept as qualitative text, NOT governed ontology concepts.",
+  "lexeme_ids": [],
+  "relationship": "REL-INST-OCP-SULFUR-FY2024",
+  "subject_domain": ["SD-INDUSTRIAL"],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "claim_scope": "OCP's Sustainability Integrated Report 2024 (original report page 20) reports that OCP's phosphate processing takes place at two platforms located in Jorf Lasfar and Safi, where phosphate rock is combined with sulphuric acid to create phosphoric acid, and that these processing sites are equipped with sulphuric-acid and phosphoric-acid production lines. Issuer-primary, organization-scoped, site-scoped (Jorf Lasfar, Safi). Establishes ONLY this process-context statement.",
+  "source_id": "SRC-OCP-SUSTAINABILITY-2024",
+  "claim_id": "CLM-OCP-PHOSPHATE-SULFURIC-ACID-PROCESS",
+  "retrieval_date": "2026-09-20",
+  "publication_date": "2025",
+  "temporal_scope": {"as_of": null, "valid_from": null, "valid_to": null},
+  "evidence_role": "primary_authoritative",
+  "evidence_review_posture": "evidence_verified",
+  "site_scope": ["Jorf Lasfar", "Safi"],
+  "locator": {
+    "system": "OCP Group — Sustainability Integrated Report 2024, direct page-excerpt (original report page 20)",
+    "page": 20,
+    "verbatim_statement": "In phosphate production, processing is a vital step that takes place at two platforms located in Jorf Lasfar and Safi. During processing, phosphate rock is combined with sulphuric acid to create phosphoric acid, which can be directly exported or processed with ammonia and other nutrients to create fertilisers. These processing sites are equipped with sulphuric acid and phosphoric acid production lines, as well as granulation lines that are fully integrated.",
+    "retrieval_date": "2026-09-20",
+    "extraction_method": "verbatim text extraction from the original page-excerpt PDF (pdfminer.six)"
+  },
+  "qualitative": {
+    "supported_proposition": "At OCP's Jorf Lasfar and Safi processing platforms, phosphate rock is combined with sulphuric acid to create phosphoric acid; these sites are equipped with sulphuric-acid and phosphoric-acid production lines.",
+    "not_inferred": ["sulfur feedstock quantities", "national or market sulfur demand", "physical tonnage", "a universal chemistry fact", "third-party assurance of this process statement", "that this alone proves OCP's sulfur consumption"]
+  },
+  "assurance_bounding": {
+    "third_party_assurance_present": true,
+    "assurance_pages": "305-306",
+    "assurer": "GUTcert (Prof. Dr.-Ing. Jan Uwe Lieback), ISO 14064-1/-3, 'reasonable assurance', Berlin 29 July 2025",
+    "assured_metrics_only": ["GHG emissions (Scope 1/2/3 CO2e)", "clean-electricity use ratio (80.00%)", "waste-management ratios (99.06% / 15.03%)", "non-conventional-waters use ratio (66.89%)"],
+    "does_not_assure": "the page-20 industrial-process statement (this record). The process statement is issuer-reported but UNASSURED.",
+    "assured_metrics_are_pilot02_claims": false,
+    "note": "Recorded only to BOUND the assurance scope. These environmental metrics are OUT OF Pilot-02 (sulfur) scope and are NOT admitted as Pilot-02 evidence or claims."
+  },
+  "allowed_uses": ["issuer_own_process_context_ocp"],
+  "prohibited_uses": [
+    "sulfur_feedstock_quantity",
+    "national_or_market_demand",
+    "financial_amount",
+    "generic_chemistry_claim",
+    "universal_industry_fact",
+    "third_party_assurance_of_process_statement",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED (issuer-primary, SD-INDUSTRIAL): source SRC-OCP-SUSTAINABILITY-2024 identity verified; qualification QUAL-OCP-SUS-001 qualified_narrow for use 'issuer_own_process_context_ocp'; admissible() TRUE. SD-INDUSTRIAL sufficiency is primary_plus_corroborating; this is a third OCP-issuer (non-independent) unit, so the relationship REL-INST-OCP-SULFUR-FY2024 stays evidence_collecting (policy not weakened). Authorizes NO claim activation, NO route, NO indexation. Contract-C = (not_public, noindex)."
+}
