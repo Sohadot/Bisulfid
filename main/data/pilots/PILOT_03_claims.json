@@ -1,49 +1,66 @@
 {
-  "version": "0.1.0",
-  "sprint": "mos2-scientific-reference-pilot-03",
+  "version": "0.2.0",
+  "sprint": "mos2-scientific-reference-pilot-03 (scientific provenance closure)",
   "site": "bisulfid.com",
   "status": "non_operational",
-  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "main/data/claim_activation_policy.json", "main/data/pilots/MOS2_SCIENTIFIC_REFERENCE_PILOT_03.md", "DECISION_LOG.md"],
-  "purpose": "Pilot-scoped, NON-OPERATIONAL concept-level SCIENTIFIC claims for Pilot 03 (molybdenum_disulfide). Kept OUT of the canonical claim registries. All three are concept-level scientific claims established from authoritative databases / primary crystallographic literature, independently of the German lexical chain. Supporting evidence IDs are mandatory. Claim approval does not authorize publication.",
+  "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "main/data/claim_activation_policy.json", "main/data/originating_work_registry.json", "main/data/pilots/MOS2_SCIENTIFIC_REFERENCE_PILOT_03.md", "DECISION_LOG.md"],
+  "purpose": "Pilot-scoped, NON-OPERATIONAL concept-level SCIENTIFIC claims for molybdenum_disulfide, with provenance corrected: retrieval artifact (COD database record) is distinguished from originating scientific work; independence is judged on originating_work lineage. Supporting evidence IDs are mandatory. Claim approval does not authorize publication. The German lexical chain is untouched and supports none of these claims.",
   "operational": false,
   "concept_id": "molybdenum_disulfide",
-  "lexical_separation_note": "The lexical chain (molybdenum_disulfide -> LEX-DE-MOS2-001 -> EVD-MOS2-DE-001 -> SRC-SPEKTRUM-MOS2-DE) is UNTOUCHED and is NOT used to support any of these scientific claims. SRC-SPEKTRUM-MOS2-DE remains German-terminology-only.",
+  "provenance_model": "Each COD source is a crystallographic_database retrieval artifact carrying originating_work_id; the original article excerpts carry the same originating_work_id and therefore do NOT independently corroborate the COD records (lineage dedup). Independence for sufficiency = distinct originating_work.",
   "claims": [
     {
       "claim_id": "CLM-MOS2-FORMULA",
       "pilot_claim": "A — chemical identity / formula",
       "claim_level": "concept",
-      "statement": "Molybdenum disulfide has the molecular formula MoS2.",
+      "statement": "The formula of molybdenum disulfide is MoS2.",
+      "wording_note": "Reworded from 'has the molecular formula MoS2' to avoid implying a discrete molecular solid; the PubChem source field name 'MolecularFormula' is preserved verbatim in the evidence locator, unchanged.",
       "outcome": "SUPPORTED_BY_EVIDENCE (non-operational)",
-      "sufficiency": "primary_plus_corroborating satisfied (two independent government scientific databases)",
+      "sufficiency": "primary_plus_corroborating satisfied (two independent government databases: PubChem + NIST)",
       "scope_guard": "Chemical composition identity only. Not structure, not a physical property.",
       "supporting_evidence_ids": ["EVD-MOS2-FORMULA-PUBCHEM", "EVD-MOS2-FORMULA-NIST"]
     },
     {
       "claim_id": "CLM-MOS2-STRUCTURE-2H",
-      "pilot_claim": "B — crystal/structural identity",
+      "pilot_claim": "B — crystal/structural identity (component-aware)",
       "claim_level": "concept",
-      "statement": "In its 2H polytype (molybdenite), molybdenum disulfide crystallizes in the hexagonal space group P 6_3/m m c (No. 194) as a layered structure (a = b ~ 3.15-3.16 Angstrom, c ~ 12.3 Angstrom, gamma = 120 deg).",
+      "statement": "Bulk MoS2 is a layered material. In the 2H polytype, MoS2 has a hexagonal P63/mmc (No. 194) structure with lattice parameters near a ~ 3.15-3.16 A and c ~ 12.3 A in the admitted bulk crystallographic determinations.",
       "outcome": "SUPPORTED_BY_EVIDENCE (non-operational)",
-      "sufficiency": "primary_plus_corroborating satisfied (two independent primary crystallographic determinations, 1923 + 1983)",
-      "polytype_scope": "2H ONLY. The 3R polytype (space group R3m, c ~ 18.3 Angstrom) is DISTINCT and must not be conflated; monolayer/few-layer forms are out of scope.",
-      "scope_guard": "Structural identity of 2H-MoS2. Not a numeric-property claim beyond the identity; not an electronic property.",
-      "supporting_evidence_ids": ["EVD-MOS2-STRUCTURE-DICKINSON", "EVD-MOS2-STRUCTURE-ACTACRYST"]
+      "components": {
+        "layered": {
+          "supported": true,
+          "supporting_evidence_ids": ["EVD-MOS2-LAYERED-RSC", "EVD-MOS2-LAYERED-ACTA1983-EXCERPT", "EVD-MOS2-LAYERED-HUANG1981"],
+          "note": "Directly evidenced (RSC review: S-Mo-S stacks; Acta 1983 excerpt: layered dichalcogenide). 'layered' is retained. Huang thesis is supporting provenance only."
+        },
+        "2h_naming_polytype": {
+          "supported": true,
+          "supporting_evidence_ids": ["EVD-MOS2-POLYTYPES-RSC", "EVD-MOS2-2H-REF-RSC", "EVD-MOS2-LAYERED-ACTA1983-EXCERPT", "EVD-MOS2-LAYERED-HUANG1981"],
+          "note": "1T/2H/3R framework (RSC) + explicit 2H/3R terminology (Acta 1983 excerpt). Dickinson & Pauling 1923 did NOT use the modern '2H' label and is NOT cited for the 2H name."
+        },
+        "space_group_lattice": {
+          "supported": true,
+          "supporting_evidence_ids": ["EVD-MOS2-STRUCTURE-DICKINSON", "EVD-MOS2-STRUCTURE-ACTACRYST", "EVD-MOS2-2H-REF-RSC"],
+          "note": "Two INDEPENDENT originating determinations (WORK-DICKINSON-PAULING-1923 via COD 1010993; WORK-SCHONFELD-HUANG-MOSS-1983 via COD 9007660) + RSC as secondary corroboration. The excerpts share lineage with the COD records and do not double-count."
+        }
+      },
+      "polytype_scope": "2H is the claimed polytype. 3R (R3m, a ~ 3.17 A, c ~ 18.38 A) is a DISTINCT polytype documented separately in EVD-MOS2-3R-BOUNDARY-RSC and must not be conflated with the 2H claim; 1T and monolayer/few-layer forms are out of scope.",
+      "supporting_evidence_ids": ["EVD-MOS2-STRUCTURE-DICKINSON", "EVD-MOS2-STRUCTURE-ACTACRYST", "EVD-MOS2-2H-REF-RSC", "EVD-MOS2-LAYERED-RSC", "EVD-MOS2-POLYTYPES-RSC", "EVD-MOS2-LAYERED-ACTA1983-EXCERPT", "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT", "EVD-MOS2-LAYERED-HUANG1981"],
+      "not_inferred": ["Dickinson & Pauling 1923 explicitly using the modern label '2H'", "all MoS2 forms sharing one structure", "3R details belonging to the 2H claim"]
     },
     {
       "claim_id": "CLM-MOS2-LATTICE-A-2H",
-      "pilot_claim": "C — one physical/material property (lattice parameter a)",
+      "pilot_claim": "C — one physical property (lattice parameter a of bulk 2H-MoS2)",
       "claim_level": "concept",
-      "statement": "The in-plane hexagonal lattice parameter a of 2H-MoS2 (bulk) is reported as 3.15(2) Angstrom (Dickinson & Pauling 1923) and 3.161 Angstrom (Schonfeld, Huang & Moss 1983).",
-      "outcome": "SUPPORTED_CONDITIONAL (2H bulk; independent determinations coexist)",
-      "sufficiency": "primary_plus_corroborating satisfied; values preserved separately (no averaging, no forced single value)",
+      "statement": "The in-plane hexagonal lattice parameter a of bulk 2H-MoS2 is reported by independent determinations as 3.15(2) A (Dickinson & Pauling 1923 lineage) and 3.161 A (Schonfeld, Huang & Moss 1983 lineage).",
+      "outcome": "SUPPORTED_CONDITIONAL (2H bulk; independent/coexisting determinations)",
+      "sufficiency": "primary_plus_corroborating satisfied via two DISTINCT originating works (lineage-independent); values preserved separately (no averaging, no canonical scalar)",
       "form_scope": "2H bulk ONLY. A monolayer/few-layer or 3R value must never substitute for this.",
-      "numeric_normalization": "NUM-EN-DOT-DECIMAL; source_literal and normalized_value stored distinctly; uncertainty (0.02 A on the 1923 value) preserved; no unit conversion.",
-      "conflict_handling": "The two determinations agree within uncertainty (~3.15-3.161 A); both are kept as coexisting evidence records rather than reconciled to one scalar.",
+      "numeric_normalization": "NUM-EN-DOT-DECIMAL; source_literal vs normalized_value distinct; uncertainty 3.15(2) -> 3.15 A +/- 0.02 A preserved; no unit conversion.",
+      "coexistence_note": "The two values (3.15(2) A and 3.161 A) are INDEPENDENT/COEXISTING determinations, not a material conflict (they agree within uncertainty). Not labelled a conflict.",
       "supporting_evidence_ids": ["EVD-MOS2-LATTICE-A-DICKINSON", "EVD-MOS2-LATTICE-A-ACTACRYST"]
     }
   ],
-  "not_attempted_property_band_gap": {
-    "note": "Band gap was considered for Claim C but NOT attempted as an admitted claim: it is strongly form-dependent (bulk 2H is an indirect-gap semiconductor; monolayer MoS2 is a direct-gap semiconductor), and an authoritative PRIMARY source with the exact values/conditions was not openly retrievable in this environment (peer-reviewed publisher pages gated; no AI summaries or search snippets used as evidence). Recorded as a future scientific-evidence + form-scope target (see report). No band-gap value is asserted."
+  "band_gap_out_of_scope": {
+    "note": "The RSC review contains band-gap discussion (2H bulk indirect; monolayer direct). NO band-gap Claim D is activated in this closure. Band gap remains future work; Pilot 03 stays limited to Claims A/B/C."
   }
 }

@@ -28,7 +28,9 @@
       { "category": "official_standard", "roles": ["official_record", "primary_authoritative"], "note": "Official technical standard (e.g. DIN/ISO) as issued." },
       { "category": "customs_nomenclature_authority", "roles": ["primary_authoritative", "official_record"], "note": "Authority for a customs/statistical goods NOMENCLATURE (WCO Harmonized System and its official government/intergovernmental reproductions, e.g. UN Comtrade HS reference, national customs tariffs). Added (source-qualification correction / classification-resolution) because neither 'official_standard' (technical standards like DIN/ISO) nor 'intergovernmental_trade_database' (trade FLOW data) correctly names a classification nomenclature authority. Establishes classification identity ONLY, never trade totals or scientific/market claims." },
       { "category": "corporate_financial_report", "roles": ["primary_authoritative", "official_record"], "note": "The reporting entity's OWN official audited/consolidated financial statements (issuer-primary). Added (Pilot 02) because 'market_report' (third-party market analysis) and 'industry_publication' (trade press) both MISLABEL an issuer's own audited accounts. AUTHORITY IS STRICTLY LIMITED to the issuer's own disclosed financial/accounting facts: it may establish 'issuer X's FY accounts report line Y = value Z', never national statistics, import/trade value, market size, or physical volumes. Category alone is never admissible." },
-      { "category": "corporate_sustainability_report", "roles": ["primary_authoritative", "contextual"], "note": "The reporting entity's OWN official sustainability / integrated report (issuer-primary). Added (Pilot 02) because no existing category accurately names an issuer's primary non-financial disclosure. Authority limited to narrowly-scoped statements about the ISSUER'S OWN operations/processes as stated; never a universal industry fact, national production/demand, or market structure." }
+      { "category": "corporate_sustainability_report", "roles": ["primary_authoritative", "contextual"], "note": "The reporting entity's OWN official sustainability / integrated report (issuer-primary). Added (Pilot 02) because no existing category accurately names an issuer's primary non-financial disclosure. Authority limited to narrowly-scoped statements about the ISSUER'S OWN operations/processes as stated; never a universal industry fact, national production/demand, or market structure." },
+      { "category": "crystallographic_database", "roles": ["authoritative_database"], "note": "A curated crystallographic-data REPOSITORY record (e.g. a Crystallography Open Database CIF) that faithfully represents an originating scientific work's structured crystal data. Added (Pilot 03) because the retrieval artifact is a DATABASE record, NOT the peer-reviewed journal article itself (retrieval repository != originating scientific work). The role is authoritative_database; the originating peer-reviewed determination is recorded as the source's originating_work_id lineage. Scientific independence is judged on originating_work, so two database records reproducing the SAME work never count as independent." },
+      { "category": "academic_thesis", "roles": ["secondary_scholarly"], "note": "A university thesis/dissertation (e.g. an M.S. thesis). Added (Pilot 03). Scholarly SUPPORTING provenance only: it may corroborate/contextualize but must NOT substitute for peer-reviewed or authoritative evidence when policy requires it, and never counts as a primary experimental determination for sufficiency." }
     ],
     "evaluated_not_ratified_yet": [
       { "category": "official_environmental_database", "reason": "No system need yet; revisit when environment domain activates." },
@@ -57,7 +59,9 @@
     "official_standard": ["official_record", "primary_authoritative"],
     "customs_nomenclature_authority": ["primary_authoritative", "official_record"],
     "corporate_financial_report": ["primary_authoritative", "official_record"],
-    "corporate_sustainability_report": ["primary_authoritative", "contextual"]
+    "corporate_sustainability_report": ["primary_authoritative", "contextual"],
+    "crystallographic_database": ["authoritative_database"],
+    "academic_thesis": ["secondary_scholarly"]
   },
 
   "domain_admissibility": {
@@ -71,10 +75,11 @@
     "chemistry_materials_physics": {
       "applies_to_domains": ["SD-CHEMISTRY", "SD-INORGANIC-CHEMISTRY", "SD-MATERIALS-SCIENCE", "SD-PHYSICS"],
       "claim_levels": ["concept"],
-      "required_any_role": ["primary_scientific", "primary_authoritative"],
-      "allowed_categories": ["peer_reviewed_journal", "government_scientific_database", "chemical_nomenclature_standard", "official_standard"],
+      "required_any_role": ["primary_scientific", "primary_authoritative", "authoritative_database", "secondary_scholarly"],
+      "allowed_categories": ["peer_reviewed_journal", "government_scientific_database", "chemical_nomenclature_standard", "official_standard", "crystallographic_database", "academic_thesis"],
       "forbidden_alone_categories": ["authoritative_dictionary", "academic_teaching_reference", "industry_publication", "market_report"],
-      "sufficiency": "primary_plus_corroborating"
+      "sufficiency": "primary_plus_corroborating",
+      "role_notes": "authoritative_database (crystallographic DB records) and secondary_scholarly (reviews/theses) are ADMISSIBLE, but sufficiency still requires a PRIMARY-grade record (primary_scientific / primary_authoritative / authoritative_database) plus an INDEPENDENT corroborating record (independence judged on originating_work lineage). A secondary_scholarly source can corroborate but never establish a concept-level scientific claim alone; an academic_thesis is supporting provenance and never substitutes for peer-reviewed/authoritative evidence."
     },
     "biology_biomedical": {
       "applies_to_domains": ["SD-BIOLOGY", "SD-BIOMEDICAL"],

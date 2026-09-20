@@ -4,9 +4,13 @@
   "test_fixture": false,
   "evidence_kind": "scientific",
   "claim_level": "concept",
-  "concept_ids": ["molybdenum_disulfide"],
+  "concept_ids": [
+    "molybdenum_disulfide"
+  ],
   "lexeme_ids": [],
-  "subject_domain": ["SD-MATERIALS-SCIENCE"],
+  "subject_domain": [
+    "SD-MATERIALS-SCIENCE"
+  ],
   "geography": null,
   "jurisdiction": null,
   "language_of_evidence": "en",
@@ -15,13 +19,17 @@
   "claim_id": "CLM-MOS2-STRUCTURE-2H",
   "retrieval_date": "2026-09-20",
   "evidence_review_posture": "evidence_verified",
-  "evidence_role": "primary_scientific",
+  "evidence_role": "authoritative_database",
   "scientific_scope": {
     "fact_type": "crystal_structure_identity",
     "material_form": "2H-MoS2 (molybdenite), bulk single crystal",
     "polytype": "2H",
     "space_group": "P 6_3/m m c (No. 194)",
-    "cell_as_recorded": {"a_angstrom": "3.15(2)", "c_angstrom": "12.30(7)", "gamma_deg": 120},
+    "cell_as_recorded": {
+      "a_angstrom": "3.15(2)",
+      "c_angstrom": "12.30(7)",
+      "gamma_deg": 120
+    },
     "method": "X-ray crystal-structure determination (1923)",
     "polytype_boundary": "This is 2H. The 3R polytype (space group R3m, c ~ 18.3 Angstrom) is a DISTINCT structure and must not be conflated; monolayer/few-layer forms are also out of scope."
   },
@@ -30,11 +38,30 @@
     "cod_file": "1010993",
     "doi": "10.1021/ja01659a020",
     "citation": "Dickinson, R. G.; Pauling, L. J. Am. Chem. Soc. 45, 1466-1471 (1923)",
-    "fields_quoted": {"_symmetry_space_group_name_H-M": "P 63/m m c", "_space_group_IT_number": "194", "_cell_length_a": "3.15(2)", "_cell_length_c": "12.30(7)", "_chemical_name_mineral": "Molybdenite"},
+    "fields_quoted": {
+      "_symmetry_space_group_name_H-M": "P 63/m m c",
+      "_space_group_IT_number": "194",
+      "_cell_length_a": "3.15(2)",
+      "_cell_length_c": "12.30(7)",
+      "_chemical_name_mineral": "Molybdenite"
+    },
     "url": "https://www.crystallography.net/cod/1010993.html",
     "retrieval_date": "2026-09-20"
   },
-  "allowed_uses": ["crystal_structure_identity_2h"],
-  "prohibited_uses": ["band_gap", "density", "electronic_or_optical_property", "chemical_formula_identity_as_primary", "polytype_3r_or_1t_or_monolayer", "lexeme_or_terminology", "route_publication", "source_locking_by_itself", "claim_approval_by_itself"],
-  "governance_note": "ADMITTED: SRC-COD-MOS2-DICKINSON-1923 verified; QUAL-COD-MOS2-DICKINSON-001 qualified_narrow for 'crystal_structure_identity_2h'; admissible() TRUE. PRIMARY determination; independent corroboration = EVD-MOS2-STRUCTURE-ACTACRYST -> primary_plus_corroborating satisfied -> evidence_sufficient (not locked). Scope 2H only. Contract-C = (not_public, noindex)."
+  "allowed_uses": [
+    "crystal_structure_identity_2h"
+  ],
+  "prohibited_uses": [
+    "band_gap",
+    "density",
+    "electronic_or_optical_property",
+    "chemical_formula_identity_as_primary",
+    "polytype_3r_or_1t_or_monolayer",
+    "lexeme_or_terminology",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED: SRC-COD-MOS2-DICKINSON-1923 verified; QUAL-COD-MOS2-DICKINSON-001 qualified_narrow for 'crystal_structure_identity_2h'; admissible() TRUE. PRIMARY determination; independent corroboration = EVD-MOS2-STRUCTURE-ACTACRYST -> primary_plus_corroborating satisfied -> evidence_sufficient (not locked). Scope 2H only. Contract-C = (not_public, noindex).",
+  "provenance_note": "Retrieval artifact = COD crystallographic-database record; the ORIGINATING primary determination is recorded via the source's originating_work_id lineage. Role authoritative_database (not the journal article itself)."
 }

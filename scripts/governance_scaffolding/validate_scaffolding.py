@@ -268,6 +268,34 @@ def validate_source_qualification():
     check(cl["this_sprint"].startswith("No registry activated"), "claim policy: nothing may be activated this sprint")
 
 
+def validate_scientific_provenance():
+    """Pilot-03 closure: retrieval artifact != originating scientific work."""
+    wpath = os.path.join(DATA, "originating_work_registry.json")
+    if not os.path.exists(wpath):
+        return
+    works = load(wpath)
+    work_ids = set()
+    for w in works["works"]:
+        wid = w["work_id"]
+        check(wid.startswith("WORK-"), f"work {wid}: bad id prefix")
+        check(wid not in work_ids, f"work {wid}: duplicate id")
+        work_ids.add(wid)
+    for w in works["works"]:
+        for r in w.get("related_work_ids", []) or []:
+            check(r in work_ids, f"work {w['work_id']}: related_work_id '{r}' does not resolve")
+    reg = load(os.path.join(DATA, "sources", "source_registry.json"))
+    for s in reg["sources"]:
+        owid = s.get("originating_work_id")
+        if owid is not None:
+            check(owid in work_ids, f"source {s['source_id']}: originating_work_id '{owid}' does not resolve")
+        # A COD / crystallographic retrieval artifact must NOT be classified as a journal article.
+        if s.get("retrieval_repository", "").upper().startswith("CRYSTALLOGRAPHY OPEN DATABASE") or s.get("cod_entry"):
+            check(s.get("category") == "crystallographic_database",
+                  f"source {s['source_id']}: a COD retrieval artifact must be category crystallographic_database, not '{s.get('category')}'")
+            check(owid is not None, f"source {s['source_id']}: COD record must carry originating_work_id")
+            check(s.get("originating_doi"), f"source {s['source_id']}: COD record must retain originating DOI")
+
+
 def validate_organization():
     path = os.path.join(DATA, "organization_registry.json")
     if not os.path.exists(path):
@@ -356,6 +384,7 @@ def main():
     validate_source_qualification()
     validate_classification()
     validate_organization()
+    validate_scientific_provenance()
     print(f"    (ran {CHECKS} checks)")
     print("=" * 56)
     if ERRORS:

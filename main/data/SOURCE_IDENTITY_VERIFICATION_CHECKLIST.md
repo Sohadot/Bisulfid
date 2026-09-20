@@ -106,3 +106,17 @@ A direct page-excerpt of the original report was then supplied (original report 
 **Assurance bounding (pages 305–306):** third-party assurance (ISO 14064-1/-3, "reasonable assurance", GUTcert, Berlin 29 Jul 2025) covers **environmental metrics only** — GHG emissions (Scope 1/2/3 CO₂e), clean-electricity use ratio (80.00%), waste-management ratios, non-conventional-waters use ratio. It does **not** assure the page-20 industrial-process statement, which is issuer-reported but unassured. Those assured metrics are out of Pilot-02 scope and are not admitted as Pilot-02 claims.
 
 Effect: `QUAL-OCP-SUS-001` promoted `candidate → qualified_narrow` for the site-scoped issuer-own process-context use. Verification does **not** imply source-lock (stays candidate), claim approval, or publication.
+
+## Results — 2026-09-20 (Pilot 03 scientific provenance closure)
+
+Verified against the uploaded artifacts (RSC 2015 full PDF; Huang 1981 thesis PDF; Acta 1983 page-404 excerpt image; Dickinson & Pauling 1923 first-page excerpt image; COD 1010993 CIF). All → status `verified`, lock **candidate**; no locking.
+
+| Source | C-checks | Note |
+|---|---|---|
+| `SRC-RSC-MOS2-REVIEW-2015` | C1–C8 PASS | Full peer-reviewed review PDF; doi 10.1039/C4RA11852A; role secondary_scholarly. |
+| `SRC-ACTACRYST-MOS2-1983-EXCERPT` | PASS (excerpt scope) | Page-404 image only; role primary_scientific; same originating work as COD 9007660. |
+| `SRC-JACS-MOLYBDENITE-1923-EXCERPT` | PASS (excerpt scope) | First-page image only; no modern "2H"; same originating work as COD 1010993. |
+| `SRC-HUANG-THESIS-1981` | PASS | M.S. thesis PDF; category academic_thesis; supporting only; related to the 1983 work. |
+| `SRC-COD-MOS2-DICKINSON-1923` / `SRC-COD-MOS2-ACTACRYST-1983` | re-verified vs CIF | Provenance corrected: category `crystallographic_database`, role authoritative_database, originating_work_id + originating DOI retained; identity_revision → rev-2026-09-20-2. |
+
+Retrieval repository ≠ originating scientific work; scientific independence judged on originating-work lineage. No lock, no claim approval, no publication.

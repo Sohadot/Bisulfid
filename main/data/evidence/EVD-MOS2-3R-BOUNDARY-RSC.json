@@ -1,0 +1,49 @@
+{
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": [
+    "molybdenum_disulfide"
+  ],
+  "lexeme_ids": [],
+  "subject_domain": [
+    "SD-MATERIALS-SCIENCE"
+  ],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "retrieval_date": "2026-09-20",
+  "evidence_review_posture": "evidence_verified",
+  "evidence_id": "EVD-MOS2-3R-BOUNDARY-RSC",
+  "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+  "evidence_role": "secondary_scholarly",
+  "claim_scope": "RSC Advances 2015 review identifies 3R-MoS2 as a DISTINCT polytype: space group R3m, stacking AbA BcB CaC, approximate lattice parameters a = 3.17 A and c = 18.38 A (as reviewed). Recorded to preserve the 2H/3R BOUNDARY; attached to NO 2H claim.",
+  "scientific_scope": {
+    "component": "3R_polytype_boundary",
+    "polytype": "3R",
+    "space_group": "R3m",
+    "stacking": "AbA BcB CaC",
+    "reviewed_lattice_text": "a = 3.17 A and c = 18.38 A (review reference)",
+    "boundary_rule": "3R is DISTINCT from 2H; these details must NOT be attached to the 2H claim/evidence and do NOT come from COD 1010993.",
+    "source_type": "peer-reviewed review (secondary)"
+  },
+  "locator": {
+    "system": "RSC Advances 2015, Table 1 (uploaded PDF)",
+    "doi": "10.1039/C4RA11852A",
+    "verbatim": "3R ... R3m ... AbA BcB CaC ... a = 3.17 A and c = 18.38 A (ref. 36)"
+  },
+  "allowed_uses": [
+    "polytype_3r_reference"
+  ],
+  "prohibited_uses": [
+    "crystal_structure_identity_2h",
+    "attach_to_2h_claim",
+    "primary_experimental_determination",
+    "band_gap",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED (secondary_scholarly) via QUAL-RSC-MOS2-REVIEW-001 for 'polytype_3r_reference'. Documents the 3R boundary ONLY; deliberately carries NO claim_id (not a supporting unit of the 2H claim). Must never contaminate 2H. Contract-C=(not_public,noindex)."
+}

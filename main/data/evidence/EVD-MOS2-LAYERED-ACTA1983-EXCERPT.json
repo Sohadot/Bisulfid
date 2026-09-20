@@ -1,0 +1,49 @@
+{
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": [
+    "molybdenum_disulfide"
+  ],
+  "lexeme_ids": [],
+  "subject_domain": [
+    "SD-MATERIALS-SCIENCE"
+  ],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "retrieval_date": "2026-09-20",
+  "evidence_review_posture": "evidence_verified",
+  "evidence_id": "EVD-MOS2-LAYERED-ACTA1983-EXCERPT",
+  "source_id": "SRC-ACTACRYST-MOS2-1983-EXCERPT",
+  "claim_id": "CLM-MOS2-STRUCTURE-2H",
+  "evidence_role": "primary_scientific",
+  "claim_scope": "Acta Cryst. B39 (1983) page-404 EXCERPT (Schonfeld, Huang & Moss): the title explicitly refers to '2H- and 3R-MoS2', and the introduction describes MoS2 as belonging to the layered dichalcogenides of transition metals (trigonal-prismatic coordination for MoS2). Primary-scientific support (excerpt-scoped) for the LAYERED nature and the explicit 2H/3R terminology.",
+  "scientific_scope": {
+    "components": [
+      "layered_dichalcogenide",
+      "2H_3R_terminology"
+    ],
+    "artifact": "page-404 excerpt only",
+    "source_type": "peer-reviewed primary (excerpt)"
+  },
+  "locator": {
+    "system": "Acta Crystallographica B39, 404-407 (1983), page-404 excerpt image",
+    "doi": "10.1107/S0108768183002645",
+    "verbatim": "title: 'Anisotropic Mean-Square Displacements (MSD) in Single Crystals of 2H- and 3R-MoS2'; intro: 'MoS2 belongs to the layered dichalcogenides of transition metals ...'"
+  },
+  "allowed_uses": [
+    "layered_dichalcogenide_context",
+    "mos2_2h_3r_terminology"
+  ],
+  "prohibited_uses": [
+    "facts_from_unseen_pages",
+    "lattice_parameter_as_primary",
+    "band_gap",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED (primary_scientific) via QUAL-ACTACRYST-MOS2-1983-EXCERPT-001. Excerpt-scoped. Same originating work (WORK-SCHONFELD-HUANG-MOSS-1983) as the COD 9007660 record -> NOT independent of it (lineage dedup). Contract-C=(not_public,noindex)."
+}

@@ -61,3 +61,44 @@ All six records: `admissible() = True`, review posture `evidence_verified`, sour
 ## Tests
 
 `pilot_03_tests.py` (23 proofs) PASS — incl. Spektrum-cannot-support-scientific (A/B/C), scientific-cannot-establish-a-lexeme, concept resolution, polytype/form scope retained, form-value veto, numeric unit+conditions+normalization, coexisting values, category-alone-inadmissible, use-scoped qualification, verification≠lock, admission≠activation, no routes, no public page, Contract-C safe, Spektrum stays lexical-only. All Pilot-01/Pilot-02/governance regressions green; wired L0/L1/L2 CI PASS.
+
+---
+
+# Scientific Provenance Closure (2026-09-20)
+
+Correction using the uploaded primary/review artifacts. Key rule: **retrieval repository ≠ originating scientific work**, and **different URLs ≠ independent science**. No new claim was activated; no source acquisition beyond the uploaded artifacts; band gap stays out of scope; nothing published.
+
+## Proven (now with corrected provenance)
+
+- **Formula MoS₂** (Claim A) — reworded to "The formula of molybdenum disulfide is MoS₂"; PubChem `MolecularFormula` field preserved verbatim in the locator. SUPPORTED.
+- **Layered nature of bulk MoS₂** — RSC 2015 review ("S–Mo–S stacks") + Acta 1983 excerpt ("layered dichalcogenides"). The word **`layered` is retained** and now directly evidenced.
+- **Existence/distinction of 1T, 2H, 3R** — RSC 2015 review (framework, coordination, stacking) + Acta 1983 excerpt (explicit "2H- and 3R-MoS₂").
+- **2H structural identity** (P6₃/mmc) — two INDEPENDENT originating determinations via COD (WORK-DICKINSON-PAULING-1923; WORK-SCHONFELD-HUANG-MOSS-1983) + RSC secondary corroboration. SUPPORTED.
+- **Lattice-a determinations** (Claim C) — 3.15(2) Å (1923 lineage) and 3.161 Å (1983 lineage), coexisting. SUPPORTED_CONDITIONAL.
+
+## Scoped
+
+- 2H-specific structure and lattice values; **3R-specific details** (R3m, AbA BcB CaC, a≈3.17 Å, c≈18.38 Å) are held in a SEPARATE record (`EVD-MOS2-3R-BOUNDARY-RSC`, no claim_id) and never attached to the 2H claim. Bulk vs monolayer boundary preserved (monolayer/1T out of scope).
+
+## Provenance model
+
+- **COD retrieval object**: `SRC-COD-MOS2-DICKINSON-1923`, `SRC-COD-MOS2-ACTACRYST-1983` are now category **`crystallographic_database`** (retrieval artifacts), role **`authoritative_database`**, each carrying `retrieval_repository` (COD), `cod_entry`, `originating_work_id`, and the **originating DOI**. They are no longer represented as the journal article.
+- **Originating scientific work**: `originating_work_registry.json` — `WORK-DICKINSON-PAULING-1923`, `WORK-SCHONFELD-HUANG-MOSS-1983`, `WORK-SONG-PARK-CHOI-2015`, `WORK-HUANG-1981` (with `related_work_ids`: Huang 1981 ↔ Schönfeld/Huang/Moss 1983).
+- **Lineage identity / independence law**: scientific independence is judged on `originating_work_id`, not source_id/URL/repository. Same work (e.g. the JACS-1923 excerpt and the COD 1010993 record) = ONE lineage → cannot corroborate itself. Distinct works (1923 vs 1983) = independent. Related works (thesis ↔ 1983) = conservatively not independent.
+- **Excerpt artifacts**: `SRC-ACTACRYST-MOS2-1983-EXCERPT` (page 404) and `SRC-JACS-MOLYBDENITE-1923-EXCERPT` (p.1466) are peer_reviewed_journal, role primary_scientific, admitted **only to excerpt scope**.
+- **RSC 2015**: `SRC-RSC-MOS2-REVIEW-2015`, peer_reviewed_journal (review), role **secondary_scholarly** — corroboration/context, never a primary experiment or a universal numerical-property source.
+- **Huang 1981 thesis**: `SRC-HUANG-THESIS-1981`, category **`academic_thesis`**, role secondary_scholarly — supporting provenance only; never substitutes for peer-reviewed evidence; not independent of the 1983 work.
+
+## Not inferred
+
+- Dickinson & Pauling (1923) explicitly using the modern label **`2H`** (the first page does not; the label is prohibited on that source).
+- All MoS₂ forms sharing one structure; band-gap universality; monolayer property equivalence.
+- The review article being a primary experimental determination; the thesis being peer-reviewed; a database copy being an independent scientific source.
+
+## Evidence roles & postures
+
+COD records → `authoritative_database`; original-article excerpts → `primary_scientific` (excerpt scope); RSC review → `secondary_scholarly`; thesis → `secondary_scholarly` (supporting). All admitted records: `evidence_verified`, source lock **candidate** → never `evidence_locked`. Claim A/B/C derive **evidence_sufficient** / SUPPORTED_CONDITIONAL from lineage-independent corroboration. **Contract-C = (not_public, noindex)** for every object; no route/claim activation/source-lock.
+
+## Tests
+
+`pilot_03_tests.py` extended to 34 proofs (adds §26 Claim-B component tests and §27 provenance tests: COD≠journal, originating DOI/work retained, retrieval≠work, same-work-one-lineage, distinct-lineage-independent, thesis≠journal, review≠primary). All Pilot-01/Pilot-02/governance regressions green; wired L0/L1/L2 CI PASS.

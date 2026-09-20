@@ -22,6 +22,11 @@ DATA = os.path.join(ROOT, "main", "data")
 GOVERNED_EVIDENCE_ROLES = {
     "primary_authoritative", "official_record", "primary_scientific",
     "secondary_scholarly", "corroborating", "contextual", "historical",
+    # authoritative_database: a curated authoritative DATABASE record faithfully
+    # representing an originating scientific work's structured data (e.g. a
+    # crystallographic-database CIF). Distinct from primary_scientific (the primary
+    # study itself). Scientific INDEPENDENCE is judged by originating_work lineage.
+    "authoritative_database",
 }
 ADMITTING_QUAL_STATES = {"qualified", "qualified_narrow"}
 
@@ -35,10 +40,19 @@ def load_all():
     reg = _load("sources", "source_registry.json")
     qual = _load("source_use_qualification_registry.json")
     pol = _load("source_admissibility_policy.json")
+    # Originating-work lineage (retrieval artifact != originating scientific work).
+    work_reg_path = os.path.join(DATA, "originating_work_registry.json")
+    related = {}
+    if os.path.exists(work_reg_path):
+        wr = _load("originating_work_registry.json")
+        for w in wr.get("works", []):
+            related[w["work_id"]] = set(w.get("related_work_ids", []) or [])
     return {
         "source_by_id": {s["source_id"]: s for s in reg["sources"]},
         "category_by_source": {s["source_id"]: s.get("category") for s in reg["sources"]},
         "revision_by_source": {s["source_id"]: s.get("identity_revision") for s in reg["sources"]},
+        "work_by_source": {s["source_id"]: s.get("originating_work_id") for s in reg["sources"]},
+        "related_works": related,
         "qual_by_id": {q["qualification_id"]: q for q in qual["qualifications"]},
         "category_roles": pol["category_default_roles"],
         "domains": pol["domain_admissibility"],
@@ -185,11 +199,24 @@ def admissible(context, data=None):
 # ---------------------------------------------------------------------------
 
 def _independent(u1, u2):
-    """Two evidence units are NOT independent if they share source/dataset/publisher/study."""
+    """Two evidence units are NOT independent if they share source/dataset/publisher/study,
+    OR (for scientific evidence) share the same ORIGINATING WORK lineage. Different URLs /
+    repositories / source_ids do NOT make two records independent if they ultimately
+    reproduce the same originating scientific work (retrieval artifact != originating work).
+    Each unit may carry related_work_ids for conservative shared-lineage handling
+    (e.g. a thesis sharing authors/data with a later paper)."""
     for key in ("source_id", "dataset", "publisher", "underlying_study"):
         a, b = u1.get(key), u2.get(key)
         if a is not None and a == b:
             return False
+    w1, w2 = u1.get("originating_work_id"), u2.get("originating_work_id")
+    if w1 is not None and w2 is not None:
+        if w1 == w2:
+            return False  # same originating work reached via different artifacts -> ONE lineage
+        r1 = set(u1.get("related_work_ids") or [])
+        r2 = set(u2.get("related_work_ids") or [])
+        if w2 in r1 or w1 in r2:
+            return False  # conservatively related lineages (shared authors/data)
     return True
 
 
@@ -211,10 +238,16 @@ def evaluate_sufficiency(units, pattern):
         ok = any(x.get("role") == "primary_authoritative" for x in u)
         return (ok, "primary_authoritative present" if ok else "no primary_authoritative record")
     if pattern == "primary_plus_corroborating":
-        primary = [x for x in u if x.get("role") in ("primary_authoritative", "official_record", "primary_scientific")]
-        corrob = [x for x in u if x.get("role") in ("corroborating", "official_record", "primary_authoritative", "primary_scientific")]
+        # 'primary' = a primary-grade record (primary study, official record, or an
+        # authoritative-database record faithfully representing a primary determination).
+        # 'corrob' additionally allows secondary_scholarly (e.g. a review) — as corroboration,
+        # never alone. Independence is judged by originating-work lineage (see _independent).
+        primary_roles = ("primary_authoritative", "official_record", "primary_scientific", "authoritative_database")
+        corrob_roles = primary_roles + ("corroborating", "secondary_scholarly")
+        primary = [x for x in u if x.get("role") in primary_roles]
+        corrob = [x for x in u if x.get("role") in corrob_roles]
         ok = bool(primary) and _has_independent_pair(primary, corrob)
-        return (ok, "primary + independent corroboration" if ok else "needs a primary and a genuinely independent corroborating record")
+        return (ok, "primary + independent corroboration" if ok else "needs a primary and a genuinely independent corroborating record (distinct originating work)")
     if pattern == "original_instrument_required":
         ok = any(x.get("category") == "regulatory_instrument" or x.get("is_instrument") for x in u)
         return (ok, "governing instrument present" if ok else "governing instrument required")
@@ -263,6 +296,11 @@ def build_admission_unit(evidence_record, qualification_id, intended_use, data=N
         # DIRECT vs CONTEXT binding, read from the evidence record (default direct). A context
         # unit is admissible on its own terms but never fills a relationship sufficiency slot.
         "binding": evidence_record.get("evidence_binding", "direct"),
+        # Scientific lineage: the ORIGINATING WORK behind this source's artifact, and works
+        # conservatively related to it. Sufficiency independence is judged on this, so a
+        # database copy and the original article of the SAME work never double-count.
+        "originating_work_id": d.get("work_by_source", {}).get(sid),
+        "related_work_ids": sorted(d.get("related_works", {}).get(d.get("work_by_source", {}).get(sid), set())),
     }
     return unit, reason
 

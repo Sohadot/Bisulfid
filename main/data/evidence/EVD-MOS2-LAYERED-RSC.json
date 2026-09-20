@@ -1,0 +1,45 @@
+{
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": [
+    "molybdenum_disulfide"
+  ],
+  "lexeme_ids": [],
+  "subject_domain": [
+    "SD-MATERIALS-SCIENCE"
+  ],
+  "geography": null,
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "retrieval_date": "2026-09-20",
+  "evidence_review_posture": "evidence_verified",
+  "evidence_id": "EVD-MOS2-LAYERED-RSC",
+  "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+  "claim_id": "CLM-MOS2-STRUCTURE-2H",
+  "evidence_role": "secondary_scholarly",
+  "claim_scope": "RSC Advances 2015 review (Song, Park & Choi) states that bulk MoS2 is a layered material in which each layer is composed of three-atom-thick S-Mo-S stacks. Secondary-scholarly corroboration of the LAYERED nature of bulk MoS2.",
+  "scientific_scope": {
+    "component": "layered_material",
+    "material_form": "bulk MoS2",
+    "source_type": "peer-reviewed review (secondary)"
+  },
+  "locator": {
+    "system": "RSC Advances 2015, 5, 7495-7514 (uploaded PDF)",
+    "doi": "10.1039/C4RA11852A",
+    "verbatim": "MoS2, like graphite, is a layered material, where each layer of MoS2 is composed of three-atom-thick S-Mo-S stacks."
+  },
+  "allowed_uses": [
+    "layered_structure_mos2"
+  ],
+  "prohibited_uses": [
+    "primary_experimental_determination",
+    "band_gap",
+    "numerical_physical_property_universal",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED (secondary_scholarly) via QUAL-RSC-MOS2-REVIEW-001 for 'layered_structure_mos2'. Corroborates the 'layered' component of Claim B; cannot alone establish a concept-level claim. originating_work WORK-SONG-PARK-CHOI-2015. Contract-C=(not_public,noindex)."
+}

@@ -104,7 +104,47 @@
         "current_status": "verified",
         "target_status_after_guardrail_transition": "verified",
         "source_lock_status_unchanged": "candidate",
-        "note": "Identity verified via COD CIF 9007660 (Schonfeld, Huang & Moss 1983; 2H-MoS2 P6_3/mmc). Independent of the 1923 determination. Lock candidate."
+        "note": "Identity verified via COD CIF 9007660 (Schonfeld, Huang & Moss 1983; 2H-MoS2 P6_3/mmc). Independent originating work from the 1923 determination. Provenance-closure: category crystallographic_database, originating_work_id WORK-SCHONFELD-HUANG-MOSS-1983, identity_revision rev-2026-09-20-2. Lock candidate."
+      },
+      {
+        "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+        "evidence_sprint": "pilot-03-scientific-provenance-closure",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Identity verified against the uploaded full PDF (RSC Advances 2015, 5, 7495-7514; doi 10.1039/C4RA11852A). Peer-reviewed REVIEW (secondary_scholarly). Lock candidate."
+      },
+      {
+        "source_id": "SRC-ACTACRYST-MOS2-1983-EXCERPT",
+        "evidence_sprint": "pilot-03-scientific-provenance-closure",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Identity verified against the uploaded page-404 EXCERPT image (Schonfeld, Huang & Moss 1983). Excerpt-scoped; same originating work as the COD 9007660 record. Lock candidate."
+      },
+      {
+        "source_id": "SRC-JACS-MOLYBDENITE-1923-EXCERPT",
+        "evidence_sprint": "pilot-03-scientific-provenance-closure",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Identity verified against the uploaded first-page EXCERPT image (Dickinson & Pauling 1923, p.1466). Excerpt-scoped; does not use modern '2H'; same originating work as the COD 1010993 record. Lock candidate."
+      },
+      {
+        "source_id": "SRC-HUANG-THESIS-1981",
+        "evidence_sprint": "pilot-03-scientific-provenance-closure",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Identity verified against the uploaded thesis PDF (Jen-Jer Huang, M.S., University of Houston, 1981). Category academic_thesis; supporting provenance only; related to WORK-SCHONFELD-HUANG-MOSS-1983. Lock candidate."
       }
     ],
     "next_charter": "Validator policy update sprint to permit verification_limited posture with individual verified rows while publication, claim, and route locks remain LOCKED"
@@ -127,7 +167,9 @@
     "official_standard",
     "customs_nomenclature_authority",
     "corporate_financial_report",
-    "corporate_sustainability_report"
+    "corporate_sustainability_report",
+    "crystallographic_database",
+    "academic_thesis"
   ],
   "source_categories_note": "Vocabulary only. The trade/customs/standard/nomenclature categories were ratified in earlier sprints; 'corporate_financial_report' and 'corporate_sustainability_report' were added in Pilot 02 (issuer-primary corporate disclosures) so an issuer's own audited statements are not mislabeled as market/industry press. Authority of each corporate category is strictly limited to the issuer's own disclosed facts. Adding vocabulary changed no source status or lock.",
   "identity_revision_note": "identity_revision is a governed, immutable revision id for a source's bibliographic identity. A source-use qualification records qualified_against_source_revision; if identity_revision changes, that qualification becomes review-required. Added incrementally (only where a qualification depends on it) without touching status/lock.",
@@ -784,63 +826,202 @@
     },
     {
       "source_id": "SRC-COD-MOS2-DICKINSON-1923",
-      "identity_revision": "rev-2026-09-20-1",
-      "category": "peer_reviewed_journal",
-      "publisher": "Journal of the American Chemical Society (accessed via Crystallography Open Database, COD entry 1010993)",
-      "title": "The crystal structure of molybdenite (2H-MoS2) — Dickinson & Pauling (1923)",
-      "author_or_organization": "Dickinson, R. G.; Pauling, L.",
+      "identity_revision": "rev-2026-09-20-2",
+      "category": "crystallographic_database",
+      "retrieval_repository": "Crystallography Open Database (COD)",
+      "cod_entry": "1010993",
+      "artifact_kind": "CIF crystallographic-data record (structured representation of the originating work)",
+      "originating_work_id": "WORK-DICKINSON-PAULING-1923",
+      "originating_doi": "10.1021/ja01659a020",
+      "originating_authors": "Dickinson, R. G.; Pauling, L.",
+      "originating_journal": "Journal of the American Chemical Society 45, 1466-1471",
+      "originating_year": 1923,
+      "publisher": "Crystallography Open Database (COD) — public-domain crystallographic data repository",
+      "title": "COD entry 1010993 — 2H-MoS2 (molybdenite) crystallographic data (structured record of Dickinson & Pauling 1923)",
+      "author_or_organization": "Crystallography Open Database (retrieval artifact); originating work by Dickinson, R. G.; Pauling, L.",
       "url": "https://www.crystallography.net/cod/1010993.html",
-      "doi": "10.1021/ja01659a020",
       "language": "en",
       "status": "verified",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-09-20",
       "use_for": [
-        "primary crystallographic determination of the 2H-MoS2 (molybdenite) structure: hexagonal space group P 6_3/m m c (No. 194), and its lattice parameters a and c, exactly as recorded (a = 3.15(2) Angstrom, c = 12.30(7) Angstrom), for the 2H polytype only"
+        "structured crystallographic data of the 2H-MoS2 (molybdenite) structure as represented in COD 1010993: hexagonal space group P 6_3/m m c (No. 194), and lattice parameters a and c exactly as recorded (a = 3.15(2) Angstrom, c = 12.30(7) Angstrom), 2H polytype only. Represents the ORIGINATING primary determination WORK-DICKINSON-PAULING-1923."
       ],
       "do_not_use_for": [
         "band gap or any electronic/optical property",
         "density or other non-structural property",
         "chemical-formula identity as a primary source (use the chemistry databases)",
-        "3R, 1T or monolayer/few-layer forms (this determination is 2H bulk)",
+        "3R, 1T or monolayer/few-layer forms (this record is 2H)",
+        "being treated as the peer-reviewed journal ARTICLE itself (this is the database representation; the article is the originating work)",
+        "asserting the modern label '2H' as text from the 1923 originating work (the CIF applies modern crystallographic labelling; the 1923 article did not use '2H')",
         "lexical/terminology claim",
         "route publication / claim approval / source-locking by itself"
       ],
       "risk_notes": [
-        "NEW source (Pilot 03). Foundational single-crystal determination (JACS 45, 1466-1471, 1923; doi 10.1021/ja01659a020). Retrieved 2026-09-20 as COD CIF file 1010993 (open, no credentials). Verbatim: space group 'P 63/m m c', No. 194; a=b=3.15(2), c=12.30(7), gamma=120.",
-        "Scope: 2H-MoS2 (molybdenite) ONLY. A separate polytype (3R, R3m) exists in COD and must never be conflated."
+        "PROVENANCE CORRECTED (Pilot 03 closure): this source is the COD DATABASE RECORD (retrieval artifact), NOT the JACS journal article. Category changed peer_reviewed_journal -> crystallographic_database; originating_work_id = WORK-DICKINSON-PAULING-1923 with originating DOI 10.1021/ja01659a020. identity_revision bumped rev-2026-09-20-1 -> rev-2026-09-20-2 to reflect the corrected identity model.",
+        "Verified 2026-09-20 against the uploaded CIF (1010993.cif): _symmetry_space_group_name_H-M 'P 63/m m c', IT number 194, a=b=3.15(2), c=12.30(7), gamma=120, Z=2, density_meas 4.92; _journal_paper_doi 10.1021/ja01659a020.",
+        "Scope: 2H only. The 3R polytype (R3m) is distinct and must never be conflated. Retrieval repository != originating scientific work."
       ],
-      "notes": "Peer-reviewed crystallographic determination accessed via the Crystallography Open Database (COD 1010993). Existing category peer_reviewed_journal (COD is the retrieval artifact, not a new source category). Identity verified, lock candidate; not claim-approved, not published."
+      "notes": "COD crystallographic-database record for 2H-MoS2 (structured representation of Dickinson & Pauling 1923). Category crystallographic_database (retrieval artifact). Identity verified, lock candidate; not claim-approved, not published."
     },
     {
       "source_id": "SRC-COD-MOS2-ACTACRYST-1983",
-      "identity_revision": "rev-2026-09-20-1",
-      "category": "peer_reviewed_journal",
-      "publisher": "Acta Crystallographica Section B (accessed via Crystallography Open Database, COD entry 9007660)",
-      "title": "Anharmonic thermal vibrations and structure of 2H-MoS2 — Schonfeld, Huang & Moss (1983)",
-      "author_or_organization": "Schonfeld, B.; Huang, J. J.; Moss, S. C.",
+      "identity_revision": "rev-2026-09-20-2",
+      "category": "crystallographic_database",
+      "retrieval_repository": "Crystallography Open Database (COD)",
+      "cod_entry": "9007660",
+      "artifact_kind": "CIF crystallographic-data record (structured representation of the originating work)",
+      "originating_work_id": "WORK-SCHONFELD-HUANG-MOSS-1983",
+      "originating_doi": "10.1107/S0108768183002645",
+      "originating_authors": "Schonfeld, B.; Huang, J. J.; Moss, S. C.",
+      "originating_journal": "Acta Crystallographica Section B 39, 404-407",
+      "originating_year": 1983,
+      "publisher": "Crystallography Open Database (COD) — public-domain crystallographic data repository",
+      "title": "COD entry 9007660 — 2H-MoS2 crystallographic data (structured record of Schonfeld, Huang & Moss 1983)",
+      "author_or_organization": "Crystallography Open Database (retrieval artifact); originating work by Schonfeld, B.; Huang, J. J.; Moss, S. C.",
       "url": "https://www.crystallography.net/cod/9007660.html",
-      "doi": "10.1107/S0108768183002645",
       "language": "en",
       "status": "verified",
       "source_lock_status": "candidate",
       "last_reviewed": "2026-09-20",
       "use_for": [
-        "independent primary crystallographic corroboration of the 2H-MoS2 structure (space group P 6_3/m m c, No. 194) and lattice parameters, exactly as recorded (a = 3.161 Angstrom, c = 12.295 Angstrom), 2H polytype only"
+        "structured crystallographic data corroborating the 2H-MoS2 structure (space group P 6_3/m m c, No. 194) and lattice parameters exactly as recorded (a = 3.161 Angstrom, c = 12.295 Angstrom), 2H polytype only. Represents the ORIGINATING primary determination WORK-SCHONFELD-HUANG-MOSS-1983."
       ],
       "do_not_use_for": [
         "band gap or any electronic/optical property",
         "density or other non-structural property",
         "chemical-formula identity as a primary source",
-        "3R, 1T or monolayer/few-layer forms (2H bulk determination)",
+        "3R, 1T or monolayer/few-layer forms (2H record)",
+        "being treated as the peer-reviewed journal ARTICLE itself (this is the database representation)",
         "lexical/terminology claim",
         "route publication / claim approval / source-locking by itself"
       ],
       "risk_notes": [
-        "NEW source (Pilot 03). Independent primary determination (Acta Cryst. B 39, 404, 1983; doi 10.1107/S0108768183002645). Retrieved 2026-09-20 as COD CIF file 9007660 (open, no credentials). Verbatim: 'P 63/m m c'; a=3.161, c=12.295, gamma=120.",
-        "Independent of the Dickinson & Pauling (1923) determination (different authors/journal/year) -> usable as corroboration for the 2H structure and lattice parameter."
+        "PROVENANCE CORRECTED (Pilot 03 closure): COD DATABASE RECORD (retrieval artifact), NOT the Acta Cryst article. Category peer_reviewed_journal -> crystallographic_database; originating_work_id = WORK-SCHONFELD-HUANG-MOSS-1983, originating DOI 10.1107/S0108768183002645. identity_revision rev-2026-09-20-1 -> rev-2026-09-20-2.",
+        "Verified 2026-09-20 via COD CIF 9007660: 'P 63/m m c', a=3.161, c=12.295, gamma=120.",
+        "Distinct originating work from WORK-DICKINSON-PAULING-1923 -> the two COD records are independent scientific lineages (1923 vs 1983), NOT merely different COD IDs."
       ],
-      "notes": "Peer-reviewed crystallographic determination accessed via COD 9007660. Existing category peer_reviewed_journal. Identity verified, lock candidate; not claim-approved, not published."
+      "notes": "COD crystallographic-database record for 2H-MoS2 (structured representation of Schonfeld, Huang & Moss 1983). Category crystallographic_database. Identity verified, lock candidate; not claim-approved, not published."
+    },
+    {
+      "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+      "identity_revision": "rev-2026-09-20-1",
+      "category": "peer_reviewed_journal",
+      "originating_work_id": "WORK-SONG-PARK-CHOI-2015",
+      "doi": "10.1039/C4RA11852A",
+      "publisher": "RSC Advances (Royal Society of Chemistry)",
+      "title": "Synthesis and properties of molybdenum disulphide: from bulk to atomic layers",
+      "author_or_organization": "Song, Intek; Park, Chibeom; Choi, Hee Cheul",
+      "url": "https://doi.org/10.1039/C4RA11852A",
+      "language": "en",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-09-20",
+      "artifact_kind": "complete peer-reviewed REVIEW article (uploaded full PDF)",
+      "use_for": [
+        "secondary-scholarly corroboration/context for MoS2 being a layered material (S-Mo-S stacks); the 1T/2H/3R polytype framework and their coordination/stacking; and the reviewed 2H (P63/mmc, AbA BaB, a=3.15 A, c=12.30 A) and 3R (R3m, AbA BcB CaC, a=3.17 A, c=18.38 A) reference structures, exactly as stated in the review"
+      ],
+      "do_not_use_for": [
+        "a PRIMARY experimental determination (this is a review)",
+        "band gap or any specific numerical physical property as an admitted Pilot-03 claim",
+        "monolayer/polytype-specific measured values outside the review's exact cited scope",
+        "route publication / claim approval / source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Pilot 03 closure). Verified 2026-09-20 against the uploaded full PDF (RSC Advances, 2015, 5, 7495-7514; doi 10.1039/C4RA11852A). Verbatim: 'MoS2, like graphite, is a layered material, where each layer ... is composed of three-atom-thick S-Mo-S stacks'; 'three known polytypes - namely 1T, 2H, and 3R'; Table 1 2H P63/mmc AbA BaB a=3.15 A c=12.30 A; 3R R3m AbA BcB CaC a=3.17 A c=18.38 A.",
+        "REVIEW (secondary_scholarly). Must corroborate/contextualize only; never a primary experiment and never a universal numerical-property source."
+      ],
+      "notes": "Peer-reviewed REVIEW article (existing category peer_reviewed_journal, which includes peer-reviewed reviews). Role secondary_scholarly. Identity verified, lock candidate; not claim-approved, not published."
+    },
+    {
+      "source_id": "SRC-ACTACRYST-MOS2-1983-EXCERPT",
+      "identity_revision": "rev-2026-09-20-1",
+      "category": "peer_reviewed_journal",
+      "originating_work_id": "WORK-SCHONFELD-HUANG-MOSS-1983",
+      "doi": "10.1107/S0108768183002645",
+      "publisher": "Acta Crystallographica Section B (International Union of Crystallography)",
+      "title": "Anisotropic Mean-Square Displacements (MSD) in Single Crystals of 2H- and 3R-MoS2 (page-404 excerpt)",
+      "author_or_organization": "Schonfeld, B.; Huang, J. J.; Moss, S. C.",
+      "url": "https://doi.org/10.1107/S0108768183002645",
+      "language": "en",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-09-20",
+      "artifact_kind": "EXCERPT — uploaded page-image of p.404 only (NOT the full article)",
+      "artifact_scope": "page 404 (title, authors, abstract, introduction, start of theory)",
+      "use_for": [
+        "primary-scientific facts VISIBLE on the page-404 excerpt: the explicit '2H- and 3R-MoS2' terminology; MoS2 belonging to the layered dichalcogenides of transition metals; trigonal-prismatic coordination; polytype stacking framework as introduced on that page"
+      ],
+      "do_not_use_for": [
+        "any fact from pages NOT in the excerpt (only page 404 was supplied)",
+        "the specific 2H lattice parameters as a primary determination (use the COD structured record / originating work)",
+        "route publication / claim approval / source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Pilot 03 closure). EXCERPT-SCOPED: only the page-404 image was supplied; do NOT represent the full paper as ingested. Verified 2026-09-20 against the uploaded image: title '... 2H- and 3R-MoS2'; intro 'MoS2 belongs to the layered dichalcogenides ...'; polytype/stacking discussion; z=0.127 (2H).",
+        "Same ORIGINATING WORK as SRC-COD-MOS2-ACTACRYST-1983 (WORK-SCHONFELD-HUANG-MOSS-1983) -> these two are NOT independent; they are one lineage in two representations."
+      ],
+      "notes": "Peer-reviewed primary article, EXCERPT artifact (page 404). Role primary_scientific (for visible facts only). Identity verified, lock candidate; not claim-approved, not published."
+    },
+    {
+      "source_id": "SRC-JACS-MOLYBDENITE-1923-EXCERPT",
+      "identity_revision": "rev-2026-09-20-1",
+      "category": "peer_reviewed_journal",
+      "originating_work_id": "WORK-DICKINSON-PAULING-1923",
+      "doi": "10.1021/ja01659a020",
+      "publisher": "Journal of the American Chemical Society (American Chemical Society)",
+      "title": "The Crystal Structure of Molybdenite (first-page excerpt, p.1466)",
+      "author_or_organization": "Dickinson, R. G.; Pauling, L.",
+      "url": "https://doi.org/10.1021/ja01659a020",
+      "language": "en",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-09-20",
+      "artifact_kind": "EXCERPT — uploaded first-page image (p.1466) only",
+      "artifact_scope": "page 1466 (title, authors, opening, 'The Unit of Structure', Table I)",
+      "use_for": [
+        "primary-scientific facts VISIBLE on the first-page excerpt: molybdenite; MoS2; hexagonal crystals with basal cleavage; original X-ray structural investigation; density 4.92 g/cc; bibliographic identity of the 1923 work"
+      ],
+      "do_not_use_for": [
+        "the modern label '2H' (the 1923 first page does NOT use it) — do not attribute '2H' to Dickinson & Pauling",
+        "facts from pages NOT in the excerpt",
+        "route publication / claim approval / source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Pilot 03 closure). EXCERPT-SCOPED: only the first-page image (p.1466) was supplied. Verified 2026-09-20 against the uploaded image: 'The mineral molybdenite, MoS2, is described as occurring in hexagonal crystals with a very complete basal cleavage'; X-ray spectral/Laue photographs; density 4.92 g/cc; d0001=6.15 A; axial ratio 1.95.",
+        "Same ORIGINATING WORK as SRC-COD-MOS2-DICKINSON-1923 (WORK-DICKINSON-PAULING-1923) -> NOT independent; one lineage in two representations. The modern '2H' label is NOT present on this page."
+      ],
+      "notes": "Peer-reviewed primary article, EXCERPT artifact (first page). Role primary_scientific (visible facts only). Identity verified, lock candidate; not claim-approved, not published."
+    },
+    {
+      "source_id": "SRC-HUANG-THESIS-1981",
+      "identity_revision": "rev-2026-09-20-1",
+      "category": "academic_thesis",
+      "originating_work_id": "WORK-HUANG-1981",
+      "doi": null,
+      "publisher": "University of Houston, Department of Physics (M.S. thesis)",
+      "title": "X-ray Study of Anisotropic Vibrations in MoS2",
+      "author_or_organization": "Huang, Jen-Jer (advisor S. C. Moss)",
+      "url": null,
+      "language": "en",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-09-20",
+      "artifact_kind": "complete M.S. thesis (uploaded PDF)",
+      "use_for": [
+        "SUPPORTING scholarly/experimental provenance for: the 2H-MoS2 terminology; sandwich-like/layered structure; hexagonal structure; A-B-A layer stacking; approximate a=3.15 A, c=12.30 A; and the experimental lineage leading to the 1983 Schonfeld/Huang/Moss determination"
+      ],
+      "do_not_use_for": [
+        "peer-reviewed corroboration where policy requires peer-reviewed/authoritative evidence (a thesis is NOT peer-reviewed journal)",
+        "a primary experimental determination that independently satisfies scientific sufficiency",
+        "independent corroboration of WORK-SCHONFELD-HUANG-MOSS-1983 (shared author/advisor/data lineage -> conservatively NOT independent)",
+        "route publication / claim approval / source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Pilot 03 closure). Category academic_thesis (NOT peer_reviewed_journal). Verified 2026-09-20 against the uploaded PDF (Jen-Jer Huang, M.S. Physics, University of Houston, August 1981). Verbatim: 'Molybdenite, 2H-MoS2, whose structure was first investigated by Dickinson and Pauling'; '2H-MoS2 is hexagonal ... MoS2 layers with A-B-A stacking'; 'c = 12.30 A and a = 3.15 A'; 'sandwich-like layer stacking'.",
+        "Role secondary_scholarly (supporting). related_work_ids includes WORK-SCHONFELD-HUANG-MOSS-1983 (shared author J. J. Huang, advisor S. C. Moss) -> the independence evaluator treats them as NOT independent."
+      ],
+      "notes": "Academic M.S. thesis. Category academic_thesis. Supporting scholarly provenance only; never substitutes for peer-reviewed/authoritative evidence. Identity verified, lock candidate; not claim-approved, not published."
     }
   ]
 }

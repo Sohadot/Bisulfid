@@ -4,9 +4,13 @@
   "test_fixture": false,
   "evidence_kind": "scientific",
   "claim_level": "concept",
-  "concept_ids": ["molybdenum_disulfide"],
+  "concept_ids": [
+    "molybdenum_disulfide"
+  ],
   "lexeme_ids": [],
-  "subject_domain": ["SD-MATERIALS-SCIENCE"],
+  "subject_domain": [
+    "SD-MATERIALS-SCIENCE"
+  ],
   "geography": null,
   "jurisdiction": null,
   "language_of_evidence": "en",
@@ -15,7 +19,7 @@
   "claim_id": "CLM-MOS2-LATTICE-A-2H",
   "retrieval_date": "2026-09-20",
   "evidence_review_posture": "evidence_verified",
-  "evidence_role": "primary_scientific",
+  "evidence_role": "authoritative_database",
   "scientific_scope": {
     "property": "hexagonal lattice parameter a",
     "material_form": "2H-MoS2, bulk single crystal",
@@ -31,10 +35,29 @@
       "property": "lattice_parameter_a",
       "unit": "angstrom",
       "printed": "3.161",
-      "series": {"value": {"source_literal": "3.161", "normalized_value": 3.161}}
+      "series": {
+        "value": {
+          "source_literal": "3.161",
+          "normalized_value": 3.161
+        }
+      }
     }
   },
-  "allowed_uses": ["lattice_parameter_2h"],
-  "prohibited_uses": ["band_gap", "density", "electronic_or_optical_property", "chemical_formula_identity_as_primary", "polytype_3r_or_1t_or_monolayer", "unit_conversion_without_governed_layer", "lexeme_or_terminology", "route_publication", "source_locking_by_itself", "claim_approval_by_itself"],
-  "governance_note": "ADMITTED: SRC-COD-MOS2-ACTACRYST-1983 verified; QUAL-COD-MOS2-ACTACRYST-001 qualified_narrow for 'lattice_parameter_2h'; admissible() TRUE. Independent corroboration of the lattice parameter. The 1923 (3.15(2)) and 1983 (3.161) values are preserved separately; no winner is chosen. Not evidence_locked. Contract-C = (not_public, noindex)."
+  "allowed_uses": [
+    "lattice_parameter_2h"
+  ],
+  "prohibited_uses": [
+    "band_gap",
+    "density",
+    "electronic_or_optical_property",
+    "chemical_formula_identity_as_primary",
+    "polytype_3r_or_1t_or_monolayer",
+    "unit_conversion_without_governed_layer",
+    "lexeme_or_terminology",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "governance_note": "ADMITTED: SRC-COD-MOS2-ACTACRYST-1983 verified; QUAL-COD-MOS2-ACTACRYST-001 qualified_narrow for 'lattice_parameter_2h'; admissible() TRUE. Independent corroboration of the lattice parameter. The 1923 (3.15(2)) and 1983 (3.161) values are preserved separately; no winner is chosen. Not evidence_locked. Contract-C = (not_public, noindex).",
+  "provenance_note": "Retrieval artifact = COD crystallographic-database record; the ORIGINATING primary determination is recorded via the source's originating_work_id lineage. Role authoritative_database (not the journal article itself)."
 }

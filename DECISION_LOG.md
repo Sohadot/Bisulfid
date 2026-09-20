@@ -5370,3 +5370,27 @@ All six records admissible()=True, evidence_verified, lock candidate → never e
 
 ### Stop
 No Pilot 04.
+
+---
+
+## Pilot 03 — Scientific Provenance Closure
+
+**Date:** 2026-09-20
+**Baseline:** commit `de5651706c`. Narrow closure correcting the scientific-provenance model using uploaded primary/review artifacts (RSC 2015 review PDF; Huang 1981 thesis PDF; Acta 1983 page-404 excerpt; Dickinson & Pauling 1923 first-page excerpt; COD 1010993 CIF). No new claim, no acquisition beyond the uploads, no policy weakening, no publication, no Pilot 04. Pilots 01/02 untouched.
+
+**Durable rule (general):** scientific-source provenance now separates the **retrieval artifact** from the **originating scientific work**. A source records `originating_work_id` (see `originating_work_registry.json`); scientific **independence is evaluated on originating-work lineage**, not on source_id/URL/repository. A database reproduction of a publication does **not** create an independent scientific source (same-work records are deduplicated for sufficiency); genuinely distinct works are independent; conservatively-related works (shared authors/data) are not independent. This applies to future scientific ingestion.
+
+**Mechanisms added/changed:**
+- New categories `crystallographic_database` (COD retrieval records; role `authoritative_database`) and `academic_thesis` (role secondary_scholarly). New governed evidence role `authoritative_database`.
+- `originating_work_registry.json` (WORK-DICKINSON-PAULING-1923, WORK-SCHONFELD-HUANG-MOSS-1983, WORK-SONG-PARK-CHOI-2015, WORK-HUANG-1981; related_work_ids Huang↔1983).
+- `_independent()` now also returns not-independent on same/related originating_work; `build_admission_unit` carries lineage; `evaluate_sufficiency` counts `authoritative_database` as primary-grade and `secondary_scholarly` as corroboration-only. Chemistry domain admits the new roles/categories; sufficiency (`primary_plus_corroborating`) NOT weakened.
+- COD sources re-modelled to crystallographic_database + originating_work_id + originating DOI (identity_revision → rev-2026-09-20-2; quals updated). New sources: RSC review (peer_reviewed_journal/secondary_scholarly), Acta-1983 excerpt & JACS-1923 excerpt (peer_reviewed_journal/primary_scientific, excerpt-scoped), Huang thesis (academic_thesis). All verified, lock candidate.
+
+**Claims:** A reworded ("The formula of molybdenum disulfide is MoS2"; PubChem field name preserved) — SUPPORTED. B made component-aware (layered / 2H-naming / space-group-lattice), `layered` retained and directly evidenced, 2H/3R distinction preserved (3R in a separate boundary record, never on the 2H claim), Dickinson 1923 NOT credited with the modern "2H" label — SUPPORTED. C unchanged (2H-bulk a: 3.15(2) & 3.161 Å, coexisting) — SUPPORTED_CONDITIONAL. Band gap remains out of scope.
+
+**Postures / Contract-C:** all admitted records evidence_verified, lock candidate → never evidence_locked; Contract-C = (not_public, noindex) everywhere.
+
+**Tests:** `pilot_03_tests.py` extended to 34 proofs (§26 component + §27 provenance); all Pilot-01/Pilot-02/governance regressions green; wired L0/L1/L2 CI PASS.
+
+### Stop
+No Pilot 04. No Reference Production in this commit.
