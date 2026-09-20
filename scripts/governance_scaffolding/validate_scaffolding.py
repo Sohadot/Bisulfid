@@ -204,15 +204,28 @@ def _keys_recursive(obj):
 
 def validate_information_gain():
     d = load(os.path.join(DATA, "information_gain", "calibration_pairs.json"))
-    check(d.get("pairs") == [], "information_gain: pairs must be empty this sprint")
-    check(set(d.get("labels", [])) == {
-        "true_duplicate", "near_duplicate", "valid_sibling",
-        "valid_localization", "valid_domain_specific_reference"
-    }, "information_gain: five canonical labels required")
-    # No threshold may be *defined* (as a key/field). The word may appear in prose rules
+    labels = {"true_duplicate", "near_duplicate", "valid_sibling",
+              "valid_localization", "valid_domain_specific_reference"}
+    signal_names = set(d.get("signals", []))
+    check(set(d.get("labels", [])) == labels, "information_gain: five canonical labels required")
+    # No threshold/weight may be *defined* (as a key/field). The word may appear in prose rules
     # (which explicitly state none is defined), so inspect KEYS, not serialized text.
     bad_keys = [k for k in _keys_recursive(d) if "threshold" in k.lower() or "weight" in k.lower()]
-    check(not bad_keys, f"information_gain: no threshold/weight field may be defined this sprint (found keys {bad_keys})")
+    check(not bad_keys, f"information_gain: no threshold/weight field may be defined (found keys {bad_keys})")
+    # Seeded pairs (reference-production-01 onward) must conform: real endpoints, governed label,
+    # governed signal keys, labeler/date. textual_similarity may never be the only non-trivial signal.
+    for p in d.get("pairs", []):
+        pid = p.get("pair_id", "?")
+        check(bool(pid) and pid.startswith("PAIR-"), f"IG pair {pid}: bad/missing pair_id")
+        check(p.get("label") in labels, f"IG pair {pid}: label '{p.get('label')}' not governed")
+        a = p.get("route_a") or p.get("object_a")
+        b = p.get("route_b") or p.get("object_b")
+        check(bool(a) and bool(b), f"IG pair {pid}: must supply endpoint A (route_a/object_a) and B (route_b/object_b)")
+        sig = p.get("signals")
+        check(isinstance(sig, dict) and set(sig.keys()).issubset(signal_names),
+              f"IG pair {pid}: signals must be an object keyed by governed signal names")
+        check("textual_similarity" in sig, f"IG pair {pid}: textual_similarity must be recorded (diagnostic)")
+        check(p.get("labeler") and p.get("labeled_at"), f"IG pair {pid}: labeler and labeled_at required")
 
 
 def validate_source_qualification():
@@ -266,6 +279,63 @@ def validate_source_qualification():
 
     cl = load(os.path.join(DATA, "claim_activation_policy.json"))
     check(cl["this_sprint"].startswith("No registry activated"), "claim policy: nothing may be activated this sprint")
+
+
+def validate_knowledge_objects():
+    path = os.path.join(DATA, "knowledge_objects", "knowledge_object_registry.json")
+    if not os.path.exists(path):
+        return
+    import importlib
+    cc = importlib.import_module("contract_c_derive")
+    reg = load(path)
+    req = set(reg["record_schema"]["required_fields"])
+    forbidden = set(reg["record_schema"]["forbidden_fields"])
+    # resolve helpers
+    onto_roles = load(os.path.join(DATA, "ontology_node_roles.json"))
+    concept_eligible = {n["term_id"] for n in onto_roles["node_roles"] if n["role"] == "concept_eligible"}
+    ev_dir = os.path.join(DATA, "evidence")
+    ev_ids = {load(os.path.join(ev_dir, n)).get("evidence_id") for n in os.listdir(ev_dir) if n.startswith("EVD-") and n.endswith(".json")}
+    # pilot claim ids
+    claim_ids = set()
+    pilots = os.path.join(DATA, "pilots")
+    for n in os.listdir(pilots):
+        if n.endswith(".json") and "claims" in n.lower():
+            for c in load(os.path.join(pilots, n)).get("claims", []):
+                if c.get("claim_id"):
+                    claim_ids.add(c["claim_id"])
+    for ko in reg["knowledge_objects"]:
+        kid = ko["knowledge_object_id"]
+        check(kid.startswith("KO-"), f"KO {kid}: bad id prefix")
+        for f in req:
+            check(f in ko, f"KO {kid}: missing required field '{f}'")
+        leaked = forbidden.intersection(ko.keys())
+        check(not leaked, f"KO {kid}: forbidden field(s) {sorted(leaked)} (KO must not own routes/urls/raw values)")
+        for e in ko.get("entity_ids", []):
+            check(e in concept_eligible, f"KO {kid}: entity_id '{e}' not concept-eligible")
+        for cid in ko.get("claim_ids", []):
+            check(cid in claim_ids, f"KO {kid}: claim_id '{cid}' does not resolve to a pilot claim")
+        for eid in ko.get("evidence_ids", []) + ko.get("boundary_evidence_ids", []):
+            check(eid in ev_ids, f"KO {kid}: evidence_id '{eid}' does not resolve")
+        # KO references existing claims; it does not invent facts (no evidence value fields)
+        check(ko.get("claim_source") == "pilot_non_operational",
+              f"KO {kid}: claim_source must be pilot_non_operational (claims not activated)")
+        # German lexical evidence must NOT be merged into a scientific KO
+        if ko.get("knowledge_role") == "scientific_reference":
+            check("EVD-MOS2-DE-001" not in ko.get("evidence_ids", []),
+                  f"KO {kid}: German lexical evidence must not be merged into a scientific KO")
+        # 3R boundary evidence stays boundary-only (never a claim binding)
+        bound_claim_ev = {e for cb in ko.get("claim_bindings", []) for e in cb.get("evidence_ids", [])}
+        check("EVD-MOS2-3R-BOUNDARY-RSC" not in bound_claim_ev,
+              f"KO {kid}: 3R boundary evidence must not support a claim binding")
+        # derived Contract-C must EQUAL the recomputed value (never a manual authorization)
+        p = ko["postures"]
+        recomputed = cc.derive(governance=p["governance_posture"], evidence=p["evidence_posture"],
+                               claim=p["claim_posture"], validation=p["validation_posture"],
+                               ig=p["information_gain_posture"], release=p["release_authorization"])
+        dc = ko["derived_contract_c"]
+        check((dc["publication_state"], dc["indexation_state"]) == recomputed,
+              f"KO {kid}: derived_contract_c {dc} != recomputed {recomputed}")
+        check(recomputed == ("not_public", "noindex"), f"KO {kid}: a reference_draft/ig_not_reviewed KO must be not_public/noindex")
 
 
 def validate_scientific_provenance():
@@ -385,6 +455,7 @@ def main():
     validate_classification()
     validate_organization()
     validate_scientific_provenance()
+    validate_knowledge_objects()
     print(f"    (ran {CHECKS} checks)")
     print("=" * 56)
     if ERRORS:

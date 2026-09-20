@@ -5421,3 +5421,24 @@ No Pilot 04. No Reference Production in this commit.
 
 ### Stop
 No Reference Production in this commit.
+
+---
+
+## Reference Production 01 — MoS₂ Scientific Knowledge Object
+
+**Date:** 2026-09-20
+**Baseline:** commit `48f4b7e583`. First REFERENCE PRODUCTION sprint (Pilots 01/02/03 closed). Exercises Evidence → Claim Set → Knowledge Object → Information Gain review → Publication Candidate. No web/acquisition, no band gap, no route/HTML/sitemap/robots/indexation, no claim activation, no source lock, no PR.
+
+**Durable decisions:**
+- The pilot phase is closed; the first production **Knowledge Object** exists: `KO-MOS2-SCIENTIFIC-001` (`main/data/knowledge_objects/`), aggregating Pilot-03 governed scientific claims/evidence for `molybdenum_disulfide` (formula; layered 2H P6₃/mmc structure; 2H-bulk lattice a).
+- **Knowledge Objects aggregate governed claims/evidence but do NOT re-own facts** (One-Fact-One-Owner): evidence owns literals/measurements/uncertainty; claims own propositions; the KO owns composition/scope/boundaries/reference-role only. Raw values (`source_literal`/`normalized_value`) and route/url/html are forbidden KO fields; display values derive from evidence.
+- **Information Gain is semantic and multi-signal, never prose-similarity optimization.** `calibration_pairs.json` seeded with 3 real pairs (schema extended for governed `object_a/object_b` endpoints); textual_similarity is diagnostic only; **no numeric threshold/weight** is introduced. Findings: the scientific KO is a `valid_domain_specific_reference` vs the German lexical MoS2 object; formula/structure/property are MODULES of one object (`near_duplicate` if split into URLs); the KO shares the legacy `/molybdenum-disulfide/` task so a new URL is not warranted.
+- **No URL exists before a legitimate IG decision.** Current governance ratifies no non-numeric IG-pass authority, so `information_gain_posture = ig_not_reviewed` even though the human-readable IG review is complete. Publication candidate `PC-MOS2-SCIENTIFIC-001` = `internal_candidate`, disposition `independent_reference_candidate` (never published/indexable).
+- **Legacy 14K visibility rules do not authorize new objects.** Contract-C is DERIVED via `contract_c_derive.py` = **(not_public, noindex)** (governance reference_draft + ig_not_reviewed); the derived value is recomputed and checked, never manually authorized. `PUBLICATION_GATE_MODEL_14000.md` and similar historical artifacts do not govern this object.
+
+**Postures:** evidence_posture evidence_sufficient (derived; source locks candidate → never evidence_locked); claim_posture claim_pending (pilot non-operational); validation not_validated; ig_not_reviewed; release not_authorized. Nearest legacy routes (comparison only, unmodified): `molybdenum_disulfide`, `de_core_mos2`, `de_molybdenum_disulfide`, ~150 `cohort02_en_molybdenum_disulfide_*`.
+
+**Tests:** `reference_production_tests.py` (22 proofs) PASS; `validate_scaffolding` KO + IG checks added; all Pilot-01/02/03 + independence + governance regressions green; wired L0/L1/L2 CI PASS.
+
+### Stop
+No public route. No Reference Production 02.
