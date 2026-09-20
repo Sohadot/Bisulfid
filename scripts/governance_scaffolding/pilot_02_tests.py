@@ -194,8 +194,8 @@ def main():
     ok("14e_no_geo_ma_industrial", ge == [])
 
     # --- independence ---
-    uA = {"role": "primary_authoritative", "source_id": "SRC-OCP-AFR-2024", "publisher": "OCP Group"}
-    uS = {"role": "corroborating", "source_id": "SRC-OCP-SUSTAINABILITY-2024", "publisher": "OCP Group"}
+    uA = {"role": "primary_authoritative", "source_id": "SRC-OCP-AFR-2024", "issuer_id": "ORG-OCP-GROUP"}
+    uS = {"role": "corroborating", "source_id": "SRC-OCP-SUSTAINABILITY-2024", "issuer_id": "ORG-OCP-GROUP"}
     ok("15a_same_issuer_not_independent", _independent(uA, uS) is False)
     ok("15b_no_self_corroboration", evaluate_sufficiency([uA, uS], "primary_plus_corroborating")[0] is False)
 

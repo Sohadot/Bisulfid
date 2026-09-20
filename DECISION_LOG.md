@@ -5394,3 +5394,30 @@ No Pilot 04.
 
 ### Stop
 No Pilot 04. No Reference Production in this commit.
+
+---
+
+## Pre-Production Independence Semantics Hardening
+
+**Date:** 2026-09-20
+**Baseline:** commit `46a5902df5`. One cross-domain engine gap closed before production: `build_admission_unit()` did not propagate corporate/dataset lineage, while `_independent()` used a global publisher veto that is both under- and over-broad. No new sources, no changed claim outcomes, no Pilot 04, no Reference Production.
+
+**Durable law — evidence independence is DOMAIN-SEMANTIC, not URL/publisher-semantic:**
+- **same source** → never independent;
+- **science** → originating-work / data lineage (`originating_work_id` + `related_work_ids`); a database copy and the article of the same work are ONE lineage; two DISTINCT works from the same journal CAN be independent;
+- **corporate** → issuer lineage (`issuer_id`, e.g. `ORG-OCP-GROUP`); same issuer ⇒ not independent even with different source_ids; different issuers are not collapsed by matching category;
+- **trade/statistical** → governed `dataset_id` / `underlying_study_id` release lineage (never invented where unknown).
+- **Free-text publisher/URL equality is NOT a universal independence key.**
+
+**Changes:**
+- `_independent()` re-typed to the keys above; global publisher veto removed.
+- `build_admission_unit()` now propagates governed independence metadata: `independence_domain` (derived from subject_domain), `originating_work_id`, `related_work_ids`, `issuer_id`, `dataset_id`. `load_all()` exposes `issuer_by_source` / `dataset_by_source`.
+- Backfill: the two OCP sources bound to `issuer_id = ORG-OCP-GROUP` (preserving AFR + Sustainability = same-issuer, not independent). MoS2 keeps originating-work lineage; Pilot 01 trade sources get no invented dataset lineage.
+- Policy: `evidence_independence_model` block added to `source_admissibility_policy.json` (machine-discoverable).
+
+**Unchanged outcomes:** Pilot 01 (trade evidence_collecting), Pilot 02 (relationship evidence_collecting), Pilot 03 A/B/C (evidence_sufficient / conditional). Contract-C = (not_public, noindex) everywhere.
+
+**Tests:** new `independence_semantics_tests.py` (13 proofs) PASS; all Pilot-01/02/03 + governance regressions green; wired L0/L1/L2 CI PASS.
+
+### Stop
+No Reference Production in this commit.

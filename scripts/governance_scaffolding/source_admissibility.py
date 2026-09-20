@@ -53,11 +53,34 @@ def load_all():
         "revision_by_source": {s["source_id"]: s.get("identity_revision") for s in reg["sources"]},
         "work_by_source": {s["source_id"]: s.get("originating_work_id") for s in reg["sources"]},
         "related_works": related,
+        # Governed corporate ISSUER lineage and statistical/trade DATASET lineage
+        # (explicit fields only — never inferred from names/URLs).
+        "issuer_by_source": {s["source_id"]: s.get("issuer_id") for s in reg["sources"]},
+        "dataset_by_source": {s["source_id"]: (s.get("dataset_id") or s.get("underlying_study_id")) for s in reg["sources"]},
         "qual_by_id": {q["qualification_id"]: q for q in qual["qualifications"]},
         "category_roles": pol["category_default_roles"],
         "domains": pol["domain_admissibility"],
         "policy": pol,
     }
+
+
+# Governed mapping of subject_domain -> independence domain. Used for admission-unit
+# metadata; the actual independence test is key-based (see _independent), so only the
+# lineage keys that a domain populates ever match.
+_SCIENCE_DOMAINS = {"SD-CHEMISTRY", "SD-INORGANIC-CHEMISTRY", "SD-MATERIALS-SCIENCE",
+                    "SD-PHYSICS", "SD-BIOLOGY", "SD-BIOMEDICAL", "SD-NOMENCLATURE"}
+_CORPORATE_DOMAINS = {"SD-CORPORATE-FINANCIALS", "SD-INDUSTRIAL"}
+_TRADE_DOMAINS = {"SD-TRADE", "SD-ECONOMICS", "SD-CUSTOMS-CLASSIFICATION"}
+
+
+def _independence_domain(subject_domain):
+    if subject_domain in _SCIENCE_DOMAINS:
+        return "science"
+    if subject_domain in _CORPORATE_DOMAINS:
+        return "corporate"
+    if subject_domain in _TRADE_DOMAINS:
+        return "trade_statistical"
+    return "other"
 
 
 def _domain_rule(domains_policy, subject_domain):
@@ -199,24 +222,35 @@ def admissible(context, data=None):
 # ---------------------------------------------------------------------------
 
 def _independent(u1, u2):
-    """Two evidence units are NOT independent if they share source/dataset/publisher/study,
-    OR (for scientific evidence) share the same ORIGINATING WORK lineage. Different URLs /
-    repositories / source_ids do NOT make two records independent if they ultimately
-    reproduce the same originating scientific work (retrieval artifact != originating work).
-    Each unit may carry related_work_ids for conservative shared-lineage handling
-    (e.g. a thesis sharing authors/data with a later paper)."""
-    for key in ("source_id", "dataset", "publisher", "underlying_study"):
-        a, b = u1.get(key), u2.get(key)
-        if a is not None and a == b:
-            return False
+    """Domain-SEMANTIC independence (not URL/publisher-semantic). Two evidence units are
+    NOT independent when they share a governed lineage key:
+      - same registered source_id (always);
+      - SCIENCE: same or conservatively-related originating_work_id (retrieval artifact !=
+        originating work; a database copy and the article of the same work are ONE lineage);
+      - CORPORATE: same issuer_id (e.g. two OCP reports -> ORG-OCP-GROUP);
+      - STATISTICAL/TRADE: same governed dataset_id / underlying_study_id (release lineage).
+    Journal/publisher equality is DELIBERATELY NOT an independence key: two distinct
+    scientific works from the same journal can be independent. Lineage is never inferred
+    from organization names or URL strings — only explicit governed ids are compared."""
+    # same registered source is never independent
+    if u1.get("source_id") is not None and u1.get("source_id") == u2.get("source_id"):
+        return False
+    # SCIENCE: originating-work lineage (+ conservative related works)
     w1, w2 = u1.get("originating_work_id"), u2.get("originating_work_id")
     if w1 is not None and w2 is not None:
         if w1 == w2:
-            return False  # same originating work reached via different artifacts -> ONE lineage
-        r1 = set(u1.get("related_work_ids") or [])
-        r2 = set(u2.get("related_work_ids") or [])
-        if w2 in r1 or w1 in r2:
-            return False  # conservatively related lineages (shared authors/data)
+            return False
+        if w2 in set(u1.get("related_work_ids") or []) or w1 in set(u2.get("related_work_ids") or []):
+            return False
+    # CORPORATE: issuer lineage
+    i1, i2 = u1.get("issuer_id"), u2.get("issuer_id")
+    if i1 is not None and i2 is not None and i1 == i2:
+        return False
+    # STATISTICAL/TRADE: governed dataset / study lineage
+    for key in ("dataset_id", "underlying_study_id"):
+        a, b = u1.get(key), u2.get(key)
+        if a is not None and a == b:
+            return False
     return True
 
 
@@ -296,11 +330,14 @@ def build_admission_unit(evidence_record, qualification_id, intended_use, data=N
         # DIRECT vs CONTEXT binding, read from the evidence record (default direct). A context
         # unit is admissible on its own terms but never fills a relationship sufficiency slot.
         "binding": evidence_record.get("evidence_binding", "direct"),
-        # Scientific lineage: the ORIGINATING WORK behind this source's artifact, and works
-        # conservatively related to it. Sufficiency independence is judged on this, so a
-        # database copy and the original article of the SAME work never double-count.
+        # Governed independence metadata (explicit fields only; never free-text publisher).
+        # independence_domain is derived from the evidence subject_domain; the lineage keys
+        # (originating_work_id / issuer_id / dataset_id) are propagated from the source.
+        "independence_domain": _independence_domain((evidence_record.get("subject_domain") or [None])[0]),
         "originating_work_id": d.get("work_by_source", {}).get(sid),
         "related_work_ids": sorted(d.get("related_works", {}).get(d.get("work_by_source", {}).get(sid), set())),
+        "issuer_id": d.get("issuer_by_source", {}).get(sid),
+        "dataset_id": d.get("dataset_by_source", {}).get(sid),
     }
     return unit, reason
 

@@ -162,5 +162,17 @@
   ],
 
   "admissibility_inputs": ["source_category", "qualification_scope", "permitted_and_prohibited_use", "subject_domain", "evidence_kind", "claim_level", "geography", "jurisdiction", "temporal_scope", "source_version", "evidence_role"],
-  "layer_independence": "admissible(...) answers ONLY 'may this evidence be admitted?'. It never returns claim approval, claim-registry activation, route publication, or indexation — those are separate, later, independent decisions."
+  "layer_independence": "admissible(...) answers ONLY 'may this evidence be admitted?'. It never returns claim approval, claim-registry activation, route publication, or indexation — those are separate, later, independent decisions.",
+  "evidence_independence_model": {
+    "principle": "Evidence independence for corroboration is DOMAIN-SEMANTIC, judged on explicit governed lineage keys — never on free-text publisher equality or URL strings.",
+    "keys": {
+      "always": "same source_id => NOT independent.",
+      "science": "same or conservatively-related originating_work_id => NOT independent (retrieval artifact != originating scientific work; a database copy and the article of the same work are one lineage). Two DISTINCT works from the same journal/publisher CAN be independent.",
+      "corporate": "same issuer_id (e.g. ORG-OCP-GROUP) => NOT independent; two reports from the same issuer are not independent corroboration merely because source_ids differ. Different issuers are not collapsed by matching category.",
+      "trade_statistical": "same governed dataset_id / underlying_study_id => NOT independent (shared release lineage). Lineage is never invented where unknown."
+    },
+    "not_a_key": "journal/publisher name and URL are metadata only; neither is a universal independence key.",
+    "admission_unit_fields": ["independence_domain", "originating_work_id", "related_work_ids", "issuer_id", "dataset_id"],
+    "implemented_in": "scripts/governance_scaffolding/source_admissibility.py (_independent, build_admission_unit, load_all)."
+  }
 }
