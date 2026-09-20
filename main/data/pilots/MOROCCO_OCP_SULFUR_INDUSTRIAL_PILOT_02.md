@@ -33,7 +33,14 @@ The same page-21 paragraph states sulfur purchases "decreased by 256 million dir
 
 ## Relationship
 
-`REL-INST-OCP-SULFUR-FY2024`: **ORG-OCP-GROUP → REL-INDUSTRIAL-USER → sulfur**, FY2024-bounded, `qualification_state = evidence_collecting`, evidence_ids = [purchase, consumption, phosphate-process]. **Not upgraded** to `evidence_qualified`: REL-INDUSTRIAL-USER requires primary production/statistical/scientific categories plus **independent** corroboration; OCP is a single issuer and all three records are not independent. Policy not weakened.
+`REL-INST-OCP-SULFUR-FY2024`: **ORG-OCP-GROUP → REL-INDUSTRIAL-USER → sulfur**, FY2024-bounded, `qualification_state = evidence_collecting`.
+
+**Direct vs contextual evidence binding** (semantic correction, 2026-09-20):
+- `evidence_ids` (**DIRECT**, the only slot that can satisfy sufficiency): `EVD-OCP-SULFUR-PURCHASE-FY2024`, `EVD-OCP-SULFUR-CONSUMPTION-FY2024` — both directly about elemental sulfur.
+- `context_evidence_ids` (**CONTEXT**, never fills a sufficiency slot, never raises posture): `EVD-OCP-PHOSPHATE-PROCESS-2024` — page-20 sulphuric-acid processing; explains the chain but does not directly assert elemental sulfur use.
+- Combined view = direct + context is **derived** (`relationship_grammar.combined_evidence_ids`), never stored as a third truth.
+
+**Not upgraded** to `evidence_qualified`: REL-INDUSTRIAL-USER requires primary production/statistical/scientific categories plus **independent** corroboration; the two DIRECT records are the same single issuer (not independent), and the process record is context-only. Policy not weakened. The sufficiency evaluator now structurally excludes context-bound units (`binding == "context"`), so contextual evidence can neither fill a slot nor raise posture; removing it cannot erase Claim C, which stands on its own evidence at its own scope.
 
 ## Independence
 
@@ -45,7 +52,7 @@ The financial report and the sustainability report share the issuer (OCP Group).
 |---|---|---|---|---|---|---|
 | `EVD-OCP-SULFUR-PURCHASE-FY2024` | yes | `QUAL-OCP-AFR-001` qualified_narrow | **True** | evidence_verified | single_authoritative_sufficient | **evidence_sufficient** (not locked — lock candidate) |
 | `EVD-OCP-SULFUR-CONSUMPTION-FY2024` | yes | `QUAL-OCP-AFR-001` qualified_narrow | **True** | evidence_verified | primary_plus_corroborating | **evidence_collecting** (single issuer) |
-| `EVD-OCP-PHOSPHATE-PROCESS-2024` | yes | `QUAL-OCP-SUS-001` qualified_narrow | **True** | evidence_verified | primary_plus_corroborating | **evidence_collecting** (single issuer) |
+| `EVD-OCP-PHOSPHATE-PROCESS-2024` (CONTEXT) | yes | `QUAL-OCP-SUS-001` qualified_narrow | **True** | evidence_verified | n/a — context-bound, excluded from sufficiency | supports Claim C; **does not** count toward the relationship |
 | Relationship `REL-INST-OCP-SULFUR-FY2024` | — | — | — | — | primary_plus_corroborating | **evidence_collecting** |
 
 ## Third-party assurance bounding (Claim C source)

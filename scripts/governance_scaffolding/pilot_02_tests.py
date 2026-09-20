@@ -183,7 +183,9 @@ def main():
     # 14 grammar valid; evidence_collecting; FY2024-bounded; NOT evidence_qualified
     ok("14a_grammar_valid", validate_instance(inst, rels) == [])
     ok("14b_period_bounded", inst["temporal_scope"]["valid_from"] == "2024-01-01" and inst["temporal_scope"]["valid_to"] == "2024-12-31")
-    ok("14c_not_qualified", inst["qualification_state"] == "evidence_collecting" and len(inst["evidence_ids"]) == 3)
+    ok("14c_not_qualified", inst["qualification_state"] == "evidence_collecting"
+       and inst["evidence_ids"] == ["EVD-OCP-SULFUR-PURCHASE-FY2024", "EVD-OCP-SULFUR-CONSUMPTION-FY2024"]
+       and inst["context_evidence_ids"] == ["EVD-OCP-PHOSPHATE-PROCESS-2024"])
     # reversed direction rejected (sulfur cannot be the subject of REL-INDUSTRIAL-USER)
     rev = {**inst, "subject_ref": "sulfur", "subject_type": "concept", "object_ref": "ORG-OCP-GROUP", "object_type": "organization"}
     ok("14d_reverse_rejected", validate_instance(rev, rels) != [])
@@ -212,6 +214,45 @@ def main():
         validation="not_validated", ig="ig_not_reviewed", release="not_authorized") == ("not_public", "noindex"))
     ok("17c_contract_c_relationship", derive(governance="planned", evidence=c_posture, claim="claim_pending",
         validation="not_validated", ig="ig_not_reviewed", release="not_authorized") == ("not_public", "noindex"))
+
+    # --- §5 direct vs context distinction ---
+    from relationship_grammar import combined_evidence_ids
+    # 18 page-20 process evidence is CONTEXT, not direct; A/B are DIRECT
+    ok("18a_process_is_context", process.get("evidence_binding") == "context"
+       and "EVD-OCP-PHOSPHATE-PROCESS-2024" in inst["context_evidence_ids"]
+       and "EVD-OCP-PHOSPHATE-PROCESS-2024" not in inst["evidence_ids"])
+    ok("18b_ab_are_direct", purchase.get("evidence_binding", "direct") == "direct"
+       and consumption.get("evidence_binding", "direct") == "direct"
+       and inst["evidence_ids"] == ["EVD-OCP-SULFUR-PURCHASE-FY2024", "EVD-OCP-SULFUR-CONSUMPTION-FY2024"])
+    # 18c combined view is derived (direct + context), never stored as a third truth
+    ok("18c_combined_view_derived", combined_evidence_ids(inst) ==
+       ["EVD-OCP-SULFUR-PURCHASE-FY2024", "EVD-OCP-SULFUR-CONSUMPTION-FY2024", "EVD-OCP-PHOSPHATE-PROCESS-2024"])
+
+    # 19 contextual evidence cannot satisfy a sufficiency slot
+    direct_primary = {"role": "official_record", "source_id": "A", "publisher": "A"}
+    context_indep = {"role": "corroborating", "source_id": "B", "publisher": "B", "binding": "context"}
+    direct_indep = {"role": "corroborating", "source_id": "B", "publisher": "B"}
+    ok("19a_context_alone_insufficient",
+       evaluate_sufficiency([{"role": "primary_authoritative", "source_id": "X", "binding": "context"}], "single_authoritative_sufficient")[0] is False)
+    ok("19b_context_cannot_corroborate",
+       evaluate_sufficiency([direct_primary, context_indep], "primary_plus_corroborating")[0] is False
+       and evaluate_sufficiency([direct_primary, direct_indep], "primary_plus_corroborating")[0] is True)
+
+    # 20 adding contextual evidence cannot RAISE posture
+    p_only_direct = derive_evidence_posture_governed(
+        [(purchase, "QUAL-OCP-AFR-001", "issuer_own_accounting_line_ocp_fy2024"),
+         (consumption, "QUAL-OCP-AFR-001", "issuer_reported_sulfur_consumption_observation_ocp_fy2024")],
+        "primary_plus_corroborating", d)
+    p_with_context = derive_evidence_posture_governed(
+        [(purchase, "QUAL-OCP-AFR-001", "issuer_own_accounting_line_ocp_fy2024"),
+         (consumption, "QUAL-OCP-AFR-001", "issuer_reported_sulfur_consumption_observation_ocp_fy2024"),
+         (process, "QUAL-OCP-SUS-001", "issuer_own_process_context_ocp")],
+        "primary_plus_corroborating", d)
+    ok("20_context_cannot_raise_posture", p_only_direct == "evidence_collecting" and p_with_context == "evidence_collecting")
+
+    # 21 removing contextual evidence cannot ERASE Claim C (Claim C stands on its own evidence at its own scope)
+    ok("21_removing_context_keeps_claimC", cC["supporting_evidence_ids"] == ["EVD-OCP-PHOSPHATE-PROCESS-2024"]
+       and str(cC["outcome"]).startswith("SUPPORTED"))
 
     print("=" * 56)
     if FAIL:

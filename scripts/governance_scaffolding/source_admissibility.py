@@ -202,9 +202,11 @@ def _has_independent_pair(primary_units, corroborating_units):
 
 
 def evaluate_sufficiency(units, pattern):
-    """units: list of admitted evidence units {role, source_id, category, dataset?, excluded?}.
-    Returns (bool, reason). Excluded units never count."""
-    u = [x for x in units if not x.get("excluded")]
+    """units: list of admitted evidence units {role, source_id, category, dataset?, excluded?, binding?}.
+    Returns (bool, reason). Excluded units never count. CONTEXT-bound units
+    (binding == 'context') never fill a sufficiency slot: only DIRECT evidence can
+    satisfy a relationship's evidence pattern."""
+    u = [x for x in units if not x.get("excluded") and x.get("binding") != "context"]
     if pattern == "single_authoritative_sufficient":
         ok = any(x.get("role") == "primary_authoritative" for x in u)
         return (ok, "primary_authoritative present" if ok else "no primary_authoritative record")
@@ -258,6 +260,9 @@ def build_admission_unit(evidence_record, qualification_id, intended_use, data=N
         "role": evidence_record.get("evidence_role"),
         "source_id": sid,
         "category": d["category_by_source"].get(sid),
+        # DIRECT vs CONTEXT binding, read from the evidence record (default direct). A context
+        # unit is admissible on its own terms but never fills a relationship sufficiency slot.
+        "binding": evidence_record.get("evidence_binding", "direct"),
     }
     return unit, reason
 
@@ -276,7 +281,8 @@ def derive_evidence_posture(units, pattern, lock_required_for_locked=True):
     {admitted, review_posture, qualification_state, source_locked, role, source_id, category, dataset?, excluded?}.
     Returns 'evidence_collecting' | 'evidence_sufficient' | 'evidence_locked'."""
     admitted = [u for u in units
-                if u.get("admitted") and u.get("qualification_state") in ADMITTING_QUAL_STATES and not u.get("excluded")]
+                if u.get("admitted") and u.get("qualification_state") in ADMITTING_QUAL_STATES
+                and not u.get("excluded") and u.get("binding") != "context"]
     suff_admitted, _ = evaluate_sufficiency(admitted, pattern)
     if not suff_admitted:
         return "evidence_collecting"

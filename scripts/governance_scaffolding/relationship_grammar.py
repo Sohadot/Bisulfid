@@ -30,6 +30,17 @@ def build_contracts(registry):
     }
 
 
+def combined_evidence_ids(inst):
+    """Derived combined view of a relationship instance's evidence: DIRECT (evidence_ids)
+    followed by CONTEXT (context_evidence_ids), de-duplicated in order. This is a derived
+    view for display only — never stored as separate truth. Direct-only remains evidence_ids."""
+    seen, out = set(), []
+    for eid in list(inst.get("evidence_ids", []) or []) + list(inst.get("context_evidence_ids", []) or []):
+        if eid not in seen:
+            seen.add(eid); out.append(eid)
+    return out
+
+
 def validate_instance(inst, registry):
     """Return a list of errors for a relationship instance dict. Empty list = valid.
 

@@ -31,10 +31,17 @@
       "evidence_ids",
       "temporal_scope"
     ],
+    "optional_fields": ["context_evidence_ids", "object_scope_note", "note"],
     "direction": "subject_ref (subject_type) --[relationship_class_id]--> object_ref (object_type)",
+    "evidence_binding_model": {
+      "evidence_ids": "DIRECT evidence ONLY: records that directly assert the subject's relationship to the object (the exact object concept). Only direct evidence may satisfy a sufficiency slot (primary/corroborating) and may raise evidence posture. Backward-compatible field name; its meaning is direct-only.",
+      "context_evidence_ids": "CONTEXTUAL evidence: records that explain or enrich the chain (e.g. a downstream/adjacent process) but do NOT directly assert the object relationship. Context evidence NEVER fills a required sufficiency slot and NEVER raises evidence posture; it may be displayed as supporting context and may enrich a future knowledge object.",
+      "combined_view_is_derived": "The combined evidence view = evidence_ids + context_evidence_ids, DERIVED (e.g. relationship_grammar.combined_evidence_ids); it is never stored as a separate truth.",
+      "no_overlap": "A record must not appear in both lists. A record tagged evidence_binding=='context' may appear only in context_evidence_ids; a direct record only in evidence_ids."
+    },
     "notes": [
       "subject_type must be in the class's allowed subject_types; object_type in its allowed object_types.",
-      "evidence_ids MUST be non-empty for qualification_state == 'evidence_qualified'.",
+      "evidence_ids (DIRECT) MUST be non-empty for qualification_state == 'evidence_qualified'; context_evidence_ids can never make an instance evidence_qualified.",
       "No inverse instance is stored; inverse is derived."
     ]
   },
@@ -84,10 +91,11 @@
       "object_ref": "sulfur",
       "object_type": "concept",
       "qualification_state": "evidence_collecting",
-      "evidence_ids": ["EVD-OCP-SULFUR-PURCHASE-FY2024", "EVD-OCP-SULFUR-CONSUMPTION-FY2024", "EVD-OCP-PHOSPHATE-PROCESS-2024"],
+      "evidence_ids": ["EVD-OCP-SULFUR-PURCHASE-FY2024", "EVD-OCP-SULFUR-CONSUMPTION-FY2024"],
+      "context_evidence_ids": ["EVD-OCP-PHOSPHATE-PROCESS-2024"],
       "temporal_scope": {"as_of": null, "valid_from": "2024-01-01", "valid_to": "2024-12-31"},
-      "object_scope_note": "Object is the general 'sulfur' concept. The evidence is OCP's own FY2024 accounting purchase line, its own operational consumption observation, and its own phosphate-processing context (sulphuric-acid use) — all issuer-specific. This is ORG-OCP-GROUP (an organization), NOT GEO-MA (Morocco); the two must never be conflated.",
-      "note": "First corporate-actor industrial-user relationship instance (Pilot 02). Direction: OCP Group (subject, organization) industrially uses sulfur (object, concept) — ORG-OCP-GROUP --REL-INDUSTRIAL-USER--> sulfur. NOT timeless: bounded to FY2024. qualification_state=evidence_collecting (NOT evidence_qualified): REL-INDUSTRIAL-USER requires primary production/statistical/scientific categories PLUS independent corroboration; all THREE evidence records are from the SAME issuer (OCP) and are NOT independent (same publisher). Policy not weakened to force qualification. No inference that all sulfur purchased was consumed in the same period. The phosphate-process record is issuer-reported CONTEXT (sulphuric-acid processing), not proof of sulfur feedstock quantities. Authorizes no publication. Derived Contract-C state = (not_public, noindex)."
+      "object_scope_note": "Object is the general 'sulfur' concept. DIRECT evidence (evidence_ids) is OCP's own FY2024 accounting sulfur-purchase line and its own operational sulfur-consumption observation — both directly about elemental sulfur. CONTEXT evidence (context_evidence_ids) is the page-20 phosphate-processing statement (sulphuric-acid use at Jorf Lasfar/Safi): it explains the chain but does NOT directly assert elemental sulfur use, so it never fills a sufficiency slot. This is ORG-OCP-GROUP (an organization), NOT GEO-MA (Morocco); the two must never be conflated.",
+      "note": "First corporate-actor industrial-user relationship instance (Pilot 02). Direction: OCP Group (subject, organization) industrially uses sulfur (object, concept) — ORG-OCP-GROUP --REL-INDUSTRIAL-USER--> sulfur. NOT timeless: bounded to FY2024. qualification_state=evidence_collecting (NOT evidence_qualified): REL-INDUSTRIAL-USER requires primary production/statistical/scientific categories PLUS independent corroboration; the two DIRECT records are from the SAME issuer (OCP) and are NOT independent (same publisher), and the phosphate-process record is CONTEXT only (does not count toward sufficiency). Policy not weakened to force qualification. No inference that all sulfur purchased was consumed in the same period. Authorizes no publication. Derived Contract-C state = (not_public, noindex)."
     }
   ]
 }

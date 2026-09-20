@@ -93,17 +93,35 @@ def validate_relationship_classes():
     rg = importlib.import_module("relationship_grammar")
     class_ids = {x["relationship_class_id"] for x in d["relationship_classes"]}
     valid_qstates = set(d["instance_qualification_states"])
+    # Evidence-binding map: EVD id -> evidence_binding (default 'direct'). Used to enforce that
+    # a DIRECT slot (evidence_ids) never holds a context-bound record, and vice versa.
+    ev_dir = os.path.join(DATA, "evidence")
+    binding_of = {}
+    for name in os.listdir(ev_dir):
+        if name.endswith(".json") and name.startswith("EVD-"):
+            rec = load(os.path.join(ev_dir, name))
+            binding_of[rec.get("evidence_id", name)] = rec.get("evidence_binding", "direct")
     for inst in d.get("relationship_instances", []):
         rid = inst.get("relationship_instance_id", "?")
         errs = rg.validate_instance(inst, d)
         check(not errs, f"relationship instance {rid}: grammar errors {errs}")
         check(inst.get("relationship_class_id") in class_ids, f"relationship instance {rid}: unknown class")
         check(inst.get("qualification_state") in valid_qstates, f"relationship instance {rid}: bad qualification_state")
-        check(bool(inst.get("evidence_ids")), f"relationship instance {rid}: must carry evidence_ids")
+        check(bool(inst.get("evidence_ids")), f"relationship instance {rid}: must carry evidence_ids (DIRECT)")
         check(isinstance(inst.get("temporal_scope"), dict), f"relationship instance {rid}: temporal_scope required (not timeless)")
-        # evidence_qualified requires non-empty evidence (grammar checks this too)
+        # evidence_qualified requires non-empty DIRECT evidence (grammar checks this too)
         if inst.get("qualification_state") == "evidence_qualified":
-            check(bool(inst.get("evidence_ids")), f"relationship instance {rid}: evidence_qualified needs evidence")
+            check(bool(inst.get("evidence_ids")), f"relationship instance {rid}: evidence_qualified needs DIRECT evidence")
+        # DIRECT vs CONTEXT binding integrity:
+        direct = list(inst.get("evidence_ids", []) or [])
+        context = list(inst.get("context_evidence_ids", []) or [])
+        check(not (set(direct) & set(context)), f"relationship instance {rid}: a record cannot be both direct and context evidence")
+        for eid in direct:
+            check(binding_of.get(eid, "direct") != "context",
+                  f"relationship instance {rid}: DIRECT slot holds context-bound evidence '{eid}' (must go in context_evidence_ids)")
+        for eid in context:
+            check(binding_of.get(eid) == "context",
+                  f"relationship instance {rid}: context_evidence_ids '{eid}' is not tagged evidence_binding=='context'")
     for x in d["relationship_classes"]:
         check(x["relationship_class_id"].startswith("REL-"), f"relationship_class: bad id prefix {x['relationship_class_id']}")
         check(x["state"] == "registered", f"relationship_class: {x['relationship_class_id']} must be 'registered'")

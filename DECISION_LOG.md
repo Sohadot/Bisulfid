@@ -5308,3 +5308,32 @@ Pages 305–306 third-party assurance (ISO 14064-1/-3, "reasonable assurance", G
 
 ### Stop
 Pilot 02 is complete: Claims A, B, C all supported at their reviewed scope; relationship evidence_collecting; nothing published. No Pilot 03.
+
+---
+
+## Pilot 02 — Direct vs Contextual Evidence Correction
+
+**Date:** 2026-09-20
+**Baseline:** commit `26c16be8be`. Narrow semantic correction: the page-20 phosphate-process record was being counted as a third DIRECT evidence unit on the sulfur relationship, but page 20 asserts sulphuric-acid processing, not elemental sulfur use. No source re-acquisition; Claims A/B/C support unchanged; no Pilot 03; no `sulfuric_acid` concept.
+
+### Chosen binding model (§1)
+Relationship instances now bind evidence as **`evidence_ids` = DIRECT-only** (backward-compatible field; the only slot that can satisfy sufficiency or raise posture) plus a new optional **`context_evidence_ids` = CONTEXT** (never fills a slot, never raises posture). The combined view is **derived** (`relationship_grammar.combined_evidence_ids`), never stored as duplicate truth. Schema documents this in `relationship_instance_schema.evidence_binding_model` (incl. no-overlap and no-duplicate rules).
+
+`REL-INST-OCP-SULFUR-FY2024`:
+- direct (`evidence_ids`): `EVD-OCP-SULFUR-PURCHASE-FY2024`, `EVD-OCP-SULFUR-CONSUMPTION-FY2024`
+- context (`context_evidence_ids`): `EVD-OCP-PHOSPHATE-PROCESS-2024`
+
+### Evidence record correction (§2)
+`EVD-OCP-PHOSPHATE-PROCESS-2024` now carries `evidence_binding: "context"` (+ `relationship_binding: "context_only"`) and a `concept_binding_note`: `concept_ids=["sulfur"]` binds it (as CONTEXT) to the sulfur relationship and does NOT claim the page-20 source mentions elemental sulfur. Claim C stays SUPPORTED at its own scope. No `sulfuric_acid` concept created.
+
+### Sufficiency evaluator (§3)
+`evaluate_sufficiency` and `derive_evidence_posture`/`derive_evidence_posture_governed` now exclude any unit with `binding == "context"` (like `excluded`); `build_admission_unit` reads `evidence_binding` from the record (default `direct`). `validate_scaffolding` enforces: direct slot never holds a context-tagged record, `context_evidence_ids` entries must be tagged `context`, and no record is both.
+
+### Preserved outcome (§4)
+OCP sulfur relationship stays **evidence_collecting** (two same-issuer direct records, no independent corroboration, locks candidate). Claim C stays SUPPORTED. Contract-C = **(not_public, noindex)**.
+
+### Tests (§5)
+`pilot_02_tests.py` extended (18a–c direct/context split + derived view; 19a/b context cannot fill a sufficiency slot; 20 context cannot raise posture; 21 removing context cannot erase Claim C) — PASS; all prior governance + Pilot-01 suites regress green; **wired L0/L1/L2 CI PASS**.
+
+### Stop
+No Pilot 03.
