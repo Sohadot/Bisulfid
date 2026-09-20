@@ -63,3 +63,27 @@ Effect: use-qualification `QUAL-OC-MA-TRADE-001` is **NOT** promoted — it stay
 ## Non-effects (explicit)
 
 Verifying these two identities changes **no** claim status, activates **no** registry, publishes **no** route, indexes **nothing**, and locks **no** source. Contract-C derived state for every Pilot-01 object remains `(not_public, noindex)`.
+
+## Results — 2026-09-20 (Pilot 02 completion)
+
+Scope: the two OCP sources, verified against the **original uploaded PDFs** provided by the user (no network fetch; the earlier Cloudflare block is moot when the original artifact is supplied directly).
+
+### SRC-OCP-AFR-2024 — **PASS → status `verified`**
+
+| Item | Result |
+|---|---|
+| C1 reachable | PASS — original PDF supplied locally (`Plaquette_OCP_IFRS_31Déc24_…vUK`). |
+| C2 type | PASS — valid PDF, ~62 pages. |
+| C3 publisher | PASS — OCP Group (OCP S.A.), the reporting entity. |
+| C4 title/edition | PASS — Consolidated Financial Statements at 31 December 2024 (IFRS). Note: the uploaded file's edition datestamp (20 Mar 2025) differs from the URL-located re-issue (27 Mar 2025) of the same FY2024 work — a publication-revision nuance; FY2024 figures unchanged. `identity_revision rev-2026-09-19-1` (the bibliographic work) is unchanged. |
+| C5 verbatim | PASS — Note 4.2.2 'Purchases consumed' ('In millions of dirhams'): **Sulfur (8,344) FY2024, (8,088) FY2023**; **Sulfuric acid (2,364)** is a DISTINCT line. MD&A sentence 'sulfur consumption volumes increased in correlation with the rise in sulfuric acid production' confirmed verbatim. |
+| C5 auditors | PASS — an **independent auditors' report** on the FY2024 consolidated financial statements is present. |
+| C6 no bypass | PASS — original local artifact; no credentials/login/TLS bypass. |
+| C7 identity_revision | PASS — `rev-2026-09-19-1`. |
+| C8 guardrails | PASS — lock candidate; listed in verification_ready_sources; posture verification_limited. |
+
+Effect: `QUAL-OCP-AFR-001` promoted `candidate → qualified_narrow` for two explicitly-reviewed issuer-primary uses (FY2024 accounting sulfur line; FY2024 sulfur-consumption operational observation). Verification does **not** imply source-lock (stays candidate), claim approval, or publication.
+
+### SRC-OCP-SUSTAINABILITY-2024 — **FAIL at C1 → status stays `seeded`**
+
+The Sustainability Integrated Report 2024 PDF was **not** among the uploads (only the financial statements were provided). C1 (original artifact available) fails, so identity is not verified and `QUAL-OCP-SUS-001` stays `candidate`. Claim C remains BLOCKED. The audited financial report does **not** substitute for the sustainability source, and the sustainability report's third-party assurance (scoped to metrics such as GHG/clean electricity) would in any case **not** assure the industrial-process statement.

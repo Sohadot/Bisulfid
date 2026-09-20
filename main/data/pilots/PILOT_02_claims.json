@@ -1,40 +1,44 @@
 {
-  "version": "0.1.0",
-  "sprint": "morocco-ocp-sulfur-industrial-pilot-02",
+  "version": "0.2.0",
+  "sprint": "morocco-ocp-sulfur-industrial-pilot-02 (evidence completion)",
   "site": "bisulfid.com",
   "status": "non_operational",
   "governed_by": ["main/data/SOURCE_QUALIFICATION_PROTOCOL.md", "main/data/claim_activation_policy.json", "main/data/pilots/MOROCCO_OCP_SULFUR_INDUSTRIAL_PILOT_02.md", "DECISION_LOG.md"],
-  "purpose": "Pilot-scoped, NON-OPERATIONAL claim records for Pilot 02 (OCP Group x sulfur x Morocco industrial context x FY2024). Kept OUT of the canonical claim registries. All three principal claims are BLOCKED: the OCP primary documents could not be opened in this environment (Cloudflare bot-challenge; browser CA-trust change disallowed). NO figure, sentence, or value was taken from prompt text or search snippets. Supporting evidence IDs are mandatory for a SUPPORTED claim; a BLOCKED claim asserts none.",
+  "purpose": "Pilot-scoped, NON-OPERATIONAL claim records for Pilot 02 (OCP Group x sulfur x Morocco industrial context x FY2024). Kept OUT of the canonical claim registries. Claims A and B are now SUPPORTED from the ORIGINAL uploaded OCP financial statements; Claim C stays BLOCKED because the Sustainability Integrated Report PDF was NOT uploaded. Supporting evidence IDs are mandatory for a supported claim; organization identity / source existence do NOT count as evidence. Claim approval does not authorize publication.",
   "operational": false,
   "organization_ref": "ORG-OCP-GROUP",
-  "intended_relationship_target": "ORG-OCP-GROUP -> REL-INDUSTRIAL-USER -> sulfur (FY2024-scoped). NOT created: no admitted evidence; and REL-INDUSTRIAL-USER requires primary categories (official_production_statistics / national_statistical_authority / government_scientific_database), which a single corporate self-report does not satisfy.",
+  "relationship_ref": "REL-INST-OCP-SULFUR-FY2024",
+  "relationship_state": "evidence_collecting (issuer-specific, FY2024-bounded; not upgraded — same-issuer reports are not independent corroboration)",
   "claims": [
     {
       "claim_id": "CLM-OCP-SULFUR-PURCHASE-FY2024",
       "pilot_claim": "A — sulfur purchase accounting fact (issuer-primary)",
-      "statement_intended": "OCP's FY2024 consolidated financial statements report 'Sulfur' under raw-material purchases/purchases consumed, with the exact accounting value as printed (accounting presentation, e.g. a parenthesised amount in millions of dirhams), scoped to OCP and FY2024.",
-      "outcome": "BLOCKED",
-      "blocked_reason": "The OCP Consolidated Financial Statements at 31 December 2024 (SRC-OCP-AFR-2024) could not be opened: www.ocpgroup.ma returns a Cloudflare JS bot-challenge (HTTP 403) to curl and WebFetch, and Chromium cannot be made to trust the egress-proxy CA here without a disallowed TLS-trust change. No credentials/login/TLS-bypass were used. The exact accounting literal was therefore NOT extracted and is NOT asserted. The accounting numeric convention NUM-ACCOUNTING-PAREN-NEG is in place so that, once the PDF is obtained, a value such as '(8,344)' will be stored with its exact literal and correct signed normalization (-8344), never silently as +8344.",
-      "supporting_evidence_ids": [],
-      "scope_guard": "If unblocked: issuer's OWN accounting line only. NEVER Moroccan sulfur demand, physical consumption, import value, procurement volume, or market size."
+      "statement": "OCP Group's FY2024 consolidated financial statements (Note 4.2.2, 'Purchases consumed', 'In millions of dirhams', page 21) report 'Sulfur' under raw-material purchases with a source-presented amount of (8,344) million dirhams for FY2024 (FY2023: (8,088)).",
+      "outcome": "SUPPORTED_BY_EVIDENCE (non-operational)",
+      "source_literal_fy2024": "(8,344)",
+      "source_literal_fy2023": "(8,088)",
+      "normalized_signed_fy2024_mdh": -8344,
+      "normalized_signed_fy2023_mdh": -8088,
+      "derived_magnitude_fy2024_mdh": 8344,
+      "numeric_convention_id": "NUM-ACCOUNTING-PAREN-NEG",
+      "scope_guard": "OCP's OWN accounting line only. NOT sulfur import value, NOT physical consumption tonnage, NOT Morocco/national sulfur demand, NOT sulfur market size. 'Sulfuric acid' (2,364) is a distinct line and is not merged in.",
+      "supporting_evidence_ids": ["EVD-OCP-SULFUR-PURCHASE-FY2024"]
     },
     {
       "claim_id": "CLM-OCP-SULFUR-CONSUMPTION-OBS-FY2024",
       "pilot_claim": "B — sulfur consumption operational observation (issuer-primary)",
-      "statement_intended": "OCP's 2024 report narrates that sulfur consumption volumes rose in correlation with increased sulfuric-acid production (exact issuer wording, with locator).",
-      "outcome": "BLOCKED",
-      "blocked_reason": "Requires re-opening the original OCP PDF to extract the exact sentence + locator (per sprint). Acquisition blocked (same Cloudflare challenge). The sentence was NOT extracted and is NOT asserted; no tonnage, causality, efficiency, or national demand inferred.",
-      "supporting_evidence_ids": [],
-      "scope_guard": "If unblocked: capture ONLY the narrow issuer-reported operational observation, verbatim, with locator. No tonnage/causality/efficiency/national-demand inference."
+      "statement": "OCP reports that its sulfur consumption volumes increased in correlation with the rise in sulfuric-acid production during FY2024 (issuer-reported, MD&A narrative, page 21).",
+      "outcome": "SUPPORTED_BY_EVIDENCE (non-operational)",
+      "scope_guard": "Issuer-reported, OCP-own-operations, FY2024-scoped increase-in-correlation observation ONLY. No absolute tonnage, no percentage, no causal elasticity, no national consumption. Not to be conflated with the (quarantined) price statement.",
+      "supporting_evidence_ids": ["EVD-OCP-SULFUR-CONSUMPTION-FY2024"]
     },
     {
       "claim_id": "CLM-OCP-PHOSPHATE-SULFURIC-ACID-PROCESS",
       "pilot_claim": "C — industrial process context (issuer-primary, qualitative)",
-      "statement_intended": "Per OCP's Sustainability Integrated Report 2024, OCP's phosphate-processing operations combine phosphate rock with sulphuric acid to produce phosphoric acid, within the exact locations/scope stated by the source.",
+      "statement_intended": "Per OCP's Sustainability Integrated Report 2024, OCP's phosphate-processing platforms (Jorf Lasfar, Safi) combine phosphate rock with sulphuric acid to produce phosphoric acid, within the exact locations/scope stated by the source.",
       "outcome": "BLOCKED",
-      "blocked_reason": "The OCP Sustainability Integrated Report 2024 (SRC-OCP-SUSTAINABILITY-2024) could not be opened (same Cloudflare challenge). The process statement was NOT extracted and is NOT asserted. Kept as a FUTURE governed qualitative knowledge assertion; NO 'sulfuric_acid' ontology concept was fabricated (sprint 10).",
-      "supporting_evidence_ids": [],
-      "scope_guard": "If unblocked: qualitative issuer-own-process context ONLY. Does not by itself prove sulfur feedstock quantities or national sulfur demand. Keep sulfuric acid as qualitative context, not a forced concept."
+      "blocked_reason": "The Sustainability Integrated Report 2024 PDF was NOT among the local uploads (only the Consolidated Financial Statements PDF was provided). Per non-fabrication, the process/site statement was NOT extracted or asserted from prompt text or memory. Financial evidence cannot replace the sustainability process evidence. No 'sulfuric_acid' ontology concept was fabricated.",
+      "supporting_evidence_ids": []
     }
   ]
 }

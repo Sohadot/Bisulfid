@@ -1,55 +1,65 @@
 # Pilot 02 — Morocco OCP Sulfur Industrial Chain
 
-**Date:** 2026-09-19 · **Baseline:** commit `c2c390b670` · **Scope:** "OCP Group × sulfur × Morocco industrial context × FY2024". Max three principal claims. Issuer-primary OCP official disclosures only.
-**Constraints honored:** no public page, no route authorization, no indexation, no 14K migration, no GCC/China/Germany expansion, no Arabic/French lexeme expansion, no Pilot 03. No third-party databases/press/market sites. No credentials, no login, no TLS-verification bypass. No figure/sentence taken from prompt text or search snippets.
+**Date:** 2026-09-19 (opened) · 2026-09-20 (evidence completion) · **Baselines:** `4a685bc2a9` (completion) on `c2c390b670`.
+**Scope:** "OCP Group × sulfur × Morocco industrial context × FY2024". Max three principal claims. Issuer-primary OCP official disclosures only.
+**Constraints honored:** no public page, no route authorization, no sitemap/robots, no indexation, no 14K migration, no GCC/China/Germany expansion, no Arabic/French lexeme expansion, no Pilot 03, no PR. No third-party databases/press/market sites. No figure/sentence taken from prompt text or search snippets — everything below is extracted verbatim from the **original uploaded PDF**.
 
-## Headline outcome
+## Source availability
 
-Pilot 02 is a **governance success by withholding**. BISULFID can now *represent* a corporate actor (organization identity, issuer-primary source categories, a corporate-financials domain, accounting numeric semantics) **and** it correctly refuses to assert anything, because the OCP primary documents **could not be opened in this environment**. All three principal claims are **BLOCKED**; the intended relationship is **not** created; Contract-C state is `(not_public, noindex)`.
+- **OCP Consolidated Financial Statements at 31 December 2024 (IFRS)** — original PDF **uploaded**. Identity **verified** (C1–C8; independent auditors' report present). `SRC-OCP-AFR-2024` → status **verified**, lock **candidate**.
+- **OCP Sustainability Integrated Report 2024** — **not uploaded**. `SRC-OCP-SUSTAINABILITY-2024` stays **seeded** (C1 fails). Claim C therefore stays BLOCKED.
 
-## Official sources (located, registered, NOT verified)
+## Proven (issuer-primary, admitted evidence)
 
-| Source ID | Artifact | Category | Status / lock |
-|---|---|---|---|
-| `SRC-OCP-AFR-2024` | OCP Group — Consolidated Financial Statements at 31 December 2024 (IFRS), `www.ocpgroup.ma/.../Plaquette OCP IFRS_31Déc24_...vUK-2.pdf` | `corporate_financial_report` (new) | seeded / candidate |
-| `SRC-OCP-SUSTAINABILITY-2024` | OCP Group — Sustainability Integrated Report 2024, `www.ocpgroup.ma/.../OCP_Sustainbility_Report-2024.pdf` | `corporate_sustainability_report` (new) | seeded / candidate |
-
-Both were located on OCP's **official domain**. Each is registered with an immutable `identity_revision` (`rev-2026-09-19-1`) from first canonical registration.
-
-## Proven
-
-- **Nothing factual about sulfur or OCP.** No accounting value, no consumption sentence, no process statement is asserted. This is deliberate.
-- **The governance architecture works and withholds** (see tests): organization identity resolves and is not a geography; issuer-primary evidence cannot satisfy sovereign trade claims; a sustainability report cannot establish a financial amount; a purchase line cannot establish physical tonnage; same-issuer reports are not independent corroboration.
-
-## Not proven / not attempted
-
-- Independence of the two reports: they share the issuer (OCP Group), so they are recorded as **non-independent** (common publisher/organization lineage). Where a pattern requires independent corroboration, the correct result is `evidence_collecting`.
-- The intended relationship `ORG-OCP-GROUP → REL-INDUSTRIAL-USER → sulfur` (FY2024-scoped) is **not created**: no admitted evidence exists, and `REL-INDUSTRIAL-USER` requires primary categories (official production/statistical/scientific), which a single corporate self-report does not satisfy. Building it now would weaken `primary_plus_corroborating`; declined.
+- **Claim A — sulfur purchase accounting fact** (`CLM-OCP-SULFUR-PURCHASE-FY2024`, evidence `EVD-OCP-SULFUR-PURCHASE-FY2024`). From the **audited FY2024 consolidated financial statements**, Note 4.2.2 "Analysis of purchases consumed and external charges" → "Purchases consumed", "In millions of dirhams", page 21:
+  - **Sulfur — FY2024 source literal `(8,344)` → signed `-8344` MDH**; FY2023 `(8,088)` → `-8088` MDH (`NUM-ACCOUNTING-PAREN-NEG`). Derived magnitude 8,344 MDH is prose-only, not stored as competing truth.
+  - Means only: *OCP's own consolidated statements report Sulfur under raw-material purchases/purchases consumed at the source-presented amount of (8,344) million dirhams.* NOT import value, NOT physical tonnage, NOT Morocco demand, NOT market size.
+- **Claim B — sulfur consumption observation** (`CLM-OCP-SULFUR-CONSUMPTION-OBS-FY2024`, evidence `EVD-OCP-SULFUR-CONSUMPTION-FY2024`). Verbatim MD&A sentence (page 21): *"sulfur consumption volumes increased in correlation with the rise in sulfuric acid production."* Supported as an **issuer-reported operational observation**, FY2024-scoped. No tonnage, percentage, causal elasticity, or national consumption inferred.
 
 ## Blocked
 
-- **Acquisition of both OCP PDFs is blocked.** `www.ocpgroup.ma` serves a Cloudflare JS bot-challenge (HTTP 403 "Just a moment…") to `curl` and to WebFetch. The pre-installed Chromium can execute the challenge, but it cannot be made to trust the session's egress-proxy CA without a TLS-trust change that is disallowed in this environment (the attempt was denied). No credentials, login, or TLS-verification bypass were used — consistent with policy (this parallels the douane.gov.ma block in Pilot 01).
-- **Claim A — sulfur purchase accounting fact** (`CLM-OCP-SULFUR-PURCHASE-FY2024`): BLOCKED. The exact accounting literal (an accounting-parenthesised amount in millions of dirhams) was **not** extracted. The accounting convention `NUM-ACCOUNTING-PAREN-NEG` is in place so that, once the PDF is obtained, a parenthesised literal will be stored verbatim and normalized to its correct **signed** value (negative), never silently to a positive magnitude.
-- **Claim B — sulfur consumption operational observation** (`CLM-OCP-SULFUR-CONSUMPTION-OBS-FY2024`): BLOCKED. The sprint requires re-opening the original PDF for the exact sentence + locator; acquisition blocked, so nothing captured. No tonnage/causality/efficiency/national-demand inferred.
-- **Claim C — phosphate + sulphuric-acid → phosphoric-acid process context** (`CLM-OCP-PHOSPHATE-SULFURIC-ACID-PROCESS`): BLOCKED. Not extracted. Kept as a *future* governed qualitative knowledge assertion; **no `sulfuric_acid` ontology concept was fabricated** (concept-governance not extended here).
-- **The sulfur price statement is OUT OF SCOPE** and was not ingested. The sprint flagged an apparent directional inconsistency between the prose and the quoted figures; resolving it requires a visual/textual recheck of the original page, which acquisition blocks. No price figure is stored anywhere, and it is not used to explain any accounting movement.
+- **Claim C — industrial process context** (`CLM-OCP-PHOSPHATE-SULFURIC-ACID-PROCESS`): **BLOCKED**. The Sustainability Integrated Report 2024 PDF was not uploaded; the process/site statement (phosphate rock + sulphuric acid → phosphoric acid; Jorf Lasfar / Safi) was **not** extracted or asserted. Financial evidence cannot substitute for the sustainability process evidence. No `sulfuric_acid` ontology concept was fabricated. Site-scope requirement (Jorf Lasfar, Safi) is recorded as the target for when the sustainability PDF is supplied.
+
+## Source inconsistency (quarantined, excluded from admitted claims)
+
+The same page-21 paragraph states sulfur purchases "decreased by 256 million dirhams due to the **drop in price per ton** ($127/T CFR in 2024 compared to $113/T CFR in 2023)". This is **internally inconsistent**: the quoted figures rise (127 > 113), not drop; and the Note 4.2.2 magnitude rises from 8,088 to 8,344 (a +256 change in magnitude), not a decrease. This statement is recorded in `EVD-OCP-SULFUR-CONSUMPTION-FY2024.quarantined_not_admitted` with `excluded_from_claims: true`, `resolution: none`. It was **not** silently fixed, years not reversed, no external knowledge used, and it is **not** used to explain the Claim-A accounting movement. Promotion to admitted evidence would require an explicit, separate resolution step that this sprint does not perform.
+
+## Not inferred
+
+- No sulfur import value; no physical sulfur tonnage from an accounting value; no Morocco-wide or national sulfur demand; no sulfur market size; no percentage/causal-elasticity from the consumption sentence; no assumption that all sulfur purchased was consumed in the period.
+- **OCP is an organization, not Morocco.** No `GEO-MA → REL-INDUSTRIAL-USER → sulfur` was created from OCP evidence.
+- 'Sulfuric acid' (FY2024 `(2,364)`) is a **distinct** raw-material line and is **not merged** into the sulfur claim.
+
+## Relationship
+
+`REL-INST-OCP-SULFUR-FY2024`: **ORG-OCP-GROUP → REL-INDUSTRIAL-USER → sulfur**, FY2024-bounded, `qualification_state = evidence_collecting`, evidence_ids = [purchase, consumption]. **Not upgraded** to `evidence_qualified`: REL-INDUSTRIAL-USER requires primary production/statistical/scientific categories plus **independent** corroboration; OCP is a single issuer and its two reports are not independent. Policy not weakened.
+
+## Independence
+
+The financial report and the (absent) sustainability report share the issuer (OCP Group). They are **not** independent corroboration. The financial statements being independently audited does not make OCP and OCP-Sustainability two independent publishers. The independence evaluator returns **not independent** for two OCP units; the relationship correctly stays `evidence_collecting`.
+
+## Evidence postures (via the real admission bridge)
+
+| Record | Source verified | Qualification | admissible() | Review posture | Sufficiency pattern | Derived posture |
+|---|---|---|---|---|---|---|
+| `EVD-OCP-SULFUR-PURCHASE-FY2024` | yes | `QUAL-OCP-AFR-001` qualified_narrow | **True** | evidence_verified | single_authoritative_sufficient | **evidence_sufficient** (not locked — lock candidate) |
+| `EVD-OCP-SULFUR-CONSUMPTION-FY2024` | yes | `QUAL-OCP-AFR-001` qualified_narrow | **True** | evidence_verified | primary_plus_corroborating | **evidence_collecting** (single issuer) |
+| Relationship `REL-INST-OCP-SULFUR-FY2024` | — | — | — | — | primary_plus_corroborating | **evidence_collecting** |
+
+Because source locks remain **candidate**, no branch is `evidence_locked`.
+
+## Contract-C state
+
+`(not_public, noindex)` for every Pilot-02 object. Nothing in this sprint authorizes publication, routes, sitemap, robots, or indexation.
 
 ## Policy findings
 
-1. **Taxonomy:** an issuer's own audited/consolidated statements are not market/industry press. Added minimal governed categories `corporate_financial_report` and `corporate_sustainability_report`, each with authority **strictly limited to the issuer's own disclosed facts**. Category alone still never admits.
-2. **New domain `SD-CORPORATE-FINANCIALS`** (distinct from `SD-TRADE`): a narrow accounting line from the issuer's own statements may use `single_authoritative_sufficient` **for that exact fact type only**. This does not alter trade/economics sufficiency, which stays `primary_plus_corroborating`.
-3. **SD-INDUSTRIAL** now distinguishes issuer-primary observation (OCP's own operations, narrowly scoped) from analytical/economy-wide claims; broader industrial relationships still require `primary_plus_corroborating` (not weakened).
-4. **Organization ≠ geography:** the organization registry forbids ID collision with geographies and stores identity only (no financials/relationship/route). Creating `ORG-OCP-GROUP` implies no relationship.
-5. **Accounting sign law:** parentheses mean negative and are never silently dropped; a positive magnitude for prose is derived and must be labelled, never stored as competing truth. A validator rejects a parenthesised literal stored as positive.
-6. **Independence lineage:** two artifacts from one issuer are not independent; recorded explicitly.
+- Accounting sign law works end-to-end: `(8,344)` stored verbatim + normalized to `-8344`; magnitude is derived/labelled; a parenthesised literal stored positive is rejected.
+- SD-CORPORATE-FINANCIALS single-authoritative works for a narrow issuer accounting line; SD-INDUSTRIAL keeps `primary_plus_corroborating`, so the corporate self-report supports Claim B as an observation but does not qualify the broader relationship.
+- Same-issuer non-independence and organization≠geography both hold structurally.
 
 ## Next possible expansion (not started)
 
-- Obtain the two OCP PDFs by a permitted route (e.g. a browser-CA permission so Chromium can clear the Cloudflare challenge, or the user supplying the files), then run C1–C8 identity verification, extract the exact accounting literal / consumption sentence / process statement, create separate atomic evidence records, and re-derive postures.
-- Only if evidence genuinely supports it: qualify a FY2024-scoped `ORG-OCP-GROUP → REL-INDUSTRIAL-USER → sulfur` relationship (issuer-specific, never `GEO-MA → … → sulfur`).
-- A governed `sulfuric_acid` concept, only if concept-governance is ready (not forced into the generic sulfur concept).
-- No Pilot 03.
-
-## Tests
-
-`pilot_02_tests.py` (organization resolves; org ≠ geography; identity_revision present; accounting `(8,344)` literal + signed normalization + parentheses-drop guard; magnitude not confused with trade value; corporate evidence cannot satisfy sovereign trade; sustainability cannot establish a financial amount; purchase cannot establish tonnage; deny-by-default candidate; price statement absent; relationship period-bounded and not created; same-issuer not independent; no sulfuric-acid concept; verification ≠ lock; admission ≠ activation; relationship ≠ route; Contract-C derived). Plus every prior governance + Pilot-01 regression suite.
+- Supply the **Sustainability Integrated Report 2024** PDF to complete Claim C (site-scoped Jorf Lasfar/Safi process context), keeping its third-party assurance scoped to the assured metrics only.
+- Independent corroboration (official production/statistical/scientific) would be required to move `REL-INST-OCP-SULFUR-FY2024` beyond `evidence_collecting`.
+- A governed `sulfuric_acid` concept only if concept-governance independently authorizes it. No Pilot 03.

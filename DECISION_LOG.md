@@ -5242,3 +5242,41 @@ No admitted evidence → posture `evidence_collecting` → **Contract-C = (not_p
 
 ### Blocked — needs a decision
 Extracting the three OCP facts needs either (a) a permitted way for Chromium to trust the egress-proxy CA so it can clear the Cloudflare challenge, or (b) the user supplying the two official OCP PDFs. Until then Claims A/B/C stay BLOCKED. No Pilot 03.
+
+---
+
+## Pilot 02 — Evidence Completion (from original uploaded PDF)
+
+**Date:** 2026-09-20
+**Baseline:** commit `4a685bc2a9`. The user supplied the **original OCP Consolidated Financial Statements at 31 December 2024** PDF locally (the Sustainability Integrated Report PDF was NOT supplied). Completed only the previously-blocked Pilot-02 chain; architecture unchanged; no Pilot 03. Everything extracted verbatim from the original PDF (pdfminer.six via the local crypto-stub workaround); nothing taken from prompt text or search snippets.
+
+### Source verification (§1)
+- `SRC-OCP-AFR-2024`: C1–C8 **PASS** against the original PDF (independent auditors' report present; Note 4.2.2 figures verbatim). status `seeded → verified`, **lock stays candidate**, added to `verification_ready_sources`. Verification ≠ qualification/admission/claim/publication. (Uploaded file's edition datestamp 20 Mar 2025 vs URL 27 Mar 2025 — same FY2024 work; `identity_revision` unchanged.)
+- `SRC-OCP-SUSTAINABILITY-2024`: **C1 FAILS** (PDF not uploaded) → stays `seeded`; `QUAL-OCP-SUS-001` stays `candidate`.
+
+### Qualification (§2)
+`QUAL-OCP-AFR-001` promoted `candidate → qualified_narrow` for two explicitly-reviewed issuer-primary uses (FY2024 accounting sulfur line; FY2024 sulfur-consumption observation), domains `[SD-CORPORATE-FINANCIALS, SD-INDUSTRIAL]`, kinds `[quantitative, qualitative]`. Prohibits Morocco/national/market demand, import value, tonnage-from-value, and the sulfur price statement.
+
+### Claim A — sulfur accounting amount (§3) — SUPPORTED
+Evidence `EVD-OCP-SULFUR-PURCHASE-FY2024` from **Note 4.2.2, "Purchases consumed", "In millions of dirhams", page 21**: **Sulfur FY2024 source literal `(8,344)` → signed `-8344` MDH; FY2023 `(8,088)` → `-8088` MDH** (`NUM-ACCOUNTING-PAREN-NEG`). Derived magnitude 8,344 (prose only). 'Sulfuric acid' `(2,364)` kept as a **distinct** line, not merged. Means only OCP's own accounting line — not import value / tonnage / Morocco demand / market size. admissible()=True; single_authoritative_sufficient → **evidence_sufficient** (not locked).
+
+### Claim B — sulfur consumption observation (§4) — SUPPORTED
+Evidence `EVD-OCP-SULFUR-CONSUMPTION-FY2024`, verbatim (p21): *"sulfur consumption volumes increased in correlation with the rise in sulfuric acid production."* Issuer-reported, FY2024-scoped. No tonnage/percentage/causality/national inference. admissible()=True; SD-INDUSTRIAL primary_plus_corroborating → relationship stays **evidence_collecting**.
+
+### Price inconsistency quarantined (§5)
+Same paragraph: "drop in price per ton" but prints **$127/T CFR (2024) vs $113/T CFR (2023)** (rise, not drop), and "decreased by 256" while the Note 4.2.2 magnitude rises 8,088→8,344. Recorded in `EVD-OCP-SULFUR-CONSUMPTION-FY2024.quarantined_not_admitted` (`excluded_from_claims: true`, `resolution: none`). Not silently fixed, years not reversed, no external knowledge, not used to explain Claim A. A test proves it cannot be promoted without an explicit resolution step.
+
+### Claim C — industrial process (§6) — BLOCKED
+Sustainability PDF not uploaded → not extracted/asserted. Financial evidence cannot substitute. No `sulfuric_acid` concept fabricated. Site scope (Jorf Lasfar/Safi) recorded as the target for when the PDF is supplied.
+
+### Relationship (§7) + independence (§8)
+`REL-INST-OCP-SULFUR-FY2024`: **ORG-OCP-GROUP → REL-INDUSTRIAL-USER → sulfur**, FY2024-bounded, `evidence_collecting` (NOT `evidence_qualified`). Not `GEO-MA → … → sulfur`. Same-issuer reports are **not** independent; policy not weakened.
+
+### Postures (§9) / Contract-C (§13)
+Purchase: admitted True, evidence_verified, evidence_sufficient (lock candidate → not locked). Consumption/relationship: admitted True, evidence_collecting. **Contract-C = (not_public, noindex)** everywhere. No publication/route/sitemap/robots/indexation/14K change.
+
+### Tests (§11)
+`pilot_02_tests.py` rewritten (37 assertions) PASS; all prior governance + Pilot-01 suites regress green; **wired L0/L1/L2 CI PASS**. Sources now 3 verified (SPEKTRUM, OC-MA/UN-COMTRADE, **+ OCP-AFR**), all locks candidate; SRC-OCP-SUSTAINABILITY-2024 still seeded.
+
+### Stop
+No Pilot 03.

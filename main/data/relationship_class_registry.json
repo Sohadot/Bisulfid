@@ -75,6 +75,19 @@
       "temporal_scope": {"as_of": null, "valid_from": "2024-01-01", "valid_to": "2024-12-31"},
       "object_scope_note": "Object is the general 'sulfur' concept, but the underlying source label is 'Soufres bruts et non raffinés' (crude/unrefined subset). Mapping is PARTIAL; not qualified.",
       "note": "First real trade relationship instance (Pilot 01). Direction: Morocco (subject) imports sulfur (object) — GEO-MA --REL-IMPORTER--> sulfur. NOT timeless: bounded to 2024. qualification_state=evidence_collecting (NOT evidence_qualified): SD-TRADE requires primary_plus_corroborating and only one non-independent official source exists; the source-use qualification is 'reviewed' (not admitting). Authorizes no publication. Derived Contract-C state = (not_public, noindex)."
+    },
+    {
+      "relationship_instance_id": "REL-INST-OCP-SULFUR-FY2024",
+      "relationship_class_id": "REL-INDUSTRIAL-USER",
+      "subject_ref": "ORG-OCP-GROUP",
+      "subject_type": "organization",
+      "object_ref": "sulfur",
+      "object_type": "concept",
+      "qualification_state": "evidence_collecting",
+      "evidence_ids": ["EVD-OCP-SULFUR-PURCHASE-FY2024", "EVD-OCP-SULFUR-CONSUMPTION-FY2024"],
+      "temporal_scope": {"as_of": null, "valid_from": "2024-01-01", "valid_to": "2024-12-31"},
+      "object_scope_note": "Object is the general 'sulfur' concept. The evidence is OCP's own FY2024 accounting purchase line and its own operational consumption observation — issuer-specific, FY2024-scoped. This is ORG-OCP-GROUP (an organization), NOT GEO-MA (Morocco); the two must never be conflated.",
+      "note": "First corporate-actor industrial-user relationship instance (Pilot 02). Direction: OCP Group (subject, organization) industrially uses sulfur (object, concept) — ORG-OCP-GROUP --REL-INDUSTRIAL-USER--> sulfur. NOT timeless: bounded to FY2024. qualification_state=evidence_collecting (NOT evidence_qualified): REL-INDUSTRIAL-USER requires primary production/statistical/scientific categories PLUS independent corroboration; only ONE issuer (OCP) provides the evidence and its two reports are NOT independent (same publisher). Policy not weakened to force qualification. No inference that all sulfur purchased was consumed in the same period. Authorizes no publication. Derived Contract-C state = (not_public, noindex)."
     }
   ]
 }

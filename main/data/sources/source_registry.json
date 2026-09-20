@@ -45,6 +45,16 @@
         "target_status_after_guardrail_transition": "verified",
         "source_lock_status_unchanged": "candidate",
         "note": "Bibliographic/identity verification only (identity checklist passed). Its use-qualification QUAL-OC-MA-TRADE-001 remains 'reviewed' (NOT promoted): identity verification of the source is a separate act from ratifying a use-qualification, and the trade path's admission/sufficiency is deliberately unchanged. source_lock_status remains candidate."
+      },
+      {
+        "source_id": "SRC-OCP-AFR-2024",
+        "evidence_sprint": "pilot-02-evidence-completion",
+        "identity_verification_checklist": "main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate",
+        "note": "Identity verified against the ORIGINAL uploaded PDF (C1-C8 pass): consolidated FY2024 statements with an independent auditors' report; Note 4.2.2 figures confirmed verbatim. Bibliographic/identity verification only — NOT source-locking, claim approval, route publication, indexation, or registry activation. source_lock_status remains candidate."
       }
     ],
     "next_charter": "Validator policy update sprint to permit verification_limited posture with individual verified rows while publication, claim, and route locks remain LOCKED"
@@ -611,11 +621,12 @@
       "author_or_organization": "OCP Group (OCP S.A.), the reporting entity (issuer-primary audited/consolidated financial statements)",
       "url": "https://www.ocpgroup.ma/sites/default/files/2025-04/Plaquette%20OCP%20IFRS_31D%C3%A9c24_27032025_vUK-2.pdf",
       "language": "en",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
-      "last_reviewed": "2026-09-19",
+      "last_reviewed": "2026-09-20",
       "use_for": [
-        "issuer-primary OCP FY2024 accounting facts as disclosed in OCP's own consolidated financial statements, scoped to OCP and FY2024 (pending source-identity verification and scope review)"
+        "issuer-primary OCP FY2024 accounting facts as disclosed in OCP's own consolidated financial statements (e.g. Note 4.2.2 purchases consumed), scoped to OCP and FY2024",
+        "issuer-reported OCP FY2024 operational observation on sulfur consumption (MD&A narrative), scoped to OCP and FY2024"
       ],
       "do_not_use_for": [
         "Morocco national trade/import value or sovereign statistics",
@@ -627,11 +638,12 @@
         "source-locking by itself"
       ],
       "risk_notes": [
-        "NEW source located in Pilot 02. Registered from first canonical registration with identity_revision. Status seeded / lock candidate (registered, UNVERIFIED).",
-        "SOURCE-IDENTITY VERIFICATION (C1-C8) COULD NOT BE COMPLETED in this environment: the OCP publication host (www.ocpgroup.ma) serves a Cloudflare JS bot-challenge (HTTP 403 'Just a moment...') to curl and to WebFetch, and the pre-installed Chromium cannot be made to trust the session's egress-proxy CA without a TLS-trust change that is disallowed here. No credentials, no login, and no TLS-verification bypass were used. C1 (artifact reachable) therefore FAILS -> status stays seeded (NOT verified).",
-        "Because the original PDF could not be opened, NO figure was extracted; Pilot-02 Claim A (sulfur purchase accounting line, e.g. an accounting-parenthesised value) is BLOCKED. No value was taken from prompt text or search snippets."
+        "NEW source located in Pilot 02. Registered from first canonical registration with identity_revision. identity_revision rev-2026-09-19-1 denotes the bibliographic WORK ('OCP Consolidated Financial Statements at 31 December 2024'); unchanged.",
+        "IDENTITY VERIFIED in Pilot-02 completion (2026-09-20) against the ORIGINAL uploaded PDF (user-provided local artifact 'Plaquette_OCP_IFRS_31De_c24_20032025_vUK'; note the file's edition datestamp 20 Mar 2025 differs from the URL-located 27 Mar 2025 re-issue of the same FY2024 work — a publication-revision nuance that does not change the FY2024 figures). C1-C8: reachable(local original)/PDF type/publisher OCP/title FY2024 consolidated statements/verbatim Note 4.2.2 figures (Sulfur (8,344) FY2024, (8,088) FY2023; Sulfuric acid (2,364) is a DISTINCT line)/independent auditors' report present/identity_revision present/lock candidate — all PASS. No credentials/login/TLS bypass used.",
+        "status seeded -> verified under verification_limited (listed in verification_ready_sources). Bibliographic identity verification ONLY — not source-locking, claim approval, route publication, indexation, or registry activation. source_lock_status stays candidate.",
+        "The independent auditors' report covers the FY2024 consolidated statements; this does NOT make OCP and OCP-Sustainability two independent publishers (see independence handling)."
       ],
-      "notes": "OCP Group's own official consolidated financial statements at 31 December 2024 (issuer-primary). Category corporate_financial_report (authority limited to OCP's own disclosed accounting facts). Located via official OCP domain; acquisition of the file bytes is blocked (Cloudflare challenge). Not verified, not locked, not claim-approved, not published."
+      "notes": "OCP Group's own official consolidated financial statements at 31 December 2024 (issuer-primary). Category corporate_financial_report (authority limited to OCP's own disclosed accounting facts). Identity verified against the original uploaded PDF; status verified, lock candidate. Not source-locked, not claim-approved, not published."
     },
     {
       "source_id": "SRC-OCP-SUSTAINABILITY-2024",
@@ -658,8 +670,8 @@
       ],
       "risk_notes": [
         "NEW source located in Pilot 02. Registered from first canonical registration with identity_revision. Status seeded / lock candidate (registered, UNVERIFIED).",
-        "SOURCE-IDENTITY VERIFICATION (C1-C8) COULD NOT BE COMPLETED (same Cloudflare bot-challenge as SRC-OCP-AFR-2024). C1 (reachable) FAILS -> status stays seeded (NOT verified). No credentials/login/TLS bypass used.",
-        "Because the original PDF could not be opened, the process statement (Claim C: phosphate rock + sulphuric acid -> phosphoric acid) is BLOCKED; nothing extracted from prompt text or search snippets."
+        "IDENTITY VERIFICATION STILL INCOMPLETE in the Pilot-02 completion sprint (2026-09-20): only the OCP Consolidated Financial Statements PDF was uploaded; the Sustainability Integrated Report 2024 PDF was NOT among the local uploads. C1 (original artifact available) therefore FAILS -> status stays seeded (NOT verified).",
+        "Because the original sustainability PDF was not available, the process statement (Claim C: phosphate rock + sulphuric acid -> phosphoric acid, Jorf Lasfar/Safi) remains BLOCKED; nothing extracted from prompt text or search snippets. No sulfuric_acid ontology concept fabricated."
       ],
       "notes": "OCP Group's own official Sustainability Integrated Report 2024 (issuer-primary). Category corporate_sustainability_report (authority limited to OCP's own stated operations). Located via official OCP domain; acquisition of the file bytes is blocked (Cloudflare challenge). Not verified, not locked, not claim-approved, not published."
     }
