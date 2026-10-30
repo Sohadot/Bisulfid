@@ -751,8 +751,11 @@ def evaluate_ig(page, universe, policy, ctx, all_unit_statements=None):
     seen_keys = set()
     for u in units:
         reasons = []
-        ent = entry.get("entity_id")
-        if u.get("entity_id") != ent:
+        # A multi-concept reference (e.g. a terminology boundary page) declares entity_ids; each unit
+        # must still be specific to ONE of them, and its evidence must be about that same concept.
+        page_ents = entry.get("entity_ids") or [entry.get("entity_id")]
+        ent = u.get("entity_id")
+        if ent not in page_ents:
             reasons.append("not page-specific: unit entity_id differs from page entity_id")
         evs = u.get("evidence_ids") or []
         if not evs:

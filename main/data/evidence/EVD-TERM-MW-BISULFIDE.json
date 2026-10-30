@@ -1,0 +1,65 @@
+{
+  "evidence_id": "EVD-TERM-MW-BISULFIDE",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "terminological",
+  "claim_level": "lexeme",
+  "concept_ids": [
+    "disulfide"
+  ],
+  "lexeme_ids": [
+    "LEX-EN-BISULFIDE-001"
+  ],
+  "relationship": null,
+  "subject_domain": [
+    "SD-TERMINOLOGY",
+    "SD-LINGUISTICS"
+  ],
+  "geography": [],
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "claim_scope": "Captured 2026-10-30 from bisulfide (Merriam-Webster). Quoted passages only; see lexical.",
+  "source_id": "SRC-MW-BISULFIDE",
+  "claim_id": "CLM-TERM-BISULFIDE-EN-SENSE-001",
+  "publication_date": null,
+  "retrieval_date": "2026-10-30",
+  "temporal_scope": {
+    "as_of": "2026-10-30",
+    "valid_from": null,
+    "valid_to": null
+  },
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "primary_authoritative",
+  "allowed_uses": [
+    "en_lexical_entry_definition"
+  ],
+  "prohibited_uses": [
+    "chemical_safety",
+    "medical",
+    "market_data",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "lexical": {
+    "headword": "bisulfide",
+    "part_of_speech": "noun",
+    "definition_quoted": "disulfide",
+    "first_known_use": "1831"
+  },
+  "locator": {
+    "capture_file": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+    "capture_keys": [
+      "SRC-MW-BISULFIDE"
+    ],
+    "url": "https://www.merriam-webster.com/dictionary/bisulfide",
+    "sha256": "e17f4501f22ec8c92bf5d6f576d29c3d3c1378e7a0a8814c69f5d3591cfba89c",
+    "retrieval_date": "2026-10-30",
+    "verbatim": [
+      "bisulfide noun",
+      ": disulfide",
+      "First Known Use 1831"
+    ]
+  },
+  "governance_note": "Recovery-03 terminology identity evidence. Contract C for any route using it is derived, never implied."
+}

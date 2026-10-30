@@ -99,6 +99,136 @@
    "pass": true
   },
   {
+   "name": "Bisulfid / bisulfide terminology reference",
+   "preview": "main/data/reference_production/previews/bisulfid-vs-bisulfide/index.html",
+   "intended_path": "/bisulfid-vs-bisulfide/",
+   "checks": {
+    "title_30_65": true,
+    "description_70_160": true,
+    "one_canonical_absolute_intended": true,
+    "robots_present_noindex_preview": true,
+    "html_lang": true,
+    "json_ld_valid": true,
+    "exactly_one_h1": true,
+    "no_skipped_heading_level": true,
+    "no_source_required_or_placeholder_leak": true,
+    "internal_links_resolve": true,
+    "declared_intents_served": true,
+    "gate12_pass": true,
+    "distinct_from_public_surface": true
+   },
+   "measures": {
+    "title": "Bisulfid vs Bisulfide: Meanings, IUPAC Names, German Usage",
+    "title_chars": 58,
+    "description_chars": 158,
+    "headings": [
+     [
+      1,
+      "Bisulfid vs bisulfide"
+     ],
+     [
+      2,
+      "At a glance"
+     ],
+     [
+      2,
+      "English bisulfide: the dictionary sense is disulfide"
+     ],
+     [
+      2,
+      "Bisulfide as a database synonym for HS⁻"
+     ],
+     [
+      2,
+      "What IUPAC calls HS⁻"
+     ],
+     [
+      2,
+      "Disulfide"
+     ],
+     [
+      2,
+      "What IUPAC calls S₂²⁻"
+     ],
+     [
+      2,
+      "Sulfide"
+     ],
+     [
+      2,
+      "Bisulfite is a different word"
+     ],
+     [
+      2,
+      "What IUPAC calls HSO₃⁻"
+     ],
+     [
+      2,
+      "Where a database places bisulfite"
+     ],
+     [
+      2,
+      "German Sulfid in the dictionaries"
+     ],
+     [
+      2,
+      "German Hydrogensulfid in technical usage"
+     ],
+     [
+      2,
+      "German Bisulfid is not in the dictionary"
+     ],
+     [
+      2,
+      "Why German writes -id where English writes -ide"
+     ],
+     [
+      2,
+      "What this reference does not establish"
+     ],
+     [
+      2,
+      "Evidence trail"
+     ],
+     [
+      2,
+      "Related records"
+     ],
+     [
+      2,
+      "Governance status"
+     ]
+    ],
+    "substantive_words": 924,
+    "nearest_public_page": {
+     "similarity": 0.0,
+     "jaccard": 0.0,
+     "overlap_coefficient": 0.0,
+     "closest_page": "site/public/acquire/index.html"
+    },
+    "template_sentence_ratio_vs_public": 0.0,
+    "skeleton_shared_with_public_pages": 0,
+    "internal_links": 7,
+    "external_provenance_links": 15
+   },
+   "gate12": {
+    "class": "Gate 12 (knowledge reference; IG from the canonical draft)",
+    "verdict": "PASS",
+    "failures": [],
+    "ig_valid_units": 13
+   },
+   "pass": true,
+   "plan_blockers": {
+    "verdict": "RENDERABLE",
+    "renderable_modules": 6,
+    "modules": 7,
+    "still_blocked": [
+     "de_usage"
+    ],
+    "file": "main/data/reference_production/blockers/PLAN-BISULFID-BISULFIDE-BOUNDARY_BLOCKERS.json"
+   }
+  },
+  {
    "name": "Homepage",
    "preview": "main/data/reference_production/previews/home/index.html",
    "intended_path": "/",
@@ -166,15 +296,6 @@
     "failures": []
    },
    "pass": true
-  },
-  {
-   "name": "Bisulfid / bisulfide terminology boundary",
-   "preview": null,
-   "intended_path": "/bisulfid-vs-bisulfide/",
-   "pass": false,
-   "status": "BLOCKED_ON_EVIDENCE",
-   "renderable_modules": 0,
-   "blockers": "main/data/reference_production/blockers/PLAN-BISULFID-BISULFIDE-BOUNDARY_BLOCKERS.json"
   }
  ]
 }

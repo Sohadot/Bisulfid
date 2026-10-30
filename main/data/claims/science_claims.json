@@ -10,10 +10,19 @@
       "claim_type": "chemical_identity",
       "status": "pending_review",
       "statement": "PubChem (NIH) has a compound record for Hydrosulfide (CID 5047209).",
-      "source_ids": ["SRC-PUBCHEM-HYDROSULFIDE"],
-      "related_terms": ["hydrosulfide"],
-      "related_routes": ["bisulfide_hydrosulfide_sulfide"],
-      "allowed_pages": ["bisulfide_hydrosulfide_sulfide", "glossary"],
+      "source_ids": [
+        "SRC-PUBCHEM-HYDROSULFIDE"
+      ],
+      "related_terms": [
+        "hydrosulfide"
+      ],
+      "related_routes": [
+        "bisulfide_hydrosulfide_sulfide"
+      ],
+      "allowed_pages": [
+        "bisulfide_hydrosulfide_sulfide",
+        "glossary"
+      ],
       "prohibited_uses": [
         "public handling instructions",
         "medical advice",
@@ -23,17 +32,33 @@
       ],
       "risk_level": "low",
       "last_reviewed": "2026-05-15",
-      "notes": "Government scientific database confirmation of Hydrosulfide as a registered compound. CID is candidate — verify against PubChem before source-locking."
+      "notes": "Government scientific database confirmation of Hydrosulfide as a registered compound. CID is candidate — verify against PubChem before source-locking.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "remains pending_review",
+        "basis": "Evidence recorded as claim-less BOUNDARY record EVD-TERM-PUBCHEM-HS-SYNONYMS (PubChem CID 5047209). Claim stays pending: the approval_limited posture covers terminology claims only."
+      }
     },
     {
       "claim_id": "CLM-SCI-002",
       "claim_type": "chemical_identity",
       "status": "pending_review",
       "statement": "PubChem (NIH) has a compound record for Sodium hydrosulfide (NaHS, CID 28015).",
-      "source_ids": ["SRC-PUBCHEM-SODIUM-HYDROSULFIDE"],
-      "related_terms": ["sodium_hydrosulfide", "sodium_bisulfide"],
-      "related_routes": ["sodium_bisulfide"],
-      "allowed_pages": ["sodium_bisulfide", "glossary"],
+      "source_ids": [
+        "SRC-PUBCHEM-SODIUM-HYDROSULFIDE"
+      ],
+      "related_terms": [
+        "sodium_hydrosulfide",
+        "sodium_bisulfide"
+      ],
+      "related_routes": [
+        "sodium_bisulfide"
+      ],
+      "allowed_pages": [
+        "sodium_bisulfide",
+        "glossary"
+      ],
       "prohibited_uses": [
         "procurement advice",
         "handling instructions",
@@ -50,10 +75,19 @@
       "claim_type": "chemical_identity",
       "status": "pending_review",
       "statement": "The NIST Chemistry WebBook has an entry for Hydrogen sulfide (H2S, CAS 7783-06-4).",
-      "source_ids": ["SRC-NIST-HYDROGEN-SULFIDE"],
-      "related_terms": ["hydrogen_sulfide"],
-      "related_routes": ["hydrogen_sulfide_risk"],
-      "allowed_pages": ["hydrogen_sulfide_risk", "glossary"],
+      "source_ids": [
+        "SRC-NIST-HYDROGEN-SULFIDE"
+      ],
+      "related_terms": [
+        "hydrogen_sulfide"
+      ],
+      "related_routes": [
+        "hydrogen_sulfide_risk"
+      ],
+      "allowed_pages": [
+        "hydrogen_sulfide_risk",
+        "glossary"
+      ],
       "prohibited_uses": [
         "safety advice",
         "exposure thresholds",

@@ -416,6 +416,14 @@ def validate_knowledge_objects():
             for c in load(os.path.join(pilots, n)).get("claims", []):
                 if c.get("claim_id"):
                     claim_ids.add(c["claim_id"])
+    # registry claims that are APPROVED (narrow) while their registry file stays inactive
+    registry_approved = set()
+    claims_dir = os.path.join(DATA, "claims")
+    for n in os.listdir(claims_dir):
+        if n.endswith("_claims.json"):
+            cr = load(os.path.join(claims_dir, n))
+            if cr.get("status") == "inactive":
+                registry_approved |= {c["claim_id"] for c in cr.get("claims", []) if c.get("status") == "approved"}
     for ko in reg["knowledge_objects"]:
         kid = ko["knowledge_object_id"]
         check(kid.startswith("KO-"), f"KO {kid}: bad id prefix")
@@ -425,13 +433,18 @@ def validate_knowledge_objects():
         check(not leaked, f"KO {kid}: forbidden field(s) {sorted(leaked)} (KO must not own routes/urls/raw values)")
         for e in ko.get("entity_ids", []):
             check(e in concept_eligible, f"KO {kid}: entity_id '{e}' not concept-eligible")
+        src = ko.get("claim_source")
+        allowed = registry_approved if src == "registry_approved_inactive" else claim_ids
         for cid in ko.get("claim_ids", []):
-            check(cid in claim_ids, f"KO {kid}: claim_id '{cid}' does not resolve to a pilot claim")
+            check(cid in allowed, f"KO {kid}: claim_id '{cid}' does not resolve to a {src} claim")
+        for cb in ko.get("claim_bindings", []):
+            check(cb.get("claim_source", src) == src, f"KO {kid}: claim binding {cb.get('claim_id')} mixes claim sources")
         for eid in ko.get("evidence_ids", []) + ko.get("boundary_evidence_ids", []):
             check(eid in ev_ids, f"KO {kid}: evidence_id '{eid}' does not resolve")
         # KO references existing claims; it does not invent facts (no evidence value fields)
-        check(ko.get("claim_source") == "pilot_non_operational",
-              f"KO {kid}: claim_source must be pilot_non_operational (claims not activated)")
+        # registry_approved_inactive: approved claims of an INACTIVE registry (nothing activated)
+        check(src in ("pilot_non_operational", "registry_approved_inactive"),
+              f"KO {kid}: claim_source must be pilot_non_operational or registry_approved_inactive (claims not activated)")
         # German lexical evidence must NOT be merged into a scientific KO
         if ko.get("knowledge_role") == "scientific_reference":
             check("EVD-MOS2-DE-001" not in ko.get("evidence_ids", []),

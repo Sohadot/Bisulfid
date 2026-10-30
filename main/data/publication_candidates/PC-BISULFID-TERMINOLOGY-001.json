@@ -1,0 +1,61 @@
+{
+  "version": "0.1.0",
+  "sprint": "recovery-03-terminology",
+  "site": "bisulfid.com",
+  "status": "internal_candidate",
+  "governed_by": [
+    "main/data/knowledge_objects/knowledge_object_registry.json",
+    "main/data/information_gain/calibration_pairs.json",
+    "scripts/governance_scaffolding/contract_c_derive.py",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Non-public Publication-Candidate record for KO-BISULFID-TERMINOLOGY-001. Authorizes NO route/HTML/sitemap/indexation.",
+  "publication_candidate_id": "PC-BISULFID-TERMINOLOGY-001",
+  "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
+  "postures": {
+    "governance_posture": "reference_draft",
+    "evidence_posture": "evidence_sufficient",
+    "claim_posture": "claim_pending",
+    "validation_posture": "not_validated",
+    "information_gain_posture": "ig_reviewed_no_new_route",
+    "release_authorization": "not_authorized"
+  },
+  "derived_contract_c": {
+    "publication_state": "not_public",
+    "indexation_state": "noindex"
+  },
+  "ig_resolution": {
+    "policy_ref": "main/data/information_gain/ig_governance_policy.json",
+    "policy_version": "1.0.0",
+    "object_informational_validity": "object_valid_governed",
+    "new_route_distinctness": "no_new_route_warranted",
+    "new_route_classification": "near_duplicate",
+    "posture_result": "ig_reviewed_no_new_route"
+  },
+  "nearest_legacy_routes": [
+    {
+      "route_id": "bisulfid_vs_bisulfide",
+      "path": "/bisulfid-vs-bisulfide/",
+      "relation": "same terminology task; ungoverned legacy page (Gate 12 FAIL, index,follow in the sealed baseline)"
+    },
+    {
+      "route_id": "de_bisulfid_vs_bisulfide",
+      "path": "/de/bisulfid-vs-bisulfide/",
+      "relation": "German-language legacy page; NOT a governed localization of this object"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_vs_bisulfide_*",
+      "path": "/en/terminology/compare/bisulfid-vs-bisulfide/*/*/",
+      "relation": "4 thin audience variants (comparison/consolidation candidates only)"
+    }
+  ],
+  "proposed_disposition": "governed_reference_no_new_route",
+  "blockers_before_any_url": [
+    "claim_posture is claim_pending — the approved claims live in an INACTIVE registry; activation needs an owner decision",
+    "validation_posture is not_validated — needs an independent terminology review (not the author of this sprint)",
+    "release_authorization is not_authorized — owner approval required",
+    "source_lock_status is candidate for all sources (evidence not evidence_locked) — indexation additionally requires evidence_locked",
+    "the existing live page is a legacy status-quo page; replacing its body is a live-HTML change outside this sprint"
+  ],
+  "authorizes": "nothing public — internal candidate only"
+}

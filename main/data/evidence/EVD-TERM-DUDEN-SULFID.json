@@ -1,0 +1,63 @@
+{
+  "evidence_id": "EVD-TERM-DUDEN-SULFID",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "terminological",
+  "claim_level": "lexeme",
+  "concept_ids": [
+    "sulfide"
+  ],
+  "lexeme_ids": [
+    "LEX-DE-SULFID-001"
+  ],
+  "relationship": null,
+  "subject_domain": [
+    "SD-TERMINOLOGY",
+    "SD-LINGUISTICS"
+  ],
+  "geography": [],
+  "jurisdiction": null,
+  "language_of_evidence": "de",
+  "claim_scope": "Captured 2026-10-30 from Sulfid (Duden). Quoted passages only; see lexical.",
+  "source_id": "SRC-DUDEN-SULFID",
+  "claim_id": "CLM-TERM-SULFID-DE-SENSE-001",
+  "publication_date": null,
+  "retrieval_date": "2026-10-30",
+  "temporal_scope": {
+    "as_of": "2026-10-30",
+    "valid_from": null,
+    "valid_to": null
+  },
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "primary_authoritative",
+  "allowed_uses": [
+    "de_lexical_entry_definition"
+  ],
+  "prohibited_uses": [
+    "chemical_safety",
+    "medical",
+    "market_data",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "lexical": {
+    "headword": "Sulfid",
+    "hyphenation": "Sul|fid",
+    "definition_quoted": "salzartige Verbindung des Schwefelwasserstoffs"
+  },
+  "locator": {
+    "capture_file": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+    "capture_keys": [
+      "SRC-DUDEN-SULFID"
+    ],
+    "url": "https://www.duden.de/rechtschreibung/Sulfid",
+    "sha256": "0285cb2157cfd0f14ea41aadb3e3809b0c0a6168bed27964fe51864339425341",
+    "retrieval_date": "2026-10-30",
+    "verbatim": [
+      "Worttrennung Sul|fid",
+      "Bedeutung ⓘ salzartige Verbindung des Schwefelwasserstoffs"
+    ]
+  },
+  "governance_note": "Recovery-03 terminology identity evidence. Contract C for any route using it is derived, never implied."
+}

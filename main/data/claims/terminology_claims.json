@@ -23,12 +23,126 @@
     "approval_ready_claims": [
       {
         "claim_id": "CLM-TERM-MOS2-DE-001",
-        "source_ids": ["SRC-SPEKTRUM-MOS2-DE"],
+        "source_ids": [
+          "SRC-SPEKTRUM-MOS2-DE"
+        ],
         "evidence_sprint": "5N-S",
         "evidence_sufficient": true,
         "current_status": "approved",
         "target_status_after_guardrail_transition": "approved",
         "narrow_boundary": "German Lexikon der Chemie dictionary-entry terminology for de_core_mos2 only"
+      },
+      {
+        "claim_id": "CLM-TERM-BISULFIDE-EN-SENSE-001",
+        "source_ids": [
+          "SRC-MW-BISULFIDE"
+        ],
+        "evidence_sprint": "recovery-03",
+        "evidence_sufficient": true,
+        "current_status": "approved",
+        "target_status_after_guardrail_transition": "approved"
+      },
+      {
+        "claim_id": "CLM-TERM-SULFIDE-EN-SENSE-001",
+        "source_ids": [
+          "SRC-MW-SULFIDE"
+        ],
+        "evidence_sprint": "recovery-03",
+        "evidence_sufficient": true,
+        "current_status": "approved",
+        "target_status_after_guardrail_transition": "approved"
+      },
+      {
+        "claim_id": "CLM-TERM-DISULFIDE-EN-SENSE-001",
+        "source_ids": [
+          "SRC-MW-DISULFIDE"
+        ],
+        "evidence_sprint": "recovery-03",
+        "evidence_sufficient": true,
+        "current_status": "approved",
+        "target_status_after_guardrail_transition": "approved"
+      },
+      {
+        "claim_id": "CLM-TERM-BISULFITE-EN-SENSE-001",
+        "source_ids": [
+          "SRC-MW-BISULFITE"
+        ],
+        "evidence_sprint": "recovery-03",
+        "evidence_sufficient": true,
+        "current_status": "approved",
+        "target_status_after_guardrail_transition": "approved"
+      },
+      {
+        "claim_id": "CLM-TERM-SULFID-DE-SENSE-001",
+        "source_ids": [
+          "SRC-DUDEN-SULFID",
+          "SRC-DWDS-SULFID"
+        ],
+        "evidence_sprint": "recovery-03",
+        "evidence_sufficient": true,
+        "current_status": "approved",
+        "target_status_after_guardrail_transition": "approved"
+      },
+      {
+        "claim_id": "CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001",
+        "source_ids": [
+          "SRC-DWDS-BISULFID",
+          "SRC-DWDS-HYDROGENSULFID"
+        ],
+        "evidence_sprint": "recovery-03",
+        "evidence_sufficient": true,
+        "current_status": "approved",
+        "target_status_after_guardrail_transition": "approved"
+      },
+      {
+        "claim_id": "CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001",
+        "source_ids": [
+          "SRC-SPEKTRUM-SCHWEFELWASSERSTOFF-DE"
+        ],
+        "evidence_sprint": "recovery-03",
+        "evidence_sufficient": true,
+        "current_status": "approved",
+        "target_status_after_guardrail_transition": "approved"
+      },
+      {
+        "claim_id": "CLM-TERM-IUPAC-HS-NAMES-001",
+        "source_ids": [
+          "SRC-IUPAC-RED-BOOK-2005"
+        ],
+        "evidence_sprint": "recovery-03",
+        "evidence_sufficient": true,
+        "current_status": "approved",
+        "target_status_after_guardrail_transition": "approved"
+      },
+      {
+        "claim_id": "CLM-TERM-IUPAC-S2-NAMES-001",
+        "source_ids": [
+          "SRC-IUPAC-RED-BOOK-2005"
+        ],
+        "evidence_sprint": "recovery-03",
+        "evidence_sufficient": true,
+        "current_status": "approved",
+        "target_status_after_guardrail_transition": "approved"
+      },
+      {
+        "claim_id": "CLM-TERM-IUPAC-HSO3-NAME-001",
+        "source_ids": [
+          "SRC-IUPAC-RED-BOOK-2005"
+        ],
+        "evidence_sprint": "recovery-03",
+        "evidence_sufficient": true,
+        "current_status": "approved",
+        "target_status_after_guardrail_transition": "approved"
+      },
+      {
+        "claim_id": "CLM-TERM-GERMAN-ID-RULE-001",
+        "source_ids": [
+          "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR"
+        ],
+        "evidence_sprint": "recovery-03",
+        "evidence_sufficient": true,
+        "current_status": "approved",
+        "target_status_after_guardrail_transition": "approved"
       }
     ],
     "next_charter": "Content source-lock audit; marker resolution; route publication — separate charters. Narrow claim approval does not authorize any of the above."
@@ -37,12 +151,24 @@
     {
       "claim_id": "CLM-TERM-001",
       "claim_type": "terminology",
-      "status": "pending_review",
+      "status": "superseded",
       "statement": "The English term 'bisulfide' has a lexical entry in Merriam-Webster.",
-      "source_ids": ["SRC-MW-BISULFIDE"],
-      "related_terms": ["bisulfide", "bisulfid"],
-      "related_routes": ["bisulfid_vs_bisulfide", "what_is_bisulfid"],
-      "allowed_pages": ["bisulfid_vs_bisulfide", "what_is_bisulfid", "glossary"],
+      "source_ids": [
+        "SRC-MW-BISULFIDE"
+      ],
+      "related_terms": [
+        "bisulfide",
+        "bisulfid"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "what_is_bisulfid"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "what_is_bisulfid",
+        "glossary"
+      ],
       "prohibited_uses": [
         "chemical safety",
         "industrial usage",
@@ -52,17 +178,36 @@
       ],
       "risk_level": "low",
       "last_reviewed": "2026-05-15",
-      "notes": "Establishes English-language lexical existence of 'bisulfide'. Supports spelling boundary thesis."
+      "notes": "Establishes English-language lexical existence of 'bisulfide'. Supports spelling boundary thesis.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "superseded",
+        "superseded_by": "CLM-TERM-BISULFIDE-EN-SENSE-001",
+        "basis": "Superseded by CLM-TERM-BISULFIDE-EN-SENSE-001: the legacy claim only asserted that an entry exists; the new claim states what the entry says, quoted from the captured artifact."
+      }
     },
     {
       "claim_id": "CLM-TERM-002",
       "claim_type": "terminology",
-      "status": "pending_review",
+      "status": "superseded",
       "statement": "The English term 'sulfide' has a lexical entry in Merriam-Webster.",
-      "source_ids": ["SRC-MW-SULFIDE"],
-      "related_terms": ["sulfide", "sulfid"],
-      "related_routes": ["sulfid_vs_sulfide", "what_is_bisulfid"],
-      "allowed_pages": ["sulfid_vs_sulfide", "what_is_bisulfid", "glossary"],
+      "source_ids": [
+        "SRC-MW-SULFIDE"
+      ],
+      "related_terms": [
+        "sulfide",
+        "sulfid"
+      ],
+      "related_routes": [
+        "sulfid_vs_sulfide",
+        "what_is_bisulfid"
+      ],
+      "allowed_pages": [
+        "sulfid_vs_sulfide",
+        "what_is_bisulfid",
+        "glossary"
+      ],
       "prohibited_uses": [
         "chemical safety",
         "industrial usage",
@@ -71,17 +216,36 @@
       ],
       "risk_level": "low",
       "last_reviewed": "2026-05-15",
-      "notes": "Establishes English-language lexical existence of 'sulfide'. Supports the broader -ide/-id suffix pattern discussion."
+      "notes": "Establishes English-language lexical existence of 'sulfide'. Supports the broader -ide/-id suffix pattern discussion.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "superseded",
+        "superseded_by": "CLM-TERM-SULFIDE-EN-SENSE-001",
+        "basis": "Superseded by CLM-TERM-SULFIDE-EN-SENSE-001: the legacy claim only asserted that an entry exists; the new claim states what the entry says, quoted from the captured artifact."
+      }
     },
     {
       "claim_id": "CLM-TERM-003",
       "claim_type": "terminology",
-      "status": "pending_review",
+      "status": "superseded",
       "statement": "The German term 'Sulfid' has a lexical entry in Duden.",
-      "source_ids": ["SRC-DUDEN-SULFID"],
-      "related_terms": ["sulfid", "sulfide"],
-      "related_routes": ["sulfid_vs_sulfide", "german_english_chemical_terms"],
-      "allowed_pages": ["sulfid_vs_sulfide", "german_english_chemical_terms", "glossary"],
+      "source_ids": [
+        "SRC-DUDEN-SULFID"
+      ],
+      "related_terms": [
+        "sulfid",
+        "sulfide"
+      ],
+      "related_routes": [
+        "sulfid_vs_sulfide",
+        "german_english_chemical_terms"
+      ],
+      "allowed_pages": [
+        "sulfid_vs_sulfide",
+        "german_english_chemical_terms",
+        "glossary"
+      ],
       "prohibited_uses": [
         "English bisulfide claims",
         "chemical safety",
@@ -91,17 +255,35 @@
       ],
       "risk_level": "low",
       "last_reviewed": "2026-05-15",
-      "notes": "Establishes German-language lexical existence of 'Sulfid' in an authoritative German dictionary. Supports the -id suffix form as a documented German-language standard."
+      "notes": "Establishes German-language lexical existence of 'Sulfid' in an authoritative German dictionary. Supports the -id suffix form as a documented German-language standard.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "superseded",
+        "superseded_by": "CLM-TERM-SULFID-DE-SENSE-001",
+        "basis": "Superseded by CLM-TERM-SULFID-DE-SENSE-001: the legacy claim only asserted that an entry exists; the new claim states what the entry says, quoted from the captured artifact."
+      }
     },
     {
       "claim_id": "CLM-TERM-004",
       "claim_type": "terminology",
-      "status": "pending_review",
+      "status": "superseded",
       "statement": "The term 'bisulfite' refers to a distinct compound from 'bisulfide', as confirmed by a separate Merriam-Webster entry.",
-      "source_ids": ["SRC-MW-BISULFITE"],
-      "related_terms": ["bisulfite_disambiguation"],
-      "related_routes": ["what_is_bisulfid", "bisulfid_vs_bisulfide"],
-      "allowed_pages": ["what_is_bisulfid", "bisulfid_vs_bisulfide", "glossary"],
+      "source_ids": [
+        "SRC-MW-BISULFITE"
+      ],
+      "related_terms": [
+        "bisulfite_disambiguation"
+      ],
+      "related_routes": [
+        "what_is_bisulfid",
+        "bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "what_is_bisulfid",
+        "bisulfid_vs_bisulfide",
+        "glossary"
+      ],
       "prohibited_uses": [
         "bisulfide chemistry",
         "bisulfide market data",
@@ -112,17 +294,36 @@
       ],
       "risk_level": "medium",
       "last_reviewed": "2026-05-15",
-      "notes": "Supports the core disambiguation rule: bisulfite is NOT bisulfide. Bisulfite data must never be used as bisulfide data."
+      "notes": "Supports the core disambiguation rule: bisulfite is NOT bisulfide. Bisulfite data must never be used as bisulfide data.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "superseded",
+        "superseded_by": "CLM-TERM-BISULFITE-EN-SENSE-001",
+        "basis": "Superseded by CLM-TERM-BISULFITE-EN-SENSE-001: the legacy claim only asserted that an entry exists; the new claim states what the entry says, quoted from the captured artifact."
+      }
     },
     {
       "claim_id": "CLM-TERM-005",
       "claim_type": "terminology",
-      "status": "pending_review",
+      "status": "superseded",
       "statement": "The term 'hydrosulfides' has an entry in the IUPAC Gold Book chemical nomenclature standard.",
-      "source_ids": ["SRC-IUPAC-HYDROSULFIDES"],
-      "related_terms": ["hydrosulfide", "bisulfide"],
-      "related_routes": ["bisulfide_hydrosulfide_sulfide", "what_is_bisulfid"],
-      "allowed_pages": ["bisulfide_hydrosulfide_sulfide", "what_is_bisulfid", "glossary"],
+      "source_ids": [
+        "SRC-IUPAC-HYDROSULFIDES"
+      ],
+      "related_terms": [
+        "hydrosulfide",
+        "bisulfide"
+      ],
+      "related_routes": [
+        "bisulfide_hydrosulfide_sulfide",
+        "what_is_bisulfid"
+      ],
+      "allowed_pages": [
+        "bisulfide_hydrosulfide_sulfide",
+        "what_is_bisulfid",
+        "glossary"
+      ],
       "prohibited_uses": [
         "market data",
         "safety instructions",
@@ -132,17 +333,37 @@
       ],
       "risk_level": "low",
       "last_reviewed": "2026-05-15",
-      "notes": "Establishes IUPAC nomenclature authority for the hydrosulfide term. Supports the naming relationship between hydrosulfide and bisulfide."
+      "notes": "Establishes IUPAC nomenclature authority for the hydrosulfide term. Supports the naming relationship between hydrosulfide and bisulfide.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "superseded",
+        "superseded_by": "CLM-TERM-IUPAC-HS-NAMES-001",
+        "basis": "Superseded by CLM-TERM-IUPAC-HS-NAMES-001: the legacy claim only asserted that an entry exists; the new claim states what the entry says, quoted from the captured artifact."
+      }
     },
     {
       "claim_id": "CLM-TERM-BISULFID-001",
       "claim_type": "terminology",
       "status": "pending_review",
       "statement": "Bisulfid appears as a German technical usage term in sulfur/water-quality monitoring context.",
-      "source_ids": ["SRC-BADGER-BISULFID-H2S"],
-      "related_terms": ["bisulfid", "bisulfide"],
-      "related_routes": ["what_is_bisulfid", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
-      "allowed_pages": ["what_is_bisulfid", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "source_ids": [
+        "SRC-BADGER-BISULFID-H2S"
+      ],
+      "related_terms": [
+        "bisulfid",
+        "bisulfide"
+      ],
+      "related_routes": [
+        "what_is_bisulfid",
+        "bisulfid_vs_bisulfide",
+        "german_english_chemical_terms"
+      ],
+      "allowed_pages": [
+        "what_is_bisulfid",
+        "bisulfid_vs_bisulfide",
+        "german_english_chemical_terms"
+      ],
       "prohibited_uses": [
         "formal nomenclature authority",
         "safety instructions",
@@ -153,17 +374,34 @@
       ],
       "risk_level": "medium",
       "last_reviewed": "2026-05-16",
-      "notes": "Candidate usage claim only. Not approved for publication. Stronger source-locking required before removing source-required markers."
+      "notes": "Candidate usage claim only. Not approved for publication. Stronger source-locking required before removing source-required markers.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "remains pending_review",
+        "basis": "NOT APPROVABLE under current policy: the only attestation (Badger Meter, industry_publication) is verified verbatim but the terminology domain admits only dictionaries, nomenclature standards and teaching references. DWDS does not list 'Bisulfid'; Duden has no entry. Boundary recorded: attested German industry usage for HS-, not a lexicographically established term."
+      }
     },
     {
       "claim_id": "CLM-TERM-OXID-001",
       "claim_type": "terminology",
       "status": "pending_review",
       "statement": "Duden records Oxid as a German lexical entry.",
-      "source_ids": ["SRC-DUDEN-OXID"],
-      "related_terms": ["oxid", "oxide"],
-      "related_routes": ["sulfid_vs_sulfide", "german_english_chemical_terms"],
-      "allowed_pages": ["sulfid_vs_sulfide", "german_english_chemical_terms"],
+      "source_ids": [
+        "SRC-DUDEN-OXID"
+      ],
+      "related_terms": [
+        "oxid",
+        "oxide"
+      ],
+      "related_routes": [
+        "sulfid_vs_sulfide",
+        "german_english_chemical_terms"
+      ],
+      "allowed_pages": [
+        "sulfid_vs_sulfide",
+        "german_english_chemical_terms"
+      ],
       "prohibited_uses": [
         "formal nomenclature authority",
         "universal suffix rule",
@@ -174,17 +412,34 @@
       ],
       "risk_level": "low",
       "last_reviewed": "2026-05-16",
-      "notes": "Candidate lexical support only. Does not approve a universal German -ide to -id rule."
+      "notes": "Candidate lexical support only. Does not approve a universal German -ide to -id rule.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "remains pending_review",
+        "basis": "Not reviewed for approval: 'Oxid' needs an ontology concept outside the sulfur scope; not required for the identity record."
+      }
     },
     {
       "claim_id": "CLM-TERM-CHLORID-001",
       "claim_type": "terminology",
       "status": "pending_review",
       "statement": "Duden records Chlorid as a German lexical entry.",
-      "source_ids": ["SRC-DUDEN-CHLORID"],
-      "related_terms": ["chlorid", "chloride"],
-      "related_routes": ["sulfid_vs_sulfide", "german_english_chemical_terms"],
-      "allowed_pages": ["sulfid_vs_sulfide", "german_english_chemical_terms"],
+      "source_ids": [
+        "SRC-DUDEN-CHLORID"
+      ],
+      "related_terms": [
+        "chlorid",
+        "chloride"
+      ],
+      "related_routes": [
+        "sulfid_vs_sulfide",
+        "german_english_chemical_terms"
+      ],
+      "allowed_pages": [
+        "sulfid_vs_sulfide",
+        "german_english_chemical_terms"
+      ],
       "prohibited_uses": [
         "formal nomenclature authority",
         "universal suffix rule",
@@ -195,17 +450,42 @@
       ],
       "risk_level": "low",
       "last_reviewed": "2026-05-16",
-      "notes": "Candidate lexical support only. Does not approve a universal German -ide to -id rule."
+      "notes": "Candidate lexical support only. Does not approve a universal German -ide to -id rule.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "remains pending_review",
+        "basis": "Not reviewed for approval: 'Chlorid' needs an ontology concept outside the sulfur scope; not required for the identity record."
+      }
     },
     {
       "claim_id": "CLM-TERM-GERMAN-ID-PATTERN-001",
       "claim_type": "terminology",
       "status": "pending_review",
       "statement": "Duden lexical entries for Sulfid, Oxid, and Chlorid provide candidate support for presenting these German -id forms as a cautious lexical comparison set.",
-      "source_ids": ["SRC-DUDEN-SULFID", "SRC-DUDEN-OXID", "SRC-DUDEN-CHLORID"],
-      "related_terms": ["sulfid", "sulfide", "oxid", "oxide", "chlorid", "chloride"],
-      "related_routes": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
-      "allowed_pages": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "source_ids": [
+        "SRC-DUDEN-SULFID",
+        "SRC-DUDEN-OXID",
+        "SRC-DUDEN-CHLORID"
+      ],
+      "related_terms": [
+        "sulfid",
+        "sulfide",
+        "oxid",
+        "oxide",
+        "chlorid",
+        "chloride"
+      ],
+      "related_routes": [
+        "sulfid_vs_sulfide",
+        "bisulfid_vs_bisulfide",
+        "german_english_chemical_terms"
+      ],
+      "allowed_pages": [
+        "sulfid_vs_sulfide",
+        "bisulfid_vs_bisulfide",
+        "german_english_chemical_terms"
+      ],
       "prohibited_uses": [
         "formal DIN rule",
         "formal IUPAC German rule",
@@ -216,17 +496,37 @@
       ],
       "risk_level": "medium",
       "last_reviewed": "2026-05-16",
-      "notes": "This claim may support a cautious lexical comparison only. Stronger nomenclature or educational source required before public wording can state a general rule."
+      "notes": "This claim may support a cautious lexical comparison only. Stronger nomenclature or educational source required before public wording can state a general rule.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "remains pending_review",
+        "basis": "Not approved: depends on Oxid/Chlorid evidence outside scope. The -id rule itself is covered by CLM-TERM-GERMAN-ID-RULE-001."
+      }
     },
     {
       "claim_id": "CLM-TERM-ENGLISH-IDE-CONTEXT-001",
       "claim_type": "terminology",
       "status": "pending_review",
       "statement": "IUPAC inorganic nomenclature material provides English-language context for -ide naming in inorganic chemistry where directly supported.",
-      "source_ids": ["SRC-IUPAC-INORGANIC-NOMENCLATURE-1971"],
-      "related_terms": ["sulfide", "chloride", "bisulfide"],
-      "related_routes": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
-      "allowed_pages": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "source_ids": [
+        "SRC-IUPAC-INORGANIC-NOMENCLATURE-1971"
+      ],
+      "related_terms": [
+        "sulfide",
+        "chloride",
+        "bisulfide"
+      ],
+      "related_routes": [
+        "sulfid_vs_sulfide",
+        "bisulfid_vs_bisulfide",
+        "german_english_chemical_terms"
+      ],
+      "allowed_pages": [
+        "sulfid_vs_sulfide",
+        "bisulfid_vs_bisulfide",
+        "german_english_chemical_terms"
+      ],
       "prohibited_uses": [
         "German spelling authority",
         "German suffix compression rule",
@@ -236,20 +536,41 @@
       ],
       "risk_level": "medium",
       "last_reviewed": "2026-05-16",
-      "notes": "English nomenclature context only. Not a German source."
+      "notes": "English nomenclature context only. Not a German source.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "remains pending_review",
+        "basis": "Not approved: the 1971 IUPAC source was not re-verified this sprint; current IUPAC naming is covered by the 2005 Red Book claims."
+      }
     },
     {
       "claim_id": "CLM-TERM-GERMAN-ID-ACADEMIC-001",
       "claim_type": "terminology",
-      "status": "pending_review",
+      "status": "superseded",
       "statement": "Selected German academic teaching references describe or illustrate the -id ending in inorganic nomenclature contexts, supporting cautious draft review of forms such as Chlorid, Oxid, and Sulfid.",
       "source_ids": [
         "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR",
         "SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN"
       ],
-      "related_terms": ["chlorid", "chloride", "oxid", "oxide", "sulfid", "sulfide"],
-      "related_routes": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
-      "allowed_pages": ["sulfid_vs_sulfide", "bisulfid_vs_bisulfide", "german_english_chemical_terms"],
+      "related_terms": [
+        "chlorid",
+        "chloride",
+        "oxid",
+        "oxide",
+        "sulfid",
+        "sulfide"
+      ],
+      "related_routes": [
+        "sulfid_vs_sulfide",
+        "bisulfid_vs_bisulfide",
+        "german_english_chemical_terms"
+      ],
+      "allowed_pages": [
+        "sulfid_vs_sulfide",
+        "bisulfid_vs_bisulfide",
+        "german_english_chemical_terms"
+      ],
       "prohibited_uses": [
         "formal DIN rule",
         "official German IUPAC rule",
@@ -264,17 +585,34 @@
       ],
       "risk_level": "medium",
       "last_reviewed": "2026-05-16",
-      "notes": "Candidate academic teaching support only. This claim does not approve public wording that states a formal German suffix rule."
+      "notes": "Candidate academic teaching support only. This claim does not approve public wording that states a formal German suffix rule.",
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "superseded",
+        "superseded_by": "CLM-TERM-GERMAN-ID-RULE-001",
+        "basis": "Superseded by CLM-TERM-GERMAN-ID-RULE-001: the legacy claim only asserted that an entry exists; the new claim states what the entry says, quoted from the captured artifact."
+      }
     },
     {
       "claim_id": "CLM-TERM-MOS2-DE-001",
       "claim_type": "terminology",
       "status": "approved",
       "statement": "Molybdän(IV)-sulfid has a German Lexikon der Chemie dictionary entry on Spektrum.de that supports cautious terminology framing for the de_core_mos2 route within the registered narrow dictionary-entry boundary.",
-      "source_ids": ["SRC-SPEKTRUM-MOS2-DE"],
-      "related_terms": ["molybdän(iv)-sulfid", "mos2", "molybdän disulfid"],
-      "related_routes": ["de_core_mos2"],
-      "allowed_pages": ["de_core_mos2"],
+      "source_ids": [
+        "SRC-SPEKTRUM-MOS2-DE"
+      ],
+      "related_terms": [
+        "molybdän(iv)-sulfid",
+        "mos2",
+        "molybdän disulfid"
+      ],
+      "related_routes": [
+        "de_core_mos2"
+      ],
+      "allowed_pages": [
+        "de_core_mos2"
+      ],
       "prohibited_uses": [
         "chemical safety",
         "safety handling instructions",
@@ -299,6 +637,473 @@
       "risk_level": "medium",
       "last_reviewed": "2026-05-27",
       "notes": "Claim-boundary registration Sprint 5N-P. Claim approval review Sprint 5N-T: evidence sufficient. Guardrail policy update Sprint 5N-U: status approved under approval_limited posture with SRC-SPEKTRUM-MOS2-DE verified and source_lock_status candidate. Narrow German Lexikon der Chemie dictionary-entry terminology only for de_core_mos2. Not content source-locking, marker resolution, route publication, sitemap, navigation, or production readiness. Excludes chemical safety, market, production, procurement, medical, industrial, trade, CAGR, pricing, and acquisition claims."
+    },
+    {
+      "claim_id": "CLM-TERM-BISULFIDE-EN-SENSE-001",
+      "claim_type": "terminology",
+      "status": "approved",
+      "statement": "Merriam-Webster defines the English noun 'bisulfide' as 'disulfide' and dates its first known use to 1831.",
+      "source_ids": [
+        "SRC-MW-BISULFIDE"
+      ],
+      "related_terms": [
+        "disulfide"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "prohibited_uses": [
+        "chemical safety",
+        "medical claims",
+        "market data",
+        "route publication",
+        "removal of [SOURCE REQUIRED] markers",
+        "source-locking by itself",
+        "formal nomenclature authority beyond the quoted passage",
+        "inference of chemical equivalence from spelling"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-10-30",
+      "supporting_evidence_ids": [
+        "EVD-TERM-MW-BISULFIDE"
+      ],
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "approved (narrow, approval_limited)",
+        "basis": "admitted evidence quoting the captured artifact verbatim; single_authoritative_sufficient (terminology domain)"
+      },
+      "notes": "Approved at claim level only. Registry stays inactive: no operational activation, no publication."
+    },
+    {
+      "claim_id": "CLM-TERM-SULFIDE-EN-SENSE-001",
+      "claim_type": "terminology",
+      "status": "approved",
+      "statement": "Merriam-Webster defines 'sulfide' as (1) any of various organic compounds characterized by a sulfur atom attached to two carbon atoms, and (2) a binary compound of sulfur usually with a more electropositive element or group: a salt of hydrogen sulfide.",
+      "source_ids": [
+        "SRC-MW-SULFIDE"
+      ],
+      "related_terms": [
+        "sulfide"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "prohibited_uses": [
+        "chemical safety",
+        "medical claims",
+        "market data",
+        "route publication",
+        "removal of [SOURCE REQUIRED] markers",
+        "source-locking by itself",
+        "formal nomenclature authority beyond the quoted passage",
+        "inference of chemical equivalence from spelling"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-10-30",
+      "supporting_evidence_ids": [
+        "EVD-TERM-MW-SULFIDE"
+      ],
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "approved (narrow, approval_limited)",
+        "basis": "admitted evidence quoting the captured artifact verbatim; single_authoritative_sufficient (terminology domain)"
+      },
+      "notes": "Approved at claim level only. Registry stays inactive: no operational activation, no publication."
+    },
+    {
+      "claim_id": "CLM-TERM-DISULFIDE-EN-SENSE-001",
+      "claim_type": "terminology",
+      "status": "approved",
+      "statement": "Merriam-Webster defines 'disulfide' as (1) a compound containing two atoms of sulfur combined with an element or radical, and (2) an organic compound containing the divalent group SS; first known use 1869.",
+      "source_ids": [
+        "SRC-MW-DISULFIDE"
+      ],
+      "related_terms": [
+        "disulfide"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "prohibited_uses": [
+        "chemical safety",
+        "medical claims",
+        "market data",
+        "route publication",
+        "removal of [SOURCE REQUIRED] markers",
+        "source-locking by itself",
+        "formal nomenclature authority beyond the quoted passage",
+        "inference of chemical equivalence from spelling"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-10-30",
+      "supporting_evidence_ids": [
+        "EVD-TERM-MW-DISULFIDE"
+      ],
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "approved (narrow, approval_limited)",
+        "basis": "admitted evidence quoting the captured artifact verbatim; single_authoritative_sufficient (terminology domain)"
+      },
+      "notes": "Approved at claim level only. Registry stays inactive: no operational activation, no publication."
+    },
+    {
+      "claim_id": "CLM-TERM-BISULFITE-EN-SENSE-001",
+      "claim_type": "terminology",
+      "status": "approved",
+      "statement": "Merriam-Webster defines 'bisulfite' as 'an acid sulfite' (first known use 1819), a different entry from 'bisulfide'.",
+      "source_ids": [
+        "SRC-MW-BISULFITE"
+      ],
+      "related_terms": [
+        "hydrogen_sulfite"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "prohibited_uses": [
+        "chemical safety",
+        "medical claims",
+        "market data",
+        "route publication",
+        "removal of [SOURCE REQUIRED] markers",
+        "source-locking by itself",
+        "formal nomenclature authority beyond the quoted passage",
+        "inference of chemical equivalence from spelling"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-10-30",
+      "supporting_evidence_ids": [
+        "EVD-TERM-MW-BISULFITE"
+      ],
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "approved (narrow, approval_limited)",
+        "basis": "admitted evidence quoting the captured artifact verbatim; single_authoritative_sufficient (terminology domain)"
+      },
+      "notes": "Approved at claim level only. Registry stays inactive: no operational activation, no publication."
+    },
+    {
+      "claim_id": "CLM-TERM-SULFID-DE-SENSE-001",
+      "claim_type": "terminology",
+      "status": "approved",
+      "statement": "Duden defines the German noun 'Sulfid' as 'salzartige Verbindung des Schwefelwasserstoffs'; the DWDS (eWDG 1976) sense is 'Salz des Schwefelwasserstoffs'.",
+      "source_ids": [
+        "SRC-DUDEN-SULFID",
+        "SRC-DWDS-SULFID"
+      ],
+      "related_terms": [
+        "sulfide"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "prohibited_uses": [
+        "chemical safety",
+        "medical claims",
+        "market data",
+        "route publication",
+        "removal of [SOURCE REQUIRED] markers",
+        "source-locking by itself",
+        "formal nomenclature authority beyond the quoted passage",
+        "inference of chemical equivalence from spelling"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-10-30",
+      "supporting_evidence_ids": [
+        "EVD-TERM-DUDEN-SULFID",
+        "EVD-TERM-DWDS-SULFID"
+      ],
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "approved (narrow, approval_limited)",
+        "basis": "admitted evidence quoting the captured artifact verbatim; single_authoritative_sufficient (terminology domain)"
+      },
+      "notes": "Approved at claim level only. Registry stays inactive: no operational activation, no publication."
+    },
+    {
+      "claim_id": "CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001",
+      "claim_type": "terminology",
+      "status": "approved",
+      "statement": "DWDS states that neither 'Bisulfid' nor 'Hydrogensulfid' is in its contemporary lexical sources; it shows only computer-generated grammatical forms for them.",
+      "source_ids": [
+        "SRC-DWDS-BISULFID",
+        "SRC-DWDS-HYDROGENSULFID"
+      ],
+      "related_terms": [
+        "hydrosulfide"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "prohibited_uses": [
+        "chemical safety",
+        "medical claims",
+        "market data",
+        "route publication",
+        "removal of [SOURCE REQUIRED] markers",
+        "source-locking by itself",
+        "formal nomenclature authority beyond the quoted passage",
+        "inference of chemical equivalence from spelling"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-10-30",
+      "supporting_evidence_ids": [
+        "EVD-TERM-DWDS-BISULFID",
+        "EVD-TERM-DWDS-HYDROGENSULFID"
+      ],
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "approved (narrow, approval_limited)",
+        "basis": "admitted evidence quoting the captured artifact verbatim; single_authoritative_sufficient (terminology domain)"
+      },
+      "notes": "Approved at claim level only. Registry stays inactive: no operational activation, no publication."
+    },
+    {
+      "claim_id": "CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001",
+      "claim_type": "terminology",
+      "status": "approved",
+      "statement": "The Spektrum Lexikon der Chemie entry 'Schwefelwasserstoff' names the two series of salts of hydrogen sulfide 'Hydrogensulfide' (MIHS) and 'Sulfide' (MI2S).",
+      "source_ids": [
+        "SRC-SPEKTRUM-SCHWEFELWASSERSTOFF-DE"
+      ],
+      "related_terms": [
+        "hydrosulfide",
+        "sulfide"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "prohibited_uses": [
+        "chemical safety",
+        "medical claims",
+        "market data",
+        "route publication",
+        "removal of [SOURCE REQUIRED] markers",
+        "source-locking by itself",
+        "formal nomenclature authority beyond the quoted passage",
+        "inference of chemical equivalence from spelling"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-10-30",
+      "supporting_evidence_ids": [
+        "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE"
+      ],
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "approved (narrow, approval_limited)",
+        "basis": "admitted evidence quoting the captured artifact verbatim; single_authoritative_sufficient (terminology domain)"
+      },
+      "notes": "Approved at claim level only. Registry stays inactive: no operational activation, no publication."
+    },
+    {
+      "claim_id": "CLM-TERM-IUPAC-HS-NAMES-001",
+      "claim_type": "terminology",
+      "status": "approved",
+      "statement": "The IUPAC 2005 recommendations name the anion HS⁻ 'sulfanide' (substitutive) or 'hydridosulfate(1−)' (additive).",
+      "source_ids": [
+        "SRC-IUPAC-RED-BOOK-2005"
+      ],
+      "related_terms": [
+        "hydrosulfide"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "prohibited_uses": [
+        "chemical safety",
+        "medical claims",
+        "market data",
+        "route publication",
+        "removal of [SOURCE REQUIRED] markers",
+        "source-locking by itself",
+        "formal nomenclature authority beyond the quoted passage",
+        "inference of chemical equivalence from spelling"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-10-30",
+      "supporting_evidence_ids": [
+        "EVD-TERM-IUPAC-HS-NAMES"
+      ],
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "approved (narrow, approval_limited)",
+        "basis": "admitted evidence quoting the captured artifact verbatim; single_authoritative_sufficient (terminology domain)"
+      },
+      "notes": "Approved at claim level only. Registry stays inactive: no operational activation, no publication."
+    },
+    {
+      "claim_id": "CLM-TERM-IUPAC-S2-NAMES-001",
+      "claim_type": "terminology",
+      "status": "approved",
+      "statement": "The IUPAC 2005 recommendations name the anion S₂²⁻ 'disulfide(2−)' or, as derived from its parent hydride, 'disulfanediide'.",
+      "source_ids": [
+        "SRC-IUPAC-RED-BOOK-2005"
+      ],
+      "related_terms": [
+        "disulfide"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "prohibited_uses": [
+        "chemical safety",
+        "medical claims",
+        "market data",
+        "route publication",
+        "removal of [SOURCE REQUIRED] markers",
+        "source-locking by itself",
+        "formal nomenclature authority beyond the quoted passage",
+        "inference of chemical equivalence from spelling"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-10-30",
+      "supporting_evidence_ids": [
+        "EVD-TERM-IUPAC-S2-NAMES"
+      ],
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "approved (narrow, approval_limited)",
+        "basis": "admitted evidence quoting the captured artifact verbatim; single_authoritative_sufficient (terminology domain)"
+      },
+      "notes": "Approved at claim level only. Registry stays inactive: no operational activation, no publication."
+    },
+    {
+      "claim_id": "CLM-TERM-IUPAC-HSO3-NAME-001",
+      "claim_type": "terminology",
+      "status": "approved",
+      "statement": "The IUPAC 2005 recommendations accept 'hydrogensulfite' as an abbreviated hydrogen name for HSO₃⁻, in a list IUPAC asks to be viewed as limiting.",
+      "source_ids": [
+        "SRC-IUPAC-RED-BOOK-2005"
+      ],
+      "related_terms": [
+        "hydrogen_sulfite"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "prohibited_uses": [
+        "chemical safety",
+        "medical claims",
+        "market data",
+        "route publication",
+        "removal of [SOURCE REQUIRED] markers",
+        "source-locking by itself",
+        "formal nomenclature authority beyond the quoted passage",
+        "inference of chemical equivalence from spelling"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-10-30",
+      "supporting_evidence_ids": [
+        "EVD-TERM-IUPAC-HSO3-NAME"
+      ],
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "approved (narrow, approval_limited)",
+        "basis": "admitted evidence quoting the captured artifact verbatim; single_authoritative_sufficient (terminology domain)"
+      },
+      "notes": "Approved at claim level only. Registry stays inactive: no operational activation, no publication."
+    },
+    {
+      "claim_id": "CLM-TERM-GERMAN-ID-RULE-001",
+      "claim_type": "terminology",
+      "status": "approved",
+      "statement": "A German university nomenclature sheet (FH Münster) states that the anion name of a binary compound with negative oxidation number ends in '-id', listing 'Sulfid' for S²⁻.",
+      "source_ids": [
+        "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR"
+      ],
+      "related_terms": [
+        "sulfide"
+      ],
+      "related_routes": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "allowed_pages": [
+        "bisulfid_vs_bisulfide",
+        "de_bisulfid_vs_bisulfide"
+      ],
+      "prohibited_uses": [
+        "chemical safety",
+        "medical claims",
+        "market data",
+        "route publication",
+        "removal of [SOURCE REQUIRED] markers",
+        "source-locking by itself",
+        "formal nomenclature authority beyond the quoted passage",
+        "inference of chemical equivalence from spelling"
+      ],
+      "risk_level": "low",
+      "last_reviewed": "2026-10-30",
+      "supporting_evidence_ids": [
+        "EVD-TERM-FHM-ID-RULE"
+      ],
+      "review_record": {
+        "reviewed_on": "2026-10-30",
+        "sprint": "recovery-03",
+        "decision": "approved (narrow, approval_limited)",
+        "basis": "admitted evidence quoting the captured artifact verbatim; single_authoritative_sufficient (terminology domain)"
+      },
+      "notes": "Approved at claim level only. Registry stays inactive: no operational activation, no publication."
     }
   ]
 }

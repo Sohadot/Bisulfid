@@ -88,7 +88,7 @@ class Context:
         self.ko = next((k for k in kos if k["knowledge_object_id"] == spec["knowledge_object_id"]), None)
         if not self.ko:
             raise RenderError(f"unknown Knowledge Object {spec['knowledge_object_id']}")
-        self.entity = self.ko["entity_ids"][0]
+        self.entities = list(self.ko["entity_ids"])
         self.evidence = {}
         for eid in set(spec["evidence_uses"]):
             p = os.path.join(DATA, "evidence", eid + ".json")
@@ -118,8 +118,8 @@ class Context:
             raise RenderError(f"{eid}: not governed evidence")
         if e.get("evidence_review_posture") != "evidence_verified":
             raise RenderError(f"{eid}: not evidence_verified")
-        if self.entity not in (e.get("concept_ids") or []):
-            raise RenderError(f"{eid}: not about {self.entity}")
+        if not set(self.entities) & set(e.get("concept_ids") or []):
+            raise RenderError(f"{eid}: not about {' / '.join(self.entities)}")
         if use not in (e.get("allowed_uses") or []) or use in (e.get("prohibited_uses") or []):
             raise RenderError(f"{eid}: intended use '{use}' not allowed by the evidence record")
         for q in self.quals:
@@ -155,6 +155,17 @@ class Context:
         if "{{" in out:
             raise RenderError(f"unresolved placeholder in: {text[:60]}")
         return out
+
+    def unit_entity(self, eids, declared=None):
+        """The ONE KO concept an IG unit is specific to: every bound evidence record must be about it."""
+        common = [x for x in self.entities if all(x in (self.evidence[e].get("concept_ids") or []) for e in eids)]
+        if declared:
+            if declared not in common:
+                raise RenderError(f"IG unit entity {declared} is not a KO concept shared by {eids}")
+            return declared
+        if not common:
+            raise RenderError(f"IG unit over {eids} is not specific to one KO concept")
+        return common[0]
 
     def check_membership(self, module, eids):
         for eid in eids:
@@ -195,7 +206,8 @@ def build(spec):
                     raise RenderError(f"consistency check failed: {a}={va!r} vs {b}={vb!r}")
             paras.append({"text": text, "evidence_ids": p["evidence_ids"]})
             if p.get("ig_unit"):
-                u = {"unit_id": p["ig_unit"]["unit_id"], "entity_id": ctx.entity, "dimension": p["ig_unit"]["dimension"],
+                u = {"unit_id": p["ig_unit"]["unit_id"], "entity_id": ctx.unit_entity(p["evidence_ids"], p["ig_unit"].get("entity_id")),
+                     "dimension": p["ig_unit"]["dimension"],
                      "statement": text, "evidence_ids": p["evidence_ids"], "audience_ids": spec["ig_audience_ids"]}
                 if m.get("claim_id"):
                     u["claim_id"] = m["claim_id"]
@@ -221,14 +233,22 @@ def build(spec):
         s = ctx.sources.get(e["source_id"], {})
         w = ctx.works.get(ctx.admission[eid]["originating_work_id"] or "", {})
         loc = e.get("locator") or {}
+        lex = e.get("lexical") or {}
         ident = loc.get("record_id") or (f"COD {loc['cod_file']}" if loc.get("cod_file") else None) \
             or (f"CAS {loc['cas']}" if loc.get("cas") else None) or (f"doi:{loc['doi']}" if loc.get("doi") else None) \
+            or (f"PubChem CID {lex['cid']}" if lex.get("cid") else None) \
+            or (f"{lex['section']}" + (f", PDF p. {', '.join(map(str, loc['pdf_pages']))}" if loc.get("pdf_pages") else "")
+                if lex.get("section") else None) \
+            or (f"entry “{lex.get('headword') or lex.get('entry')}”" if (lex.get("headword") or lex.get("entry")) else None) \
             or s.get("title", e["source_id"]).split(" — ")[0]
+        no_work = ("reference work entry (dictionary, nomenclature standard, teaching text or database record)"
+                   if e.get("evidence_kind") == "terminological" else "database record (no separate originating study)")
         provenance.append({
             "evidence_id": eid, "claim_id": e.get("claim_id") or "boundary (no claim)",
             "source_id": e["source_id"], "source_title": s.get("title", ""), "source_url": s.get("url"),
             "originating_work": (f"{'; '.join(w['authors'])} ({w['year']}). {w['title']}. {w['venue']}." if w
-                                 else "database record (no separate originating study)"),
+                                 else (f"{s['publisher']}: {s['title']}" if s.get("publisher") and s.get("title") else no_work)
+                                 if e.get("evidence_kind") == "terminological" else no_work),
             "role": e.get("evidence_role") or "", "record": ident, "retrieval_date": e.get("retrieval_date", ""),
             "intended_use": ctx.admission[eid]["intended_use"], "qualification_id": ctx.admission[eid]["qualification_id"],
             "source_lock_status": s.get("source_lock_status", "unknown")})
@@ -248,11 +268,19 @@ def resolve_seo(spec, ctx):
         return None
     ev = set(seo.get("json_ld_evidence_ids", []))
     ld = {"@context": "https://schema.org"}
+    def res(v):
+        if isinstance(v, str):
+            return ctx.resolve(v, ev)
+        if isinstance(v, list):
+            return [res(x) for x in v]
+        if isinstance(v, dict):
+            return {k: res(x) for k, x in v.items()}
+        return v
     for k, v in seo["json_ld"].items():
         if k == "same_as_evidence":
             ld["sameAs"] = [ctx.sources[ctx.evidence[e]["source_id"]]["url"] for e in v]
         else:
-            ld[k] = ctx.resolve(v, ev) if isinstance(v, str) else v
+            ld[k] = res(v)
     for link in seo.get("related", []) + seo.get("breadcrumbs", []):
         p = link["path"]
         f = os.path.join(ROOT, "site", "public", p.strip("/"), "index.html") if p != "/" else \
@@ -276,7 +304,7 @@ def render_markdown(r):
         "---", f"route_id: {route['route_id']}", "status: draft", "publication_status: non_public",
         "publication_eligibility: false", "indexable: false", "in_sitemap: false", "in_navigation: false",
         f"language: {route['language']}", f"locale: {route['locale']}", f"source_language: {route['source_language']}",
-        f"title: {s['title']}", "page_type_id: PT_COMPOUND_ENTITY", f"knowledge_object_id: {ko['knowledge_object_id']}",
+        f"title: {s['title']}", f"page_type_id: {s.get('page_type_id', 'PT_COMPOUND_ENTITY')}", f"knowledge_object_id: {ko['knowledge_object_id']}",
         f"publication_candidate_id: {r['pc_id']}", f"render_spec: {s['spec_id']}@{s['version']}",
         "generated: true", "engine: render_ko_reference_v1", "reference_production: preview", "---",
     ]
@@ -299,7 +327,9 @@ def render_markdown(r):
     out += [f"| {p['evidence_id']} | {p['claim_id']} | {p['originating_work']} | {p['record']} | {p['retrieval_date']} |"
             for p in r["provenance"]]
     out += ["", "## Source and claim status", "",
-            f"- Claims: pilot, non-operational ({', '.join(ko['claim_ids'])}); not activated in a canonical claim registry.",
+            (f"- Claims: pilot, non-operational ({', '.join(ko['claim_ids'])}); not activated in a canonical claim registry."
+             if ko["claim_source"] == "pilot_non_operational" else
+             f"- Claims: narrowly approved in an INACTIVE claim registry ({', '.join(ko['claim_ids'])}); approval is not activation or publication."),
             "- Sources: every source lock is `candidate`; no source is locked.",
             f"- Contract C inputs: {json.dumps(r['contract_c_inputs'])}.", "",
             "## Publication blockers", ""] + [f"- {b}" for b in r["blockers"]] + ["",
@@ -344,7 +374,7 @@ def render_html(r):
   <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
   <script type="application/ld+json">{json.dumps(seo['json_ld'], ensure_ascii=False)}</script>
 </head>
-<body class="bs-control-room bisulfid-atlas atlas-lane-reference" data-reference-preview="true" data-knowledge-object="{e(ko['knowledge_object_id'])}" data-atlas-lane="compound">
+<body class="bs-control-room bisulfid-atlas atlas-lane-reference" data-reference-preview="true" data-knowledge-object="{e(ko['knowledge_object_id'])}" data-atlas-lane="{e(s.get('atlas_lane', 'compound'))}">
   <div class="bs-control-room__shell">
     <header class="site-header atlas-header" role="banner">
       <nav aria-label="Atlas navigation">
@@ -360,7 +390,7 @@ def render_html(r):
     <main id="main-content" role="main">
       <article class="reference-object public-page" lang="{e(route['language'])}">
         <header class="reference-object__hero">
-          <p class="page-kicker">Scientific reference · preview of {e(route['path'])}</p>
+          <p class="page-kicker">{e(s.get('kicker', 'Scientific reference'))} · preview of {e(route['path'])}</p>
           <h1>{e(s['h1'])}</h1>
           <p class="page-intro">{e(s['summary'])}</p>
           <p class="reference-object__asof">Evidence retrieved {e(r['evidence_as_of'] or 'n/a')} · {len(r['provenance'])} admitted evidence records · values are quoted, never averaged</p>
@@ -406,13 +436,17 @@ def render_html(r):
 
 def registry_with_units(r, page_id):
     reg = load("main", "data", "distinctiveness", "ig_unit_registry.json")
-    entry = {"page": page_id, "entity_id": r["ko"]["entity_ids"][0], "knowledge_object_id": r["ko"]["knowledge_object_id"],
+    ents = r["ko"]["entity_ids"]
+    entry = {"page": page_id, **({"entity_id": ents[0]} if len(ents) == 1 else {"entity_ids": ents}),
+             "knowledge_object_id": r["ko"]["knowledge_object_id"],
              "publication_candidate_id": r["pc_id"], "localization_of": None,
              "role": "canonical route reconstruction preview (non-public; rendered by render_ko_reference.py)",
              "units": r["units"]}
-    pages = [p for p in reg["pages"] if p["page"] != page_id
-             and p.get("knowledge_object_id") != r["ko"]["knowledge_object_id"]]
-    reg["pages"] = pages + [entry]
+    mine = [i for i, p in enumerate(reg["pages"]) if p["page"] == page_id
+            or p.get("knowledge_object_id") == r["ko"]["knowledge_object_id"]]
+    pages = [p for i, p in enumerate(reg["pages"]) if i not in mine]
+    at = mine[0] if mine else len(pages)  # replace in place: output is stable across specs
+    reg["pages"] = pages[:at] + [entry] + pages[at:]
     return reg
 
 
@@ -430,13 +464,20 @@ def outputs(spec_path):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--spec", default=os.path.join(DATA, "reference_production", "render_specs", "KO-MOS2-SCIENTIFIC-001.json"))
+    ap.add_argument("--spec", help="one render spec (default: every KO-*.json render spec)")
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--write", action="store_true")
     g.add_argument("--check", action="store_true")
     args = ap.parse_args(argv)
+    sdir = os.path.join(DATA, "reference_production", "render_specs")
+    specs = [args.spec] if args.spec else [os.path.join(sdir, f) for f in sorted(os.listdir(sdir))
+                                           if f.startswith("KO-") and f.endswith(".json")]
+    return max(run_spec(p, args) for p in specs)
+
+
+def run_spec(spec_path, args):
     try:
-        r, files = outputs(args.spec)
+        r, files = outputs(spec_path)
     except RenderError as exc:
         print(f"RENDER REFUSED: {exc}")
         return 1

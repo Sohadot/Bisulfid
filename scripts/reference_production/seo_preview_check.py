@@ -30,6 +30,9 @@ PREVIEWS = [
     {"name": "MoS2 canonical reference", "file": "main/data/reference_production/previews/molybdenum-disulfide/index.html",
      "path": "/molybdenum-disulfide/", "spec": "main/data/reference_production/render_specs/KO-MOS2-SCIENTIFIC-001.json",
      "markdown": "main/content/en/pages/molybdenum-disulfide.md", "class": "knowledge_reference"},
+    {"name": "Bisulfid / bisulfide terminology reference", "file": "main/data/reference_production/previews/bisulfid-vs-bisulfide/index.html",
+     "path": "/bisulfid-vs-bisulfide/", "spec": "main/data/reference_production/render_specs/KO-BISULFID-TERMINOLOGY-001.json",
+     "markdown": "main/content/en/pages/bisulfid-vs-bisulfide.md", "class": "knowledge_reference"},
     {"name": "Homepage", "file": "main/data/reference_production/previews/home/index.html", "path": "/",
      "spec": "main/data/reference_production/render_specs/INST-HOME-EN.json", "class": "institutional", "route_id": "home"},
 ]
@@ -147,9 +150,10 @@ def main():
     blockers = os.path.join(DATA, "reference_production", "blockers", "PLAN-BISULFID-BISULFIDE-BOUNDARY_BLOCKERS.json")
     if os.path.exists(blockers):
         b = json.load(open(blockers, encoding="utf-8"))
-        results.append({"name": "Bisulfid / bisulfide terminology boundary", "preview": None, "intended_path": "/bisulfid-vs-bisulfide/",
-                        "pass": False, "status": b["verdict"], "renderable_modules": b["renderable_modules"],
-                        "blockers": "main/data/reference_production/blockers/PLAN-BISULFID-BISULFIDE-BOUNDARY_BLOCKERS.json"})
+        term = next(r for r in results if r["intended_path"] == "/bisulfid-vs-bisulfide/")
+        term["plan_blockers"] = {"verdict": b["verdict"], "renderable_modules": b["renderable_modules"],
+                                 "modules": len(b["modules"]), "still_blocked": [m["module_id"] for m in b["modules"] if not m["renderable"]],
+                                 "file": "main/data/reference_production/blockers/PLAN-BISULFID-BISULFIDE-BOUNDARY_BLOCKERS.json"}
     with open(os.path.join(DATA, "reference_production", "SEO_PREVIEW_ASSESSMENT.json"), "w", encoding="utf-8") as fh:
         json.dump({"note": "Automated checks only; search intent, competitors and accuracy review are in RECOVERY_02_REPORT.md. "
                            "No ranking, traffic or Google verdict is claimed.", "results": results}, fh, indent=1, ensure_ascii=False)

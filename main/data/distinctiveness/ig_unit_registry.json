@@ -28,6 +28,215 @@
   },
   "pages": [
     {
+      "page": "main/content/en/pages/bisulfid-vs-bisulfide.md",
+      "entity_ids": [
+        "hydrosulfide",
+        "disulfide",
+        "sulfide",
+        "hydrogen_sulfite"
+      ],
+      "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
+      "publication_candidate_id": "PC-BISULFID-TERMINOLOGY-001",
+      "localization_of": null,
+      "role": "canonical route reconstruction preview (non-public; rendered by render_ko_reference.py)",
+      "units": [
+        {
+          "unit_id": "IGU-TERM-001",
+          "entity_id": "disulfide",
+          "dimension": "terminology_boundary",
+          "statement": "Merriam-Webster enters bisulfide as a noun whose whole definition is a cross-reference: “disulfide”. The dictionary dates its first known use to 1831.",
+          "evidence_ids": [
+            "EVD-TERM-MW-BISULFIDE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-BISULFIDE-EN-SENSE-001"
+        },
+        {
+          "unit_id": "IGU-TERM-002",
+          "entity_id": "hydrosulfide",
+          "dimension": "terminology_boundary",
+          "statement": "PubChem record CID 5047209 has the formula HS⁻, the computed IUPAC name sulfanide and the title Hydrosulfide, and its synonym list includes “bisulfide”.",
+          "evidence_ids": [
+            "EVD-TERM-PUBCHEM-HS-SYNONYMS"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ]
+        },
+        {
+          "unit_id": "IGU-TERM-003",
+          "entity_id": "hydrosulfide",
+          "dimension": "chemical_identity",
+          "statement": "The IUPAC 2005 recommendations on inorganic nomenclature give the anion HS⁻ two names: sulfanide as the substitutive name and hydridosulfate(1−) as the additive name (IR-5.3.3.4 (heteropolyatomic anions), Example 3).",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-HS-NAMES"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-IUPAC-HS-NAMES-001"
+        },
+        {
+          "unit_id": "IGU-TERM-004",
+          "entity_id": "disulfide",
+          "dimension": "conceptual_boundary",
+          "statement": "Merriam-Webster gives disulfide two senses: “a compound containing two atoms of sulfur combined with an element or radical” and “an organic compound containing the divalent group SS composed of two sulfur atoms”, with a first known use of 1869.",
+          "evidence_ids": [
+            "EVD-TERM-MW-DISULFIDE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-DISULFIDE-EN-SENSE-001"
+        },
+        {
+          "unit_id": "IGU-TERM-005",
+          "entity_id": "disulfide",
+          "dimension": "chemical_identity",
+          "statement": "For the anion S₂²⁻ the same recommendations give disulfide(2−), and disulfanediide on the parent-hydride basis (IR-5.3.3 (homopolyatomic anions), Examples 8 and 12).",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-S2-NAMES"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-IUPAC-S2-NAMES-001"
+        },
+        {
+          "unit_id": "IGU-TERM-006",
+          "entity_id": "sulfide",
+          "dimension": "conceptual_boundary",
+          "statement": "Merriam-Webster defines sulfide in two senses: “any of various organic compounds characterized by a sulfur atom attached to two carbon atoms”, and “a binary compound (such as CuS) of sulfur usually with a more electropositive element or group : a salt of hydrogen sulfide”. Its first known use is 1836.",
+          "evidence_ids": [
+            "EVD-TERM-MW-SULFIDE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-SULFIDE-EN-SENSE-001"
+        },
+        {
+          "unit_id": "IGU-TERM-007",
+          "entity_id": "hydrogen_sulfite",
+          "dimension": "terminology_boundary",
+          "statement": "Merriam-Webster defines bisulfite as “an acid sulfite”, first known use 1819.",
+          "evidence_ids": [
+            "EVD-TERM-MW-BISULFITE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-BISULFITE-EN-SENSE-001"
+        },
+        {
+          "unit_id": "IGU-TERM-008",
+          "entity_id": "hydrogen_sulfite",
+          "dimension": "chemical_identity",
+          "statement": "For HSO₃⁻ IUPAC accepts the abbreviated name hydrogensulfite; the full hydrogen name is hydrogen(trioxidosulfate)(1−) (IR-8.5 (abbreviated hydrogen names for certain anions)). IUPAC adds: “It is strongly recommended that this list be viewed as limiting”.",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-HSO3-NAME"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-IUPAC-HSO3-NAME-001"
+        },
+        {
+          "unit_id": "IGU-TERM-009",
+          "entity_id": "hydrogen_sulfite",
+          "dimension": "terminology_boundary",
+          "statement": "PubChem record CID 104748, titled Bisulfite, has the formula HSO₃⁻ and the computed IUPAC name hydrogen sulfite.",
+          "evidence_ids": [
+            "EVD-TERM-PUBCHEM-BISULFITE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ]
+        },
+        {
+          "unit_id": "IGU-TERM-010",
+          "entity_id": "sulfide",
+          "dimension": "cross_language_semantic_distinction",
+          "statement": "Duden defines Sulfid as “salzartige Verbindung des Schwefelwasserstoffs”. The DWDS entry (source: eWDG (1976) via DWDS) labels the word Chemie and defines it as “Salz des Schwefelwasserstoffs”.",
+          "evidence_ids": [
+            "EVD-TERM-DUDEN-SULFID",
+            "EVD-TERM-DWDS-SULFID"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-SULFID-DE-SENSE-001"
+        },
+        {
+          "unit_id": "IGU-TERM-011",
+          "entity_id": "hydrosulfide",
+          "dimension": "cross_language_semantic_distinction",
+          "statement": "In its entry Schwefelwasserstoff, the Spektrum chemistry lexicon states that hydrogen sulfide forms two series of salts: Hydrogensulfide (MIHS) and Sulfide (MI2S).",
+          "evidence_ids": [
+            "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001"
+        },
+        {
+          "unit_id": "IGU-TERM-012",
+          "entity_id": "hydrosulfide",
+          "dimension": "terminology_boundary",
+          "statement": "For Bisulfid the DWDS answers: “Es tut uns leid, Ihre Anfrage Bisulfid ist nicht in unseren gegenwartssprachlichen lexikalischen Quellen vorhanden.” It shows computer-generated grammatical forms only.",
+          "evidence_ids": [
+            "EVD-TERM-DWDS-BISULFID"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001"
+        },
+        {
+          "unit_id": "IGU-TERM-013",
+          "entity_id": "sulfide",
+          "dimension": "cross_language_semantic_distinction",
+          "statement": "A German university teaching text on inorganic nomenclature states the rule: “Das nachgestellte Nichtmetallatom bzw. -ion binärer Verbindungen mit negativer Oxidationszahl endet auf -id.” Its table of monatomic anions lists the sulfide ion as “S2- Sulfid”.",
+          "evidence_ids": [
+            "EVD-TERM-FHM-ID-RULE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-GERMAN-ID-RULE-001"
+        }
+      ]
+    },
+    {
       "page": "main/content/en/pages/molybdenum-disulfide.md",
       "entity_id": "molybdenum_disulfide",
       "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",

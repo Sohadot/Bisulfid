@@ -1,0 +1,66 @@
+{
+  "evidence_id": "EVD-TERM-MW-DISULFIDE",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "terminological",
+  "claim_level": "lexeme",
+  "concept_ids": [
+    "disulfide"
+  ],
+  "lexeme_ids": [
+    "LEX-EN-DISULFIDE-001"
+  ],
+  "relationship": null,
+  "subject_domain": [
+    "SD-TERMINOLOGY",
+    "SD-LINGUISTICS"
+  ],
+  "geography": [],
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "claim_scope": "Captured 2026-10-30 from disulfide (Merriam-Webster). Quoted passages only; see lexical.",
+  "source_id": "SRC-MW-DISULFIDE",
+  "claim_id": "CLM-TERM-DISULFIDE-EN-SENSE-001",
+  "publication_date": null,
+  "retrieval_date": "2026-10-30",
+  "temporal_scope": {
+    "as_of": "2026-10-30",
+    "valid_from": null,
+    "valid_to": null
+  },
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "primary_authoritative",
+  "allowed_uses": [
+    "en_lexical_entry_definition"
+  ],
+  "prohibited_uses": [
+    "chemical_safety",
+    "medical",
+    "market_data",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "lexical": {
+    "headword": "disulfide",
+    "part_of_speech": "noun",
+    "sense_1_quoted": "a compound containing two atoms of sulfur combined with an element or radical",
+    "sense_2_quoted": "an organic compound containing the divalent group SS composed of two sulfur atoms",
+    "first_known_use": "1869"
+  },
+  "locator": {
+    "capture_file": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+    "capture_keys": [
+      "SRC-MW-DISULFIDE"
+    ],
+    "url": "https://www.merriam-webster.com/dictionary/disulfide",
+    "sha256": "b9db92dca957a3e6f3627da22c0d5eb77ab6edec48d9fb991e15b170a5ac38d4",
+    "retrieval_date": "2026-10-30",
+    "verbatim": [
+      "1 : a compound containing two atoms of sulfur combined with an element or radical",
+      "2 : an organic compound containing the divalent group SS composed of two sulfur atoms",
+      "First Known Use 1869"
+    ]
+  },
+  "governance_note": "Recovery-03 terminology identity evidence. Contract C for any route using it is derived, never implied."
+}

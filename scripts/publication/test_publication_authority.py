@@ -290,7 +290,7 @@ class PreviewTests(unittest.TestCase):
         import render_institutional_preview as ri
         self.assertEqual(rk.main(["--check"]), 0)
         self.assertEqual(ri.main(["--check"]), 0)
-        for p in ("molybdenum-disulfide", "home"):
+        for p in ("molybdenum-disulfide", "bisulfid-vs-bisulfide", "home"):
             t = open(os.path.join(ROOT, "main", "data", "reference_production", "previews", p, "index.html"), encoding="utf-8").read()
             self.assertIn('<meta name="robots" content="noindex, nofollow">', t)
 
@@ -316,13 +316,35 @@ class PreviewTests(unittest.TestCase):
         self.assertIn(ev["locator"]["url"], ld["sameAs"])
         self.assertNotIn('rel="alternate" hreflang', t, "no equivalent page exists, so no hreflang link is emitted")
 
-    def test_bisulfid_boundary_is_blocked_not_written(self):
+    def test_bisulfid_boundary_renders_only_admitted_modules(self):
         r = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "reference_production", "evidence_blockers.py")],
                            capture_output=True, text=True)
-        self.assertEqual(r.returncode, 3, r.stdout)
-        self.assertIn("0/5 modules renderable", r.stdout)
-        self.assertFalse(os.path.exists(os.path.join(ROOT, "main", "data", "reference_production", "previews",
-                                                     "bisulfid-vs-bisulfide")))
+        self.assertEqual(r.returncode, 0, r.stdout)
+        b = json.load(open(os.path.join(ROOT, "main", "data", "reference_production", "blockers",
+                                        "PLAN-BISULFID-BISULFIDE-BOUNDARY_BLOCKERS.json")))
+        blocked = {m["module_id"] for m in b["modules"] if not m["renderable"]}
+        self.assertEqual(blocked, {"de_usage"}, "German industry usage has no admissible terminology source")
+
+    def test_bisulfid_preview_asserts_no_spelling_equivalence(self):
+        t = open(os.path.join(ROOT, "main", "data", "reference_production", "previews", "bisulfid-vs-bisulfide", "index.html"),
+                 encoding="utf-8").read()
+        low = t.lower()
+        for phrase in ("same underlying compound", "two spellings, one compound", "is the german spelling of bisulfide",
+                       "is the german equivalent of"):
+            self.assertNotIn(phrase, low)
+        self.assertIn('<meta name="robots" content="noindex, nofollow">', t)
+        self.assertNotIn("EVD-TERM-BADGER", t, "industry usage evidence is a recorded boundary, never rendered as support")
+
+    def test_terminology_locators_are_captured_verbatim(self):
+        cap = json.load(open(os.path.join(ROOT, "main", "data", "evidence", "captures", "R03_TERMINOLOGY_CAPTURES.json")))["captures"]
+        import glob
+        for f in glob.glob(os.path.join(ROOT, "main", "data", "evidence", "EVD-TERM-*.json")):
+            e = json.load(open(f, encoding="utf-8"))
+            loc = e["locator"]
+            found = {p["quote"] for k in loc["capture_keys"] for p in cap[k]["passages"] if p["found"]}
+            for q in loc["verbatim"]:
+                self.assertIn(q, found, f"{e['evidence_id']}: {q!r} not captured verbatim")
+            self.assertEqual(loc["sha256"], cap[loc["capture_keys"][0]]["sha256"])
 
     def test_pilot_claims_count_as_unapproved_for_publication(self):
         import evidence_blockers as eb
