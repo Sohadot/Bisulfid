@@ -1,0 +1,10 @@
+{
+ "page": "/",
+ "spec": "INST-HOME-EN@1.3.0",
+ "kind": "institutional",
+ "publication_dependencies": [
+  "/molybdenum-disulfide/",
+  "/bisulfid-vs-bisulfide/"
+ ],
+ "dependency_rule": "publish only after every listed governed reference is itself public (otherwise the page would point readers at legacy pages it describes as governed)"
+}

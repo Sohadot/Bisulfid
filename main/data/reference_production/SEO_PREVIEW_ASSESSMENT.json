@@ -281,11 +281,11 @@
       "What you will not find here"
      ]
     ],
-    "substantive_words": 362,
+    "substantive_words": 385,
     "nearest_public_page": {
-     "similarity": 0.0,
-     "jaccard": 0.0,
-     "overlap_coefficient": 0.0,
+     "similarity": 0.0026,
+     "jaccard": 0.0013,
+     "overlap_coefficient": 0.0026,
      "closest_page": "site/public/acquire/index.html"
     },
     "template_sentence_ratio_vs_public": 0.0,
@@ -354,7 +354,7 @@
       "Was Sie hier nicht finden"
      ]
     ],
-    "substantive_words": 295,
+    "substantive_words": 318,
     "nearest_public_page": {
      "similarity": 0.0,
      "jaccard": 0.0,

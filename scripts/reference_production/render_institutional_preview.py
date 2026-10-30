@@ -75,7 +75,13 @@ def link_ok(path):
     return os.path.exists(pub)
 
 
-def build(spec):
+RELEASE_DIR = os.path.join(DATA, "release", "staged")
+
+
+def build(spec, release=False):
+    """Preview (noindex, outside the site) or RELEASE candidate: same body, directives from the
+    publication authority, the site footer, and a list of links whose destinations are governed
+    references not yet public (publication dependencies)."""
     gov = gov_values()
     e = html.escape
     secs = []
@@ -95,6 +101,26 @@ def build(spec):
         if not link_ok(n["path"]):
             raise RenderError(f"nav link {n['path']} does not resolve")
     hl = "".join(f"\n  <link rel=\"alternate\" hreflang=\"{e(lang)}\" href=\"{SITE}{e(p)}\">" for lang, p in alternates(spec))
+    robots, canonical, mode, deps = "noindex, nofollow", f"{SITE}{path}", "preview", []
+    footer = "<footer class=\"site-footer\" role=\"contentinfo\"><div class=\"site-footer__inner\"><p class=\"footer-identity\">BISULFID</p></div></footer>"
+    if release:
+        sys.path.insert(0, os.path.join(ROOT, "scripts", "publication"))
+        import publication_authority as pa
+        auth = pa.Authority()
+        robots, canonical = auth.render_directives(path)
+        mode = "release"
+        for l in [x for sec in spec["sections"] for x in sec["links"]] + spec["nav"]:
+            cc, basis = auth.contract_c(l["path"])
+            if cc and cc != ("public_indexable", "index_approved") and l["path"] not in deps:
+                deps.append(l["path"])
+        f = spec["footer"]
+        fnav = "".join(f"<a href=\"{e(x['path'])}\">{e(x['label'])}</a>" for x in f["nav"])
+        for x in f["nav"]:
+            if not link_ok(x["path"]):
+                raise RenderError(f"footer link {x['path']} does not resolve")
+        footer = (f"<footer class=\"site-footer\" role=\"contentinfo\"><div class=\"site-footer__inner\">"
+                  f"<nav class=\"footer-nav\" aria-label=\"{e(spec.get('nav_label', 'Site navigation'))} (footer)\">{fnav}</nav>"
+                  f"<p class=\"footer-identity\">{e(f['identity'])}</p><p class=\"footer-copyright\">&copy; 2026 bisulfid.com</p></div></footer>")
     page = f"""<!DOCTYPE html>
 <html lang="{e(spec['language'])}" dir="ltr">
 <head>
@@ -102,12 +128,12 @@ def build(spec):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{e(seo['title'])}</title>
   <meta name="description" content="{e(seo['description'])}">
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="{SITE}{path}">{hl}
+  <meta name="robots" content="{e(robots)}">
+  <link rel="canonical" href="{e(canonical)}">{hl}
   <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
   <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
-<body class="bs-control-room bisulfid-atlas" data-institutional-preview="{e(spec['spec_id'])}">
+<body class="bs-control-room bisulfid-atlas" data-institutional-{mode}="{e(spec['spec_id'])}@{e(spec['version'])}">
   <div class="bs-control-room__shell">
     <header class="site-header atlas-header" role="banner">
       <nav aria-label="{e(spec.get('nav_label', 'Site navigation'))}"><ul class="site-nav-list">{nav}</ul></nav>
@@ -118,12 +144,12 @@ def build(spec):
 {chr(10).join(secs)}
       </article>
     </main>
-    <footer class="site-footer" role="contentinfo"><div class="site-footer__inner"><p class="footer-identity">BISULFID</p></div></footer>
+    {footer}
   </div>
 </body>
 </html>
 """
-    return path, page
+    return (path, page, deps) if release else (path, page)
 
 
 def main(argv=None):
@@ -140,19 +166,33 @@ def main(argv=None):
 def run(spec, a):
     try:
         path, page = build(spec)
-    except RenderError as exc:
+        _, rel, deps = build(spec, release=True)
+    except (RenderError, PermissionError) as exc:
         print(f"RENDER REFUSED: {exc}")
         return 1
-    dest = os.path.join(DATA, "reference_production", "previews", (path.strip("/") or "home"), "index.html")
-    cur = open(dest, encoding="utf-8").read() if os.path.exists(dest) else None
-    if a.check:
-        print("up to date" if cur == page else f"STALE: {os.path.relpath(dest, ROOT)}")
-        return 0 if cur == page else 1
-    os.makedirs(os.path.dirname(dest), exist_ok=True)
-    with open(dest, "w", encoding="utf-8") as fh:
-        fh.write(page)
-    print(f"wrote {os.path.relpath(dest, ROOT)}")
-    return 0
+    slug = path.strip("/") or "home"
+    manifest = json.dumps({"page": path, "spec": f"{spec['spec_id']}@{spec['version']}", "kind": "institutional",
+                           "publication_dependencies": deps,
+                           "dependency_rule": "publish only after every listed governed reference is itself public "
+                                              "(otherwise the page would point readers at legacy pages it describes as governed)"},
+                          indent=1) + "\n"
+    outs = {os.path.join(DATA, "reference_production", "previews", slug, "index.html"): page,
+            os.path.join(RELEASE_DIR, slug, "index.html"): rel, os.path.join(RELEASE_DIR, slug, "release.json"): manifest}
+    stale = 0
+    for dest, text in outs.items():
+        cur = open(dest, encoding="utf-8").read() if os.path.exists(dest) else None
+        if cur == text:
+            continue
+        stale += 1
+        if a.check:
+            print(f"STALE: {os.path.relpath(dest, ROOT)}")
+        else:
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            open(dest, "w", encoding="utf-8").write(text)
+            print(f"wrote {os.path.relpath(dest, ROOT)}")
+    if a.check and not stale:
+        print("up to date")
+    return 1 if (a.check and stale) else 0
 
 
 if __name__ == "__main__":

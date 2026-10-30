@@ -1,0 +1,201 @@
+{
+ "audit_id": "HOMEPAGE-CLAIM-AUDIT-R01",
+ "generated_by": "scripts/release/build_homepage_claim_audit.py",
+ "method": "Every lead/paragraph of INST-HOME-EN and INST-HOME-DE is classified and checked against the governed stores. No statement about actual affiliation or non-affiliation is made; no editorial contact is published.",
+ "governed_values": {
+  "mos2_admitted_evidence": "11",
+  "bisulfid_claims_pending": "2",
+  "term_evidence": "15",
+  "term_claims_approved": "11",
+  "knowledge_objects": "2"
+ },
+ "items": [
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.3.0",
+   "section": "lead",
+   "text": "A reference project on the language of sulfur chemistry: German and English terms, the compounds they name, and the evidence behind each statement.",
+   "has_governed_value": false,
+   "claim_class": "intro",
+   "status": "not_a_factual_claim",
+   "basis": "description of purpose, not a factual claim"
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.3.0",
+   "section": "Start with a governed reference",
+   "text": "2 reference records have been built under the current rules so far. The first covers molybdenum disulfide (MoS2): its formula, its layered bulk structure, the 1T, 2H and 3R polytypes, and two independent determinations of the 2H lattice parameter. It rests on 11 admitted evidence records, each traced to the study or database that produced it.",
+   "has_governed_value": true,
+   "claim_class": "governed reference",
+   "status": "verified",
+   "basis": "fact about the site's own governed objects; counts computed from the registries; descriptions match the KO scope fields"
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.3.0",
+   "section": "The question in our name",
+   "text": "'Bisulfid' and 'bisulfide' differ by one letter. Whether 'Bisulfid' is simply the German spelling of the English term is itself a terminology claim, and it is handled like any other claim on this site: it will be stated as fact only after its sources are verified and admitted.",
+   "has_governed_value": false,
+   "claim_class": "terminology question",
+   "status": "verified",
+   "basis": "states only that equivalence is an open claim; consistent with the Recovery-03 evidence (no equivalence asserted)"
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.3.0",
+   "section": "The question in our name",
+   "text": "The terminology record sets out, from 15 admitted evidence records and 11 reviewed claims, which meaning dictionaries, IUPAC and a chemical database attach to each spelling, and where the evidence stops. 2 related claims remain open.",
+   "has_governed_value": true,
+   "claim_class": "governed reference",
+   "status": "verified",
+   "basis": "fact about the site's own governed objects; counts computed from the registries; descriptions match the KO scope fields"
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.3.0",
+   "section": "How a statement reaches a reference page",
+   "text": "A source is first identified and checked, then qualified for a specific use. A passage from it is recorded as evidence with its exact location, and a claim is approved only against admitted evidence. Numbers are quoted as their sources print them; when two determinations differ, both are shown rather than averaged. A new reference page is published only if it adds knowledge that no other page on the site already holds; most older pages were published before these rules and are being reviewed or rebuilt.",
+   "has_governed_value": false,
+   "claim_class": "process description",
+   "status": "verified",
+   "basis": "describes the admission chain enforced by source_admissibility / Contract C; the 'older pages' qualification matches the Recovery-01 disposition registry"
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.3.0",
+   "section": "English and German",
+   "text": "The site is maintained in English and German. A German page exists when it answers a German-language question, such as which form a German technical text uses, rather than as a copy of an English page.",
+   "has_governed_value": false,
+   "claim_class": "language scope",
+   "status": "verified",
+   "basis": "routes.json holds only en and de routes; no other language is published"
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.3.0",
+   "section": "Who is responsible for this site",
+   "text": "BISULFID is a reference project published by the owner of the bisulfid.com domain. References to IUPAC, dictionaries, databases, companies and other third parties identify sources; they do not imply endorsement by those organizations or affiliation with them.",
+   "has_governed_value": false,
+   "claim_class": "publisher statement",
+   "status": "OWNER CONFIRMATION REQUIRED",
+   "basis": "who publishes the site is an owner fact that cannot be verified from the repository; the third-party sentence is a notice about how references are meant, not a claim about actual relationships"
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.3.0",
+   "section": "Who is responsible for this site",
+   "text": "Each reference page built under these rules names the evidence behind every statement and shows when it was retrieved. No individual expert review is claimed: a page records that it has been independently validated only after such a review has taken place.",
+   "has_governed_value": false,
+   "claim_class": "validation statement",
+   "status": "verified",
+   "basis": "true today: no signed independent review exists (main/data/release/reviews)"
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.3.0",
+   "section": "What you will not find here",
+   "text": "BISULFID does not give safety, handling, medical, procurement or investment guidance. For those, use the safety data sheet of the specific product and a qualified professional.",
+   "has_governed_value": false,
+   "claim_class": "scope exclusion",
+   "status": "verified",
+   "basis": "site policy statement; matches the KO excluded_claim_classes"
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.2.0",
+   "section": "lead",
+   "text": "Ein Referenzprojekt zur Sprache der Schwefelchemie: deutsche und englische Fachbegriffe, die Verbindungen, die sie bezeichnen, und die Belege hinter jeder Aussage.",
+   "has_governed_value": false,
+   "claim_class": "intro",
+   "status": "not_a_factual_claim",
+   "basis": "description of purpose, not a factual claim"
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.2.0",
+   "section": "Erste geprüfte Referenzen",
+   "text": "Nach den aktuellen Regeln sind bisher 2 Referenzen entstanden, vorerst auf Englisch. Die erste behandelt Molybdändisulfid (MoS2) und stützt sich auf 11 zugelassene Belege, jeweils zurückgeführt auf die Studie oder Datenbank, aus der sie stammen.",
+   "has_governed_value": true,
+   "claim_class": "governed reference",
+   "status": "verified",
+   "basis": "fact about the site's own governed objects; counts computed from the registries; descriptions match the KO scope fields"
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.2.0",
+   "section": "Die Frage im Namen",
+   "text": "‚Bisulfid‘ und ‚bisulfide‘ unterscheiden sich um einen Buchstaben. Ob ‚Bisulfid‘ einfach die deutsche Schreibung des englischen Wortes ist, ist selbst eine terminologische Aussage. Sie wird hier erst als Tatsache dargestellt, wenn ihre Quellen geprüft und zugelassen sind.",
+   "has_governed_value": false,
+   "claim_class": "terminology question",
+   "status": "verified",
+   "basis": "states only that equivalence is an open claim; consistent with the Recovery-03 evidence (no equivalence asserted)"
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.2.0",
+   "section": "Die Frage im Namen",
+   "text": "Die Terminologie-Referenz zeigt anhand von 15 zugelassenen Belegen, welche Bedeutung Wörterbücher, die IUPAC und eine chemische Datenbank der jeweiligen Schreibung zuordnen und wo die Belege enden. 2 weitere Aussagen sind noch offen.",
+   "has_governed_value": true,
+   "claim_class": "governed reference",
+   "status": "verified",
+   "basis": "fact about the site's own governed objects; counts computed from the registries; descriptions match the KO scope fields"
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.2.0",
+   "section": "Wie eine Aussage auf eine Referenzseite gelangt",
+   "text": "Eine Quelle wird zuerst identifiziert und geprüft und dann für einen bestimmten Zweck zugelassen. Eine Passage daraus wird mit ihrer genauen Fundstelle als Beleg erfasst, und eine Aussage wird nur anhand zugelassener Belege freigegeben. Ältere Seiten der Website entstanden vor diesen Regeln und werden überprüft oder neu aufgebaut. Zahlen werden so wiedergegeben, wie die Quelle sie druckt; weichen zwei Bestimmungen voneinander ab, werden beide gezeigt und nicht gemittelt.",
+   "has_governed_value": false,
+   "claim_class": "process description",
+   "status": "verified",
+   "basis": "describes the admission chain enforced by source_admissibility / Contract C; the 'older pages' qualification matches the Recovery-01 disposition registry"
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.2.0",
+   "section": "Deutsch und Englisch",
+   "text": "Eine deutsche Seite entsteht, wenn sie eine deutschsprachige Frage beantwortet, etwa welche Form ein deutscher Fachtext verwendet, und nicht als Kopie einer englischen Seite. Deshalb sind manche Referenzen vorerst nur auf Englisch verfügbar.",
+   "has_governed_value": false,
+   "claim_class": "language scope",
+   "status": "verified",
+   "basis": "routes.json holds only en and de routes; no other language is published"
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.2.0",
+   "section": "Verantwortung für diese Website",
+   "text": "BISULFID ist ein Referenzprojekt der Inhaberin bzw. des Inhabers der Domain bisulfid.com. Verweise auf die IUPAC, Wörterbücher, Datenbanken, Unternehmen und andere Dritte nennen Quellen; sie bedeuten weder eine Billigung durch diese Organisationen noch eine Zugehörigkeit zu ihnen.",
+   "has_governed_value": false,
+   "claim_class": "publisher statement",
+   "status": "OWNER CONFIRMATION REQUIRED",
+   "basis": "who publishes the site is an owner fact that cannot be verified from the repository; the third-party sentence is a notice about how references are meant, not a claim about actual relationships"
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.2.0",
+   "section": "Verantwortung für diese Website",
+   "text": "Jede nach diesen Regeln erstellte Referenzseite nennt die Belege hinter jeder Aussage und das Abrufdatum. Eine fachliche Begutachtung durch eine benannte Person wird nicht behauptet; eine Seite wird erst dann als unabhängig geprüft ausgewiesen, wenn eine solche Prüfung stattgefunden hat.",
+   "has_governed_value": false,
+   "claim_class": "validation statement",
+   "status": "verified",
+   "basis": "true today: no signed independent review exists (main/data/release/reviews)"
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.2.0",
+   "section": "Was Sie hier nicht finden",
+   "text": "BISULFID gibt keine Hinweise zu Sicherheit, Handhabung, Medizin, Beschaffung oder Investitionen. Dafür gelten das Sicherheitsdatenblatt des jeweiligen Produkts und der Rat qualifizierter Fachleute.",
+   "has_governed_value": false,
+   "claim_class": "scope exclusion",
+   "status": "verified",
+   "basis": "site policy statement; matches the KO excluded_claim_classes"
+  }
+ ],
+ "summary": {
+  "items": 18,
+  "verified": 14,
+  "owner_confirmation_required": 2,
+  "not_a_factual_claim": 2,
+  "unclassified": 0
+ }
+}
