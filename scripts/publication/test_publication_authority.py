@@ -495,6 +495,19 @@ class PreviewTests(unittest.TestCase):
         self.assertIn(ev["locator"]["url"], ld["sameAs"])
         self.assertNotIn('rel="alternate" hreflang', t, "no equivalent page exists, so no hreflang link is emitted")
 
+    def test_served_reference_html_carries_its_ig_units_but_a_legacy_body_does_not(self):
+        ctx = dc.IGContext()
+        for slug in ("molybdenum-disulfide", "bisulfid-vs-bisulfide"):
+            rel_f = os.path.join(ROOT, "main", "data", "release", "staged", slug, "index.html")
+            live_f = os.path.join(ROOT, "site", "public", slug, "index.html")
+            rel_p = dc.parse_html(rel_f, open(rel_f, encoding="utf-8").read(), POLICY, page_id=f"site/public/{slug}/index.html",
+                                  surface_root=os.path.join(ROOT, "main", "data", "release", "staged"))
+            live_p = dc.parse_html(live_f, open(live_f, encoding="utf-8").read(), POLICY, surface_root=os.path.join(ROOT, "site", "public"))
+            u = dc.Universe([rel_p, live_p], POLICY)
+            self.assertEqual(dc.gate12_verdict(rel_p, u, POLICY, ctx)["verdict"], "PASS", slug)
+            self.assertEqual(dc.gate12_verdict(live_p, u, POLICY, ctx)["information_gain"]["valid_units"], 0,
+                             "units registered for a URL never validate a body that does not render them")
+
     def test_bisulfid_boundary_renders_only_admitted_modules(self):
         r = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "reference_production", "evidence_blockers.py")],
                            capture_output=True, text=True)

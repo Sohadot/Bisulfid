@@ -36,6 +36,7 @@
         "hydrogen_sulfite"
       ],
       "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
+      "served_url": "/bisulfid-vs-bisulfide/",
       "publication_candidate_id": "PC-BISULFID-TERMINOLOGY-001",
       "localization_of": null,
       "role": "canonical route reconstruction preview (non-public; rendered by render_ko_reference.py)",
@@ -240,6 +241,7 @@
       "page": "main/content/en/pages/molybdenum-disulfide.md",
       "entity_id": "molybdenum_disulfide",
       "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
+      "served_url": "/molybdenum-disulfide/",
       "publication_candidate_id": "PC-MOS2-SCIENTIFIC-001",
       "localization_of": null,
       "role": "canonical route reconstruction preview (non-public; rendered by render_ko_reference.py)",

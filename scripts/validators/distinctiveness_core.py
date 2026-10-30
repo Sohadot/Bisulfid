@@ -712,9 +712,12 @@ class IGContext:
         aud = load_json(os.path.join(DATA, "audience_layer_registry.json"))
         self.audiences = {a["audience_id"] for a in aud.get("audiences", [])}
         self.by_page = {e["page"]: e for e in self.registry.get("pages", [])}
+        # A reference rendered from a Knowledge Object is registered against its canonical draft and
+        # declares the URL it is served at, so the SERVED HTML page is evaluated with the same units.
+        self.by_url = {e["served_url"]: e for e in self.registry.get("pages", []) if e.get("served_url")}
 
-    def entry(self, page_id):
-        return self.by_page.get(page_id)
+    def entry(self, page_id, url=None):
+        return self.by_page.get(page_id) or (self.by_url.get(url) if url else None)
 
 
 def _unit_key(u):
@@ -724,7 +727,7 @@ def _unit_key(u):
 def evaluate_ig(page, universe, policy, ctx, all_unit_statements=None):
     """Validate the page's registered IG units. Returns a dict with valid count + per-unit reasons."""
     igp = policy["information_gain"]
-    entry = ctx.entry(page.id)
+    entry = ctx.entry(page.id, page.route_id if page.surface == "html" else None)
     result = {"registered_units": 0, "valid_units": 0, "required": igp["min_valid_units"],
               "status": "FAIL", "units": [], "localization_of": None}
     if not entry:
@@ -741,7 +744,7 @@ def evaluate_ig(page, universe, policy, ctx, all_unit_statements=None):
     # Keys owned by other (non-localization) registry pages.
     foreign_keys = defaultdict(set)
     for e in ctx.registry.get("pages", []):
-        if e["page"] == page.id:
+        if e is entry:
             continue
         related = e.get("localization_of") == page.id or entry.get("localization_of") == e["page"]
         if related:
@@ -810,7 +813,7 @@ def evaluate_ig(page, universe, policy, ctx, all_unit_statements=None):
         if all_unit_statements:
             ush = shingles(stoks, policy["text_similarity"]["shingle_size"])
             for other_pid, other_set in all_unit_statements:
-                if other_pid == page.id or other_pid == entry.get("localization_of"):
+                if other_pid in (page.id, entry["page"]) or other_pid == entry.get("localization_of"):
                     continue
                 if similarity(ush, other_set, oc_min)[0] >= fail_at:
                     reasons.append(f"entity substitution: statement near-matches a unit of {other_pid}")

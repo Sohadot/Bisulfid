@@ -1,0 +1,30 @@
+{
+ "page": "/bisulfid-vs-bisulfide/",
+ "kind": "knowledge_reference",
+ "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
+ "spec": "RSPEC-KO-BISULFID-TERMINOLOGY-001@1.0.0",
+ "publication_candidate": "PC-BISULFID-TERMINOLOGY-001",
+ "postures_recorded": {
+  "governance_posture": "reference_draft",
+  "evidence_posture": "evidence_sufficient",
+  "claim_posture": "claim_pending",
+  "validation_posture": "not_validated",
+  "information_gain_posture": "ig_reviewed_no_new_route",
+  "release_authorization": "not_authorized"
+ },
+ "postures_honoured": {
+  "governance_posture": "reference_draft",
+  "evidence_posture": "evidence_sufficient",
+  "claim_posture": "claim_pending",
+  "validation_posture": "not_validated",
+  "information_gain_posture": "ig_reviewed_no_new_route",
+  "release_authorization": "not_authorized"
+ },
+ "contract_c_honoured": [
+  "not_public",
+  "noindex"
+ ],
+ "not_honoured": [],
+ "consolidation_obligations_after_release": 4,
+ "publication_dependencies": []
+}

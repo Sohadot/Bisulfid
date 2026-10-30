@@ -102,15 +102,14 @@ Band gap, electronic and optical behaviour, density, the properties of single la
 
 - Claims: pilot, non-operational (CLM-MOS2-FORMULA, CLM-MOS2-STRUCTURE-2H, CLM-MOS2-LATTICE-A-2H); not activated in a canonical claim registry.
 - Sources: every source lock is `candidate`; no source is locked.
-- Contract C inputs: {"governance": "reference_draft", "evidence": "evidence_sufficient", "claim": "claim_pending", "validation": "not_validated", "ig": "ig_reviewed_no_new_route", "release": "not_authorized"}.
+- Contract C inputs: {"governance": "reference_draft", "evidence": "evidence_sufficient", "claim": "claim_pending", "validation": "not_validated", "ig": "ig_reviewed_route_realization", "release": "not_authorized"}.
 
 ## Publication blockers
 
-- information_gain_posture is ig_reviewed_no_new_route (near_duplicate vs the legacy same-task route) — a NEW independent URL requires ig_reviewed_pass (a positive independent-reference classification with no unresolved signals) under the ratified authority
-- claim_posture is claim_pending — the pilot claims are non-operational and not activated in any canonical claim registry
-- validation_posture is not_validated
-- release_authorization is not_authorized
-- source_lock_status is candidate for all sources (evidence not evidence_locked) — indexation additionally requires evidence_locked
-- no route/HTML/sitemap/robots artifact exists or is authorized by this sprint
+- information_gain_posture ig_reviewed_route_realization is not honoured until AMD-IG-R03-001 is ratified by a named owner (separate act; merging PRs is not ratification)
+- claim_posture claim_pending — owner claim activation (owner_acts.json) not signed
+- validation_posture not_validated — no signed independent review (review packet ready)
+- evidence_posture evidence_sufficient — 0 of 8 sources locked (L6 human sign-off; L2/L3 pending for 4 excerpt/uploaded sources)
+- governance_posture reference_draft / release_authorization not_authorized — owner release authorization not signed
 
 *Rendered by render_ko_reference.py from RSPEC-KO-MOS2-SCIENTIFIC-001@1.1.0 — KO-MOS2-SCIENTIFIC-001 — route `molybdenum_disulfide`.*
