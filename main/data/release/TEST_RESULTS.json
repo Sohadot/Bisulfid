@@ -1,6 +1,6 @@
 {
  "run_on": "2026-10-30",
- "tree_at_commit": "9548bce988",
+ "tree_at_commit": "f9ab4b7a8e",
  "results": [
   {
    "command": "scripts/publication/test_publication_authority.py",
@@ -40,7 +40,7 @@
   {
    "command": "scripts/reference_production/seo_preview_check.py",
    "exit_code": 0,
-   "last_line": "[PASS] Homepage (DE) gate12=PASS words=313 nearest=0.0"
+   "last_line": "[PASS] Homepage (DE) gate12=PASS words=318 nearest=0.0"
   },
   {
    "command": "scripts/validators/test_distinctiveness.py",

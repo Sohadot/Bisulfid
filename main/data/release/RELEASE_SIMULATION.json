@@ -58,25 +58,25 @@
     "state": "GOVERNED_INDEX",
     "gate12": "PASS",
     "served_robots": "index, follow",
-    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts)"
+    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts incl. AMD-IG-R03-001 ratification)"
    },
    "/de/": {
     "state": "GOVERNED_INDEX",
     "gate12": "PASS",
     "served_robots": "index, follow",
-    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts)"
+    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts incl. AMD-IG-R03-001 ratification)"
    },
    "/": {
     "state": "GOVERNED_INDEX",
     "gate12": "PASS",
     "served_robots": "index, follow",
-    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts)"
+    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts incl. AMD-IG-R03-001 ratification)"
    },
    "/molybdenum-disulfide/": {
     "state": "GOVERNED_INDEX",
     "gate12": "PASS",
     "served_robots": "index, follow",
-    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts)"
+    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts incl. AMD-IG-R03-001 ratification)"
    }
   }
  }
