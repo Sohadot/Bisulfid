@@ -13,7 +13,7 @@ title: Molybdenum Disulfide (MoS2): Chemical Identity and Bulk Crystal Structure
 page_type_id: PT_COMPOUND_ENTITY
 knowledge_object_id: KO-MOS2-SCIENTIFIC-001
 publication_candidate_id: PC-MOS2-SCIENTIFIC-001
-render_spec: RSPEC-KO-MOS2-SCIENTIFIC-001@1.0.0
+render_spec: RSPEC-KO-MOS2-SCIENTIFIC-001@1.1.0
 generated: true
 engine: render_ko_reference_v1
 reference_production: preview
@@ -113,4 +113,4 @@ Band gap, electronic and optical behaviour, density, the properties of single la
 - source_lock_status is candidate for all sources (evidence not evidence_locked) — indexation additionally requires evidence_locked
 - no route/HTML/sitemap/robots artifact exists or is authorized by this sprint
 
-*Rendered by render_ko_reference.py from RSPEC-KO-MOS2-SCIENTIFIC-001@1.0.0 — KO-MOS2-SCIENTIFIC-001 — route `molybdenum_disulfide`.*
+*Rendered by render_ko_reference.py from RSPEC-KO-MOS2-SCIENTIFIC-001@1.1.0 — KO-MOS2-SCIENTIFIC-001 — route `molybdenum_disulfide`.*

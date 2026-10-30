@@ -30,10 +30,10 @@
    "hold_id": "GATE12-LEGACY-SURFACE-HOLD",
    "sealed_from": {
     "surface": "site/public",
-    "commit": "9d944d736d"
+    "commit": "b1757cb532"
    },
-   "entry_count": 14033,
-   "entries_sha256": "fa419083cef2a68a07c2ca0cca6111c76040682a0f7f48339d9fc38a827a92c6"
+   "entry_count": 14041,
+   "entries_sha256": "163b74c25d7ab56b853c76dc2c617c9746c5d4314b0f02735ab900dd4e9e0d3b"
   }
  },
  "counts": {

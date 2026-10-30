@@ -23,6 +23,7 @@ Common: --json OUT writes the machine-readable result.
 
 import argparse
 import json
+import re
 import os
 import statistics
 import sys
@@ -697,21 +698,30 @@ def run_build_hold(policy, args):
     pages = dc.load_html_pages(policy, root)
     _, verdicts, _ = analyse_universe("html_surface", pages, policy, ctx)
     rfp = _route_for_path()
+    sitemap = dc.sitemap_paths(root)
     entries = []
     for p, v in zip(pages, verdicts):
-        if v["verdict"] != "PASS":
-            path = dc.surface_url_path(p, root)
-            entries.append({"p": path, "h": dc.body_hash_hex(p), "r": rfp.get(path)})
+        path = dc.surface_url_path(p, root)
+        canon = re.sub(r"^https?://[^/]+", "", p.canonical) if p.canonical else None
+        entries.append({"p": path, "h": dc.body_hash_hex(p), "r": rfp.get(path), "g": v["verdict"],
+                        "robots": p.robots, "sm": path in sitemap, "c": canon})
     entries.sort(key=lambda e: e["p"])
-    commit = subprocess.run(["git", "rev-parse", "--short=10", "HEAD"], cwd=dc.ROOT, capture_output=True,
+    # The surface's own provenance: the last commit that changed site/public (not HEAD).
+    commit = subprocess.run(["git", "log", "-1", "--format=%h", "--abbrev=10", "--",
+                             policy["scope"]["html_surface_root"]], cwd=dc.ROOT, capture_output=True,
                             text=True).stdout.strip()
     hold = {
         "hold_id": "GATE12-LEGACY-SURFACE-HOLD", "version": "1.0.0", "policy_version": policy["version"],
         "sealed_from": {"surface": policy["scope"]["html_surface_root"], "commit": commit},
         "contract_c_basis": "RL legacy_public_holding -> (public_noindex, noindex); IP-16.2 pre-ratification public routes only",
-        "meaning": "Pages publicly deployed before Gate 12 that fail it. While listed here with an UNCHANGED substantive "
-                   "body they may stay reachable, but only as noindex and absent from sitemaps. The list may only shrink.",
-        "entry_fields": {"p": "URL path", "h": "Gate-12 substantive body hash (entity-masked)", "r": "route_id or null (non-route legacy surface)"},
+        "meaning": "Every page publicly deployed before Gate 12, with its substantive-body hash and the directives it was "
+                   "SERVED with (robots, sitemap membership, canonical). It is the status-quo record for the publication-"
+                   "authority resolver: a legacy page may keep at most these directives (never escalate) while its body is "
+                   "unchanged. Entries with g != PASS are the Gate-12 legacy hold. The list may only shrink.",
+        "entry_fields": {"p": "URL path", "h": "Gate-12 substantive body hash (entity-masked)",
+                         "r": "route_id or null (non-route legacy surface)", "g": "Gate-12 verdict at sealing",
+                         "robots": "robots meta as served", "sm": "listed in a sitemap as served",
+                         "c": "rel=canonical path as served"},
         "freeze_exception": {"state": "not_authorized", "authorized_by": None, "authorized_on": None, "expires_on": None,
                              "reason": None, "max_days_policy": policy["legacy_migration"]["freeze_exception"]["max_days"]},
         "entry_count": len(entries), "entries_sha256": dc.hold_entries_digest(entries), "entries": entries,

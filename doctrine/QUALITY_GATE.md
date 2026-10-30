@@ -136,6 +136,8 @@ Translations are evaluated for language integrity by Gate 11; a declared localiz
 
 **Legacy migration (bounded, Contract C RL).** Pages publicly deployed before Gate 12 are sealed in `main/data/distinctiveness/legacy_surface_hold.json` (path + substantive-body hash; count + sha256; shrink-only). A held page that fails Gate 12 may stay reachable only if its body is unchanged, its robots meta is `noindex` and it is absent from every sitemap. A new failing page, or a modified failing legacy page, always blocks. An indexed held page blocks unless an owner-authorized freeze exception of at most 30 days is active; that exception is a reported Contract-C deviation and admits nothing new.
 
+**Publication authority (Recovery-02).** Robots, sitemap membership and rel=canonical are resolved only by `scripts/publication/publication_authority.py` from governance state (Contract C for bound objects and R11 certifications; the sealed legacy status quo; release-ledger blocks; owner-approved per-URL decisions that can only downgrade). Templates carry no default directive. Passing Gate 12 or Gate 12-I never makes a page indexable; they veto. The deploy gate is `scripts/publication/validate_publication_authority.py`. The Contract-C-RL `--legacy-hold` check remains available as the strict conformance measure, and its freeze exception is retired.
+
 Validator: `validate_distinctiveness.py` (real enforcement; `--gate` for publication candidates, `--surface DIR [--legacy-hold FILE]` for a deploy surface, `--check-hold` for baseline integrity and the shrink-only ratchet, `--audit` for the whole-corpus report).
 
 ---

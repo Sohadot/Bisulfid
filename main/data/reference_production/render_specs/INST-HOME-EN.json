@@ -1,0 +1,105 @@
+{
+  "spec_id": "INST-HOME-EN",
+  "version": "1.0.0",
+  "status": "preview",
+  "page_class": "institutional",
+  "institutional_function": "gateway_home",
+  "route_id": "home",
+  "language": "en",
+  "purpose": "Homepage rebuild. Institutional text describes the site and its process; it asserts NO chemistry or terminology fact. Numbers about the site's own governed content are computed from the registries at render time ({{GOV:...}}), never typed in.",
+  "seo": {
+    "title": "BISULFID — Sulfur Chemistry Terms and Evidence-Backed Reference",
+    "description": "BISULFID documents sulfur chemistry terms in English and German and builds reference pages only from admitted, cited evidence. Start with MoS2.",
+    "search_intents": [
+      {
+        "query_class": "navigational / brand",
+        "examples": [
+          "bisulfid",
+          "bisulfid.com"
+        ],
+        "intent": "reach the site and understand what it is"
+      },
+      {
+        "query_class": "routing",
+        "examples": [
+          "bisulfid meaning",
+          "bisulfid vs bisulfide"
+        ],
+        "intent": "served by the terminology boundary page, not the homepage; the homepage routes there"
+      }
+    ],
+    "json_ld": {
+      "@type": "WebSite",
+      "name": "BISULFID",
+      "url": "https://bisulfid.com/",
+      "inLanguage": [
+        "en",
+        "de"
+      ]
+    },
+    "hreflang": "deferred: /de/ is still the legacy template page; a reciprocal en<->de pair is emitted only when both homepages are rebuilt equivalents"
+  },
+  "h1": "BISULFID",
+  "lead": "A reference project on the language of sulfur chemistry: German and English terms, the compounds they name, and the evidence behind each statement.",
+  "sections": [
+    {
+      "heading": "Start with a governed reference",
+      "paragraphs": [
+        "The first reference record built under the current rules covers molybdenum disulfide (MoS2): its formula, its layered bulk structure, the 1T, 2H and 3R polytypes, and two independent determinations of the 2H lattice parameter. It rests on {{GOV:mos2_admitted_evidence}} admitted evidence records, each traced to the study or database that produced it."
+      ],
+      "links": [
+        {
+          "path": "/molybdenum-disulfide/",
+          "label": "Molybdenum disulfide (MoS2)"
+        }
+      ]
+    },
+    {
+      "heading": "The question in our name",
+      "paragraphs": [
+        "'Bisulfid' and 'bisulfide' differ by one letter. Whether 'Bisulfid' is simply the German spelling of the English term is itself a terminology claim, and it is handled like any other claim on this site: it will be stated as fact only after its sources are verified and admitted. {{GOV:bisulfid_claims_pending}} related terminology claims are registered and still under review."
+      ],
+      "links": [
+        {
+          "path": "/bisulfid-vs-bisulfide/",
+          "label": "Bisulfid and bisulfide: the terminology record"
+        }
+      ]
+    },
+    {
+      "heading": "How a statement reaches a reference page",
+      "paragraphs": [
+        "A source is first identified and checked, then qualified for a specific use. A passage from it is recorded as evidence with its exact location, and a claim is approved only against admitted evidence. Numbers are quoted as their sources print them; when two determinations differ, both are shown rather than averaged. A page is published only if it adds knowledge that no other page on the site already holds."
+      ],
+      "links": [
+        {
+          "path": "/methodology/",
+          "label": "Methodology"
+        },
+        {
+          "path": "/sources/",
+          "label": "Sources"
+        }
+      ]
+    },
+    {
+      "heading": "English and German",
+      "paragraphs": [
+        "The site is maintained in English and German. A German page exists when it answers a German-language question, such as which form a German technical text uses, rather than as a copy of an English page."
+      ],
+      "links": [
+        {
+          "path": "/de/",
+          "label": "Deutsch"
+        }
+      ]
+    },
+    {
+      "heading": "What you will not find here",
+      "paragraphs": [
+        "BISULFID does not give safety, handling, medical, procurement or investment guidance. For those, use the safety data sheet of the specific product and a qualified professional."
+      ],
+      "links": []
+    }
+  ]
+}

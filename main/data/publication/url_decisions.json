@@ -1,0 +1,14 @@
+{
+  "registry_id": "URL-MIGRATION-DECISIONS",
+  "version": "1.0.0",
+  "governed_by": ["scripts/publication/publication_authority.py", "main/data/publication/url_decision_rules.json", "DECISION_LOG.md"],
+  "purpose": "Owner-approved, per-URL migration decisions. Only entries with status 'approved' are applied by the resolver, and every decision type can only DOWNGRADE what a legacy URL was served with. Proposals live in main/data/recovery/seo_url_disposition.jsonl and are never applied from there.",
+  "decision_types": {
+    "noindex": "robots -> noindex, follow; removed from sitemaps",
+    "canonical_to": "rel=canonical -> target (the target must resolve to an indexable self-canonical page; otherwise ignored)",
+    "redirect_to": "the page is replaced by a redirect to target (GitHub Pages cannot send HTTP 301; see url_decision_rules.json)",
+    "retire": "the page is removed (served 404 by GitHub Pages)"
+  },
+  "entry_schema": ["decision_id", "path", "decision", "target", "status", "approved_by", "approved_on", "evidence"],
+  "decisions": []
+}

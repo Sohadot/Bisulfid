@@ -1,0 +1,8 @@
+{
+  "registry_id": "CONTRACT-C-R11-NONFACTUAL-CERTIFICATIONS",
+  "version": "1.0.0",
+  "governed_by": ["scripts/governance_scaffolding/contract_c_derive.py (rule R11)", "main/data/distinctiveness/institutional_surface_registry.json", "DECISION_LOG.md"],
+  "purpose": "Contract C rule R11 is the ONLY path to indexation for a non-factual institutional page (home, methodology, navigation). A Gate 12-I PASS is necessary but never sufficient. A certification records governance=governed, validation=validated, release=authorized, and that the page asserts no factual claim. Only status 'certified' entries are used.",
+  "entry_schema": ["certification_id", "path", "institutional_function", "governance", "validation", "release", "status", "certified_by", "certified_on", "gate12i_evidence"],
+  "certifications": []
+}

@@ -136,7 +136,8 @@ class Inputs:
                                           "template_ratio": float(c[5]), "ig_units": int(c[7]),
                                           "substantive_tokens": int(c[8]), "failures": c[11]}
         hold = load("main", "data", "distinctiveness", "legacy_surface_hold.json")
-        self.hold = {e["p"] for e in hold["entries"]}
+        # Gate-12 legacy hold = sealed entries that failed Gate 12 (the baseline also records passing pages).
+        self.hold = {e["p"] for e in hold["entries"] if e.get("g", "FAIL") != "PASS"}
         self.hold_meta = {k: hold[k] for k in ("hold_id", "sealed_from", "entry_count", "entries_sha256")}
         inst = load("main", "data", "distinctiveness", "institutional_surface_registry.json")
         self.inst = {}

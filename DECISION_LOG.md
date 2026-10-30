@@ -5515,3 +5515,34 @@ No corpus rewrite, publication, Pilot 04 or Reference Production rollout. The ne
 
 ### Stop
 Next production action: owner review of PR-1 and authorization of PR-2 (Contract C RL conformance). No further sprint work.
+
+---
+
+## Recovery-02 — SEO-Safe Migration & Reference Authority Foundation
+
+**Date:** 2026-10-30
+**Baseline:** Recovery-01 `1f072f8598`. The live surface `site/public` is unchanged since `b1757cb532`, and a 2026-10-30 fetch of the homepage matches the repository. No live HTML, robots, sitemap, route, release-record or deployment change; no noindex, redirect or deletion. Full report: `main/data/recovery/RECOVERY_02_REPORT.md`.
+
+**Durable decisions:**
+1. **Mass noindex (Recovery-01 Stage 2) is NO-GO.** Of its 14,032 URLs, only 79 (internal pipeline-status pages) are appropriate noindex targets. It would noindex all 8 brand/identity surfaces, including `/`. 453 URLs have a valid canonical destination. Search Console evidence is missing; the exact data requirements are listed in the report (§2.1), and no metric is estimated.
+2. **One directive authority.** `scripts/publication/publication_authority.py` resolves robots, sitemap and canonical, first match wins: Contract C for bound objects (KO via render spec + PC; R11 non-factual certifications), then the sealed legacy status quo, then release-ledger blocks and owner-approved per-URL decisions (both downgrade only), else not authorized. **Gate 12 and Gate 12-I are vetoes, never grants.**
+3. **Deploy gate replaced, deadlock removed.** `validate_publication_authority.py` compares served directives with resolved ones (no escalation; no unauthorized new page; a modified legacy page may not request index; removals need approval; index-approved pages must pass Gate 12). On the live surface: 14,040 LEGACY_STATUS_QUO and 1 blocker. Contract C RL debt (14,032) is printed on every run.
+4. **Freeze exception retired** (policy 1.2.0). It was free-text authorization, renewable, and overrode Contract C.
+5. **Renderer conformance.** `atlas/base.html` uses `{{robots_directive}}`. Both atlas renderers take directives from the authority, skip unauthorized pages and refuse leftover placeholders. A staged full re-render gave 13,998 pages, robots identical to served, 0 escalations.
+6. **Sitemaps** come only from `generate_sitemaps.py`. Approved-only lists 0 URLs today; status quo reproduces exactly the 13,998 listed URLs and never adds one. Nothing is written to `site/public` without `--authorized-publication`.
+7. **Baseline extended.** `legacy_surface_hold.json` holds all 14,041 served pages with body hash plus the robots, sitemap and canonical they were served with. It is sha256-sealed over all of those and shrink-only.
+8. **Authority conflicts named:**
+   - `/acquire/` is ledger-blocked but served index. This is the only deploy blocker and an owner decision.
+   - The 7 indexable institutional pages are indexable only as status quo; 6 of them have no route record.
+   - The 41 non-route pages stay status quo until registered.
+   - `routes.json` is not the directive authority for legacy pages.
+9. **Decision rules** (`main/data/publication/url_decision_rules.json`, proposed): canonical before noindex; never noindex brand surfaces; GitHub Pages cannot serve 301 or 410; never combine noindex with a cross-canonical. Per-URL proposals are in `seo_url_disposition.jsonl` (14,041 records). Approved decisions go only to `url_decisions.json` (empty).
+10. **Reference previews** (non-public):
+    - **MoS₂ (existing canonical route):** SEO head, JSON-LD from evidence, Gate 12 PASS, all automated SEO checks pass.
+    - **Homepage:** institutional, no unapproved claim, figures computed from the registries, Gate 12-I PASS, all checks pass. Indexation only via R11.
+    - **Bisulfid/bisulfide boundary:** BLOCKED_ON_EVIDENCE, 0/5 modules (claims pending review; sources seeded, unqualified, no evidence records). The exact blocker list was produced; no prose was written.
+
+**Tests:** `test_publication_authority.py` 27/27, `test_legacy_migration.py` 17/17, `test_distinctiveness.py` 23/23, plus all governance suites and the L0/L1/L2 scripts pass; the disposition registry has 0 violations.
+
+### Stop
+Next production action: the owner decides `/acquire/` and supplies the Search Console exports. No deploy, merge or mass directive change was made.

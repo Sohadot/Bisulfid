@@ -1,0 +1,29 @@
+{
+  "plan_id": "PLAN-BISULFID-BISULFIDE-BOUNDARY",
+  "version": "1.0.0",
+  "status": "blocked_on_evidence",
+  "canonical_route_id": "bisulfid_vs_bisulfide",
+  "language": "en",
+  "localized_counterpart_route_id": "de_bisulfid_vs_bisulfide",
+  "purpose": "The site's identity page: what 'Bisulfid' and 'bisulfide' denote, how the German -id / English -ide spelling boundary works, and what the term must not be confused with (bisulfite, disulfide). Rendered only from admitted evidence; the module list below is the content plan, not content.",
+  "search_intents": [
+    {"query_class": "definition (EN)", "examples": ["bisulfide", "bisulfide meaning", "bisulfide ion", "HS- ion name"], "intent": "what the word denotes chemically"},
+    {"query_class": "spelling / translation (DE<->EN)", "examples": ["bisulfid", "Bisulfid englisch", "bisulfid vs bisulfide"], "intent": "is Bisulfid the German spelling; which form to use in which language"},
+    {"query_class": "disambiguation", "examples": ["bisulfide vs bisulfite", "bisulfide vs disulfide", "hydrosulfide vs bisulfide"], "intent": "avoid confusing near-identical terms"},
+    {"query_class": "brand / navigational", "examples": ["bisulfid.com"], "intent": "find this site"}
+  ],
+  "observed_competitors": {
+    "note": "Observed 2026-10-30 with a third-party web search API (NOT Google; one query each; no rank or traffic data). Competitor content is not evidence for BISULFID claims.",
+    "bisulfide vs bisulfid meaning": ["en.wikipedia.org/wiki/Bisulfide", "kaikki.org (Wiktionary extract)", "Wiktionary mirrors"],
+    "bisulfid.com": ["en.wikipedia.org/wiki/Bisulfide and mirrors; the bisulfid.com domain itself did not appear in the returned results"],
+    "differentiation_available_to_bisulfid": "No competitor returned treats the German/English -id/-ide boundary, the Bisulfid spelling, or the bisulfite/disulfide confusions as one governed record. That gap is the page's value, and every element of it currently lacks admitted evidence."
+  },
+  "modules": [
+    {"module_id": "en_definition", "heading": "What 'bisulfide' denotes", "claim_ids": ["CLM-TERM-001", "CLM-TERM-005"], "dimension": "terminology_boundary"},
+    {"module_id": "de_usage", "heading": "'Bisulfid' in German technical usage", "claim_ids": ["CLM-TERM-BISULFID-001"], "dimension": "cross_language_semantic_distinction"},
+    {"module_id": "suffix_pattern", "heading": "The German -id / English -ide pattern", "claim_ids": ["CLM-TERM-002", "CLM-TERM-003", "CLM-TERM-GERMAN-ID-PATTERN-001", "CLM-TERM-ENGLISH-IDE-CONTEXT-001", "CLM-TERM-GERMAN-ID-ACADEMIC-001"], "dimension": "terminology_boundary"},
+    {"module_id": "not_bisulfite", "heading": "Not bisulfite", "claim_ids": ["CLM-TERM-004"], "dimension": "conceptual_boundary"},
+    {"module_id": "hydrosulfide_relation", "heading": "Bisulfide, hydrosulfide and sulfide", "claim_ids": ["CLM-TERM-005", "CLM-SCI-001"], "dimension": "relationship_to_entity"}
+  ],
+  "minimum_for_preview": "At least three modules whose claims are approved (or approved_narrow) with admitted evidence; Gate 12 >= 3 valid IG units."
+}

@@ -1,8 +1,12 @@
 {
   "spec_id": "RSPEC-KO-MOS2-SCIENTIFIC-001",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "preview",
-  "governed_by": ["main/data/knowledge_objects/knowledge_object_registry.json", "scripts/reference_production/render_ko_reference.py", "DECISION_LOG.md"],
+  "governed_by": [
+    "main/data/knowledge_objects/knowledge_object_registry.json",
+    "scripts/reference_production/render_ko_reference.py",
+    "DECISION_LOG.md"
+  ],
   "purpose": "Presentation spec for rendering KO-MOS2-SCIENTIFIC-001 as the reconstructed body of the EXISTING canonical legacy route (no new URL). Prose may only restate governed claims; every displayed value is a placeholder resolved from an ADMITTED evidence record ({{EVIDENCE_ID:dotted.path|filter}}). The spec owns wording and order, never values (One-Fact-One-Owner).",
   "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
   "canonical_route_id": "molybdenum_disulfide",
@@ -26,12 +30,51 @@
     "EVD-MOS2-3R-BOUNDARY-RSC": "polytype_3r_reference"
   },
   "at_a_glance": [
-    {"label": "Formula", "value": "{{EVD-MOS2-FORMULA-PUBCHEM:locator.fields_quoted.MolecularFormula}}", "evidence_ids": ["EVD-MOS2-FORMULA-PUBCHEM", "EVD-MOS2-FORMULA-NIST"]},
-    {"label": "Bulk structure", "value": "layered; each layer a three-atom-thick S–Mo–S stack", "evidence_ids": ["EVD-MOS2-LAYERED-RSC"]},
-    {"label": "Polytypes distinguished", "value": "{{EVD-MOS2-POLYTYPES-RSC:scientific_scope.polytypes|join}}", "evidence_ids": ["EVD-MOS2-POLYTYPES-RSC"]},
-    {"label": "2H space group", "value": "{{EVD-MOS2-STRUCTURE-DICKINSON:scientific_scope.space_group|hm}}", "evidence_ids": ["EVD-MOS2-STRUCTURE-DICKINSON", "EVD-MOS2-STRUCTURE-ACTACRYST"]},
-    {"label": "2H lattice parameter a (bulk)", "value": "{{EVD-MOS2-LATTICE-A-DICKINSON:quantitative.primary_measure.printed_with_uncertainty}} Å and {{EVD-MOS2-LATTICE-A-ACTACRYST:quantitative.primary_measure.printed}} Å (two determinations)", "evidence_ids": ["EVD-MOS2-LATTICE-A-DICKINSON", "EVD-MOS2-LATTICE-A-ACTACRYST"]},
-    {"label": "3R polytype", "value": "distinct structure, space group {{EVD-MOS2-3R-BOUNDARY-RSC:scientific_scope.space_group}}", "evidence_ids": ["EVD-MOS2-3R-BOUNDARY-RSC"]}
+    {
+      "label": "Formula",
+      "value": "{{EVD-MOS2-FORMULA-PUBCHEM:locator.fields_quoted.MolecularFormula}}",
+      "evidence_ids": [
+        "EVD-MOS2-FORMULA-PUBCHEM",
+        "EVD-MOS2-FORMULA-NIST"
+      ]
+    },
+    {
+      "label": "Bulk structure",
+      "value": "layered; each layer a three-atom-thick S–Mo–S stack",
+      "evidence_ids": [
+        "EVD-MOS2-LAYERED-RSC"
+      ]
+    },
+    {
+      "label": "Polytypes distinguished",
+      "value": "{{EVD-MOS2-POLYTYPES-RSC:scientific_scope.polytypes|join}}",
+      "evidence_ids": [
+        "EVD-MOS2-POLYTYPES-RSC"
+      ]
+    },
+    {
+      "label": "2H space group",
+      "value": "{{EVD-MOS2-STRUCTURE-DICKINSON:scientific_scope.space_group|hm}}",
+      "evidence_ids": [
+        "EVD-MOS2-STRUCTURE-DICKINSON",
+        "EVD-MOS2-STRUCTURE-ACTACRYST"
+      ]
+    },
+    {
+      "label": "2H lattice parameter a (bulk)",
+      "value": "{{EVD-MOS2-LATTICE-A-DICKINSON:quantitative.primary_measure.printed_with_uncertainty}} Å and {{EVD-MOS2-LATTICE-A-ACTACRYST:quantitative.primary_measure.printed}} Å (two determinations)",
+      "evidence_ids": [
+        "EVD-MOS2-LATTICE-A-DICKINSON",
+        "EVD-MOS2-LATTICE-A-ACTACRYST"
+      ]
+    },
+    {
+      "label": "3R polytype",
+      "value": "distinct structure, space group {{EVD-MOS2-3R-BOUNDARY-RSC:scientific_scope.space_group}}",
+      "evidence_ids": [
+        "EVD-MOS2-3R-BOUNDARY-RSC"
+      ]
+    }
   ],
   "modules": [
     {
@@ -39,9 +82,29 @@
       "heading": "Chemical identity",
       "claim_id": "CLM-MOS2-FORMULA",
       "paragraphs": [
-        {"text": "The formula of molybdenum disulfide is {{EVD-MOS2-FORMULA-PUBCHEM:locator.fields_quoted.MolecularFormula}}, as recorded independently by the PubChem and NIST chemistry databases.", "evidence_ids": ["EVD-MOS2-FORMULA-PUBCHEM", "EVD-MOS2-FORMULA-NIST"], "consistency": [["EVD-MOS2-FORMULA-PUBCHEM:locator.fields_quoted.MolecularFormula", "EVD-MOS2-FORMULA-NIST:locator.fields_quoted.Formula"]],
-         "ig_unit": {"unit_id": "IGU-MOS2-001", "dimension": "chemical_identity"}},
-        {"text": "The formula states composition only: one molybdenum to two sulfur. It says nothing about how the atoms are arranged in the solid, and the database field name \"MolecularFormula\" should not be read as implying that MoS2 forms discrete molecules.", "evidence_ids": ["EVD-MOS2-FORMULA-PUBCHEM"]}
+        {
+          "text": "The formula of molybdenum disulfide is {{EVD-MOS2-FORMULA-PUBCHEM:locator.fields_quoted.MolecularFormula}}, as recorded independently by the PubChem and NIST chemistry databases.",
+          "evidence_ids": [
+            "EVD-MOS2-FORMULA-PUBCHEM",
+            "EVD-MOS2-FORMULA-NIST"
+          ],
+          "consistency": [
+            [
+              "EVD-MOS2-FORMULA-PUBCHEM:locator.fields_quoted.MolecularFormula",
+              "EVD-MOS2-FORMULA-NIST:locator.fields_quoted.Formula"
+            ]
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-MOS2-001",
+            "dimension": "chemical_identity"
+          }
+        },
+        {
+          "text": "The formula states composition only: one molybdenum to two sulfur. It says nothing about how the atoms are arranged in the solid, and the database field name \"MolecularFormula\" should not be read as implying that MoS2 forms discrete molecules.",
+          "evidence_ids": [
+            "EVD-MOS2-FORMULA-PUBCHEM"
+          ]
+        }
       ]
     },
     {
@@ -49,9 +112,22 @@
       "heading": "Bulk structure: stacked S–Mo–S layers",
       "claim_id": "CLM-MOS2-STRUCTURE-2H",
       "paragraphs": [
-        {"text": "Bulk MoS2 is a layered material in which each layer is a three-atom-thick S–Mo–S stack.", "evidence_ids": ["EVD-MOS2-LAYERED-RSC"],
-         "ig_unit": {"unit_id": "IGU-MOS2-002", "dimension": "chemical_structure"}},
-        {"text": "This description belongs to the bulk crystal. Single layers and few-layer flakes are separate forms whose properties this reference does not cover.", "evidence_ids": ["EVD-MOS2-LAYERED-RSC"]}
+        {
+          "text": "Bulk MoS2 is a layered material in which each layer is a three-atom-thick S–Mo–S stack.",
+          "evidence_ids": [
+            "EVD-MOS2-LAYERED-RSC"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-MOS2-002",
+            "dimension": "chemical_structure"
+          }
+        },
+        {
+          "text": "This description belongs to the bulk crystal. Single layers and few-layer flakes are separate forms whose properties this reference does not cover.",
+          "evidence_ids": [
+            "EVD-MOS2-LAYERED-RSC"
+          ]
+        }
       ]
     },
     {
@@ -59,9 +135,22 @@
       "heading": "Three polytypes: 1T, 2H and 3R",
       "claim_id": "CLM-MOS2-STRUCTURE-2H",
       "paragraphs": [
-        {"text": "The reviewed literature distinguishes three polytypes of MoS2, labelled {{EVD-MOS2-POLYTYPES-RSC:scientific_scope.polytypes|join}}, which differ in the coordination of molybdenum and in the stacking of the layers: 2H and 3R share trigonal-prismatic coordination of molybdenum but stack differently.", "evidence_ids": ["EVD-MOS2-POLYTYPES-RSC"],
-         "ig_unit": {"unit_id": "IGU-MOS2-003", "dimension": "polytype_distinction"}},
-        {"text": "A structural value for MoS2 is therefore incomplete unless it names the polytype it belongs to. This reference covers 2H; 1T is out of scope, and 3R is recorded only as a boundary.", "evidence_ids": ["EVD-MOS2-POLYTYPES-RSC"]}
+        {
+          "text": "The reviewed literature distinguishes three polytypes of MoS2, labelled {{EVD-MOS2-POLYTYPES-RSC:scientific_scope.polytypes|join}}, which differ in the coordination of molybdenum and in the stacking of the layers: 2H and 3R share trigonal-prismatic coordination of molybdenum but stack differently.",
+          "evidence_ids": [
+            "EVD-MOS2-POLYTYPES-RSC"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-MOS2-003",
+            "dimension": "polytype_distinction"
+          }
+        },
+        {
+          "text": "A structural value for MoS2 is therefore incomplete unless it names the polytype it belongs to. This reference covers 2H; 1T is out of scope, and 3R is recorded only as a boundary.",
+          "evidence_ids": [
+            "EVD-MOS2-POLYTYPES-RSC"
+          ]
+        }
       ]
     },
     {
@@ -69,9 +158,30 @@
       "heading": "The 2H polytype",
       "claim_id": "CLM-MOS2-STRUCTURE-2H",
       "paragraphs": [
-        {"text": "In the 2H polytype, bulk MoS2 adopts the hexagonal space group {{EVD-MOS2-STRUCTURE-DICKINSON:scientific_scope.space_group|hm}}, with a c-axis repeat of {{EVD-MOS2-STRUCTURE-DICKINSON:scientific_scope.cell_as_recorded.c_angstrom}} Å in the 1923 determination and {{EVD-MOS2-STRUCTURE-ACTACRYST:scientific_scope.cell_as_recorded.c_angstrom}} Å in the 1983 determination.", "evidence_ids": ["EVD-MOS2-STRUCTURE-DICKINSON", "EVD-MOS2-STRUCTURE-ACTACRYST"], "consistency": [["EVD-MOS2-STRUCTURE-DICKINSON:scientific_scope.space_group", "EVD-MOS2-STRUCTURE-ACTACRYST:scientific_scope.space_group"]],
-         "ig_unit": {"unit_id": "IGU-MOS2-004", "dimension": "chemical_structure"}},
-        {"text": "The two determinations come from different originating studies: Dickinson and Pauling's 1923 X-ray study of the mineral molybdenite, and the 1983 single-crystal study by Schönfeld, Huang and Moss. Both crystallographic records are retrieved from the Crystallography Open Database; the database is the retrieval route, not the source of the science.", "evidence_ids": ["EVD-MOS2-STRUCTURE-DICKINSON", "EVD-MOS2-STRUCTURE-ACTACRYST"]}
+        {
+          "text": "In the 2H polytype, bulk MoS2 adopts the hexagonal space group {{EVD-MOS2-STRUCTURE-DICKINSON:scientific_scope.space_group|hm}}, with a c-axis repeat of {{EVD-MOS2-STRUCTURE-DICKINSON:scientific_scope.cell_as_recorded.c_angstrom}} Å in the 1923 determination and {{EVD-MOS2-STRUCTURE-ACTACRYST:scientific_scope.cell_as_recorded.c_angstrom}} Å in the 1983 determination.",
+          "evidence_ids": [
+            "EVD-MOS2-STRUCTURE-DICKINSON",
+            "EVD-MOS2-STRUCTURE-ACTACRYST"
+          ],
+          "consistency": [
+            [
+              "EVD-MOS2-STRUCTURE-DICKINSON:scientific_scope.space_group",
+              "EVD-MOS2-STRUCTURE-ACTACRYST:scientific_scope.space_group"
+            ]
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-MOS2-004",
+            "dimension": "chemical_structure"
+          }
+        },
+        {
+          "text": "The two determinations come from different originating studies: Dickinson and Pauling's 1923 X-ray study of the mineral molybdenite, and the 1983 single-crystal study by Schönfeld, Huang and Moss. Both crystallographic records are retrieved from the Crystallography Open Database; the database is the retrieval route, not the source of the science.",
+          "evidence_ids": [
+            "EVD-MOS2-STRUCTURE-DICKINSON",
+            "EVD-MOS2-STRUCTURE-ACTACRYST"
+          ]
+        }
       ]
     },
     {
@@ -79,8 +189,17 @@
       "heading": "Where the name 2H comes from",
       "claim_id": "CLM-MOS2-STRUCTURE-2H",
       "paragraphs": [
-        {"text": "Dickinson and Pauling described molybdenite as hexagonal in 1923 but did not use the label 2H; the explicit 2H and 3R terminology appears in the 1983 study, whose title refers to single crystals of 2H- and 3R-MoS2.", "evidence_ids": ["EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT", "EVD-MOS2-LAYERED-ACTA1983-EXCERPT"],
-         "ig_unit": {"unit_id": "IGU-MOS2-005", "dimension": "historical_evidence"}}
+        {
+          "text": "Dickinson and Pauling described molybdenite as hexagonal in 1923 but did not use the label 2H; the explicit 2H and 3R terminology appears in the 1983 study, whose title refers to single crystals of 2H- and 3R-MoS2.",
+          "evidence_ids": [
+            "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT",
+            "EVD-MOS2-LAYERED-ACTA1983-EXCERPT"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-MOS2-005",
+            "dimension": "historical_evidence"
+          }
+        }
       ]
     },
     {
@@ -88,17 +207,50 @@
       "heading": "Lattice parameter a: two coexisting determinations",
       "claim_id": "CLM-MOS2-LATTICE-A-2H",
       "paragraphs": [
-        {"text": "Two independent determinations report the in-plane lattice parameter a of bulk 2H-MoS2 as {{EVD-MOS2-LATTICE-A-DICKINSON:quantitative.primary_measure.printed_with_uncertainty}} Å (Dickinson and Pauling, 1923) and {{EVD-MOS2-LATTICE-A-ACTACRYST:quantitative.primary_measure.printed}} Å (Schönfeld, Huang and Moss, 1983).", "evidence_ids": ["EVD-MOS2-LATTICE-A-DICKINSON", "EVD-MOS2-LATTICE-A-ACTACRYST"],
-         "ig_unit": {"unit_id": "IGU-MOS2-006", "dimension": "quantitative_property"}},
-        {"text": "The values agree within the stated uncertainty of the 1923 value and are kept as separate determinations rather than averaged into one number. Both apply to bulk 2H only; a value for a single layer or for 3R must not be substituted for them.", "evidence_ids": ["EVD-MOS2-LATTICE-A-DICKINSON", "EVD-MOS2-LATTICE-A-ACTACRYST"]}
+        {
+          "text": "Two independent determinations report the in-plane lattice parameter a of bulk 2H-MoS2 as {{EVD-MOS2-LATTICE-A-DICKINSON:quantitative.primary_measure.printed_with_uncertainty}} Å (Dickinson and Pauling, 1923) and {{EVD-MOS2-LATTICE-A-ACTACRYST:quantitative.primary_measure.printed}} Å (Schönfeld, Huang and Moss, 1983).",
+          "evidence_ids": [
+            "EVD-MOS2-LATTICE-A-DICKINSON",
+            "EVD-MOS2-LATTICE-A-ACTACRYST"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-MOS2-006",
+            "dimension": "quantitative_property"
+          }
+        },
+        {
+          "text": "The values agree within the stated uncertainty of the 1923 value and are kept as separate determinations rather than averaged into one number. Both apply to bulk 2H only; a value for a single layer or for 3R must not be substituted for them.",
+          "evidence_ids": [
+            "EVD-MOS2-LATTICE-A-DICKINSON",
+            "EVD-MOS2-LATTICE-A-ACTACRYST"
+          ]
+        }
       ],
       "table": {
-        "columns": ["Determination", "Reported a", "Method", "Scope"],
-        "rows": [
-          ["Dickinson & Pauling (1923)", "{{EVD-MOS2-LATTICE-A-DICKINSON:quantitative.primary_measure.printed_with_uncertainty}} Å", "{{EVD-MOS2-LATTICE-A-DICKINSON:scientific_scope.method}}", "{{EVD-MOS2-LATTICE-A-DICKINSON:scientific_scope.material_form}}"],
-          ["Schönfeld, Huang & Moss (1983)", "{{EVD-MOS2-LATTICE-A-ACTACRYST:quantitative.primary_measure.printed}} Å", "{{EVD-MOS2-LATTICE-A-ACTACRYST:scientific_scope.method}}", "{{EVD-MOS2-LATTICE-A-ACTACRYST:scientific_scope.material_form}}"]
+        "columns": [
+          "Determination",
+          "Reported a",
+          "Method",
+          "Scope"
         ],
-        "evidence_ids": ["EVD-MOS2-LATTICE-A-DICKINSON", "EVD-MOS2-LATTICE-A-ACTACRYST"]
+        "rows": [
+          [
+            "Dickinson & Pauling (1923)",
+            "{{EVD-MOS2-LATTICE-A-DICKINSON:quantitative.primary_measure.printed_with_uncertainty}} Å",
+            "{{EVD-MOS2-LATTICE-A-DICKINSON:scientific_scope.method}}",
+            "{{EVD-MOS2-LATTICE-A-DICKINSON:scientific_scope.material_form}}"
+          ],
+          [
+            "Schönfeld, Huang & Moss (1983)",
+            "{{EVD-MOS2-LATTICE-A-ACTACRYST:quantitative.primary_measure.printed}} Å",
+            "{{EVD-MOS2-LATTICE-A-ACTACRYST:scientific_scope.method}}",
+            "{{EVD-MOS2-LATTICE-A-ACTACRYST:scientific_scope.material_form}}"
+          ]
+        ],
+        "evidence_ids": [
+          "EVD-MOS2-LATTICE-A-DICKINSON",
+          "EVD-MOS2-LATTICE-A-ACTACRYST"
+        ]
       }
     },
     {
@@ -107,8 +259,16 @@
       "claim_id": null,
       "boundary": true,
       "paragraphs": [
-        {"text": "The 3R polytype of MoS2 is a distinct structure with space group {{EVD-MOS2-3R-BOUNDARY-RSC:scientific_scope.space_group}}, layer stacking {{EVD-MOS2-3R-BOUNDARY-RSC:scientific_scope.stacking}}, and reviewed lattice parameters {{EVD-MOS2-3R-BOUNDARY-RSC:scientific_scope.reviewed_lattice_text|review_values|angstrom}}, so its values must not be attributed to the 2H form.", "evidence_ids": ["EVD-MOS2-3R-BOUNDARY-RSC"],
-         "ig_unit": {"unit_id": "IGU-MOS2-007", "dimension": "polytype_distinction"}}
+        {
+          "text": "The 3R polytype of MoS2 is a distinct structure with space group {{EVD-MOS2-3R-BOUNDARY-RSC:scientific_scope.space_group}}, layer stacking {{EVD-MOS2-3R-BOUNDARY-RSC:scientific_scope.stacking}}, and reviewed lattice parameters {{EVD-MOS2-3R-BOUNDARY-RSC:scientific_scope.reviewed_lattice_text|review_values|angstrom}}, so its values must not be attributed to the 2H form.",
+          "evidence_ids": [
+            "EVD-MOS2-3R-BOUNDARY-RSC"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-MOS2-007",
+            "dimension": "polytype_distinction"
+          }
+        }
       ]
     }
   ],
@@ -116,5 +276,104 @@
     "heading": "What this reference does not establish",
     "text": "Band gap, electronic and optical behaviour, density, the properties of single layers, industrial and lubricant uses, market data, safety handling, and German terminology are outside the governed evidence for this object. They are open questions here, not implied facts. Any statement on them needs governed evidence first [SOURCE REQUIRED]."
   },
-  "ig_audience_ids": ["AUD_CHEMIST", "AUD_RESEARCHER"]
+  "ig_audience_ids": [
+    "AUD_CHEMIST",
+    "AUD_RESEARCHER"
+  ],
+  "seo": {
+    "title": "Molybdenum Disulfide (MoS2): Structure, Polytypes, Lattice",
+    "description": "MoS2 from cited evidence: formula, layered S–Mo–S structure, the 1T/2H/3R polytypes, the 2H space group and two independent lattice-parameter values.",
+    "search_intents": [
+      {
+        "query_class": "entity lookup",
+        "examples": [
+          "molybdenum disulfide",
+          "MoS2"
+        ],
+        "served_by": [
+          "identity",
+          "at_a_glance"
+        ]
+      },
+      {
+        "query_class": "structure",
+        "examples": [
+          "MoS2 crystal structure",
+          "MoS2 space group",
+          "is MoS2 layered"
+        ],
+        "served_by": [
+          "layered",
+          "structure_2h"
+        ]
+      },
+      {
+        "query_class": "polytype comparison",
+        "examples": [
+          "2H vs 3R MoS2",
+          "MoS2 polytypes"
+        ],
+        "served_by": [
+          "polytypes",
+          "boundary_3r",
+          "history_2h_label"
+        ]
+      },
+      {
+        "query_class": "quantitative property",
+        "examples": [
+          "MoS2 lattice parameter",
+          "MoS2 lattice constant a"
+        ],
+        "served_by": [
+          "lattice_a"
+        ]
+      }
+    ],
+    "unserved_intents_blocked_on_evidence": [
+      "MoS2 band gap (bulk vs monolayer)",
+      "MoS2 density",
+      "MoS2 melting/decomposition behaviour",
+      "MoS2 uses (lubricant, catalysis)",
+      "MoS2 safety data",
+      "MoS2 monolayer properties"
+    ],
+    "json_ld": {
+      "@type": "ChemicalSubstance",
+      "name": "Molybdenum disulfide",
+      "alternateName": "MoS2",
+      "molecularFormula": "{{EVD-MOS2-FORMULA-PUBCHEM:locator.fields_quoted.MolecularFormula}}",
+      "same_as_evidence": [
+        "EVD-MOS2-FORMULA-PUBCHEM",
+        "EVD-MOS2-FORMULA-NIST"
+      ]
+    },
+    "json_ld_evidence_ids": [
+      "EVD-MOS2-FORMULA-PUBCHEM",
+      "EVD-MOS2-FORMULA-NIST"
+    ],
+    "breadcrumbs": [
+      {
+        "label": "BISULFID",
+        "path": "/"
+      },
+      {
+        "label": "Molybdenum disulfide",
+        "path": "/molybdenum-disulfide/"
+      }
+    ],
+    "related": [
+      {
+        "path": "/de/terminology/molybdenum-disulfide/",
+        "label": "German terminology record for MoS2",
+        "relation": "a separate record of how German texts name this compound; not a translation of this page"
+      },
+      {
+        "path": "/methodology/",
+        "label": "How BISULFID admits evidence",
+        "relation": "how sources and evidence are admitted"
+      }
+    ],
+    "hreflang": "none: no governed German or other-language equivalent of this scientific object exists; the German lexical object answers a different task"
+  }
 }

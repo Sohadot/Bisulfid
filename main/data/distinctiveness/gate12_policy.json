@@ -1,6 +1,6 @@
 {
   "policy_id": "GATE-12-DISTINCTIVENESS",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "blocking",
   "site": "bisulfid.com",
   "sprint": "corpus-distinctiveness-audit",
@@ -209,8 +209,12 @@
         "expires_on",
         "reason"
       ],
-      "meaning": "Explicit, time-boxed, owner-authorized deviation from Contract C RL that lets an unchanged indexed legacy surface be redeployed (e.g. an urgent non-content fix). Every run reports it. It cannot admit new or modified pages."
-    }
+      "meaning": "Explicit, time-boxed, owner-authorized deviation from Contract C RL that lets an unchanged indexed legacy surface be redeployed (e.g. an urgent non-content fix). Every run reports it. It cannot admit new or modified pages.",
+      "status": "retired",
+      "retired_by": "Recovery-02",
+      "retirement_reason": "Unsafe: authorization was free text in a repository file, renewable without limit, and it overrode Contract C RL. Superseded by the publication-authority status quo, which never lets a legacy page escalate its directives and needs no exception."
+    },
+    "deploy_authority": "scripts/publication/validate_publication_authority.py (Recovery-02). The Gate-12 --legacy-hold mode remains as the strict Contract-C-RL conformance check."
   },
   "page_classes": {
     "knowledge_reference": {

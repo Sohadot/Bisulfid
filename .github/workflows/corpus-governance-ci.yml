@@ -54,7 +54,12 @@ jobs:
           fi
 
       - name: "Reference Production — rendered outputs match governed inputs"
-        run: python scripts/reference_production/render_ko_reference.py --check
+        run: |
+          python scripts/reference_production/render_ko_reference.py --check
+          python scripts/reference_production/render_institutional_preview.py --check
+
+      - name: "Publication authority — resolver, renderer, sitemap and surface proofs"
+        run: python scripts/publication/test_publication_authority.py
 
       - name: "Recovery — legacy disposition registry invariants"
         run: python scripts/recovery/validate_legacy_disposition.py

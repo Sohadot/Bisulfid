@@ -168,7 +168,7 @@ class Page:
                  "front", "family", "ko_family", "cohort", "is_draft", "publication_candidate",
                  "public_indexable", "sections", "substantive_text", "infra_tokens",
                  "masked_tokens", "raw_tokens", "skeleton", "shape", "sentences",
-                 "shingle_set", "raw_shingle_set", "body_hash", "control")
+                 "shingle_set", "raw_shingle_set", "body_hash", "control", "robots", "canonical")
 
     def __init__(self, pid, surface):
         self.id = pid
@@ -196,6 +196,8 @@ class Page:
         self.raw_shingle_set = set()
         self.body_hash = None
         self.control = False
+        self.robots = None          # HTML only: robots meta content as served
+        self.canonical = None       # HTML only: rel=canonical href as served
 
 
 class _Rules:
@@ -395,6 +397,7 @@ class _HTMLExtract(html.parser.HTMLParser):
         self.in_main = 0
         self.lines, self.buf, self.cur = [], [], None
         self.title, self.robots, self.lane, self.lang, self.h1 = "", "", None, None, ""
+        self.canonical = None
         self._in_title = False
 
     def _skipping(self):
@@ -404,6 +407,8 @@ class _HTMLExtract(html.parser.HTMLParser):
         a = dict(attrs)
         if tag == "html":
             self.lang = a.get("lang")
+        if tag == "link" and (a.get("rel") or "").lower() == "canonical":
+            self.canonical = a.get("href")
         if tag == "meta" and (a.get("name") or "").lower() == "robots":
             self.robots = (a.get("content") or "").lower()
         if tag == "title":
@@ -479,6 +484,8 @@ def parse_html(path, text, policy, rules=None, page_id=None, surface_root=None):
     page.cohort = "/".join(fam_segs) or "root"
     page.family = "|".join([page.language or "?", lane, page.cohort])
     page.public_indexable = ("index" in ex.robots and "noindex" not in ex.robots)
+    page.robots = ex.robots or None
+    page.canonical = ex.canonical
     page.is_draft = False
     page.publication_candidate = page.public_indexable
     raw = _sections_from_lines(ex.lines)
@@ -1024,7 +1031,10 @@ def sitemap_paths(surface_root):
 
 
 def hold_entries_digest(entries):
-    canon = "\n".join(f"{e['p']}\t{e['h']}" for e in sorted(entries, key=lambda e: e["p"]))
+    """sha256 over path, body hash and (when recorded) the served directives, so neither the body pin
+    nor the recorded robots/sitemap/canonical status quo can be edited without re-sealing."""
+    canon = "\n".join("\t".join([e["p"], e["h"]] + [str(e[k]) for k in ("robots", "sm", "c") if k in e])
+                      for e in sorted(entries, key=lambda e: e["p"]))
     return hashlib.sha256(canon.encode("utf-8")).hexdigest()
 
 
@@ -1044,6 +1054,9 @@ def verify_hold(hold):
 def freeze_exception_status(hold, policy, today):
     """Is the indexed-legacy freeze exception active? Returns (active, reason). Default: not active."""
     import datetime
+    if policy["legacy_migration"]["freeze_exception"].get("status") == "retired":
+        return False, ("freeze exception retired (Recovery-02): an unchanged legacy surface is governed by the "
+                       "publication-authority status quo instead")
     fe = hold.get("freeze_exception") or {}
     if fe.get("state") != "authorized":
         return False, "freeze exception not authorized (default): legacy pages that fail Gate 12 must be noindex (Contract C RL)"
@@ -1077,7 +1090,7 @@ def apply_legacy_hold(pages, verdicts, surface_root, hold, policy, today, sitema
     BLOCK_NEW_FAILING         page absent from the baseline that does not pass Gate 12.
     """
     sitemap = sitemap if sitemap is not None else sitemap_paths(surface_root)
-    entries = {e["p"]: e for e in (hold or {}).get("entries", [])}
+    entries = {e["p"]: e for e in (hold or {}).get("entries", []) if e.get("g", "FAIL") != "PASS"}
     fe_active, fe_reason = freeze_exception_status(hold or {}, policy, today) if hold else (False, "no legacy hold supplied")
     out = []
     for page, v in zip(pages, verdicts):

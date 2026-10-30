@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "scripts" / "publication"))
 from atlas_dossier_common_l3 import (  # noqa: E402
     STYLESHEET_PATH,
     atlas_lane_slug,
@@ -32,6 +33,25 @@ from atlas_dossier_common_l3 import (  # noqa: E402
 LEDGER_PATH = ROOT / "main/data/release_ledger.json"
 ROUTES_PATH = ROOT / "main/data/routes.json"
 PUBLIC_DIR = ROOT / "site/public"
+
+
+# Recovery-02: robots/canonical come from the publication authority, never from the template.
+sys.path.insert(0, str(ROOT / "scripts" / "publication"))
+from publication_authority import Authority  # noqa: E402
+
+
+def _out_dir(argv: list[str]) -> Path:
+    """--out DIR renders to a staging directory; the default remains site/public."""
+    if "--out" in argv:
+        return Path(argv[argv.index("--out") + 1]).resolve()
+    return PUBLIC_DIR
+
+
+def _finalize(page: str, rid: str, errors: list[str]) -> str | None:
+    if "{{" in page:
+        errors.append(f"{rid}: unresolved template placeholder")
+        return None
+    return page
 TEMPLATES = ROOT / "main/templates/atlas"
 
 
@@ -43,6 +63,9 @@ def main() -> int:
     print("=" * 60)
     print("Sprint 99C — 14K Conceptual Interface Dossier Render")
     print("=" * 60)
+    authority = Authority()
+    out_dir = _out_dir(sys.argv)
+    skipped: list[str] = []
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     routes = json.loads(ROUTES_PATH.read_text(encoding="utf-8"))["routes"]
     routes_by_id = {r["route_id"]: r for r in routes}
@@ -73,6 +96,11 @@ def main() -> int:
         if not route:
             errors.append(f"missing route: {rec['route_id']}")
             continue
+        try:
+            robots_directive, canonical_url = authority.render_directives(route.get("path", "/"))
+        except PermissionError as exc:
+            skipped.append(str(exc))
+            continue
         cls = classification.get(rec["route_id"], {"proposed_production_lane": rec.get("production_lane", "A")})
         lane = cls.get("proposed_production_lane", rec.get("production_lane", "A"))
         release_mode = rec.get("release_mode", "cautious_reference_dossier")
@@ -91,7 +119,8 @@ def main() -> int:
             "text_direction": "ltr",
             "page_title": html.escape(page_title),
             "meta_description": html.escape(summary),
-            "canonical_url": f"https://bisulfid.com{path}",
+            "canonical_url": canonical_url,
+            "robots_directive": robots_directive,
             "page_h1": html.escape(h1),
             "atlas_role": html.escape(role),
             "atlas_lane_slug": atlas_lane_slug(lane),
@@ -116,17 +145,19 @@ def main() -> int:
         article = substitute(dossier_tpl, ctx)
         ctx["content"] = article
         ctx["breadcrumbs"] = substitute(breadcrumb_tpl, ctx)
-        page = substitute(base_tpl, ctx)
+        page = _finalize(substitute(base_tpl, ctx), rec["route_id"], errors)
+        if page is None:
+            continue
         if STYLESHEET_PATH not in page:
             errors.append(f"{rec['route_id']}: missing absolute stylesheet")
         raw_path = route.get("path", "/").strip("/")
-        out_path = PUBLIC_DIR / ("index.html" if not raw_path else f"{raw_path}/index.html")
+        out_path = out_dir / ("index.html" if not raw_path else f"{raw_path}/index.html")
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(page, encoding="utf-8")
         written += 1
         if (i + 1) % 2000 == 0:
             print(f"  Rendered {i + 1}/{len(released)}...")
-    print(f"Rendered: {written}")
+    print(f"Rendered: {written}  (skipped as not authorized: {len(skipped)})")
     if errors:
         for e in errors[:20]:
             print(f"  ERROR: {e}")

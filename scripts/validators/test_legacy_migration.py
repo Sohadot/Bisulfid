@@ -181,22 +181,15 @@ class LegacyHoldTests(unittest.TestCase):
         repinned["entries"][0] = dict(repinned["entries"][0], h="f" * 16)
         self.assertTrue(dc.hold_ratchet(repinned, self.hold)[0], "re-pinning a modified page is a ratchet violation")
 
-    def test_freeze_exception_is_explicit_bounded_and_expires(self):
+    def test_freeze_exception_is_retired(self):
+        # Recovery-02: a fully filled-in "authorization" no longer activates anything.
         auth = copy.deepcopy(self.hold)
         auth["freeze_exception"] = {"state": "authorized", "authorized_by": "owner", "authorized_on": "2026-10-20",
                                     "expires_on": "2026-11-15", "reason": "urgent non-content fix"}
         st, meta = self.s.states(auth)
-        self.assertTrue(meta["freeze_exception_active"])
-        self.assertTrue(all(st[f"/t/{slug(n)}/"] == "LEGACY_FREEZE_INDEXED" for n in NAMES))
-        _, meta = self.s.states(auth, today=datetime.date(2026, 11, 16))
-        self.assertFalse(meta["freeze_exception_active"], "expired")
-        long = copy.deepcopy(auth)
-        long["freeze_exception"]["expires_on"] = "2027-06-01"
-        self.assertFalse(self.s.states(long)[1]["freeze_exception_active"], "window above policy max_days")
-        incomplete = copy.deepcopy(auth)
-        incomplete["freeze_exception"]["authorized_by"] = None
-        self.assertFalse(self.s.states(incomplete)[1]["freeze_exception_active"])
-        # The exception never admits new or modified pages.
+        self.assertFalse(meta["freeze_exception_active"])
+        self.assertIn("retired", meta["freeze_exception"])
+        self.assertTrue(all(st[f"/t/{slug(n)}/"] == "BLOCK_LEGACY_INDEXED" for n in NAMES))
         write(self.s.root, "t/epsilon-sulfide", TEMPLATE.format(name="Epsilon Sulfide", robots="index, follow"))
         st, _ = self.s.states(auth)
         self.assertEqual(st["/t/epsilon-sulfide/"], "BLOCK_NEW_FAILING")

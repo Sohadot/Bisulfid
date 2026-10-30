@@ -233,9 +233,34 @@ def build(spec):
             "intended_use": ctx.admission[eid]["intended_use"], "qualification_id": ctx.admission[eid]["qualification_id"],
             "source_lock_status": s.get("source_lock_status", "unknown")})
     pc_id, cc_inputs, cc, blockers = ctx.contract_c()
+    seo = resolve_seo(spec, ctx)
     return {"spec": spec, "ko": ctx.ko, "route": ctx.route, "modules": modules, "glance": glance,
             "provenance": provenance, "units": units, "pc_id": pc_id, "contract_c_inputs": cc_inputs,
-            "contract_c": cc, "blockers": blockers}
+            "contract_c": cc, "blockers": blockers, "seo": seo,
+            "evidence_as_of": max((p["retrieval_date"] for p in provenance), default=None)}
+
+
+def resolve_seo(spec, ctx):
+    """SEO head data. JSON-LD values are evidence placeholders; sameAs comes from the cited sources;
+    every internal link must point at a page that exists on the public surface (no dead links)."""
+    seo = spec.get("seo")
+    if not seo:
+        return None
+    ev = set(seo.get("json_ld_evidence_ids", []))
+    ld = {"@context": "https://schema.org"}
+    for k, v in seo["json_ld"].items():
+        if k == "same_as_evidence":
+            ld["sameAs"] = [ctx.sources[ctx.evidence[e]["source_id"]]["url"] for e in v]
+        else:
+            ld[k] = ctx.resolve(v, ev) if isinstance(v, str) else v
+    for link in seo.get("related", []) + seo.get("breadcrumbs", []):
+        p = link["path"]
+        f = os.path.join(ROOT, "site", "public", p.strip("/"), "index.html") if p != "/" else \
+            os.path.join(ROOT, "site", "public", "index.html")
+        if not os.path.exists(f):
+            raise RenderError(f"internal link {p} does not resolve to a public page")
+    return {"title": seo["title"], "description": seo["description"], "json_ld": ld,
+            "breadcrumbs": seo.get("breadcrumbs", []), "related": seo.get("related", [])}
 
 
 def _binding_ev_all(self):
@@ -303,16 +328,21 @@ def render_html(r):
         + f"<td>{e(p['role'])}</td><td>{e(p['source_lock_status'])}</td><td>{e(p['retrieval_date'])}</td></tr>"
         for p in r["provenance"])
     cc = r["contract_c"]
+    seo = r["seo"] or {"title": s["title"], "description": s["summary"], "json_ld": {}, "breadcrumbs": [], "related": []}
+    crumbs = " › ".join(f"<a href=\"{e(b['path'])}\">{e(b['label'])}</a>" for b in seo["breadcrumbs"][:-1])
+    crumbs = (crumbs + f" › <span aria-current=\"page\">{e(seo['breadcrumbs'][-1]['label'])}</span>") if seo["breadcrumbs"] else ""
+    related = "".join(f"<li><a href=\"{e(x['path'])}\">{e(x['label'])}</a> — {e(x['relation'])}</li>" for x in seo["related"])
     return f"""<!DOCTYPE html>
 <html lang="{e(route['language'])}" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{e(s['title'])} — Bisulfid Atlas (preview)</title>
-  <meta name="description" content="{e(s['summary'])}">
+  <title>{e(seo['title'])}</title>
+  <meta name="description" content="{e(seo['description'])}">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="{SITE}{e(route['path'])}">
   <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
+  <script type="application/ld+json">{json.dumps(seo['json_ld'], ensure_ascii=False)}</script>
 </head>
 <body class="bs-control-room bisulfid-atlas atlas-lane-reference" data-reference-preview="true" data-knowledge-object="{e(ko['knowledge_object_id'])}" data-atlas-lane="compound">
   <div class="bs-control-room__shell">
@@ -326,12 +356,14 @@ def render_html(r):
         </ul>
       </nav>
     </header>
+    <nav class="atlas-breadcrumbs breadcrumb" aria-label="Breadcrumb">{crumbs}</nav>
     <main id="main-content" role="main">
       <article class="reference-object public-page" lang="{e(route['language'])}">
         <header class="reference-object__hero">
           <p class="page-kicker">Scientific reference · preview of {e(route['path'])}</p>
           <h1>{e(s['h1'])}</h1>
           <p class="page-intro">{e(s['summary'])}</p>
+          <p class="reference-object__asof">Evidence retrieved {e(r['evidence_as_of'] or 'n/a')} · {len(r['provenance'])} admitted evidence records · values are quoted, never averaged</p>
         </header>
         <section class="reference-glance" id="at-a-glance">
           <h2>At a glance</h2>
@@ -353,6 +385,10 @@ def render_html(r):
             </tbody>
           </table>
         </section>
+        <nav class="reference-related" aria-label="Related records">
+          <h2>Related records</h2>
+          <ul>{related}</ul>
+        </nav>
         <aside class="reference-governance" aria-label="Governance status">
           <h2>Governance status</h2>
           <p>Knowledge Object <code>{e(ko['knowledge_object_id'])}</code> · render spec <code>{e(s['spec_id'])}@{e(s['version'])}</code> · Contract C ({e(cc[0])}, {e(cc[1])}). Preview only: not deployed, not indexable.</p>

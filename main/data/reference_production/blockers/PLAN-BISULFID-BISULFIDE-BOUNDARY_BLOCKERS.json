@@ -1,0 +1,378 @@
+{
+ "plan_id": "PLAN-BISULFID-BISULFIDE-BOUNDARY",
+ "canonical_route_id": "bisulfid_vs_bisulfide",
+ "renderable_modules": 0,
+ "modules": [
+  {
+   "module_id": "en_definition",
+   "heading": "What 'bisulfide' denotes",
+   "renderable": false,
+   "claims": {
+    "CLM-TERM-001": {
+     "status": null,
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'None', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 3,
+       "blocker": "claim cites no source"
+      }
+     ]
+    },
+    "CLM-TERM-005": {
+     "status": "pending_review",
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'pending_review', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-IUPAC-HYDROSULFIDES",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-IUPAC-HYDROSULFIDES",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['controlled nomenclature context for hydrosulfides', 'source-locked explanation of IUPAC terminology context', 'terminology relationship between hydrosulfide/hydrosulfides where directly supported'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-IUPAC-HYDROSULFIDES",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "module_id": "de_usage",
+   "heading": "'Bisulfid' in German technical usage",
+   "renderable": false,
+   "claims": {
+    "CLM-TERM-BISULFID-001": {
+     "status": "pending_review",
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'pending_review', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-BADGER-BISULFID-H2S",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-BADGER-BISULFID-H2S",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['candidate German technical usage of the term Bisulfid', 'candidate support for Bisulfid appearing in a German water-quality / sulfur-monitoring context', 'candidate context connecting Bisulfid with HS- / H₂S terminology where directly stated by the source'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-BADGER-BISULFID-H2S",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "module_id": "suffix_pattern",
+   "heading": "The German -id / English -ide pattern",
+   "renderable": false,
+   "claims": {
+    "CLM-TERM-002": {
+     "status": null,
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'None', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 3,
+       "blocker": "claim cites no source"
+      }
+     ]
+    },
+    "CLM-TERM-003": {
+     "status": "pending_review",
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'pending_review', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-DUDEN-SULFID",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-DUDEN-SULFID",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['German spelling confirmation for Sulfid', 'German-language term identity', 'linguistic support for the German identity layer'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-DUDEN-SULFID",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      }
+     ]
+    },
+    "CLM-TERM-GERMAN-ID-PATTERN-001": {
+     "status": "pending_review",
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'pending_review', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-DUDEN-SULFID",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-DUDEN-SULFID",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['German spelling confirmation for Sulfid', 'German-language term identity', 'linguistic support for the German identity layer'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-DUDEN-SULFID",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-DUDEN-OXID",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-DUDEN-OXID",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['German lexical entry for Oxid', 'candidate support that Oxid is a German chemical-language form', 'cautious example in the Oxide/Oxid spelling comparison'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-DUDEN-OXID",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-DUDEN-CHLORID",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-DUDEN-CHLORID",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['German lexical entry for Chlorid', 'candidate support that Chlorid is a German chemical-language form', 'cautious example in the Chloride/Chlorid spelling comparison'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-DUDEN-CHLORID",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      }
+     ]
+    },
+    "CLM-TERM-ENGLISH-IDE-CONTEXT-001": {
+     "status": "pending_review",
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'pending_review', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-IUPAC-INORGANIC-NOMENCLATURE-1971",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-IUPAC-INORGANIC-NOMENCLATURE-1971",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['English inorganic nomenclature context', 'cautious support for English -ide naming context where directly stated', 'comparison context for English terms such as chloride and sulfide'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-IUPAC-INORGANIC-NOMENCLATURE-1971",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      }
+     ]
+    },
+    "CLM-TERM-GERMAN-ID-ACADEMIC-001": {
+     "status": "pending_review",
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'pending_review', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['candidate academic teaching support for German inorganic nomenclature context', 'candidate support for cautious explanation of -id endings where directly stated', 'source-search support for sulfid_vs_sulfide and german_english_chemical_terms drafts'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['candidate academic teaching support for German inorganic nomenclature context', 'candidate support for cautious explanation of -id endings where directly stated', 'source-search support for sulfid_vs_sulfide and german_english_chemical_terms drafts'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "module_id": "not_bisulfite",
+   "heading": "Not bisulfite",
+   "renderable": false,
+   "claims": {
+    "CLM-TERM-004": {
+     "status": "pending_review",
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'pending_review', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-MW-BISULFITE",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-MW-BISULFITE",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['English lexical entry for bisulfite', 'disambiguation between bisulfite and bisulfide', 'evidence that bisulfite is a separate lexical entry from bisulfide'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-MW-BISULFITE",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "module_id": "hydrosulfide_relation",
+   "heading": "Bisulfide, hydrosulfide and sulfide",
+   "renderable": false,
+   "claims": {
+    "CLM-TERM-005": {
+     "status": "pending_review",
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'pending_review', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-IUPAC-HYDROSULFIDES",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-IUPAC-HYDROSULFIDES",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['controlled nomenclature context for hydrosulfides', 'source-locked explanation of IUPAC terminology context', 'terminology relationship between hydrosulfide/hydrosulfides where directly supported'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-IUPAC-HYDROSULFIDES",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      }
+     ]
+    },
+    "CLM-SCI-001": {
+     "status": "pending_review",
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'pending_review', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 3,
+       "source_id": "SRC-PUBCHEM-HYDROSULFIDE",
+       "blocker": "source status 'seeded' (lock 'candidate')",
+       "required": "identity verification per main/data/SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md (publisher, title, URL/DOI, retrieval date, captured locator)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-PUBCHEM-HYDROSULFIDE",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['chemical identity context for hydrosulfide', 'formula or database identity where directly supported by PubChem', 'candidate support for HS- identity references'])"
+      },
+      {
+       "step": 5,
+       "source_id": "SRC-PUBCHEM-HYDROSULFIDE",
+       "blocker": "no evidence record",
+       "required": "EVD record: claim_scope, locator with the verbatim passage, retrieval_date, allowed_uses/prohibited_uses, governed=true"
+      }
+     ]
+    }
+   }
+  }
+ ],
+ "verdict": "BLOCKED_ON_EVIDENCE",
+ "note": "A preview is produced only when >= 3 modules are renderable; no prose is written around missing evidence."
+}
