@@ -315,6 +315,31 @@ class AcquireProposalTests(unittest.TestCase):
         self.assertEqual(pa.Authority().resolve("/acquire/")["robots"], "noindex, follow")
 
 
+class IndexationPlanTests(unittest.TestCase):
+    """Recovery-03 E: a risk-based plan, never a mass noindex."""
+
+    def setUp(self):
+        self.plan = json.load(open(os.path.join(ROOT, "main", "data", "recovery", "R03_INDEXATION_REDUCTION_PLAN.json"), encoding="utf-8"))
+
+    def test_every_generated_page_is_classified_once(self):
+        self.assertEqual(sum(f["pages"] for f in self.plan["families"]), 12289)
+
+    def test_first_wave_is_small_and_unapplied(self):
+        w = self.plan["wave_1"]["pages"]
+        self.assertLessEqual(len(w), 0.01 * 12289)
+        a = pa.Authority()
+        d = json.load(open(os.path.join(ROOT, "main", "data", "publication", "url_decisions.json")))
+        self.assertTrue(all(x["status"] == "proposed" for x in d["decisions"]), "nothing is approved by this sprint")
+        for p in w:
+            self.assertNotIn(p, a.decisions)
+
+    def test_similarity_alone_never_authorizes_canonical(self):
+        r = json.load(open(os.path.join(ROOT, "main", "data", "publication", "url_decision_rules.json")))
+        canon = next(x for x in r["rules"] if x["id"] == "R-CANON-1")
+        self.assertIn("never authorizes a canonical by itself", canon["when"])
+        self.assertEqual(self.plan["canonical_consolidation"]["eligible_under_R_CANON_1_v1_1"], 0)
+
+
 class PreviewTests(unittest.TestCase):
 
     def test_previews_are_current_and_noindex(self):
