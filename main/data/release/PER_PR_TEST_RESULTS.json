@@ -375,7 +375,7 @@
  },
  "PR-B": {
   "branch": "release-01/pr-b",
-  "sha": "e036e30fb6623e2bcda50d15b6dfca871c456fd2",
+  "sha": "84d55e3dab73082cbc71b73b4cc83d589676bf22",
   "results": [
    {
     "area": "Contract C",
@@ -573,7 +573,7 @@
  },
  "PR-C": {
   "branch": "release-01/pr-c",
-  "sha": "3cb927f574d1653cafbfc3188b1177fbe1ce7e79",
+  "sha": "b3ca3435782d18679a4af820a339da46d65906b5",
   "results": [
    {
     "area": "Contract C",
@@ -771,7 +771,7 @@
  },
  "PR-D": {
   "branch": "release-01/pr-d",
-  "sha": "91cbb763298094e854cf6c50b3086928da8277dc",
+  "sha": "24d9762c1fedc023e8d417040c43c4b3c8dc6481",
   "results": [
    {
     "area": "Contract C",
@@ -969,7 +969,7 @@
  },
  "PR-E": {
   "branch": "release-01/pr-e",
-  "sha": "42b19aa518333899df25ec0b20fb3dc067dd4fe6",
+  "sha": "8e14d1e500e30082591763b80dd9a9c43ee6336b",
   "results": [
    {
     "area": "Contract C",
@@ -1176,5 +1176,16 @@
   "conflicts": "none (all auto-merged)",
   "seo_preview_assessment": "auto-merged value for the homepage preview (jaccard 0.0013, measured against the old /acquire/ text) replaced by the re-measured value 0.0011 on PR-C; D and E re-measured identical to their merged files",
   "isolated_diffs": "PR-C/D/E isolated diffs (merge-base..head) are content-identical to the reviewed versions except the PR-C re-measurement"
+ },
+ "buyer_access_policy_sync": {
+  "date": "2026-10-30",
+  "pr_b_commit": "84d55e3dab (IDX-POL-ACQUIRE-001)",
+  "merges": [
+   "release-01/pr-b -> release-01/pr-c (b3ca343578)",
+   "release-01/pr-c -> release-01/pr-d (24d9762c1f)",
+   "release-01/pr-d -> release-01/pr-e (8e14d1e500)"
+  ],
+  "conflicts": "none",
+  "re_measurement": "SEO preview assessment and renderer outputs unchanged on C, D and E"
  }
 }

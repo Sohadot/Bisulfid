@@ -4,11 +4,11 @@
 
 ## 1. Purpose and exact scope
 
-Forward merge of release-01/pr-c (3cb927f574) into release-01/pr-d. No history rewritten.
+Forward merge of release-01/pr-c into release-01/pr-d. No history rewritten.
 
 ## 2. Verified commit SHA
 
-`91cbb763298094e854cf6c50b3086928da8277dc` — the exact head pushed and tested in isolation (32 PASS).
+`24d9762c1fedc023e8d417040c43c4b3c8dc6481` — the exact head pushed and tested in isolation (32 PASS).
 
 ## 3. Dependency
 
@@ -18,7 +18,7 @@ Forward merge of release-01/pr-c (3cb927f574) into release-01/pr-d. No history r
 
 ## 4. Files changed
 
-`git diff 3cb927f574..91cbb76329` — 27 files changed, 2494 insertions(+), 51 deletions(-)
+`git diff b3ca343578..24d9762c1f` — 27 files changed, 2494 insertions(+), 51 deletions(-)
 
 <details><summary>File list</summary>
 
@@ -75,7 +75,7 @@ No public file changes; candidate staged. apply_release.py refuses publication u
 
 ## 6. Isolated test results
 
-Head `91cbb76329` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
+Head `24d9762c1f` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
 
 | Status | Area | Command | Detail |
 |---|---|---|---|

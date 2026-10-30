@@ -4,11 +4,11 @@
 
 ## 1. Purpose and exact scope
 
-Forward merge of release-01/pr-d (91cbb76329) into release-01/pr-e. No history rewritten.
+Forward merge of release-01/pr-d into release-01/pr-e. No history rewritten.
 
 ## 2. Verified commit SHA
 
-`42b19aa518333899df25ec0b20fb3dc067dd4fe6` — the exact head pushed and tested in isolation (32 PASS).
+`8e14d1e500e30082591763b80dd9a9c43ee6336b` — the exact head pushed and tested in isolation (32 PASS).
 
 ## 3. Dependency
 
@@ -18,7 +18,7 @@ Forward merge of release-01/pr-d (91cbb76329) into release-01/pr-e. No history r
 
 ## 4. Files changed
 
-`git diff 91cbb76329..42b19aa518` — 4 files changed, 31 insertions(+), 19 deletions(-)
+`git diff 24d9762c1f..8e14d1e500` — 4 files changed, 31 insertions(+), 19 deletions(-)
 
 <details><summary>File list</summary>
 
@@ -52,7 +52,7 @@ No public file changes; candidate staged.
 
 ## 6. Isolated test results
 
-Head `42b19aa518` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
+Head `8e14d1e500` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
 
 | Status | Area | Command | Detail |
 |---|---|---|---|

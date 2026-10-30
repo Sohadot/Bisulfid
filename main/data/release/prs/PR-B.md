@@ -4,22 +4,22 @@
 
 ## 1. Purpose and exact scope
 
-- Dictionary statement narrowed to the sources examined: Merriam-Webster (bisulfide = disulfide),
-  PubChem CID 5047209 (synonym for HS-), DWDS (Bisulfid not among its contemporary lexical sources);
-  explicitly not a claim about every German dictionary or technical text
-- -id/-ide described as a naming pattern (Sulfid/sulfide; teaching-text rule) that does not by itself
-  establish Bisulfid as the standardized German equivalent of bisulfide; owner-intent wording removed
-- No implication that the terminology reference is published: it is stated as in preparation and
-  not yet published; the related-link label no longer implies the live page explains the question
-- Unchanged: URL, noindex,follow, canonical, acquisition availability, mailto contact, all link
-  targets, release ledger; URL-DEC-R03-ACQUIRE-001 stays proposed and unsigned
-- New tests: scripts/publication/test_acquire_page.py (wired into CI)
+Owner decision (recorded, not signed): /acquire/ is a commercial access page and stays
+'noindex, follow' and out of every sitemap indefinitely, independent of release status.
 
-Fast-forward on release-01/pr-b; PR-C/D/E heads are unchanged.
+- main/data/publication/indexing_policies.json: per-URL indexing ceilings; separates access,
+  publication and indexing. Only page_class commercial_access; refused for any KO-bound route
+- publication_authority.resolve(): ceiling applied last; only lowers (noindex + no sitemap); never
+  changes access or canonical; no ledger release, URL decision, Contract C or R11 can lift it
+- deploy gate: policy-enforced downgrade is a named enforcement exception (like the ledger)
+- url_decisions.json: the ledger-based lift condition is superseded; the record stays proposed
+  and unsigned and now states exactly what the owner's signature approves
+- 7 regression tests (future ledger release, R11/Contract C, refused ceilings, no other URL
+  changes, sitemaps, robots.txt); DECISION_LOG entry. Contract C unchanged.
 
 ## 2. Verified commit SHA
 
-`e036e30fb6623e2bcda50d15b6dfca871c456fd2` — the exact head pushed and tested in isolation (30 PASS, 2 NOT_APPLICABLE).
+`84d55e3dab73082cbc71b73b4cc83d589676bf22` — the exact head pushed and tested in isolation (30 PASS, 2 NOT_APPLICABLE).
 
 ## 3. Dependency
 
@@ -29,19 +29,23 @@ Fast-forward on release-01/pr-b; PR-C/D/E heads are unchanged.
 
 ## 4. Files changed
 
-`git diff d1da411bcb..e036e30fb6` — 10 files changed, 175 insertions(+), 249 deletions(-)
+`git diff d1da411bcb..84d55e3dab` — 14 files changed, 362 insertions(+), 258 deletions(-)
 
 <details><summary>File list</summary>
 
 ```
 M	.github/workflows/corpus-governance-ci.yml
+M	DECISION_LOG.md
+A	main/data/publication/indexing_policies.json
 M	main/data/publication/url_decisions.json
 M	main/data/recovery/ACQUIRE_FACTUAL_CLAIM_REVIEW.json
 D	main/data/recovery/staged/acquire.patch
 D	main/data/recovery/staged/acquire/index.html
 M	main/data/reference_production/SEO_PREVIEW_ASSESSMENT.json
+M	scripts/publication/publication_authority.py
 A	scripts/publication/test_acquire_page.py
 M	scripts/publication/test_publication_authority.py
+M	scripts/publication/validate_publication_authority.py
 D	scripts/recovery/stage_acquire_proposal.py
 M	site/public/acquire/index.html
 ```
@@ -160,7 +164,7 @@ Changes ONE public page once deployed: /acquire/ becomes 'noindex, follow' (stil
 
 ## 6. Isolated test results
 
-Head `e036e30fb6` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
+Head `84d55e3dab` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
 
 | Status | Area | Command | Detail |
 |---|---|---|---|

@@ -5617,5 +5617,10 @@ Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AM
     - PR-B was then forward-merged into C → D → E with ordinary merge commits; no rebase, no force-push, no conflicts.
     - On PR-C, one auto-merged measurement was stale: the homepage preview's Jaccard to `/acquire/` was 0.0013, computed against the old text. It was replaced by the re-measured 0.0011.
     - Final heads: B `e036e30fb6`, C `3cb927f574`, D `91cbb76329`, E `42b19aa518`. All are verified in isolation with 0 FAIL, and `/acquire/` on C/D/E is byte-identical to PR-B.
+11. **Permanent buyer-access indexing policy for `/acquire/` (owner decision, recorded, not signed; 2026-10-30):**
+    - `/acquire/` stays `noindex, follow` and out of every sitemap indefinitely.
+    - It is enforced by an indexing ceiling, `IDX-POL-ACQUIRE-001` in `main/data/publication/indexing_policies.json`. The ceiling separates indexing from access and publication: no release-ledger status, URL decision, Contract C result or R11 certification can lift it, and it is refused for any reference route.
+    - Added to PR-B as `84d55e3dab` and forward-merged into C `b3ca343578`, D `24d9762c1f` and E `8e14d1e500` with no conflicts. All four heads verified in isolation with 0 FAIL.
+    - URL-DEC-R03-ACQUIRE-001 remains proposed and unsigned.
 
 **Not done by design:** independent reviews, source locks (L6), claim activation, release authorization, R11 certification, the wave-1 noindex (no Search Console export). Ratification of AMD-IG-R03-001 is likewise not done.
