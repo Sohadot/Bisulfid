@@ -67,6 +67,9 @@ jobs:
           python scripts/publication/build_consolidation_obligations.py --check
           python scripts/release/release_checks_tests.py
 
+      - name: "Release-01 PR-B — /acquire/ correction wording and boundaries"
+        run: python scripts/publication/test_acquire_page.py
+
       - name: "Recovery — legacy disposition registry invariants"
         run: python scripts/recovery/validate_legacy_disposition.py
 
