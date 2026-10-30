@@ -1,0 +1,229 @@
+{
+ "registry_id": "RECOVERY-01-LEGACY-DISPOSITION",
+ "version": "1.0.0",
+ "generated_by": "scripts/recovery/build_legacy_disposition.py",
+ "authorizes": "nothing — classification only; no URL is deleted, redirected, de-indexed or published",
+ "baseline": {
+  "routes_json_routes": 14000,
+  "routes_json_status": {
+   "planned": 14000
+  },
+  "routes_json_indexable_true": 0,
+  "release_ledger_records": 14000,
+  "release_ledger_released": 13998,
+  "release_ledger_blocked": [
+   "acquire",
+   "newsletter"
+  ],
+  "generated_html_pages": 14041,
+  "html_pages_without_route": 41,
+  "html_robots_index": 14039,
+  "html_robots_noindex": [
+   "/en/",
+   "/newsletter/"
+  ],
+  "sitemap_urls": 13998,
+  "ledger_blocked_but_html_indexable": [
+   "acquire"
+  ],
+  "legacy_hold": {
+   "hold_id": "GATE12-LEGACY-SURFACE-HOLD",
+   "sealed_from": {
+    "surface": "site/public",
+    "commit": "9d944d736d"
+   },
+   "entry_count": 14033,
+   "entries_sha256": "fa419083cef2a68a07c2ca0cca6111c76040682a0f7f48339d9fc38a827a92c6"
+  }
+ },
+ "counts": {
+  "routes_by_category": {
+   "independent_reference_candidate": 1,
+   "module_of_existing_knowledge_object": 38,
+   "valid_language_or_domain_specific_reference_candidate": 1,
+   "evidence_pending_knowledge_entity": 245,
+   "duplicate_or_redundant_presentation_surface": 12741,
+   "unresolved_requires_review": 974
+  },
+  "non_route_surfaces_by_category": {
+   "unresolved_requires_review": 25,
+   "duplicate_or_redundant_presentation_surface": 16
+  },
+  "all_records_by_category": {
+   "independent_reference_candidate": 1,
+   "module_of_existing_knowledge_object": 38,
+   "valid_language_or_domain_specific_reference_candidate": 1,
+   "evidence_pending_knowledge_entity": 245,
+   "duplicate_or_redundant_presentation_surface": 12757,
+   "unresolved_requires_review": 999
+  },
+  "routes_by_category_and_language": {
+   "independent_reference_candidate": {
+    "en": 1
+   },
+   "module_of_existing_knowledge_object": {
+    "en": 38
+   },
+   "valid_language_or_domain_specific_reference_candidate": {
+    "de": 1
+   },
+   "evidence_pending_knowledge_entity": {
+    "en": 160,
+    "de": 85
+   },
+   "duplicate_or_redundant_presentation_surface": {
+    "en": 12685,
+    "de": 56
+   },
+   "unresolved_requires_review": {
+    "en": 846,
+    "de": 128
+   }
+  },
+  "by_reason_code": {
+   "INSTITUTIONAL_GATE12I_REVIEW": 50,
+   "CANONICAL_CURATED_CONCEPT_NO_KO": 245,
+   "GOVERNED_KO_BINDING": 1,
+   "DUPLICATE_INSTITUTIONAL_FUNCTION": 5,
+   "VARIANT_OF_CANONICAL": 12671,
+   "GOVERNED_LEXICAL_BINDING": 1,
+   "DUPLICATE_OF_GOVERNED_LEXICAL_OBJECT": 2,
+   "MODULE_OF_KNOWLEDGE_OBJECT": 38,
+   "INTERNAL_PIPELINE_STATUS": 79,
+   "GENERATED_ENTITY_IDENTITY_UNVERIFIED": 931,
+   "NON_ROUTE_SURFACE_UNMATCHED": 18
+  },
+  "entity_key_basis": {
+   "route_id": 55,
+   "alias_table": 29,
+   "route_id_parse": 678,
+   "de_core_formula_table": 9,
+   "inventory": 13038,
+   "pipeline_status_pattern": 79,
+   "inventory+category_strip": 112,
+   "path_slug": 41
+  }
+ },
+ "migration_impact": {
+  "live_surfaces_requesting_indexation_by_category": {
+   "independent_reference_candidate": 1,
+   "module_of_existing_knowledge_object": 38,
+   "valid_language_or_domain_specific_reference_candidate": 1,
+   "evidence_pending_knowledge_entity": 245,
+   "duplicate_or_redundant_presentation_surface": 12757,
+   "unresolved_requires_review": 997
+  },
+  "stage2_noindex_and_sitemap_removal": 14032,
+  "stage2_urls_deleted_or_redirected": 0,
+  "indexable_after_stage2_gate12_minimum": [
+   "/acquire/",
+   "/atlas/",
+   "/compounds/",
+   "/languages/",
+   "/materials/",
+   "/methodology/",
+   "/terminology/"
+  ],
+  "canonical_knowledge_surfaces": 247,
+  "canonical_surfaces_with_governed_evidence_today": [
+   "de_core_mos2",
+   "de_what_is_sulfur",
+   "molybdenum_disulfide",
+   "what_is_sulfur"
+  ],
+  "consolidation_targets": 943,
+  "largest_consolidation_targets": [
+   [
+    "molybdenum_disulfide",
+    38
+   ],
+   [
+    "cohort02_en_pyrite_term_chem_acad",
+    35
+   ],
+   [
+    "cohort02_en_galena_term_chem_acad",
+    35
+   ],
+   [
+    "cohort02_en_sphalerite_term_chem_acad",
+    35
+   ],
+   [
+    "cohort02_en_hydrogen_sulfide_term_chem_acad",
+    33
+   ],
+   [
+    "cohort02_en_sodium_hydrosulfide_term_chem_acad",
+    32
+   ],
+   [
+    "cohort02_en_hydrogen_polysulfide_term_chem_acad",
+    32
+   ],
+   [
+    "what_is_sulfur",
+    31
+   ],
+   [
+    "sulfate_terminology",
+    19
+   ],
+   [
+    "sulfide_anion_term_record",
+    19
+   ]
+  ],
+  "knowledge_objects_bound": [
+   "KO-MOS2-SCIENTIFIC-001"
+  ]
+ },
+ "reason_codes": {
+  "GOVERNED_KO_BINDING": "a Knowledge Object is explicitly bound to this EXISTING canonical route (no new URL)",
+  "GOVERNED_LEXICAL_BINDING": "a governed language-specific object (approved claim + lexeme + evidence) is scoped to this route",
+  "INSTITUTIONAL_GATE12I_REVIEW": "registered institutional surface (detail = function); judged by Gate 12-I, not as a knowledge entity",
+  "DUPLICATE_INSTITUTIONAL_FUNCTION": "a second surface for an institutional function already held by `target`",
+  "INTERNAL_PIPELINE_STATUS": "exposes internal cohort/pipeline build state already held in governance records",
+  "MODULE_OF_KNOWLEDGE_OBJECT": "same concept as `ko`; its content belongs inside that object at `target` (IG module_relationship)",
+  "DUPLICATE_OF_GOVERNED_LEXICAL_OBJECT": "same-language duplicate of the governed lexical surface at `target`",
+  "CANONICAL_CURATED_CONCEPT_NO_KO": "the one canonical surface of a curated concept; awaits governed evidence and a Knowledge Object",
+  "GENERATED_ENTITY_IDENTITY_UNVERIFIED": "canonical surface of a combinatorially generated name; confirm the entity exists before KO work",
+  "VARIANT_OF_CANONICAL": "audience/layer/cohort variant of the canonical surface `target`",
+  "NON_ROUTE_SURFACE_UNMATCHED": "public HTML with no route record and no matching concept; register or retire after review"
+ },
+ "governed_evidence_by_concept": {
+  "molybdenum_disulfide": [
+   "EVD-MOS2-2H-REF-RSC",
+   "EVD-MOS2-3R-BOUNDARY-RSC",
+   "EVD-MOS2-DE-001",
+   "EVD-MOS2-FORMULA-NIST",
+   "EVD-MOS2-FORMULA-PUBCHEM",
+   "EVD-MOS2-LATTICE-A-ACTACRYST",
+   "EVD-MOS2-LATTICE-A-DICKINSON",
+   "EVD-MOS2-LAYERED-ACTA1983-EXCERPT",
+   "EVD-MOS2-LAYERED-HUANG1981",
+   "EVD-MOS2-LAYERED-RSC",
+   "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT",
+   "EVD-MOS2-POLYTYPES-RSC",
+   "EVD-MOS2-STRUCTURE-ACTACRYST",
+   "EVD-MOS2-STRUCTURE-DICKINSON"
+  ],
+  "sulfur": [
+   "EVD-HS2022-2503-00",
+   "EVD-MA-SULFUR-IMPORT-2024",
+   "EVD-OCP-PHOSPHATE-PROCESS-2024",
+   "EVD-OCP-SULFUR-CONSUMPTION-FY2024",
+   "EVD-OCP-SULFUR-PURCHASE-FY2024"
+  ]
+ },
+ "record_fields": {
+  "registry": "routes.json posture (verbatim)",
+  "ledger": "release_ledger.json record (verbatim subset)",
+  "route_id": "joins routes.json (content_file, template, layer, h1 ... stay owned there)",
+  "governed_evidence_n": "number of governed evidence records about the concept (see governed_evidence_by_concept)",
+  "live": "site/public robots meta + sitemap membership",
+  "gate12": "verdict|S|failure letters|IG units (N near-duplicate, S structural template, T template prose, B thin body, I information gain)",
+  "legacy_hold": "path is in the sealed Gate-12 legacy baseline (Contract C RL eligible)",
+  "entity": "concept key + how it was derived (basis) + whether the identity is curated (recognized)"
+ }
+}

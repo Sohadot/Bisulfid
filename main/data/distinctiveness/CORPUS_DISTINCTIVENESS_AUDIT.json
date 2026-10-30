@@ -1,7 +1,7 @@
 {
  "report_id": "CORPUS-DISTINCTIVENESS-AUDIT",
  "gate": 12,
- "policy_version": "1.0.0",
+ "policy_version": "1.1.0",
  "generated_by": "scripts/validators/validate_distinctiveness.py --audit",
  "baseline_note": "Audit of the corpus as committed; drafts included; audit does not change publication state.",
  "markdown_corpus": {
@@ -9,40 +9,40 @@
   "total_pages_scanned": 14015,
   "substantive_pages_compared": 14015,
   "pages_with_empty_substantive_body": 0,
-  "distinct_entity_masked_bodies": 140,
+  "distinct_entity_masked_bodies": 141,
   "distinct_raw_bodies": 13941,
   "exact_duplicate_pages_raw_text": 124,
-  "entity_masked_identical_pages": 13938,
+  "entity_masked_identical_pages": 13937,
   "candidate_discovery": {
    "method": "minhash_lsh + exhaustive exact confirmation over distinct bodies",
-   "distinct_bodies": 140,
+   "distinct_bodies": 141,
    "lsh_candidate_pairs": 898,
    "lsh_recall_ge_0_55": 0.8876,
    "lsh_recall_ge_0_7": 1.0,
-   "exhaustive_pairs": 9730
+   "exhaustive_pairs": 9870
   },
   "confirmed_pairs_between_distinct_bodies_ge_0_30": 1252,
   "page_pairs": {
-   "ge_0_90": 7406147,
-   "ge_0_80": 10136161,
-   "ge_0_70": 11654767,
+   "ge_0_90": 7406140,
+   "ge_0_80": 10136154,
+   "ge_0_70": 11654760,
    "review_band_0_55_to_0_70": 3466745,
    "total_possible_pairs": 98203105
   },
   "clusters": {
    "ge_0_9": {
     "clusters": 51,
-    "pages_in_clusters": 13952,
+    "pages_in_clusters": 13951,
     "largest_cluster_size": 1658
    },
    "ge_0_8": {
     "clusters": 21,
-    "pages_in_clusters": 13979,
+    "pages_in_clusters": 13978,
     "largest_cluster_size": 3390
    },
    "ge_0_7": {
     "clusters": 18,
-    "pages_in_clusters": 13979,
+    "pages_in_clusters": 13978,
     "largest_cluster_size": 5072
    }
   },
@@ -57,39 +57,41 @@
    "note": "per-page nearest-neighbour S (exact-confirmed over all distinct bodies)"
   },
   "page_max_similarity_histogram": {
-   "eq_1_00": 13938,
+   "eq_1_00": 13937,
    "0_90_to_1_00": 14,
    "0_80_to_0_90": 27,
    "0_70_to_0_80": 0,
    "0_55_to_0_70": 15,
    "0_30_to_0_55": 2,
-   "below_0_30": 19
+   "below_0_30": 20
   },
   "highest_similarity_between_distinct_bodies": 1.0,
-  "pages_ge_0_70_nearest_neighbour": 13979,
+  "pages_ge_0_70_nearest_neighbour": 13978,
   "pages_in_review_band": 15,
-  "pages_below_0_55": 21,
+  "pages_below_0_55": 22,
   "gate12_verdicts": {
-   "FAIL": 14015
+   "FAIL": 14006,
+   "PASS": 9
   },
-  "gate12_fail_count": 14015,
+  "gate12_fail_count": 14006,
   "failure_components": {
-   "near_duplicate": 13979,
-   "template_prose": 13995,
-   "structural_template": 13996,
-   "information_gain": 14015,
-   "thin_body": 13679
+   "near_duplicate": 13978,
+   "template_prose": 13994,
+   "structural_template": 13995,
+   "information_gain": 13967,
+   "thin_body": 13678,
+   "institutional_duplicate_function": 4
   },
   "text_component_status": {
-   "FAIL": 13979,
-   "PASS_TEXT_ONLY": 21,
+   "FAIL": 13978,
+   "PASS_TEXT_ONLY": 22,
    "REVIEW": 15
   },
   "pages_failing_without_information_gain_component": 13997,
   "publication_candidates_in_surface": 0,
   "publication_candidates_failing": 0,
   "drafts_audited": 14015,
-  "mean_template_sentence_ratio": 0.9977,
+  "mean_template_sentence_ratio": 0.9976,
   "median_substantive_tokens": 31,
   "families_highest_boilerplate": [
    {
@@ -298,14 +300,14 @@
   "by_language": {
    "en": {
     "pages": 13744,
-    "near_duplicate_ge_0_70": 13713,
-    "gate12_fail": 13744,
+    "near_duplicate_ge_0_70": 13712,
+    "gate12_fail": 13737,
     "near_duplicate_share": 0.9977
    },
    "de": {
     "pages": 271,
     "near_duplicate_ge_0_70": 266,
-    "gate12_fail": 271,
+    "gate12_fail": 269,
     "near_duplicate_share": 0.9815
    }
   },
@@ -336,9 +338,9 @@
    },
    "en/root": {
     "pages": 43,
-    "near_duplicate_ge_0_70": 27,
-    "gate12_fail": 43,
-    "near_duplicate_share": 0.6279
+    "near_duplicate_ge_0_70": 26,
+    "gate12_fail": 36,
+    "near_duplicate_share": 0.6047
    },
    "COHORT_01_FOUNDATION_GOV": {
     "pages": 15,
@@ -349,7 +351,7 @@
    "de/root": {
     "pages": 11,
     "near_duplicate_ge_0_70": 6,
-    "gate12_fail": 11,
+    "gate12_fail": 9,
     "near_duplicate_share": 0.5455
    },
    "de/terminology": {
@@ -391,16 +393,16 @@
     "near_duplicate_share": 1.0
    },
    "chemical_substance": {
-    "pages": 1710,
+    "pages": 1711,
     "near_duplicate_ge_0_70": 1710,
     "gate12_fail": 1710,
-    "near_duplicate_share": 1.0
+    "near_duplicate_share": 0.9994
    },
    "unclassified": {
-    "pages": 325,
-    "near_duplicate_ge_0_70": 304,
-    "gate12_fail": 325,
-    "near_duplicate_share": 0.9354
+    "pages": 324,
+    "near_duplicate_ge_0_70": 303,
+    "gate12_fail": 316,
+    "near_duplicate_share": 0.9352
    },
    "site_foundation": {
     "pages": 96,
@@ -421,7 +423,7 @@
     "near_duplicate_share": 0.0
    }
   },
-  "runtime_seconds": 1.08,
+  "runtime_seconds": 1.58,
   "largest_clusters_ge_0_70": [
    {
     "cluster_size": 5072,
@@ -1091,7 +1093,7 @@
     ]
    }
   ],
-  "parse_seconds": 9.38
+  "parse_seconds": 8.5
  },
  "public_html_surface": {
   "surface": "public_html_surface",
@@ -1159,14 +1161,16 @@
   "pages_in_review_band": 6,
   "pages_below_0_55": 43,
   "gate12_verdicts": {
-   "FAIL": 14041
+   "PASS": 8,
+   "FAIL": 14033
   },
-  "gate12_fail_count": 14041,
+  "gate12_fail_count": 14033,
   "failure_components": {
-   "information_gain": 14041,
    "template_prose": 13998,
    "structural_template": 13998,
+   "information_gain": 13986,
    "near_duplicate": 13992,
+   "institutional_duplicate_function": 5,
    "thin_body": 1
   },
   "text_component_status": {
@@ -1174,9 +1178,9 @@
    "REVIEW": 6,
    "FAIL": 13992
   },
-  "pages_failing_without_information_gain_component": 13999,
+  "pages_failing_without_information_gain_component": 14000,
   "publication_candidates_in_surface": 14039,
-  "publication_candidates_failing": 14039,
+  "publication_candidates_failing": 14032,
   "drafts_audited": 0,
   "mean_template_sentence_ratio": 0.9954,
   "median_substantive_tokens": 141,
@@ -1388,7 +1392,7 @@
    "en": {
     "pages": 13771,
     "near_duplicate_ge_0_70": 13723,
-    "gate12_fail": 13771,
+    "gate12_fail": 13763,
     "near_duplicate_share": 0.9965
    },
    "de": {
@@ -1414,19 +1418,19 @@
    "language": {
     "pages": 284,
     "near_duplicate_ge_0_70": 281,
-    "gate12_fail": 284,
+    "gate12_fail": 283,
     "near_duplicate_share": 0.9894
    },
    "hub": {
     "pages": 160,
     "near_duplicate_ge_0_70": 157,
-    "gate12_fail": 160,
+    "gate12_fail": 159,
     "near_duplicate_share": 0.9812
    },
    "material": {
     "pages": 158,
     "near_duplicate_ge_0_70": 157,
-    "gate12_fail": 158,
+    "gate12_fail": 157,
     "near_duplicate_share": 0.9937
    },
    "institutional": {
@@ -1438,19 +1442,19 @@
    "unknown": {
     "pages": 37,
     "near_duplicate_ge_0_70": 0,
-    "gate12_fail": 37,
+    "gate12_fail": 34,
     "near_duplicate_share": 0.0
    },
    "compound": {
     "pages": 1,
     "near_duplicate_ge_0_70": 0,
-    "gate12_fail": 1,
+    "gate12_fail": 0,
     "near_duplicate_share": 0.0
    },
    "methodology": {
     "pages": 1,
     "near_duplicate_ge_0_70": 0,
-    "gate12_fail": 1,
+    "gate12_fail": 0,
     "near_duplicate_share": 0.0
    },
    "economic": {
@@ -1476,23 +1480,23 @@
    "unclassified": {
     "pages": 528,
     "near_duplicate_ge_0_70": 486,
-    "gate12_fail": 528,
+    "gate12_fail": 522,
     "near_duplicate_share": 0.9205
    },
    "site_foundation": {
     "pages": 160,
     "near_duplicate_ge_0_70": 157,
-    "gate12_fail": 160,
+    "gate12_fail": 159,
     "near_duplicate_share": 0.9812
    },
    "chemical_substance": {
     "pages": 1,
     "near_duplicate_ge_0_70": 0,
-    "gate12_fail": 1,
+    "gate12_fail": 0,
     "near_duplicate_share": 0.0
    }
   },
-  "runtime_seconds": 4.64,
+  "runtime_seconds": 5.45,
   "largest_clusters_ge_0_70": [
    {
     "cluster_size": 13976,
@@ -1662,20 +1666,21 @@
     ]
    }
   ],
-  "parse_seconds": 57.92,
+  "parse_seconds": 54.73,
   "indexable_pages": 14039,
-  "indexable_pages_failing_gate12": 14039
+  "indexable_pages_failing_gate12": 14032
  },
  "controls": [
   {
-   "control_page": "main/data/distinctiveness/controls/mos2_scientific_control.md",
+   "control_page": "main/content/en/pages/molybdenum-disulfide.md",
+   "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
    "gate12_vs_markdown_corpus": {
-    "page": "main/data/distinctiveness/controls/mos2_scientific_control.md",
+    "page": "main/content/en/pages/molybdenum-disulfide.md",
     "surface": "markdown",
-    "route_id": "gate12_control_mos2_scientific",
+    "route_id": "molybdenum_disulfide",
     "language": "en",
-    "family": "en|other|PT_UNSPECIFIED",
-    "ko_family": "unclassified",
+    "family": "en|en/root|PT_COMPOUND_ENTITY",
+    "ko_family": "chemical_substance",
     "is_draft": true,
     "publication_candidate": false,
     "public_indexable": false,
@@ -1692,11 +1697,14 @@
     "entity_substitution_detected": false,
     "structure": {
      "skeleton": [
+      "at a glance",
       "chemical identity",
       "bulk structure stacked s mo s layers",
+      "three polytypes 1t 2h and 3r",
       "the 2h polytype",
+      "where the name 2h comes from",
       "lattice parameter a two coexisting determinations",
-      "2h is not 3r",
+      "boundary 2h is not 3r",
       "what this reference does not establish"
      ],
      "shared_with_pages": 0,
@@ -1706,11 +1714,11 @@
     "boilerplate": {
      "template_sentence_ratio": 0.0
     },
-    "substantive_tokens": 338,
-    "infra_tokens": 98,
+    "substantive_tokens": 585,
+    "infra_tokens": 620,
     "information_gain": {
-     "registered_units": 5,
-     "valid_units": 5,
+     "registered_units": 7,
+     "valid_units": 7,
      "required": 3,
      "status": "PASS",
      "units": [
@@ -1728,18 +1736,30 @@
       },
       {
        "unit_id": "IGU-MOS2-003",
-       "dimension": "chemical_structure",
+       "dimension": "polytype_distinction",
        "valid": true,
        "reasons": []
       },
       {
        "unit_id": "IGU-MOS2-004",
-       "dimension": "quantitative_property",
+       "dimension": "chemical_structure",
        "valid": true,
        "reasons": []
       },
       {
        "unit_id": "IGU-MOS2-005",
+       "dimension": "historical_evidence",
+       "valid": true,
+       "reasons": []
+      },
+      {
+       "unit_id": "IGU-MOS2-006",
+       "dimension": "quantitative_property",
+       "valid": true,
+       "reasons": []
+      },
+      {
+       "unit_id": "IGU-MOS2-007",
        "dimension": "polytype_distinction",
        "valid": true,
        "reasons": []
@@ -1747,6 +1767,7 @@
      ],
      "localization_of": null
     },
+    "page_class": "knowledge_reference",
     "gate12_blocks_publication": false
    },
    "nearest_in_html_surface": {
@@ -1756,9 +1777,8 @@
     "closest_page": "site/public/acquire/index.html"
    },
    "before_after": {
-    "main/content/en/pages/molybdenum-disulfide.md": {
-     "similarity_to_control": 0.0,
-     "jaccard": 0.0,
+    "legacy_markdown_draft@9d944d736d": {
+     "similarity_to_reconstruction": 0.0,
      "old_page_verdict": "FAIL",
      "old_page_failures": [
       "near_duplicate: S=1.000 >= 0.7 vs main/content/en/pages/hydrogen-sulfide-risk.md",
@@ -1778,56 +1798,37 @@
      "old_page_template_sentence_ratio": 1.0
     },
     "main/content/de/pages/molybdenum-disulfide.md": {
-     "similarity_to_control": 0.0,
-     "jaccard": 0.0,
-     "old_page_verdict": "FAIL",
-     "old_page_failures": [
-      "near_duplicate: S=1.000 >= 0.7 vs main/content/de/pages/bisulfid-bisulfit-wall.md",
-      "template_prose: template_sentence_ratio=1.000 >= 0.5",
-      "structural_template: substantive skeleton shared with 261 other page(s) (sequence ratio 1.00) with template prose/similarity",
-      "information_gain: 0 valid unit(s) < 3"
-     ],
-     "old_page_nearest": {
-      "similarity": 1.0,
-      "jaccard": 1.0,
-      "overlap_coefficient": 1.0,
-      "closest_page": "main/content/de/pages/bisulfid-bisulfit-wall.md",
-      "status": "FAIL"
-     },
-     "old_page_substantive_tokens": 92,
-     "old_page_template_sentence_ratio": 1.0
+     "similarity_to_reconstruction": 0.0
     },
     "main/content/de/pages/terminology/molybdenum-disulfide.md": {
-     "similarity_to_control": 0.0,
-     "jaccard": 0.0,
-     "old_page_verdict": "FAIL",
-     "old_page_failures": [
-      "near_duplicate: S=1.000 >= 0.7 vs main/content/de/pages/glossary.md",
-      "thin_body: 40 substantive tokens < 60",
-      "template_prose: template_sentence_ratio=1.000 >= 0.5",
-      "structural_template: substantive skeleton shared with 261 other page(s) (sequence ratio 1.00) with template prose/similarity",
-      "information_gain: 0 valid unit(s) < 3"
-     ],
-     "old_page_nearest": {
-      "similarity": 1.0,
-      "jaccard": 1.0,
-      "overlap_coefficient": 1.0,
-      "closest_page": "main/content/de/pages/glossary.md",
+     "similarity_to_reconstruction": 0.0
+    },
+    "live_html/molybdenum-disulfide/": {
+     "similarity_to_reconstruction": 0.0,
+     "live_verdict": "FAIL",
+     "live_nearest": {
+      "similarity": 0.7664,
+      "jaccard": 0.6176,
+      "overlap_coefficient": 0.7664,
+      "closest_page": "site/public/en/terminology/molybdenum-disulfide/aud/gov/inst/index.html",
       "status": "FAIL"
      },
-     "old_page_substantive_tokens": 40,
-     "old_page_template_sentence_ratio": 1.0
-    },
-    "site/public/molybdenum-disulfide/index.html": {
-     "similarity_to_control": 0.0,
-     "jaccard": 0.0,
-     "old_page_substantive_tokens": 143
-    },
-    "site/public/de/molybdenum-disulfide/index.html": {
-     "similarity_to_control": 0.0,
-     "jaccard": 0.0,
-     "old_page_substantive_tokens": 145
+     "live_substantive_tokens": 143,
+     "live_template_sentence_ratio": 0.9023
     }
+   },
+   "html_preview": {
+    "preview": "main/data/reference_production/previews/molybdenum-disulfide/index.html",
+    "robots_noindex": true,
+    "nearest_in_public_html_surface": {
+     "similarity": 0.0,
+     "jaccard": 0.0,
+     "overlap_coefficient": 0.0,
+     "closest_page": "site/public/acquire/index.html"
+    },
+    "template_sentence_ratio_vs_surface": 0.0,
+    "skeleton_shared_with_surface_pages": 0,
+    "substantive_tokens": 591
    },
    "combined_publication_eligibility": {
     "publication_state": "not_public",
@@ -1982,36 +1983,39 @@
    "entity_substitution_detected": true
   },
   "main/content/en/pages/molybdenum-disulfide.md": {
-   "verdict": "FAIL",
-   "failures": [
-    "near_duplicate: S=1.000 >= 0.7 vs main/content/en/pages/hydrogen-sulfide-risk.md",
-    "thin_body: 22 substantive tokens < 60",
-    "template_prose: template_sentence_ratio=1.000 >= 0.5",
-    "structural_template: substantive skeleton shared with 7 other page(s) (sequence ratio 1.00) with template prose/similarity",
-    "information_gain: 0 valid unit(s) < 3"
-   ],
+   "verdict": "PASS",
+   "failures": [],
    "text": {
-    "similarity": 1.0,
-    "jaccard": 1.0,
-    "overlap_coefficient": 1.0,
-    "closest_page": "main/content/en/pages/hydrogen-sulfide-risk.md",
-    "status": "FAIL"
+    "similarity": 0.0,
+    "jaccard": 0.0,
+    "overlap_coefficient": null,
+    "closest_page": null,
+    "note": "no LSH candidate (below detection floor)",
+    "status": "PASS_TEXT_ONLY"
    },
    "boilerplate": {
-    "template_sentence_ratio": 1.0
+    "template_sentence_ratio": 0.0
    },
    "structure": {
     "skeleton": [
-     "purpose"
+     "at a glance",
+     "chemical identity",
+     "bulk structure stacked s mo s layers",
+     "three polytypes 1t 2h and 3r",
+     "the 2h polytype",
+     "where the name 2h comes from",
+     "lattice parameter a two coexisting determinations",
+     "boundary 2h is not 3r",
+     "what this reference does not establish"
     ],
-    "shared_with_pages": 7,
-    "best_sequence_ratio": 1.0,
-    "structural_template": true
+    "shared_with_pages": 0,
+    "best_sequence_ratio": 0.0,
+    "structural_template": false
    },
-   "substantive_tokens": 22,
-   "infra_tokens": 111,
-   "entity_substitution_detected": true
+   "substantive_tokens": 585,
+   "infra_tokens": 620,
+   "entity_substitution_detected": false
   }
  },
- "runtime_seconds_total": 73.25
+ "runtime_seconds_total": 70.98
 }

@@ -469,7 +469,8 @@ def parse_html(path, text, policy, rules=None, page_id=None, surface_root=None):
     page.language = ex.lang
     page.title = " ".join(ex.title.split())
     route = os.path.dirname(os.path.relpath(path, surface_root)) if surface_root else os.path.dirname(pid)
-    page.route_id = "/" + route.replace(os.sep, "/").strip("./") + "/"
+    route = route.replace(os.sep, "/").strip("/")
+    page.route_id = "/" if route in ("", ".") else "/" + route + "/"
     page.entity_phrases = _entity_phrases(None, ex.h1, page.title)
     lane = ex.lane or "unknown"
     page.ko_family = policy["page_family_map"]["html_lane_to_family"].get(lane, "unclassified")
@@ -852,10 +853,13 @@ def classify_similarity(s, policy):
     return "PASS_TEXT_ONLY"
 
 
-def gate12_verdict(page, universe, policy, ctx, text=None, unit_index=None, exclude_ids=()):
+def gate12_verdict(page, universe, policy, ctx, text=None, unit_index=None, exclude_ids=(), institutional=None):
     """Full Gate-12 evaluation of one page against a universe.
 
     text: precomputed text-similarity dict (audit mode); None => exhaustive exact nearest().
+    institutional: Gate 12-I binding from institutional_lookup() for a registered non-factual
+      institutional surface. It replaces ONLY the Information-Gain requirement with a closed,
+      singleton function check; text, template, structure and thin-body rules are unchanged.
     """
     ts, bp, st = policy["text_similarity"], policy["boilerplate"], policy["structure"]
     failures, reviews = [], []
@@ -884,9 +888,17 @@ def gate12_verdict(page, universe, policy, ctx, text=None, unit_index=None, excl
         failures.append(f"structural_template: substantive skeleton shared with {shared} other page(s) "
                         f"(sequence ratio {ratio:.2f}) with template prose/similarity")
 
-    ig = evaluate_ig(page, universe, policy, ctx, unit_index)
-    if ig["status"] == "FAIL":
-        failures.append(f"information_gain: {ig['valid_units']} valid unit(s) < {ig['required']}")
+    if institutional is not None:
+        ig = {"status": "NOT_REQUIRED_INSTITUTIONAL", "registered_units": 0, "valid_units": 0, "required": 0,
+              "units": [], "localization_of": None, "institutional_function": institutional["function"],
+              "reason": "Gate 12-I: registered institutional surface; IG units replaced by a closed singleton function check"}
+        if not institutional["singleton"]:
+            failures.append(f"institutional_duplicate_function: function '{institutional['function']}' "
+                            f"({institutional['language']}) is already served by {', '.join(institutional['others'])}")
+    else:
+        ig = evaluate_ig(page, universe, policy, ctx, unit_index)
+        if ig["status"] == "FAIL":
+            failures.append(f"information_gain: {ig['valid_units']} valid unit(s) < {ig['required']}")
 
     # Entity substitution diagnostic: masked identical/near but raw text differs.
     entity_sub = False
@@ -916,6 +928,7 @@ def gate12_verdict(page, universe, policy, ctx, text=None, unit_index=None, excl
         "boilerplate": {"template_sentence_ratio": round(tr, 4)},
         "substantive_tokens": n_tok, "infra_tokens": page.infra_tokens,
         "information_gain": ig,
+        "page_class": "institutional" if institutional is not None else "knowledge_reference",
         "gate12_blocks_publication": verdict != "PASS",
     }
 
@@ -944,3 +957,162 @@ def combined_publication_eligibility(gate12, contract_c_inputs):
             reasons.append("Contract C denies publication (Gate 12 cannot override)")
     return {"publication_state": out[0], "indexation_state": out[1], "contract_c": list(cc),
             "gate12_verdict": verdict, "eligible": out[0] != "not_public", "reasons": reasons}
+
+
+# --------------------------------------------------------------------------- Gate 12-I (institutional)
+
+INSTITUTIONAL_REGISTRY_PATH = os.path.join(DATA, "distinctiveness", "institutional_surface_registry.json")
+
+
+class InstitutionalRegistry:
+    """Closed registry of non-factual institutional surfaces (home, methodology, policy, navigation).
+
+    Each binding names ONE function from a closed vocabulary; a function may be served by exactly one
+    surface per language. Pages not bound here are knowledge references (full IG requirement)."""
+
+    def __init__(self, path=INSTITUTIONAL_REGISTRY_PATH):
+        self.data = load_json(path) if os.path.exists(path) else {"functions": [], "bindings": []}
+        self.functions = {f["function_id"] for f in self.data.get("functions", [])}
+        self.by_route = {}
+        self.by_path = {}
+        seen = defaultdict(list)
+        for b in self.data.get("bindings", []):
+            key = b.get("route_id") or b.get("path")
+            seen[(b["function_id"], b["language"])].append(key)
+            if b.get("route_id"):
+                self.by_route[b["route_id"]] = b
+            if b.get("path"):
+                self.by_path[b["path"]] = b
+        self.function_holders = seen
+
+    def lookup(self, route_id=None, path=None):
+        b = (self.by_route.get(route_id) if route_id else None) or (self.by_path.get(path) if path else None)
+        if not b or b["function_id"] not in self.functions:
+            return None
+        holders = self.function_holders[(b["function_id"], b["language"])]
+        key = b.get("route_id") or b.get("path")
+        return {"function": b["function_id"], "language": b["language"], "binding": key,
+                "singleton": holders[0] == key, "others": [h for h in holders if h != key]}
+
+
+# --------------------------------------------------------------------------- legacy hold (Contract C RL)
+
+LEGACY_HOLD_PATH = os.path.join(DATA, "distinctiveness", "legacy_surface_hold.json")
+
+
+def body_hash_hex(page):
+    return format(page.body_hash, "016x")
+
+
+def surface_url_path(page, surface_root):
+    rel_dir = os.path.dirname(os.path.relpath(page.id if os.path.isabs(page.id) else os.path.join(ROOT, page.id),
+                                              surface_root))
+    return "/" if rel_dir in ("", ".") else "/" + rel_dir.replace(os.sep, "/").strip("/") + "/"
+
+
+def sitemap_paths(surface_root):
+    """URL paths listed in any sitemap*.xml at the surface root (an indexation request)."""
+    out = set()
+    for f in glob.glob(os.path.join(surface_root, "sitemap*.xml")):
+        with open(f, encoding="utf-8", errors="replace") as fh:
+            for loc in re.findall(r"<loc>\s*([^<\s]+)\s*</loc>", fh.read()):
+                if loc.endswith(".xml"):
+                    continue
+                path = re.sub(r"^https?://[^/]+", "", loc) or "/"
+                out.add(path if path.endswith("/") else path + "/")
+    return out
+
+
+def hold_entries_digest(entries):
+    canon = "\n".join(f"{e['p']}\t{e['h']}" for e in sorted(entries, key=lambda e: e["p"]))
+    return hashlib.sha256(canon.encode("utf-8")).hexdigest()
+
+
+def verify_hold(hold):
+    """Integrity of the sealed baseline: count + digest + no duplicate paths."""
+    errs = []
+    entries = hold.get("entries", [])
+    if len({e["p"] for e in entries}) != len(entries):
+        errs.append("duplicate paths in legacy hold")
+    if hold.get("entry_count") != len(entries):
+        errs.append(f"entry_count {hold.get('entry_count')} != {len(entries)} entries")
+    if hold.get("entries_sha256") != hold_entries_digest(entries):
+        errs.append("entries_sha256 does not match the entries (baseline edited without re-sealing)")
+    return errs
+
+
+def freeze_exception_status(hold, policy, today):
+    """Is the indexed-legacy freeze exception active? Returns (active, reason). Default: not active."""
+    import datetime
+    fe = hold.get("freeze_exception") or {}
+    if fe.get("state") != "authorized":
+        return False, "freeze exception not authorized (default): legacy pages that fail Gate 12 must be noindex (Contract C RL)"
+    missing = [k for k in ("authorized_by", "authorized_on", "expires_on", "reason") if not fe.get(k)]
+    if missing:
+        return False, f"freeze exception incomplete: missing {missing}"
+    try:
+        start = datetime.date.fromisoformat(fe["authorized_on"])
+        end = datetime.date.fromisoformat(fe["expires_on"])
+    except ValueError:
+        return False, "freeze exception dates are not ISO dates"
+    max_days = policy["legacy_migration"]["freeze_exception"]["max_days"]
+    if (end - start).days > max_days or end < start:
+        return False, f"freeze exception window exceeds the policy maximum of {max_days} days"
+    if today > end:
+        return False, f"freeze exception expired on {fe['expires_on']}"
+    return True, f"freeze exception authorized by {fe['authorized_by']} until {fe['expires_on']} (Contract C deviation, reported)"
+
+
+def apply_legacy_hold(pages, verdicts, surface_root, hold, policy, today, sitemap=None):
+    """Classify every page of a surface under the bounded legacy-migration rule.
+
+    PASS                      Gate 12 PASS.
+    LEGACY_HOLD_NOINDEX       fails Gate 12, is in the sealed baseline with an unchanged substantive body,
+                              and requests no indexation (robots noindex AND absent from sitemaps):
+                              Contract C RL (legacy_public_holding -> public_noindex, noindex).
+    LEGACY_FREEZE_INDEXED     same, but still indexable, under an authorized, unexpired freeze exception
+                              (an explicit, reported Contract-C deviation; default not authorized).
+    BLOCK_LEGACY_INDEXED      baseline page that fails Gate 12 and still requests indexation.
+    BLOCK_MODIFIED_LEGACY     baseline page whose substantive body changed and that does not pass Gate 12.
+    BLOCK_NEW_FAILING         page absent from the baseline that does not pass Gate 12.
+    """
+    sitemap = sitemap if sitemap is not None else sitemap_paths(surface_root)
+    entries = {e["p"]: e for e in (hold or {}).get("entries", [])}
+    fe_active, fe_reason = freeze_exception_status(hold or {}, policy, today) if hold else (False, "no legacy hold supplied")
+    out = []
+    for page, v in zip(pages, verdicts):
+        path = surface_url_path(page, surface_root)
+        requests_index = page.public_indexable or path in sitemap
+        e = entries.get(path)
+        unchanged = bool(e) and e["h"] == body_hash_hex(page)
+        if v["verdict"] == "PASS":
+            state = "PASS"
+        elif e and not unchanged:
+            state = "BLOCK_MODIFIED_LEGACY"
+        elif not e:
+            state = "BLOCK_NEW_FAILING"
+        elif not requests_index:
+            state = "LEGACY_HOLD_NOINDEX"
+        elif fe_active:
+            state = "LEGACY_FREEZE_INDEXED"
+        else:
+            state = "BLOCK_LEGACY_INDEXED"
+        out.append({"path": path, "page": page.id, "state": state, "requests_indexation": requests_index,
+                    "robots_index": page.public_indexable, "in_sitemap": path in sitemap,
+                    "gate12_verdict": v["verdict"], "in_baseline": bool(e), "body_unchanged": unchanged})
+    present = {o["path"] for o in out}
+    passing = {o["path"] for o in out if o["state"] == "PASS"}
+    stale = sorted(p for p in entries if p not in present or p in passing)
+    return out, {"freeze_exception_active": fe_active, "freeze_exception": fe_reason,
+                 "stale_baseline_entries": stale}
+
+
+def hold_ratchet(new_hold, old_hold):
+    """The baseline may only shrink: every (path, hash) in the new hold must exist in the old hold."""
+    errs = []
+    old = {(e["p"], e["h"]) for e in old_hold.get("entries", [])}
+    added = [e["p"] for e in new_hold.get("entries", []) if (e["p"], e["h"]) not in old]
+    if added:
+        errs.append(f"{len(added)} baseline entr(y/ies) added or re-pinned (ratchet violation), e.g. {added[:3]}")
+    return errs, {"old_count": len(old), "new_count": len(new_hold.get("entries", [])),
+                  "removed": len(old) - (len(new_hold.get("entries", [])) - len(added))}

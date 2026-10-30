@@ -75,6 +75,8 @@ Each of the six sentences "structured reference for analysts and journalists", "
 
 ## 3. Positive control — MoS₂ (non-public, not a publication candidate)
 
+> **Superseded by Recovery-01.** The stand-alone control `controls/mos2_scientific_control.md` was retired: the same Knowledge Object is now rendered as the reconstructed draft of the existing canonical route (`main/content/en/pages/molybdenum-disulfide.md`, 7/7 IG units, Gate 12 PASS, Contract C (not_public, noindex)). See `main/data/recovery/RECOVERY_01_REPORT.md` §4. The numbers below describe the original control. The JSON report's `controls` section now reflects the canonical draft, and its per-surface counts are refreshed after Recovery-01: 9 markdown and 8 HTML pages now pass. The tables above record the original baseline audit.
+
 `controls/mos2_scientific_control.md` renders only Pilot-03 governed knowledge (`KO-MOS2-SCIENTIFIC-001`): the formula, the layered S–Mo–S structure, 2H P6₃/mmc, the two coexisting lattice-a determinations, and the 3R boundary. It adds no industrial, band-gap, market or safety facts.
 
 | | Old generated pages | Control |

@@ -55,7 +55,8 @@ VALIDATORS = [
     "validate_supply_chain.py",
     # Gate 12 — page distinctiveness & information gain (REAL, BLOCKING)
     ("validate_distinctiveness.py", "--gate"),
-    ("validate_distinctiveness.py", "--surface", "site/public"),
+    ("validate_distinctiveness.py", "--surface", "site/public",
+     "--legacy-hold", "main/data/distinctiveness/legacy_surface_hold.json"),
 ]
 
 # Validators that perform real enforcement (their exit 0 is meaningful).

@@ -5,11 +5,11 @@ md	de/pages/bisulfid-vs-bisulfide.md	FAIL	1.0	de/pages/de.md	1.0	6	0	18	1	0	BINS
 md	de/pages/bisulfide-hydrosulfide-sulfide.md	FAIL	0.0		0.0	6	0	9	1	0	BI
 md	de/pages/bisulfite-wall.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/cohort-03-expansion/de/de-dis-sulfid-sulfat.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
-md	de/pages/cohort-03-expansion/de/de-gov-claim-boundary.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
-md	de/pages/cohort-03-expansion/de/de-gov-source-locking.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
-md	de/pages/cohort-03-expansion/de/de-index-disambiguation-map.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
-md	de/pages/cohort-03-expansion/de/de-index-terminology-map.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
-md	de/pages/cohort-03-expansion/de/de-method-editorial-standards.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
+md	de/pages/cohort-03-expansion/de/de-gov-claim-boundary.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	NST
+md	de/pages/cohort-03-expansion/de/de-gov-source-locking.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	NST
+md	de/pages/cohort-03-expansion/de/de-index-disambiguation-map.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	NST
+md	de/pages/cohort-03-expansion/de/de-index-terminology-map.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	NST
+md	de/pages/cohort-03-expansion/de/de-method-editorial-standards.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	NST
 md	de/pages/cohort-03-expansion/de/de-term-ammonium-sulfide.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/cohort-03-expansion/de/de-term-antimony-sulfide.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/cohort-03-expansion/de/de-term-arsenic-sulfide.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
@@ -203,17 +203,17 @@ md	de/pages/cohort-05-expansion/de/cohort05-de-wolfram-sulfid.md	FAIL	1.0	de/pag
 md	de/pages/cohort-05-expansion/de/cohort05-de-yttrium-sulfid.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/cohort-05-expansion/de/cohort05-de-zink-sulfid.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/cohort-05-expansion/de/cohort05-de-zirkonium-sulfid.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
-md	de/pages/corpus-map.md	FAIL	0.0		0.0248	0	0	169	1	0	I
-md	de/pages/de.md	FAIL	1.0	de/pages/bisulfid-vs-bisulfide.md	1.0	6	0	18	1	0	BINST
+md	de/pages/corpus-map.md	PASS	0.0		0.0248	0	0	169	1	0	
+md	de/pages/de.md	FAIL	1.0	de/pages/bisulfid-vs-bisulfide.md	1.0	6	0	18	1	0	BNST
 md	de/pages/disulfide-bonds.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/german-english-chemical-terms.md	FAIL	1.0	de/pages/bisulfid-vs-bisulfide.md	1.0	6	0	18	1	0	BINST
-md	de/pages/glossary.md	FAIL	1.0	de/pages/terminology/cadmium-sulfide.md	1.0	261	0	40	1	0	BINST
+md	de/pages/glossary.md	FAIL	1.0	de/pages/terminology/cadmium-sulfide.md	1.0	261	0	40	1	0	BNST
 md	de/pages/industrial-sulfur-systems.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/industrial/filing-language.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/industrial/hs-code-language.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/iupac-de-boundary.md	FAIL	0.375	de/pages/suffix-bridge.md	0.4545	6	0	22	1	0	BIS
 md	de/pages/molybdenum-disulfide.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
-md	de/pages/nomenclature-governance.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
+md	de/pages/nomenclature-governance.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	NST
 md	de/pages/protein-disulfide-structure.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/suffix-bridge.md	FAIL	0.5263	de/pages/bisulfid-vs-bisulfide.md	0.7895	6	0	19	1	0	BIST
 md	de/pages/sulfid-vs-sulfide.md	FAIL	1.0	de/pages/bisulfid-vs-bisulfide.md	1.0	6	0	18	1	0	BINST
@@ -268,17 +268,17 @@ md	de/pages/terminology/vapor-pressure-language.md	FAIL	1.0	de/pages/bisulfid-bi
 md	de/pages/terminology/wolframsulfid.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/terminology/zinc-sulfide.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
 md	de/pages/terminology/zinksulfid.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
-md	de/pages/translator-playbook.md	FAIL	0.0		0.0241	0	0	183	1	0	I
+md	de/pages/translator-playbook.md	PASS	0.0		0.0241	0	0	183	1	0	
 md	de/pages/what-is-bisulfid.md	FAIL	1.0	de/pages/glossary.md	1.0	261	0	40	1	0	BINST
 md	de/pages/what-is-sulfur.md	FAIL	1.0	de/pages/bisulfid-bisulfit-wall.md	1.0	261	0	92	1	0	INST
-md	en/pages/academic-teaching-source-boundary.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8	9	0	50	1	0	BINST
-md	en/pages/acquire.md	FAIL	0.0		0.0	0	0	394	1	0	I
+md	en/pages/academic-teaching-source-boundary.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8	9	0	50	1	0	BNST
+md	en/pages/acquire.md	PASS	0.0		0.0	0	0	394	1	0	
 md	en/pages/bisulfid-vs-bisulfide.md	FAIL	0.0		0.0	0	0	262	1	0	I
 md	en/pages/bisulfid.md	FAIL	0.9083	en/pages/sulfid.md	0.6937	8	0	114	1	0	INST
 md	en/pages/bisulfide-hydrosulfide-sulfide.md	FAIL	0.0		0.0	0	0	597	1	0	I
 md	en/pages/bisulfite-wall.md	FAIL	0.9429	en/pages/cs2-bisulfide-boundary.md	0.8571	4	0	77	1	0	INST
-md	en/pages/citation-discipline.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8	9	0	50	1	0	BINST
-md	en/pages/claim-registry-explainer.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8333	9	0	48	1	0	BINST
+md	en/pages/citation-discipline.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8	9	0	50	1	0	BNST
+md	en/pages/claim-registry-explainer.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8333	9	0	48	1	0	BNST
 md	en/pages/cohort-02-terminology/cohort02_en_bisulfid_air_ai_tech.md	FAIL	0.8571	en/pages/cohort-02-terminology/cohort02_en_bisulfid_air_res_res.md	0.8378	853	0	39	1	0	BINST
 md	en/pages/cohort-02-terminology/cohort02_en_bisulfid_air_res_res.md	FAIL	0.8571	en/pages/cohort-02-terminology/cohort02_en_bisulfid_air_ai_tech.md	0.8378	853	0	39	1	0	BINST
 md	en/pages/cohort-02-terminology/cohort02_en_bisulfid_aud_anl_know.md	FAIL	1.0	en/pages/cohort-02-terminology/cohort02_en_bisulfide_aud_anl_know.md	1.0	853	0	41	1	0	BINST
@@ -1614,12 +1614,12 @@ md	en/pages/cohort-03-expansion/en-gov-batch-render-discipline.md	FAIL	1.0	en/pa
 md	en/pages/cohort-03-expansion/en-gov-rc-pipeline-status.md	FAIL	1.0	en/pages/cohort-03-expansion/en-dis-alkyl-aryl-sulfide.md	1.0	12772	0	32	1	0	BINST
 md	en/pages/cohort-03-expansion/en-index-cohort03-spine.md	FAIL	1.0	en/pages/cohort-03-expansion/en-dis-alkyl-aryl-sulfide.md	1.0	12772	0	32	1	0	BINST
 md	en/pages/cohort-03-expansion/en-multilingual-de-expansion-hub.md	FAIL	1.0	en/pages/cohort-03-expansion/en-dis-alkyl-aryl-sulfide.md	1.0	12772	0	32	1	0	BINST
-md	en/pages/cohort-03-expansion/en-nav-internal-reference.md	FAIL	1.0	en/pages/cohort-03-expansion/en-dis-alkyl-aryl-sulfide.md	1.0	12772	0	32	1	0	BINST
+md	en/pages/cohort-03-expansion/en-nav-internal-reference.md	FAIL	1.0	en/pages/cohort-03-expansion/en-dis-alkyl-aryl-sulfide.md	1.0	12772	0	32	1	0	BNST
 md	en/pages/cohort-03-expansion/en-term-polysulfide-salts.md	FAIL	1.0	en/pages/cohort-03-expansion/en-term-sulfide-minerals-index.md	1.0	12772	0	29	1	0	BINST
-md	en/pages/cohort-03-expansion/en-term-sulfide-minerals-index.md	FAIL	1.0	en/pages/cohort-03-expansion/en-term-polysulfide-salts.md	1.0	12772	0	29	1	0	BINST
+md	en/pages/cohort-03-expansion/en-term-sulfide-minerals-index.md	FAIL	1.0	en/pages/cohort-03-expansion/en-term-polysulfide-salts.md	1.0	12772	0	29	1	0	BNST
 md	en/pages/cohort-03-expansion/en-term-sulfite-salts.md	FAIL	1.0	en/pages/cohort-03-expansion/en-term-polysulfide-salts.md	1.0	12772	0	29	1	0	BINST
-md	en/pages/cohort-03-expansion/multilingual-corpus-map.md	FAIL	1.0	en/pages/cohort-03-expansion/en-dis-alkyl-aryl-sulfide.md	1.0	12772	0	32	1	0	BINST
-md	en/pages/cohort-03-expansion/ontology-alignment-primer.md	FAIL	1.0	en/pages/cohort-03-expansion/en-dis-alkyl-aryl-sulfide.md	1.0	12772	0	32	1	0	BINST
+md	en/pages/cohort-03-expansion/multilingual-corpus-map.md	FAIL	1.0	en/pages/cohort-03-expansion/en-dis-alkyl-aryl-sulfide.md	1.0	12772	0	32	1	0	BNST
+md	en/pages/cohort-03-expansion/ontology-alignment-primer.md	FAIL	1.0	en/pages/cohort-03-expansion/en-dis-alkyl-aryl-sulfide.md	1.0	12772	0	32	1	0	?BNST
 md	en/pages/cohort-03-expansion/polysulfide-terminology.md	FAIL	1.0	en/pages/cohort-03-expansion/en-term-polysulfide-salts.md	1.0	12772	0	29	1	0	BINST
 md	en/pages/cohort-03-expansion/silver-gold-sulfides-terms.md	FAIL	1.0	en/pages/cohort-03-expansion/en-term-polysulfide-salts.md	1.0	12772	0	29	1	0	BINST
 md	en/pages/cohort-03-expansion/sodium-sulfide-salts-language.md	FAIL	1.0	en/pages/cohort-03-expansion/en-term-polysulfide-salts.md	1.0	12772	0	29	1	0	BINST
@@ -13957,54 +13957,54 @@ md	en/pages/cohort-05-expansion/cohort05-en-index-source-required-14000.md	FAIL	
 md	en/pages/compliance/customs-sulfur-language.md	FAIL	0.8814	en/pages/industrial/claus-process-vocabulary.md	0.8525	5	0	64	1	0	INST
 md	en/pages/compliance/export-document-language.md	FAIL	0.8814	en/pages/industrial/claus-process-vocabulary.md	0.8525	5	0	64	1	0	INST
 md	en/pages/compliance/reach-document-language.md	FAIL	0.8814	en/pages/industrial/claus-process-vocabulary.md	0.8387	5	0	65	1	0	INST
-md	en/pages/corpus-methodology.md	FAIL	0.0		0.0	0	0	393	1	0	I
+md	en/pages/corpus-methodology.md	FAIL	0.0		0.0	0	0	393	1	0	?
 md	en/pages/cs2-bisulfide-boundary.md	FAIL	0.9429	en/pages/bisulfite-wall.md	0.8919	4	0	74	1	0	INST
-md	en/pages/disambiguation-map.md	FAIL	0.8605	en/pages/terminology-spine-map.md	0.8511	9	0	47	1	0	BINST
+md	en/pages/disambiguation-map.md	FAIL	0.8605	en/pages/terminology-spine-map.md	0.8511	9	0	47	1	0	BNST
 md	en/pages/disulfide-bonds.md	FAIL	0.0		0.0165	0	0	693	1	0	I
 md	en/pages/economic-document-language-sulfur.md	FAIL	0.8814	en/pages/industrial/claus-process-vocabulary.md	0.7879	5	0	69	1	0	INST
-md	en/pages/foundation/ai-readable-reference-policy.md	FAIL	0.5532	en/pages/foundation/audience-layer-overview.md	0.7556	14	0	51	1	0	BIST
-md	en/pages/foundation/audience-layer-overview.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6182	14	0	55	1	0	BIST
-md	en/pages/foundation/chemical-language-governance-framework.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6071	14	0	56	1	0	BIST
-md	en/pages/foundation/child-safe-educational-policy.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.7391	14	0	51	1	0	BIST
-md	en/pages/foundation/claim-policy-overview.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6182	14	0	55	1	0	BIST
-md	en/pages/foundation/corpus-status.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6667	14	0	53	1	0	BIST
-md	en/pages/foundation/economic-institutional-claim-restrictions.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6538	14	0	55	1	0	BIST
-md	en/pages/foundation/institutional-purpose.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6415	14	0	56	1	0	BIST
-md	en/pages/foundation/knowledge-reliability-model.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6415	14	0	56	1	0	BIST
-md	en/pages/foundation/launch-status-non-public-corpus.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6667	14	0	53	1	0	BIST
-md	en/pages/foundation/methodology.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.7234	14	0	53	1	0	BIST
-md	en/pages/foundation/multilingual-corpus-overview.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6538	14	0	55	1	0	BIST
-md	en/pages/foundation/reference-layer-overview.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6182	14	0	55	1	0	BIST
-md	en/pages/foundation/source-policy-overview.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.5763	14	0	59	1	0	BIST
-md	en/pages/foundation/sovereign-reference-introduction.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.5231	14	0	65	1	0	IST
+md	en/pages/foundation/ai-readable-reference-policy.md	FAIL	0.5532	en/pages/foundation/audience-layer-overview.md	0.7556	14	0	51	1	0	BST
+md	en/pages/foundation/audience-layer-overview.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6182	14	0	55	1	0	BST
+md	en/pages/foundation/chemical-language-governance-framework.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6071	14	0	56	1	0	BST
+md	en/pages/foundation/child-safe-educational-policy.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.7391	14	0	51	1	0	BST
+md	en/pages/foundation/claim-policy-overview.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6182	14	0	55	1	0	BST
+md	en/pages/foundation/corpus-status.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6667	14	0	53	1	0	BST
+md	en/pages/foundation/economic-institutional-claim-restrictions.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6538	14	0	55	1	0	BST
+md	en/pages/foundation/institutional-purpose.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6415	14	0	56	1	0	BST
+md	en/pages/foundation/knowledge-reliability-model.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6415	14	0	56	1	0	BST
+md	en/pages/foundation/launch-status-non-public-corpus.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6667	14	0	53	1	0	?BST
+md	en/pages/foundation/methodology.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.7234	14	0	53	1	0	?BST
+md	en/pages/foundation/multilingual-corpus-overview.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6538	14	0	55	1	0	BST
+md	en/pages/foundation/reference-layer-overview.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.6182	14	0	55	1	0	BST
+md	en/pages/foundation/source-policy-overview.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.5763	14	0	59	1	0	BST
+md	en/pages/foundation/sovereign-reference-introduction.md	FAIL	0.5532	en/pages/foundation/ai-readable-reference-policy.md	0.5231	14	0	65	1	0	ST
 md	en/pages/german-english-chemical-terms.md	FAIL	0.0		0.0056	0	0	724	1	0	I
-md	en/pages/glossary.md	FAIL	0.0		0.0	0	0	753	1	0	I
-md	en/pages/hreflang-policy.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8511	9	0	47	1	0	BINST
-md	en/pages/hydrogen-sulfide-risk.md	FAIL	1.0	en/pages/industrial-sulfur-systems.md	1.0	7	0	22	1	0	BINST
+md	en/pages/glossary.md	PASS	0.0		0.0	0	0	753	1	0	
+md	en/pages/hreflang-policy.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8511	9	0	47	1	0	BNST
+md	en/pages/hydrogen-sulfide-risk.md	FAIL	1.0	en/pages/industrial-sulfur-systems.md	1.0	6	0	22	1	0	BINST
 md	en/pages/hydrosulfide.md	FAIL	0.932	en/pages/terminology/carbonyl-sulfide.md	0.7064	8	0	112	1	0	INST
-md	en/pages/index.md	FAIL	0.0		0.0	0	0	305	1	0	I
-md	en/pages/industrial-sulfur-systems.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	7	0	22	1	0	BINST
+md	en/pages/index.md	PASS	0.0		0.0	0	0	305	1	0	
+md	en/pages/industrial-sulfur-systems.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	6	0	22	1	0	BINST
 md	en/pages/industrial/claus-process-vocabulary.md	FAIL	0.8814	en/pages/compliance/customs-sulfur-language.md	0.8667	5	0	63	1	0	INST
 md	en/pages/industrial/contact-process-vocabulary.md	FAIL	0.8814	en/pages/compliance/customs-sulfur-language.md	0.8667	5	0	63	1	0	INST
-md	en/pages/internal-linking-discipline.md	FAIL	0.0		0.0135	0	0	302	1	0	I
-md	en/pages/molybdenum-disulfide.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	7	0	22	1	0	BINST
-md	en/pages/multilingual-layer-map.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8511	9	0	47	1	0	BINST
-md	en/pages/newsletter.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	7	0	22	1	0	BINST
-md	en/pages/nomenclature-governance.md	FAIL	0.8571	en/pages/ontology-governance.md	0.7843	9	0	51	1	0	BINST
-md	en/pages/ontology-governance.md	FAIL	0.8571	en/pages/academic-teaching-source-boundary.md	0.8696	9	0	46	1	0	BINST
+md	en/pages/internal-linking-discipline.md	PASS	0.0		0.0135	0	0	302	1	0	
+md	en/pages/molybdenum-disulfide.md	PASS	0.0		0.0	0	7	585	1	0	
+md	en/pages/multilingual-layer-map.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8511	9	0	47	1	0	BNST
+md	en/pages/newsletter.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	6	0	22	1	0	BNST
+md	en/pages/nomenclature-governance.md	FAIL	0.8571	en/pages/ontology-governance.md	0.7843	9	0	51	1	0	BNST
+md	en/pages/ontology-governance.md	FAIL	0.8571	en/pages/academic-teaching-source-boundary.md	0.8696	9	0	46	1	0	BNST
 md	en/pages/protein-disulfide-structure.md	FAIL	0.0		0.0261	0	0	593	1	0	I
-md	en/pages/quality-gate.md	FAIL	0.0		0.0	0	0	215	1	0	I
-md	en/pages/sds-and-sulfur-terms.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	7	0	22	1	0	BINST
-md	en/pages/sodium-bisulfide.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	7	0	22	1	0	BINST
-md	en/pages/sources.md	FAIL	0.0		0.0	0	0	582	1	0	I
+md	en/pages/quality-gate.md	PASS	0.0		0.0	0	0	215	1	0	
+md	en/pages/sds-and-sulfur-terms.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	6	0	22	1	0	BINST
+md	en/pages/sodium-bisulfide.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	6	0	22	1	0	BINST
+md	en/pages/sources.md	PASS	0.0		0.0	0	0	582	1	0	
 md	en/pages/sulfate-sulfite-boundary.md	FAIL	0.942	en/pages/sulfide-sulfite-boundary.md	0.9041	4	0	73	1	0	INST
 md	en/pages/sulfid-vs-sulfide.md	FAIL	0.0		0.0	0	0	167	1	0	I
 md	en/pages/sulfid.md	FAIL	0.932	en/pages/terminology/carbonyl-sulfide.md	0.7	8	0	113	1	0	INST
 md	en/pages/sulfide-sulfite-boundary.md	FAIL	0.942	en/pages/sulfate-sulfite-boundary.md	0.9041	4	0	73	1	0	INST
 md	en/pages/sulfur-compounds.md	FAIL	0.0		0.0076	0	0	531	1	0	I
-md	en/pages/sulfur-safety-context.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	7	0	22	1	0	BINST
-md	en/pages/sulfur-uses.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	7	0	22	1	0	BINST
-md	en/pages/terminology-spine-map.md	FAIL	0.8605	en/pages/disambiguation-map.md	0.8511	9	0	47	1	0	BINST
+md	en/pages/sulfur-safety-context.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	6	0	22	1	0	BINST
+md	en/pages/sulfur-uses.md	FAIL	1.0	en/pages/hydrogen-sulfide-risk.md	1.0	6	0	22	1	0	BINST
+md	en/pages/terminology-spine-map.md	FAIL	0.8605	en/pages/disambiguation-map.md	0.8511	9	0	47	1	0	BNST
 md	en/pages/terminology/carbon-disulfide.md	FAIL	0.9327	en/pages/terminology/sulfate.md	0.7333	8	0	108	1	0	INST
 md	en/pages/terminology/carbonyl-sulfide.md	FAIL	0.9515	en/pages/terminology/sulfide-anion.md	0.7404	8	0	107	1	0	INST
 md	en/pages/terminology/copper-sulfides.md	FAIL	0.932	en/pages/hydrosulfide.md	0.7404	8	0	107	1	0	INST
@@ -14012,11 +14012,11 @@ md	en/pages/terminology/sulfate.md	FAIL	0.9417	en/pages/terminology/sulfide-anio
 md	en/pages/terminology/sulfide-anion.md	FAIL	0.9515	en/pages/terminology/carbonyl-sulfide.md	0.7404	8	0	107	1	0	INST
 md	en/pages/terminology/sulfur-element.md	FAIL	0.9515	en/pages/terminology/carbonyl-sulfide.md	0.7264	8	0	109	1	0	INST
 md	en/pages/thiosulfate-sulfite-boundary.md	FAIL	0.942	en/pages/sulfate-sulfite-boundary.md	0.9041	4	0	73	1	0	INST
-md	en/pages/translator-playbook-bisulfide-family.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8	9	0	50	1	0	BINST
+md	en/pages/translator-playbook-bisulfide-family.md	FAIL	0.8571	en/pages/ontology-governance.md	0.8	9	0	50	1	0	BNST
 md	en/pages/what-is-bisulfid.md	FAIL	0.0		0.0	0	0	390	1	0	I
 md	en/pages/what-is-sulfur.md	FAIL	0.0		0.0142	0	0	795	1	0	I
-html	acquire/	FAIL	0.0		0.0	0	0	360	0	1	I
-html	atlas/	FAIL	0.5429	sources/	0.2472	0	0	488	0	1	I
+html	acquire/	PASS	0.0		0.0	0	0	360	0	1	
+html	atlas/	PASS	0.5429	sources/	0.2472	0	0	488	0	1	
 html	bisulfid-vs-bisulfide/	FAIL	0.6762	what-is-bisulfid/	0.5872	13992	0	117	0	1	IST
 html	bisulfid/	FAIL	0.8906	bisulfide-hydrosulfide-sulfide/	0.7661	13992	0	134	0	1	INST
 html	bisulfide-hydrosulfide-sulfide/	FAIL	1.0	disulfide-bonds/	1.0	13992	0	134	0	1	INST
@@ -14028,15 +14028,15 @@ html	chlorid/	FAIL	0.0		0.148	1	0	247	0	1	I
 html	compliance/customs-sulfur-language/	FAIL	1.0	compliance/export-document-language/	1.0	13992	0	145	0	1	INST
 html	compliance/export-document-language/	FAIL	1.0	compliance/customs-sulfur-language/	1.0	13992	0	145	0	1	INST
 html	compliance/reach-document-language/	FAIL	1.0	compliance/customs-sulfur-language/	1.0	13992	0	145	0	1	INST
-html	compounds/	FAIL	0.4902	glossary/	0.155	0	0	577	0	1	I
+html	compounds/	PASS	0.4902	glossary/	0.155	0	0	577	0	1	
 html	de/bisulfid-vs-bisulfide/	FAIL	0.9621	de/glossary/	0.9699	13992	0	141	0	1	INST
 html	de/bisulfide-hydrosulfide-sulfide/	FAIL	0.9621	de/glossary/	0.9699	13992	0	141	0	1	INST
 html	de/disulfide-bonds/	FAIL	0.9621	de/glossary/	1.0	13992	0	140	0	1	INST
 html	de/foundation/14000-launch-foundation/	FAIL	1.0	de/foundation/public-visibility-gate/	0.8731	13992	0	145	0	1	INST
 html	de/foundation/public-visibility-gate/	FAIL	1.0	de/foundation/14000-launch-foundation/	0.8731	13992	0	145	0	1	INST
 html	de/german-english-chemical-terms/	FAIL	0.8	de/terminology/cohort04/germanium-sulfid/	0.741	13992	0	148	0	1	INST
-html	de/glossary/	FAIL	0.9621	de/bisulfid-vs-bisulfide/	1.0	13992	0	139	0	1	INST
-html	de/	FAIL	0.5882	glossary/	0.7308	13992	0	112	0	1	IST
+html	de/glossary/	FAIL	0.9621	de/bisulfid-vs-bisulfide/	1.0	13992	0	139	0	1	NST
+html	de/	FAIL	0.5882	glossary/	0.7308	13992	0	112	0	1	ST
 html	de/industrial-sulfur-systems/	FAIL	0.9621	de/glossary/	0.9699	13992	0	141	0	1	INST
 html	de/industrial/filing-language/	FAIL	1.0	de/industrial/hs-code-language/	0.7687	13992	0	145	0	1	INST
 html	de/industrial/hs-code-language/	FAIL	1.0	de/industrial/filing-language/	0.7687	13992	0	145	0	1	INST
@@ -14050,17 +14050,17 @@ html	de/reference/7500-rc-posture/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.
 html	de/reference/bisulfid-bisulfit-wall/	FAIL	1.0	de/reference/bisulfite-wall/	1.0	13992	0	139	0	1	INST
 html	de/reference/bisulfite-wall/	FAIL	1.0	de/reference/bisulfid-bisulfit-wall/	1.0	13992	0	139	0	1	INST
 html	de/reference/claim-boundary-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
-html	de/reference/claim-boundary/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
+html	de/reference/claim-boundary/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	NST
 html	de/reference/cohort-04-index/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/cohort-04-spine/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/cohort-05-index/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/cohort-05-spine/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
-html	de/reference/corpus-map/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
+html	de/reference/corpus-map/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	NST
 html	de/reference/corpus-validation-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/de-terminology-7500/	FAIL	1.0	de/reference/en-terminology-7500/	1.0	13992	0	151	0	1	INST
 html	de/reference/disambiguation-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
-html	de/reference/disambiguation-map/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
-html	de/reference/editorial-standards/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
+html	de/reference/disambiguation-map/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	NST
+html	de/reference/editorial-standards/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	NST
 html	de/reference/en-terminology-7500/	FAIL	1.0	de/reference/de-terminology-7500/	1.0	13992	0	151	0	1	INST
 html	de/reference/future-corpus-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/governance-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
@@ -14070,19 +14070,19 @@ html	de/reference/manifest-integrity-7500/	FAIL	1.0	de/reference/14000-corpus-br
 html	de/reference/mineral-language-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/multilingual-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/multilingual-arch-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
-html	de/reference/nomenclature-governance/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
+html	de/reference/nomenclature-governance/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	NST
 html	de/reference/non-public-posture-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/public-launch-foundation/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/render-idempotency-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/source-claim-14000/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/source-claim-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
-html	de/reference/source-locking/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
+html	de/reference/source-locking/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	NST
 html	de/reference/source-required-14000/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/source-required-7500/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
 html	de/reference/suffix-bridge/	FAIL	1.0	de/reference/bisulfid-bisulfit-wall/	1.0	13992	0	139	0	1	INST
 html	de/reference/sulfid-sulfat-boundary/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
-html	de/reference/terminology-map/	FAIL	1.0	de/reference/de-terminology-7500/	1.0	13992	0	151	0	1	INST
-html	de/reference/translator-playbook/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	INST
+html	de/reference/terminology-map/	FAIL	1.0	de/reference/de-terminology-7500/	1.0	13992	0	151	0	1	NST
+html	de/reference/translator-playbook/	FAIL	1.0	de/reference/14000-corpus-bridge/	1.0	13992	0	145	0	1	NST
 html	de/sulfid-vs-sulfide/	FAIL	0.9621	de/glossary/	0.9699	13992	0	141	0	1	INST
 html	de/sulfur-compounds/	FAIL	0.9624	de/sulfur-uses/	1.0	13992	0	140	0	1	INST
 html	de/sulfur-uses/	FAIL	0.9624	de/sulfur-compounds/	1.0	13992	0	140	0	1	INST
@@ -14302,22 +14302,22 @@ html	de/what-is-sulfur/	FAIL	0.9627	de/what-is-bisulfid/	0.9699	13992	0	141	0	1	
 html	disulfid/	FAIL	0.0		0.137	0	0	222	0	1	I
 html	disulfide-bonds/	FAIL	1.0	bisulfide-hydrosulfide-sulfide/	1.0	13992	0	134	0	1	INST
 html	disulfide/	FAIL	0.0		0.0272	0	0	266	0	1	I
-html	en/foundation/ai-readable-reference-policy/	FAIL	1.0	en/foundation/audience-layer-overview/	1.0	13992	0	145	0	1	INST
-html	en/foundation/audience-layer-overview/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/chemical-language-governance-framework/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/child-safe-educational-policy/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/claim-policy-overview/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/corpus-status/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/economic-institutional-claim-restrictions/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/institutional-purpose/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/knowledge-reliability-model/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/launch-status-non-public-corpus/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/methodology/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/multilingual-corpus-overview/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/reference-layer-overview/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/source-policy-overview/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/foundation/sovereign-reference-introduction/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	INST
-html	en/	FAIL	0.0		0.0	0	0	17	0	0	BI
+html	en/foundation/ai-readable-reference-policy/	FAIL	1.0	en/foundation/audience-layer-overview/	1.0	13992	0	145	0	1	NST
+html	en/foundation/audience-layer-overview/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/foundation/chemical-language-governance-framework/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/foundation/child-safe-educational-policy/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/foundation/claim-policy-overview/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/foundation/corpus-status/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/foundation/economic-institutional-claim-restrictions/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/foundation/institutional-purpose/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/foundation/knowledge-reliability-model/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/foundation/launch-status-non-public-corpus/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	?NST
+html	en/foundation/methodology/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	?NST
+html	en/foundation/multilingual-corpus-overview/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/foundation/reference-layer-overview/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/foundation/source-policy-overview/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/foundation/sovereign-reference-introduction/	FAIL	1.0	en/foundation/ai-readable-reference-policy/	1.0	13992	0	145	0	1	NST
+html	en/	FAIL	0.0		0.0	0	0	17	0	0	B
 html	en/pipeline-expansion/terminology/cerium-sulfides/term/chem/know/	FAIL	1.0	en/pipeline-expansion/terminology/chromium-sulfides/term/chem/know/	1.0	13992	0	144	0	1	INST
 html	en/pipeline-expansion/terminology/chromium-sulfides/term/chem/know/	FAIL	1.0	en/pipeline-expansion/terminology/cerium-sulfides/term/chem/know/	1.0	13992	0	144	0	1	INST
 html	en/pipeline-expansion/terminology/europium-sulfides/term/chem/know/	FAIL	1.0	en/pipeline-expansion/terminology/cerium-sulfides/term/chem/know/	1.0	13992	0	144	0	1	INST
@@ -27891,24 +27891,24 @@ html	foundation/sitemap-gate-closed/	FAIL	0.964	foundation/indexation-gate-close
 html	galena/	FAIL	0.0		0.0485	0	0	232	0	1	I
 html	german-chemical-suffix/	FAIL	0.0		0.0741	0	0	394	0	1	I
 html	german-english-chemical-terms/	FAIL	0.7656	bisulfide-hydrosulfide-sulfide/	0.7984	13992	0	140	0	1	INST
-html	glossary/	FAIL	0.6961	what-is-bisulfid/	0.8485	13992	0	106	0	1	IST
+html	glossary/	FAIL	0.6961	what-is-bisulfid/	0.8485	13992	0	106	0	1	ST
 html	hs-ion/	FAIL	0.0		0.0777	0	0	393	0	1	I
 html	hydrogen-sulfide-risk/	FAIL	1.0	industrial-sulfur-systems/	1.0	13992	0	140	0	1	INST
 html	hydrogen-sulfide/	FAIL	0.0		0.0287	0	0	255	0	1	I
 html	hydrosulfide/	FAIL	1.0	bisulfide-hydrosulfide-sulfide/	1.0	13992	0	134	0	1	INST
 html	hydroxid/	FAIL	0.0		0.1653	3	0	245	0	1	I
-html	index.html	FAIL	0.6667	sources/	0.6887	13992	0	115	0	1	IST
+html	index.html	FAIL	0.6667	sources/	0.6887	13992	0	115	0	1	ST
 html	industrial-sulfur-systems/	FAIL	1.0	hydrogen-sulfide-risk/	1.0	13992	0	140	0	1	INST
 html	industrial/claus-process-vocabulary/	FAIL	1.0	industrial/contact-process-vocabulary/	0.7752	13992	0	139	0	1	INST
 html	industrial/contact-process-vocabulary/	FAIL	1.0	industrial/claus-process-vocabulary/	0.7752	13992	0	139	0	1	INST
 html	iodid/	FAIL	0.0		0.2101	0	0	159	0	1	I
 html	iron-sulfide/	FAIL	0.0		0.0879	0	0	255	0	1	I
-html	languages/	FAIL	0.4902	glossary/	0.1514	0	0	507	0	1	I
-html	materials/	FAIL	0.4476	sources/	0.1746	0	0	490	0	1	I
-html	methodology/	FAIL	0.5429	sources/	0.1318	0	0	525	0	1	I
+html	languages/	PASS	0.4902	glossary/	0.1514	0	0	507	0	1	
+html	materials/	PASS	0.4476	sources/	0.1746	0	0	490	0	1	
+html	methodology/	PASS	0.5429	sources/	0.1318	0	0	525	0	1	
 html	missing-e/	FAIL	0.0		0.0653	0	0	444	0	1	I
 html	molybdenum-disulfide/	FAIL	0.7664	en/terminology/molybdenum-disulfide/aud/gov/inst/	0.9023	13992	0	143	0	1	INST
-html	newsletter/	FAIL	0.0		0.0	0	0	64	0	0	I
+html	newsletter/	PASS	0.0		0.0	0	0	64	0	0	
 html	nitrid/	FAIL	0.3293	phosphid/	0.2529	2	0	183	0	1	I
 html	oxid/	FAIL	0.0		0.1306	0	0	248	0	1	I
 html	phosphid/	FAIL	0.3293	nitrid/	0.2222	2	0	168	0	1	I
@@ -27919,14 +27919,14 @@ html	pyrite/	FAIL	0.0		0.0412	0	0	270	0	1	I
 html	reference/14000-families-index/	FAIL	0.964	reference/14000-pipeline-index/	0.971	13992	0	147	0	1	INST
 html	reference/14000-pipeline-index/	FAIL	0.964	reference/14000-families-index/	0.971	13992	0	147	0	1	INST
 html	reference/7500-families-index/	FAIL	0.964	reference/14000-families-index/	0.971	13992	0	147	0	1	INST
-html	reference/academic-teaching-source-boundary/	FAIL	1.0	reference/batch-render-discipline/	1.0	13992	0	145	0	1	INST
+html	reference/academic-teaching-source-boundary/	FAIL	1.0	reference/batch-render-discipline/	1.0	13992	0	145	0	1	NST
 html	reference/alkyl-aryl-sulfide-boundary/	FAIL	0.9635	reference/academic-teaching-source-boundary/	0.964	13992	0	148	0	1	INST
 html	reference/batch-render-7500/	FAIL	0.9638	reference/disambiguation-7500/	0.971	13992	0	147	0	1	INST
 html	reference/batch-render-discipline/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
 html	reference/bisulfite-wall/	FAIL	1.0	reference/cs2-bisulfide-boundary/	1.0	13992	0	139	0	1	INST
-html	reference/citation-discipline/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
+html	reference/citation-discipline/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
 html	reference/claim-boundary-7500/	FAIL	0.9638	reference/disambiguation-7500/	0.971	13992	0	147	0	1	INST
-html	reference/claim-registry-explainer/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
+html	reference/claim-registry-explainer/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
 html	reference/cohort-03-spine/	FAIL	0.964	reference/cohort-04-spine/	0.971	13992	0	147	0	1	INST
 html	reference/cohort-04-index/	FAIL	0.964	reference/cohort-04-spine/	0.971	13992	0	147	0	1	INST
 html	reference/cohort-04-spine/	FAIL	0.964	reference/cohort-03-spine/	0.971	13992	0	147	0	1	INST
@@ -27972,39 +27972,39 @@ html	reference/cohort05/sulfone-sulfoxide-boundary/	FAIL	1.0	reference/cohort05/
 html	reference/cohort05/sulfoxide-sulfide-boundary/	FAIL	1.0	reference/cohort05/disulfide-sulfide-boundary/	1.0	13992	0	145	0	1	INST
 html	reference/cohort05/thiosulfate-sulfate-boundary/	FAIL	1.0	reference/cohort05/disulfide-sulfide-boundary/	1.0	13992	0	145	0	1	INST
 html	reference/cohort05/thiosulfate-sulfite-boundary/	FAIL	1.0	reference/cohort05/disulfide-sulfide-boundary/	1.0	13992	0	145	0	1	INST
-html	reference/corpus-methodology/	FAIL	0.9638	reference/corpus-validation-7500/	1.0	13992	0	146	0	1	INST
+html	reference/corpus-methodology/	FAIL	0.9638	reference/corpus-validation-7500/	1.0	13992	0	146	0	1	?NST
 html	reference/corpus-validation-7500/	FAIL	0.9638	reference/corpus-methodology/	0.971	13992	0	147	0	1	INST
 html	reference/cs2-bisulfide-boundary/	FAIL	1.0	reference/bisulfite-wall/	1.0	13992	0	139	0	1	INST
 html	reference/de-expansion-hub/	FAIL	0.9635	reference/academic-teaching-source-boundary/	0.971	13992	0	147	0	1	INST
 html	reference/de-terminology-14000/	FAIL	0.9653	reference/de-terminology-7500/	0.9722	13992	0	153	0	1	INST
 html	reference/de-terminology-7500/	FAIL	0.9653	reference/de-terminology-14000/	0.9722	13992	0	153	0	1	INST
 html	reference/disambiguation-7500/	FAIL	0.9638	reference/batch-render-7500/	1.0	13992	0	146	0	1	INST
-html	reference/disambiguation-map/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
+html	reference/disambiguation-map/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
 html	reference/economic-document-language-sulfur/	FAIL	0.7424	reference/bisulfite-wall/	0.5594	13992	0	151	0	1	INST
 html	reference/en-terminology-14000/	FAIL	0.9653	reference/de-terminology-14000/	0.9722	13992	0	153	0	1	INST
 html	reference/en-terminology-7500/	FAIL	0.9653	reference/de-terminology-7500/	0.9722	13992	0	153	0	1	INST
 html	reference/future-100k-expansion/	FAIL	0.9635	reference/academic-teaching-source-boundary/	0.971	13992	0	147	0	1	INST
 html	reference/future-corpus-7500/	FAIL	0.9638	reference/disambiguation-7500/	0.971	13992	0	147	0	1	INST
 html	reference/governance-7500/	FAIL	0.9638	reference/batch-render-7500/	1.0	13992	0	146	0	1	INST
-html	reference/hreflang-policy/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
+html	reference/hreflang-policy/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
 html	reference/industrial-language-7500/	FAIL	0.964	reference/mineral-language-7500/	0.971	13992	0	147	0	1	INST
-html	reference/internal-linking-discipline/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
-html	reference/internal-navigation/	FAIL	0.9635	reference/academic-teaching-source-boundary/	1.0	13992	0	146	0	1	INST
+html	reference/internal-linking-discipline/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
+html	reference/internal-navigation/	FAIL	0.9635	reference/academic-teaching-source-boundary/	1.0	13992	0	146	0	1	NST
 html	reference/manifest-integrity-7500/	FAIL	0.9638	reference/disambiguation-7500/	0.971	13992	0	147	0	1	INST
 html	reference/mineral-language-7500/	FAIL	0.964	reference/industrial-language-7500/	0.971	13992	0	147	0	1	INST
 html	reference/multilingual-14000/	FAIL	0.9638	reference/multilingual-7500/	1.0	13992	0	146	0	1	INST
 html	reference/multilingual-7500/	FAIL	0.971	reference/multilingual-arch-7500/	1.0	13992	0	146	0	1	INST
 html	reference/multilingual-arch-7500/	FAIL	0.971	reference/multilingual-7500/	0.971	13992	0	147	0	1	INST
-html	reference/multilingual-corpus-map/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
-html	reference/multilingual-layer-map/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
-html	reference/nomenclature-governance/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
+html	reference/multilingual-corpus-map/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
+html	reference/multilingual-layer-map/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
+html	reference/nomenclature-governance/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
 html	reference/non-public-posture-7500/	FAIL	0.9638	reference/disambiguation-7500/	0.964	13992	0	148	0	1	INST
-html	reference/ontology-alignment-primer/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
-html	reference/ontology-governance/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
+html	reference/ontology-alignment-primer/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	?NST
+html	reference/ontology-governance/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
 html	reference/pipeline-lock-7500/	FAIL	0.964	reference/pipeline-status-7500/	0.971	13992	0	147	0	1	INST
 html	reference/pipeline-status-7500/	FAIL	0.964	reference/pipeline-lock-7500/	0.971	13992	0	147	0	1	INST
 html	reference/public-launch-foundation/	FAIL	0.9635	reference/academic-teaching-source-boundary/	0.971	13992	0	147	0	1	INST
-html	reference/quality-gate/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
+html	reference/quality-gate/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
 html	reference/rc-pipeline-status/	FAIL	0.9635	reference/academic-teaching-source-boundary/	0.971	13992	0	147	0	1	INST
 html	reference/rc-quarantine-7500/	FAIL	0.9638	reference/disambiguation-7500/	0.971	13992	0	147	0	1	INST
 html	reference/render-idempotency-7500/	FAIL	0.9638	reference/disambiguation-7500/	0.971	13992	0	147	0	1	INST
@@ -28017,13 +28017,13 @@ html	reference/sulfate-sulfite-boundary/	FAIL	1.0	reference/bisulfite-wall/	1.0	
 html	reference/sulfate-sulfonate-boundary/	FAIL	0.9635	reference/academic-teaching-source-boundary/	0.971	13992	0	147	0	1	INST
 html	reference/sulfide-sulfite-boundary/	FAIL	1.0	reference/bisulfite-wall/	1.0	13992	0	139	0	1	INST
 html	reference/sulfide-sulfite-salt-boundary/	FAIL	0.9635	reference/academic-teaching-source-boundary/	0.964	13992	0	148	0	1	INST
-html	reference/terminology-spine-map/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
+html	reference/terminology-spine-map/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
 html	reference/thiosulfate-sulfite-boundary/	FAIL	1.0	reference/bisulfite-wall/	1.0	13992	0	139	0	1	INST
-html	reference/translator-playbook-bisulfide-family/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	INST
+html	reference/translator-playbook-bisulfide-family/	FAIL	1.0	reference/academic-teaching-source-boundary/	1.0	13992	0	145	0	1	NST
 html	sds-and-sulfur-terms/	FAIL	1.0	hydrogen-sulfide-risk/	1.0	13992	0	140	0	1	INST
 html	sodium-bisulfide/	FAIL	1.0	hydrogen-sulfide-risk/	1.0	13992	0	140	0	1	INST
 html	sodium-sulfide/	FAIL	0.0		0.0513	0	0	239	0	1	I
-html	sources/	FAIL	0.6667	index.html	0.8515	13992	0	109	0	1	IST
+html	sources/	FAIL	0.6667	index.html	0.8515	13992	0	109	0	1	ST
 html	sphalerite/	FAIL	0.0		0.0421	0	0	264	0	1	I
 html	sulfat/	FAIL	0.0		0.0228	0	0	310	0	1	I
 html	sulfid-vs-sulfide/	FAIL	0.8906	bisulfid/	0.7364	13992	0	140	0	1	INST
@@ -28039,18 +28039,18 @@ html	sulfuric-acid/	FAIL	0.0		0.0224	0	0	327	0	1	I
 html	terminology/carbon-disulfide/	FAIL	1.0	terminology/carbonyl-sulfide/	1.0	13992	0	139	0	1	INST
 html	terminology/carbonyl-sulfide/	FAIL	1.0	terminology/carbon-disulfide/	1.0	13992	0	139	0	1	INST
 html	terminology/copper-sulfides/	FAIL	1.0	terminology/carbon-disulfide/	1.0	13992	0	139	0	1	INST
-html	terminology/	FAIL	0.0		0.0696	0	0	294	0	1	I
+html	terminology/	PASS	0.0		0.0696	0	0	294	0	1	
 html	terminology/polysulfide-salts/	FAIL	0.9044	terminology/polysulfide/	0.7445	13992	0	148	0	1	INST
 html	terminology/polysulfide/	FAIL	0.9044	terminology/polysulfide-salts/	0.7612	13992	0	144	0	1	INST
 html	terminology/precious-metal-sulfides/	FAIL	0.8929	terminology/tin-sulfides/	0.7133	13992	0	151	0	1	INST
 html	terminology/sodium-sulfide-salts/	FAIL	0.8929	terminology/polysulfide-salts/	0.7133	13992	0	151	0	1	INST
 html	terminology/sulfate/	FAIL	1.0	terminology/carbon-disulfide/	1.0	13992	0	139	0	1	INST
 html	terminology/sulfide-anion/	FAIL	1.0	terminology/carbon-disulfide/	1.0	13992	0	139	0	1	INST
-html	terminology/sulfide-minerals-index/	FAIL	0.875	reference/de-terminology-14000/	0.7095	13992	0	157	0	1	INST
+html	terminology/sulfide-minerals-index/	FAIL	0.875	reference/de-terminology-14000/	0.7095	13992	0	157	0	1	NST
 html	terminology/sulfite-salts/	FAIL	0.8929	terminology/polysulfide-salts/	0.7445	13992	0	148	0	1	INST
 html	terminology/sulfur-element/	FAIL	1.0	terminology/carbon-disulfide/	1.0	13992	0	139	0	1	INST
 html	terminology/tin-sulfides/	FAIL	0.8929	terminology/precious-metal-sulfides/	0.7445	13992	0	148	0	1	INST
-html	terms/	FAIL	0.4412	glossary/	0.2161	0	0	445	0	1	I
+html	terms/	FAIL	0.4412	glossary/	0.2161	0	0	445	0	1	?
 html	thiol/	FAIL	0.0		0.0435	0	0	279	0	1	I
 html	thiosulfate/	FAIL	0.0		0.0436	0	0	306	0	1	I
 html	what-is-bisulfid/	FAIL	0.6961	glossary/	0.6961	13992	0	109	0	1	IST

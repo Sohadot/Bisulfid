@@ -15,7 +15,8 @@ import distinctiveness_core as dc  # noqa: E402
 
 POLICY = dc.load_policy()
 RULES = dc._Rules(POLICY)
-CONTROL_PATH = os.path.join(dc.DATA, "distinctiveness", "controls", "mos2_scientific_control.md")
+# The reconstructed canonical MoS2 draft (Reference Production preview of route molybdenum_disulfide).
+CONTROL_PATH = os.path.join(dc.ROOT, "main", "content", "en", "pages", "molybdenum-disulfide.md")
 CONTROL_ID = dc.rel(CONTROL_PATH)
 with open(CONTROL_PATH, encoding="utf-8") as _fh:
     CONTROL_TEXT = _fh.read()
@@ -206,7 +207,8 @@ class Gate12Tests(unittest.TestCase):
             c = page(CONTROL_ID, CONTROL_TEXT)
             v = self.verdict(c, u, reg.ctx)
             self.assertEqual(v["verdict"], "PASS", v["failures"] + v["reviews"])
-            self.assertEqual(v["information_gain"]["valid_units"], 5)
+            self.assertEqual(v["information_gain"]["valid_units"], len(CONTROL_ENTRY["units"]))
+            self.assertGreaterEqual(len(CONTROL_ENTRY["units"]), 3)
         finally:
             reg.close()
 
@@ -227,8 +229,7 @@ class Gate12Tests(unittest.TestCase):
         reg = IGRegistry([control_entry()])
         try:
             c = page(CONTROL_ID, CONTROL_TEXT)
-            twin = page("x/twin.md", CONTROL_TEXT.replace("gate12_control: true", "gate12_control: false")
-                        .replace("## What this reference does not establish", "## Open questions"))
+            twin = page("x/twin.md", CONTROL_TEXT.replace("## What this reference does not establish", "## Open questions"))
             u = dc.Universe([twin], POLICY)
             v = self.verdict(c, u, reg.ctx)
             self.assertGreaterEqual(v["text"]["similarity"], 0.70)
@@ -247,12 +248,12 @@ class Gate12Tests(unittest.TestCase):
         reg = IGRegistry([control_entry()])
         try:
             c = page(CONTROL_ID, CONTROL_TEXT)
-            shared = ("This is a statement of composition only: it does not describe how the atoms are arranged in "
-                      "the solid, and the word \"molecular\" in database field names should not be read as implying a "
-                      "discrete molecular solid. The layered description applies to the bulk crystal; properties of "
-                      "single layers or few-layer flakes are a separate question that this reference does not answer. "
-                      "The two values agree within the stated uncertainty and are kept as separate determinations "
-                      "rather than averaged into a single canonical number.")
+            shared = ("The formula states composition only: one molybdenum to two sulfur. It says nothing about how "
+                      "the atoms are arranged in the solid, and the database field name \"MolecularFormula\" should not "
+                      "be read as implying that MoS2 forms discrete molecules. This description belongs to the bulk "
+                      "crystal. Single layers and few-layer flakes are separate forms whose properties this reference "
+                      "does not cover. The values agree within the stated uncertainty of the 1923 value and are kept "
+                      "as separate determinations rather than averaged into one number.")
             filler_words = ("ore flotation circuits recover concentrate from crushed rock before roasting converts "
                             "sulfide minerals into oxides for smelting in rotary kilns at remote mining sites").split()
             hit = None

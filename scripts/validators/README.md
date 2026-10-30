@@ -8,7 +8,9 @@ The validators in this directory are **not yet enforcing** Gates 01–11.
 (engine `distinctiveness_core.py`, tests `test_distinctiveness.py`, policy
 `main/data/distinctiveness/gate12_policy.json`). It measures entity-masked text similarity,
 structural/template similarity, boilerplate ratio and governed Information Gain units, and exits
-non-zero when a publication candidate or an indexable page fails.
+non-zero when a publication candidate or an indexable page fails. Recovery-01 added Gate 12-I
+(institutional surfaces), the bounded Contract-C-RL legacy hold (`--legacy-hold`, `--check-hold`,
+`--build-legacy-hold`) and `test_legacy_migration.py`.
 They exist to reserve Quality Gate boundaries and document future check requirements.
 
 ## Purpose

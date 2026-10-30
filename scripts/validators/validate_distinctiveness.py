@@ -15,7 +15,7 @@ Modes
                            publication surface. LSH audit universe. Exit 1 if any fails.
   --page PATH              Evaluate one markdown page exhaustively; print diagnostics.
   --audit                  Whole-corpus audit (markdown corpus + site/public surface +
-                           controls). Writes the durable reports under main/data/distinctiveness/.
+                           reference-production pages). Writes the durable reports under main/data/distinctiveness/.
                            Exit 0: the audit measures; it never changes publication state.
 
 Common: --json OUT writes the machine-readable result.
@@ -33,7 +33,6 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import distinctiveness_core as dc  # noqa: E402
 
 OUT_DIR = os.path.join(dc.DATA, "distinctiveness")
-CONTROL_GLOB = os.path.join(OUT_DIR, "controls", "*.md")
 TS = dc.ROOT
 
 
@@ -149,7 +148,24 @@ class _UF:
             self.p[max(ra, rb)] = min(ra, rb)
 
 
-def analyse_universe(name, pages, policy, ctx):
+def _route_for_path():
+    d = dc.load_json(os.path.join(dc.DATA, "routes.json"))
+    return {r["path"]: r["route_id"] for r in (d if isinstance(d, list) else d["routes"])}
+
+
+def institutional_bindings(pages, inst):
+    """Gate 12-I binding per page (None for knowledge-reference pages)."""
+    rfp = _route_for_path()
+    out = []
+    for p in pages:
+        if p.surface == "html":
+            out.append(inst.lookup(route_id=rfp.get(p.route_id), path=p.route_id))
+        else:
+            out.append(inst.lookup(route_id=p.route_id))
+    return out
+
+
+def analyse_universe(name, pages, policy, ctx, inst=None):
     """LSH audit of one surface. Returns (summary dict, per-page verdict list, universe)."""
     t0 = time.time()
     u = dc.Universe(pages, policy)
@@ -190,7 +206,10 @@ def analyse_universe(name, pages, policy, ctx):
                               "closest_page": None, "note": "no LSH candidate (below detection floor)"}
 
     uidx = dc.unit_statement_index(ctx, policy, u.by_id)
-    verdicts = [dc.gate12_verdict(p, u, policy, ctx, text=page_text[i], unit_index=uidx) for i, p in enumerate(pages)]
+    inst = inst or dc.InstitutionalRegistry()
+    binds = institutional_bindings(pages, inst)
+    verdicts = [dc.gate12_verdict(p, u, policy, ctx, text=page_text[i], unit_index=uidx, institutional=binds[i])
+                for i, p in enumerate(pages)]
 
     # Pair distribution at page-pair level (exact groups expand combinatorially).
     def pairs_at_or_above(lo, hi=1.01):
@@ -397,35 +416,74 @@ def _recommend(members, entities, public):
     return recs
 
 
+LEGACY_BASELINE_COMMIT = "9d944d736d"  # last commit before Reference Production replaced the MoS2 draft
+
+
+def _legacy_text(path):
+    """The pre-reconstruction version of a content file (git), or None."""
+    import subprocess
+    try:
+        return subprocess.run(["git", "show", f"{LEGACY_BASELINE_COMMIT}:{path}"], cwd=dc.ROOT, capture_output=True,
+                              text=True, check=True).stdout
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
+
+
 def control_report(policy, md_pages, md_u, html_pages, html_u, ctx):
-    """Evaluate Gate-12 control pages against both universes (exhaustive) + combined eligibility."""
+    """Reference-production pages (IG-registry entries bound to a Knowledge Object): Gate 12 against
+    both universes, before/after versus the legacy versions of the SAME route, and combined eligibility."""
     out = []
-    import glob
-    for path in sorted(glob.glob(CONTROL_GLOB)):
-        with open(path, encoding="utf-8") as fh:
-            page = dc.parse_markdown(path, fh.read(), policy)
-        entry = ctx.entry(page.id) or {}
-        md_v = dc.gate12_verdict(page, md_u, policy, ctx, unit_index=dc.unit_statement_index(ctx, policy, md_u.by_id))
+    oc_min = policy["text_similarity"]["overlap_coefficient_min_shingles"]
+    uidx = dc.unit_statement_index(ctx, policy, md_u.by_id)
+    for entry in ctx.registry.get("pages", []):
+        if not entry.get("knowledge_object_id"):
+            continue
+        path = os.path.join(dc.ROOT, entry["page"])
+        page = md_u.by_id.get(entry["page"])
+        if page is None:
+            with open(path, encoding="utf-8") as fh:
+                page = dc.parse_markdown(path, fh.read(), policy)
+        md_v = dc.gate12_verdict(page, md_u, policy, ctx, unit_index=uidx)
         html_near = html_u.nearest(page) if html_u else None
-        oc_min = policy["text_similarity"]["overlap_coefficient_min_shingles"]
         before = {}
-        for pid in ("main/content/en/pages/molybdenum-disulfide.md", "main/content/de/pages/molybdenum-disulfide.md",
-                    "main/content/de/pages/terminology/molybdenum-disulfide.md"):
+        legacy = _legacy_text(entry["page"])
+        if legacy:
+            q = dc.parse_markdown(path, legacy, policy, page_id=entry["page"] + "@" + LEGACY_BASELINE_COMMIT)
+            qv = dc.gate12_verdict(q, md_u, policy, ctx, exclude_ids=(entry["page"],))
+            s_, j, _ = dc.similarity(page.shingle_set, q.shingle_set, oc_min)
+            before["legacy_markdown_draft@" + LEGACY_BASELINE_COMMIT] = {
+                "similarity_to_reconstruction": round(s_, 4), "old_page_verdict": qv["verdict"],
+                "old_page_failures": qv["failures"], "old_page_nearest": qv["text"],
+                "old_page_substantive_tokens": qv["substantive_tokens"],
+                "old_page_template_sentence_ratio": qv["boilerplate"]["template_sentence_ratio"]}
+        for pid in ("main/content/de/pages/molybdenum-disulfide.md", "main/content/de/pages/terminology/molybdenum-disulfide.md"):
             q = md_u.by_id.get(pid)
             if q:
-                s, j, oc = dc.similarity(page.shingle_set, q.shingle_set, oc_min)
-                qv = dc.gate12_verdict(q, md_u, policy, ctx)
-                before[pid] = {"similarity_to_control": round(s, 4), "jaccard": round(j, 4),
-                               "old_page_verdict": qv["verdict"], "old_page_failures": qv["failures"],
-                               "old_page_nearest": qv["text"], "old_page_substantive_tokens": qv["substantive_tokens"],
-                               "old_page_template_sentence_ratio": qv["boilerplate"]["template_sentence_ratio"]}
+                before[pid] = {"similarity_to_reconstruction": round(dc.similarity(page.shingle_set, q.shingle_set, oc_min)[0], 4)}
+        route_path = page.front.get("route_id")
+        preview = None
         if html_u:
-            for pid in ("site/public/molybdenum-disulfide/index.html", "site/public/de/molybdenum-disulfide/index.html"):
-                q = html_u.by_id.get(pid)
-                if q:
-                    s, j, oc = dc.similarity(page.shingle_set, q.shingle_set, oc_min)
-                    before[pid] = {"similarity_to_control": round(s, 4), "jaccard": round(j, 4),
-                                   "old_page_substantive_tokens": len(q.masked_tokens)}
+            routes = dc.load_json(os.path.join(dc.DATA, "routes.json"))
+            routes = routes if isinstance(routes, list) else routes["routes"]
+            rpath = next((r["path"] for r in routes if r["route_id"] == route_path), None)
+            live_id = f"site/public{rpath}index.html" if rpath else None
+            if live_id and live_id in html_u.by_id:
+                q = html_u.by_id[live_id]
+                qv = dc.gate12_verdict(q, html_u, policy, ctx)
+                before["live_html" + rpath] = {
+                    "similarity_to_reconstruction": round(dc.similarity(page.shingle_set, q.shingle_set, oc_min)[0], 4),
+                    "live_verdict": qv["verdict"], "live_nearest": qv["text"], "live_substantive_tokens": qv["substantive_tokens"],
+                    "live_template_sentence_ratio": qv["boilerplate"]["template_sentence_ratio"]}
+            ppath = os.path.join(dc.DATA, "reference_production", "previews", (rpath or "/").strip("/"), "index.html")
+            if os.path.exists(ppath):
+                with open(ppath, encoding="utf-8") as fh:
+                    pv = dc.parse_html(ppath, fh.read(), policy)
+                near = html_u.nearest(pv, exclude_ids=(live_id,))
+                preview = {"preview": dc.rel(ppath), "robots_noindex": not pv.public_indexable,
+                           "nearest_in_public_html_surface": near,
+                           "template_sentence_ratio_vs_surface": round(html_u.template_ratio(pv), 4),
+                           "skeleton_shared_with_surface_pages": html_u.skeleton_match(pv)[0],
+                           "substantive_tokens": len(pv.masked_tokens)}
         cc_inputs = None
         pc_id = entry.get("publication_candidate_id")
         if pc_id:
@@ -434,8 +492,9 @@ def control_report(policy, md_pages, md_u, html_pages, html_u, ctx):
             cc_inputs = {"governance": ps["governance_posture"], "evidence": ps["evidence_posture"],
                          "claim": ps["claim_posture"], "validation": ps["validation_posture"],
                          "ig": ps["information_gain_posture"], "release": ps["release_authorization"]}
-        out.append({"control_page": page.id, "gate12_vs_markdown_corpus": md_v,
-                    "nearest_in_html_surface": html_near, "before_after": before,
+        out.append({"control_page": page.id, "knowledge_object_id": entry["knowledge_object_id"],
+                    "gate12_vs_markdown_corpus": md_v, "nearest_in_html_surface": html_near, "before_after": before,
+                    "html_preview": preview,
                     "combined_publication_eligibility": dc.combined_publication_eligibility(md_v, cc_inputs),
                     "contract_c_inputs": cc_inputs})
     return out
@@ -524,27 +583,145 @@ def run_audit(policy, args):
     return 0
 
 
+def _load_hold_at_ref(ref):
+    import subprocess
+    rel_path = os.path.relpath(dc.LEGACY_HOLD_PATH, dc.ROOT)
+    try:
+        txt = subprocess.run(["git", "show", f"{ref}:{rel_path}"], cwd=dc.ROOT, capture_output=True, text=True,
+                             check=True).stdout
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
+    return json.loads(txt)
+
+
 def run_surface(policy, args):
+    """Surface gate. Strict by default; with --legacy-hold, the bounded Contract-C-RL migration rule."""
+    import datetime
     ctx = dc.IGContext()
     pages = dc.load_html_pages(policy, args.surface)
     summary, verdicts, _ = analyse_universe("html_surface", pages, policy, ctx)
-    idx = [v for v in verdicts if v["public_indexable"]]
-    bad = [v for v in idx if v["verdict"] != "PASS"]
     print("=" * 72)
-    print("Gate 12 — indexable surface check (BLOCKING)")
-    print(f"surface {args.surface}: {len(pages)} pages, {len(idx)} indexable, {len(bad)} failing Gate 12")
-    for v in bad[:args.show]:
-        _print_verdict(v, verbose=False)
-        for f in v["failures"][:4]:
-            print(f"    FAIL {f}")
-    if len(bad) > args.show:
-        print(f"... {len(bad) - args.show} more")
+    print("Gate 12 — public surface check (BLOCKING)")
+    if not args.legacy_hold:
+        idx = [v for v in verdicts if v["public_indexable"]]
+        bad = [v for v in idx if v["verdict"] != "PASS"]
+        print(f"mode strict; surface {args.surface}: {len(pages)} pages, {len(idx)} indexable, {len(bad)} failing Gate 12")
+        for v in bad[:args.show]:
+            _print_verdict(v, verbose=False)
+            for f in v["failures"][:4]:
+                print(f"    FAIL {f}")
+        if len(bad) > args.show:
+            print(f"... {len(bad) - args.show} more")
+        if args.json:
+            _write_json(args.json, {"mode": "strict", "summary": summary, "failing": [v["page"] for v in bad]})
+        if bad:
+            print(f"GATE 12 FAIL: {len(bad)} indexable page(s) fail distinctiveness; publication/indexation prohibited.")
+            return 1
+        print("GATE 12 PASS: no indexable page fails distinctiveness.")
+        return 0
+
+    hold = dc.load_json(args.legacy_hold)
+    errs = dc.verify_hold(hold)
+    ratchet = None
+    if args.hold_ratchet_ref:
+        old = _load_hold_at_ref(args.hold_ratchet_ref)
+        if old is None:
+            ratchet = {"note": f"no legacy hold at {args.hold_ratchet_ref} (baseline introduced by this change)"}
+        else:
+            r_errs, ratchet = dc.hold_ratchet(hold, old)
+            errs += r_errs
+    today = datetime.date.fromisoformat(args.today) if args.today else datetime.date.today()
+    states, meta = dc.apply_legacy_hold(pages, verdicts, args.surface, hold, policy, today)
+    counts = Counter(s["state"] for s in states)
+    blocking = [s for s in states if s["state"].startswith("BLOCK")]
+    print(f"mode legacy-hold ({dc.rel(args.legacy_hold)}, {hold.get('entry_count')} sealed entries); "
+          f"surface {args.surface}: {len(pages)} pages")
+    for k in ("PASS", "LEGACY_HOLD_NOINDEX", "LEGACY_FREEZE_INDEXED", "BLOCK_LEGACY_INDEXED",
+              "BLOCK_MODIFIED_LEGACY", "BLOCK_NEW_FAILING"):
+        print(f"  {k:24s} {counts.get(k, 0)}")
+    print(f"  {meta['freeze_exception']}")
+    if counts.get("LEGACY_FREEZE_INDEXED"):
+        print(f"  CONTRACT C DEVIATION (reported): {counts['LEGACY_FREEZE_INDEXED']} legacy page(s) remain indexable under the freeze exception")
+    if meta["stale_baseline_entries"]:
+        print(f"  {len(meta['stale_baseline_entries'])} stale baseline entr(y/ies) (page gone or now passing): remove them (ratchet)")
+    if ratchet:
+        print(f"  ratchet: {ratchet}")
+    for e in errs:
+        print(f"  HOLD INVALID: {e}")
+    shown = 0
+    for s in blocking:
+        if shown >= args.show:
+            break
+        print(f"  [{s['state']}] {s['path']} (robots_index={s['robots_index']}, in_sitemap={s['in_sitemap']})")
+        shown += 1
+    if len(blocking) > shown:
+        print(f"  ... {len(blocking) - shown} more")
     if args.json:
-        _write_json(args.json, {"summary": summary, "failing": [v["page"] for v in bad]})
-    if bad:
-        print(f"GATE 12 FAIL: {len(bad)} indexable page(s) fail distinctiveness; publication/indexation prohibited.")
+        _write_json(args.json, {"mode": "legacy_hold", "counts": dict(counts), "meta": meta, "hold_errors": errs,
+                                "ratchet": ratchet, "blocking": blocking[:2000]})
+    if errs or blocking:
+        print(f"GATE 12 FAIL: {len(blocking)} blocking page(s){' + invalid hold' if errs else ''}.")
         return 1
-    print("GATE 12 PASS: no indexable page fails distinctiveness.")
+    print("GATE 12 PASS (legacy-hold mode): no new, modified or indexation-requesting failing page.")
+    return 0
+
+
+def run_check_hold(policy, args):
+    """PR-time check of the sealed legacy hold: integrity, default-closed freeze exception, shrink-only ratchet."""
+    import datetime
+    hold = dc.load_json(dc.LEGACY_HOLD_PATH)
+    errs = dc.verify_hold(hold)
+    today = datetime.date.fromisoformat(args.today) if args.today else datetime.date.today()
+    active, reason = dc.freeze_exception_status(hold, policy, today)
+    ratchet = None
+    if args.hold_ratchet_ref:
+        old = _load_hold_at_ref(args.hold_ratchet_ref)
+        if old is None:
+            ratchet = {"note": f"no legacy hold at {args.hold_ratchet_ref} (baseline introduced by this change)"}
+        else:
+            r_errs, ratchet = dc.hold_ratchet(hold, old)
+            errs += r_errs
+    print(f"legacy hold {dc.rel(dc.LEGACY_HOLD_PATH)}: {hold.get('entry_count')} sealed entries, sealed from "
+          f"{hold.get('sealed_from')}; {reason}; ratchet: {ratchet or 'not checked'}")
+    for e in errs:
+        print(f"  HOLD INVALID: {e}")
+    return 1 if errs else 0
+
+
+def run_build_hold(policy, args):
+    """Seal the legacy baseline from the CURRENT surface: every page that fails Gate 12 today.
+    Writes main/data/distinctiveness/legacy_surface_hold.json with the freeze exception NOT authorized."""
+    import subprocess
+    ctx = dc.IGContext()
+    root = os.path.join(dc.ROOT, policy["scope"]["html_surface_root"])
+    pages = dc.load_html_pages(policy, root)
+    _, verdicts, _ = analyse_universe("html_surface", pages, policy, ctx)
+    rfp = _route_for_path()
+    entries = []
+    for p, v in zip(pages, verdicts):
+        if v["verdict"] != "PASS":
+            path = dc.surface_url_path(p, root)
+            entries.append({"p": path, "h": dc.body_hash_hex(p), "r": rfp.get(path)})
+    entries.sort(key=lambda e: e["p"])
+    commit = subprocess.run(["git", "rev-parse", "--short=10", "HEAD"], cwd=dc.ROOT, capture_output=True,
+                            text=True).stdout.strip()
+    hold = {
+        "hold_id": "GATE12-LEGACY-SURFACE-HOLD", "version": "1.0.0", "policy_version": policy["version"],
+        "sealed_from": {"surface": policy["scope"]["html_surface_root"], "commit": commit},
+        "contract_c_basis": "RL legacy_public_holding -> (public_noindex, noindex); IP-16.2 pre-ratification public routes only",
+        "meaning": "Pages publicly deployed before Gate 12 that fail it. While listed here with an UNCHANGED substantive "
+                   "body they may stay reachable, but only as noindex and absent from sitemaps. The list may only shrink.",
+        "entry_fields": {"p": "URL path", "h": "Gate-12 substantive body hash (entity-masked)", "r": "route_id or null (non-route legacy surface)"},
+        "freeze_exception": {"state": "not_authorized", "authorized_by": None, "authorized_on": None, "expires_on": None,
+                             "reason": None, "max_days_policy": policy["legacy_migration"]["freeze_exception"]["max_days"]},
+        "entry_count": len(entries), "entries_sha256": dc.hold_entries_digest(entries), "entries": entries,
+    }
+    head = {k: v for k, v in hold.items() if k != "entries"}
+    with open(dc.LEGACY_HOLD_PATH, "w", encoding="utf-8") as fh:
+        fh.write(json.dumps(head, indent=1, ensure_ascii=False)[:-2] + ',\n "entries": [\n')
+        fh.write(",\n".join(json.dumps(e, ensure_ascii=False, separators=(",", ":")) for e in entries))
+        fh.write("\n ]\n}\n")
+    print(f"sealed {len(entries)} legacy entries from {policy['scope']['html_surface_root']} @ {commit} -> {dc.rel(dc.LEGACY_HOLD_PATH)}")
     return 0
 
 
@@ -555,9 +732,14 @@ def main(argv=None):
     g.add_argument("--audit", action="store_true", help="whole-corpus audit; writes reports")
     g.add_argument("--surface", metavar="DIR", help="block if any indexable HTML page under DIR fails")
     g.add_argument("--page", metavar="PATH", help="evaluate one markdown page")
+    g.add_argument("--build-legacy-hold", action="store_true", help="seal the legacy baseline from site/public")
+    g.add_argument("--check-hold", action="store_true", help="verify the sealed legacy hold (integrity + ratchet)")
     ap.add_argument("--json", metavar="OUT", help="write machine-readable JSON")
     ap.add_argument("--no-html", action="store_true", help="audit: skip the site/public surface")
     ap.add_argument("--show", type=int, default=20, help="surface: failing pages to list")
+    ap.add_argument("--legacy-hold", metavar="FILE", help="surface: apply the bounded Contract-C-RL legacy hold")
+    ap.add_argument("--hold-ratchet-ref", metavar="REF", help="surface: the hold may only shrink relative to REF")
+    ap.add_argument("--today", metavar="YYYY-MM-DD", help="surface: evaluation date for the freeze exception")
     args = ap.parse_args(argv)
     policy = dc.load_policy()
     if args.audit:
@@ -566,6 +748,10 @@ def main(argv=None):
         return run_surface(policy, args)
     if args.page:
         return run_page(policy, args)
+    if args.build_legacy_hold:
+        return run_build_hold(policy, args)
+    if args.check_hold:
+        return run_check_hold(policy, args)
     return run_gate(policy, args)
 
 

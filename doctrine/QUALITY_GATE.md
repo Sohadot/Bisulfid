@@ -132,7 +132,11 @@ Translations are evaluated for language integrity by Gate 11; a declared localiz
 
 **Publication contract.** A route is publication/indexation-eligible only when evidence, claim, Information Gain, Gate 12 and release authorization all pass. Gate 12 does not override Contract C (`scripts/governance_scaffolding/contract_c_derive.py`); Contract C does not override Gate 12.
 
-Validator: `validate_distinctiveness.py` (real enforcement; `--gate` for publication candidates, `--surface site/public` for the live indexable surface, `--audit` for the whole-corpus report).
+**Gate 12-I — institutional surfaces.** A registered non-factual institutional surface (home, methodology, policy, navigation hub; `main/data/distinctiveness/institutional_surface_registry.json`) replaces only the Information-Gain requirement with a closed, one-per-language function check. The near-duplicate, review-band, template-prose, structural-template and thin-body rules still apply. Gate 04 and Contract C (R11 for non-factual indexation) are not relaxed.
+
+**Legacy migration (bounded, Contract C RL).** Pages publicly deployed before Gate 12 are sealed in `main/data/distinctiveness/legacy_surface_hold.json` (path + substantive-body hash; count + sha256; shrink-only). A held page that fails Gate 12 may stay reachable only if its body is unchanged, its robots meta is `noindex` and it is absent from every sitemap. A new failing page, or a modified failing legacy page, always blocks. An indexed held page blocks unless an owner-authorized freeze exception of at most 30 days is active; that exception is a reported Contract-C deviation and admits nothing new.
+
+Validator: `validate_distinctiveness.py` (real enforcement; `--gate` for publication candidates, `--surface DIR [--legacy-hold FILE]` for a deploy surface, `--check-hold` for baseline integrity and the shrink-only ratchet, `--audit` for the whole-corpus report).
 
 ---
 

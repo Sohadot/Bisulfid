@@ -1,6 +1,6 @@
 {
   "policy_id": "GATE-12-DISTINCTIVENESS",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "blocking",
   "site": "bisulfid.com",
   "sprint": "corpus-distinctiveness-audit",
@@ -20,7 +20,11 @@
   "scope": {
     "markdown_corpus_glob": "main/content/*/pages/**/*.md",
     "html_surface_root": "site/public",
-    "html_surface_excluded_dirs": ["_integration_sample", "_visual_proof_sample", "assets"],
+    "html_surface_excluded_dirs": [
+      "_integration_sample",
+      "_visual_proof_sample",
+      "assets"
+    ],
     "drafts_are_audited": true,
     "audit_never_changes_publication_state": true
   },
@@ -34,7 +38,7 @@
     "exhaustive_confirmation_max_representatives": 3000,
     "similarity_definition": "S = max(Jaccard, overlap_coefficient) where overlap_coefficient = |A∩B| / min(|A|,|B|) applies only when the smaller shingle set has at least overlap_coefficient_min_shingles members. The overlap coefficient defeats padding (clone + generic text).",
     "entity_masking": "The page's own entity phrases (H1 head, title head, route_id, entity slug) are replaced by one slot token before shingling, so entity-name substitution clones compare as identical.",
-    "fail_at_or_above": 0.70,
+    "fail_at_or_above": 0.7,
     "review_at_or_above": 0.55,
     "note": "Below 0.55 passes ONLY the pairwise textual component. It never passes Gate 12 by itself."
   },
@@ -43,14 +47,14 @@
     "near_identical_sequence_ratio": 0.85,
     "near_identical_compare_top_k_skeletons": 200,
     "template_rule": "FAIL when the skeleton is shared (identically or near-identically) with at least one other page AND (template_sentence_ratio >= structural_template_prose_min OR S >= text_similarity.review_at_or_above). Shared structure alone is permitted.",
-    "structural_template_prose_min": 0.30
+    "structural_template_prose_min": 0.3
   },
   "boilerplate": {
     "sentence_min_tokens": 4,
     "template_sentence_min_pages": 3,
     "definition": "template_sentence_ratio = share of a page's substantive sentence tokens that belong to entity-masked sentences occurring on at least template_sentence_min_pages pages of the comparison universe",
-    "fail_at_or_above": 0.50,
-    "review_at_or_above": 0.30
+    "fail_at_or_above": 0.5,
+    "review_at_or_above": 0.3
   },
   "thin_body": {
     "min_substantive_tokens": 60,
@@ -68,26 +72,57 @@
       "rendered: the statement is actually present in the page substantive body (3-gram containment >= rendered_min_containment)",
       "distinct: units with an identical (claim_id, evidence set) key count once; a key already owned by another non-localization page does not count (cross-language/undeclared duplicate)"
     ],
-    "rendered_min_containment": 0.80,
+    "rendered_min_containment": 0.8,
     "dimensions": [
-      "chemical_identity", "chemical_structure", "quantitative_property", "polytype_distinction",
-      "terminology_boundary", "cross_language_semantic_distinction", "industrial_use",
-      "historical_evidence", "geographic_relevance", "regulatory_distinction", "trade_economic_fact",
-      "source_disagreement", "relationship_to_entity", "conceptual_boundary"
+      "chemical_identity",
+      "chemical_structure",
+      "quantitative_property",
+      "polytype_distinction",
+      "terminology_boundary",
+      "cross_language_semantic_distinction",
+      "industrial_use",
+      "historical_evidence",
+      "geographic_relevance",
+      "regulatory_distinction",
+      "trade_economic_fact",
+      "source_disagreement",
+      "relationship_to_entity",
+      "conceptual_boundary"
     ],
-    "claimless_boundary_dimensions": ["polytype_distinction", "conceptual_boundary", "terminology_boundary"]
+    "claimless_boundary_dimensions": [
+      "polytype_distinction",
+      "conceptual_boundary",
+      "terminology_boundary"
+    ]
   },
   "infrastructure_exclusion": {
     "purpose": "Reusable site infrastructure that may legitimately repeat. Excluded text is measured separately (infra_token_ratio) and never contributes to substantive similarity. Front matter is always excluded.",
     "section_heading_patterns": [
-      "^publication blockers$", "^source and claim status$", "^reliability notice$",
-      "^internal link placeholders", "^internal reference role$", "^planned internal links$",
-      "^ver(o|ö)ffentlichungsblocker$", "^quellen- und claim-status$", "^interne referenzrolle$",
-      "^system posture", "^structured metadata", "^knowledge reliability profile$",
-      "^source boundary$", "^claim boundary$", "^what requires source-locking before publication$",
-      "^child-safe notice$", "^warning$", "^draft (status|notice)$",
-      "^related atlas nodes$", "^navigation$", "^explore related pages$", "^source and claim posture$",
-      "^evidence trail$", "^governance status$", "^footer$"
+      "^publication blockers$",
+      "^source and claim status$",
+      "^reliability notice$",
+      "^internal link placeholders",
+      "^internal reference role$",
+      "^planned internal links$",
+      "^ver(o|ö)ffentlichungsblocker$",
+      "^quellen- und claim-status$",
+      "^interne referenzrolle$",
+      "^system posture",
+      "^structured metadata",
+      "^knowledge reliability profile$",
+      "^source boundary$",
+      "^claim boundary$",
+      "^what requires source-locking before publication$",
+      "^child-safe notice$",
+      "^warning$",
+      "^draft (status|notice)$",
+      "^related atlas nodes$",
+      "^navigation$",
+      "^explore related pages$",
+      "^source and claim posture$",
+      "^evidence trail$",
+      "^governance status$",
+      "^footer$"
     ],
     "line_patterns": [
       "^\\*\\*(draft status|draft notice|entwurfsstatus|status):\\*\\*",
@@ -97,9 +132,21 @@
       "^-{3,}$",
       "^\\|?\\s*-{3,}"
     ],
-    "inline_strip_patterns": ["\\[SOURCE REQUIRED\\]", "\\[source required\\]"],
+    "inline_strip_patterns": [
+      "\\[SOURCE REQUIRED\\]",
+      "\\[source required\\]"
+    ],
     "shared_disclaimer_dir": "main/content/shared/disclaimers",
-    "html_skip_tags": ["script", "style", "nav", "header", "footer", "aside", "noscript", "svg"],
+    "html_skip_tags": [
+      "script",
+      "style",
+      "nav",
+      "header",
+      "footer",
+      "aside",
+      "noscript",
+      "svg"
+    ],
     "html_skip_aria_hidden": true,
     "anti_gaming_note": "Exclusion is by explicitly registered patterns only. Text is NEVER excluded merely because it recurs across many pages — recurrence is exactly what Gate 12 measures."
   },
@@ -136,5 +183,55 @@
     "REVIEW": "no blocking failure but at least one component in a review band; NOT publication-eligible until production review records a decision",
     "FAIL": "at least one blocking component failed; publication/indexation prohibited",
     "LOCALIZATION": "declared translation; inherits the source page's Gate-12 verdict and requires Gate 11; never independently PASS"
+  },
+  "legacy_migration": {
+    "baseline_file": "main/data/distinctiveness/legacy_surface_hold.json",
+    "basis": "Contract C rule RL / IP-16.2: legacy_public_holding -> (public_noindex, noindex). A page that was publicly deployed before this gate (sealed baseline) may stay REACHABLE while it fails Gate 12, but it may not request indexation.",
+    "rules": [
+      "A page that passes Gate 12 is always allowed.",
+      "A page absent from the sealed baseline that fails Gate 12 blocks the deploy (no new low-quality public content, indexable or not).",
+      "A baseline page whose substantive body changed and that does not pass Gate 12 blocks the deploy (substantial modification must earn Gate 12).",
+      "A baseline page that fails Gate 12 and requests indexation (robots index OR listed in a sitemap) blocks the deploy, unless an authorized, unexpired freeze exception exists.",
+      "The baseline may only shrink (hold_ratchet against the base branch). Entries are sealed by count and sha256.",
+      "Default (no --legacy-hold): strict mode; every failing indexable page blocks."
+    ],
+    "indexation_request_signals": [
+      "robots meta permits index",
+      "URL path listed in a sitemap*.xml of the surface"
+    ],
+    "freeze_exception": {
+      "max_days": 30,
+      "default_state": "not_authorized",
+      "requires": [
+        "state=authorized",
+        "authorized_by",
+        "authorized_on",
+        "expires_on",
+        "reason"
+      ],
+      "meaning": "Explicit, time-boxed, owner-authorized deviation from Contract C RL that lets an unchanged indexed legacy surface be redeployed (e.g. an urgent non-content fix). Every run reports it. It cannot admit new or modified pages."
+    }
+  },
+  "page_classes": {
+    "knowledge_reference": {
+      "default": true,
+      "information_gain_required": true
+    },
+    "institutional": {
+      "registry": "main/data/distinctiveness/institutional_surface_registry.json",
+      "scope": "Non-factual institutional surfaces only: gateway/home, acquisition, newsletter, sources registry explainer, methodology, quality-gate explainer, editorial/governance policies, navigation hubs and maps.",
+      "replaces": "ONLY the Information-Gain unit requirement, with a closed singleton function check (one surface per function per language).",
+      "unchanged": [
+        "near_duplicate (S >= 0.70) and review band",
+        "template_prose",
+        "structural_template",
+        "thin_body"
+      ],
+      "does_not_relax": [
+        "Gate 04 sourcing of any factual statement on the page",
+        "Contract C: indexation of a non-factual page still requires R11 (evidence_not_required + claim_not_required + non_factual_class_certified + governed + validated + authorized)"
+      ],
+      "anti_proliferation": "The function vocabulary is closed; a second surface for the same function and language fails as institutional_duplicate_function."
+    }
   }
 }

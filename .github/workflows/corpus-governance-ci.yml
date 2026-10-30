@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -39,6 +41,23 @@ jobs:
 
       - name: "Gate 12 — publication-candidate distinctiveness gate (blocking)"
         run: python scripts/validators/validate_distinctiveness.py --gate
+
+      - name: "Gate 12 — legacy migration + Gate 12-I tests"
+        run: python scripts/validators/test_legacy_migration.py
+
+      - name: "Gate 12 — sealed legacy hold integrity + shrink-only ratchet"
+        run: |
+          if [ -n "${{ github.base_ref }}" ]; then
+            python scripts/validators/validate_distinctiveness.py --check-hold --hold-ratchet-ref "origin/${{ github.base_ref }}"
+          else
+            python scripts/validators/validate_distinctiveness.py --check-hold
+          fi
+
+      - name: "Reference Production — rendered outputs match governed inputs"
+        run: python scripts/reference_production/render_ko_reference.py --check
+
+      - name: "Recovery — legacy disposition registry invariants"
+        run: python scripts/recovery/validate_legacy_disposition.py
 
       - name: "Layer 0 — route registry validation"
         run: |
