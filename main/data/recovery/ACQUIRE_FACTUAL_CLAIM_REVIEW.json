@@ -63,5 +63,51 @@
   "not_a_factual_claim": 2
  },
  "consequence": "Until AQ-1..AQ-5 are corrected or evidence-backed, /acquire/ should not be indexed: it is the page buyers and press find first, and it currently asserts the spelling equivalence that the evidence does not support. 'noindex, follow' keeps it reachable for direct visitors and keeps the contact working.",
- "applied_in": "Release-01 PR-B: AQ-1..AQ-5 replaced; wording differs slightly from 'proposed' where needed to avoid linking to a page not yet rebuilt (the live /bisulfid-vs-bisulfide/ is still the legacy page)."
+ "applied_in": "Release-01 PR-B: AQ-1..AQ-5 replaced; wording differs slightly from 'proposed' where needed to avoid linking to a page not yet rebuilt (the live /bisulfid-vs-bisulfide/ is still the legacy page).",
+ "revision_2": {
+  "date": "2026-10-30",
+  "pr": "Release-01 PR-B (#110), corrective commit for owner review",
+  "reason": "Owner editorial review: narrow the dictionary statement to the sources examined, narrow the -id/-ide statement to a naming pattern, and avoid implying that the terminology reference is published.",
+  "sentences": [
+   {
+    "text": "Whether it is simply the German form of the English word bisulfide is not established by the sources examined so far.",
+    "basis": "CLM-TERM-BISULFID-001 pending (industry-only source); no admitted source establishes equivalence"
+   },
+   {
+    "text": "the Merriam-Webster dictionary defines bisulfide as disulfide",
+    "basis": "EVD-TERM-MW-BISULFIDE (CLM-TERM-BISULFIDE-EN-SENSE-001)"
+   },
+   {
+    "text": "the PubChem database lists bisulfide as a synonym for the hydrosulfide ion (HS-)",
+    "basis": "EVD-TERM-PUBCHEM-HS-SYNONYMS (PubChem CID 5047209; boundary record)"
+   },
+   {
+    "text": "the DWDS reports that Bisulfid is not among its contemporary lexical sources; this describes that one dictionary, not every German dictionary or technical text",
+    "basis": "EVD-TERM-DWDS-BISULFID (CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001); explicitly non-exhaustive"
+   },
+   {
+    "text": "In German inorganic nomenclature the name of the negatively charged partner of a binary compound ends in -id where English uses -ide, as in Sulfid and sulfide; a German university teaching text on nomenclature states this rule",
+    "basis": "EVD-TERM-FHM-ID-RULE (CLM-TERM-GERMAN-ID-RULE-001); Sulfid: EVD-TERM-DUDEN-SULFID, EVD-TERM-DWDS-SULFID; sulfide: EVD-TERM-MW-SULFIDE"
+   },
+   {
+    "text": "The pattern explains the form of the name, but it does not by itself establish Bisulfid as the standardized German equivalent of bisulfide.",
+    "basis": "boundary statement; consistent with the pending status of CLM-TERM-BISULFID-001"
+   },
+   {
+    "text": "A sourced terminology reference on these questions is being prepared. It has not been published yet, and this page does not depend on its conclusions.",
+    "basis": "KO-BISULFID-TERMINOLOGY-001 is staged in PR-E with Contract C (not_public, noindex)"
+   },
+   {
+    "text": "a governed multilingual reference in development",
+    "basis": "intro wording; avoids implying a published governed reference"
+   }
+  ],
+  "removed": [
+   "general German dictionaries do not record Bisulfid (exhaustive; only DWDS was examined)",
+   "English dictionaries and chemical databases ... (generalized from one dictionary and one database)",
+   "BISULFID documents that question with sources (implied a published reference)",
+   "that choice is deliberate (statement of owner intent, not verifiable from the repository)",
+   "link label 'How the two spellings relate' (implied the live page already explains it)"
+  ]
+ }
 }

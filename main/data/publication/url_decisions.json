@@ -51,7 +51,8 @@
       "changes": [
         "robots meta: 'index, follow' -> 'noindex, follow'",
         "AQ-1..AQ-5 statements replaced (ACQUIRE_FACTUAL_CLAIM_REVIEW.json)",
-        "two link labels that repeated AQ-1 reworded; link targets unchanged"
+        "two link labels that repeated AQ-1 reworded; link targets unchanged",
+        "revision 2 (owner editorial review): dictionary statement narrowed to the sources examined; -id/-ide described as a naming pattern only; no implication that the terminology reference is published (ACQUIRE_FACTUAL_CLAIM_REVIEW.json revision_2)"
       ],
       "lift_condition": "Return to 'index, follow' only when /acquire/ has a release-ledger entry other than blocked AND every factual statement listed in ACQUIRE_FACTUAL_CLAIM_REVIEW.json is either evidence-backed or removed.",
       "rollback": "revert the single robots line (git revert of the applying commit); no other file depends on it",
