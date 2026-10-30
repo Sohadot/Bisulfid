@@ -283,6 +283,35 @@ class RendererConformanceTests(unittest.TestCase):
         self.assertTrue(errors)
 
 
+class AcquireProposalTests(unittest.TestCase):
+    """Recovery-03 A: /acquire/ is corrected by a STAGED robots change, never by editing the ledger."""
+
+    def test_proposed_decision_is_not_applied(self):
+        a = pa.Authority()
+        self.assertNotIn("/acquire/", a.decisions, "a 'proposed' decision must not be applied by the resolver")
+        d = json.load(open(os.path.join(ROOT, "main", "data", "publication", "url_decisions.json")))
+        prop = [x for x in d["decisions"] if x["path"] == "/acquire/"]
+        self.assertEqual([x["status"] for x in prop], ["proposed"])
+
+    def test_ledger_still_blocks_acquire(self):
+        led = json.load(open(os.path.join(ROOT, "main", "data", "release_ledger.json")))
+        rows = led["records"]
+        row = next(r for r in rows if r.get("route_id") == "acquire")
+        self.assertEqual(row["release_status"], "blocked")
+
+    def test_staged_page_changes_only_robots_and_keeps_contact(self):
+        sys.path.insert(0, os.path.join(ROOT, "scripts", "recovery"))
+        import stage_acquire_proposal as sap
+        self.assertEqual(sap.main(["--check"]), 0)
+        live = open(os.path.join(ROOT, "site", "public", "acquire", "index.html"), encoding="utf-8").read()
+        staged = open(os.path.join(ROOT, "main", "data", "recovery", "staged", "acquire", "index.html"), encoding="utf-8").read()
+        diff = [(x, y) for x, y in zip(live.splitlines(), staged.splitlines()) if x != y]
+        self.assertEqual(len(live.splitlines()), len(staged.splitlines()))
+        self.assertEqual(diff, [(sap.OLD, sap.NEW)])
+        self.assertIn('href="mailto:', staged)
+        self.assertEqual(pa.Authority().resolve("/acquire/")["robots"], "noindex, follow")
+
+
 class PreviewTests(unittest.TestCase):
 
     def test_previews_are_current_and_noindex(self):

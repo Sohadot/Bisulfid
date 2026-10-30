@@ -1,0 +1,66 @@
+{
+ "review_id": "ACQUIRE-FACTUAL-CLAIM-REVIEW-R03",
+ "reviewed_on": "2026-10-30",
+ "page": "/acquire/",
+ "page_role": "commercial contact page (institutional function 'acquisition'); not a knowledge reference",
+ "method": "Every sentence of the live page that states a fact about chemistry, terminology or the site itself was checked against the governed stores (terminology_claims.json, routes.json, the Recovery-01 disposition registry). Statements of intent or commercial posture (no auction, no listed price) are not factual claims and are not reviewed.",
+ "rule": "Nothing here edits site/public. Proposed wording is staged for an owner decision; the robots change (URL-DEC-R03-ACQUIRE-001) is independent of it and can be approved first.",
+ "statements": [
+  {
+   "id": "AQ-1",
+   "quote": "bisulfid.com holds the German-form spelling of a chemically and industrially relevant compound class.",
+   "finding": "unsupported",
+   "basis": "Recovery-03 evidence: DWDS records neither Bisulfid nor Hydrogensulfid (EVD-TERM-DWDS-BISULFID); English bisulfide has two attested referents, disulfide (EVD-TERM-MW-BISULFIDE) and HS⁻ (EVD-TERM-PUBCHEM-HS-SYNONYMS). That Bisulfid is 'the German form' of one compound class is CLM-TERM-BISULFID-001, pending (industry-only source).",
+   "proposed": "bisulfid.com uses the spelling Bisulfid. What that spelling can and cannot be taken to mean is set out, with sources, in Bisulfid vs bisulfide."
+  },
+  {
+   "id": "AQ-2",
+   "quote": "The domain sits at a documented nomenclature boundary: the point where German chemical naming conventions diverge from English ones.",
+   "finding": "partly_supported",
+   "basis": "CLM-TERM-GERMAN-ID-RULE-001 (approved narrow) supports the German -id ending (FH Münster teaching text). It supports a spelling difference only, not a divergence of naming conventions in general.",
+   "proposed": "German chemical names end in -id where English ones end in -ide (Sulfid, sulfide). The domain name follows the German spelling."
+  },
+  {
+   "id": "AQ-3",
+   "quote": "bisulfid.com — the German-form spelling of a compound at the intersection of industrial chemistry, multilingual nomenclature, and search intent.",
+   "finding": "unsupported",
+   "basis": "Same as AQ-1 for 'German-form spelling of a compound'; 'search intent' is a market statement with no governed data (no Search Console or volume data is held).",
+   "proposed": "bisulfid.com — the domain and the reference built on it."
+  },
+  {
+   "id": "AQ-4",
+   "quote": "Seven-language architecture with distinct strategic roles: English … German … Arabic … Chinese, Japanese, French, Spanish …",
+   "finding": "contradicted_by_site_data",
+   "basis": "routes.json holds 13,730 English and 270 German routes and site/public serves only /en/ and /de/ trees; no Arabic, Chinese, Japanese, French or Spanish page exists.",
+   "proposed": "Currently English and German. Further languages are planned and are not yet published."
+  },
+  {
+   "id": "AQ-5",
+   "quote": "The machinery ensuring no claim reaches a public page without a traceable, verified source. Built in from the ground up.",
+   "finding": "contradicted_by_site_data",
+   "basis": "Recovery-01 disposition registry: 12,289 public pages are generated_unverified, and 14,032 indexed legacy pages fail Gate 12. The governance layer exists but most public pages predate it.",
+   "proposed": "A source-governance framework that new reference pages must pass before release. Most pages published before it was introduced are being reviewed or rebuilt under it."
+  },
+  {
+   "id": "AQ-6",
+   "quote": "Designed to scale toward a large governed corpus of compound-family pages.",
+   "finding": "statement_of_intent",
+   "basis": "Intent, not fact; acceptable if not read as a claim that the corpus is governed today (see AQ-5).",
+   "proposed": null
+  },
+  {
+   "id": "AQ-7",
+   "quote": "inner orbit terms (bisulfide, sulfid, sulfide, hydrosulfide), outer orbit terms, and disambiguation boundaries including the bisulfite exclusion",
+   "finding": "site_structure_description",
+   "basis": "Describes the site's own ontology, not chemistry. The bisulfite exclusion is now evidence-backed (CLM-TERM-BISULFITE-EN-SENSE-001, CLM-TERM-IUPAC-HSO3-NAME-001).",
+   "proposed": null
+  }
+ ],
+ "summary": {
+  "unsupported": 2,
+  "partly_supported": 1,
+  "contradicted_by_site_data": 2,
+  "not_a_factual_claim": 2
+ },
+ "consequence": "Until AQ-1..AQ-5 are corrected or evidence-backed, /acquire/ should not be indexed: it is the page buyers and press find first, and it currently asserts the spelling equivalence that the evidence does not support. 'noindex, follow' keeps it reachable for direct visitors and keeps the contact working."
+}

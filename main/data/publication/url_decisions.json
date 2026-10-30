@@ -1,7 +1,11 @@
 {
   "registry_id": "URL-MIGRATION-DECISIONS",
   "version": "1.0.0",
-  "governed_by": ["scripts/publication/publication_authority.py", "main/data/publication/url_decision_rules.json", "DECISION_LOG.md"],
+  "governed_by": [
+    "scripts/publication/publication_authority.py",
+    "main/data/publication/url_decision_rules.json",
+    "DECISION_LOG.md"
+  ],
   "purpose": "Owner-approved, per-URL migration decisions. Only entries with status 'approved' are applied by the resolver, and every decision type can only DOWNGRADE what a legacy URL was served with. Proposals live in main/data/recovery/seo_url_disposition.jsonl and are never applied from there.",
   "decision_types": {
     "noindex": "robots -> noindex, follow; removed from sitemaps",
@@ -9,6 +13,48 @@
     "redirect_to": "the page is replaced by a redirect to target (GitHub Pages cannot send HTTP 301; see url_decision_rules.json)",
     "retire": "the page is removed (served 404 by GitHub Pages)"
   },
-  "entry_schema": ["decision_id", "path", "decision", "target", "status", "approved_by", "approved_on", "evidence"],
-  "decisions": []
+  "entry_schema": [
+    "decision_id",
+    "path",
+    "decision",
+    "target",
+    "status",
+    "approved_by",
+    "approved_on",
+    "evidence"
+  ],
+  "decisions": [
+    {
+      "decision_id": "URL-DEC-R03-ACQUIRE-001",
+      "path": "/acquire/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "evidence": {
+        "release_ledger": "main/data/release_ledger.json route 'acquire': release_status blocked, release_mode blocked_high_risk (UNCHANGED by this proposal)",
+        "authority_gate": "validate_publication_authority.py --surface site/public: BLOCK_DIRECTIVE_ESCALATION (served index,follow; governed noindex,follow)",
+        "factual_claim_review": "main/data/recovery/ACQUIRE_FACTUAL_CLAIM_REVIEW.json",
+        "staged_artifacts": [
+          "main/data/recovery/staged/acquire/index.html",
+          "main/data/recovery/staged/acquire.patch"
+        ],
+        "simulated_result": "with the staged file in place the deploy gate reports LEGACY_STATUS_QUO 14041, PASS; Gate 12 surface counts unchanged"
+      },
+      "keeps": [
+        "public accessibility (HTTP 200, same URL)",
+        "self-canonical",
+        "body text",
+        "acquisition contact (mailto link)",
+        "all outgoing links (follow)"
+      ],
+      "changes": [
+        "robots meta: 'index, follow' -> 'noindex, follow'"
+      ],
+      "lift_condition": "Return to 'index, follow' only when /acquire/ has a release-ledger entry other than blocked AND every factual statement listed in ACQUIRE_FACTUAL_CLAIM_REVIEW.json is either evidence-backed or removed.",
+      "rollback": "revert the single robots line (git revert of the applying commit); no other file depends on it",
+      "requires": "owner approval; apply to site/public in a dedicated PR"
+    }
+  ]
 }

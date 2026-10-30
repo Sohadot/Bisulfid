@@ -1,0 +1,11 @@
+--- a/site/public/acquire/index.html
++++ b/site/public/acquire/index.html
+@@ -5,7 +5,7 @@
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Acquire bisulfid.com — Strategic Reference Asset Acquisition | bisulfid.com</title>
+ <meta name="description" content="bisulfid.com is a strategic reference asset available for acquisition by an aligned principal. The domain, governed content framework, terminology ontology, multilingual architecture, and source governance layer are available as a whole.">
+-<meta name="robots" content="index, follow">
++<meta name="robots" content="noindex, follow">
+ <link rel="canonical" href="https://bisulfid.com/acquire/">
+ <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
+ <link rel="stylesheet" href="/assets/bisulfid-design-system/public-surface.css">
