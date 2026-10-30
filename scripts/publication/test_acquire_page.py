@@ -63,5 +63,78 @@ class AcquireRevision2(unittest.TestCase):
         self.assertEqual(next(r for r in led["records"] if r["route_id"] == "acquire")["release_status"], "blocked")
 
 
+class BuyerAccessIndexingPolicy(unittest.TestCase):
+    """IDX-POL-ACQUIRE-001: /acquire/ is a commercial access page, permanently 'noindex, follow' and out of
+    sitemaps, accessible by direct URL; indexing is decided separately from access and publication."""
+
+    POL = os.path.join(ROOT, "main", "data", "publication", "indexing_policies.json")
+
+    def test_policy_record_is_owner_confirmed_without_a_manufactured_signature(self):
+        p = json.load(open(self.POL))["policies"]
+        self.assertEqual([x["path"] for x in p], ["/acquire/"])
+        x = p[0]
+        self.assertEqual((x["page_class"], x["indexing"], x["status"]), ("commercial_access", "noindex, follow", "owner_confirmed_policy"))
+        self.assertIsNone(x["provenance"]["formal_signature"])
+        self.assertNotIn("approved_by", x)
+
+    def test_access_and_canonical_unchanged_by_the_ceiling(self):
+        r = pa.Authority().resolve("/acquire/")
+        self.assertTrue(r["render"], "the page stays accessible")
+        self.assertEqual((r["robots"], r["sitemap"], r["canonical"], r["policy_enforced"]),
+                         ("noindex, follow", False, "/acquire/", True))
+
+    def test_future_ledger_release_does_not_make_it_indexable(self):
+        a = pa.Authority()
+        a.ledger["acquire"] = dict(a.ledger["acquire"], release_status="released", blockers=[])
+        r = a.resolve("/acquire/")
+        self.assertFalse(r["ledger_enforced"])
+        self.assertEqual((r["robots"], r["sitemap"]), ("noindex, follow", False))
+        a.ceilings = {}
+        self.assertEqual(a.resolve("/acquire/")["robots"], "index, follow",
+                         "without the policy a released ledger would restore index: the policy is what decouples them")
+
+    def test_contract_c_or_r11_cannot_lift_the_ceiling(self):
+        green = {"governance": "governed", "evidence": "evidence_not_required", "claim": "claim_not_required",
+                 "validation": "validated", "ig": "ig_not_required", "release": "authorized", "non_factual_class_certified": True}
+        a = pa.Authority(postures_override={"/acquire/": (green, "simulated R11")})
+        self.assertEqual(a.contract_c("/acquire/")[0], ("public_indexable", "index_approved"))
+        self.assertEqual((a.resolve("/acquire/")["robots"], a.resolve("/acquire/")["sitemap"]), ("noindex, follow", False))
+
+    def test_ceiling_is_refused_for_reference_routes_and_wrong_classes(self):
+        import tempfile
+        bad = {"policies": [
+            {"policy_id": "X1", "path": "/molybdenum-disulfide/", "page_class": "commercial_access", "indexing": "noindex, follow", "status": "owner_confirmed_policy"},
+            {"policy_id": "X2", "path": "/what-is-bisulfid/", "page_class": "reference", "indexing": "noindex, follow", "status": "owner_confirmed_policy"},
+            {"policy_id": "X3", "path": "/glossary/", "page_class": "commercial_access", "indexing": "noindex, follow", "status": "proposed"}]}
+        f = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
+        json.dump(bad, f)
+        f.close()
+        try:
+            a = pa.Authority(indexing_policies_path=f.name)
+        finally:
+            os.unlink(f.name)
+        self.assertEqual(a.ceilings, {})
+        self.assertEqual(len(a.ceiling_errors), 3)
+        self.assertEqual(a.resolve("/what-is-bisulfid/")["robots"], "index, follow")
+
+    def test_no_other_url_changes_indexing(self):
+        with_pol, without = pa.Authority(), pa.Authority()
+        without.ceilings = {}
+        changed = [p for p in with_pol.baseline if with_pol.resolve(p) != without.resolve(p)]
+        self.assertEqual(changed, ["/acquire/"])
+
+    def test_excluded_from_sitemaps_and_not_blocked_by_robots_txt(self):
+        import generate_sitemaps as gs
+        a = pa.Authority()
+        for policy in ("status_quo", "approved_only"):
+            self.assertFalse(a.resolve("/acquire/", policy)["sitemap"])
+        for f in os.listdir(os.path.join(ROOT, "site", "public")):
+            if f.startswith("sitemap") and f.endswith(".xml"):
+                self.assertNotIn("/acquire/", open(os.path.join(ROOT, "site", "public", f), encoding="utf-8").read())
+        robots = open(os.path.join(ROOT, "site", "public", "robots.txt"), encoding="utf-8").read()
+        self.assertNotIn("Disallow: /acquire", robots, "crawlers must be able to read the noindex directive")
+        self.assertTrue(hasattr(gs, "main"))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

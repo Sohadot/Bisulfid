@@ -54,11 +54,13 @@
         "two link labels that repeated AQ-1 reworded; link targets unchanged",
         "revision 2 (owner editorial review): dictionary statement narrowed to the sources examined; -id/-ide described as a naming pattern only; no implication that the terminology reference is published (ACQUIRE_FACTUAL_CLAIM_REVIEW.json revision_2)"
       ],
-      "lift_condition": "Return to 'index, follow' only when /acquire/ has a release-ledger entry other than blocked AND every factual statement listed in ACQUIRE_FACTUAL_CLAIM_REVIEW.json is either evidence-backed or removed.",
       "rollback": "revert the single robots line (git revert of the applying commit); no other file depends on it",
       "requires": "owner approval; apply to site/public in a dedicated PR",
       "gate_basis": "release-ledger enforcement exception (route 'acquire' is blocked). The ledger is NOT changed and authorizes nothing new; the owner still approves this record and the PR.",
-      "pr": "Release-01 PR-B"
+      "pr": "Release-01 PR-B",
+      "superseded_lift_condition": "Return to 'index, follow' only when /acquire/ has a release-ledger entry other than blocked AND every factual statement listed in ACQUIRE_FACTUAL_CLAIM_REVIEW.json is either evidence-backed or removed.",
+      "indexing_policy": "IDX-POL-ACQUIRE-001 (main/data/publication/indexing_policies.json): noindex, follow is the PERMANENT indexing policy for this buyer-access page, decided by the owner on 2026-10-30. It no longer depends on the release ledger: no ledger change, release or URL decision makes /acquire/ indexable; only an explicit owner policy change can.",
+      "what_signing_this_record_approves": "The PR-B page change: the corrected wording (AQ-1..AQ-5, revision 2), the served 'noindex, follow' meta, and its deployment once separately authorized. It does not create or change the indexing policy."
     },
     {
       "decision_id": "URL-DEC-R03-W1-001",
