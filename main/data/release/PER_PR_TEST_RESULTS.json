@@ -1,5 +1,5 @@
 {
- "note": "Final isolated verification: each branch's exact SHA checked out ALONE in a clean worktree. BLOCKED_BY_KNOWN_DEPENDENCY = deploy gate red only because of the pre-existing /acquire/ conflict resolved by PR-B (release ledger unchanged between PR-A and PR-B: True). Supersedes all earlier per-PR results.",
+ "note": "Isolated verification: each branch's exact SHA checked out ALONE in a clean worktree. PR-0 and PR-A from the final handoff run (heads unchanged); PR-B (revision 2, e036e30fb6) and PR-C/D/E (after forward-merge synchronization) from the synchronization run. BLOCKED_BY_KNOWN_DEPENDENCY = deploy gate red only because of the pre-existing /acquire/ conflict resolved by PR-B (release ledger unchanged between PR-A and PR-B).",
  "pr_b_release_ledger_unchanged": true,
  "PR-0": {
   "branch": "release-01/pr-0",
@@ -375,7 +375,7 @@
  },
  "PR-B": {
   "branch": "release-01/pr-b",
-  "sha": "326a2fa8ca22c39421d3fe6eb04d792aab1fad4b",
+  "sha": "e036e30fb6623e2bcda50d15b6dfca871c456fd2",
   "results": [
    {
     "area": "Contract C",
@@ -546,10 +546,22 @@
     "detail": "Summary: PASS (0 errors, 0 warnings)"
    },
    {
+    "area": "/acquire/ correction wording and boundaries",
+    "command": "scripts/publication/test_acquire_page.py",
+    "status": "PASS",
+    "detail": "OK"
+   },
+   {
     "area": "Deploy gate on site/public",
     "command": "scripts/publication/validate_publication_authority.py --surface site/public",
     "status": "PASS",
     "detail": "PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci"
+   },
+   {
+    "area": "/acquire/ identical to PR-B revision 2 (e036e30fb6)",
+    "command": "git diff --quiet e036e30fb6 HEAD -- site/public/acquire/index.html",
+    "status": "PASS",
+    "detail": "identical"
    },
    {
     "area": "Governance invariants (no approval, signature, lock, activation, certification or ratification)",
@@ -561,7 +573,7 @@
  },
  "PR-C": {
   "branch": "release-01/pr-c",
-  "sha": "092048c06912505b913fea56ee4362c012f10543",
+  "sha": "3cb927f574d1653cafbfc3188b1177fbe1ce7e79",
   "results": [
    {
     "area": "Contract C",
@@ -732,10 +744,22 @@
     "detail": "Summary: PASS (0 errors, 0 warnings)"
    },
    {
+    "area": "/acquire/ correction wording and boundaries",
+    "command": "scripts/publication/test_acquire_page.py",
+    "status": "PASS",
+    "detail": "OK"
+   },
+   {
     "area": "Deploy gate on site/public",
     "command": "scripts/publication/validate_publication_authority.py --surface site/public",
     "status": "PASS",
     "detail": "PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci"
+   },
+   {
+    "area": "/acquire/ identical to PR-B revision 2 (e036e30fb6)",
+    "command": "git diff --quiet e036e30fb6 HEAD -- site/public/acquire/index.html",
+    "status": "PASS",
+    "detail": "identical"
    },
    {
     "area": "Governance invariants (no approval, signature, lock, activation, certification or ratification)",
@@ -747,7 +771,7 @@
  },
  "PR-D": {
   "branch": "release-01/pr-d",
-  "sha": "a65669f084787c392b34c83acef5b2099898e24c",
+  "sha": "91cbb763298094e854cf6c50b3086928da8277dc",
   "results": [
    {
     "area": "Contract C",
@@ -918,10 +942,22 @@
     "detail": "Summary: PASS (0 errors, 0 warnings)"
    },
    {
+    "area": "/acquire/ correction wording and boundaries",
+    "command": "scripts/publication/test_acquire_page.py",
+    "status": "PASS",
+    "detail": "OK"
+   },
+   {
     "area": "Deploy gate on site/public",
     "command": "scripts/publication/validate_publication_authority.py --surface site/public",
     "status": "PASS",
     "detail": "PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci"
+   },
+   {
+    "area": "/acquire/ identical to PR-B revision 2 (e036e30fb6)",
+    "command": "git diff --quiet e036e30fb6 HEAD -- site/public/acquire/index.html",
+    "status": "PASS",
+    "detail": "identical"
    },
    {
     "area": "Governance invariants (no approval, signature, lock, activation, certification or ratification)",
@@ -933,7 +969,7 @@
  },
  "PR-E": {
   "branch": "release-01/pr-e",
-  "sha": "84f11485d4cbcda8ceada0c9d142dc27e2a20942",
+  "sha": "42b19aa518333899df25ec0b20fb3dc067dd4fe6",
   "results": [
    {
     "area": "Contract C",
@@ -1104,10 +1140,22 @@
     "detail": "Summary: PASS (0 errors, 0 warnings)"
    },
    {
+    "area": "/acquire/ correction wording and boundaries",
+    "command": "scripts/publication/test_acquire_page.py",
+    "status": "PASS",
+    "detail": "OK"
+   },
+   {
     "area": "Deploy gate on site/public",
     "command": "scripts/publication/validate_publication_authority.py --surface site/public",
     "status": "PASS",
     "detail": "PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci"
+   },
+   {
+    "area": "/acquire/ identical to PR-B revision 2 (e036e30fb6)",
+    "command": "git diff --quiet e036e30fb6 HEAD -- site/public/acquire/index.html",
+    "status": "PASS",
+    "detail": "identical"
    },
    {
     "area": "Governance invariants (no approval, signature, lock, activation, certification or ratification)",
@@ -1116,5 +1164,17 @@
     "detail": "OK"
    }
   ]
+ },
+ "synchronization": {
+  "date": "2026-10-30",
+  "method": "ordinary forward merge commits, no rebase, no force-push",
+  "merges": [
+   "release-01/pr-b (e036e30fb6) -> release-01/pr-c (merge 23bd4720a1, then re-measure 3cb927f574)",
+   "release-01/pr-c (3cb927f574) -> release-01/pr-d (merge 91cbb76329)",
+   "release-01/pr-d (91cbb76329) -> release-01/pr-e (merge 42b19aa518)"
+  ],
+  "conflicts": "none (all auto-merged)",
+  "seo_preview_assessment": "auto-merged value for the homepage preview (jaccard 0.0013, measured against the old /acquire/ text) replaced by the re-measured value 0.0011 on PR-C; D and E re-measured identical to their merged files",
+  "isolated_diffs": "PR-C/D/E isolated diffs (merge-base..head) are content-identical to the reviewed versions except the PR-C re-measurement"
  }
 }

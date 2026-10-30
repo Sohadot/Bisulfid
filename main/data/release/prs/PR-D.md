@@ -4,26 +4,11 @@
 
 ## 1. Purpose and exact scope
 
-- PC/KO record IG posture ig_reviewed_route_realization: its four structural conditions pass
-  (replaces the body of /molybdenum-disulfide/; no new URL; 38 consolidation obligations). It is NOT
-  honoured until AMD-IG-R03-001 is ratified by a named owner; the authority treats it as
-  ig_reviewed_no_new_route until then
-- Claim-by-claim approval dossier and independent-review packet (3 claims, 11 admitted records);
-  the review record names the automated preparer, which can never be the reviewer
-- Source-lock checklist (L1-L6): COD x2, PubChem, NIST pass L1-L5 (live recapture 2026-10-30 matches
-  the 2026-09-20 values); 4 uploaded-excerpt sources lack a capture (L2/L3 pending; RSC HTML 403);
-  L6 human sign-off pending for all 8
-- Release candidate staged (main/data/release/staged/molybdenum-disulfide/): directives from the
-  authority, governance text from signed records only ('independent review not yet performed')
-- Fix: IG units are found for the SERVED HTML (registry served_url). Without it Gate 12 would have
-  vetoed the reference on deploy; a legacy body at the same URL still gets 0 valid units
-- apply_release.py refuses unless Contract C is index-approved; simulate_release.py rehearses the gate
-
-Rollback: revert this commit (no live file changed).
+Forward merge of release-01/pr-c (3cb927f574) into release-01/pr-d. No history rewritten.
 
 ## 2. Verified commit SHA
 
-`a65669f084787c392b34c83acef5b2099898e24c` — the exact head pushed and tested in isolation (30 PASS).
+`91cbb763298094e854cf6c50b3086928da8277dc` — the exact head pushed and tested in isolation (32 PASS).
 
 ## 3. Dependency
 
@@ -33,7 +18,7 @@ Rollback: revert this commit (no live file changed).
 
 ## 4. Files changed
 
-`git diff 092048c069..a65669f084` — 27 files changed, 2494 insertions(+), 51 deletions(-)
+`git diff 3cb927f574..91cbb76329` — 27 files changed, 2494 insertions(+), 51 deletions(-)
 
 <details><summary>File list</summary>
 
@@ -90,7 +75,7 @@ No public file changes; candidate staged. apply_release.py refuses publication u
 
 ## 6. Isolated test results
 
-Head `a65669f084` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
+Head `91cbb76329` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
 
 | Status | Area | Command | Detail |
 |---|---|---|---|
@@ -122,7 +107,9 @@ Head `a65669f084` checked out ALONE in a clean worktree (not a cumulative run). 
 | ✅ PASS | CI: L2 planner | `scripts/corpus_production_planner_l2.py` | ============================================================ |
 | ✅ PASS | CI: L0 route registry | `scripts/validate_route_registry_l0.py` | Summary: PASS (0 errors, 120 warnings) |
 | ✅ PASS | CI: L0 content drafts | `scripts/validate_content_drafts_l0.py` | Summary: PASS (0 errors, 0 warnings) |
+| ✅ PASS | /acquire/ correction wording and boundaries | `scripts/publication/test_acquire_page.py` | OK |
 | ✅ PASS | Deploy gate on site/public | `scripts/publication/validate_publication_authority.py --surface site/public` | PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci |
+| ✅ PASS | /acquire/ identical to PR-B revision 2 (e036e30fb6) | `git diff --quiet e036e30fb6 HEAD -- site/public/acquire/index.html` | identical |
 | ✅ PASS | Governance invariants (no approval, signature, lock, activation, certification or ratification) | `inline invariant check` | OK |
 
 GitHub CI: `corpus-governance-ci` runs only on pull requests whose base is `main`; this stacked PR therefore has no CI run. Absence of checks is NOT a pass; the isolated local results above are the record.

@@ -5612,5 +5612,10 @@ Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AM
    - The IG policy records per-version status: 1.0.0 ratified on 2026-09-20; 1.1.0 is a proposal awaiting owner ratification.
    - The scaffolding validator now rejects an unratified amendment that carries a ratifier or date.
    - Every stack SHA after PR-0 changed with this fix, so all earlier per-PR results are superseded by the final isolated verification in `PER_PR_TEST_RESULTS.json`.
+10. **PR-B revision 2 and stack synchronization (2026-10-30):**
+    - PR-B gained a fast-forward editorial commit (`e036e30fb6`): dictionary statements narrowed to the sources examined, -id/-ide stated as a naming pattern only, and the terminology reference stated as not yet published. URL-DEC-R03-ACQUIRE-001 stays proposed and unsigned.
+    - PR-B was then forward-merged into C → D → E with ordinary merge commits; no rebase, no force-push, no conflicts.
+    - On PR-C, one auto-merged measurement was stale: the homepage preview's Jaccard to `/acquire/` was 0.0013, computed against the old text. It was replaced by the re-measured 0.0011.
+    - Final heads: B `e036e30fb6`, C `3cb927f574`, D `91cbb76329`, E `42b19aa518`. All are verified in isolation with 0 FAIL, and `/acquire/` on C/D/E is byte-identical to PR-B.
 
 **Not done by design:** independent reviews, source locks (L6), claim activation, release authorization, R11 certification, the wave-1 noindex (no Search Console export). Ratification of AMD-IG-R03-001 is likewise not done.

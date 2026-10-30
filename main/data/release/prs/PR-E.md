@@ -4,21 +4,11 @@
 
 ## 1. Purpose and exact scope
 
-- PC/KO record IG posture ig_reviewed_route_realization: structural conditions pass (replaces the body
-  of /bisulfid-vs-bisulfide/; no new URL; 4 cohort02 variants carry consolidation obligations;
-  /de/bisulfid-vs-bisulfide/ is not treated as a localization). NOT honoured until AMD-IG-R03-001
-  is ratified by a named owner
-- Claim-by-claim dossier + independent-review packet for 11 narrowly approved claims (15 admitted
-  records + 2 boundary records); the industry-usage claim stays pending and is not rendered as support
-- Source-lock checklist: 11 sources pass L1/L2/L4/L5; L3 needs a re-capture on a later date
-  (capture_terminology_sources.py --recapture); L6 human sign-off pending
-- Release candidate staged; governance text from signed records only
-
-Rollback: revert this commit (no live file changed).
+Forward merge of release-01/pr-d (91cbb76329) into release-01/pr-e. No history rewritten.
 
 ## 2. Verified commit SHA
 
-`84f11485d4cbcda8ceada0c9d142dc27e2a20942` — the exact head pushed and tested in isolation (30 PASS).
+`42b19aa518333899df25ec0b20fb3dc067dd4fe6` — the exact head pushed and tested in isolation (32 PASS).
 
 ## 3. Dependency
 
@@ -28,7 +18,7 @@ Rollback: revert this commit (no live file changed).
 
 ## 4. Files changed
 
-`git diff a65669f084..84f11485d4` — 4 files changed, 31 insertions(+), 19 deletions(-)
+`git diff 91cbb76329..42b19aa518` — 4 files changed, 31 insertions(+), 19 deletions(-)
 
 <details><summary>File list</summary>
 
@@ -62,7 +52,7 @@ No public file changes; candidate staged.
 
 ## 6. Isolated test results
 
-Head `84f11485d4` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
+Head `42b19aa518` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
 
 | Status | Area | Command | Detail |
 |---|---|---|---|
@@ -94,7 +84,9 @@ Head `84f11485d4` checked out ALONE in a clean worktree (not a cumulative run). 
 | ✅ PASS | CI: L2 planner | `scripts/corpus_production_planner_l2.py` | ============================================================ |
 | ✅ PASS | CI: L0 route registry | `scripts/validate_route_registry_l0.py` | Summary: PASS (0 errors, 120 warnings) |
 | ✅ PASS | CI: L0 content drafts | `scripts/validate_content_drafts_l0.py` | Summary: PASS (0 errors, 0 warnings) |
+| ✅ PASS | /acquire/ correction wording and boundaries | `scripts/publication/test_acquire_page.py` | OK |
 | ✅ PASS | Deploy gate on site/public | `scripts/publication/validate_publication_authority.py --surface site/public` | PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci |
+| ✅ PASS | /acquire/ identical to PR-B revision 2 (e036e30fb6) | `git diff --quiet e036e30fb6 HEAD -- site/public/acquire/index.html` | identical |
 | ✅ PASS | Governance invariants (no approval, signature, lock, activation, certification or ratification) | `inline invariant check` | OK |
 
 GitHub CI: `corpus-governance-ci` runs only on pull requests whose base is `main`; this stacked PR therefore has no CI run. Absence of checks is NOT a pass; the isolated local results above are the record.

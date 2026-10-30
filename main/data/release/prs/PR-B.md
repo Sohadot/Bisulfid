@@ -4,18 +4,22 @@
 
 ## 1. Purpose and exact scope
 
-- robots 'index, follow' -> 'noindex, follow' (release-ledger enforcement; ledger unchanged)
-- AQ-1..AQ-5 replaced with statements supported by the Recovery-03 evidence and site data;
-  two link labels that repeated AQ-1 reworded
-- Public access, canonical, mailto contact and all 18 link targets unchanged
-- Deploy gate on site/public: PASS (14040 LEGACY_STATUS_QUO + 1 LEGACY_REPAIR_NOINDEX)
-- Staging script and staged copies retired; tests now check the applied page
+- Dictionary statement narrowed to the sources examined: Merriam-Webster (bisulfide = disulfide),
+  PubChem CID 5047209 (synonym for HS-), DWDS (Bisulfid not among its contemporary lexical sources);
+  explicitly not a claim about every German dictionary or technical text
+- -id/-ide described as a naming pattern (Sulfid/sulfide; teaching-text rule) that does not by itself
+  establish Bisulfid as the standardized German equivalent of bisulfide; owner-intent wording removed
+- No implication that the terminology reference is published: it is stated as in preparation and
+  not yet published; the related-link label no longer implies the live page explains the question
+- Unchanged: URL, noindex,follow, canonical, acquisition availability, mailto contact, all link
+  targets, release ledger; URL-DEC-R03-ACQUIRE-001 stays proposed and unsigned
+- New tests: scripts/publication/test_acquire_page.py (wired into CI)
 
-Rollback: git revert this commit (restores the previous page byte-for-byte).
+Fast-forward on release-01/pr-b; PR-C/D/E heads are unchanged.
 
 ## 2. Verified commit SHA
 
-`326a2fa8ca22c39421d3fe6eb04d792aab1fad4b` — the exact head pushed and tested in isolation (28 PASS, 2 NOT_APPLICABLE).
+`e036e30fb6623e2bcda50d15b6dfca871c456fd2` — the exact head pushed and tested in isolation (30 PASS, 2 NOT_APPLICABLE).
 
 ## 3. Dependency
 
@@ -25,15 +29,18 @@ Rollback: git revert this commit (restores the previous page byte-for-byte).
 
 ## 4. Files changed
 
-`git diff d1da411bcb..326a2fa8ca` — 7 files changed, 45 insertions(+), 245 deletions(-)
+`git diff d1da411bcb..e036e30fb6` — 10 files changed, 175 insertions(+), 249 deletions(-)
 
 <details><summary>File list</summary>
 
 ```
+M	.github/workflows/corpus-governance-ci.yml
 M	main/data/publication/url_decisions.json
 M	main/data/recovery/ACQUIRE_FACTUAL_CLAIM_REVIEW.json
 D	main/data/recovery/staged/acquire.patch
 D	main/data/recovery/staged/acquire/index.html
+M	main/data/reference_production/SEO_PREVIEW_ASSESSMENT.json
+A	scripts/publication/test_acquire_page.py
 M	scripts/publication/test_publication_authority.py
 D	scripts/recovery/stage_acquire_proposal.py
 M	site/public/acquire/index.html
@@ -45,7 +52,7 @@ Public HTML differences:
 
 ```diff
 diff --git a/site/public/acquire/index.html b/site/public/acquire/index.html
-index 8e64111efa..511b1ab9cc 100644
+index 8e64111efa..083cc19f31 100644
 --- a/site/public/acquire/index.html
 +++ b/site/public/acquire/index.html
 @@ -5,7 +5,7 @@
@@ -57,7 +64,13 @@ index 8e64111efa..511b1ab9cc 100644
  <link rel="canonical" href="https://bisulfid.com/acquire/">
  <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
  <link rel="stylesheet" href="/assets/bisulfid-design-system/public-surface.css">
-@@ -47,10 +47,15 @@
+@@ -42,15 +42,29 @@
+         bisulfid.com is not a domain-for-sale listing. It is a strategic reference asset
+         available for acquisition by a principal whose intended use is aligned with the
+         asset&rsquo;s architecture: sovereign sulfur terminology, German/English nomenclature
+-        boundary, and governed multilingual reference.
++        boundary, and a governed multilingual reference in development.
+       </p>
  
        <h2>What the Asset Is</h2>
        <p>
@@ -66,18 +79,27 @@ index 8e64111efa..511b1ab9cc 100644
 -        the point where German chemical naming conventions diverge from English ones.
 -        That position is not accidental &mdash; it is the structural thesis of the asset.
 +        bisulfid.com uses the spelling Bisulfid. Whether it is simply the German form of
-+        the English word bisulfide is not established: English dictionaries and chemical
-+        databases attach the word bisulfide to more than one species, and general German
-+        dictionaries do not record Bisulfid. BISULFID documents that question with sources
-+        rather than assuming an answer.
++        the English word bisulfide is not established by the sources examined so far. In
++        English, the Merriam-Webster dictionary defines bisulfide as disulfide, while the
++        PubChem database lists bisulfide as a synonym for the hydrosulfide ion (HS&minus;).
++        In German, the DWDS (Digitales W&ouml;rterbuch der deutschen Sprache) reports that
++        Bisulfid is not among its contemporary lexical sources; this describes that one
++        dictionary, not every German dictionary or technical text.
 +      </p>
 +      <p>
-+        German chemical names end in -id where English names end in -ide (Sulfid, sulfide).
-+        The domain name follows the German spelling convention, and that choice is deliberate.
++        In German inorganic nomenclature the name of the negatively charged partner of a
++        binary compound ends in -id where English uses -ide, as in Sulfid and sulfide; a German
++        university teaching text on nomenclature states this rule. The domain name uses that
++        spelling pattern. The pattern explains the form of the name, but it does not by itself
++        establish Bisulfid as the standardized German equivalent of bisulfide.
++      </p>
++      <p>
++        A sourced terminology reference on these questions is being prepared. It has not been
++        published yet, and this page does not depend on its conclusions.
        </p>
        <p>
          The asset is available in its entirety. The domain, the content framework,
-@@ -62,8 +67,7 @@
+@@ -62,8 +76,7 @@
  
        <h3>The Domain</h3>
        <p>
@@ -87,7 +109,7 @@ index 8e64111efa..511b1ab9cc 100644
        </p>
  
        <h3>Reference Architecture</h3>
-@@ -74,13 +78,15 @@
+@@ -74,13 +87,15 @@
        </p>
  
        <h3>Multilingual Structure</h3>
@@ -107,7 +129,7 @@ index 8e64111efa..511b1ab9cc 100644
        <p>
          The language architecture is explored further at <a href="/languages/">Language Boundary</a>.
        </p>
-@@ -96,8 +102,9 @@
+@@ -96,8 +111,9 @@
  
        <h3>Source Governance Framework</h3>
        <p>
@@ -119,14 +141,14 @@ index 8e64111efa..511b1ab9cc 100644
          <a href="/sources/">Source Discipline</a>.
        </p>
  
-@@ -123,8 +130,8 @@
+@@ -123,8 +139,8 @@
  
        <h2>Related Atlas Pages</h2>
        <ul>
 -        <li><a href="/what-is-bisulfid/">What is Bisulfid?</a> &mdash; The compound, the term, and the domain thesis</li>
 -        <li><a href="/bisulfid-vs-bisulfide/">Bisulfid vs Bisulfide</a> &mdash; The spelling boundary that defines the asset</li>
 +        <li><a href="/what-is-bisulfid/">What is Bisulfid?</a> &mdash; The term and the domain</li>
-+        <li><a href="/bisulfid-vs-bisulfide/">Bisulfid vs Bisulfide</a> &mdash; How the two spellings relate</li>
++        <li><a href="/bisulfid-vs-bisulfide/">Bisulfid vs Bisulfide</a> &mdash; Terminology page (a sourced revision is in preparation and not yet published)</li>
          <li><a href="/languages/">Language Boundary</a> &mdash; The multilingual architecture</li>
          <li><a href="/sources/">Source Discipline</a> &mdash; The governance framework included in the asset</li>
        </ul>
@@ -138,7 +160,7 @@ Changes ONE public page once deployed: /acquire/ becomes 'noindex, follow' (stil
 
 ## 6. Isolated test results
 
-Head `326a2fa8ca` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
+Head `e036e30fb6` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
 
 | Status | Area | Command | Detail |
 |---|---|---|---|
@@ -170,7 +192,9 @@ Head `326a2fa8ca` checked out ALONE in a clean worktree (not a cumulative run). 
 | ✅ PASS | CI: L2 planner | `scripts/corpus_production_planner_l2.py` | ============================================================ |
 | ✅ PASS | CI: L0 route registry | `scripts/validate_route_registry_l0.py` | Summary: PASS (0 errors, 120 warnings) |
 | ✅ PASS | CI: L0 content drafts | `scripts/validate_content_drafts_l0.py` | Summary: PASS (0 errors, 0 warnings) |
+| ✅ PASS | /acquire/ correction wording and boundaries | `scripts/publication/test_acquire_page.py` | OK |
 | ✅ PASS | Deploy gate on site/public | `scripts/publication/validate_publication_authority.py --surface site/public` | PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci |
+| ✅ PASS | /acquire/ identical to PR-B revision 2 (e036e30fb6) | `git diff --quiet e036e30fb6 HEAD -- site/public/acquire/index.html` | identical |
 | ✅ PASS | Governance invariants (no approval, signature, lock, activation, certification or ratification) | `inline invariant check` | OK |
 
 GitHub CI: `corpus-governance-ci` runs only on pull requests whose base is `main`; this stacked PR therefore has no CI run. Absence of checks is NOT a pass; the isolated local results above are the record.
