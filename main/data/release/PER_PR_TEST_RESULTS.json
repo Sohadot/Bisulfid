@@ -1,0 +1,268 @@
+{
+ "PR-A": {
+  "commit": "a0b9fb71b3",
+  "results": [
+   {
+    "status": "PASS",
+    "check": "scripts/publication/test_publication_authority.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/route_realization_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/release/release_checks_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/publication/build_consolidation_obligations.py --check"
+   },
+   {
+    "status": "n/a",
+    "check": "scripts/release/build_review_packets.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/reference_production/render_ko_reference.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/reference_production/render_institutional_preview.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/validate_scaffolding.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/ig_governance_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/reference_production_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/validators/test_distinctiveness.py"
+   },
+   {
+    "status": "FAIL",
+    "check": "scripts/publication/validate_publication_authority.py --surface site/public :: PUBLICATION AUTHORITY FAIL: 1 blocking page(s)."
+   }
+  ]
+ },
+ "PR-B": {
+  "commit": "3e7b28c0e6",
+  "results": [
+   {
+    "status": "PASS",
+    "check": "scripts/publication/test_publication_authority.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/route_realization_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/release/release_checks_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/publication/build_consolidation_obligations.py --check"
+   },
+   {
+    "status": "n/a",
+    "check": "scripts/release/build_review_packets.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/reference_production/render_ko_reference.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/reference_production/render_institutional_preview.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/validate_scaffolding.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/ig_governance_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/reference_production_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/validators/test_distinctiveness.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/publication/validate_publication_authority.py --surface site/public"
+   }
+  ]
+ },
+ "PR-C": {
+  "commit": "d0dd6cf796",
+  "results": [
+   {
+    "status": "PASS",
+    "check": "scripts/publication/test_publication_authority.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/route_realization_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/release/release_checks_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/publication/build_consolidation_obligations.py --check"
+   },
+   {
+    "status": "n/a",
+    "check": "scripts/release/build_review_packets.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/reference_production/render_ko_reference.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/reference_production/render_institutional_preview.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/validate_scaffolding.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/ig_governance_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/reference_production_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/validators/test_distinctiveness.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/publication/validate_publication_authority.py --surface site/public"
+   }
+  ]
+ },
+ "PR-D": {
+  "commit": "a32a0f60b8",
+  "results": [
+   {
+    "status": "PASS",
+    "check": "scripts/publication/test_publication_authority.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/route_realization_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/release/release_checks_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/publication/build_consolidation_obligations.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/release/build_review_packets.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/reference_production/render_ko_reference.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/reference_production/render_institutional_preview.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/validate_scaffolding.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/ig_governance_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/reference_production_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/validators/test_distinctiveness.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/publication/validate_publication_authority.py --surface site/public"
+   }
+  ]
+ },
+ "PR-E": {
+  "commit": "6a9110f62b",
+  "results": [
+   {
+    "status": "PASS",
+    "check": "scripts/publication/test_publication_authority.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/route_realization_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/release/release_checks_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/publication/build_consolidation_obligations.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/release/build_review_packets.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/reference_production/render_ko_reference.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/reference_production/render_institutional_preview.py --check"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/validate_scaffolding.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/ig_governance_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/governance_scaffolding/reference_production_tests.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/validators/test_distinctiveness.py"
+   },
+   {
+    "status": "PASS",
+    "check": "scripts/publication/validate_publication_authority.py --surface site/public"
+   }
+  ]
+ },
+ "note": "Each PR commit checked out ALONE in a clean worktree. PR-A's only failure is the live deploy gate on the pre-existing /acquire/ block, fixed by PR-B. n/a = the tool does not exist yet at that commit."
+}

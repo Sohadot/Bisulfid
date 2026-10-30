@@ -172,7 +172,11 @@ def main():
                     lv, st = head(os.path.join(ROOT, "site", "public", "" if slug == "home" else slug, "index.html")), head(os.path.join(REL, "staged", slug, "index.html"))
                     body += ["", f"Staged candidate for `{page}` (applied only later, by `apply_release.py`):", "",
                              "| | Live | Candidate |", "|---|---|---|"] + [f"| {k} | {lv[k]} | {st[k]} |" for k in lv]
+        iso = load(REL, "PER_PR_TEST_RESULTS.json").get(f"PR-{pid}", {"results": []})
+        iso_md = "\n".join(f"- {'✅' if x['status'] == 'PASS' else ('❌' if x['status'] == 'FAIL' else '–')} `{x['check']}`"
+                           for x in iso["results"])
         body += ["", "## Files", "", "```", files.strip(), "```", "", "## Merge condition", "", cond, "", "## Rollback", "", rollback, "",
+                 "## Test results — this PR's commit checked out alone", "", iso_md or "(not recorded)", "",
                  "## Test results (whole stack)", "", tests_md, "", "Not merged and not deployed: awaiting owner authorization.", ""]
         open(os.path.join(REL, "prs", f"PR-{pid}.md"), "w", encoding="utf-8").write("\n".join(body))
     print("wrote RELEASE_01_READINESS.md and prs/PR-A..E.md")
