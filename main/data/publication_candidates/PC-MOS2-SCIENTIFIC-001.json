@@ -88,6 +88,7 @@
   ],
   "disposition_note": "The object is a valid governed reference (object_valid_governed) and is RETAINED and governed, but the ratified IG gate finds no NEW independent URL warranted (near_duplicate vs the legacy same-task route). It is therefore NOT an independent_reference_candidate under current comparison; that would require a positive independent-reference classification (ig_reviewed_pass).",
   "blockers_before_any_url": [
+    "information_gain_posture ig_reviewed_route_realization is not honoured until AMD-IG-R03-001 is ratified by a named owner (separate act; merging PRs is not ratification)",
     "claim_posture claim_pending — owner claim activation (owner_acts.json) not signed",
     "validation_posture not_validated — no signed independent review (review packet ready)",
     "evidence_posture evidence_sufficient — 0 of 8 sources locked (L6 human sign-off; L2/L3 pending for 4 excerpt/uploaded sources)",
@@ -99,6 +100,7 @@
     "policy": "ig_governance_policy.json 1.1.0 (AMD-IG-R03-001 rev 2)",
     "verified_by": "scripts/governance_scaffolding/route_realization.py:check",
     "realizes": "/molybdenum-disulfide/ (existing route molybdenum_disulfide; no new URL)",
-    "consolidation_obligations": 38
+    "consolidation_obligations": 38,
+    "status": "structure verified (route_realization.check_structure); AMD-IG-R03-001 awaits owner ratification, so the authority treats this posture as ig_reviewed_no_new_route until then"
   }
 }

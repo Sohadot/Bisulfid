@@ -12,6 +12,7 @@ never accepted as either.
 import glob
 import json
 import os
+import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DATA = os.path.join(ROOT, "main", "data")
@@ -178,15 +179,25 @@ def release_authorized_ok(ko_id, records=None):
     return True, []
 
 
-def honoured_postures(ko_id, postures):
-    """Downgrade any human-gated posture that lacks its signed record (fail-closed). Returns (postures, notes)."""
+def _realization_ok(ko_id):
+    sys.path.insert(0, os.path.join(ROOT, "scripts", "governance_scaffolding"))
+    import route_realization
+    return route_realization.check(ko_id)
+
+
+def honoured_postures(ko_id, postures, skip=()):
+    """Downgrade any human-gated posture that lacks its signed record (fail-closed). Returns (postures, notes).
+    skip: fields the caller verifies itself (the publication authority checks route realization with its own stores)."""
     p, notes = dict(postures), []
     checks = (("validation_posture", ("validated",), "not_validated", validation_ok),
               ("evidence_posture", ("evidence_locked",), "evidence_sufficient", evidence_locked_ok),
               ("claim_posture", ("claim_approved", "claim_approved_narrow"), "claim_pending", claims_active_ok),
               ("release_authorization", ("authorized",), "not_authorized", release_authorized_ok),
+              ("information_gain_posture", ("ig_reviewed_route_realization",), "ig_reviewed_no_new_route", _realization_ok),
               ("governance_posture", ("governed",), "reference_draft", release_authorized_ok))
     for field, claimed, fallback, fn in checks:
+        if field in skip:
+            continue
         if p.get(field) in claimed:
             good, why = fn(ko_id)
             if not good:

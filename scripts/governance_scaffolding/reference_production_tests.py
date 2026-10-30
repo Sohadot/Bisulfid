@@ -183,7 +183,7 @@ def main():
        and pc["proposed_disposition"] == "governed_reference_no_new_route"
        and "published" in pc["not_disposition"] and "indexable" in pc["not_disposition"]
        and (ig == "ig_reviewed_no_new_route"
-            or (ig == "ig_reviewed_route_realization" and route_realization.check(pc["knowledge_object_id"])[0])))
+            or (ig == "ig_reviewed_route_realization" and route_realization.check_structure(pc["knowledge_object_id"])[0])))
 
     print("=" * 56)
     if FAIL:

@@ -46,12 +46,28 @@ def known_duplicates(ko_id, route, records):
     return set(bco.duplicates_for(ko_id, route, records))
 
 
+def ratified(policy):
+    """AMD-IG-R03-001 counts only with a recorded owner ratification: status 'ratified', a named
+    human in ratified_by (never an automated agent) and a date. Opening or merging a PR is not one."""
+    amend = next((a for a in policy.get("amendments", []) if a.get("amendment_id") == "AMD-IG-R03-001"), None)
+    who = ((amend or {}).get("ratified_by") or "").lower()
+    return (POSTURE in policy.get("posture_ids", []) and bool(amend) and amend.get("status") == "ratified"
+            and bool(who) and not any(x in who for x in ("claude", "agent", "automated")) and bool(amend.get("ratified_on")))
+
+
 def check(ko_id, stores=None):
+    """Full check used by the publication authority: ratification AND the four structural conditions."""
+    s = stores or Stores()
+    good, reasons = check_structure(ko_id, s)
+    if not ratified(s.policy):
+        reasons = ["policy: AMD-IG-R03-001 (ig_reviewed_route_realization) awaits owner ratification"] + reasons
+    return (good and not reasons), reasons
+
+
+def check_structure(ko_id, stores=None):
+    """The four structural conditions only (what validators verify before ratification)."""
     s = stores or Stores()
     reasons = []
-    amend = [a for a in s.policy.get("amendments", []) if a.get("amendment_id") == "AMD-IG-R03-001"]
-    if POSTURE not in s.policy.get("posture_ids", []) or not amend or amend[0].get("status") != "ratified":
-        reasons.append("policy: ig_reviewed_route_realization is not a ratified posture")
     ko = s.kos.get(ko_id)
     if not ko:
         return False, reasons + [f"unknown Knowledge Object {ko_id}"]

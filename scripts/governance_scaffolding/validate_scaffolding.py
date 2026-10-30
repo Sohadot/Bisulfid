@@ -464,8 +464,8 @@ def validate_knowledge_objects():
         check(recomputed == ("not_public", "noindex"), f"KO {kid}: a reference_draft/ig_not_reviewed KO must be not_public/noindex")
         if p["information_gain_posture"] == "ig_reviewed_route_realization":
             import route_realization
-            good, why = route_realization.check(kid)
-            check(good, f"KO {kid}: ig_reviewed_route_realization not verified: {why}")
+            good, why = route_realization.check_structure(kid)  # ratification may be pending; authority fails closed
+            check(good, f"KO {kid}: ig_reviewed_route_realization structure not verified: {why}")
 
 
 def validate_scientific_provenance():

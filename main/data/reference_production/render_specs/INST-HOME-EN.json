@@ -1,6 +1,6 @@
 {
  "spec_id": "INST-HOME-EN",
- "version": "1.2.0",
+ "version": "1.3.0",
  "status": "preview",
  "page_class": "institutional",
  "institutional_function": "gateway_home",
@@ -98,7 +98,7 @@
   {
    "heading": "Who is responsible for this site",
    "paragraphs": [
-    "BISULFID is an independent reference project published by the owner of the bisulfid.com domain. It is not affiliated with IUPAC, with any dictionary publisher or with any company or database named on its pages.",
+    "BISULFID is a reference project published by the owner of the bisulfid.com domain. References to IUPAC, dictionaries, databases, companies and other third parties identify sources; they do not imply endorsement by those organizations or affiliation with them.",
     "Each reference page built under these rules names the evidence behind every statement and shows when it was retrieved. No individual expert review is claimed: a page records that it has been independently validated only after such a review has taken place."
    ],
    "links": [

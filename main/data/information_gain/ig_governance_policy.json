@@ -157,7 +157,7 @@
       "posture": "ig_reviewed_route_realization",
       "route_eligible": false,
       "existing_route_realization": true,
-      "eligibility_rule": "Assigned ONLY to a Knowledge Object that replaces the body of its OWN existing canonical route. ALL of: (1) the governing pair compares the KO with that route and classifies near_duplicate; (2) exactly one render spec binds the KO, to that route, and no other KO binds the same route; (3) the route is in routes.json and its path is a sealed legacy public URL (the URL already exists and is unchanged); (4) every same-task legacy duplicate known to the disposition registry is listed in main/data/publication/consolidation_obligations.json with this route as destination. Duplicates that are still indexable do NOT block realization: they create a consolidation obligation executed after the route is index-approved (no circular prerequisite). It never authorizes a new or sibling URL: route_eligible stays false.",
+      "eligibility_rule": "Assigned ONLY to a Knowledge Object that replaces the body of its OWN existing canonical route. ALL of: (1) the governing pair compares the KO with that route and classifies near_duplicate; (2) exactly one render spec binds the KO, to that route, and no other KO binds the same route; (3) the route is in routes.json and its path is a sealed legacy public URL (the URL already exists and is unchanged); (4) every same-task legacy duplicate known to the disposition registry is listed in main/data/publication/consolidation_obligations.json with this route as destination. Duplicates that are still indexable do NOT block realization: they create a consolidation obligation executed after the route is index-approved (no circular prerequisite). It never authorizes a new or sibling URL: route_eligible stays false. Honoured only after AMD-IG-R03-001 is ratified by a named owner (amendments[].status 'ratified').",
       "contract_c_input": "ig_passed",
       "verified_by": "scripts/governance_scaffolding/route_realization.py:check"
     }
@@ -183,17 +183,19 @@
   },
   "notes": [
     "This policy ratifies the authority; contract_c_derive.py normalizes the postures above to canonical Contract-C IG inputs. No route, HTML, sitemap, robots, release-ledger, or legacy-visibility change is authorized by ratifying IG.",
-    "1.1.0 (Release-01): adds ig_reviewed_route_realization (AMD-IG-R03-001 rev 2). Classifications, signals and the no-numeric-authority rule are unchanged."
+    "1.1.0 (Release-01): proposes ig_reviewed_route_realization (awaiting owner ratification) (AMD-IG-R03-001 rev 2). Classifications, signals and the no-numeric-authority rule are unchanged."
   ],
   "amendments": [
     {
       "amendment_id": "AMD-IG-R03-001",
       "revision": 2,
-      "status": "ratified",
-      "effective": "on merge of Release-01 PR-A",
-      "ratified_by": "site owner — Release-01 brief, 2026-10-30 (§1: a governed KO must be able to replace its own existing canonical route without authorizing a new sibling URL; §4: apply the ratified route-realization policy only when its tests pass). Merging PR-A is the owner's confirmation; reverting PR-A withdraws it.",
+      "status": "awaiting_owner_ratification",
+      "effective": "only after a separate owner ratification record (status 'ratified', ratified_by = a named person, ratified_on = date)",
+      "ratified_by": null,
       "revision_note": "Revision 1 (Recovery-03) required that no other indexable URL serve the same task. That is circular: legacy duplicates can only be consolidated onto an index-approved destination, and the destination could not become index-approved while they remained indexable. Revision 2 replaces the prerequisite with a recorded consolidation obligation.",
-      "tests": "scripts/governance_scaffolding/route_realization_tests.py"
+      "tests": "scripts/governance_scaffolding/route_realization_tests.py",
+      "ratified_on": null,
+      "ratification_note": "Proposed in Release-01 PR-A. Opening, reviewing or merging any pull request is NOT ratification and must not be represented as such. Until a named owner records ratification here, the publication authority refuses this posture (fail-closed) and Contract C treats it as ig_reviewed_no_new_route."
     }
   ]
 }

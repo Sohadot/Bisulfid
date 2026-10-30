@@ -140,6 +140,7 @@ BISULFID is the name of this website. The name is not a chemical claim, and this
 
 ## Publication blockers
 
+- information_gain_posture ig_reviewed_route_realization is not honoured until AMD-IG-R03-001 is ratified by a named owner (separate act; merging PRs is not ratification)
 - claim_posture claim_pending — 11 claims are narrowly approved in an INACTIVE registry; owner claim activation (owner_acts.json) not signed
 - validation_posture not_validated — no signed independent review (packet ready; reviewer needs chemical-nomenclature/lexicography competence)
 - evidence_posture evidence_sufficient — 0 of 11 sources locked (L3 needs a re-capture on a later date; L6 human sign-off)

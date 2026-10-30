@@ -17,14 +17,16 @@
   "evidence_posture": "evidence_sufficient",
   "claim_posture": "claim_pending",
   "validation_posture": "not_validated",
-  "information_gain_posture": "ig_reviewed_route_realization",
+  "information_gain_posture": "ig_reviewed_no_new_route",
   "release_authorization": "not_authorized"
  },
  "contract_c_honoured": [
   "not_public",
   "noindex"
  ],
- "not_honoured": [],
+ "not_honoured": [
+  "information_gain_posture ig_reviewed_route_realization not honoured (policy: AMD-IG-R03-001 (ig_reviewed_route_realization) awaits owner ratification)"
+ ],
  "consolidation_obligations_after_release": 38,
  "publication_dependencies": []
 }

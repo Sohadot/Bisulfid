@@ -22,22 +22,46 @@ sys.path.insert(0, os.path.join(ROOT, "scripts", "publication"))
 import release_checks as rc  # noqa: E402
 import publication_authority as pa  # noqa: E402
 
-PRS = [  # (id, commit subject prefix, title, live files, merge condition, rollback)
-    ("A", "Release-01 PR-A", "Publication safety and authority", [],
-     "Safe to merge: changes no public file. After merge the deploy gate stays red only on the pre-existing /acquire/ block until PR-B.",
-     "git revert the PR-A merge commit; the gate returns to Recovery-03 behaviour (downgrades unchecked) and the IG policy to 1.0.0."),
-    ("B", "Release-01 PR-B", "/acquire/ correction", ["site/public/acquire/index.html"],
-     "Merge after the owner signs URL-DEC-R03-ACQUIRE-001 (approved_by + approved_on). The gate already passes through the release-ledger exception; the signature is the owner's approval of the wording.",
-     "git revert the PR-B merge commit and redeploy: restores the previous page byte-for-byte (robots index, original text)."),
-    ("C", "Release-01 PR-C", "English and German homepage release readiness", [],
-     "Safe to merge (staged candidates only). PUBLICATION of / and /de/ needs: owner confirmations in HOMEPAGE_CLAIM_AUDIT.json, signed R11 certifications, and PR-D + PR-E pages public first.",
-     "git revert; nothing live changed. After a later publication: re-copy the previous index.html from git history and redeploy."),
-    ("D", "Release-01 PR-D", "MoS2 reference release readiness", [],
-     "Safe to merge (staged candidate only). PUBLICATION needs a signed independent review, 8 source locks, owner claim activation and release authorization; apply_release.py refuses until then.",
-     "git revert; nothing live changed. After a later publication: restore the legacy page from git history (same URL, same directives)."),
-    ("E", "Release-01 PR-E", "Bisulfid/Bisulfide terminology reference release readiness", [],
-     "Safe to merge (staged candidate only). PUBLICATION needs a signed independent review, 11 source locks (L3 re-capture first), owner claim activation and release authorization.",
-     "git revert; nothing live changed. After a later publication: restore the legacy page from git history."),
+# (id, branch, base branch, title, live files, production impact, blockers, merge condition, rollback)
+PRS = [
+    ("0", "release-01/pr-0", "main", "Recovery-01..03 governance foundation", [],
+     "No file under site/public changes. Adds the publication-authority deploy gate to the MANUAL Pages workflow and the "
+     "governance suites to CI. After merge a manual deploy fails closed on the pre-existing /acquire/ conflict until PR-B; "
+     "nothing is deployed automatically (the deploy workflow is workflow_dispatch only).",
+     ["none for review; it is the base every Release-01 PR depends on"],
+     "Can merge after review: it changes no public file. Merging it does not ratify, sign or publish anything.",
+     "git revert the merge commit; site/public is unaffected either way."),
+    ("A", "release-01/pr-a", "release-01/pr-0", "Publication safety and authority", [],
+     "No public file changes. The deploy gate becomes stricter (unapproved downgrades block). Proposes IG policy 1.1.0.",
+     ["AMD-IG-R03-001 (ig_reviewed_route_realization) awaits a SEPARATE owner ratification; merging this PR is not ratification",
+      "a manual deploy stays blocked on /acquire/ until PR-B"],
+     "Can merge after review: changes no public file. Merging does not ratify AMD-IG-R03-001.",
+     "git revert the merge commit; the gate returns to the PR-0 behaviour and the IG policy to 1.0.0."),
+    ("B", "release-01/pr-b", "release-01/pr-a", "/acquire/ correction", ["site/public/acquire/index.html"],
+     "Changes ONE public page once deployed: /acquire/ becomes 'noindex, follow' (still public, same URL, contact and links "
+     "unchanged) and five unsupported or contradicted statements are replaced. Deployment remains a separate manual step.",
+     ["URL-DEC-R03-ACQUIRE-001 is 'proposed': the owner must review the wording and sign it (approved_by, approved_on); no signature is generated"],
+     "Merge only after the owner signs URL-DEC-R03-ACQUIRE-001. The gate passes through the release-ledger exception, but the signature is the owner's approval.",
+     "git revert the merge commit and redeploy: restores the previous page byte-for-byte."),
+    ("C", "release-01/pr-c", "release-01/pr-b", "English and German homepage release readiness", [],
+     "No public file changes; candidates are staged under main/data/release/staged/.",
+     ["2 owner confirmations (who publishes the site, EN + DE)", "R11-HOME-EN-001 / R11-HOME-DE-001 not certified",
+      "must not be published before the PR-D and PR-E pages"],
+     "Can merge after review (staged files only). Merging does not certify or publish.",
+     "git revert; nothing live changes."),
+    ("D", "release-01/pr-d", "release-01/pr-c", "MoS2 reference release readiness", [],
+     "No public file changes; candidate staged. apply_release.py refuses publication until Contract C is index-approved.",
+     ["independent review (chemistry / crystallography) missing", "8 sources unlocked (4 lack a capture; L6 signatures)",
+      "owner claim activation and release authorization missing", "AMD-IG-R03-001 not ratified"],
+     "Can merge after review (staged files only). Merging does not validate, lock, activate or publish.",
+     "git revert; nothing live changes."),
+    ("E", "release-01/pr-e", "release-01/pr-d", "Bisulfid/Bisulfide terminology reference release readiness", [],
+     "No public file changes; candidate staged.",
+     ["independent review (nomenclature / lexicography, EN + DE) missing", "11 sources unlocked (L3 re-capture on a later date; L6 signatures)",
+      "owner claim activation and release authorization missing", "AMD-IG-R03-001 not ratified",
+      "CLM-TERM-BISULFID-001 stays pending by design"],
+     "Can merge after review (staged files only).",
+     "git revert; nothing live changes."),
 ]
 PAGES = [("/acquire/", None), ("/", "home"), ("/de/", "de"), ("/molybdenum-disulfide/", "molybdenum-disulfide"),
          ("/bisulfid-vs-bisulfide/", "bisulfid-vs-bisulfide")]
@@ -60,13 +84,18 @@ def head(f):
             "json_ld": g(r'"@type": ?"([^"]*)"') or "none", "words": len(re.sub(r"<[^>]+>", " ", body).split())}
 
 
-def commit_of(prefix):
-    out = subprocess.run(["git", "log", "--format=%h %s", "-n", "40"], cwd=ROOT, capture_output=True, text=True).stdout
-    return next((x.split()[0] for x in out.splitlines() if prefix in x), None)
+def git(*a):
+    return subprocess.run(["git", *a], cwd=ROOT, capture_output=True, text=True).stdout.strip()
 
 
-def stat(c):
-    return subprocess.run(["git", "diff", "--shortstat", f"{c}~1", c], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+def rng(branch, base):
+    """Exact isolated range of a stacked PR: merge-base(base, branch)..branch."""
+    return git("merge-base", base, branch), git("rev-parse", "--short", branch)
+
+
+def stat(branch, base):
+    b, h = rng(branch, base)
+    return git("diff", "--shortstat", b, h)
 
 
 def main():
@@ -138,12 +167,12 @@ def main():
     L += ["", f"Qualified: {sum(1 for s in locks if s in quals)}/{len(locks)}. Locked: 0/{len(locks)}. L3 reproduced on a later date: "
           f"{n_l3}/{len(locks)}. L6 (human signature): 0/{len(locks)}.", "",
           "## 5. Pull requests", "", "| PR | Commit | Diff | Live files changed | Can merge safely? |", "|---|---|---|---|---|"]
-    for pid, pre, title, live_files, cond, _ in PRS:
-        c = commit_of(pre)
-        L.append(f"| {pid} — {title} | `{c}` | {stat(c)} | {', '.join(live_files) or 'none'} | {cond} |")
-    L += ["", "Stack: `main` ← PR-0 (Recovery-01..03 foundation, `4d85bb6520`, not yet on `main`) ← A ← B ← C ← D ← E. "
-          "Each PR's diff is exactly its commit.", "",
+    for pid, br, base, title, live_files, _, blockers, cond, _ in PRS:
+        L.append(f"| {pid} — {title} | `{br}` @ `{git('rev-parse', '--short', br)}` (base `{base}`) | {stat(br, base)} | "
+                 f"{', '.join(live_files) or 'none'} | {cond} |")
+    L += ["", "Stack: `main` ← PR-0 ← A ← B ← C ← D ← E (each a draft PR; each diff is exactly its own range).", "",
           "## 6. Awaiting owner publication authorization", "",
+          "0. Decide separately whether to ratify AMD-IG-R03-001 (route realization); until then both references stay non-indexable.",
           "1. Sign `URL-DEC-R03-ACQUIRE-001`, merge PR-0, A and B, then run the manual deploy (gate passes).",
           "2. Commission the two independent reviews (packets ready) and the L6 source-lock signatures; re-capture the "
           "terminology sources on a later date first (`capture_terminology_sources.py --recapture`).",
@@ -155,16 +184,31 @@ def main():
     os.makedirs(os.path.join(REL, "prs"), exist_ok=True)
     open(os.path.join(REL, "RELEASE_01_READINESS.md"), "w", encoding="utf-8").write("\n".join(L))
     tests_md = "\n".join(f"- {'✅' if x['exit_code'] == 0 else '❌'} `{x['command']}` — {x['last_line']}" for x in tests["results"])
-    for pid, pre, title, live_files, cond, rollback in PRS:
-        c = commit_of(pre)
-        files = subprocess.run(["git", "diff", "--name-status", f"{c}~1", c], cwd=ROOT, capture_output=True, text=True).stdout
-        body = [f"# PR-{pid}: {title}", "", f"Commit `{c}` ({stat(c)}). Part of the Release-01 stack; full matrix in "
-                "`main/data/release/RELEASE_01_READINESS.md`.", "", "## Impact", "",
-                subprocess.run(["git", "log", "-1", "--format=%b", c], cwd=ROOT, capture_output=True, text=True).stdout.split("Co-Authored-By")[0].strip(),
-                "", "## Public HTML differences", ""]
+    links = load(REL, "prs", "PR_LINKS.json") if os.path.exists(os.path.join(REL, "prs", "PR_LINKS.json")) else {}
+    order = [p[0] for p in PRS]
+    for i, (pid, br, base, title, live_files, impact, blockers, cond, rollback) in enumerate(PRS):
+        b, h = rng(br, base)
+        prev_pr = links.get(order[i - 1]) if i else None
+        next_pr = links.get(order[i + 1]) if i + 1 < len(order) else None
+        body = [f"# PR-{pid}: {title}", "",
+                "> **Draft — review authorization only.** Not to be merged, deployed or published without a new explicit owner "
+                "authorization. Nothing in this PR signs a review, locks a source, activates a claim, approves an indexation "
+                "change or ratifies a governance amendment.", "",
+                "## Dependencies", "",
+                f"- Branch `{br}` @ `{h}`; base `{base}`" + (f" ({prev_pr})" if prev_pr else "") + ".",
+                f"- Depends on: {('PR-' + order[i - 1]) if i else 'main'}" + (f"; next in the stack: PR-{order[i + 1]}" + (f" ({next_pr})" if next_pr else "") if i + 1 < len(order) else "") + ".",
+                "- Release matrix: `main/data/release/RELEASE_01_READINESS.md` (on `claude/corpus-distinctiveness-audit-4wsa9f`).", "",
+                "## Production impact", "", impact, "", "## Blockers", ""] + [f"- {x}" for x in blockers] + ["",
+                "## What changes", "",
+                git("log", "--format=%b", f"{b}..{h}").split("Co-Authored-By")[0].strip() if pid != "0" else
+                "Recovery-01..03: Gate 12 distinctiveness gate + corpus audit; legacy disposition registry and sealed legacy "
+                "hold; publication authority (single directive resolver) and deploy gate; MoS2 reference reconstruction; "
+                "terminology evidence admission (16 records, 11 narrow claims) and the Bisulfid/bisulfide preview; homepage "
+                "previews; indexation-reduction plan (proposals only). Reports: main/data/recovery/RECOVERY_0{1,2,3}_REPORT.md.",
+                "", "## Exact isolated diff", "", f"`git diff {b[:10]}..{h}` — {stat(br, base)}", "", "<details><summary>Files</summary>", "",
+                "```", git("diff", "--name-status", b, h)[:20000], "```", "", "</details>", "", "## Public HTML differences", ""]
         if live_files:
-            body.append("```diff\n" + subprocess.run(["git", "diff", f"{c}~1", c, "--"] + live_files, cwd=ROOT,
-                                                     capture_output=True, text=True).stdout[:6000] + "\n```")
+            body.append("```diff\n" + git("diff", b, h, "--", *live_files)[:8000] + "\n```")
         else:
             body.append("No file under `site/public` changes in this PR.")
             for page, slug in PAGES:
@@ -174,12 +218,13 @@ def main():
                              "| | Live | Candidate |", "|---|---|---|"] + [f"| {k} | {lv[k]} | {st[k]} |" for k in lv]
         iso = load(REL, "PER_PR_TEST_RESULTS.json").get(f"PR-{pid}", {"results": []})
         iso_md = "\n".join(f"- {'✅' if x['status'] == 'PASS' else ('❌' if x['status'] == 'FAIL' else '–')} `{x['check']}`"
-                           for x in iso["results"])
-        body += ["", "## Files", "", "```", files.strip(), "```", "", "## Merge condition", "", cond, "", "## Rollback", "", rollback, "",
-                 "## Test results — this PR's commit checked out alone", "", iso_md or "(not recorded)", "",
-                 "## Test results (whole stack)", "", tests_md, "", "Not merged and not deployed: awaiting owner authorization.", ""]
+                           + (f" — {x['detail']}" if x.get("detail") else "") for x in iso["results"])
+        body += ["", "## Test outcomes", "", f"This PR's head (`{h}`) checked out alone in a clean worktree:", "", iso_md or "(not recorded)", "",
+                 "CI: `corpus-governance-ci` runs only on pull requests whose base is `main`" +
+                 (" — it runs on this PR." if base == "main" else "; this stacked PR has no CI run, so the local results above are the record."), "",
+                 "## Merge condition", "", cond, "", "## Rollback", "", rollback, ""]
         open(os.path.join(REL, "prs", f"PR-{pid}.md"), "w", encoding="utf-8").write("\n".join(body))
-    print("wrote RELEASE_01_READINESS.md and prs/PR-A..E.md")
+    print("wrote RELEASE_01_READINESS.md and prs/PR-0..E.md")
     return 0
 
 

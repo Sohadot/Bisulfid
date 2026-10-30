@@ -1,6 +1,6 @@
 {
  "spec_id": "INST-HOME-DE",
- "version": "1.1.0",
+ "version": "1.2.0",
  "status": "preview",
  "page_class": "institutional",
  "institutional_function": "gateway_home",
@@ -120,7 +120,7 @@
   {
    "heading": "Verantwortung für diese Website",
    "paragraphs": [
-    "BISULFID ist ein unabhängiges Referenzprojekt der Inhaberin bzw. des Inhabers der Domain bisulfid.com. Es besteht keine Verbindung zur IUPAC, zu Wörterbuchverlagen oder zu Unternehmen und Datenbanken, die auf den Seiten genannt werden.",
+    "BISULFID ist ein Referenzprojekt der Inhaberin bzw. des Inhabers der Domain bisulfid.com. Verweise auf die IUPAC, Wörterbücher, Datenbanken, Unternehmen und andere Dritte nennen Quellen; sie bedeuten weder eine Billigung durch diese Organisationen noch eine Zugehörigkeit zu ihnen.",
     "Jede nach diesen Regeln erstellte Referenzseite nennt die Belege hinter jeder Aussage und das Abrufdatum. Eine fachliche Begutachtung durch eine benannte Person wird nicht behauptet; eine Seite wird erst dann als unabhängig geprüft ausgewiesen, wenn eine solche Prüfung stattgefunden hat."
    ],
    "links": []

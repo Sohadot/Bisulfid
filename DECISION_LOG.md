@@ -5596,14 +5596,16 @@ Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AM
    - A governed KO may replace the body of its own existing canonical route, and never a new or sibling URL.
    - Revision 1 was circular: it required that no indexable duplicate exist, while duplicates can only be consolidated onto an index-approved destination.
    - Revision 2 records non-blocking consolidation obligations instead (42).
-   - Treated as ratified by the owner's Release-01 brief, effective on merge of PR-A.
-3. **Human gates cannot be self-granted.** The authority honours validation, evidence lock, claim activation, release authorization, `governed` governance and R11 certification only with signed records from a named human. The preparer (an automated agent) is never a reviewer or signer.
+   - **Awaiting separate owner ratification.** It is not ratified by the Release-01 brief, by opening or reviewing the PRs, or by merging PR-A. Until a named owner records ratification (status `ratified`, `ratified_by`, `ratified_on`), the authority refuses the posture and treats it as `ig_reviewed_no_new_route`. (Corrected 2026-10-30 on the owner's review authorization; an earlier draft of this entry wrongly called it ratified.)
+3. **Human gates cannot be self-granted.** The authority honours validation, evidence lock, claim activation, release authorization, `governed` governance, R11 certification and the route-realization amendment only with signed records from a named human. The preparer (an automated agent) is never a reviewer or signer.
 4. **Served HTML is evaluated with its own IG units** (`served_url`). Without this, Gate 12 would have vetoed both references on deploy.
 5. **Release candidates are staged, not live.**
    - `apply_release.py` refuses unless Contract C is index-approved and all dependencies are public.
    - Simulation results:
      - today, the 4 candidates are blocked;
      - with every human act simulated, all 4 reach GOVERNED_INDEX and nothing blocks.
-6. **`/acquire/`:** `noindex, follow`, AQ-1..5 corrected; contact, URL and links unchanged; ledger untouched.
+6. **`/acquire/`:** `noindex, follow`, AQ-1..5 corrected; contact, URL and links unchanged; ledger untouched. Approval stays pending (no signature generated).
+7. **Homepage wording (owner review authorization, 2026-10-30):** no statement about actual affiliation or non-affiliation, and no claim of independence. The pages state that third-party references identify sources and do not imply endorsement or affiliation. No editorial contact address is published.
+8. **Stack published for review only:** six draft PRs, `release-01/pr-0` … `release-01/pr-e`. Pushing and opening them authorizes nothing: no merge, deploy, signature, lock, activation, indexation change or ratification.
 
-**Not done by design:** independent reviews, source locks (L6), claim activation, release authorization, R11 certification, the wave-1 noindex (no Search Console export).
+**Not done by design:** independent reviews, source locks (L6), claim activation, release authorization, R11 certification, the wave-1 noindex (no Search Console export). Ratification of AMD-IG-R03-001 is likewise not done.

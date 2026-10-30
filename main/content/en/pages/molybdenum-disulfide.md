@@ -106,6 +106,7 @@ Band gap, electronic and optical behaviour, density, the properties of single la
 
 ## Publication blockers
 
+- information_gain_posture ig_reviewed_route_realization is not honoured until AMD-IG-R03-001 is ratified by a named owner (separate act; merging PRs is not ratification)
 - claim_posture claim_pending — owner claim activation (owner_acts.json) not signed
 - validation_posture not_validated — no signed independent review (review packet ready)
 - evidence_posture evidence_sufficient — 0 of 8 sources locked (L6 human sign-off; L2/L3 pending for 4 excerpt/uploaded sources)

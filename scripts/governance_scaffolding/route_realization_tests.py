@@ -33,6 +33,15 @@ def variant(**changes):
     return s
 
 
+def ratified_policy(by="Site Owner (fixture)", on="2026-11-01", status="ratified"):
+    pol = copy.deepcopy(BASE.policy)
+    pol["amendments"][0].update(status=status, ratified_by=by, ratified_on=on)
+    return pol
+
+
+RAT = variant(policy=ratified_policy())
+
+
 def refused(ko, stores, fragment):
     good, why = rr.check(ko, stores)
     return (not good) and any(fragment in w for w in why)
@@ -40,7 +49,9 @@ def refused(ko, stores, fragment):
 
 # --- positive
 for ko in KOS:
-    ok(f"01_{ko}_realizes_its_own_route", rr.check(ko, BASE) == (True, []))
+    ok(f"01_{ko}_structure_verified", rr.check_structure(ko, BASE) == (True, []))
+    ok(f"01b_{ko}_refused_until_owner_ratification", refused(ko, BASE, "awaits owner ratification"))
+    ok(f"01c_{ko}_realizes_its_own_route_once_ratified", rr.check(ko, RAT) == (True, []))
 ok("02_posture_normalizes_to_ig_passed_only_via_alias", cc._IG_NORMALIZE["ig_reviewed_route_realization"] == "ig_passed"
    and "ig_reviewed_route_realization" not in cc._IG_ROUTE_ELIGIBLE)
 ok("03_contract_c_still_needs_every_other_input",
@@ -48,7 +59,7 @@ ok("03_contract_c_still_needs_every_other_input",
              ig="ig_reviewed_route_realization", release="not_authorized") == ("not_public", "noindex"))
 ok("04_indexable_duplicates_do_not_block (no circular prerequisite)",
    all(r["live"] and r["live"]["requests_indexation"] for r in BASE.records
-       if r["path"] in {o["duplicate_path"] for o in BASE.obligations}) and rr.check(KOS[0], BASE)[0])
+       if r["path"] in {o["duplicate_path"] for o in BASE.obligations}) and rr.check(KOS[0], RAT)[0])
 ok("05_every_obligation_is_non_blocking_and_open",
    all(o["blocks_realization"] is False and o["status"] == "open" for o in BASE.obligations))
 
@@ -74,9 +85,10 @@ ok("16_obligation_marked_blocking_refused", refused(KOS[0], variant(obligations=
 selfobl = BASE.obligations + [{"knowledge_object_id": KOS[0], "duplicate_path": "/molybdenum-disulfide/",
                                "destination_path": "/molybdenum-disulfide/", "action": "canonical_to", "blocks_realization": False}]
 ok("17_obligation_on_the_route_itself_refused", refused(KOS[0], variant(obligations=selfobl), "route itself"))
-pol = copy.deepcopy(BASE.policy)
-pol["amendments"][0]["status"] = "proposed"
-ok("18_unratified_policy_refused", refused(KOS[0], variant(policy=pol), "not a ratified posture"))
+ok("18a_policy_as_shipped_is_not_ratified", rr.ratified(BASE.policy) is False)
+for label, pol in (("agent", ratified_policy(by="claude-code-agent")), ("unsigned", ratified_policy(by=None)),
+                   ("undated", ratified_policy(on=None)), ("proposed", ratified_policy(status="proposed"))):
+    ok(f"18b_{label}_ratification_refused", refused(KOS[0], variant(policy=pol), "awaits owner ratification"))
 ok("19_unknown_ko_refused", rr.check("KO-DOES-NOT-EXIST", BASE)[0] is False)
 
 # --- authority integration: fail closed, never a sibling
@@ -98,13 +110,19 @@ def _pc_realizing(path, default=None):  # every PC claims route realization, as 
 pa._load = _pc_realizing
 try:
     good = pa.Authority()
+    good._rr = RAT
+    good.postures = dict(good._governed_postures(pa.CERTIFICATIONS_PATH))
+    unratified = pa.Authority()
     bad = pa.Authority()
-    bad._rr = variant(obligations=[])
+    bad._rr = variant(policy=RAT.policy, obligations=[])
     bad.postures = dict(bad._governed_postures(pa.CERTIFICATIONS_PATH))
 finally:
     pa._load = _orig_load
 ok("21a_verified_realization_reaches_contract_c_as_ig_pass",
    all(i["ig"] == rr.POSTURE for p, (i, _) in good.postures.items() if p in ("/molybdenum-disulfide/", "/bisulfid-vs-bisulfide/")))
+ok("21c_unratified_policy_fails_closed_in_the_authority",
+   all(i["ig"] == "ig_reviewed_no_new_route" for p, (i, _) in unratified.postures.items()
+       if p in ("/molybdenum-disulfide/", "/bisulfid-vs-bisulfide/")))
 ok("21b_authority_fails_closed_when_check_fails",
    all(i["ig"] == "ig_reviewed_no_new_route" and "route realization refused" in b
        for p, (i, b) in bad.postures.items() if p in ("/molybdenum-disulfide/", "/bisulfid-vs-bisulfide/")))

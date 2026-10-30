@@ -6,7 +6,7 @@ candidate (main/data/release/staged/*/index.html) at its URL, and runs the publi
 two scenarios:
   now        the governance stores as they are (no owner or reviewer act exists)
   all_acts   SIMULATED: every human act signed (independent review, source locks, owner claim activation,
-             release authorization, R11 certifications). Labelled as a simulation; it proves only that the
+             release authorization, R11 certifications AND owner ratification of AMD-IG-R03-001). Labelled as a simulation; it proves only that the
              package itself (HTML, directives, Gate 12) is publishable once the real acts exist.
 Writes main/data/release/RELEASE_SIMULATION.json. Read-only for site/public.
 """
@@ -52,7 +52,7 @@ def main():
         _, verdicts, _ = vd.analyse_universe("surface", pages, policy, dc.IGContext())
         out = {}
         for name, override in (("now", None),
-                               ("all_acts", {p: (SIM_KO if k == "knowledge_reference" else SIM_R11, "SIMULATED owner/reviewer acts")
+                               ("all_acts", {p: (SIM_KO if k == "knowledge_reference" else SIM_R11, "SIMULATED owner/reviewer acts incl. AMD-IG-R03-001 ratification")
                                              for p, (_, k) in staged.items()})):
             auth = pa.Authority(postures_override=override)
             states = vpa.check_surface(surface, auth, policy, pages=pages, verdicts=verdicts)

@@ -1,6 +1,6 @@
 {
  "page": "/de/",
- "spec": "INST-HOME-DE@1.1.0",
+ "spec": "INST-HOME-DE@1.2.0",
  "kind": "institutional",
  "publication_dependencies": [
   "/molybdenum-disulfide/",

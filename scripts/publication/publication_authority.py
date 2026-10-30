@@ -89,7 +89,8 @@ class Authority:
             route = route_by_id.get(spec.get("canonical_route_id"))
             pc = pcs.get(spec.get("knowledge_object_id"))
             if route and pc:
-                ps, held = release_checks.honoured_postures(spec["knowledge_object_id"], pc["postures"])
+                ps, held = release_checks.honoured_postures(spec["knowledge_object_id"], pc["postures"],
+                                                           skip=("information_gain_posture",))
                 ig = ps["information_gain_posture"]
                 basis = f"{pc['publication_candidate_id']} via {spec['spec_id']}" + (f" [{'; '.join(held)}]" if held else "")
                 if ig == route_realization.POSTURE:
