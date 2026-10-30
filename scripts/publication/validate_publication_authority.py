@@ -21,9 +21,11 @@ States (BLOCK_* fail the run):
   BLOCK_UNAPPROVED_DOWNGRADE         a legacy page served index is now served noindex, and
   BLOCK_UNAPPROVED_SITEMAP_REMOVAL   a legacy page listed in a sitemap is no longer listed, with neither an
                                      approved per-URL decision (url_decisions.json: status approved +
-                                     approved_by + approved_on) nor one of the two enforcement exceptions:
-                                     the release ledger (a not-released route that requested index), or a
-                                     Contract-C binding (the directive is derived, not discretionary).
+                                     approved_by + approved_on) nor one of the enforcement exceptions:
+                                     the release ledger (a not-released route that requested index), a
+                                     Contract-C binding (the directive is derived, not discretionary), or an
+                                     owner indexing-policy ceiling for a commercial-access page
+                                     (indexing_policies.json; never a reference page).
   (A canonical change without an approved canonical_to decision is BLOCK_CANONICAL_MISMATCH.)
 
 Usage:
@@ -82,10 +84,10 @@ def check_surface(surface, authority, policy, sitemap_policy="status_quo", verdi
             if r["basis"] == "legacy_status_quo" and base:
                 kind = (r.get("decision") or {}).get("decision")
                 if pa.requests_index(base.get("robots")) and not served_index \
-                        and not (r.get("ledger_enforced") or kind == "noindex"):
+                        and not (r.get("ledger_enforced") or r.get("policy_enforced") or kind == "noindex"):
                     problems.append("BLOCK_UNAPPROVED_DOWNGRADE")
                 if base.get("sm") and not served_sm \
-                        and not (r.get("ledger_enforced") or kind in ("noindex", "canonical_to")):
+                        and not (r.get("ledger_enforced") or r.get("policy_enforced") or kind in ("noindex", "canonical_to")):
                     problems.append("BLOCK_UNAPPROVED_SITEMAP_REMOVAL")
         if problems:
             state = problems[0]

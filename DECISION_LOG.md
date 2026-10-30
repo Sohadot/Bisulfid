@@ -5579,3 +5579,24 @@ Next production action: the owner decides `/acquire/` and supplies the Search Co
 
 ### Stop
 Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AMD-IG-R03-001` and the science-claim posture, and a Search Console export for wave 1.
+
+---
+
+## Release-01 — Permanent buyer-access indexing policy for `/acquire/`
+
+**Date:** 2026-10-30
+**Decided by:** the site owner, by instruction in the Claude Code review session. This is recorded, not signed: no `approved_by` or approval timestamp was entered on the owner's behalf.
+
+**Durable decisions:**
+1. **`/acquire/` is a buyer-oriented commercial access page, not a reference page.** It stays `noindex, follow` and out of every XML sitemap indefinitely, until the owner explicitly changes this policy.
+   - It remains publicly accessible by direct URL, with an unchanged canonical and a working buyer contact.
+   - It is not blocked in robots.txt, so crawlers can read the noindex.
+2. **Access, publication and indexing are separate decisions.** A new registry, `main/data/publication/indexing_policies.json`, holds per-URL indexing ceilings (`IDX-POL-ACQUIRE-001`).
+   - The publication authority applies a ceiling last.
+   - A ceiling only ever lowers a directive, to noindex and no sitemap. It never changes access or the canonical.
+   - No release-ledger status, URL decision, Contract C result or R11 certification can lift it.
+3. **Ceilings cannot touch references.**
+   - Only the page class `commercial_access` is accepted.
+   - A ceiling on any URL bound to a Knowledge Object render spec is refused and reported, so scientific and conceptual references keep their independent Contract C rules.
+   - Contract C itself is unchanged.
+4. **URL-DEC-R03-ACQUIRE-001 still needs the owner's formal signature** for the PR-B page change: wording plus the served noindex. Its old "return to index after a ledger release" condition is superseded by the permanent policy.

@@ -109,5 +109,10 @@
    "that choice is deliberate (statement of owner intent, not verifiable from the repository)",
    "link label 'How the two spellings relate' (implied the live page already explains it)"
   ]
+ },
+ "indexing_policy": {
+  "policy_id": "IDX-POL-ACQUIRE-001",
+  "date": "2026-10-30",
+  "statement": "Owner decision: /acquire/ is a buyer-oriented commercial access page and stays 'noindex, follow' indefinitely, independent of the factual-claim corrections and of any release-ledger status. The earlier 'consequence' (noindex until AQ-1..AQ-5 are corrected) described the interim reason; the permanent reason is the page's commercial role."
  }
 }
