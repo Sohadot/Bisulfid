@@ -136,14 +136,15 @@ BISULFID is the name of this website. The name is not a chemical claim, and this
 
 - Claims: narrowly approved in an INACTIVE claim registry (CLM-TERM-BISULFIDE-EN-SENSE-001, CLM-TERM-SULFIDE-EN-SENSE-001, CLM-TERM-DISULFIDE-EN-SENSE-001, CLM-TERM-BISULFITE-EN-SENSE-001, CLM-TERM-SULFID-DE-SENSE-001, CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001, CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001, CLM-TERM-IUPAC-HS-NAMES-001, CLM-TERM-IUPAC-S2-NAMES-001, CLM-TERM-IUPAC-HSO3-NAME-001, CLM-TERM-GERMAN-ID-RULE-001); approval is not activation or publication.
 - Sources: every source lock is `candidate`; no source is locked.
-- Contract C inputs: {"governance": "reference_draft", "evidence": "evidence_sufficient", "claim": "claim_pending", "validation": "not_validated", "ig": "ig_reviewed_no_new_route", "release": "not_authorized"}.
+- Contract C inputs: {"governance": "reference_draft", "evidence": "evidence_sufficient", "claim": "claim_pending", "validation": "not_validated", "ig": "ig_reviewed_route_realization", "release": "not_authorized"}.
 
 ## Publication blockers
 
-- claim_posture is claim_pending — the approved claims live in an INACTIVE registry; activation needs an owner decision
-- validation_posture is not_validated — needs an independent terminology review (not the author of this sprint)
-- release_authorization is not_authorized — owner approval required
-- source_lock_status is candidate for all sources (evidence not evidence_locked) — indexation additionally requires evidence_locked
-- the existing live page is a legacy status-quo page; replacing its body is a live-HTML change outside this sprint
+- information_gain_posture ig_reviewed_route_realization is not honoured until AMD-IG-R03-001 is ratified by a named owner (separate act; merging PRs is not ratification)
+- claim_posture claim_pending — 11 claims are narrowly approved in an INACTIVE registry; owner claim activation (owner_acts.json) not signed
+- validation_posture not_validated — no signed independent review (packet ready; reviewer needs chemical-nomenclature/lexicography competence)
+- evidence_posture evidence_sufficient — 0 of 11 sources locked (L3 needs a re-capture on a later date; L6 human sign-off)
+- governance_posture reference_draft / release_authorization not_authorized — owner release authorization not signed
+- CLM-TERM-BISULFID-001 (German industry usage) stays pending by design; it is shown only as a recorded boundary
 
 *Rendered by render_ko_reference.py from RSPEC-KO-BISULFID-TERMINOLOGY-001@1.0.0 — KO-BISULFID-TERMINOLOGY-001 — route `bisulfid_vs_bisulfide`.*

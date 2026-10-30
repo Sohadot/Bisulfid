@@ -17,7 +17,7 @@
     "evidence_posture": "evidence_sufficient",
     "claim_posture": "claim_pending",
     "validation_posture": "not_validated",
-    "information_gain_posture": "ig_reviewed_no_new_route",
+    "information_gain_posture": "ig_reviewed_route_realization",
     "release_authorization": "not_authorized"
   },
   "derived_contract_c": {
@@ -30,7 +30,7 @@
     "object_informational_validity": "object_valid_governed",
     "new_route_distinctness": "no_new_route_warranted",
     "new_route_classification": "near_duplicate",
-    "posture_result": "ig_reviewed_no_new_route"
+    "posture_result": "ig_reviewed_route_realization"
   },
   "nearest_legacy_routes": [
     {
@@ -51,11 +51,20 @@
   ],
   "proposed_disposition": "governed_reference_no_new_route",
   "blockers_before_any_url": [
-    "claim_posture is claim_pending — the approved claims live in an INACTIVE registry; activation needs an owner decision",
-    "validation_posture is not_validated — needs an independent terminology review (not the author of this sprint)",
-    "release_authorization is not_authorized — owner approval required",
-    "source_lock_status is candidate for all sources (evidence not evidence_locked) — indexation additionally requires evidence_locked",
-    "the existing live page is a legacy status-quo page; replacing its body is a live-HTML change outside this sprint"
+    "information_gain_posture ig_reviewed_route_realization is not honoured until AMD-IG-R03-001 is ratified by a named owner (separate act; merging PRs is not ratification)",
+    "claim_posture claim_pending — 11 claims are narrowly approved in an INACTIVE registry; owner claim activation (owner_acts.json) not signed",
+    "validation_posture not_validated — no signed independent review (packet ready; reviewer needs chemical-nomenclature/lexicography competence)",
+    "evidence_posture evidence_sufficient — 0 of 11 sources locked (L3 needs a re-capture on a later date; L6 human sign-off)",
+    "governance_posture reference_draft / release_authorization not_authorized — owner release authorization not signed",
+    "CLM-TERM-BISULFID-001 (German industry usage) stays pending by design; it is shown only as a recorded boundary"
   ],
-  "authorizes": "nothing public — internal candidate only"
+  "authorizes": "nothing public — internal candidate only",
+  "route_realization": {
+    "policy": "ig_governance_policy.json 1.1.0 (AMD-IG-R03-001 rev 2)",
+    "verified_by": "scripts/governance_scaffolding/route_realization.py:check",
+    "realizes": "/bisulfid-vs-bisulfide/ (existing route bisulfid_vs_bisulfide; no new URL)",
+    "consolidation_obligations": 4,
+    "not_a_localization_of": "/de/bisulfid-vs-bisulfide/ (ungoverned German legacy page; no hreflang emitted)",
+    "status": "structure verified (route_realization.check_structure); AMD-IG-R03-001 awaits owner ratification, so the authority treats this posture as ig_reviewed_no_new_route until then"
+  }
 }
