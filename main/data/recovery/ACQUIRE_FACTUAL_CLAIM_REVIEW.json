@@ -62,5 +62,6 @@
   "contradicted_by_site_data": 2,
   "not_a_factual_claim": 2
  },
- "consequence": "Until AQ-1..AQ-5 are corrected or evidence-backed, /acquire/ should not be indexed: it is the page buyers and press find first, and it currently asserts the spelling equivalence that the evidence does not support. 'noindex, follow' keeps it reachable for direct visitors and keeps the contact working."
+ "consequence": "Until AQ-1..AQ-5 are corrected or evidence-backed, /acquire/ should not be indexed: it is the page buyers and press find first, and it currently asserts the spelling equivalence that the evidence does not support. 'noindex, follow' keeps it reachable for direct visitors and keeps the contact working.",
+ "applied_in": "Release-01 PR-B: AQ-1..AQ-5 replaced; wording differs slightly from 'proposed' where needed to avoid linking to a page not yet rebuilt (the live /bisulfid-vs-bisulfide/ is still the legacy page)."
 }
