@@ -5546,3 +5546,36 @@ Next production action: owner review of PR-1 and authorization of PR-2 (Contract
 
 ### Stop
 Next production action: the owner decides `/acquire/` and supplies the Search Console exports. No deploy, merge or mass directive change was made.
+
+---
+
+## Recovery-03 — Reference Authority Activation & Controlled SEO Recovery
+
+**Date:** 2026-10-30
+**Baseline:** Recovery-02 `fb940e6429`. No live HTML, robots, sitemap, route, release-ledger or deployment change. No decision approved. Full report: `main/data/recovery/RECOVERY_03_REPORT.md`.
+
+**Durable decisions:**
+1. **Historical indexability is migration debt, not authorization.** `/acquire/` is corrected by a STAGED one-line `noindex, follow` change (`URL-DEC-R03-ACQUIRE-001`, proposed). Its contact and body are unchanged, and the ledger is not edited. Simulated deploy gate: PASS. Factual review: 5 of the page's statements need correction or evidence.
+2. **Similar spelling never establishes equivalence.**
+   - 16 verbatim-captured terminology evidence records; 11 narrow claims approved in the still-inactive registry.
+   - English *bisulfide*: dictionary sense = disulfide, while PubChem lists it as a synonym for HS⁻.
+   - IUPAC names HS⁻ sulfanide.
+   - DWDS records neither *Bisulfid* nor *Hydrogensulfid*.
+   - "Bisulfid = German bisulfide" is NOT established. The industry-only usage claim stays pending with its boundary recorded.
+3. **KO-BISULFID-TERMINOLOGY-001** is rendered at the existing route: Gate 12 PASS, 13/13 IG units, Contract C (not_public, noindex). Renderer and Gate 12 IG support multi-concept objects, each unit specific to one concept.
+4. **MoS₂:** 13/13 values re-verified live. A structural IG defect was found (reconstructing an object's own route can never pass R7). Amendment `AMD-IG-R03-001` is proposed, not enacted.
+5. **Homepage EN/DE:**
+   - Reciprocal hreflang only when both specs declare it.
+   - Editorial responsibility stated without names or credentials.
+   - R11 certifications proposed.
+   - The dossier renderer no longer wraps institutional routes.
+6. **Generated-identity pages:**
+   - 12,289 pages classified into 11 families.
+   - R-CANON-1 v1.1.0: similarity nominates, never authorizes; 0 of 453 pairs eligible.
+   - Wave 1 = 15 URLs, proposed with checks and rollback.
+   - Gate gap recorded: unapproved robots downgrades pass the deploy gate.
+
+**Tests:** `test_publication_authority.py` 38/38, `test_distinctiveness.py`, `test_legacy_migration.py`, all governance suites, L0/L1/L2 scripts, renderer `--check`, staged-proposal `--check`, SEO preview checks 4/4, hold ratchet vs `origin/main`: PASS. `validate_all.py` fails only on the pre-existing live `/acquire/` block (identical at `fb940e6429`).
+
+### Stop
+Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AMD-IG-R03-001` and the science-claim posture, and a Search Console export for wave 1.
