@@ -245,7 +245,7 @@ def validate_information_gain_governance():
     post_ids = set(policy.get("posture_ids", []))
     check(class_ids == {"valid_domain_specific_reference", "near_duplicate", "module_relationship", "unresolved"},
           f"IG policy: governed classifications wrong ({sorted(class_ids)})")
-    check(post_ids == {"ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required"},
+    check(post_ids == {"ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required", "ig_reviewed_route_realization"},
           f"IG policy: governed postures wrong ({sorted(post_ids)})")
     # only positive classifications are route-eligible; only ig_reviewed_pass is a route posture
     positive = set(gate.POSITIVE_CLASSIFICATIONS)
@@ -462,6 +462,10 @@ def validate_knowledge_objects():
         check((dc["publication_state"], dc["indexation_state"]) == recomputed,
               f"KO {kid}: derived_contract_c {dc} != recomputed {recomputed}")
         check(recomputed == ("not_public", "noindex"), f"KO {kid}: a reference_draft/ig_not_reviewed KO must be not_public/noindex")
+        if p["information_gain_posture"] == "ig_reviewed_route_realization":
+            import route_realization
+            good, why = route_realization.check(kid)
+            check(good, f"KO {kid}: ig_reviewed_route_realization not verified: {why}")
 
 
 def validate_scientific_provenance():

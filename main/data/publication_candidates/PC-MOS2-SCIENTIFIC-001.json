@@ -18,7 +18,7 @@
   "derived_contract_c": {"publication_state": "not_public", "indexation_state": "noindex"},
   "ig_resolution": {
     "policy_ref": "main/data/information_gain/ig_governance_policy.json",
-    "policy_version": "1.0.0",
+    "policy_version": "1.1.0",
     "evaluated_by": "scripts/governance_scaffolding/information_gain_gate.py:evaluate",
     "object_informational_validity": "object_valid_governed",
     "new_route_distinctness": "no_new_route_warranted",
@@ -29,7 +29,7 @@
   "ig_review": {
     "reviewer": "reference-production-01 human-readable semantic review; re-evaluated under ratified authority (ig-governance-ratification)",
     "reviewed_at": "2026-09-20",
-    "policy_version": "1.0.0",
+    "policy_version": "1.1.0",
     "method": "multi-signal semantic (evidence/claim/source/task); NO numeric score; NO threshold; textual similarity diagnostic only",
     "questions": {
       "1_knowledge_lost_if_absent": "The only governed, sourced scientific identity+bulk-structure knowledge BISULFID holds for MoS2 (formula MoS2; layered; 2H P6_3/mmc; 2H-bulk lattice a). No other governed object/surface holds it.",

@@ -4,7 +4,7 @@
   "site": "bisulfid.com",
   "status": "governed_fixtures",
   "policy_ref": "main/data/information_gain/ig_governance_policy.json",
-  "policy_version": "1.0.0",
+  "policy_version": "1.1.0",
   "governed_by": [
     "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
     "main/data/information_gain/ig_governance_policy.json",
@@ -78,7 +78,7 @@
       "expected_posture": "ig_reviewed_pass",
       "expected_route_eligible": true,
       "fixture_kind": "normative",
-      "policy_version": "1.0.0",
+      "policy_version": "1.1.0",
       "signals": {
         "evidence_set_overlap": "disjoint",
         "claim_set_overlap": "disjoint",
@@ -105,7 +105,7 @@
       "expected_posture": "ig_reviewed_no_new_route",
       "expected_route_eligible": false,
       "fixture_kind": "normative",
-      "policy_version": "1.0.0",
+      "policy_version": "1.1.0",
       "signals": {
         "evidence_set_overlap": "disjoint (legacy route carries NO governed evidence)",
         "claim_set_overlap": "disjoint (legacy route carries NO governed claims)",
@@ -132,7 +132,7 @@
       "expected_posture": "ig_reviewed_no_new_route",
       "expected_route_eligible": false,
       "fixture_kind": "normative",
-      "policy_version": "1.0.0",
+      "policy_version": "1.1.0",
       "signals": {
         "evidence_set_overlap": "partial",
         "claim_set_overlap": "disjoint (different claims)",
@@ -159,7 +159,7 @@
       "expected_posture": "ig_reviewed_no_new_route",
       "expected_route_eligible": false,
       "fixture_kind": "normative",
-      "policy_version": "1.0.0",
+      "policy_version": "1.1.0",
       "signals": {
         "evidence_set_overlap": "disjoint (legacy route carries NO governed evidence)",
         "claim_set_overlap": "disjoint (legacy route carries NO governed claims)",

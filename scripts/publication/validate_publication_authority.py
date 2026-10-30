@@ -18,6 +18,13 @@ States (BLOCK_* fail the run):
   BLOCK_MODIFIED_INDEXED    legacy page with a changed body still requests indexation
   BLOCK_GATE12_VETO         index-approved page that fails Gate 12 / 12-I
   BLOCK_UNAPPROVED_REMOVAL  a sealed legacy URL is missing without an approved redirect/retire decision
+  BLOCK_UNAPPROVED_DOWNGRADE         a legacy page served index is now served noindex, and
+  BLOCK_UNAPPROVED_SITEMAP_REMOVAL   a legacy page listed in a sitemap is no longer listed, with neither an
+                                     approved per-URL decision (url_decisions.json: status approved +
+                                     approved_by + approved_on) nor one of the two enforcement exceptions:
+                                     the release ledger (a not-released route that requested index), or a
+                                     Contract-C binding (the directive is derived, not discretionary).
+  (A canonical change without an approved canonical_to decision is BLOCK_CANONICAL_MISMATCH.)
 
 Usage:
   validate_publication_authority.py --surface DIR [--sitemap-policy status_quo|approved_only] [--json OUT]
@@ -71,6 +78,15 @@ def check_surface(surface, authority, policy, sitemap_policy="status_quo", verdi
                 problems.append("BLOCK_GATE12_VETO")
             if r["basis"] == "legacy_status_quo" and not unchanged and (served_index or served_sm):
                 problems.append("BLOCK_MODIFIED_INDEXED")
+            # Release-01: every DISCRETIONARY downgrade of a legacy page needs an approved per-URL decision.
+            if r["basis"] == "legacy_status_quo" and base:
+                kind = (r.get("decision") or {}).get("decision")
+                if pa.requests_index(base.get("robots")) and not served_index \
+                        and not (r.get("ledger_enforced") or kind == "noindex"):
+                    problems.append("BLOCK_UNAPPROVED_DOWNGRADE")
+                if base.get("sm") and not served_sm \
+                        and not (r.get("ledger_enforced") or kind in ("noindex", "canonical_to")):
+                    problems.append("BLOCK_UNAPPROVED_SITEMAP_REMOVAL")
         if problems:
             state = problems[0]
         elif r["basis"].startswith("contract_c"):
@@ -120,7 +136,8 @@ def main(argv=None):
     if s["blocking"]:
         print(f"PUBLICATION AUTHORITY FAIL: {s['blocking']} blocking page(s).")
         return 1
-    print("PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index.")
+    print("PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, "
+          "no discretionary downgrade without an approved decision.")
     return 0
 
 

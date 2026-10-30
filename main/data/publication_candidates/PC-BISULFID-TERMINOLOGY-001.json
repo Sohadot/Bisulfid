@@ -26,7 +26,7 @@
   },
   "ig_resolution": {
     "policy_ref": "main/data/information_gain/ig_governance_policy.json",
-    "policy_version": "1.0.0",
+    "policy_version": "1.1.0",
     "object_informational_validity": "object_valid_governed",
     "new_route_distinctness": "no_new_route_warranted",
     "new_route_classification": "near_duplicate",

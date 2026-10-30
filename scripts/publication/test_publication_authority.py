@@ -24,6 +24,7 @@ import generate_sitemaps as gs  # noqa: E402
 import distinctiveness_core as dc  # noqa: E402
 
 POLICY = dc.load_policy()
+SIGNED = {"approved_by": "owner (fixture)", "approved_on": "2026-10-30"}
 GREEN = {"governance": "governed", "evidence": "evidence_locked", "claim": "claim_approved",
          "validation": "validated", "ig": "ig_reviewed_pass", "release": "authorized"}
 
@@ -123,11 +124,14 @@ class ResolverTests(unittest.TestCase):
         # Nothing in the resolver reads Gate 12 / 12-I: a brand-new institutional page has no authority.
         self.assertFalse(self.f.authority().resolve("/new-hub/")["render"])
         cert = {"certification_id": "R11-T", "path": "/new-hub/", "governance": "governed", "validation": "validated",
-                "release": "authorized", "status": "certified"}
+                "release": "authorized", "status": "certified", "certified_by": "owner (fixture)", "certified_on": "2026-10-30"}
         r = self.f.authority(certs=[cert]).resolve("/new-hub/")
         self.assertEqual(r["robots"], "index, follow", "only a Contract-C R11 certification makes it indexable")
         r = self.f.authority(certs=[dict(cert, status="proposed")]).resolve("/new-hub/")
         self.assertFalse(r["render"], "an unapproved certification is ignored")
+        for bad in (dict(cert, certified_by=None), dict(cert, certified_on=None), dict(cert, certified_by="claude-code-agent")):
+            self.assertFalse(self.f.authority(certs=[bad]).resolve("/new-hub/")["render"],
+                             "a certification without a named human signer and date is ignored")
 
     def test_contract_c_governs_bound_urls(self):
         a = self.f.authority(postures={"/t/alpha/": (GREEN, "fixture")})
@@ -145,18 +149,18 @@ class ResolverTests(unittest.TestCase):
         self.assertTrue(any("release_ledger" in n for n in r["notes"]))
 
     def test_decisions_only_downgrade_and_respect_status(self):
-        d = {"decision_id": "D1", "path": "/t/beta/", "decision": "noindex", "status": "approved"}
+        d = {"decision_id": "D1", "path": "/t/beta/", "decision": "noindex", "status": "approved", **SIGNED}
         r = self.f.authority(decisions=[d]).resolve("/t/beta/")
         self.assertEqual((r["robots"], r["sitemap"]), ("noindex, follow", False))
         r = self.f.authority(decisions=[dict(d, status="proposed")]).resolve("/t/beta/")
         self.assertEqual(r["robots"], "index, follow", "proposals are never applied")
-        canon = {"decision_id": "D2", "path": "/t/beta/", "decision": "canonical_to", "target": "/t/alpha/", "status": "approved"}
+        canon = {"decision_id": "D2", "path": "/t/beta/", "decision": "canonical_to", "target": "/t/alpha/", "status": "approved", **SIGNED}
         r = self.f.authority(decisions=[canon]).resolve("/t/beta/")
         self.assertEqual((r["canonical"], r["sitemap"]), ("/t/alpha/", False))
         bad = dict(canon, target="/t/gamma/")
         r = self.f.authority(decisions=[bad]).resolve("/t/beta/")
         self.assertEqual(r["canonical"], "/t/beta/", "canonical to a noindex target is refused")
-        red = {"decision_id": "D3", "path": "/t/beta/", "decision": "redirect_to", "target": "/t/alpha/", "status": "approved"}
+        red = {"decision_id": "D3", "path": "/t/beta/", "decision": "redirect_to", "target": "/t/alpha/", "status": "approved", **SIGNED}
         self.assertFalse(self.f.authority(decisions=[red]).resolve("/t/beta/")["render"])
 
 
@@ -189,7 +193,10 @@ class SurfaceTests(unittest.TestCase):
         self.assertEqual(self.f.states(self.f.authority())["/t/beta/"], "BLOCK_MODIFIED_INDEXED")
         write_page(self.f.root, "/t/beta/", "Beta Sulfide", robots="noindex, follow", extra="<p>Repaired paragraph.</p>")
         self.f.sitemap(["/t/alpha/"])
-        self.assertEqual(self.f.states(self.f.authority())["/t/beta/"], "LEGACY_REPAIR_NOINDEX")
+        self.assertEqual(self.f.states(self.f.authority())["/t/beta/"], "BLOCK_UNAPPROVED_DOWNGRADE",
+                         "a noindex repair is a discretionary downgrade and needs an approved decision")
+        d = {"decision_id": "D6", "path": "/t/beta/", "decision": "noindex", "status": "approved", **SIGNED}
+        self.assertEqual(self.f.states(self.f.authority(decisions=[d]))["/t/beta/"], "LEGACY_REPAIR_NOINDEX")
 
     def test_noindex_with_new_cross_canonical_blocks(self):
         write_page(self.f.root, "/t/gamma/", "Gamma Sulfide", robots="noindex, follow", canon="/t/alpha/")
@@ -200,7 +207,7 @@ class SurfaceTests(unittest.TestCase):
         shutil.rmtree(os.path.join(self.f.root, "t", "beta"))
         self.f.sitemap(["/t/alpha/"])
         self.assertEqual(self.f.states(self.f.authority())["/t/beta/"], "BLOCK_UNAPPROVED_REMOVAL")
-        d = {"decision_id": "D4", "path": "/t/beta/", "decision": "retire", "status": "approved"}
+        d = {"decision_id": "D4", "path": "/t/beta/", "decision": "retire", "status": "approved", **SIGNED}
         self.assertNotIn("/t/beta/", self.f.states(self.f.authority(decisions=[d])))
 
     def test_index_approved_page_failing_gate12_is_vetoed(self):
@@ -208,10 +215,77 @@ class SurfaceTests(unittest.TestCase):
         self.assertEqual(self.f.states(a)["/t/alpha/"], "BLOCK_GATE12_VETO")
 
     def test_applied_canonical_decision_is_served_correctly(self):
-        d = {"decision_id": "D5", "path": "/t/beta/", "decision": "canonical_to", "target": "/t/alpha/", "status": "approved"}
+        d = {"decision_id": "D5", "path": "/t/beta/", "decision": "canonical_to", "target": "/t/alpha/", "status": "approved", **SIGNED}
         write_page(self.f.root, "/t/beta/", "Beta Sulfide", canon="/t/alpha/")
         self.f.sitemap(["/t/alpha/"])
         self.assertEqual(self.f.states(self.f.authority(decisions=[d]))["/t/beta/"], "LEGACY_STATUS_QUO")
+
+
+class DiscretionaryDowngradeTests(unittest.TestCase):
+    """Release-01 §1: every discretionary robots downgrade, sitemap removal or canonical change needs an
+    explicitly approved per-URL decision; only ledger and Contract-C enforcement are exempt."""
+
+    def setUp(self):
+        self.f = Fixture()
+
+    def tearDown(self):
+        self.f.close()
+
+    def noindex_beta(self):
+        write_page(self.f.root, "/t/beta/", "Beta Sulfide", robots="noindex, follow")
+        self.f.sitemap(["/t/alpha/"])
+
+    def test_unapproved_robots_downgrade_blocks(self):
+        self.noindex_beta()
+        self.assertEqual(self.f.states(self.f.authority())["/t/beta/"], "BLOCK_UNAPPROVED_DOWNGRADE")
+
+    def test_approved_noindex_decision_passes(self):
+        self.noindex_beta()
+        d = {"decision_id": "A1", "path": "/t/beta/", "decision": "noindex", "status": "approved", **SIGNED}
+        self.assertEqual(self.f.states(self.f.authority(decisions=[d]))["/t/beta/"], "LEGACY_STATUS_QUO")
+
+    def test_proposed_or_unsigned_decision_does_not_count(self):
+        self.noindex_beta()
+        for d in ({"decision_id": "A2", "path": "/t/beta/", "decision": "noindex", "status": "proposed", **SIGNED},
+                  {"decision_id": "A3", "path": "/t/beta/", "decision": "noindex", "status": "approved"},
+                  {"decision_id": "A4", "path": "/t/beta/", "decision": "noindex", "status": "approved",
+                   "approved_by": "owner", "approved_on": None},
+                  {"decision_id": "A5", "path": "/t/beta/", "decision": "deindex_all", "status": "approved", **SIGNED}):
+            self.assertEqual(self.f.states(self.f.authority(decisions=[d]))["/t/beta/"], "BLOCK_UNAPPROVED_DOWNGRADE", d)
+
+    def test_decision_for_another_url_does_not_cover(self):
+        self.noindex_beta()
+        d = {"decision_id": "A6", "path": "/t/alpha/", "decision": "noindex", "status": "approved", **SIGNED}
+        self.assertEqual(self.f.states(self.f.authority(decisions=[d]))["/t/beta/"], "BLOCK_UNAPPROVED_DOWNGRADE")
+
+    def test_unapproved_sitemap_removal_blocks_even_if_still_indexed(self):
+        self.f.sitemap(["/t/alpha/"])
+        self.assertEqual(self.f.states(self.f.authority())["/t/beta/"], "BLOCK_UNAPPROVED_SITEMAP_REMOVAL")
+
+    def test_unapproved_canonical_change_blocks(self):
+        write_page(self.f.root, "/t/beta/", "Beta Sulfide", canon="/t/alpha/")
+        self.assertEqual(self.f.states(self.f.authority())["/t/beta/"], "BLOCK_CANONICAL_MISMATCH")
+
+    def test_contract_c_derived_noindex_is_exempt(self):
+        self.noindex_beta()
+        noidx = dict(GREEN, evidence="evidence_sufficient")  # R9 -> public_noindex
+        st = self.f.states(self.f.authority(postures={"/t/beta/": (noidx, "fixture")}))
+        self.assertEqual(st["/t/beta/"], "GOVERNED_NOINDEX")
+
+    def test_ledger_exception_is_narrow(self):
+        a = self.f.authority()
+        route = {"route_id": "fixture_beta", "path": "/t/beta/"}
+        a.route_by_path["/t/beta/"] = route
+        a.ledger["fixture_beta"] = {"route_id": "fixture_beta", "release_status": "blocked", "blockers": ["fixture"]}
+        self.noindex_beta()
+        self.assertEqual(self.f.states(a)["/t/beta/"], "LEGACY_STATUS_QUO", "ledger enforcement is exempt")
+        a.ledger["fixture_beta"]["release_status"] = "released"
+        self.assertEqual(self.f.states(a)["/t/beta/"], "BLOCK_UNAPPROVED_DOWNGRADE", "a released route is not exempt")
+
+    def test_live_surface_wave1_simulation_would_block(self):
+        self.noindex_beta()
+        st = self.f.states(self.f.authority())
+        self.assertTrue(st["/t/beta/"].startswith("BLOCK_UNAPPROVED"))
 
 
 class SitemapTests(unittest.TestCase):

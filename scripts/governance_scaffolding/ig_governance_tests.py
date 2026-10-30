@@ -73,7 +73,7 @@ def main():
        and class_by_id["unresolved"]["route_eligible"] is False)
 
     # 4 the three governed postures exist; only ig_reviewed_pass is route-eligible
-    ok("4_postures", set(policy["posture_ids"]) == {"ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required"}
+    ok("4_postures", set(policy["posture_ids"]) == {"ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required", "ig_reviewed_route_realization"}
        and post_by_id["ig_reviewed_pass"]["route_eligible"] is True
        and post_by_id["ig_reviewed_no_new_route"]["route_eligible"] is False
        and post_by_id["ig_review_required"]["route_eligible"] is False)
