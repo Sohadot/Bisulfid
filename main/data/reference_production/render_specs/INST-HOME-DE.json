@@ -1,0 +1,136 @@
+{
+ "spec_id": "INST-HOME-DE",
+ "version": "1.0.0",
+ "status": "preview",
+ "page_class": "institutional",
+ "institutional_function": "gateway_home",
+ "route_id": "de_home",
+ "path": "/de/",
+ "language": "de",
+ "purpose": "German homepage rebuild, the reciprocal equivalent of INST-HOME-EN (same institutional function, written for German readers, not a word-for-word copy). Asserts no chemistry or terminology fact; numbers come from {{GOV:...}}.",
+ "nav_label": "Seitennavigation",
+ "nav": [
+  {
+   "path": "/de/",
+   "label": "BISULFID"
+  },
+  {
+   "path": "/molybdenum-disulfide/",
+   "label": "MoS2 (Englisch)"
+  },
+  {
+   "path": "/bisulfid-vs-bisulfide/",
+   "label": "Bisulfid und bisulfide (Englisch)"
+  },
+  {
+   "path": "/methodology/",
+   "label": "Methodik (Englisch)"
+  },
+  {
+   "path": "/",
+   "label": "English"
+  }
+ ],
+ "alternates": {
+  "en": "/",
+  "de": "/de/",
+  "x-default": "/"
+ },
+ "seo": {
+  "title": "BISULFID — Begriffe der Schwefelchemie mit geprüften Belegen",
+  "description": "BISULFID dokumentiert Begriffe der Schwefelchemie auf Deutsch und Englisch und erstellt Referenzseiten nur aus geprüften, zitierten Belegen.",
+  "search_intents": [
+   {
+    "query_class": "navigational / brand (DE)",
+    "examples": [
+     "bisulfid",
+     "bisulfid.com"
+    ],
+    "intent": "die Website erreichen und verstehen, was sie ist"
+   },
+   {
+    "query_class": "routing (DE)",
+    "examples": [
+     "Bisulfid Bedeutung",
+     "Bisulfid oder Bisulfide"
+    ],
+    "intent": "bedient durch die Terminologie-Referenz; die Startseite verweist dorthin"
+   }
+  ],
+  "json_ld": {
+   "@type": "WebSite",
+   "name": "BISULFID",
+   "url": "https://bisulfid.com/de/",
+   "inLanguage": "de"
+  },
+  "hreflang": "reciprocal with INST-HOME-EN"
+ },
+ "h1": "BISULFID",
+ "lead": "Ein Referenzprojekt zur Sprache der Schwefelchemie: deutsche und englische Fachbegriffe, die Verbindungen, die sie bezeichnen, und die Belege hinter jeder Aussage.",
+ "sections": [
+  {
+   "heading": "Erste geprüfte Referenzen",
+   "paragraphs": [
+    "Nach den aktuellen Regeln sind bisher {{GOV:knowledge_objects}} Referenzen entstanden, vorerst auf Englisch. Die erste behandelt Molybdändisulfid (MoS2) und stützt sich auf {{GOV:mos2_admitted_evidence}} zugelassene Belege, jeweils zurückgeführt auf die Studie oder Datenbank, aus der sie stammen."
+   ],
+   "links": [
+    {
+     "path": "/molybdenum-disulfide/",
+     "label": "Molybdenum disulfide (MoS2), Englisch"
+    }
+   ]
+  },
+  {
+   "heading": "Die Frage im Namen",
+   "paragraphs": [
+    "‚Bisulfid‘ und ‚bisulfide‘ unterscheiden sich um einen Buchstaben. Ob ‚Bisulfid‘ einfach die deutsche Schreibung des englischen Wortes ist, ist selbst eine terminologische Aussage. Sie wird hier erst als Tatsache dargestellt, wenn ihre Quellen geprüft und zugelassen sind.",
+    "Die Terminologie-Referenz zeigt anhand von {{GOV:term_evidence}} zugelassenen Belegen, welche Bedeutung Wörterbücher, die IUPAC und eine chemische Datenbank der jeweiligen Schreibung zuordnen und wo die Belege enden. {{GOV:bisulfid_claims_pending}} weitere Aussagen sind noch offen."
+   ],
+   "links": [
+    {
+     "path": "/bisulfid-vs-bisulfide/",
+     "label": "Bisulfid und bisulfide (Englisch)"
+    }
+   ]
+  },
+  {
+   "heading": "Wie eine Aussage auf eine Referenzseite gelangt",
+   "paragraphs": [
+    "Eine Quelle wird zuerst identifiziert und geprüft und dann für einen bestimmten Zweck zugelassen. Eine Passage daraus wird mit ihrer genauen Fundstelle als Beleg erfasst, und eine Aussage wird nur anhand zugelassener Belege freigegeben. Zahlen werden so wiedergegeben, wie die Quelle sie druckt; weichen zwei Bestimmungen voneinander ab, werden beide gezeigt und nicht gemittelt."
+   ],
+   "links": [
+    {
+     "path": "/methodology/",
+     "label": "Methodik (Englisch)"
+    }
+   ]
+  },
+  {
+   "heading": "Deutsch und Englisch",
+   "paragraphs": [
+    "Eine deutsche Seite entsteht, wenn sie eine deutschsprachige Frage beantwortet, etwa welche Form ein deutscher Fachtext verwendet, und nicht als Kopie einer englischen Seite. Deshalb sind manche Referenzen vorerst nur auf Englisch verfügbar."
+   ],
+   "links": [
+    {
+     "path": "/",
+     "label": "English"
+    }
+   ]
+  },
+  {
+   "heading": "Verantwortung für diese Website",
+   "paragraphs": [
+    "BISULFID ist ein unabhängiges Referenzprojekt der Inhaberin bzw. des Inhabers der Domain bisulfid.com. Es besteht keine Verbindung zur IUPAC, zu Wörterbuchverlagen oder zu Unternehmen und Datenbanken, die auf den Seiten genannt werden.",
+    "Jede Referenzseite nennt die Belege hinter jeder Aussage und das Abrufdatum. Eine fachliche Begutachtung durch eine benannte Person wird nicht behauptet; eine Seite wird erst dann als unabhängig geprüft ausgewiesen, wenn eine solche Prüfung stattgefunden hat."
+   ],
+   "links": []
+  },
+  {
+   "heading": "Was Sie hier nicht finden",
+   "paragraphs": [
+    "BISULFID gibt keine Hinweise zu Sicherheit, Handhabung, Medizin, Beschaffung oder Investitionen. Dafür gelten das Sicherheitsdatenblatt des jeweiligen Produkts und der Rat qualifizierter Fachleute."
+   ],
+   "links": []
+  }
+ ]
+}

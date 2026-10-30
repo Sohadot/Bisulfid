@@ -76,7 +76,14 @@ def main() -> int:
             r["route_id"]: r
             for r in json.loads(class_path.read_text(encoding="utf-8"))["routes"]
         }
+    # Institutional pages (home, methodology, glossary, navigation...) are NOT reference dossiers:
+    # they are rendered from INST-* specs under Gate 12-I, so this renderer never wraps them.
+    inst = json.loads((ROOT / "main/data/distinctiveness/institutional_surface_registry.json").read_text(encoding="utf-8"))
+    inst_ids = {b["route_id"] for b in inst["bindings"] if b.get("route_id")}
+    inst_paths = {b["path"] for b in inst["bindings"] if b.get("path")}
     released = [r for r in ledger["records"] if r["release_status"] == "released"]
+    institutional = [r for r in released if r["route_id"] in inst_ids or r["route_path"] in inst_paths]
+    released = [r for r in released if r not in institutional]
     # Set of real page paths (no leading/trailing slash) used to decide which
     # breadcrumb ancestors are real links vs plain text. Combine the pages this
     # render produces with any pages already present on disk (foundation/hub
@@ -157,7 +164,7 @@ def main() -> int:
         written += 1
         if (i + 1) % 2000 == 0:
             print(f"  Rendered {i + 1}/{len(released)}...")
-    print(f"Rendered: {written}  (skipped as not authorized: {len(skipped)})")
+    print(f"Rendered: {written}  (skipped as not authorized: {len(skipped)}; institutional, not a dossier: {len(institutional)})")
     if errors:
         for e in errors[:20]:
             print(f"  ERROR: {e}")

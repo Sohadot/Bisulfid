@@ -269,9 +269,12 @@ class RendererConformanceTests(unittest.TestCase):
                              "an unauthorized page is not rendered at all")
             b = open(os.path.join(out, "bisulfid", "index.html"), encoding="utf-8").read()
             self.assertIn('<meta name="robots" content="noindex, follow">', b, "a downgraded page stays downgraded")
-            h = open(os.path.join(out, "index.html"), encoding="utf-8").read()
-            self.assertIn('<meta name="robots" content="index, follow">', h, "status quo home keeps what it was served")
+            h = open(os.path.join(out, "what-is-bisulfid", "index.html"), encoding="utf-8").read()
+            self.assertIn('<meta name="robots" content="index, follow">', h, "a status-quo page keeps what it was served")
             self.assertNotIn("{{", h)
+            for inst in ("index.html", os.path.join("de", "index.html"), os.path.join("methodology", "index.html")):
+                self.assertFalse(os.path.exists(os.path.join(out, inst)),
+                                 f"institutional page {inst} must not be wrapped in dossier boilerplate")
         finally:
             shutil.rmtree(out)
 
@@ -319,7 +322,7 @@ class PreviewTests(unittest.TestCase):
         import render_institutional_preview as ri
         self.assertEqual(rk.main(["--check"]), 0)
         self.assertEqual(ri.main(["--check"]), 0)
-        for p in ("molybdenum-disulfide", "bisulfid-vs-bisulfide", "home"):
+        for p in ("molybdenum-disulfide", "bisulfid-vs-bisulfide", "home", "de"):
             t = open(os.path.join(ROOT, "main", "data", "reference_production", "previews", p, "index.html"), encoding="utf-8").read()
             self.assertIn('<meta name="robots" content="noindex, nofollow">', t)
 
@@ -328,6 +331,32 @@ class PreviewTests(unittest.TestCase):
         for phrase in ("bisulfid is the german", "german spelling of bisulfide.", "bisulfide is hs"):
             self.assertNotIn(phrase, t)
         self.assertIn("will be stated as fact only after its sources are verified and admitted", t)
+
+    def test_homepage_hreflang_is_reciprocal_or_absent(self):
+        import render_institutional_preview as ri
+        en = json.load(open(os.path.join(ri.SPEC_DIR, "INST-HOME-EN.json"), encoding="utf-8"))
+        self.assertEqual(dict(ri.alternates(en)), {"en": "/", "de": "/de/", "x-default": "/"})
+        for p in ("home", "de"):
+            t = open(os.path.join(ROOT, "main", "data", "reference_production", "previews", p, "index.html"), encoding="utf-8").read()
+            self.assertIn('<link rel="alternate" hreflang="de" href="https://bisulfid.com/de/">', t)
+            self.assertIn('<link rel="alternate" hreflang="en" href="https://bisulfid.com/">', t)
+        one_sided = dict(en, alternates={"en": "/", "fr": "/fr/"})
+        with self.assertRaises(ri.RenderError):
+            ri.alternates(one_sided)
+
+    def test_r11_home_certifications_are_proposals_only(self):
+        a = pa.Authority()
+        for path in ("/", "/de/"):
+            self.assertEqual(a.contract_c(path), (None, None), "a proposed R11 certification binds nothing")
+        d = json.load(open(os.path.join(ROOT, "main", "data", "publication", "nonfactual_certifications.json")))
+        self.assertTrue(d["certifications"])
+        self.assertTrue(all(c["status"] == "proposed" and c["certified_by"] is None for c in d["certifications"]))
+
+    def test_homepage_claims_no_credentials(self):
+        for p in ("home", "de"):
+            t = open(os.path.join(ROOT, "main", "data", "reference_production", "previews", p, "index.html"), encoding="utf-8").read().lower()
+            for phrase in ("dr.", "phd", "professor", "our experts", "reviewed by", "editor-in-chief"):
+                self.assertNotIn(phrase, t)
 
     def test_homepage_numbers_come_from_registries(self):
         import render_institutional_preview as ri

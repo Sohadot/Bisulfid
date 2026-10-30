@@ -199,7 +199,7 @@
       "Governance status"
      ]
     ],
-    "substantive_words": 924,
+    "substantive_words": 923,
     "nearest_public_page": {
      "similarity": 0.0,
      "jaccard": 0.0,
@@ -250,7 +250,7 @@
    "measures": {
     "title": "BISULFID — Sulfur Chemistry Terms and Evidence-Backed Reference",
     "title_chars": 63,
-    "description_chars": 143,
+    "description_chars": 126,
     "headings": [
      [
       1,
@@ -274,10 +274,14 @@
      ],
      [
       2,
+      "Who is responsible for this site"
+     ],
+     [
+      2,
       "What you will not find here"
      ]
     ],
-    "substantive_words": 254,
+    "substantive_words": 362,
     "nearest_public_page": {
      "similarity": 0.0,
      "jaccard": 0.0,
@@ -286,7 +290,80 @@
     },
     "template_sentence_ratio_vs_public": 0.0,
     "skeleton_shared_with_public_pages": 0,
-    "internal_links": 10,
+    "internal_links": 12,
+    "external_provenance_links": 0
+   },
+   "gate12": {
+    "class": "Gate 12-I",
+    "function": "gateway_home",
+    "verdict": "PASS",
+    "failures": []
+   },
+   "pass": true
+  },
+  {
+   "name": "Homepage (DE)",
+   "preview": "main/data/reference_production/previews/de/index.html",
+   "intended_path": "/de/",
+   "checks": {
+    "title_30_65": true,
+    "description_70_160": true,
+    "one_canonical_absolute_intended": true,
+    "robots_present_noindex_preview": true,
+    "html_lang": true,
+    "json_ld_valid": true,
+    "exactly_one_h1": true,
+    "no_skipped_heading_level": true,
+    "no_source_required_or_placeholder_leak": true,
+    "internal_links_resolve": true,
+    "declared_intents_served": true,
+    "gate12_pass": true,
+    "distinct_from_public_surface": true
+   },
+   "measures": {
+    "title": "BISULFID — Begriffe der Schwefelchemie mit geprüften Belegen",
+    "title_chars": 60,
+    "description_chars": 140,
+    "headings": [
+     [
+      1,
+      "BISULFID"
+     ],
+     [
+      2,
+      "Erste geprüfte Referenzen"
+     ],
+     [
+      2,
+      "Die Frage im Namen"
+     ],
+     [
+      2,
+      "Wie eine Aussage auf eine Referenzseite gelangt"
+     ],
+     [
+      2,
+      "Deutsch und Englisch"
+     ],
+     [
+      2,
+      "Verantwortung für diese Website"
+     ],
+     [
+      2,
+      "Was Sie hier nicht finden"
+     ]
+    ],
+    "substantive_words": 295,
+    "nearest_public_page": {
+     "similarity": 0.0,
+     "jaccard": 0.0,
+     "overlap_coefficient": 0.0,
+     "closest_page": "site/public/acquire/index.html"
+    },
+    "template_sentence_ratio_vs_public": 0.0,
+    "skeleton_shared_with_public_pages": 0,
+    "internal_links": 9,
     "external_provenance_links": 0
    },
    "gate12": {

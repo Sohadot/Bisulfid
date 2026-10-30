@@ -26,15 +26,37 @@ class RenderError(Exception):
     pass
 
 
+SPEC_DIR = os.path.join(DATA, "reference_production", "render_specs")
+
+
 def gov_values():
     import render_ko_reference as rk
-    spec = json.load(open(os.path.join(DATA, "reference_production", "render_specs", "KO-MOS2-SCIENTIFIC-001.json"), encoding="utf-8"))
-    mos2 = rk.build(spec)
+
+    def ko(name):
+        return rk.build(json.load(open(os.path.join(SPEC_DIR, name), encoding="utf-8")))
+    mos2, term = ko("KO-MOS2-SCIENTIFIC-001.json"), ko("KO-BISULFID-TERMINOLOGY-001.json")
     claims = json.load(open(os.path.join(DATA, "claims", "terminology_claims.json"), encoding="utf-8"))["claims"]
     pending = [c for c in claims if c["status"] == "pending_review"
                and {"bisulfid", "bisulfide"} & set(c.get("related_terms") or [])]
     return {"mos2_admitted_evidence": str(len(mos2["provenance"])), "bisulfid_claims_pending": str(len(pending)),
+            "term_evidence": str(len(term["provenance"])), "term_claims_approved": str(len(term["ko"]["claim_ids"])),
             "knowledge_objects": str(len(json.load(open(os.path.join(DATA, "knowledge_objects", "knowledge_object_registry.json")))["knowledge_objects"]))}
+
+
+def alternates(spec):
+    """Reciprocal hreflang: emitted only if every declared alternate has an INST spec of the same
+    institutional function that declares exactly the same set (no one-sided or guessed pairs)."""
+    alt = spec.get("alternates")
+    if not alt:
+        return []
+    specs = [json.load(open(f, encoding="utf-8")) for f in glob.glob(os.path.join(SPEC_DIR, "INST-*.json"))]
+    for lang, path in alt.items():
+        if lang == "x-default":
+            continue
+        other = next((x for x in specs if x.get("path") == path and x.get("language") == lang), None)
+        if not other or other.get("institutional_function") != spec["institutional_function"] or other.get("alternates") != alt:
+            raise RenderError(f"hreflang {lang} -> {path} is not reciprocated by an equivalent INST spec")
+    return sorted(alt.items())
 
 
 def resolve(text, gov):
@@ -66,7 +88,13 @@ def build(spec):
         secs.append(f"<section class=\"home-section\">\n<h2>{e(s['heading'])}</h2>\n{paras}\n{links}\n</section>")
     seo = spec["seo"]
     ld = dict({"@context": "https://schema.org"}, **seo["json_ld"])
-    path = "/" if spec["route_id"] == "home" else None
+    path = spec["path"]
+    nav = "".join(f"<li><a href=\"{e(n['path'])}\"{' class=\"site-nav-brand\"' if i == 0 else ''}>{e(n['label'])}</a></li>"
+                  for i, n in enumerate(spec["nav"]))
+    for n in spec["nav"]:
+        if not link_ok(n["path"]):
+            raise RenderError(f"nav link {n['path']} does not resolve")
+    hl = "".join(f"\n  <link rel=\"alternate\" hreflang=\"{e(lang)}\" href=\"{SITE}{e(p)}\">" for lang, p in alternates(spec))
     page = f"""<!DOCTYPE html>
 <html lang="{e(spec['language'])}" dir="ltr">
 <head>
@@ -75,17 +103,14 @@ def build(spec):
   <title>{e(seo['title'])}</title>
   <meta name="description" content="{e(seo['description'])}">
   <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="{SITE}{path}">
+  <link rel="canonical" href="{SITE}{path}">{hl}
   <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
   <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
 <body class="bs-control-room bisulfid-atlas" data-institutional-preview="{e(spec['spec_id'])}">
   <div class="bs-control-room__shell">
     <header class="site-header atlas-header" role="banner">
-      <nav aria-label="Atlas navigation"><ul class="site-nav-list">
-        <li><a href="/" class="site-nav-brand">BISULFID</a></li><li><a href="/molybdenum-disulfide/">MoS2</a></li>
-        <li><a href="/methodology/">Methodology</a></li><li><a href="/sources/">Sources</a></li><li><a href="/de/">Deutsch</a></li>
-      </ul></nav>
+      <nav aria-label="{e(spec.get('nav_label', 'Site navigation'))}"><ul class="site-nav-list">{nav}</ul></nav>
     </header>
     <main id="main-content" role="main">
       <article class="home public-page" lang="{e(spec['language'])}">
@@ -103,12 +128,16 @@ def build(spec):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--spec", default=os.path.join(DATA, "reference_production", "render_specs", "INST-HOME-EN.json"))
+    ap.add_argument("--spec", help="one INST spec (default: every INST-*.json)")
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--write", action="store_true")
     g.add_argument("--check", action="store_true")
     a = ap.parse_args(argv)
-    spec = json.load(open(a.spec, encoding="utf-8"))
+    paths = [a.spec] if a.spec else sorted(glob.glob(os.path.join(SPEC_DIR, "INST-*.json")))
+    return max(run(json.load(open(p, encoding="utf-8")), a) for p in paths)
+
+
+def run(spec, a):
     try:
         path, page = build(spec)
     except RenderError as exc:

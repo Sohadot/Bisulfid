@@ -35,6 +35,8 @@ PREVIEWS = [
      "markdown": "main/content/en/pages/bisulfid-vs-bisulfide.md", "class": "knowledge_reference"},
     {"name": "Homepage", "file": "main/data/reference_production/previews/home/index.html", "path": "/",
      "spec": "main/data/reference_production/render_specs/INST-HOME-EN.json", "class": "institutional", "route_id": "home"},
+    {"name": "Homepage (DE)", "file": "main/data/reference_production/previews/de/index.html", "path": "/de/",
+     "spec": "main/data/reference_production/render_specs/INST-HOME-DE.json", "class": "institutional", "route_id": "de_home"},
 ]
 
 
