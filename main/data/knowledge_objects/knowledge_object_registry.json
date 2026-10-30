@@ -377,18 +377,18 @@
         "evidence_posture": "evidence_sufficient",
         "claim_posture": "claim_pending",
         "validation_posture": "not_validated",
-        "information_gain_posture": "ig_reviewed_no_new_route",
+        "information_gain_posture": "ig_reviewed_route_realization",
         "release_authorization": "not_authorized"
       },
       "posture_notes": {
         "claim_posture": "claim_pending — the 11 claims are narrowly approved in terminology_claims.json, but that registry file is INACTIVE; approval is not activation.",
         "evidence_posture": "Every bound record is evidence_verified and admitted for its declared use; all sources stay lock 'candidate', so evidence is NOT evidence_locked.",
-        "information_gain_posture": "ig_reviewed_no_new_route: realized on the existing canonical route."
+        "information_gain_posture": "ig_reviewed_route_realization (IG policy 1.1.0): replaces the body of its own existing route /bisulfid-vs-bisulfide/; no new URL; 4 same-task duplicates carry consolidation obligations."
       },
       "derived_contract_c": {
         "publication_state": "not_public",
         "indexation_state": "noindex",
-        "derived_by": "scripts/governance_scaffolding/contract_c_derive.py derive(reference_draft, evidence_sufficient, claim_pending, not_validated, ig_reviewed_no_new_route, not_authorized)"
+        "derived_by": "scripts/governance_scaffolding/contract_c_derive.py derive(reference_draft, evidence_sufficient, claim_pending, not_validated, ig_reviewed_route_realization, not_authorized)"
       },
       "notes": "Recovery-03 terminology Knowledge Object. Authorizes no route/HTML/sitemap/indexation."
     }
