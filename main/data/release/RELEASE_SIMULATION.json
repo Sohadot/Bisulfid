@@ -1,0 +1,83 @@
+{
+ "note": "Scenario all_acts SIMULATES signatures that do not exist. It is evidence that the staged HTML would pass the deploy gate once the real acts are recorded, not an authorization.",
+ "staged": [
+  "/",
+  "/bisulfid-vs-bisulfide/",
+  "/de/",
+  "/molybdenum-disulfide/"
+ ],
+ "now": {
+  "summary": {
+   "counts": {
+    "LEGACY_REPAIR_NOINDEX": 1,
+    "LEGACY_STATUS_QUO": 14036,
+    "BLOCK_MODIFIED_INDEXED": 4
+   },
+   "blocking": 4,
+   "contract_c_rl_debt_indexed_legacy_failing_gate12": 14028
+  },
+  "staged_pages": {
+   "/bisulfid-vs-bisulfide/": {
+    "state": "BLOCK_MODIFIED_INDEXED",
+    "gate12": "PASS",
+    "served_robots": "index, follow",
+    "basis": "legacy_status_quo"
+   },
+   "/de/": {
+    "state": "BLOCK_MODIFIED_INDEXED",
+    "gate12": "PASS",
+    "served_robots": "index, follow",
+    "basis": "legacy_status_quo"
+   },
+   "/": {
+    "state": "BLOCK_MODIFIED_INDEXED",
+    "gate12": "PASS",
+    "served_robots": "index, follow",
+    "basis": "legacy_status_quo"
+   },
+   "/molybdenum-disulfide/": {
+    "state": "BLOCK_MODIFIED_INDEXED",
+    "gate12": "PASS",
+    "served_robots": "index, follow",
+    "basis": "legacy_status_quo"
+   }
+  }
+ },
+ "all_acts": {
+  "summary": {
+   "counts": {
+    "LEGACY_REPAIR_NOINDEX": 1,
+    "LEGACY_STATUS_QUO": 14036,
+    "GOVERNED_INDEX": 4
+   },
+   "blocking": 0,
+   "contract_c_rl_debt_indexed_legacy_failing_gate12": 14028
+  },
+  "staged_pages": {
+   "/bisulfid-vs-bisulfide/": {
+    "state": "GOVERNED_INDEX",
+    "gate12": "PASS",
+    "served_robots": "index, follow",
+    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts)"
+   },
+   "/de/": {
+    "state": "GOVERNED_INDEX",
+    "gate12": "PASS",
+    "served_robots": "index, follow",
+    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts)"
+   },
+   "/": {
+    "state": "GOVERNED_INDEX",
+    "gate12": "PASS",
+    "served_robots": "index, follow",
+    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts)"
+   },
+   "/molybdenum-disulfide/": {
+    "state": "GOVERNED_INDEX",
+    "gate12": "PASS",
+    "served_robots": "index, follow",
+    "basis": "contract_c:public_indexable/index_approved (SIMULATED owner/reviewer acts)"
+   }
+  }
+ }
+}

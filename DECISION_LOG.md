@@ -5579,3 +5579,31 @@ Next production action: the owner decides `/acquire/` and supplies the Search Co
 
 ### Stop
 Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AMD-IG-R03-001` and the science-claim posture, and a Search Console export for wave 1.
+
+---
+
+## Release-01 — First Governed Reference Publication (package prepared, nothing published)
+
+**Date:** 2026-10-30
+**Baseline:** Recovery-03 `4d85bb6520`. Five reviewable commits (PR-A…PR-E) plus this package. Only PR-B changes a public file (`/acquire/`). Nothing is merged, deployed, certified, signed or published. Matrix: `main/data/release/RELEASE_01_READINESS.md`.
+
+**Durable decisions:**
+1. **Every discretionary downgrade needs a signed per-URL decision.**
+   - The deploy gate blocks unapproved robots downgrades (BLOCK_UNAPPROVED_DOWNGRADE) and sitemap removals (BLOCK_UNAPPROVED_SITEMAP_REMOVAL).
+   - A decision counts only with `status: approved`, `approved_by` and `approved_on`.
+   - Exempt: release-ledger enforcement of a not-released route, and Contract-C-derived directives.
+2. **Route realization (IG policy 1.1.0, AMD-IG-R03-001 rev 2).**
+   - A governed KO may replace the body of its own existing canonical route, and never a new or sibling URL.
+   - Revision 1 was circular: it required that no indexable duplicate exist, while duplicates can only be consolidated onto an index-approved destination.
+   - Revision 2 records non-blocking consolidation obligations instead (42).
+   - Treated as ratified by the owner's Release-01 brief, effective on merge of PR-A.
+3. **Human gates cannot be self-granted.** The authority honours validation, evidence lock, claim activation, release authorization, `governed` governance and R11 certification only with signed records from a named human. The preparer (an automated agent) is never a reviewer or signer.
+4. **Served HTML is evaluated with its own IG units** (`served_url`). Without this, Gate 12 would have vetoed both references on deploy.
+5. **Release candidates are staged, not live.**
+   - `apply_release.py` refuses unless Contract C is index-approved and all dependencies are public.
+   - Simulation results:
+     - today, the 4 candidates are blocked;
+     - with every human act simulated, all 4 reach GOVERNED_INDEX and nothing blocks.
+6. **`/acquire/`:** `noindex, follow`, AQ-1..5 corrected; contact, URL and links unchanged; ledger untouched.
+
+**Not done by design:** independent reviews, source locks (L6), claim activation, release authorization, R11 certification, the wave-1 noindex (no Search Console export).
