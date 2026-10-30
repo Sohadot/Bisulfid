@@ -240,12 +240,16 @@ def validate_information_gain_governance():
     policy = load(ppath)
     # policy discoverability + version
     check(policy.get("status") == "ratified", "IG policy: must be ratified")
+    for am in policy.get("amendments", []):  # an amendment is ratified only by a named owner, never by a PR event
+        if am.get("status") != "ratified":
+            check(not am.get("ratified_by") and not am.get("ratified_on"),
+                  f"IG amendment {am.get('amendment_id')}: not ratified but carries a ratifier/date")
     check(bool(policy.get("version")), "IG policy: must carry a version")
     class_ids = set(policy.get("classification_ids", []))
     post_ids = set(policy.get("posture_ids", []))
     check(class_ids == {"valid_domain_specific_reference", "near_duplicate", "module_relationship", "unresolved"},
           f"IG policy: governed classifications wrong ({sorted(class_ids)})")
-    check(post_ids == {"ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required"},
+    check(post_ids == {"ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required", "ig_reviewed_route_realization"},
           f"IG policy: governed postures wrong ({sorted(post_ids)})")
     # only positive classifications are route-eligible; only ig_reviewed_pass is a route posture
     positive = set(gate.POSITIVE_CLASSIFICATIONS)
@@ -462,6 +466,10 @@ def validate_knowledge_objects():
         check((dc["publication_state"], dc["indexation_state"]) == recomputed,
               f"KO {kid}: derived_contract_c {dc} != recomputed {recomputed}")
         check(recomputed == ("not_public", "noindex"), f"KO {kid}: a reference_draft/ig_not_reviewed KO must be not_public/noindex")
+        if p["information_gain_posture"] == "ig_reviewed_route_realization":
+            import route_realization
+            good, why = route_realization.check_structure(kid)  # ratification may be pending; authority fails closed
+            check(good, f"KO {kid}: ig_reviewed_route_realization structure not verified: {why}")
 
 
 def validate_scientific_provenance():

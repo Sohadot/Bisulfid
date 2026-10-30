@@ -8,13 +8,15 @@
   "proposals": [
     {
       "amendment_id": "AMD-IG-R03-001",
-      "status": "proposed",
+      "status": "superseded_by_revision_2",
       "proposed_on": "2026-10-30",
       "problem": "IG answers 'does this object warrant a NEW URL?'. For a Knowledge Object realized by reconstructing the body of its OWN existing same-task route, the honest answer (near_duplicate -> ig_reviewed_no_new_route) is normalized to ig_failed, and Contract C R7 then denies the existing route forever. Reconstruction, the preferred SEO-safe path, can therefore never reach index.",
       "proposal": "Add governed posture ig_reviewed_route_realization: allowed only when (a) the governing pair is KO-vs-its-own canonical route with classification near_duplicate, (b) the KO is bound to that route by a render spec, (c) no other indexable URL serves the same task (verified by the publication-authority surface), and (d) the route path is unchanged. Normalize it to ig_passed. All other near_duplicate cases keep ig_reviewed_no_new_route.",
       "effect_if_ratified": "KO-MOS2-SCIENTIFIC-001 and KO-BISULFID-TERMINOLOGY-001 would clear R7 only; every other Contract C input remains, so nothing becomes indexable by this amendment alone.",
       "risks": "Could be misused to index a same-task duplicate; condition (c) and a test over the authority surface are required with the amendment.",
-      "requires": "owner ratification; policy version bump; property tests for the new alias"
+      "requires": "owner ratification; policy version bump; property tests for the new alias",
+      "superseded_by": "ig_governance_policy.json 1.1.0 amendments[AMD-IG-R03-001 rev 2]",
+      "defect_found_in_review": "Condition (c) was circular: see revision_note in the policy."
     }
   ]
 }

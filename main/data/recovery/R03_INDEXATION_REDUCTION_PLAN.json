@@ -198,7 +198,7 @@
    ]
   },
   "rollback": "git revert of the wave commit (restores robots + sitemap lines), redeploy, request recrawl in Search Console; no data lost because no page is removed",
-  "governance_gap": "The deploy gate allows any robots DOWNGRADE without an approved decision (verified by simulation). Approval of a wave is therefore enforced by review, not by the gate. Proposed follow-up: the gate should require an approved url_decision for every legacy downgrade (except ledger-derived ones)."
+  "governance_gap": "The deploy gate allows any robots DOWNGRADE without an approved decision (verified by simulation). Approval of a wave is therefore enforced by review, not by the gate. Proposed follow-up: the gate should require an approved url_decision for every legacy downgrade (except ledger-derived ones). CLOSED in Release-01 PR-A: the gate now blocks any discretionary downgrade or sitemap removal without an approved, signed url_decision (BLOCK_UNAPPROVED_DOWNGRADE / BLOCK_UNAPPROVED_SITEMAP_REMOVAL)."
  },
  "later_waves": [
   "W2: EN-SYNTHETIC-IND variants (no governed task) after W1 shows no collateral effect",

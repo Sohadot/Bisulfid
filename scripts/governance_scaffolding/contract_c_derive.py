@@ -33,9 +33,13 @@ RELEASE = ("not_authorized", "authorized", "withdrawn")
 #   ig_reviewed_pass        -> a positive independent-reference classification warrants a route.
 #   ig_reviewed_no_new_route -> reviewed; near_duplicate/module/true_duplicate -> NO new route.
 #   ig_review_required      -> reviewed but unresolved/fail-closed -> NO new route.
-IG_GOVERNED_ALIASES = ("ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required")
+#   ig_reviewed_route_realization -> (policy 1.1.0) the KO replaces the body of its OWN existing canonical
+#                              route; never a new URL. Its preconditions are verified by
+#                              route_realization.check() wherever the posture is consumed (fail-closed).
+IG_GOVERNED_ALIASES = ("ig_reviewed_pass", "ig_reviewed_no_new_route", "ig_review_required", "ig_reviewed_route_realization")
 _IG_NORMALIZE = {
     "ig_reviewed_pass": "ig_passed",
+    "ig_reviewed_route_realization": "ig_passed",
     "ig_reviewed_no_new_route": "ig_failed",
     "ig_review_required": "ig_not_reviewed",
 }
