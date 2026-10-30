@@ -201,9 +201,9 @@
     ],
     "substantive_words": 923,
     "nearest_public_page": {
-     "similarity": 0.0,
-     "jaccard": 0.0,
-     "overlap_coefficient": 0.0,
+     "similarity": 0.004,
+     "jaccard": 0.0014,
+     "overlap_coefficient": 0.004,
      "closest_page": "site/public/acquire/index.html"
     },
     "template_sentence_ratio_vs_public": 0.0,
