@@ -168,7 +168,7 @@ def main():
     n_l3 = sum(1 for x in locks.values() if str(x["checklist"]["L3"]).startswith("pass"))
     L += ["", f"Qualified: {sum(1 for s in locks if s in quals)}/{len(locks)}. Locked: 0/{len(locks)}. L3 reproduced on a later date: "
           f"{n_l3}/{len(locks)}. L6 (human signature): 0/{len(locks)}.", "",
-          "## 5. Pull requests", "", "| PR | Branch @ SHA (base) | Diff | Live files changed | Isolated tests | Can merge safely? |",
+          "## 5. Pull requests", "", "| PR | Branch @ SHA (base) | Diff | Live files changed | Isolated tests | Merge condition (requires a NEW owner authorization; none is given) |",
           "|---|---|---|---|---|---|"]
     for pid, br, base, title, live_files, _, blockers, cond, _ in PRS:
         iso = iso_all.get(f"PR-{pid}", {"results": []})

@@ -1,268 +1,1120 @@
 {
- "PR-A": {
-  "commit": "a0b9fb71b3",
+ "note": "Final isolated verification: each branch's exact SHA checked out ALONE in a clean worktree. BLOCKED_BY_KNOWN_DEPENDENCY = deploy gate red only because of the pre-existing /acquire/ conflict resolved by PR-B (release ledger unchanged between PR-A and PR-B: True). Supersedes all earlier per-PR results.",
+ "pr_b_release_ledger_unchanged": true,
+ "PR-0": {
+  "branch": "release-01/pr-0",
+  "sha": "4d85bb652035e6ac0608f6506ce7b049f2585fff",
   "results": [
    {
+    "area": "Contract C",
+    "command": "scripts/governance_scaffolding/contract_c_property_tests.py",
     "status": "PASS",
-    "check": "scripts/publication/test_publication_authority.py"
+    "detail": "RESULT: PASS — all 7 canonical property tests hold"
    },
    {
+    "area": "Publication authority + approved-decision enforcement",
+    "command": "scripts/publication/test_publication_authority.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/route_realization_tests.py"
+    "detail": "OK"
    },
    {
+    "area": "Gate 12",
+    "command": "scripts/validators/test_distinctiveness.py",
     "status": "PASS",
-    "check": "scripts/release/release_checks_tests.py"
+    "detail": "OK"
    },
    {
+    "area": "Gate 12 (corpus gate)",
+    "command": "scripts/validators/validate_distinctiveness.py --gate",
     "status": "PASS",
-    "check": "scripts/publication/build_consolidation_obligations.py --check"
+    "detail": "NOTE: no markdown page is currently a publication candidate; every draft remains non-public."
    },
    {
-    "status": "n/a",
-    "check": "scripts/release/build_review_packets.py --check"
-   },
-   {
+    "area": "Gate 12-I + legacy migration",
+    "command": "scripts/validators/test_legacy_migration.py",
     "status": "PASS",
-    "check": "scripts/reference_production/render_ko_reference.py --check"
+    "detail": "OK"
    },
    {
+    "area": "Legacy hold integrity + shrink-only ratchet vs main",
+    "command": "scripts/validators/validate_distinctiveness.py --check-hold --hold-ratchet-ref origin/main",
     "status": "PASS",
-    "check": "scripts/reference_production/render_institutional_preview.py --check"
+    "detail": "legacy hold main/data/distinctiveness/legacy_surface_hold.json: 14041 sealed entries, sealed from {'surface': 'site/public', 'commit': 'b1757cb532'}; freeze exc"
    },
    {
+    "area": "Legacy disposition registry",
+    "command": "scripts/recovery/validate_legacy_disposition.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/validate_scaffolding.py"
+    "detail": "legacy disposition registry: 14041 records (14000 routes + 41 non-route surfaces); 0 violation(s)"
    },
    {
+    "area": "IG governance",
+    "command": "scripts/governance_scaffolding/ig_governance_tests.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/ig_governance_tests.py"
+    "detail": "RESULT: PASS — all IG governance ratification proofs hold"
    },
    {
+    "area": "IG route-realization safeguards",
+    "command": "scripts/governance_scaffolding/route_realization_tests.py",
+    "status": "NOT_APPLICABLE",
+    "detail": "tool not present at this commit"
+   },
+   {
+    "area": "Consolidation obligations current",
+    "command": "scripts/publication/build_consolidation_obligations.py --check",
+    "status": "NOT_APPLICABLE",
+    "detail": "tool not present at this commit"
+   },
+   {
+    "area": "Human review + source-lock safeguards / fail-closed",
+    "command": "scripts/release/release_checks_tests.py",
+    "status": "NOT_APPLICABLE",
+    "detail": "tool not present at this commit"
+   },
+   {
+    "area": "Review packets current",
+    "command": "scripts/release/build_review_packets.py --check",
+    "status": "NOT_APPLICABLE",
+    "detail": "tool not present at this commit"
+   },
+   {
+    "area": "Homepage claim audit current",
+    "command": "scripts/release/build_homepage_claim_audit.py --check",
+    "status": "NOT_APPLICABLE",
+    "detail": "tool not present at this commit"
+   },
+   {
+    "area": "KO renderer outputs current",
+    "command": "scripts/reference_production/render_ko_reference.py --check",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/reference_production_tests.py"
+    "detail": "up to date"
    },
    {
+    "area": "Institutional renderer outputs current",
+    "command": "scripts/reference_production/render_institutional_preview.py --check",
     "status": "PASS",
-    "check": "scripts/validators/test_distinctiveness.py"
+    "detail": "up to date"
    },
    {
-    "status": "FAIL",
-    "check": "scripts/publication/validate_publication_authority.py --surface site/public :: PUBLICATION AUTHORITY FAIL: 1 blocking page(s)."
+    "area": "SEO previews + internal links",
+    "command": "scripts/reference_production/seo_preview_check.py",
+    "status": "PASS",
+    "detail": "[PASS] Homepage (DE) gate12=PASS words=295 nearest=0.0"
+   },
+   {
+    "area": "Scaffolding validator",
+    "command": "scripts/governance_scaffolding/validate_scaffolding.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all scaffolding artifacts valid"
+   },
+   {
+    "area": "Concept/lexeme validator",
+    "command": "scripts/governance_scaffolding/validate_concept_lexeme.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — concept/lexeme semantic architecture valid"
+   },
+   {
+    "area": "Source admissibility",
+    "command": "scripts/governance_scaffolding/source_admissibility_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all 21 enforcement proofs hold"
+   },
+   {
+    "area": "Reference production",
+    "command": "scripts/governance_scaffolding/reference_production_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Reference Production 01 proofs hold"
+   },
+   {
+    "area": "Independence semantics",
+    "command": "scripts/governance_scaffolding/independence_semantics_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all independence-semantics proofs hold"
+   },
+   {
+    "area": "Pilot 03",
+    "command": "scripts/governance_scaffolding/pilot_03_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Pilot 03 proofs hold"
+   },
+   {
+    "area": "CI: L1 corpus runtime",
+    "command": "scripts/corpus_validation_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: source/claim guardrails",
+    "command": "scripts/source_claim_guardrail_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 production runtime",
+    "command": "scripts/corpus_production_runtime_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 planner",
+    "command": "scripts/corpus_production_planner_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L0 route registry",
+    "command": "scripts/validate_route_registry_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 120 warnings)"
+   },
+   {
+    "area": "CI: L0 content drafts",
+    "command": "scripts/validate_content_drafts_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 0 warnings)"
+   },
+   {
+    "area": "Deploy gate on site/public",
+    "command": "scripts/publication/validate_publication_authority.py --surface site/public",
+    "status": "BLOCKED_BY_KNOWN_DEPENDENCY",
+    "detail": "1 blocking: /acquire/ BLOCK_DIRECTIVE_ESCALATION; resolved by PR-B (release ledger unchanged)"
+   },
+   {
+    "area": "Governance invariants (no approval, signature, lock, activation, certification or ratification)",
+    "command": "inline invariant check",
+    "status": "PASS",
+    "detail": "OK"
+   }
+  ]
+ },
+ "PR-A": {
+  "branch": "release-01/pr-a",
+  "sha": "d1da411bcba406587f3fed329f20a2394f000971",
+  "results": [
+   {
+    "area": "Contract C",
+    "command": "scripts/governance_scaffolding/contract_c_property_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all 7 canonical property tests hold"
+   },
+   {
+    "area": "Publication authority + approved-decision enforcement",
+    "command": "scripts/publication/test_publication_authority.py",
+    "status": "PASS",
+    "detail": "OK"
+   },
+   {
+    "area": "Gate 12",
+    "command": "scripts/validators/test_distinctiveness.py",
+    "status": "PASS",
+    "detail": "OK"
+   },
+   {
+    "area": "Gate 12 (corpus gate)",
+    "command": "scripts/validators/validate_distinctiveness.py --gate",
+    "status": "PASS",
+    "detail": "NOTE: no markdown page is currently a publication candidate; every draft remains non-public."
+   },
+   {
+    "area": "Gate 12-I + legacy migration",
+    "command": "scripts/validators/test_legacy_migration.py",
+    "status": "PASS",
+    "detail": "OK"
+   },
+   {
+    "area": "Legacy hold integrity + shrink-only ratchet vs main",
+    "command": "scripts/validators/validate_distinctiveness.py --check-hold --hold-ratchet-ref origin/main",
+    "status": "PASS",
+    "detail": "legacy hold main/data/distinctiveness/legacy_surface_hold.json: 14041 sealed entries, sealed from {'surface': 'site/public', 'commit': 'b1757cb532'}; freeze exc"
+   },
+   {
+    "area": "Legacy disposition registry",
+    "command": "scripts/recovery/validate_legacy_disposition.py",
+    "status": "PASS",
+    "detail": "legacy disposition registry: 14041 records (14000 routes + 41 non-route surfaces); 0 violation(s)"
+   },
+   {
+    "area": "IG governance",
+    "command": "scripts/governance_scaffolding/ig_governance_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all IG governance ratification proofs hold"
+   },
+   {
+    "area": "IG route-realization safeguards",
+    "command": "scripts/governance_scaffolding/route_realization_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — route realization holds (positive + adversarial)"
+   },
+   {
+    "area": "Consolidation obligations current",
+    "command": "scripts/publication/build_consolidation_obligations.py --check",
+    "status": "PASS",
+    "detail": "up to date"
+   },
+   {
+    "area": "Human review + source-lock safeguards / fail-closed",
+    "command": "scripts/release/release_checks_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — release gates cannot be self-granted"
+   },
+   {
+    "area": "Review packets current",
+    "command": "scripts/release/build_review_packets.py --check",
+    "status": "NOT_APPLICABLE",
+    "detail": "tool not present at this commit"
+   },
+   {
+    "area": "Homepage claim audit current",
+    "command": "scripts/release/build_homepage_claim_audit.py --check",
+    "status": "NOT_APPLICABLE",
+    "detail": "tool not present at this commit"
+   },
+   {
+    "area": "KO renderer outputs current",
+    "command": "scripts/reference_production/render_ko_reference.py --check",
+    "status": "PASS",
+    "detail": "up to date"
+   },
+   {
+    "area": "Institutional renderer outputs current",
+    "command": "scripts/reference_production/render_institutional_preview.py --check",
+    "status": "PASS",
+    "detail": "up to date"
+   },
+   {
+    "area": "SEO previews + internal links",
+    "command": "scripts/reference_production/seo_preview_check.py",
+    "status": "PASS",
+    "detail": "[PASS] Homepage (DE) gate12=PASS words=295 nearest=0.0"
+   },
+   {
+    "area": "Scaffolding validator",
+    "command": "scripts/governance_scaffolding/validate_scaffolding.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all scaffolding artifacts valid"
+   },
+   {
+    "area": "Concept/lexeme validator",
+    "command": "scripts/governance_scaffolding/validate_concept_lexeme.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — concept/lexeme semantic architecture valid"
+   },
+   {
+    "area": "Source admissibility",
+    "command": "scripts/governance_scaffolding/source_admissibility_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all 21 enforcement proofs hold"
+   },
+   {
+    "area": "Reference production",
+    "command": "scripts/governance_scaffolding/reference_production_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Reference Production 01 proofs hold"
+   },
+   {
+    "area": "Independence semantics",
+    "command": "scripts/governance_scaffolding/independence_semantics_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all independence-semantics proofs hold"
+   },
+   {
+    "area": "Pilot 03",
+    "command": "scripts/governance_scaffolding/pilot_03_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Pilot 03 proofs hold"
+   },
+   {
+    "area": "CI: L1 corpus runtime",
+    "command": "scripts/corpus_validation_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: source/claim guardrails",
+    "command": "scripts/source_claim_guardrail_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 production runtime",
+    "command": "scripts/corpus_production_runtime_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 planner",
+    "command": "scripts/corpus_production_planner_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L0 route registry",
+    "command": "scripts/validate_route_registry_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 120 warnings)"
+   },
+   {
+    "area": "CI: L0 content drafts",
+    "command": "scripts/validate_content_drafts_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 0 warnings)"
+   },
+   {
+    "area": "Deploy gate on site/public",
+    "command": "scripts/publication/validate_publication_authority.py --surface site/public",
+    "status": "BLOCKED_BY_KNOWN_DEPENDENCY",
+    "detail": "1 blocking: /acquire/ BLOCK_DIRECTIVE_ESCALATION; resolved by PR-B (release ledger unchanged)"
+   },
+   {
+    "area": "Governance invariants (no approval, signature, lock, activation, certification or ratification)",
+    "command": "inline invariant check",
+    "status": "PASS",
+    "detail": "OK"
    }
   ]
  },
  "PR-B": {
-  "commit": "3e7b28c0e6",
+  "branch": "release-01/pr-b",
+  "sha": "326a2fa8ca22c39421d3fe6eb04d792aab1fad4b",
   "results": [
    {
+    "area": "Contract C",
+    "command": "scripts/governance_scaffolding/contract_c_property_tests.py",
     "status": "PASS",
-    "check": "scripts/publication/test_publication_authority.py"
+    "detail": "RESULT: PASS — all 7 canonical property tests hold"
    },
    {
+    "area": "Publication authority + approved-decision enforcement",
+    "command": "scripts/publication/test_publication_authority.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/route_realization_tests.py"
+    "detail": "OK"
    },
    {
+    "area": "Gate 12",
+    "command": "scripts/validators/test_distinctiveness.py",
     "status": "PASS",
-    "check": "scripts/release/release_checks_tests.py"
+    "detail": "OK"
    },
    {
+    "area": "Gate 12 (corpus gate)",
+    "command": "scripts/validators/validate_distinctiveness.py --gate",
     "status": "PASS",
-    "check": "scripts/publication/build_consolidation_obligations.py --check"
+    "detail": "NOTE: no markdown page is currently a publication candidate; every draft remains non-public."
    },
    {
-    "status": "n/a",
-    "check": "scripts/release/build_review_packets.py --check"
+    "area": "Gate 12-I + legacy migration",
+    "command": "scripts/validators/test_legacy_migration.py",
+    "status": "PASS",
+    "detail": "OK"
    },
    {
+    "area": "Legacy hold integrity + shrink-only ratchet vs main",
+    "command": "scripts/validators/validate_distinctiveness.py --check-hold --hold-ratchet-ref origin/main",
     "status": "PASS",
-    "check": "scripts/reference_production/render_ko_reference.py --check"
+    "detail": "legacy hold main/data/distinctiveness/legacy_surface_hold.json: 14041 sealed entries, sealed from {'surface': 'site/public', 'commit': 'b1757cb532'}; freeze exc"
    },
    {
+    "area": "Legacy disposition registry",
+    "command": "scripts/recovery/validate_legacy_disposition.py",
     "status": "PASS",
-    "check": "scripts/reference_production/render_institutional_preview.py --check"
+    "detail": "legacy disposition registry: 14041 records (14000 routes + 41 non-route surfaces); 0 violation(s)"
    },
    {
+    "area": "IG governance",
+    "command": "scripts/governance_scaffolding/ig_governance_tests.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/validate_scaffolding.py"
+    "detail": "RESULT: PASS — all IG governance ratification proofs hold"
    },
    {
+    "area": "IG route-realization safeguards",
+    "command": "scripts/governance_scaffolding/route_realization_tests.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/ig_governance_tests.py"
+    "detail": "RESULT: PASS — route realization holds (positive + adversarial)"
    },
    {
+    "area": "Consolidation obligations current",
+    "command": "scripts/publication/build_consolidation_obligations.py --check",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/reference_production_tests.py"
+    "detail": "up to date"
    },
    {
+    "area": "Human review + source-lock safeguards / fail-closed",
+    "command": "scripts/release/release_checks_tests.py",
     "status": "PASS",
-    "check": "scripts/validators/test_distinctiveness.py"
+    "detail": "RESULT: PASS — release gates cannot be self-granted"
    },
    {
+    "area": "Review packets current",
+    "command": "scripts/release/build_review_packets.py --check",
+    "status": "NOT_APPLICABLE",
+    "detail": "tool not present at this commit"
+   },
+   {
+    "area": "Homepage claim audit current",
+    "command": "scripts/release/build_homepage_claim_audit.py --check",
+    "status": "NOT_APPLICABLE",
+    "detail": "tool not present at this commit"
+   },
+   {
+    "area": "KO renderer outputs current",
+    "command": "scripts/reference_production/render_ko_reference.py --check",
     "status": "PASS",
-    "check": "scripts/publication/validate_publication_authority.py --surface site/public"
+    "detail": "up to date"
+   },
+   {
+    "area": "Institutional renderer outputs current",
+    "command": "scripts/reference_production/render_institutional_preview.py --check",
+    "status": "PASS",
+    "detail": "up to date"
+   },
+   {
+    "area": "SEO previews + internal links",
+    "command": "scripts/reference_production/seo_preview_check.py",
+    "status": "PASS",
+    "detail": "[PASS] Homepage (DE) gate12=PASS words=295 nearest=0.0"
+   },
+   {
+    "area": "Scaffolding validator",
+    "command": "scripts/governance_scaffolding/validate_scaffolding.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all scaffolding artifacts valid"
+   },
+   {
+    "area": "Concept/lexeme validator",
+    "command": "scripts/governance_scaffolding/validate_concept_lexeme.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — concept/lexeme semantic architecture valid"
+   },
+   {
+    "area": "Source admissibility",
+    "command": "scripts/governance_scaffolding/source_admissibility_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all 21 enforcement proofs hold"
+   },
+   {
+    "area": "Reference production",
+    "command": "scripts/governance_scaffolding/reference_production_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Reference Production 01 proofs hold"
+   },
+   {
+    "area": "Independence semantics",
+    "command": "scripts/governance_scaffolding/independence_semantics_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all independence-semantics proofs hold"
+   },
+   {
+    "area": "Pilot 03",
+    "command": "scripts/governance_scaffolding/pilot_03_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Pilot 03 proofs hold"
+   },
+   {
+    "area": "CI: L1 corpus runtime",
+    "command": "scripts/corpus_validation_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: source/claim guardrails",
+    "command": "scripts/source_claim_guardrail_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 production runtime",
+    "command": "scripts/corpus_production_runtime_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 planner",
+    "command": "scripts/corpus_production_planner_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L0 route registry",
+    "command": "scripts/validate_route_registry_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 120 warnings)"
+   },
+   {
+    "area": "CI: L0 content drafts",
+    "command": "scripts/validate_content_drafts_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 0 warnings)"
+   },
+   {
+    "area": "Deploy gate on site/public",
+    "command": "scripts/publication/validate_publication_authority.py --surface site/public",
+    "status": "PASS",
+    "detail": "PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci"
+   },
+   {
+    "area": "Governance invariants (no approval, signature, lock, activation, certification or ratification)",
+    "command": "inline invariant check",
+    "status": "PASS",
+    "detail": "OK"
    }
   ]
  },
  "PR-C": {
-  "commit": "d0dd6cf796",
+  "branch": "release-01/pr-c",
+  "sha": "092048c06912505b913fea56ee4362c012f10543",
   "results": [
    {
+    "area": "Contract C",
+    "command": "scripts/governance_scaffolding/contract_c_property_tests.py",
     "status": "PASS",
-    "check": "scripts/publication/test_publication_authority.py"
+    "detail": "RESULT: PASS — all 7 canonical property tests hold"
    },
    {
+    "area": "Publication authority + approved-decision enforcement",
+    "command": "scripts/publication/test_publication_authority.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/route_realization_tests.py"
+    "detail": "OK"
    },
    {
+    "area": "Gate 12",
+    "command": "scripts/validators/test_distinctiveness.py",
     "status": "PASS",
-    "check": "scripts/release/release_checks_tests.py"
+    "detail": "OK"
    },
    {
+    "area": "Gate 12 (corpus gate)",
+    "command": "scripts/validators/validate_distinctiveness.py --gate",
     "status": "PASS",
-    "check": "scripts/publication/build_consolidation_obligations.py --check"
+    "detail": "NOTE: no markdown page is currently a publication candidate; every draft remains non-public."
    },
    {
-    "status": "n/a",
-    "check": "scripts/release/build_review_packets.py --check"
+    "area": "Gate 12-I + legacy migration",
+    "command": "scripts/validators/test_legacy_migration.py",
+    "status": "PASS",
+    "detail": "OK"
    },
    {
+    "area": "Legacy hold integrity + shrink-only ratchet vs main",
+    "command": "scripts/validators/validate_distinctiveness.py --check-hold --hold-ratchet-ref origin/main",
     "status": "PASS",
-    "check": "scripts/reference_production/render_ko_reference.py --check"
+    "detail": "legacy hold main/data/distinctiveness/legacy_surface_hold.json: 14041 sealed entries, sealed from {'surface': 'site/public', 'commit': 'b1757cb532'}; freeze exc"
    },
    {
+    "area": "Legacy disposition registry",
+    "command": "scripts/recovery/validate_legacy_disposition.py",
     "status": "PASS",
-    "check": "scripts/reference_production/render_institutional_preview.py --check"
+    "detail": "legacy disposition registry: 14041 records (14000 routes + 41 non-route surfaces); 0 violation(s)"
    },
    {
+    "area": "IG governance",
+    "command": "scripts/governance_scaffolding/ig_governance_tests.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/validate_scaffolding.py"
+    "detail": "RESULT: PASS — all IG governance ratification proofs hold"
    },
    {
+    "area": "IG route-realization safeguards",
+    "command": "scripts/governance_scaffolding/route_realization_tests.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/ig_governance_tests.py"
+    "detail": "RESULT: PASS — route realization holds (positive + adversarial)"
    },
    {
+    "area": "Consolidation obligations current",
+    "command": "scripts/publication/build_consolidation_obligations.py --check",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/reference_production_tests.py"
+    "detail": "up to date"
    },
    {
+    "area": "Human review + source-lock safeguards / fail-closed",
+    "command": "scripts/release/release_checks_tests.py",
     "status": "PASS",
-    "check": "scripts/validators/test_distinctiveness.py"
+    "detail": "RESULT: PASS — release gates cannot be self-granted"
    },
    {
+    "area": "Review packets current",
+    "command": "scripts/release/build_review_packets.py --check",
+    "status": "NOT_APPLICABLE",
+    "detail": "tool not present at this commit"
+   },
+   {
+    "area": "Homepage claim audit current",
+    "command": "scripts/release/build_homepage_claim_audit.py --check",
     "status": "PASS",
-    "check": "scripts/publication/validate_publication_authority.py --surface site/public"
+    "detail": "{'items': 18, 'verified': 14, 'owner_confirmation_required': 2, 'not_a_factual_claim': 2, 'unclassified': 0}"
+   },
+   {
+    "area": "KO renderer outputs current",
+    "command": "scripts/reference_production/render_ko_reference.py --check",
+    "status": "PASS",
+    "detail": "up to date"
+   },
+   {
+    "area": "Institutional renderer outputs current",
+    "command": "scripts/reference_production/render_institutional_preview.py --check",
+    "status": "PASS",
+    "detail": "up to date"
+   },
+   {
+    "area": "SEO previews + internal links",
+    "command": "scripts/reference_production/seo_preview_check.py",
+    "status": "PASS",
+    "detail": "[PASS] Homepage (DE) gate12=PASS words=318 nearest=0.0"
+   },
+   {
+    "area": "Scaffolding validator",
+    "command": "scripts/governance_scaffolding/validate_scaffolding.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all scaffolding artifacts valid"
+   },
+   {
+    "area": "Concept/lexeme validator",
+    "command": "scripts/governance_scaffolding/validate_concept_lexeme.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — concept/lexeme semantic architecture valid"
+   },
+   {
+    "area": "Source admissibility",
+    "command": "scripts/governance_scaffolding/source_admissibility_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all 21 enforcement proofs hold"
+   },
+   {
+    "area": "Reference production",
+    "command": "scripts/governance_scaffolding/reference_production_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Reference Production 01 proofs hold"
+   },
+   {
+    "area": "Independence semantics",
+    "command": "scripts/governance_scaffolding/independence_semantics_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all independence-semantics proofs hold"
+   },
+   {
+    "area": "Pilot 03",
+    "command": "scripts/governance_scaffolding/pilot_03_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Pilot 03 proofs hold"
+   },
+   {
+    "area": "CI: L1 corpus runtime",
+    "command": "scripts/corpus_validation_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: source/claim guardrails",
+    "command": "scripts/source_claim_guardrail_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 production runtime",
+    "command": "scripts/corpus_production_runtime_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 planner",
+    "command": "scripts/corpus_production_planner_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L0 route registry",
+    "command": "scripts/validate_route_registry_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 120 warnings)"
+   },
+   {
+    "area": "CI: L0 content drafts",
+    "command": "scripts/validate_content_drafts_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 0 warnings)"
+   },
+   {
+    "area": "Deploy gate on site/public",
+    "command": "scripts/publication/validate_publication_authority.py --surface site/public",
+    "status": "PASS",
+    "detail": "PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci"
+   },
+   {
+    "area": "Governance invariants (no approval, signature, lock, activation, certification or ratification)",
+    "command": "inline invariant check",
+    "status": "PASS",
+    "detail": "OK"
    }
   ]
  },
  "PR-D": {
-  "commit": "a32a0f60b8",
+  "branch": "release-01/pr-d",
+  "sha": "a65669f084787c392b34c83acef5b2099898e24c",
   "results": [
    {
+    "area": "Contract C",
+    "command": "scripts/governance_scaffolding/contract_c_property_tests.py",
     "status": "PASS",
-    "check": "scripts/publication/test_publication_authority.py"
+    "detail": "RESULT: PASS — all 7 canonical property tests hold"
    },
    {
+    "area": "Publication authority + approved-decision enforcement",
+    "command": "scripts/publication/test_publication_authority.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/route_realization_tests.py"
+    "detail": "OK"
    },
    {
+    "area": "Gate 12",
+    "command": "scripts/validators/test_distinctiveness.py",
     "status": "PASS",
-    "check": "scripts/release/release_checks_tests.py"
+    "detail": "OK"
    },
    {
+    "area": "Gate 12 (corpus gate)",
+    "command": "scripts/validators/validate_distinctiveness.py --gate",
     "status": "PASS",
-    "check": "scripts/publication/build_consolidation_obligations.py --check"
+    "detail": "NOTE: no markdown page is currently a publication candidate; every draft remains non-public."
    },
    {
+    "area": "Gate 12-I + legacy migration",
+    "command": "scripts/validators/test_legacy_migration.py",
     "status": "PASS",
-    "check": "scripts/release/build_review_packets.py --check"
+    "detail": "OK"
    },
    {
+    "area": "Legacy hold integrity + shrink-only ratchet vs main",
+    "command": "scripts/validators/validate_distinctiveness.py --check-hold --hold-ratchet-ref origin/main",
     "status": "PASS",
-    "check": "scripts/reference_production/render_ko_reference.py --check"
+    "detail": "legacy hold main/data/distinctiveness/legacy_surface_hold.json: 14041 sealed entries, sealed from {'surface': 'site/public', 'commit': 'b1757cb532'}; freeze exc"
    },
    {
+    "area": "Legacy disposition registry",
+    "command": "scripts/recovery/validate_legacy_disposition.py",
     "status": "PASS",
-    "check": "scripts/reference_production/render_institutional_preview.py --check"
+    "detail": "legacy disposition registry: 14041 records (14000 routes + 41 non-route surfaces); 0 violation(s)"
    },
    {
+    "area": "IG governance",
+    "command": "scripts/governance_scaffolding/ig_governance_tests.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/validate_scaffolding.py"
+    "detail": "RESULT: PASS — all IG governance ratification proofs hold"
    },
    {
+    "area": "IG route-realization safeguards",
+    "command": "scripts/governance_scaffolding/route_realization_tests.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/ig_governance_tests.py"
+    "detail": "RESULT: PASS — route realization holds (positive + adversarial)"
    },
    {
+    "area": "Consolidation obligations current",
+    "command": "scripts/publication/build_consolidation_obligations.py --check",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/reference_production_tests.py"
+    "detail": "up to date"
    },
    {
+    "area": "Human review + source-lock safeguards / fail-closed",
+    "command": "scripts/release/release_checks_tests.py",
     "status": "PASS",
-    "check": "scripts/validators/test_distinctiveness.py"
+    "detail": "RESULT: PASS — release gates cannot be self-granted"
    },
    {
+    "area": "Review packets current",
+    "command": "scripts/release/build_review_packets.py --check",
     "status": "PASS",
-    "check": "scripts/publication/validate_publication_authority.py --surface site/public"
+    "detail": "review packets up to date"
+   },
+   {
+    "area": "Homepage claim audit current",
+    "command": "scripts/release/build_homepage_claim_audit.py --check",
+    "status": "PASS",
+    "detail": "{'items': 18, 'verified': 14, 'owner_confirmation_required': 2, 'not_a_factual_claim': 2, 'unclassified': 0}"
+   },
+   {
+    "area": "KO renderer outputs current",
+    "command": "scripts/reference_production/render_ko_reference.py --check",
+    "status": "PASS",
+    "detail": "up to date"
+   },
+   {
+    "area": "Institutional renderer outputs current",
+    "command": "scripts/reference_production/render_institutional_preview.py --check",
+    "status": "PASS",
+    "detail": "up to date"
+   },
+   {
+    "area": "SEO previews + internal links",
+    "command": "scripts/reference_production/seo_preview_check.py",
+    "status": "PASS",
+    "detail": "[PASS] Homepage (DE) gate12=PASS words=318 nearest=0.0"
+   },
+   {
+    "area": "Scaffolding validator",
+    "command": "scripts/governance_scaffolding/validate_scaffolding.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all scaffolding artifacts valid"
+   },
+   {
+    "area": "Concept/lexeme validator",
+    "command": "scripts/governance_scaffolding/validate_concept_lexeme.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — concept/lexeme semantic architecture valid"
+   },
+   {
+    "area": "Source admissibility",
+    "command": "scripts/governance_scaffolding/source_admissibility_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all 21 enforcement proofs hold"
+   },
+   {
+    "area": "Reference production",
+    "command": "scripts/governance_scaffolding/reference_production_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Reference Production 01 proofs hold"
+   },
+   {
+    "area": "Independence semantics",
+    "command": "scripts/governance_scaffolding/independence_semantics_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all independence-semantics proofs hold"
+   },
+   {
+    "area": "Pilot 03",
+    "command": "scripts/governance_scaffolding/pilot_03_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Pilot 03 proofs hold"
+   },
+   {
+    "area": "CI: L1 corpus runtime",
+    "command": "scripts/corpus_validation_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: source/claim guardrails",
+    "command": "scripts/source_claim_guardrail_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 production runtime",
+    "command": "scripts/corpus_production_runtime_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 planner",
+    "command": "scripts/corpus_production_planner_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L0 route registry",
+    "command": "scripts/validate_route_registry_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 120 warnings)"
+   },
+   {
+    "area": "CI: L0 content drafts",
+    "command": "scripts/validate_content_drafts_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 0 warnings)"
+   },
+   {
+    "area": "Deploy gate on site/public",
+    "command": "scripts/publication/validate_publication_authority.py --surface site/public",
+    "status": "PASS",
+    "detail": "PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci"
+   },
+   {
+    "area": "Governance invariants (no approval, signature, lock, activation, certification or ratification)",
+    "command": "inline invariant check",
+    "status": "PASS",
+    "detail": "OK"
    }
   ]
  },
  "PR-E": {
-  "commit": "6a9110f62b",
+  "branch": "release-01/pr-e",
+  "sha": "84f11485d4cbcda8ceada0c9d142dc27e2a20942",
   "results": [
    {
+    "area": "Contract C",
+    "command": "scripts/governance_scaffolding/contract_c_property_tests.py",
     "status": "PASS",
-    "check": "scripts/publication/test_publication_authority.py"
+    "detail": "RESULT: PASS — all 7 canonical property tests hold"
    },
    {
+    "area": "Publication authority + approved-decision enforcement",
+    "command": "scripts/publication/test_publication_authority.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/route_realization_tests.py"
+    "detail": "OK"
    },
    {
+    "area": "Gate 12",
+    "command": "scripts/validators/test_distinctiveness.py",
     "status": "PASS",
-    "check": "scripts/release/release_checks_tests.py"
+    "detail": "OK"
    },
    {
+    "area": "Gate 12 (corpus gate)",
+    "command": "scripts/validators/validate_distinctiveness.py --gate",
     "status": "PASS",
-    "check": "scripts/publication/build_consolidation_obligations.py --check"
+    "detail": "NOTE: no markdown page is currently a publication candidate; every draft remains non-public."
    },
    {
+    "area": "Gate 12-I + legacy migration",
+    "command": "scripts/validators/test_legacy_migration.py",
     "status": "PASS",
-    "check": "scripts/release/build_review_packets.py --check"
+    "detail": "OK"
    },
    {
+    "area": "Legacy hold integrity + shrink-only ratchet vs main",
+    "command": "scripts/validators/validate_distinctiveness.py --check-hold --hold-ratchet-ref origin/main",
     "status": "PASS",
-    "check": "scripts/reference_production/render_ko_reference.py --check"
+    "detail": "legacy hold main/data/distinctiveness/legacy_surface_hold.json: 14041 sealed entries, sealed from {'surface': 'site/public', 'commit': 'b1757cb532'}; freeze exc"
    },
    {
+    "area": "Legacy disposition registry",
+    "command": "scripts/recovery/validate_legacy_disposition.py",
     "status": "PASS",
-    "check": "scripts/reference_production/render_institutional_preview.py --check"
+    "detail": "legacy disposition registry: 14041 records (14000 routes + 41 non-route surfaces); 0 violation(s)"
    },
    {
+    "area": "IG governance",
+    "command": "scripts/governance_scaffolding/ig_governance_tests.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/validate_scaffolding.py"
+    "detail": "RESULT: PASS — all IG governance ratification proofs hold"
    },
    {
+    "area": "IG route-realization safeguards",
+    "command": "scripts/governance_scaffolding/route_realization_tests.py",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/ig_governance_tests.py"
+    "detail": "RESULT: PASS — route realization holds (positive + adversarial)"
    },
    {
+    "area": "Consolidation obligations current",
+    "command": "scripts/publication/build_consolidation_obligations.py --check",
     "status": "PASS",
-    "check": "scripts/governance_scaffolding/reference_production_tests.py"
+    "detail": "up to date"
    },
    {
+    "area": "Human review + source-lock safeguards / fail-closed",
+    "command": "scripts/release/release_checks_tests.py",
     "status": "PASS",
-    "check": "scripts/validators/test_distinctiveness.py"
+    "detail": "RESULT: PASS — release gates cannot be self-granted"
    },
    {
+    "area": "Review packets current",
+    "command": "scripts/release/build_review_packets.py --check",
     "status": "PASS",
-    "check": "scripts/publication/validate_publication_authority.py --surface site/public"
+    "detail": "review packets up to date"
+   },
+   {
+    "area": "Homepage claim audit current",
+    "command": "scripts/release/build_homepage_claim_audit.py --check",
+    "status": "PASS",
+    "detail": "{'items': 18, 'verified': 14, 'owner_confirmation_required': 2, 'not_a_factual_claim': 2, 'unclassified': 0}"
+   },
+   {
+    "area": "KO renderer outputs current",
+    "command": "scripts/reference_production/render_ko_reference.py --check",
+    "status": "PASS",
+    "detail": "up to date"
+   },
+   {
+    "area": "Institutional renderer outputs current",
+    "command": "scripts/reference_production/render_institutional_preview.py --check",
+    "status": "PASS",
+    "detail": "up to date"
+   },
+   {
+    "area": "SEO previews + internal links",
+    "command": "scripts/reference_production/seo_preview_check.py",
+    "status": "PASS",
+    "detail": "[PASS] Homepage (DE) gate12=PASS words=318 nearest=0.0"
+   },
+   {
+    "area": "Scaffolding validator",
+    "command": "scripts/governance_scaffolding/validate_scaffolding.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all scaffolding artifacts valid"
+   },
+   {
+    "area": "Concept/lexeme validator",
+    "command": "scripts/governance_scaffolding/validate_concept_lexeme.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — concept/lexeme semantic architecture valid"
+   },
+   {
+    "area": "Source admissibility",
+    "command": "scripts/governance_scaffolding/source_admissibility_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all 21 enforcement proofs hold"
+   },
+   {
+    "area": "Reference production",
+    "command": "scripts/governance_scaffolding/reference_production_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Reference Production 01 proofs hold"
+   },
+   {
+    "area": "Independence semantics",
+    "command": "scripts/governance_scaffolding/independence_semantics_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all independence-semantics proofs hold"
+   },
+   {
+    "area": "Pilot 03",
+    "command": "scripts/governance_scaffolding/pilot_03_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — all Pilot 03 proofs hold"
+   },
+   {
+    "area": "CI: L1 corpus runtime",
+    "command": "scripts/corpus_validation_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: source/claim guardrails",
+    "command": "scripts/source_claim_guardrail_runtime_l1.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 production runtime",
+    "command": "scripts/corpus_production_runtime_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L2 planner",
+    "command": "scripts/corpus_production_planner_l2.py",
+    "status": "PASS",
+    "detail": "============================================================"
+   },
+   {
+    "area": "CI: L0 route registry",
+    "command": "scripts/validate_route_registry_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 120 warnings)"
+   },
+   {
+    "area": "CI: L0 content drafts",
+    "command": "scripts/validate_content_drafts_l0.py",
+    "status": "PASS",
+    "detail": "Summary: PASS (0 errors, 0 warnings)"
+   },
+   {
+    "area": "Deploy gate on site/public",
+    "command": "scripts/publication/validate_publication_authority.py --surface site/public",
+    "status": "PASS",
+    "detail": "PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci"
+   },
+   {
+    "area": "Governance invariants (no approval, signature, lock, activation, certification or ratification)",
+    "command": "inline invariant check",
+    "status": "PASS",
+    "detail": "OK"
    }
   ]
- },
- "note": "Each PR commit checked out ALONE in a clean worktree. PR-A's only failure is the live deploy gate on the pre-existing /acquire/ block, fixed by PR-B. n/a = the tool does not exist yet at that commit."
+ }
 }
