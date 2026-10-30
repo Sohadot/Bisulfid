@@ -1,6 +1,6 @@
 {
  "spec_id": "INST-HOME-EN",
- "version": "1.1.0",
+ "version": "1.2.0",
  "status": "preview",
  "page_class": "institutional",
  "institutional_function": "gateway_home",
@@ -70,7 +70,7 @@
   {
    "heading": "How a statement reaches a reference page",
    "paragraphs": [
-    "A source is first identified and checked, then qualified for a specific use. A passage from it is recorded as evidence with its exact location, and a claim is approved only against admitted evidence. Numbers are quoted as their sources print them; when two determinations differ, both are shown rather than averaged. A page is published only if it adds knowledge that no other page on the site already holds."
+    "A source is first identified and checked, then qualified for a specific use. A passage from it is recorded as evidence with its exact location, and a claim is approved only against admitted evidence. Numbers are quoted as their sources print them; when two determinations differ, both are shown rather than averaged. A new reference page is published only if it adds knowledge that no other page on the site already holds; most older pages were published before these rules and are being reviewed or rebuilt."
    ],
    "links": [
     {
@@ -99,7 +99,7 @@
    "heading": "Who is responsible for this site",
    "paragraphs": [
     "BISULFID is an independent reference project published by the owner of the bisulfid.com domain. It is not affiliated with IUPAC, with any dictionary publisher or with any company or database named on its pages.",
-    "Each reference page names the evidence behind every statement and shows when it was retrieved. No individual expert review is claimed: a page records that it has been independently validated only after such a review has taken place."
+    "Each reference page built under these rules names the evidence behind every statement and shows when it was retrieved. No individual expert review is claimed: a page records that it has been independently validated only after such a review has taken place."
    ],
    "links": [
     {
@@ -148,5 +148,30 @@
   "en": "/",
   "de": "/de/",
   "x-default": "/"
+ },
+ "footer": {
+  "nav": [
+   {
+    "path": "/",
+    "label": "Home"
+   },
+   {
+    "path": "/methodology/",
+    "label": "Methodology"
+   },
+   {
+    "path": "/sources/",
+    "label": "Sources"
+   },
+   {
+    "path": "/glossary/",
+    "label": "Glossary"
+   },
+   {
+    "path": "/de/",
+    "label": "Deutsch"
+   }
+  ],
+  "identity": "BISULFID — reference project on the language of sulfur chemistry."
  }
 }

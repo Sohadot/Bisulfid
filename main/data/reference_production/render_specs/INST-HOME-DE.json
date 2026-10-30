@@ -1,6 +1,6 @@
 {
  "spec_id": "INST-HOME-DE",
- "version": "1.0.0",
+ "version": "1.1.0",
  "status": "preview",
  "page_class": "institutional",
  "institutional_function": "gateway_home",
@@ -96,7 +96,7 @@
   {
    "heading": "Wie eine Aussage auf eine Referenzseite gelangt",
    "paragraphs": [
-    "Eine Quelle wird zuerst identifiziert und geprüft und dann für einen bestimmten Zweck zugelassen. Eine Passage daraus wird mit ihrer genauen Fundstelle als Beleg erfasst, und eine Aussage wird nur anhand zugelassener Belege freigegeben. Zahlen werden so wiedergegeben, wie die Quelle sie druckt; weichen zwei Bestimmungen voneinander ab, werden beide gezeigt und nicht gemittelt."
+    "Eine Quelle wird zuerst identifiziert und geprüft und dann für einen bestimmten Zweck zugelassen. Eine Passage daraus wird mit ihrer genauen Fundstelle als Beleg erfasst, und eine Aussage wird nur anhand zugelassener Belege freigegeben. Ältere Seiten der Website entstanden vor diesen Regeln und werden überprüft oder neu aufgebaut. Zahlen werden so wiedergegeben, wie die Quelle sie druckt; weichen zwei Bestimmungen voneinander ab, werden beide gezeigt und nicht gemittelt."
    ],
    "links": [
     {
@@ -121,7 +121,7 @@
    "heading": "Verantwortung für diese Website",
    "paragraphs": [
     "BISULFID ist ein unabhängiges Referenzprojekt der Inhaberin bzw. des Inhabers der Domain bisulfid.com. Es besteht keine Verbindung zur IUPAC, zu Wörterbuchverlagen oder zu Unternehmen und Datenbanken, die auf den Seiten genannt werden.",
-    "Jede Referenzseite nennt die Belege hinter jeder Aussage und das Abrufdatum. Eine fachliche Begutachtung durch eine benannte Person wird nicht behauptet; eine Seite wird erst dann als unabhängig geprüft ausgewiesen, wenn eine solche Prüfung stattgefunden hat."
+    "Jede nach diesen Regeln erstellte Referenzseite nennt die Belege hinter jeder Aussage und das Abrufdatum. Eine fachliche Begutachtung durch eine benannte Person wird nicht behauptet; eine Seite wird erst dann als unabhängig geprüft ausgewiesen, wenn eine solche Prüfung stattgefunden hat."
    ],
    "links": []
   },
@@ -132,5 +132,26 @@
    ],
    "links": []
   }
- ]
+ ],
+ "footer": {
+  "nav": [
+   {
+    "path": "/de/",
+    "label": "Startseite"
+   },
+   {
+    "path": "/methodology/",
+    "label": "Methodik (Englisch)"
+   },
+   {
+    "path": "/de/glossary/",
+    "label": "Glossar"
+   },
+   {
+    "path": "/",
+    "label": "English"
+   }
+  ],
+  "identity": "BISULFID — Referenzprojekt zur Sprache der Schwefelchemie."
+ }
 }

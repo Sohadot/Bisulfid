@@ -462,6 +462,23 @@ class PreviewTests(unittest.TestCase):
             for phrase in ("dr.", "phd", "professor", "our experts", "reviewed by", "editor-in-chief"):
                 self.assertNotIn(phrase, t)
 
+    def test_homepage_release_candidates_are_staged_not_live(self):
+        for slug, path in (("home", "/"), ("de", "/de/")):
+            rel = open(os.path.join(ROOT, "main", "data", "release", "staged", slug, "index.html"), encoding="utf-8").read()
+            live = open(os.path.join(ROOT, "site", "public", slug if slug != "home" else "", "index.html"), encoding="utf-8").read()
+            self.assertNotEqual(rel, live, "the release candidate is not applied to site/public by this PR")
+            robots, canon = pa.Authority().render_directives(path)
+            self.assertIn(f'<meta name="robots" content="{robots}">', rel)
+            m = json.load(open(os.path.join(ROOT, "main", "data", "release", "staged", slug, "release.json")))
+            self.assertIn("/molybdenum-disulfide/", m["publication_dependencies"])
+
+    def test_homepage_claim_audit_is_complete(self):
+        a = json.load(open(os.path.join(ROOT, "main", "data", "release", "HOMEPAGE_CLAIM_AUDIT.json")))
+        self.assertEqual(a["summary"]["unclassified"], 0)
+        for p in ("home", "de"):
+            t = open(os.path.join(ROOT, "main", "data", "release", "staged", p, "index.html"), encoding="utf-8").read()
+            self.assertNotIn("A page is published only if", t)
+
     def test_homepage_numbers_come_from_registries(self):
         import render_institutional_preview as ri
         gov = ri.gov_values()

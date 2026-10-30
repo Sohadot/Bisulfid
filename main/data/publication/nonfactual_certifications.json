@@ -43,7 +43,51 @@
         "approve replacing the live legacy homepage body (live-HTML change, own PR)",
         "then set status 'certified' with certified_by/certified_on; until then R11 does not apply"
       ],
-      "would_derive_if_certified": "R11 -> (public_indexable, index_approved)"
+      "would_derive_if_certified": "R11 -> (public_indexable, index_approved)",
+      "release_candidate": {
+        "html": "main/data/release/staged/home/index.html",
+        "manifest": "main/data/release/staged/home/release.json",
+        "spec": "main/data/reference_production/render_specs/INST-HOME-EN.json"
+      },
+      "owner_review_checklist": [
+        {
+          "item": "Every sentence verified or confirmed",
+          "evidence": "main/data/release/HOMEPAGE_CLAIM_AUDIT.json",
+          "status": "prepared — 2 items need owner confirmation (non-affiliation statement)"
+        },
+        {
+          "item": "Editorial responsibility wording (publisher = domain owner; no named reviewer; no credentials)",
+          "status": "owner to confirm"
+        },
+        {
+          "item": "Editorial/corrections contact",
+          "status": "owner decision: none is published; the only verified address (agent@sohadot.com) is the acquisition contact"
+        },
+        {
+          "item": "Reciprocal hreflang en <-> de + x-default",
+          "evidence": "render_institutional_preview.alternates (refuses one-sided pairs)",
+          "status": "verified"
+        },
+        {
+          "item": "Governed numbers computed from registries",
+          "evidence": "HOMEPAGE_CLAIM_AUDIT.json governed_values",
+          "status": "verified"
+        },
+        {
+          "item": "Navigation and footer links resolve",
+          "status": "verified at render (RenderError otherwise)"
+        },
+        {
+          "item": "Gate 12-I PASS",
+          "evidence": "main/data/reference_production/SEO_PREVIEW_ASSESSMENT.json; main/data/release/RELEASE_SIMULATION.json",
+          "status": "verified"
+        },
+        {
+          "item": "Publication dependencies public first (/molybdenum-disulfide/, /bisulfid-vs-bisulfide/)",
+          "status": "BLOCKING — both references are not yet public"
+        }
+      ],
+      "how_to_certify": "Owner sets status 'certified', certified_by (a named person) and certified_on. The authority ignores any certification without both, or signed by an automated agent."
     },
     {
       "certification_id": "R11-HOME-DE-001",
@@ -68,7 +112,51 @@
         "approve replacing the live legacy homepage body (live-HTML change, own PR)",
         "then set status 'certified' with certified_by/certified_on; until then R11 does not apply"
       ],
-      "would_derive_if_certified": "R11 -> (public_indexable, index_approved)"
+      "would_derive_if_certified": "R11 -> (public_indexable, index_approved)",
+      "release_candidate": {
+        "html": "main/data/release/staged/de/index.html",
+        "manifest": "main/data/release/staged/de/release.json",
+        "spec": "main/data/reference_production/render_specs/INST-HOME-DE.json"
+      },
+      "owner_review_checklist": [
+        {
+          "item": "Every sentence verified or confirmed",
+          "evidence": "main/data/release/HOMEPAGE_CLAIM_AUDIT.json",
+          "status": "prepared — 2 items need owner confirmation (non-affiliation statement)"
+        },
+        {
+          "item": "Editorial responsibility wording (publisher = domain owner; no named reviewer; no credentials)",
+          "status": "owner to confirm"
+        },
+        {
+          "item": "Editorial/corrections contact",
+          "status": "owner decision: none is published; the only verified address (agent@sohadot.com) is the acquisition contact"
+        },
+        {
+          "item": "Reciprocal hreflang en <-> de + x-default",
+          "evidence": "render_institutional_preview.alternates (refuses one-sided pairs)",
+          "status": "verified"
+        },
+        {
+          "item": "Governed numbers computed from registries",
+          "evidence": "HOMEPAGE_CLAIM_AUDIT.json governed_values",
+          "status": "verified"
+        },
+        {
+          "item": "Navigation and footer links resolve",
+          "status": "verified at render (RenderError otherwise)"
+        },
+        {
+          "item": "Gate 12-I PASS",
+          "evidence": "main/data/reference_production/SEO_PREVIEW_ASSESSMENT.json; main/data/release/RELEASE_SIMULATION.json",
+          "status": "verified"
+        },
+        {
+          "item": "Publication dependencies public first (/molybdenum-disulfide/, /bisulfid-vs-bisulfide/)",
+          "status": "BLOCKING — both references are not yet public"
+        }
+      ],
+      "how_to_certify": "Owner sets status 'certified', certified_by (a named person) and certified_on. The authority ignores any certification without both, or signed by an automated agent."
     }
   ]
 }
