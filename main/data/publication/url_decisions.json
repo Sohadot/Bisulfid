@@ -37,8 +37,7 @@
         "authority_gate": "validate_publication_authority.py --surface site/public: BLOCK_DIRECTIVE_ESCALATION (served index,follow; governed noindex,follow)",
         "factual_claim_review": "main/data/recovery/ACQUIRE_FACTUAL_CLAIM_REVIEW.json",
         "staged_artifacts": [
-          "main/data/recovery/staged/acquire/index.html",
-          "main/data/recovery/staged/acquire.patch"
+          "applied in Release-01 PR-B (site/public/acquire/index.html)"
         ],
         "simulated_result": "with the staged file in place the deploy gate reports LEGACY_STATUS_QUO 14041, PASS; Gate 12 surface counts unchanged"
       },
@@ -50,11 +49,15 @@
         "all outgoing links (follow)"
       ],
       "changes": [
-        "robots meta: 'index, follow' -> 'noindex, follow'"
+        "robots meta: 'index, follow' -> 'noindex, follow'",
+        "AQ-1..AQ-5 statements replaced (ACQUIRE_FACTUAL_CLAIM_REVIEW.json)",
+        "two link labels that repeated AQ-1 reworded; link targets unchanged"
       ],
       "lift_condition": "Return to 'index, follow' only when /acquire/ has a release-ledger entry other than blocked AND every factual statement listed in ACQUIRE_FACTUAL_CLAIM_REVIEW.json is either evidence-backed or removed.",
       "rollback": "revert the single robots line (git revert of the applying commit); no other file depends on it",
-      "requires": "owner approval; apply to site/public in a dedicated PR"
+      "requires": "owner approval; apply to site/public in a dedicated PR",
+      "gate_basis": "release-ledger enforcement exception (route 'acquire' is blocked). The ledger is NOT changed and authorizes nothing new; the owner still approves this record and the PR.",
+      "pr": "Release-01 PR-B"
     },
     {
       "decision_id": "URL-DEC-R03-W1-001",

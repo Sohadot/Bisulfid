@@ -376,17 +376,22 @@ class AcquireProposalTests(unittest.TestCase):
         row = next(r for r in rows if r.get("route_id") == "acquire")
         self.assertEqual(row["release_status"], "blocked")
 
-    def test_staged_page_changes_only_robots_and_keeps_contact(self):
-        sys.path.insert(0, os.path.join(ROOT, "scripts", "recovery"))
-        import stage_acquire_proposal as sap
-        self.assertEqual(sap.main(["--check"]), 0)
+    def test_acquire_correction_keeps_access_contact_and_links(self):
         live = open(os.path.join(ROOT, "site", "public", "acquire", "index.html"), encoding="utf-8").read()
-        staged = open(os.path.join(ROOT, "main", "data", "recovery", "staged", "acquire", "index.html"), encoding="utf-8").read()
-        diff = [(x, y) for x, y in zip(live.splitlines(), staged.splitlines()) if x != y]
-        self.assertEqual(len(live.splitlines()), len(staged.splitlines()))
-        self.assertEqual(diff, [(sap.OLD, sap.NEW)])
-        self.assertIn('href="mailto:', staged)
+        self.assertIn('<meta name="robots" content="noindex, follow">', live)
+        self.assertIn('<link rel="canonical" href="https://bisulfid.com/acquire/">', live)
+        self.assertIn('href="mailto:agent@sohadot.com"', live)
+        for href in ("/", "/what-is-bisulfid/", "/bisulfid-vs-bisulfide/", "/languages/", "/glossary/", "/sources/"):
+            self.assertIn(f'href="{href}"', live)
         self.assertEqual(pa.Authority().resolve("/acquire/")["robots"], "noindex, follow")
+
+    def test_acquire_statements_aq1_to_aq5_are_corrected(self):
+        live = " ".join(open(os.path.join(ROOT, "site", "public", "acquire", "index.html"), encoding="utf-8").read().split())
+        for removed in ("holds the German-form spelling", "German-form spelling of a compound", "Seven-language architecture",
+                        "ensuring no claim reaches a public page", "The compound, the term"):
+            self.assertNotIn(removed, live)
+        for kept in ("is not established", "are planned and are not yet published", "Most pages published before"):
+            self.assertIn(kept, live)
 
 
 class IndexationPlanTests(unittest.TestCase):
