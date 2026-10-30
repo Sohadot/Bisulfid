@@ -1,0 +1,400 @@
+{
+ "note": "Machine-checkable part of the L1–L6 lock checklist (release_review_policy.json). L6 is a human signature and is never filled here; no source is locked by this file.",
+ "sources": {
+  "SRC-ACTACRYST-MOS2-1983-EXCERPT": {
+   "source_id": "SRC-ACTACRYST-MOS2-1983-EXCERPT",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pending",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [],
+   "dates_seen": [
+    "2026-09-20"
+   ],
+   "used_by": [
+    "KO-MOS2-SCIENTIFIC-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-COD-MOS2-ACTACRYST-1983": {
+   "source_id": "SRC-COD-MOS2-ACTACRYST-1983",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pass",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json"
+   ],
+   "dates_seen": [
+    "2026-09-20",
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-MOS2-SCIENTIFIC-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-COD-MOS2-DICKINSON-1923": {
+   "source_id": "SRC-COD-MOS2-DICKINSON-1923",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pass",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json"
+   ],
+   "dates_seen": [
+    "2026-09-20",
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-MOS2-SCIENTIFIC-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-DUDEN-SULFID": {
+   "source_id": "SRC-DUDEN-SULFID",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+   ],
+   "dates_seen": [
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-BISULFID-TERMINOLOGY-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-DWDS-BISULFID": {
+   "source_id": "SRC-DWDS-BISULFID",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+   ],
+   "dates_seen": [
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-BISULFID-TERMINOLOGY-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-DWDS-HYDROGENSULFID": {
+   "source_id": "SRC-DWDS-HYDROGENSULFID",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+   ],
+   "dates_seen": [
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-BISULFID-TERMINOLOGY-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-DWDS-SULFID": {
+   "source_id": "SRC-DWDS-SULFID",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+   ],
+   "dates_seen": [
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-BISULFID-TERMINOLOGY-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR": {
+   "source_id": "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+   ],
+   "dates_seen": [
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-BISULFID-TERMINOLOGY-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-HUANG-THESIS-1981": {
+   "source_id": "SRC-HUANG-THESIS-1981",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pending",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pending",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [],
+   "dates_seen": [
+    "2026-09-20"
+   ],
+   "used_by": [
+    "KO-MOS2-SCIENTIFIC-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-IUPAC-RED-BOOK-2005": {
+   "source_id": "SRC-IUPAC-RED-BOOK-2005",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+   ],
+   "dates_seen": [
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-BISULFID-TERMINOLOGY-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-JACS-MOLYBDENITE-1923-EXCERPT": {
+   "source_id": "SRC-JACS-MOLYBDENITE-1923-EXCERPT",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pending",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [],
+   "dates_seen": [
+    "2026-09-20"
+   ],
+   "used_by": [
+    "KO-MOS2-SCIENTIFIC-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-MW-BISULFIDE": {
+   "source_id": "SRC-MW-BISULFIDE",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+   ],
+   "dates_seen": [
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-BISULFID-TERMINOLOGY-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-MW-BISULFITE": {
+   "source_id": "SRC-MW-BISULFITE",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+   ],
+   "dates_seen": [
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-BISULFID-TERMINOLOGY-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-MW-DISULFIDE": {
+   "source_id": "SRC-MW-DISULFIDE",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+   ],
+   "dates_seen": [
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-BISULFID-TERMINOLOGY-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-MW-SULFIDE": {
+   "source_id": "SRC-MW-SULFIDE",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+   ],
+   "dates_seen": [
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-BISULFID-TERMINOLOGY-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-NIST-MOS2": {
+   "source_id": "SRC-NIST-MOS2",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pass",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json"
+   ],
+   "dates_seen": [
+    "2026-09-20",
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-MOS2-SCIENTIFIC-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-PUBCHEM-MOS2": {
+   "source_id": "SRC-PUBCHEM-MOS2",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pass",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json"
+   ],
+   "dates_seen": [
+    "2026-09-20",
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-MOS2-SCIENTIFIC-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-RSC-MOS2-REVIEW-2015": {
+   "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pending",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [],
+   "dates_seen": [
+    "2026-09-20"
+   ],
+   "used_by": [
+    "KO-MOS2-SCIENTIFIC-001"
+   ],
+   "lock_status": "candidate"
+  },
+  "SRC-SPEKTRUM-SCHWEFELWASSERSTOFF-DE": {
+   "source_id": "SRC-SPEKTRUM-SCHWEFELWASSERSTOFF-DE",
+   "checklist": {
+    "L1": "pass",
+    "L2": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
+    "L4": "pass",
+    "L5": "pass (short attributed quotations/values only)",
+    "L6": "pending (human signature required)"
+   },
+   "captures": [
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+   ],
+   "dates_seen": [
+    "2026-10-30"
+   ],
+   "used_by": [
+    "KO-BISULFID-TERMINOLOGY-001"
+   ],
+   "lock_status": "candidate"
+  }
+ }
+}

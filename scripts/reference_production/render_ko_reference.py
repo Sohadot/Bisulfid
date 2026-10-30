@@ -337,9 +337,40 @@ def render_markdown(r):
     return "\n".join(out)
 
 
-def render_html(r):
+def release_status(r):
+    """Human-gate status for the RELEASE rendering, from the signed records only (release_checks)."""
+    sys.path.insert(0, os.path.join(ROOT, "scripts", "release"))
+    import release_checks as rc
+    kid = r["ko"]["knowledge_object_id"]
+    ok, _ = rc.validation_ok(kid)
+    rec = rc.review_record(kid) or {}
+    signed = next((x for x in rec.get("reviews", []) if x.get("status") == "signed"), None) if ok else None
+    srcs = rc.ko_sources(kid)
+    locked = [x for x in srcs if rc.source_lock_ok(x)[0]]
+    return {"validation": (f"independently reviewed by {signed['reviewer']} on {signed['signed_on']}" if signed
+                           else "independent review not yet performed"),
+            "sources": f"{len(locked)} of {len(srcs)} sources locked",
+            "claims": "claims activated by the owner" if rc.claims_active_ok(kid)[0] else "claims not yet activated"}
+
+
+def render_html(r, release=False):
     s, route, ko = r["spec"], r["route"], r["ko"]
     e = html.escape
+    robots, canonical, mode = "noindex, nofollow", f"{SITE}{route['path']}", "preview"
+    kicker = f"{s.get('kicker', 'Scientific reference')} · preview of {route['path']}"
+    gov = ("Preview only: not deployed, not indexable.")
+    footer = "<div class=\"site-footer__inner\"><p class=\"footer-identity\">Bisulfid Sovereign Reference Atlas</p></div>"
+    if release:
+        sys.path.insert(0, os.path.join(ROOT, "scripts", "publication"))
+        import publication_authority as pa
+        robots, canonical = pa.Authority().render_directives(route["path"])
+        mode, kicker = "release", s.get("kicker", "Scientific reference")
+        st = release_status(r)
+        gov = f"Prepared from governed evidence by the BISULFID reference pipeline; {st['validation']}; {st['sources']}; {st['claims']}."
+        footer = ("<div class=\"site-footer__inner\"><nav class=\"footer-nav\" aria-label=\"Footer navigation\">"
+                  "<a href=\"/\">Home</a><a href=\"/methodology/\">Methodology</a><a href=\"/sources/\">Sources</a>"
+                  "<a href=\"/glossary/\">Glossary</a></nav><p class=\"footer-identity\">BISULFID — reference project on the "
+                  "language of sulfur chemistry.</p><p class=\"footer-copyright\">&copy; 2026 bisulfid.com</p></div>")
     glance = "\n".join(f"<tr><th scope=\"row\">{e(g['label'])}</th><td>{e(g['value'])}</td></tr>" for g in r["glance"])
     mods = []
     for m in r["modules"]:
@@ -369,12 +400,12 @@ def render_html(r):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{e(seo['title'])}</title>
   <meta name="description" content="{e(seo['description'])}">
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="{SITE}{e(route['path'])}">
+  <meta name="robots" content="{e(robots)}">
+  <link rel="canonical" href="{e(canonical)}">
   <link rel="stylesheet" href="/assets/bisulfid-design-system/bisulfid-frame.css">
   <script type="application/ld+json">{json.dumps(seo['json_ld'], ensure_ascii=False)}</script>
 </head>
-<body class="bs-control-room bisulfid-atlas atlas-lane-reference" data-reference-preview="true" data-knowledge-object="{e(ko['knowledge_object_id'])}" data-atlas-lane="{e(s.get('atlas_lane', 'compound'))}">
+<body class="bs-control-room bisulfid-atlas atlas-lane-reference" data-reference-{mode}="{e(s['spec_id'])}@{e(s['version'])}" data-knowledge-object="{e(ko['knowledge_object_id'])}" data-atlas-lane="{e(s.get('atlas_lane', 'compound'))}">
   <div class="bs-control-room__shell">
     <header class="site-header atlas-header" role="banner">
       <nav aria-label="Atlas navigation">
@@ -390,7 +421,7 @@ def render_html(r):
     <main id="main-content" role="main">
       <article class="reference-object public-page" lang="{e(route['language'])}">
         <header class="reference-object__hero">
-          <p class="page-kicker">{e(s.get('kicker', 'Scientific reference'))} · preview of {e(route['path'])}</p>
+          <p class="page-kicker">{e(kicker)}</p>
           <h1>{e(s['h1'])}</h1>
           <p class="page-intro">{e(s['summary'])}</p>
           <p class="reference-object__asof">Evidence retrieved {e(r['evidence_as_of'] or 'n/a')} · {len(r['provenance'])} admitted evidence records · values are quoted, never averaged</p>
@@ -421,12 +452,12 @@ def render_html(r):
         </nav>
         <aside class="reference-governance" aria-label="Governance status">
           <h2>Governance status</h2>
-          <p>Knowledge Object <code>{e(ko['knowledge_object_id'])}</code> · render spec <code>{e(s['spec_id'])}@{e(s['version'])}</code> · Contract C ({e(cc[0])}, {e(cc[1])}). Preview only: not deployed, not indexable.</p>
+          <p>Knowledge Object <code>{e(ko['knowledge_object_id'])}</code> · render spec <code>{e(s['spec_id'])}@{e(s['version'])}</code> · Contract C ({e(cc[0])}, {e(cc[1])}). {e(gov)}</p>
         </aside>
       </article>
     </main>
     <footer class="site-footer" role="contentinfo">
-      <div class="site-footer__inner"><p class="footer-identity">Bisulfid Sovereign Reference Atlas</p></div>
+      {footer}
     </footer>
   </div>
 </body>
@@ -438,7 +469,7 @@ def registry_with_units(r, page_id):
     reg = load("main", "data", "distinctiveness", "ig_unit_registry.json")
     ents = r["ko"]["entity_ids"]
     entry = {"page": page_id, **({"entity_id": ents[0]} if len(ents) == 1 else {"entity_ids": ents}),
-             "knowledge_object_id": r["ko"]["knowledge_object_id"],
+             "knowledge_object_id": r["ko"]["knowledge_object_id"], "served_url": r["route"]["path"],
              "publication_candidate_id": r["pc_id"], "localization_of": None,
              "role": "canonical route reconstruction preview (non-public; rendered by render_ko_reference.py)",
              "units": r["units"]}
@@ -458,8 +489,32 @@ def outputs(spec_path):
     html_path = os.path.join(DATA, "reference_production", "previews", slug, "index.html")
     reg_path = os.path.join(DATA, "distinctiveness", "ig_unit_registry.json")
     reg = registry_with_units(r, r["route"]["content_file"])
+    rel_dir = os.path.join(DATA, "release", "staged", slug)
     return r, {md_path: render_markdown(r), html_path: render_html(r),
-               reg_path: json.dumps(reg, indent=2, ensure_ascii=False) + "\n"}
+               reg_path: json.dumps(reg, indent=2, ensure_ascii=False) + "\n",
+               os.path.join(rel_dir, "index.html"): render_html(r, release=True),
+               os.path.join(rel_dir, "release.json"): release_manifest(r)}
+
+
+def release_manifest(r):
+    sys.path.insert(0, os.path.join(ROOT, "scripts", "release"))
+    import release_checks as rc
+    kid = r["ko"]["knowledge_object_id"]
+    pc_id = r["pc_id"]
+    pc = next(load("main", "data", "publication_candidates", f) for f in
+              sorted(os.listdir(os.path.join(DATA, "publication_candidates"))) if f.startswith(pc_id))
+    honoured, notes = rc.honoured_postures(kid, pc["postures"])
+    hon = {"governance": honoured["governance_posture"], "evidence": honoured["evidence_posture"],
+           "claim": honoured["claim_posture"], "validation": honoured["validation_posture"],
+           "ig": honoured["information_gain_posture"], "release": honoured["release_authorization"]}
+    obl = [o for o in load("main", "data", "publication", "consolidation_obligations.json")["obligations"]
+           if o["knowledge_object_id"] == kid]
+    return json.dumps({"page": r["route"]["path"], "kind": "knowledge_reference", "knowledge_object_id": kid,
+                       "spec": f"{r['spec']['spec_id']}@{r['spec']['version']}", "publication_candidate": pc_id,
+                       "postures_recorded": pc["postures"], "postures_honoured": honoured,
+                       "contract_c_honoured": list(contract_c_derive.derive(**hon)), "not_honoured": notes,
+                       "consolidation_obligations_after_release": len(obl), "publication_dependencies": []},
+                      indent=1, ensure_ascii=False) + "\n"
 
 
 def main(argv=None):

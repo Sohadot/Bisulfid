@@ -177,18 +177,18 @@
         "evidence_posture": "evidence_sufficient",
         "claim_posture": "claim_pending",
         "validation_posture": "not_validated",
-        "information_gain_posture": "ig_reviewed_no_new_route",
+        "information_gain_posture": "ig_reviewed_route_realization",
         "release_authorization": "not_authorized"
       },
       "posture_notes": {
         "evidence_posture": "DERIVED via the admission engine over the bound evidence (A/B/C each evidence_sufficient; aggregate = evidence_sufficient). Source locks remain candidate, so NO evidence_locked.",
         "claim_posture": "claim_pending — the bound claims are pilot_non_operational and are NOT promoted into an active canonical claim registry by this sprint.",
-        "information_gain_posture": "ig_reviewed_no_new_route — under the ratified IG authority (ig_governance_policy.json v1.0.0) the gate classifies new-route distinctness as near_duplicate versus the legacy same-task route, so no NEW independent URL is warranted. The object is nonetheless informationally valid (see ig_resolution.object_informational_validity). This posture is NOT ig_reviewed_pass. contract_c_derive.py normalizes it to the canonical ig_failed route-gate input."
+        "information_gain_posture": "ig_reviewed_route_realization (IG policy 1.1.0): the KO replaces the body of its own existing route /molybdenum-disulfide/; no new URL; 38 same-task duplicates carry consolidation obligations."
       },
       "derived_contract_c": {
         "publication_state": "not_public",
         "indexation_state": "noindex",
-        "derived_by": "scripts/governance_scaffolding/contract_c_derive.py derive(reference_draft, evidence_sufficient, claim_pending, not_validated, ig_reviewed_no_new_route, not_authorized)"
+        "derived_by": "scripts/governance_scaffolding/contract_c_derive.py derive(reference_draft, evidence_sufficient, claim_pending, not_validated, ig_reviewed_route_realization, not_authorized)"
       },
       "notes": "First production Knowledge Object (Reference Production 01). Aggregates Pilot-03 governed scientific claims/evidence without re-owning facts. Authorizes NO route/HTML/sitemap/indexation; Knowledge-Object-Before-URL is absolute."
     },

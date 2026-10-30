@@ -175,12 +175,15 @@ def main():
     ok("21_no_legacy_holding", "legacy_public_holding" not in json.dumps(ko) and "legacy_public_holding" not in json.dumps(pc))
 
     # 22 publication-candidate is an internal candidate, never published/indexable
-    # (IG posture/disposition ratified in the ig-governance-ratification sprint: the gate
-    # finds no NEW route warranted, so the posture is ig_reviewed_no_new_route, NOT a pass).
+    # (IG: no NEW route is warranted. Since IG policy 1.1.0 the KO may realize its OWN existing route
+    # — ig_reviewed_route_realization, verified by route_realization.check — never a new URL.)
+    import route_realization
+    ig = pc["postures"]["information_gain_posture"]
     ok("22_candidate_not_published", pc["status"] == "internal_candidate"
        and pc["proposed_disposition"] == "governed_reference_no_new_route"
        and "published" in pc["not_disposition"] and "indexable" in pc["not_disposition"]
-       and pc["postures"]["information_gain_posture"] == "ig_reviewed_no_new_route")
+       and (ig == "ig_reviewed_no_new_route"
+            or (ig == "ig_reviewed_route_realization" and route_realization.check(pc["knowledge_object_id"])[0])))
 
     print("=" * 56)
     if FAIL:

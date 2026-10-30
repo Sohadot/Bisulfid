@@ -64,7 +64,8 @@ claimed = {"governance_posture": "governed", "evidence_posture": "evidence_locke
 p, notes = rc.honoured_postures(KO, claimed)
 ok("18_self_declared_green_postures_are_all_downgraded_today",
    (p["validation_posture"], p["evidence_posture"], p["claim_posture"], p["release_authorization"])
-   == ("not_validated", "evidence_sufficient", "claim_pending", "not_authorized") and len(notes) == 4)
+   == ("not_validated", "evidence_sufficient", "claim_pending", "not_authorized") and p["governance_posture"] == "reference_draft"
+   and len(notes) == 5)
 
 print("=" * 56)
 print("RESULT: " + ("PASS — release gates cannot be self-granted" if not FAILS else f"FAIL — {FAILS}"))

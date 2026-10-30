@@ -117,7 +117,11 @@ def _captures():
     for f in glob.glob(os.path.join(DATA, "evidence", "captures", "*.json")):
         d = json.load(open(f, encoding="utf-8"))
         for k, v in d.get("captures", {}).items():
-            out.setdefault(k.split("#")[0], []).append((os.path.relpath(f, ROOT), v))
+            key = k.split("#")[0]
+            ev = os.path.join(DATA, "evidence", key + ".json")
+            if key.startswith("EVD-") and os.path.exists(ev):  # recapture files are keyed by evidence id
+                key = json.load(open(ev, encoding="utf-8"))["source_id"]
+            out.setdefault(key, []).append((os.path.relpath(f, ROOT), v))
     return out
 
 
@@ -180,7 +184,8 @@ def honoured_postures(ko_id, postures):
     checks = (("validation_posture", ("validated",), "not_validated", validation_ok),
               ("evidence_posture", ("evidence_locked",), "evidence_sufficient", evidence_locked_ok),
               ("claim_posture", ("claim_approved", "claim_approved_narrow"), "claim_pending", claims_active_ok),
-              ("release_authorization", ("authorized",), "not_authorized", release_authorized_ok))
+              ("release_authorization", ("authorized",), "not_authorized", release_authorized_ok),
+              ("governance_posture", ("governed",), "reference_draft", release_authorized_ok))
     for field, claimed, fallback, fn in checks:
         if p.get(field) in claimed:
             good, why = fn(ko_id)

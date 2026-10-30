@@ -7,7 +7,8 @@ type, byte size and sha256 (C1/C2), and asserts that every quoted passage used b
 record is present VERBATIM in the retrieved artifact after whitespace normalization (C5).
 A passage that is not found fails the capture; nothing is quoted from memory.
 
-Output: main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json (deterministic order).
+Output: main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json (deterministic order); with
+--recapture (run on a LATER date, source-lock checklist L3) captures/TERMINOLOGY_RECAPTURE_<date>.json.
 Network required. Exit 1 if any check fails or a declared artifact is unreachable.
 """
 
@@ -110,7 +111,10 @@ def fetch(url):
 
 
 def main():
+    global OUT
     today = datetime.date.today().isoformat()
+    if "--recapture" in sys.argv:  # L3 (source-lock checklist): a later, separate capture; never overwrite the first
+        OUT = os.path.join(os.path.dirname(OUT), f"TERMINOLOGY_RECAPTURE_{today}.json")
     out, failed = {}, []
     for sid, (url, kind, quotes) in SOURCES.items():
         status, ctype, raw = fetch(url)
