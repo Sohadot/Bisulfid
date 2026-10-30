@@ -34,6 +34,12 @@ jobs:
       - name: "Layer 2 — production planner (dry-run report)"
         run: python scripts/corpus_production_planner_l2.py
 
+      - name: "Gate 12 — distinctiveness & information gain tests"
+        run: python scripts/validators/test_distinctiveness.py
+
+      - name: "Gate 12 — publication-candidate distinctiveness gate (blocking)"
+        run: python scripts/validators/validate_distinctiveness.py --gate
+
       - name: "Layer 0 — route registry validation"
         run: |
           if [ -f scripts/validate_route_registry_l0.py ]; then

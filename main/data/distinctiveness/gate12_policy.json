@@ -1,0 +1,140 @@
+{
+  "policy_id": "GATE-12-DISTINCTIVENESS",
+  "version": "1.0.0",
+  "status": "blocking",
+  "site": "bisulfid.com",
+  "sprint": "corpus-distinctiveness-audit",
+  "adopted_at": "2026-10-30",
+  "governed_by": [
+    "doctrine/QUALITY_GATE.md",
+    "scripts/validators/distinctiveness_core.py",
+    "scripts/validators/validate_distinctiveness.py",
+    "DECISION_LOG.md"
+  ],
+  "core_rule": "A page may not become publication-eligible merely because it is complete, sourced, grammatically different, or has a unique title. It must contain materially distinct knowledge.",
+  "relationship_to_other_gates": {
+    "contract_c": "Gate 12 and Contract C (scripts/governance_scaffolding/contract_c_derive.py) are BOTH required. Gate 12 never relaxes a Contract-C denial; Contract C never relaxes a Gate-12 failure. Combined eligibility = Contract-C output AND Gate-12 PASS (see distinctiveness_core.combined_publication_eligibility).",
+    "ig_governance_policy": "The ratified IG route-distinctness authority (main/data/information_gain/ig_governance_policy.json) is unchanged: it still decides route-distinctness classifications without numeric authority. Gate 12's numeric similarity bounds are a separate BLOCK-ONLY corpus-quality gate: a low similarity can never confer a pass on its own (Information Gain and structural distinctiveness must still pass), and Gate 12 never writes an IG classification or posture.",
+    "gate_11": "Translations are evaluated for language integrity by Gate 11. A declared localization inherits its source page's Gate-12 status and cannot create distinctiveness of its own."
+  },
+  "scope": {
+    "markdown_corpus_glob": "main/content/*/pages/**/*.md",
+    "html_surface_root": "site/public",
+    "html_surface_excluded_dirs": ["_integration_sample", "_visual_proof_sample", "assets"],
+    "drafts_are_audited": true,
+    "audit_never_changes_publication_state": true
+  },
+  "text_similarity": {
+    "method": "word 5-gram shingles over the entity-masked substantive body; pages with identical entity-masked bodies are grouped first (hash), then MinHash (120 hashes, 40 bands x 3 rows) LSH proposes candidate pairs between distinct bodies; exact Jaccard and overlap-coefficient confirmation; when distinct bodies <= exhaustive_confirmation_max_representatives every pair of distinct bodies is also confirmed exactly and LSH recall is reported; publication candidates are always compared exhaustively",
+    "shingle_size": 5,
+    "minhash_permutations": 120,
+    "lsh_bands": 40,
+    "lsh_rows": 3,
+    "overlap_coefficient_min_shingles": 20,
+    "exhaustive_confirmation_max_representatives": 3000,
+    "similarity_definition": "S = max(Jaccard, overlap_coefficient) where overlap_coefficient = |A∩B| / min(|A|,|B|) applies only when the smaller shingle set has at least overlap_coefficient_min_shingles members. The overlap coefficient defeats padding (clone + generic text).",
+    "entity_masking": "The page's own entity phrases (H1 head, title head, route_id, entity slug) are replaced by one slot token before shingling, so entity-name substitution clones compare as identical.",
+    "fail_at_or_above": 0.70,
+    "review_at_or_above": 0.55,
+    "note": "Below 0.55 passes ONLY the pairwise textual component. It never passes Gate 12 by itself."
+  },
+  "structure": {
+    "skeleton_definition": "ordered tuple of entity-masked, normalized SUBSTANTIVE section headings (H2+); infrastructure sections are excluded",
+    "near_identical_sequence_ratio": 0.85,
+    "near_identical_compare_top_k_skeletons": 200,
+    "template_rule": "FAIL when the skeleton is shared (identically or near-identically) with at least one other page AND (template_sentence_ratio >= structural_template_prose_min OR S >= text_similarity.review_at_or_above). Shared structure alone is permitted.",
+    "structural_template_prose_min": 0.30
+  },
+  "boilerplate": {
+    "sentence_min_tokens": 4,
+    "template_sentence_min_pages": 3,
+    "definition": "template_sentence_ratio = share of a page's substantive sentence tokens that belong to entity-masked sentences occurring on at least template_sentence_min_pages pages of the comparison universe",
+    "fail_at_or_above": 0.50,
+    "review_at_or_above": 0.30
+  },
+  "thin_body": {
+    "min_substantive_tokens": 60,
+    "note": "Pages whose substantive body (after infrastructure exclusion) is below this size cannot carry three knowledge units; they fail as thin."
+  },
+  "information_gain": {
+    "registry": "main/data/distinctiveness/ig_unit_registry.json",
+    "min_valid_units": 3,
+    "unit_requirements": [
+      "page_specific: unit.entity_id equals the page entity_id and every bound evidence record lists that entity in concept_ids",
+      "evidence_backed: every evidence_id exists in main/data/evidence, governed=true, test_fixture=false, evidence_review_posture=evidence_verified; a bound claim_id must exist and list the evidence as supporting (or the evidence must name that claim); claim-less units are allowed only for boundary dimensions and only with evidence that is attached to no claim",
+      "not_boilerplate: the statement matches no infrastructure pattern and none of its sentences is a template sentence of the comparison universe",
+      "not_entity_substitution: the entity-masked statement does not occur on any other page and does not near-match (S >= text_similarity.fail_at_or_above) another registered unit of a different page",
+      "useful: dimension is a governed IG dimension and audience_ids are governed audiences (main/data/audience_layer_registry.json)",
+      "rendered: the statement is actually present in the page substantive body (3-gram containment >= rendered_min_containment)",
+      "distinct: units with an identical (claim_id, evidence set) key count once; a key already owned by another non-localization page does not count (cross-language/undeclared duplicate)"
+    ],
+    "rendered_min_containment": 0.80,
+    "dimensions": [
+      "chemical_identity", "chemical_structure", "quantitative_property", "polytype_distinction",
+      "terminology_boundary", "cross_language_semantic_distinction", "industrial_use",
+      "historical_evidence", "geographic_relevance", "regulatory_distinction", "trade_economic_fact",
+      "source_disagreement", "relationship_to_entity", "conceptual_boundary"
+    ],
+    "claimless_boundary_dimensions": ["polytype_distinction", "conceptual_boundary", "terminology_boundary"]
+  },
+  "infrastructure_exclusion": {
+    "purpose": "Reusable site infrastructure that may legitimately repeat. Excluded text is measured separately (infra_token_ratio) and never contributes to substantive similarity. Front matter is always excluded.",
+    "section_heading_patterns": [
+      "^publication blockers$", "^source and claim status$", "^reliability notice$",
+      "^internal link placeholders", "^internal reference role$", "^planned internal links$",
+      "^ver(o|ö)ffentlichungsblocker$", "^quellen- und claim-status$", "^interne referenzrolle$",
+      "^system posture", "^structured metadata", "^knowledge reliability profile$",
+      "^source boundary$", "^claim boundary$", "^what requires source-locking before publication$",
+      "^child-safe notice$", "^warning$", "^draft (status|notice)$",
+      "^related atlas nodes$", "^navigation$", "^explore related pages$", "^source and claim posture$",
+      "^evidence trail$", "^governance status$", "^footer$"
+    ],
+    "line_patterns": [
+      "^\\*\\*(draft status|draft notice|entwurfsstatus|status):\\*\\*",
+      "^\\*[^*].*(draft|entwurf|cohort|backfill|engine|pipeline).*\\*$",
+      "^terminology and chemical fact lines that are not yet source-supported",
+      "^distinction claims beyond terminology boundary",
+      "^-{3,}$",
+      "^\\|?\\s*-{3,}"
+    ],
+    "inline_strip_patterns": ["\\[SOURCE REQUIRED\\]", "\\[source required\\]"],
+    "shared_disclaimer_dir": "main/content/shared/disclaimers",
+    "html_skip_tags": ["script", "style", "nav", "header", "footer", "aside", "noscript", "svg"],
+    "html_skip_aria_hidden": true,
+    "anti_gaming_note": "Exclusion is by explicitly registered patterns only. Text is NEVER excluded merely because it recurs across many pages — recurrence is exactly what Gate 12 measures."
+  },
+  "page_family_map": {
+    "note": "Knowledge-object family derived from page_type_id (markdown) or atlas lane (HTML). The Knowledge Object determines composition; this map only groups the legacy corpus for audit.",
+    "page_type_to_family": {
+      "PT_COMPOUND_ENTITY": "chemical_substance",
+      "PT_TERM_CANONICAL": "terminology_concept",
+      "PT_DIFFERENCE_COMPARISON": "comparison_boundary",
+      "PT_AUDIENCE_EXPLAINER": "audience_variant",
+      "PT_CHILD_SAFE_EDU": "audience_variant",
+      "PT_AI_READABLE": "audience_variant",
+      "PT_FOUNDATION": "site_foundation",
+      "PT_METHODOLOGY_GOVERNANCE": "governance",
+      "PT_CORPUS_STATUS": "governance",
+      "PT_GOVERNMENT_POLICY": "regulatory_concept",
+      "PT_INVESTOR_ECONOMIC": "trade_economic_relationship",
+      "PT_COMPANY_INDUSTRY": "organization",
+      "PT_MULTILINGUAL_EQUIV": "terminology_concept"
+    },
+    "html_lane_to_family": {
+      "terminology": "terminology_concept",
+      "compound": "chemical_substance",
+      "comparison": "comparison_boundary",
+      "industrial": "industrial_process",
+      "compliance": "regulatory_concept",
+      "multilingual": "terminology_concept",
+      "hub": "site_foundation",
+      "foundation": "site_foundation"
+    }
+  },
+  "verdicts": {
+    "PASS": "all Gate-12 components pass; still requires Contract C + release authorization",
+    "REVIEW": "no blocking failure but at least one component in a review band; NOT publication-eligible until production review records a decision",
+    "FAIL": "at least one blocking component failed; publication/indexation prohibited",
+    "LOCALIZATION": "declared translation; inherits the source page's Gate-12 verdict and requires Gate 11; never independently PASS"
+  }
+}

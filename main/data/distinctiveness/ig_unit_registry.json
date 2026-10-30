@@ -1,0 +1,72 @@
+{
+  "registry_id": "GATE-12-IG-UNITS",
+  "version": "1.0.0",
+  "status": "governed",
+  "site": "bisulfid.com",
+  "sprint": "corpus-distinctiveness-audit",
+  "governed_by": ["main/data/distinctiveness/gate12_policy.json", "scripts/validators/distinctiveness_core.py", "DECISION_LOG.md"],
+  "purpose": "Production-level Information Gain units. A unit is a page-specific, evidence-backed, non-boilerplate, non-substitution knowledge statement that is actually rendered on the page and useful to a governed audience. Units bind to EXISTING governed claims/evidence only; registering a unit never creates, approves, or locks a claim or source, and never changes publication state.",
+  "unit_schema": {
+    "required": ["unit_id", "entity_id", "dimension", "statement", "evidence_ids", "audience_ids"],
+    "optional": ["claim_id", "claim_component", "notes"],
+    "rule": "No fact may be invented to reach the minimum. If governed evidence supports fewer than three units, the page is not publication-ready."
+  },
+  "pages": [
+    {
+      "page": "main/data/distinctiveness/controls/mos2_scientific_control.md",
+      "entity_id": "molybdenum_disulfide",
+      "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
+      "publication_candidate_id": "PC-MOS2-SCIENTIFIC-001",
+      "localization_of": null,
+      "role": "gate12_positive_control (non-public; not a publication candidate)",
+      "units": [
+        {
+          "unit_id": "IGU-MOS2-001",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "chemical_identity",
+          "statement": "The formula of molybdenum disulfide is MoS2, as recorded independently by the PubChem and NIST chemistry databases.",
+          "claim_id": "CLM-MOS2-FORMULA",
+          "evidence_ids": ["EVD-MOS2-FORMULA-PUBCHEM", "EVD-MOS2-FORMULA-NIST"],
+          "audience_ids": ["AUD_CHEMIST", "AUD_RESEARCHER"]
+        },
+        {
+          "unit_id": "IGU-MOS2-002",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "chemical_structure",
+          "statement": "Bulk MoS2 is a layered material in which each layer is a three-atom-thick S–Mo–S stack.",
+          "claim_id": "CLM-MOS2-STRUCTURE-2H",
+          "claim_component": "layered",
+          "evidence_ids": ["EVD-MOS2-LAYERED-RSC", "EVD-MOS2-LAYERED-ACTA1983-EXCERPT"],
+          "audience_ids": ["AUD_CHEMIST", "AUD_RESEARCHER"]
+        },
+        {
+          "unit_id": "IGU-MOS2-003",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "chemical_structure",
+          "statement": "In the 2H polytype, bulk MoS2 adopts the hexagonal space group P6₃/mmc (No. 194), with a c-axis repeat near 12.3 Å.",
+          "claim_id": "CLM-MOS2-STRUCTURE-2H",
+          "claim_component": "space_group_lattice",
+          "evidence_ids": ["EVD-MOS2-STRUCTURE-DICKINSON", "EVD-MOS2-STRUCTURE-ACTACRYST"],
+          "audience_ids": ["AUD_CHEMIST", "AUD_RESEARCHER"]
+        },
+        {
+          "unit_id": "IGU-MOS2-004",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "quantitative_property",
+          "statement": "Two independent determinations report the in-plane lattice parameter a of bulk 2H-MoS2 as 3.15(2) Å (Dickinson and Pauling, 1923) and 3.161 Å (Schönfeld, Huang and Moss, 1983).",
+          "claim_id": "CLM-MOS2-LATTICE-A-2H",
+          "evidence_ids": ["EVD-MOS2-LATTICE-A-DICKINSON", "EVD-MOS2-LATTICE-A-ACTACRYST"],
+          "audience_ids": ["AUD_CHEMIST", "AUD_RESEARCHER"]
+        },
+        {
+          "unit_id": "IGU-MOS2-005",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "polytype_distinction",
+          "statement": "The 3R polytype of MoS2 is a distinct structure with rhombohedral space group R3m and approximate lattice parameters a ≈ 3.17 Å and c ≈ 18.38 Å, so its values must not be attributed to the 2H form.",
+          "evidence_ids": ["EVD-MOS2-3R-BOUNDARY-RSC"],
+          "audience_ids": ["AUD_CHEMIST", "AUD_RESEARCHER"]
+        }
+      ]
+    }
+  ]
+}

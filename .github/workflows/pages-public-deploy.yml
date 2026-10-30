@@ -5,6 +5,8 @@ name: Pages public deploy
 # Deploys 14,040 foundation pages only — not repository root, not site/_sample/.
 # Does not regenerate corpus, install dependencies, or mutate repository files.
 # Indexation/sitemap/navigation/source/claim gates remain CLOSED.
+# Gate 12 (distinctiveness & information gain) blocks the deploy if any indexable page in the
+# staged artifact fails it: near-duplicate publication is mechanically impossible.
 
 on:
   workflow_dispatch:
@@ -64,6 +66,9 @@ jobs:
           test ! -e "${ARTIFACT_DIR}/_integration_sample"
           test ! -e "${ARTIFACT_DIR}/_visual_proof_sample"
           echo "artifact_dir=${ARTIFACT_DIR}" >> "${GITHUB_OUTPUT}"
+
+      - name: "Gate 12 — block indexable pages that fail distinctiveness"
+        run: python3 scripts/validators/validate_distinctiveness.py --surface "${{ steps.stage.outputs.artifact_dir }}"
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

@@ -16,7 +16,7 @@ Gates are conditions, not goals.
 
 ---
 
-## The 11 Gates
+## The 12 Gates
 
 ### Gate 01 — Internal Links
 
@@ -56,7 +56,7 @@ Zero SEO violations.
 
 All pages have canonical tags, correct meta descriptions, and valid structured data. No duplicate content. No thin pages in the sitemap.
 
-Validator: `validate_seo.py`
+Validator: `validate_seo.py` (placeholder). Duplicate and thin content are enforced by Gate 12.
 
 ### Gate 06 — Security Policy
 
@@ -112,6 +112,28 @@ A multilingual page fails Gate 11 if:
 
 Validator: `validate_hreflang.py`, `validate_translations.py`, `validate_language_routes.py`
 
+### Gate 12 — Page Distinctiveness & Information Gain
+
+> A page may not become publication-eligible merely because it is complete, sourced, grammatically different, or has a unique title. It must contain materially distinct knowledge.
+
+Gate 12 is **blocking** and is a reference-quality and commercial-asset-quality gate, not an SEO-only gate. A failure prohibits publication and indexation.
+
+Infrastructure is separated from substance before comparison: front matter, route IDs, draft/publication-status notices, navigation, footer, provenance labels, standard disclaimers, citation trails and governance notices are excluded by explicitly registered patterns (`main/data/distinctiveness/gate12_policy.json`). Text is never excluded merely because it recurs.
+
+A page fails Gate 12 if any of the following holds:
+
+- **Near duplicate** — entity-masked substantive similarity `S >= 0.70` with another page (`S = max(Jaccard, overlap coefficient)` over word 5-gram shingles). `0.55 <= S < 0.70` requires production review and is not publication-eligible. `S < 0.55` passes only the textual component.
+- **Structural template** — the substantive section skeleton is shared with sibling pages and filled with template prose or similar text (entity-slot substitution).
+- **Template prose** — at least half of the substantive sentence tokens are sentences that recur (entity-masked) on three or more pages.
+- **Thin body** — fewer than 60 substantive tokens after infrastructure exclusion.
+- **Information Gain** — fewer than three valid Information Gain units. A unit is page-specific, bound to governed verified evidence (and its claim), not boilerplate, not an entity substitution, rendered on the page, and useful to a governed audience (`main/data/distinctiveness/ig_unit_registry.json`). Facts are never invented to reach three.
+
+Translations are evaluated for language integrity by Gate 11; a declared localization inherits its source page's Gate-12 status and cannot create distinctiveness. Synonym swapping, sentence reordering, renamed headings, generic introductions or FAQs, longer disclaimers, padding and unsourced "unique" facts do not solve similarity.
+
+**Publication contract.** A route is publication/indexation-eligible only when evidence, claim, Information Gain, Gate 12 and release authorization all pass. Gate 12 does not override Contract C (`scripts/governance_scaffolding/contract_c_derive.py`); Contract C does not override Gate 12.
+
+Validator: `validate_distinctiveness.py` (real enforcement; `--gate` for publication candidates, `--surface site/public` for the live indexable surface, `--audit` for the whole-corpus report).
+
 ---
 
 ## Gate Status
@@ -133,3 +155,5 @@ python scripts/validators/validate_all.py
 ```
 
 Gate failures produce a blocking error with the gate number and condition that failed.
+
+Gates 01–11 are currently placeholder validators. Gate 12 performs real enforcement.
