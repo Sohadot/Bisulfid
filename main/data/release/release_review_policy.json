@@ -1,7 +1,7 @@
 {
   "policy_id": "RELEASE-REVIEW-POLICY",
   "version": "1.0.0",
-  "status": "ratified_on_merge_of_release_01_pr_a",
+  "status": "proposed_for_owner_adoption",
   "governed_by": [
     "scripts/release/release_checks.py",
     "scripts/publication/publication_authority.py",
@@ -31,5 +31,6 @@
   "lock_rule": "source_lock_status 'locked' is honoured only with a signed lock record for that source in main/data/sources/source_lock_records.json where L1–L6 are all 'pass' and signed_by is a human other than the preparer. evidence_posture 'evidence_locked' is honoured only if every source behind the KO's bound evidence is honoured as locked; otherwise the authority treats it as evidence_sufficient (fail-closed).",
   "automated_preparer_ids": [
     "claude-code-agent"
-  ]
+  ],
+  "status_note": "Restrictive only: this policy adds fail-closed checks and grants no authority to anyone. Opening or merging a pull request does not adopt it; owner adoption is a separate decision. While unadopted, the checks still only ever DOWNGRADE postures."
 }

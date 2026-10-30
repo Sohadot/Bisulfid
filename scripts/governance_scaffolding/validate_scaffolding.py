@@ -240,6 +240,10 @@ def validate_information_gain_governance():
     policy = load(ppath)
     # policy discoverability + version
     check(policy.get("status") == "ratified", "IG policy: must be ratified")
+    for am in policy.get("amendments", []):  # an amendment is ratified only by a named owner, never by a PR event
+        if am.get("status") != "ratified":
+            check(not am.get("ratified_by") and not am.get("ratified_on"),
+                  f"IG amendment {am.get('amendment_id')}: not ratified but carries a ratifier/date")
     check(bool(policy.get("version")), "IG policy: must carry a version")
     class_ids = set(policy.get("classification_ids", []))
     post_ids = set(policy.get("posture_ids", []))

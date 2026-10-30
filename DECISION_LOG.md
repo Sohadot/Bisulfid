@@ -5607,5 +5607,10 @@ Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AM
 6. **`/acquire/`:** `noindex, follow`, AQ-1..5 corrected; contact, URL and links unchanged; ledger untouched. Approval stays pending (no signature generated).
 7. **Homepage wording (owner review authorization, 2026-10-30):** no statement about actual affiliation or non-affiliation, and no claim of independence. The pages state that third-party references identify sources and do not imply endorsement or affiliation. No editorial contact address is published.
 8. **Stack published for review only:** six draft PRs, `release-01/pr-0` … `release-01/pr-e`. Pushing and opening them authorizes nothing: no merge, deploy, signature, lock, activation, indexation change or ratification.
+9. **Final review handoff corrections (2026-10-30):**
+   - `release_review_policy.json` was labelled `ratified_on_merge_of_release_01_pr_a`, which implied that a merge adopts it. It is now `proposed_for_owner_adoption`. It only restricts and grants nothing.
+   - The IG policy records per-version status: 1.0.0 ratified on 2026-09-20; 1.1.0 is a proposal awaiting owner ratification.
+   - The scaffolding validator now rejects an unratified amendment that carries a ratifier or date.
+   - Every stack SHA after PR-0 changed with this fix, so all earlier per-PR results are superseded by the final isolated verification in `PER_PR_TEST_RESULTS.json`.
 
 **Not done by design:** independent reviews, source locks (L6), claim activation, release authorization, R11 certification, the wave-1 noindex (no Search Console export). Ratification of AMD-IG-R03-001 is likewise not done.

@@ -5,6 +5,11 @@
   "site": "bisulfid.com",
   "sprint": "ig-governance-ratification",
   "ratified_at": "2026-09-20",
+  "ratified_version": "1.0.0",
+  "version_status": {
+    "1.0.0": "ratified 2026-09-20 (the governing IG authority)",
+    "1.1.0": "PROPOSAL ONLY: adds the posture ig_reviewed_route_realization via AMD-IG-R03-001 rev 2, awaiting a separate owner ratification. Every 1.0.0 rule is unchanged; until ratification the publication authority refuses the new posture. Opening or merging a pull request is not ratification."
+  },
   "governed_by": [
     "BISULFID_AUTHORITY_DIMENSION_ARCHITECTURE.md",
     "scripts/governance_scaffolding/contract_c_derive.py",
