@@ -284,7 +284,7 @@
     "substantive_words": 385,
     "nearest_public_page": {
      "similarity": 0.0026,
-     "jaccard": 0.0013,
+     "jaccard": 0.0011,
      "overlap_coefficient": 0.0026,
      "closest_page": "site/public/acquire/index.html"
     },
