@@ -1,0 +1,36 @@
+{
+  "registry_id": "URL-INDEXING-POLICIES",
+  "version": "1.0.0",
+  "governed_by": [
+    "scripts/publication/publication_authority.py (indexing-policy ceiling)",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Separates three questions that were coupled for /acquire/: ACCESS (can a visitor open the URL: yes, it is served), PUBLICATION (is a release authorized: release ledger / Contract C / R11) and INDEXING (may search engines index it). An entry here is a per-URL indexing CEILING: the authority serves 'noindex, follow' and keeps the URL out of every sitemap, whatever the release ledger, a URL decision, Contract C or an R11 certification would otherwise allow. A ceiling can only lower a directive; it never makes any page indexable and never changes access or the canonical.",
+  "rules": [
+    "Only page_class 'commercial_access' is accepted. A scientific or conceptual reference never carries a ceiling.",
+    "A ceiling is refused (ignored and reported) for any URL bound to a Knowledge Object render spec: references keep their own Contract C rules.",
+    "Do not implement a ceiling with robots.txt: crawlers must be able to fetch the page to see its noindex.",
+    "Changing or removing a ceiling is an explicit owner policy decision recorded here; no ledger change, URL decision or release removes it."
+  ],
+  "policies": [
+    {
+      "policy_id": "IDX-POL-ACQUIRE-001",
+      "path": "/acquire/",
+      "page_class": "commercial_access",
+      "indexing": "noindex, follow",
+      "sitemap": "excluded",
+      "access": "public by direct URL (HTTP 200, linked from site navigation)",
+      "canonical": "unchanged (self)",
+      "status": "owner_confirmed_policy",
+      "duration": "indefinite, until the owner explicitly changes this policy",
+      "rationale": "/acquire/ is a buyer-oriented commercial access page, not a scientific, conceptual or general reference page. It is reachable by prospective buyers through its direct URL and is not meant to compete for organic search visibility with BISULFID's reference content.",
+      "provenance": {
+        "decided_by": "site owner",
+        "channel": "owner instruction in the Claude Code review session (Release-01, 'Permanent Buyer-Access Policy for /acquire/'), 2026-10-30",
+        "recorded_by": "claude-code-agent (recorder only; not an approver)",
+        "formal_signature": null,
+        "note": "This records the owner's policy decision as given in conversation. It is not a signed repository approval: no approved_by identity or approval timestamp is entered. Because a ceiling can only make a page LESS visible, the authority applies it from this record; the formal sign-off of the PR-B page change remains URL-DEC-R03-ACQUIRE-001."
+      }
+    }
+  ]
+}

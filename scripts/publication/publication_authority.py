@@ -38,6 +38,9 @@ INDEX, NOINDEX = "index, follow", "noindex, follow"
 BASELINE_PATH = os.path.join(DATA, "distinctiveness", "legacy_surface_hold.json")
 DECISIONS_PATH = os.path.join(DATA, "publication", "url_decisions.json")
 CERTIFICATIONS_PATH = os.path.join(DATA, "publication", "nonfactual_certifications.json")
+INDEXING_POLICIES_PATH = os.path.join(DATA, "publication", "indexing_policies.json")
+CEILING_PAGE_CLASSES = ("commercial_access",)
+CEILING_STATUSES = ("owner_confirmed_policy", "owner_signed_policy")
 DECISION_TYPES = ("noindex", "canonical_to", "redirect_to", "retire")
 
 
@@ -62,7 +65,8 @@ def requests_index(robots):
 
 class Authority:
     def __init__(self, baseline_path=BASELINE_PATH, decisions_path=DECISIONS_PATH,
-                 certifications_path=CERTIFICATIONS_PATH, postures_override=None):
+                 certifications_path=CERTIFICATIONS_PATH, postures_override=None,
+                 indexing_policies_path=INDEXING_POLICIES_PATH):
         routes = _load(os.path.join(DATA, "routes.json"))
         routes = routes if isinstance(routes, list) else routes["routes"]
         self.route_by_path = {r["path"]: r for r in routes}
@@ -74,6 +78,29 @@ class Authority:
         self.postures = dict(self._governed_postures(certifications_path))
         if postures_override:
             self.postures.update(postures_override)
+        self.ceilings, self.ceiling_errors = self._indexing_ceilings(indexing_policies_path)
+
+    def _indexing_ceilings(self, path):
+        """Per-URL indexing ceilings (indexing_policies.json). Indexing is decided separately from access
+        and publication: a ceiling only ever LOWERS a directive to 'noindex, follow' + out of sitemaps.
+        It is refused for any URL bound to a Knowledge Object render spec (references keep Contract C)."""
+        bound = set()
+        route_by_id = {r["route_id"]: r for r in self.route_by_path.values()}
+        for f in glob.glob(os.path.join(DATA, "reference_production", "render_specs", "KO-*.json")):
+            r = route_by_id.get((_load(f) or {}).get("canonical_route_id"))
+            if r:
+                bound.add(r["path"])
+        out, errors = {}, []
+        for p in (_load(path, {"policies": []}) or {"policies": []})["policies"]:
+            pid = p.get("policy_id")
+            if p.get("page_class") not in CEILING_PAGE_CLASSES or p.get("indexing") != NOINDEX \
+                    or p.get("status") not in CEILING_STATUSES:
+                errors.append(f"{pid}: not a valid commercial-access noindex ceiling (ignored)")
+            elif p.get("path") in bound:
+                errors.append(f"{pid}: {p.get('path')} is a Knowledge Object route; references keep Contract C (ignored)")
+            else:
+                out[p["path"]] = p
+        return out, errors
 
     # --- governed state ------------------------------------------------------------------------
     def _governed_postures(self, certifications_path):
@@ -124,9 +151,21 @@ class Authority:
     # --- resolution ----------------------------------------------------------------------------
     def resolve(self, path, sitemap_policy="status_quo"):
         """Directive for one URL path. sitemap_policy: 'status_quo' (a legacy page may keep the sitemap
-        membership it was served with) or 'approved_only' (only Contract-C index_approved URLs)."""
+        membership it was served with) or 'approved_only' (only Contract-C index_approved URLs).
+        An indexing ceiling (indexing_policies.json) is applied LAST and can only lower the result:
+        access (render) and the canonical are never changed by it."""
+        out = self._resolve(path, sitemap_policy)
+        ceiling = self.ceilings.get(path)
+        if ceiling and out["render"]:
+            out.update(robots=NOINDEX, sitemap=False, policy_enforced=True)
+            out["notes"].append(f"indexing policy {ceiling['policy_id']} ({ceiling['page_class']}): "
+                                f"noindex, follow and no sitemap, independent of release status")
+        return out
+
+    def _resolve(self, path, sitemap_policy="status_quo"):
         out = {"path": path, "render": True, "robots": NOINDEX, "canonical": path, "sitemap": False,
-               "redirect_to": None, "basis": None, "notes": [], "ledger_enforced": False, "decision": None}
+               "redirect_to": None, "basis": None, "notes": [], "ledger_enforced": False, "decision": None,
+               "policy_enforced": False}
         cc, cc_basis = self.contract_c(path)
         if cc and cc[0] != "not_public":
             out["basis"] = f"contract_c:{cc[0]}/{cc[1]} ({cc_basis})"
