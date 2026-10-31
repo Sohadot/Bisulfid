@@ -542,11 +542,6 @@
     ],
     "related": [
       {
-        "path": "/molybdenum-disulfide/",
-        "label": "Molybdenum disulfide (MoS2)",
-        "relation": "a compound whose name uses “disulfide”; its own reference holds the evidence"
-      },
-      {
         "path": "/methodology/",
         "label": "How BISULFID admits evidence",
         "relation": "how sources, captures and claims are reviewed"
