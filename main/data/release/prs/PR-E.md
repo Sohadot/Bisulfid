@@ -4,31 +4,27 @@
 
 ## 1. Purpose and exact scope
 
-Evidence reuse (nothing re-verified without need):
-- L3 dated re-fetch 2026-10-31 (captures/TERMINOLOGY_RECAPTURE_2026-10-31.json): every quoted passage of
-  all 11 sources reproduced verbatim; L1-L5 now pass for all 11; L6 human signatures still pending
-- Identity, qualification, admission and claim matching reused as recorded in Recovery-03
+Owner direction (recorded, not signed): paid external review and signatures must not be universal
+prerequisites for ordinary low-risk reference content.
 
-Reference content (only admitted evidence; no new claim):
-- Headings narrowed to their sources (e.g. 'Bisulfid in the DWDS: not among its contemporary lexical
-  sources'); summary no longer generalizes from DWDS to German dictionaries; Sulfid/sulfide wording
-  no longer says 'the meaning is the same'
-- At-a-glance becomes a term map labelled by source type (dictionary, IUPAC, database, lexicon)
-- New synthesis section: supported / open / not to be inferred from similar spelling, each item
-  bound to KO evidence (renderer refuses foreign evidence or unknown verdicts)
-- Per-section evidence links into the evidence trail; re-verification date shown only if every
-  cited passage was reproduced; Mᴵ formula display filter
-- Meta description, hydrosulfide intent, DefinedTerm disulfide(2-), /sources/ link
-- PC distinctiveness review vs the legacy page, the DE page and the 4 cohort02 variants
-  (variants pairwise S 0.88-0.90, no knowledge; candidate shares no shingles with any)
-- Compact gap report: main/data/release/KO-BISULFID-TERMINOLOGY-001_GAP_REPORT.md
-- Tests: scripts/reference_production/test_bisulfid_reference.py (10), wired into CI
-
-MoS2 output byte-identical (all renderer features are opt-in). Route and canonical unchanged.
+- documentary_verification_policy.json 1.0.0 (status proposed_for_owner_adoption; adopted_by null):
+  levels not_verified / documentary_verified / independently_human_reviewed; risk classes
+  low_risk_informational / higher_risk / undetermined (fail-closed); checks D1-D7
+- documentary_verification.py: evaluates D1-D7 by reusing completed work (renderer admission,
+  L1-L5 lock checklist, Gate 12); never records or implies human review; per-claim outcomes
+- release_checks: validation and evidence lock may be honoured by documentary verification only for
+  low_risk_informational KOs AND only once a named owner adopts the policy (recomputed live).
+  Claim activation, release authorization and AMD-IG-R03-001 ratification are never replaced;
+  L6 is never marked signed
+- PC-BISULFID risk declaration; staged page states the verification level truthfully
+- Result: KO-BISULFID-TERMINOLOGY-001 documentary_verified (11/11 claims, 11 sources, 13 IG units);
+  KO-MOS2-SCIENTIFIC-001 not_verified (undetermined risk, pilot claims, 4 sources lack L2/L3)
+- 11 regression proofs (scripts/release/documentary_verification_tests.py), wired into CI.
+  Unadopted policy changes no posture, URL or directive; adoption alone publishes nothing
 
 ## 2. Verified commit SHA
 
-`9f9488c478f213dce7f6611c17a4a012d9fb048e` — the exact head pushed and tested in isolation (33 PASS).
+`f4272aad263a67588f4fcde077358f1bbb1faf41` — the exact head pushed and tested in isolation (35 PASS).
 
 ## 3. Dependency
 
@@ -38,12 +34,13 @@ MoS2 output byte-identical (all renderer features are opt-in). Route and canonic
 
 ## 4. Files changed
 
-`git diff 24d9762c1f..9f9488c478` — 17 files changed, 1431 insertions(+), 309 deletions(-)
+`git diff 24d9762c1f..f4272aad26` — 25 files changed, 2231 insertions(+), 314 deletions(-)
 
 <details><summary>File list</summary>
 
 ```
 M	.github/workflows/corpus-governance-ci.yml
+M	DECISION_LOG.md
 M	main/content/en/pages/bisulfid-vs-bisulfide.md
 M	main/data/distinctiveness/ig_unit_registry.json
 A	main/data/evidence/captures/TERMINOLOGY_RECAPTURE_2026-10-31.json
@@ -54,12 +51,19 @@ M	main/data/reference_production/previews/bisulfid-vs-bisulfide/index.html
 M	main/data/reference_production/render_specs/KO-BISULFID-TERMINOLOGY-001.json
 A	main/data/release/KO-BISULFID-TERMINOLOGY-001_GAP_REPORT.md
 M	main/data/release/claim_dossiers/KO-BISULFID-TERMINOLOGY-001.json
+A	main/data/release/documentary_verification/KO-BISULFID-TERMINOLOGY-001.json
+A	main/data/release/documentary_verification/KO-MOS2-SCIENTIFIC-001.json
+A	main/data/release/documentary_verification_policy.json
+M	main/data/release/release_review_policy.json
 M	main/data/release/review_packets/KO-BISULFID-TERMINOLOGY-001.md
 M	main/data/release/source_lock_checklists.json
 M	main/data/release/staged/bisulfid-vs-bisulfide/index.html
 M	main/data/release/staged/bisulfid-vs-bisulfide/release.json
 M	scripts/reference_production/render_ko_reference.py
 A	scripts/reference_production/test_bisulfid_reference.py
+A	scripts/release/documentary_verification.py
+A	scripts/release/documentary_verification_tests.py
+M	scripts/release/release_checks.py
 ```
 
 </details>
@@ -85,7 +89,7 @@ No public file changes; candidate staged.
 
 ## 6. Isolated test results
 
-Head `9f9488c478` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
+Head `f4272aad26` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
 
 | Status | Area | Command | Detail |
 |---|---|---|---|
@@ -119,6 +123,8 @@ Head `9f9488c478` checked out ALONE in a clean worktree (not a cumulative run). 
 | ✅ PASS | CI: L0 content drafts | `scripts/validate_content_drafts_l0.py` | Summary: PASS (0 errors, 0 warnings) |
 | ✅ PASS | /acquire/ correction wording and boundaries | `scripts/publication/test_acquire_page.py` | OK |
 | ✅ PASS | Bisulfid/Bisulfide reference precision, synthesis, evidence navigation | `scripts/reference_production/test_bisulfid_reference.py` | OK |
+| ✅ PASS | Documentary verification records current | `scripts/release/documentary_verification.py --check` | KO-MOS2-SCIENTIFIC-001: not_verified (undetermined) |
+| ✅ PASS | Documentary verification pathway safeguards | `scripts/release/documentary_verification_tests.py` | RESULT: PASS — documentary pathway is proportionate and fail-closed |
 | ✅ PASS | Deploy gate on site/public | `scripts/publication/validate_publication_authority.py --surface site/public` | PUBLICATION AUTHORITY PASS: nothing escalates, nothing new is unauthorized, nothing modified requests index, no discretionary downgrade without an approved deci |
 | ✅ PASS | /acquire/ identical to PR-B revision 2 (e036e30fb6) | `git diff --quiet e036e30fb6 HEAD -- site/public/acquire/index.html` | identical |
 | ✅ PASS | Governance invariants (no approval, signature, lock, activation, certification or ratification) | `inline invariant check` | OK |

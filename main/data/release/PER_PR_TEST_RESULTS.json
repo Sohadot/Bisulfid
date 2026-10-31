@@ -969,7 +969,7 @@
  },
  "PR-E": {
   "branch": "release-01/pr-e",
-  "sha": "9f9488c478f213dce7f6611c17a4a012d9fb048e",
+  "sha": "f4272aad263a67588f4fcde077358f1bbb1faf41",
   "results": [
    {
     "area": "Contract C",
@@ -1152,6 +1152,18 @@
     "detail": "OK"
    },
    {
+    "area": "Documentary verification records current",
+    "command": "scripts/release/documentary_verification.py --check",
+    "status": "PASS",
+    "detail": "KO-MOS2-SCIENTIFIC-001: not_verified (undetermined)"
+   },
+   {
+    "area": "Documentary verification pathway safeguards",
+    "command": "scripts/release/documentary_verification_tests.py",
+    "status": "PASS",
+    "detail": "RESULT: PASS — documentary pathway is proportionate and fail-closed"
+   },
+   {
     "area": "Deploy gate on site/public",
     "command": "scripts/publication/validate_publication_authority.py --surface site/public",
     "status": "PASS",
@@ -1198,5 +1210,12 @@
   "date": "2026-10-31",
   "commit": "9f9488c478",
   "summary": "L3 re-fetch (11 sources reproduced); headings and summary narrowed to their sources; term map; supported/open/not-inferable synthesis; evidence links; distinctiveness review; gap report; 10 new tests"
+ },
+ "pr_e_documentary_verification": {
+  "date": "2026-10-31",
+  "commit": "f4272aad26",
+  "policy": "DOCUMENTARY-VERIFICATION 1.0.0 (proposed, not adopted)",
+  "KO-BISULFID-TERMINOLOGY-001": "documentary_verified (11/11 claims)",
+  "KO-MOS2-SCIENTIFIC-001": "not_verified (undetermined risk; fails closed)"
  }
 }

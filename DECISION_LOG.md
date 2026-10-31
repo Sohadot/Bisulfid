@@ -5628,5 +5628,9 @@ Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AM
     - A supported / open / not-inferable synthesis is added, each item bound to KO evidence.
     - The four cohort02 variants are near-duplicate templates with no knowledge, and stay listed as consolidation obligations.
     - No human review exists for this object; independent validation stays pending.
+13. **Documentary verification pathway (PR-E `f4272aad26`, proposed, not adopted; 2026-10-31):**
+    - KO-BISULFID-TERMINOLOGY-001 is `documentary_verified`: 11/11 claims, 11 sources at L1–L5, risk class `low_risk_informational`.
+    - KO-MOS2-SCIENTIFIC-001 is `not_verified`: its risk is undetermined and it fails closed.
+    - The pathway takes effect only when a named owner adopts the policy. Even then, publication still requires owner claim activation, owner release authorization and AMD-IG-R03-001 ratification.
 
 **Not done by design:** independent reviews, source locks (L6), claim activation, release authorization, R11 certification, the wave-1 noindex (no Search Console export). Ratification of AMD-IG-R03-001 is likewise not done.
