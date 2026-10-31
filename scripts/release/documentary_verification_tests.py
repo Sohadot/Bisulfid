@@ -187,6 +187,22 @@ ok("07c_adoption_does_not_publish_any_reference",
 ok("08_every_url_resolves_identically",
    all(now.resolve(x) == prior.resolve(x) for x in now.baseline))
 
+# 9 Accepted documentary evidence must be represented consistently without authorizing release.
+actual_pc = dv._pc_for(TERM)
+actual_postures, _ = rc.honoured_postures(TERM, actual_pc["postures"])
+manifest = json.load(open(os.path.join(ROOT, "main", "data", "release", "staged",
+                                      "bisulfid-vs-bisulfide", "release.json"), encoding="utf-8"))
+ok("18_candidate_and_manifest_use_accepted_documentary_postures",
+   actual_postures["validation_posture"] == "validated"
+   and actual_postures["evidence_posture"] == "evidence_locked"
+   and manifest["postures_honoured"] == actual_postures
+   and manifest["contract_c_honoured"] == ["not_public", "noindex"]
+   and actual_postures["claim_posture"] == "claim_pending"
+   and actual_postures["release_authorization"] == "not_authorized")
+ok("19_source_lock_reporting_does_not_imitate_human_signatures",
+   "11 of 11 sources accepted documentarily via L1–L5 (0 independently signed source locks)" in page
+   and not rc.validation_ok(TERM)[0])
+
 print("=" * 56)
 print("RESULT: " + ("PASS — documentary pathway is proportionate and fail-closed" if not FAILS else f"FAIL — {FAILS}"))
 sys.exit(1 if FAILS else 0)
