@@ -184,8 +184,13 @@ ok("07b_without_adoption_the_documentary_path_remains_closed",
 ok("07c_adoption_does_not_publish_any_reference",
    all(prior.contract_c(x)[0] == now.contract_c(x)[0] == ("not_public", "noindex")
        for x in ("/molybdenum-disulfide/", "/bisulfid-vs-bisulfide/")))
-ok("08_every_url_resolves_identically",
-   all(now.resolve(x) == prior.resolve(x) for x in now.baseline))
+# Internal diagnostic notes legitimately differ between an adopted and a simulated
+# unadopted documentary policy. The outward route, robots, canonical, sitemap
+# and redirect must remain identical for every sealed legacy URL.
+PUBLIC_DIRECTIVE_FIELDS = ("render", "robots", "canonical", "sitemap", "redirect_to")
+ok("08_every_legacy_url_has_identical_public_directives",
+   all(all(now.resolve(x)[k] == prior.resolve(x)[k] for k in PUBLIC_DIRECTIVE_FIELDS)
+       for x in now.baseline))
 
 # 9 Accepted documentary evidence must be represented consistently without authorizing release.
 actual_pc = dv._pc_for(TERM)
