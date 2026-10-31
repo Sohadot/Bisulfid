@@ -82,6 +82,10 @@ jobs:
         run: |
           python scripts/interoperability/export_reference_v1.py --check
           python scripts/interoperability/test_export_reference_v1.py
+      - name: "Reference Explorer v1 — offline claim and provenance queries"
+        run: |
+          python scripts/interoperability/reference_explorer_v1.py --summary --format json
+          python scripts/interoperability/test_reference_explorer_v1.py
 
       - name: "Recovery — legacy disposition registry invariants"
         run: python scripts/recovery/validate_legacy_disposition.py

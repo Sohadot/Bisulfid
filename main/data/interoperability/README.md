@@ -30,6 +30,24 @@ python scripts/interoperability/export_reference_v1.py --write
 
 The exporter **fails closed** if D1–D7 cease to pass, claim text/bindings drift, a source URL is unqualified, evidence becomes unrendered, or owner acts change. It does not promote MoS₂ or other unapproved objects merely because files exist.
 
+## Reference Explorer — offline pilot
+
+The reference exchange now has a usable local query interface, requiring only Python's standard library. It does not call an AI provider or any external network service.
+
+```bash
+python scripts/interoperability/reference_explorer_v1.py --summary --format text
+python scripts/interoperability/reference_explorer_v1.py --term bisulfide --format text
+python scripts/interoperability/reference_explorer_v1.py --claim-id CLM-TERM-BISULFIDE-EN-SENSE-001
+python scripts/interoperability/reference_explorer_v1.py --source-id SRC-MW-BISULFIDE
+python scripts/interoperability/reference_explorer_v1.py --evidence-id EVD-TERM-MW-BISULFIDE
+python scripts/interoperability/reference_explorer_v1.py --sources --format text
+python scripts/interoperability/test_reference_explorer_v1.py
+```
+
+It returns the claim, source identity, retrieval date, and evidence qualification. Whole-term Unicode matching avoids treating similar chemical words as interchangeable. Every JSON result discloses the staged-only state, verification limits and ungranted licensing rights. Malformed inputs or changed rights and authorization status are rejected.
+
+These commands demonstrate search and reverse provenance tracing internally; they do not establish customer demand, market adoption or revenue. No public API, deployment, scientific sign-off or dataset license is implied.
+
 ## What would justify the next investment?
 
 Demonstrable use: a researcher can trace a claim to a source; a multilingual specialist can distinguish ambiguous terms; a legitimate integrator can consume consistent IDs and revisions. Validate these use cases before building an API, subscriptions or a database server. A future public export would require its **own** rights review, explicit publisher authorization, route/indexation decision and CI validation. Do not expose this pilot under `site/public` or advertise it as a public API now.
