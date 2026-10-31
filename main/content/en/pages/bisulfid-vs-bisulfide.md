@@ -136,7 +136,7 @@ Each statement below draws only on the evidence cited in brackets. It separates 
 
 ## What this reference does not establish
 
-BISULFID is the name of this website. The name is not a chemical claim, and this reference does not state that German Bisulfid is the equivalent of English bisulfide. Some German industry pages use Bisulfid for HS⁻, and one was captured verbatim, but an industry page is not an admissible source for terminology here, so that usage is recorded as a boundary and not adopted. The IUPAC Gold Book entry on hydrosulfides could not be retrieved openly when the sources were captured, and a second German teaching handout was unreachable, so neither is cited. Other German dictionaries were not examined for Bisulfid. The history of the bi- prefix, how often each spelling is used, and the safety or industrial properties of any species named here are outside this reference [SOURCE REQUIRED].
+BISULFID is the name of this website. The name is not a chemical claim, and this reference does not state that German Bisulfid is the equivalent of English bisulfide. One captured industry page uses Bisulfid in connection with HS⁻, but an industry page is not admissible as evidence of standardized German terminology here. This observation is retained as a boundary; it cannot establish general usage or a recommended name. The IUPAC Gold Book entry on hydrosulfides could not be retrieved openly when the sources were captured, and a second German teaching handout was unreachable, so neither is cited. Other German dictionaries were not examined for Bisulfid. The history of the bi- prefix, how often each spelling is used, and the safety or industrial properties of any species named here are outside this reference [SOURCE REQUIRED].
 
 ## Evidence trail
 
@@ -162,15 +162,14 @@ BISULFID is the name of this website. The name is not a chemical claim, and this
 
 - Claims: narrowly approved in an INACTIVE claim registry (CLM-TERM-BISULFIDE-EN-SENSE-001, CLM-TERM-SULFIDE-EN-SENSE-001, CLM-TERM-DISULFIDE-EN-SENSE-001, CLM-TERM-BISULFITE-EN-SENSE-001, CLM-TERM-SULFID-DE-SENSE-001, CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001, CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001, CLM-TERM-IUPAC-HS-NAMES-001, CLM-TERM-IUPAC-S2-NAMES-001, CLM-TERM-IUPAC-HSO3-NAME-001, CLM-TERM-GERMAN-ID-RULE-001); approval is not activation or publication.
 - Sources: every source lock is `candidate`; no source is locked.
-- Contract C inputs: {"governance": "reference_draft", "evidence": "evidence_sufficient", "claim": "claim_pending", "validation": "not_validated", "ig": "ig_reviewed_route_realization", "release": "not_authorized"}.
+- Contract C inputs: {"governance": "reference_draft", "evidence": "evidence_locked", "claim": "claim_pending", "validation": "validated", "ig": "ig_reviewed_route_realization", "release": "not_authorized"}.
 
 ## Publication blockers
 
-- information_gain_posture ig_reviewed_route_realization is not honoured until AMD-IG-R03-001 is ratified by a named owner (separate act; merging PRs is not ratification)
-- claim_posture claim_pending — 11 claims are narrowly approved in an INACTIVE registry; owner claim activation (owner_acts.json) not signed
-- validation_posture not_validated — no signed independent review (packet ready; reviewer needs chemical-nomenclature/lexicography competence)
-- evidence_posture evidence_sufficient — 0 of 11 sources locked (L3 needs a re-capture on a later date; L6 human sign-off)
-- governance_posture reference_draft / release_authorization not_authorized — owner release authorization not signed
-- CLM-TERM-BISULFID-001 (German industry usage) stays pending by design; it is shown only as a recorded boundary
+- Documentary evidence validation is accepted under owner-adopted DOCUMENTARY-VERIFICATION 1.0.0 (11/11 claims and 11/11 sources at L1–L5); neither independent human review nor L6 signatures are claimed.
+- claim_posture claim_pending — Sohadot has not signed activation of the 11 narrowly approved terminology claims
+- information_gain_posture ig_reviewed_route_realization is not honoured until AMD-IG-R03-001 receives a separate Sohadot ratification
+- governance_posture reference_draft / release_authorization not_authorized — no owner release authorization exists; merge and deployment not authorized
+- CLM-TERM-BISULFID-001 (German industry usage) remains pending and unbound; never promote by association
 
 *Rendered by render_ko_reference.py from RSPEC-KO-BISULFID-TERMINOLOGY-001@1.1.0 — KO-BISULFID-TERMINOLOGY-001 — route `bisulfid_vs_bisulfide`.*

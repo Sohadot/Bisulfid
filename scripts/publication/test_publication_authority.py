@@ -430,11 +430,16 @@ class PreviewTests(unittest.TestCase):
             t = open(os.path.join(ROOT, "main", "data", "reference_production", "previews", p, "index.html"), encoding="utf-8").read()
             self.assertIn('<meta name="robots" content="noindex, nofollow">', t)
 
-    def test_homepage_asserts_no_unapproved_terminology_claim(self):
-        t = open(os.path.join(ROOT, "main", "data", "reference_production", "previews", "home", "index.html"), encoding="utf-8").read().lower()
-        for phrase in ("bisulfid is the german", "german spelling of bisulfide.", "bisulfide is hs"):
-            self.assertNotIn(phrase, t)
-        self.assertIn("will be stated as fact only after its sources are verified and admitted", t)
+    def test_homepages_do_not_infer_chemical_equivalence_from_spelling(self):
+        for slug in ("home", "de"):
+            t = open(os.path.join(ROOT, "main", "data", "reference_production", "previews", slug, "index.html"),
+                     encoding="utf-8").read().lower()
+            for phrase in ("bisulfid is the german", "german spelling of bisulfide.", "bisulfide is hs"):
+                self.assertNotIn(phrase, t)
+            self.assertIn("sohadot.com", t)
+            self.assertNotIn('href="/molybdenum-disulfide/"', t)
+            self.assertNotIn('href="/bisulfid-vs-bisulfide/"', t)
+
 
     def test_homepage_hreflang_is_reciprocal_or_absent(self):
         import render_institutional_preview as ri
@@ -448,13 +453,21 @@ class PreviewTests(unittest.TestCase):
         with self.assertRaises(ri.RenderError):
             ri.alternates(one_sided)
 
-    def test_r11_home_certifications_are_proposals_only(self):
+    def test_r11_home_certifications_are_owner_approved_institutional_only(self):
         a = pa.Authority()
         for path in ("/", "/de/"):
-            self.assertEqual(a.contract_c(path), (None, None), "a proposed R11 certification binds nothing")
+            self.assertEqual(a.contract_c(path)[0], ("public_indexable", "index_approved"),
+                             "Sohadot-certified nonfactual homepage qualifies under R11 only")
         d = json.load(open(os.path.join(ROOT, "main", "data", "publication", "nonfactual_certifications.json")))
-        self.assertTrue(d["certifications"])
-        self.assertTrue(all(c["status"] == "proposed" and c["certified_by"] is None for c in d["certifications"]))
+        self.assertEqual(len(d["certifications"]), 2)
+        self.assertTrue(all(c["status"] == "certified"
+                            and c["certified_by"] == "Sohadot (sohadot.com)"
+                            and c["certified_on"] == "2026-10-31"
+                            and c.get("certification_kind") == "organizational_publisher_editorial_approval"
+                            for c in d["certifications"]))
+        self.assertFalse(any("independent human" in c.get("certification_kind", "").lower()
+                             for c in d["certifications"]))
+
 
     def test_homepage_claims_no_credentials(self):
         for p in ("home", "de"):
@@ -462,15 +475,19 @@ class PreviewTests(unittest.TestCase):
             for phrase in ("dr.", "phd", "professor", "our experts", "reviewed by", "editor-in-chief"):
                 self.assertNotIn(phrase, t)
 
-    def test_homepage_release_candidates_are_staged_not_live(self):
+    def test_owner_certified_homepages_match_staged_release_with_no_unready_dependencies(self):
         for slug, path in (("home", "/"), ("de", "/de/")):
-            rel = open(os.path.join(ROOT, "main", "data", "release", "staged", slug, "index.html"), encoding="utf-8").read()
-            live = open(os.path.join(ROOT, "site", "public", slug if slug != "home" else "", "index.html"), encoding="utf-8").read()
-            self.assertNotEqual(rel, live, "the release candidate is not applied to site/public by this PR")
+            rel = open(os.path.join(ROOT, "main", "data", "release", "staged", slug, "index.html"),
+                       encoding="utf-8").read()
+            live = open(os.path.join(ROOT, "site", "public", slug if slug != "home" else "", "index.html"),
+                        encoding="utf-8").read()
+            self.assertEqual(rel, live, "the owner-certified final staged candidate must match the public source tree")
             robots, canon = pa.Authority().render_directives(path)
             self.assertIn(f'<meta name="robots" content="{robots}">', rel)
+            self.assertIn(f'<link rel="canonical" href="{canon}">', rel)
             m = json.load(open(os.path.join(ROOT, "main", "data", "release", "staged", slug, "release.json")))
-            self.assertIn("/molybdenum-disulfide/", m["publication_dependencies"])
+            self.assertEqual(m["publication_dependencies"], [], "institutional gateways must not depend on unpublished science")
+
 
     def test_homepage_claim_audit_is_complete(self):
         a = json.load(open(os.path.join(ROOT, "main", "data", "release", "HOMEPAGE_CLAIM_AUDIT.json")))
@@ -479,13 +496,17 @@ class PreviewTests(unittest.TestCase):
             t = open(os.path.join(ROOT, "main", "data", "release", "staged", p, "index.html"), encoding="utf-8").read()
             self.assertNotIn("A page is published only if", t)
 
-    def test_homepage_numbers_come_from_registries(self):
+    def test_homepage_avoids_vanity_counts_from_unpublished_knowledge_objects(self):
         import render_institutional_preview as ri
         gov = ri.gov_values()
-        t = open(os.path.join(ROOT, "main", "data", "reference_production", "previews", "home", "index.html"), encoding="utf-8").read()
-        self.assertIn(f"rests on {gov['mos2_admitted_evidence']} admitted evidence records", t)
+        t = open(os.path.join(ROOT, "main", "data", "reference_production", "previews", "home", "index.html"),
+                 encoding="utf-8").read()
+        self.assertNotIn(f"rests on {gov['mos2_admitted_evidence']} admitted evidence records", t,
+                         "home must not market unreleased research object counts as released references")
+        self.assertNotIn("{{GOV:", t)
         with self.assertRaises(ri.RenderError):
             ri.resolve("{{GOV:invented_number}}", gov)
+
 
     def test_mos2_json_ld_values_come_from_evidence(self):
         t = open(os.path.join(ROOT, "main", "data", "reference_production", "previews", "molybdenum-disulfide", "index.html"), encoding="utf-8").read()

@@ -6,17 +6,17 @@
  "publication_candidate": "PC-BISULFID-TERMINOLOGY-001",
  "postures_recorded": {
   "governance_posture": "reference_draft",
-  "evidence_posture": "evidence_sufficient",
+  "evidence_posture": "evidence_locked",
   "claim_posture": "claim_pending",
-  "validation_posture": "not_validated",
+  "validation_posture": "validated",
   "information_gain_posture": "ig_reviewed_route_realization",
   "release_authorization": "not_authorized"
  },
  "postures_honoured": {
   "governance_posture": "reference_draft",
-  "evidence_posture": "evidence_sufficient",
+  "evidence_posture": "evidence_locked",
   "claim_posture": "claim_pending",
-  "validation_posture": "not_validated",
+  "validation_posture": "validated",
   "information_gain_posture": "ig_reviewed_no_new_route",
   "release_authorization": "not_authorized"
  },

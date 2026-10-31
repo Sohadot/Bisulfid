@@ -1,157 +1,166 @@
 {
- "spec_id": "INST-HOME-DE",
- "version": "1.2.0",
- "status": "preview",
- "page_class": "institutional",
- "institutional_function": "gateway_home",
- "route_id": "de_home",
- "path": "/de/",
- "language": "de",
- "purpose": "German homepage rebuild, the reciprocal equivalent of INST-HOME-EN (same institutional function, written for German readers, not a word-for-word copy). Asserts no chemistry or terminology fact; numbers come from {{GOV:...}}.",
- "nav_label": "Seitennavigation",
- "nav": [
-  {
-   "path": "/de/",
-   "label": "BISULFID"
-  },
-  {
-   "path": "/molybdenum-disulfide/",
-   "label": "MoS2 (Englisch)"
-  },
-  {
-   "path": "/bisulfid-vs-bisulfide/",
-   "label": "Bisulfid und bisulfide (Englisch)"
-  },
-  {
-   "path": "/methodology/",
-   "label": "Methodik (Englisch)"
-  },
-  {
-   "path": "/",
-   "label": "English"
-  }
- ],
- "alternates": {
-  "en": "/",
-  "de": "/de/",
-  "x-default": "/"
- },
- "seo": {
-  "title": "BISULFID — Begriffe der Schwefelchemie mit geprüften Belegen",
-  "description": "BISULFID dokumentiert Begriffe der Schwefelchemie auf Deutsch und Englisch und erstellt Referenzseiten nur aus geprüften, zitierten Belegen.",
-  "search_intents": [
-   {
-    "query_class": "navigational / brand (DE)",
-    "examples": [
-     "bisulfid",
-     "bisulfid.com"
-    ],
-    "intent": "die Website erreichen und verstehen, was sie ist"
-   },
-   {
-    "query_class": "routing (DE)",
-    "examples": [
-     "Bisulfid Bedeutung",
-     "Bisulfid oder Bisulfide"
-    ],
-    "intent": "bedient durch die Terminologie-Referenz; die Startseite verweist dorthin"
-   }
-  ],
-  "json_ld": {
-   "@type": "WebSite",
-   "name": "BISULFID",
-   "url": "https://bisulfid.com/de/",
-   "inLanguage": "de"
-  },
-  "hreflang": "reciprocal with INST-HOME-EN"
- },
- "h1": "BISULFID",
- "lead": "Ein Referenzprojekt zur Sprache der Schwefelchemie: deutsche und englische Fachbegriffe, die Verbindungen, die sie bezeichnen, und die Belege hinter jeder Aussage.",
- "sections": [
-  {
-   "heading": "Erste geprüfte Referenzen",
-   "paragraphs": [
-    "Nach den aktuellen Regeln sind bisher {{GOV:knowledge_objects}} Referenzen entstanden, vorerst auf Englisch. Die erste behandelt Molybdändisulfid (MoS2) und stützt sich auf {{GOV:mos2_admitted_evidence}} zugelassene Belege, jeweils zurückgeführt auf die Studie oder Datenbank, aus der sie stammen."
-   ],
-   "links": [
-    {
-     "path": "/molybdenum-disulfide/",
-     "label": "Molybdenum disulfide (MoS2), Englisch"
-    }
-   ]
-  },
-  {
-   "heading": "Die Frage im Namen",
-   "paragraphs": [
-    "‚Bisulfid‘ und ‚bisulfide‘ unterscheiden sich um einen Buchstaben. Ob ‚Bisulfid‘ einfach die deutsche Schreibung des englischen Wortes ist, ist selbst eine terminologische Aussage. Sie wird hier erst als Tatsache dargestellt, wenn ihre Quellen geprüft und zugelassen sind.",
-    "Die Terminologie-Referenz zeigt anhand von {{GOV:term_evidence}} zugelassenen Belegen, welche Bedeutung Wörterbücher, die IUPAC und eine chemische Datenbank der jeweiligen Schreibung zuordnen und wo die Belege enden. {{GOV:bisulfid_claims_pending}} weitere Aussagen sind noch offen."
-   ],
-   "links": [
-    {
-     "path": "/bisulfid-vs-bisulfide/",
-     "label": "Bisulfid und bisulfide (Englisch)"
-    }
-   ]
-  },
-  {
-   "heading": "Wie eine Aussage auf eine Referenzseite gelangt",
-   "paragraphs": [
-    "Eine Quelle wird zuerst identifiziert und geprüft und dann für einen bestimmten Zweck zugelassen. Eine Passage daraus wird mit ihrer genauen Fundstelle als Beleg erfasst, und eine Aussage wird nur anhand zugelassener Belege freigegeben. Ältere Seiten der Website entstanden vor diesen Regeln und werden überprüft oder neu aufgebaut. Zahlen werden so wiedergegeben, wie die Quelle sie druckt; weichen zwei Bestimmungen voneinander ab, werden beide gezeigt und nicht gemittelt."
-   ],
-   "links": [
-    {
-     "path": "/methodology/",
-     "label": "Methodik (Englisch)"
-    }
-   ]
-  },
-  {
-   "heading": "Deutsch und Englisch",
-   "paragraphs": [
-    "Eine deutsche Seite entsteht, wenn sie eine deutschsprachige Frage beantwortet, etwa welche Form ein deutscher Fachtext verwendet, und nicht als Kopie einer englischen Seite. Deshalb sind manche Referenzen vorerst nur auf Englisch verfügbar."
-   ],
-   "links": [
-    {
-     "path": "/",
-     "label": "English"
-    }
-   ]
-  },
-  {
-   "heading": "Verantwortung für diese Website",
-   "paragraphs": [
-    "BISULFID ist ein Referenzprojekt der Inhaberin bzw. des Inhabers der Domain bisulfid.com. Verweise auf die IUPAC, Wörterbücher, Datenbanken, Unternehmen und andere Dritte nennen Quellen; sie bedeuten weder eine Billigung durch diese Organisationen noch eine Zugehörigkeit zu ihnen.",
-    "Jede nach diesen Regeln erstellte Referenzseite nennt die Belege hinter jeder Aussage und das Abrufdatum. Eine fachliche Begutachtung durch eine benannte Person wird nicht behauptet; eine Seite wird erst dann als unabhängig geprüft ausgewiesen, wenn eine solche Prüfung stattgefunden hat."
-   ],
-   "links": []
-  },
-  {
-   "heading": "Was Sie hier nicht finden",
-   "paragraphs": [
-    "BISULFID gibt keine Hinweise zu Sicherheit, Handhabung, Medizin, Beschaffung oder Investitionen. Dafür gelten das Sicherheitsdatenblatt des jeweiligen Produkts und der Rat qualifizierter Fachleute."
-   ],
-   "links": []
-  }
- ],
- "footer": {
+  "spec_id": "INST-HOME-DE",
+  "version": "1.3.0",
+  "status": "preview",
+  "page_class": "institutional",
+  "institutional_function": "gateway_home",
+  "route_id": "de_home",
+  "path": "/de/",
+  "language": "de",
+  "purpose": "Eigenständiger deutschsprachiger Zugang zur quellengebundenen Terminologie der Schwefelchemie, herausgegeben von Sohadot (sohadot.com). Keine Verknüpfung mit nicht veröffentlichten Fachreferenzen.",
+  "nav_label": "Seitennavigation",
   "nav": [
-   {
-    "path": "/de/",
-    "label": "Startseite"
-   },
-   {
-    "path": "/methodology/",
-    "label": "Methodik (Englisch)"
-   },
-   {
-    "path": "/de/glossary/",
-    "label": "Glossar"
-   },
-   {
-    "path": "/",
-    "label": "English"
-   }
+    {
+      "path": "/de/",
+      "label": "BISULFID"
+    },
+    {
+      "path": "/sources/",
+      "label": "Quellen (Englisch)"
+    },
+    {
+      "path": "/methodology/",
+      "label": "Methodik (Englisch)"
+    },
+    {
+      "path": "/de/glossary/",
+      "label": "Glossar"
+    },
+    {
+      "path": "/",
+      "label": "English"
+    }
   ],
-  "identity": "BISULFID — Referenzprojekt zur Sprache der Schwefelchemie."
- }
+  "alternates": {
+    "en": "/",
+    "de": "/de/",
+    "x-default": "/"
+  },
+  "seo": {
+    "title": "BISULFID — Schwefelchemie: Begriffe, Quellen, Belege",
+    "description": "BISULFID erklärt, wie Fachbegriffe der Schwefelchemie durch Wörterbücher, Stoffdatenbanken und Nomenklatur quellenkritisch eingeordnet werden.",
+    "search_intents": [
+      {
+        "query_class": "navigational / brand (DE)",
+        "examples": [
+          "bisulfid",
+          "bisulfid.com"
+        ],
+        "intent": "die Website erreichen und verstehen, was sie ist"
+      },
+      {
+        "query_class": "routing (DE)",
+        "examples": [
+          "Bisulfid Bedeutung",
+          "Bisulfid oder Bisulfide"
+        ],
+        "intent": "bedient durch die Terminologie-Referenz; die Startseite verweist dorthin"
+      }
+    ],
+    "json_ld": {
+      "@type": "WebSite",
+      "name": "BISULFID",
+      "url": "https://bisulfid.com/de/",
+      "inLanguage": "de"
+    },
+    "hreflang": "reciprocal with INST-HOME-EN"
+  },
+  "h1": "BISULFID",
+  "lead": "Fachbegriffe der Schwefelchemie verstehen: Welche Quelle belegt welche Benennung, welche Aussage ist begrenzt und welche Gleichsetzung wäre voreilig?",
+  "sections": [
+    {
+      "heading": "Ähnliche Wörter sind keine Stoffdefinition",
+      "paragraphs": [
+        "„Bisulfid“ und „bisulfide“ sehen beinahe gleich aus. Damit ist noch weder eine chemische Gleichbedeutung noch eine normierte Übersetzung bewiesen. Zuerst ist zu klären, ob ein Beleg einen bestimmten Stoff, eine sprachliche Lesart oder eine systematische Benennung beschreibt.",
+        "BISULFID prüft deshalb den Zusammenhang einer Bezeichnung: Welche Sprache, welche Quelle, welche chemische Einheit und welcher Verwendungszweck liegen vor? Ein enger Quellenbefund soll nicht als allgemeine Aussage über die gesamte Fachsprache ausgegeben werden."
+      ],
+      "links": [
+        {
+          "path": "/sources/",
+          "label": "Quellen und ihre Grenzen (Englisch)"
+        }
+      ]
+    },
+    {
+      "heading": "Wörterbücher, Datenbanken und Regeln unterscheiden",
+      "paragraphs": [
+        "Ein Wörterbuch erschließt Wortbedeutungen, eine Stoffdatenbank führt Identifikatoren und mögliche Synonyme zusammen, und die chemische Nomenklatur ordnet definierte Einheiten nach Benennungsregeln. Jede dieser Quellen hat ihre eigene Aufgabe; eine Aussage aus dem einen Bereich wird nicht automatisch durch den anderen gedeckt.",
+        "Ein Datenbanksynonym ist nicht schon ein normierter Vorzugsname. Wenn ein Stichwort in einem Wörterbuch fehlt, lässt sich daraus nicht ableiten, dass es nie in einem Fachtext verwendet wurde. Eine verlässliche Analyse nennt diese Grenzen ausdrücklich."
+      ],
+      "links": [
+        {
+          "path": "/methodology/",
+          "label": "Methodik der Quellenprüfung (Englisch)"
+        }
+      ]
+    },
+    {
+      "heading": "Was einen Fachbeleg brauchbar macht",
+      "paragraphs": [
+        "Eine Quellenangabe gewinnt an Wert, wenn die Originalveröffentlichung, die betreffende Textstelle oder der Datensatz, das Abrufdatum und die Reichweite der belegten Aussage erkennbar sind. Die bloße Nennung einer bekannten Institution ersetzt diese Zuordnung nicht.",
+        "Auch bei wissenschaftlichen Messungen ist Präzision entscheidend: Unterschiedliche Untersuchungen, Kristallformen oder Messbedingungen dürfen nicht unbemerkt zusammengezogen werden. Eine dokumentarische Überprüfung ist zudem etwas anderes als eine fachliche Begutachtung durch eine unabhängige Person."
+      ],
+      "links": [
+        {
+          "path": "/sources/",
+          "label": "Nachvollziehbare Quellen (Englisch)"
+        }
+      ]
+    },
+    {
+      "heading": "Wissenschaftliche Begriffe brauchen Kontext",
+      "paragraphs": [
+        "Stoffidentität, Kristallstruktur und Materialeigenschaften bilden unterschiedliche Ebenen einer Referenz. Ein Messwert für eine bestimmte Struktur darf nicht ohne weitere Belege auf eine andere Form übertragen werden. Genau deshalb gehört der Geltungsbereich eines Wertes zur wissenschaftlichen Erklärung.",
+        "BISULFID arbeitet an solchen vertieften Referenzobjekten. Ältere Seiten der Website erfüllen nicht automatisch die heutigen Anforderungen an Quellen und inhaltliche Eigenständigkeit. Unfertige Forschungsentwürfe werden hier nicht als bereits freigegebene Fachartikel dargestellt."
+      ],
+      "links": []
+    },
+    {
+      "heading": "Deutschsprachige Fragen eigenständig behandeln",
+      "paragraphs": [
+        "Wer nach einem deutschen Fachbegriff sucht, benötigt häufig mehr als die Übersetzung eines englischen Eintrags. Deutsche Wörterbücher, fachsprachliche Kontexte und Bezeichnungen können eine eigenständige Aufgabe bilden, auch wenn beide Seiten denselben chemischen Themenbereich berühren.",
+        "Die englische Startseite bietet einen Überblick über das Projekt. Diese Seite richtet sich an deutschsprachige Leserinnen und Leser und erläutert die für ihre Fragen wichtigen Belegarten, ohne ein ungeprüftes sprachliches Verhältnis als chemische Tatsache auszugeben."
+      ],
+      "links": [
+        {
+          "path": "/",
+          "label": "English overview"
+        }
+      ]
+    },
+    {
+      "heading": "Herausgeber und Grenzen",
+      "paragraphs": [
+        "BISULFID ist ein Referenzprojekt von Sohadot (sohadot.com). Die Erwähnung von IUPAC, Wörterbüchern, Datenbanken und Fachverlagen dient der Quellenzuordnung, nicht der Behauptung einer Förderung oder institutionellen Verbindung. Eine unabhängige wissenschaftliche Begutachtung wird nur genannt, wenn sie tatsächlich vorliegt.",
+        "Das Projekt dient der fachsprachlichen und wissenschaftlichen Orientierung. Es ersetzt weder Sicherheitsdatenblätter noch medizinische, rechtliche oder industrielle Beratung. Für gefährdungsrelevante Entscheidungen sind die einschlägigen Originalunterlagen und qualifizierte Fachleute maßgeblich."
+      ],
+      "links": [
+        {
+          "path": "/methodology/",
+          "label": "Redaktionelle Grundsätze (Englisch)"
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "nav": [
+      {
+        "path": "/de/",
+        "label": "Startseite"
+      },
+      {
+        "path": "/methodology/",
+        "label": "Methodik (Englisch)"
+      },
+      {
+        "path": "/de/glossary/",
+        "label": "Glossar"
+      },
+      {
+        "path": "/",
+        "label": "English"
+      }
+    ],
+    "identity": "BISULFID — ein Referenzprojekt von Sohadot"
+  }
 }

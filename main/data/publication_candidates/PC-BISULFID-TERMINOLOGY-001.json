@@ -9,14 +9,14 @@
     "scripts/governance_scaffolding/contract_c_derive.py",
     "DECISION_LOG.md"
   ],
-  "purpose": "Non-public Publication-Candidate record for KO-BISULFID-TERMINOLOGY-001. Authorizes NO route/HTML/sitemap/indexation.",
+  "purpose": "Non-public candidate for the existing /bisulfid-vs-bisulfide/ canonical route. Owner-adopted DOCUMENTARY-VERIFICATION 1.0.0 accepts eligible terminology evidence without pretending human peer review or L6 signatures; owner claim activation, route-realization ratification and release authority remain separately required. Authorizes NO route/HTML/sitemap/indexation.",
   "publication_candidate_id": "PC-BISULFID-TERMINOLOGY-001",
   "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
   "postures": {
     "governance_posture": "reference_draft",
-    "evidence_posture": "evidence_sufficient",
+    "evidence_posture": "evidence_locked",
     "claim_posture": "claim_pending",
-    "validation_posture": "not_validated",
+    "validation_posture": "validated",
     "information_gain_posture": "ig_reviewed_route_realization",
     "release_authorization": "not_authorized"
   },
@@ -51,12 +51,11 @@
   ],
   "proposed_disposition": "governed_reference_no_new_route",
   "blockers_before_any_url": [
-    "information_gain_posture ig_reviewed_route_realization is not honoured until AMD-IG-R03-001 is ratified by a named owner (separate act; merging PRs is not ratification)",
-    "claim_posture claim_pending — 11 claims are narrowly approved in an INACTIVE registry; owner claim activation (owner_acts.json) not signed",
-    "validation_posture not_validated — no signed independent review (packet ready; reviewer needs chemical-nomenclature/lexicography competence)",
-    "evidence_posture evidence_sufficient — 0 of 11 sources locked (L3 needs a re-capture on a later date; L6 human sign-off)",
-    "governance_posture reference_draft / release_authorization not_authorized — owner release authorization not signed",
-    "CLM-TERM-BISULFID-001 (German industry usage) stays pending by design; it is shown only as a recorded boundary"
+    "Documentary evidence validation is accepted under owner-adopted DOCUMENTARY-VERIFICATION 1.0.0 (11/11 claims and 11/11 sources at L1–L5); neither independent human review nor L6 signatures are claimed.",
+    "claim_posture claim_pending — Sohadot has not signed activation of the 11 narrowly approved terminology claims",
+    "information_gain_posture ig_reviewed_route_realization is not honoured until AMD-IG-R03-001 receives a separate Sohadot ratification",
+    "governance_posture reference_draft / release_authorization not_authorized — no owner release authorization exists; merge and deployment not authorized",
+    "CLM-TERM-BISULFID-001 (German industry usage) remains pending and unbound; never promote by association"
   ],
   "authorizes": "nothing public — internal candidate only",
   "route_realization": {
@@ -65,7 +64,7 @@
     "realizes": "/bisulfid-vs-bisulfide/ (existing route bisulfid_vs_bisulfide; no new URL)",
     "consolidation_obligations": 4,
     "not_a_localization_of": "/de/bisulfid-vs-bisulfide/ (ungoverned German legacy page; no hreflang emitted)",
-    "status": "structure verified (route_realization.check_structure); AMD-IG-R03-001 awaits owner ratification, so the authority treats this posture as ig_reviewed_no_new_route until then"
+    "status": "structure verified (route_realization.check_structure); AMD-IG-R03-001 remains unratified, so IG is not honoured. Documentary validation alone cannot release or index the page."
   },
   "distinctiveness_review": {
     "reviewed_on": "2026-10-31",
@@ -75,32 +74,32 @@
       {
         "path": "/bisulfid-vs-bisulfide/",
         "substantive_tokens": 117,
-        "similarity_to_candidate": 0.0
+        "similarity_to_candidate": 0
       },
       {
         "path": "/de/bisulfid-vs-bisulfide/",
         "substantive_tokens": 141,
-        "similarity_to_candidate": 0.0
+        "similarity_to_candidate": 0
       },
       {
         "path": "/en/terminology/compare/bisulfid-vs-bisulfide/ai/tech/",
         "substantive_tokens": 141,
-        "similarity_to_candidate": 0.0
+        "similarity_to_candidate": 0
       },
       {
         "path": "/en/terminology/compare/bisulfid-vs-bisulfide/chem/ling/",
         "substantive_tokens": 145,
-        "similarity_to_candidate": 0.0
+        "similarity_to_candidate": 0
       },
       {
         "path": "/en/terminology/compare/bisulfid-vs-bisulfide/res/res/",
         "substantive_tokens": 139,
-        "similarity_to_candidate": 0.0
+        "similarity_to_candidate": 0
       },
       {
         "path": "/en/terminology/compare/bisulfid-vs-bisulfide/stu/edu/",
         "substantive_tokens": 141,
-        "similarity_to_candidate": 0.0
+        "similarity_to_candidate": 0
       }
     ],
     "candidate_substantive_tokens": 1442,
@@ -130,7 +129,7 @@
         "bisulfide vs bisulfite (one letter, different anion family)",
         "absence from the DWDS is not absence from German"
       ],
-      "internal_links": "to /molybdenum-disulfide/ (governed reference using 'disulfide' in a compound name), /methodology/ and /sources/ (how evidence and sources are admitted). No links to the thin variants."
+      "internal_links": "Keep live internal links to /methodology/ and /sources/ for the first terminology release; add /molybdenum-disulfide/ only after its governed scientific reference is separately index-approved and published. Do not present the unready legacy MoS2 route as a completed governed reference. No thin-variant links."
     },
     "no_sibling_pages": "No new route or sibling page is proposed."
   },
@@ -139,5 +138,14 @@
     "declared_on": "2026-10-31",
     "rationale": "Terminology and nomenclature reference: dictionary senses, IUPAC names, a database synonym list and a German lexicon entry. It states which species words are attached to; it gives no handling, toxicity, exposure, medical, regulatory, industrial-procedure or commercial guidance. Safety, medical and industrial-use claims are excluded by the KO and named as outside the reference.",
     "verified_by": "scripts/release/documentary_verification.py (declaration must agree with the automated scan of every rendered statement)"
+  },
+  "documentary_verification": {
+    "policy": "DOCUMENTARY-VERIFICATION@1.0.0",
+    "status": "owner_adopted_documentary_verified",
+    "verification_record": "main/data/release/documentary_verification/KO-BISULFID-TERMINOLOGY-001.json",
+    "qualification": "low_risk_informational",
+    "basis": "11/11 narrow terminology claims; 11/11 sources pass L1–L5; 15 admitted evidence records; D1–D7; not independent human peer review",
+    "source_lock_clarification": "evidence_locked is an HONOURED DOCUMENTARY POSTURE under the adopted policy, not a representation that any source has an L6 human lock",
+    "grants_no_owner_authority": true
   }
 }
