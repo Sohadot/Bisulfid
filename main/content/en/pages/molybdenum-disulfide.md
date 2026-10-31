@@ -53,11 +53,15 @@ The reviewed literature distinguishes three polytypes of MoS2, labelled 1T, 2H a
 
 A structural value for MoS2 is therefore incomplete unless it names the polytype it belongs to. This reference covers 2H; 1T is out of scope, and 3R is recorded only as a boundary.
 
+The numeral in a polytype label identifies the number of S–Mo–S layers in the crystallographic unit cell; T, H and R denote trigonal, hexagonal and rhombohedral symmetry in the reviewed convention. These labels describe structure, not a different MoS2 stoichiometry, so a formula alone cannot identify the stacking arrangement.
+
 ## The 2H polytype
 
 In the 2H polytype, bulk MoS2 adopts the hexagonal space group P6₃/mmc (No. 194), with a c-axis repeat of 12.30(7) Å in the 1923 determination and 12.295 Å in the 1983 determination.
 
 The two determinations come from different originating studies: Dickinson and Pauling's 1923 X-ray study of the mineral molybdenite, and the 1983 single-crystal study by Schönfeld, Huang and Moss. Both crystallographic records are retrieved from the Crystallography Open Database; the database is the retrieval route, not the source of the science.
+
+The c-axis values 12.30(7) Å and 12.295 Å describe the repeat of the bulk 2H crystallographic unit cell along c. They should not be quoted as measurements of the thickness of one S–Mo–S sandwich: a lattice repeat and an individual structural layer are different quantities.
 
 ## Where the name 2H comes from
 
@@ -68,6 +72,8 @@ Dickinson and Pauling described molybdenite as hexagonal in 1923 but did not use
 Two independent determinations report the in-plane lattice parameter a of bulk 2H-MoS2 as 3.15(2) Å (Dickinson and Pauling, 1923) and 3.161 Å (Schönfeld, Huang and Moss, 1983).
 
 The values agree within the stated uncertainty of the 1923 value and are kept as separate determinations rather than averaged into one number. Both apply to bulk 2H only; a value for a single layer or for 3R must not be substituted for them.
+
+The crystallographic notation 3.15(2) Å expresses 3.15 Å with a reported uncertainty of 0.02 Å in the final digits. Its corresponding interval, 3.13–3.17 Å, includes the later 3.161 Å value. This is evidence of compatibility between the two cited bulk 2H determinations, not a warrant to assign either number universally to every MoS2 sample or polytype.
 
 | Determination | Reported a | Method | Scope |
 | --- | --- | --- | --- |
