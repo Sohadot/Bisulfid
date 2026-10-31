@@ -1,9 +1,9 @@
 {
   "policy_id": "DOCUMENTARY-VERIFICATION",
   "version": "1.0.0",
-  "status": "proposed_for_owner_adoption",
-  "adopted_by": null,
-  "adopted_on": null,
+  "status": "adopted",
+  "adopted_by": "Sohadot (sohadot.com)",
+  "adopted_on": "2026-10-31",
   "owner_direction": {
     "recorded_on": "2026-10-31",
     "channel": "owner instruction in the Claude Code review session (Release-01, 'Evidence-Based Reference Governance & Publication Readiness')",
