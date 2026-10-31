@@ -185,12 +185,37 @@ def _realization_ok(ko_id):
     return route_realization.check(ko_id)
 
 
+def _documentary_ok(ko_id):
+    import documentary_verification as dv
+    return dv.documentary_ok(ko_id)
+
+
+def validation_honoured(ko_id):
+    """A signed independent human review, OR (policy adopted, low-risk KO) documentary verification.
+    The two are different verification levels and are labelled differently wherever they are shown."""
+    good, why = validation_ok(ko_id)
+    if good:
+        return True, []
+    dgood, dwhy = _documentary_ok(ko_id)
+    return (True, []) if dgood else (False, why + [f"documentary path: {'; '.join(dwhy)[:120]}"])
+
+
+def evidence_lock_honoured(ko_id):
+    """L6-signed locks for every source, OR (policy adopted, low-risk KO) documentary acceptance with L1-L5
+    passing for every source. L6 is never marked signed and source_lock_status stays 'candidate'."""
+    good, why = evidence_locked_ok(ko_id)
+    if good:
+        return True, []
+    dgood, dwhy = _documentary_ok(ko_id)
+    return (True, []) if dgood else (False, why[:3] + [f"documentary path: {'; '.join(dwhy)[:120]}"])
+
+
 def honoured_postures(ko_id, postures, skip=()):
     """Downgrade any human-gated posture that lacks its signed record (fail-closed). Returns (postures, notes).
     skip: fields the caller verifies itself (the publication authority checks route realization with its own stores)."""
     p, notes = dict(postures), []
-    checks = (("validation_posture", ("validated",), "not_validated", validation_ok),
-              ("evidence_posture", ("evidence_locked",), "evidence_sufficient", evidence_locked_ok),
+    checks = (("validation_posture", ("validated",), "not_validated", validation_honoured),
+              ("evidence_posture", ("evidence_locked",), "evidence_sufficient", evidence_lock_honoured),
               ("claim_posture", ("claim_approved", "claim_approved_narrow"), "claim_pending", claims_active_ok),
               ("release_authorization", ("authorized",), "not_authorized", release_authorized_ok),
               ("information_gain_posture", ("ig_reviewed_route_realization",), "ig_reviewed_no_new_route", _realization_ok),

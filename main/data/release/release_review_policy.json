@@ -32,5 +32,6 @@
   "automated_preparer_ids": [
     "claude-code-agent"
   ],
-  "status_note": "Restrictive only: this policy adds fail-closed checks and grants no authority to anyone. Opening or merging a pull request does not adopt it; owner adoption is a separate decision. While unadopted, the checks still only ever DOWNGRADE postures."
+  "status_note": "Restrictive only: this policy adds fail-closed checks and grants no authority to anyone. Opening or merging a pull request does not adopt it; owner adoption is a separate decision. While unadopted, the checks still only ever DOWNGRADE postures.",
+  "documentary_alternative": "For KOs classified low_risk_informational, documentary_verification_policy.json (once ADOPTED by a named owner) lets documentary_verified stand in for the signed independent review (validation_rule) and documentary acceptance (L1-L5 for every source) stand in for L6 signatures (lock_rule). Neither is ever recorded as a human review or a signature, and both rules above remain unchanged and required for higher_risk or undetermined content."
 }

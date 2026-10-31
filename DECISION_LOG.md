@@ -5600,3 +5600,32 @@ Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AM
    - A ceiling on any URL bound to a Knowledge Object render spec is refused and reported, so scientific and conceptual references keep their independent Contract C rules.
    - Contract C itself is unchanged.
 4. **URL-DEC-R03-ACQUIRE-001 still needs the owner's formal signature** for the PR-B page change: wording plus the served noindex. Its old "return to index after a ledger release" condition is superseded by the permanent policy.
+
+---
+
+## Release-01 — Documentary verification pathway for low-risk references (proposed; not adopted)
+
+**Date:** 2026-10-31
+**Owner direction (recorded, not signed):** paid external review and professional signatures must not be universal prerequisites for ordinary low-risk reference content.
+
+**Durable decisions:**
+1. **New verification level `documentary_verified`.** `main/data/release/documentary_verification_policy.json` 1.0.0 and `scripts/release/documentary_verification.py` define seven checks, D1–D7:
+   - **D1 claims:** each claim is approved, of an eligible type, and bound to its evidence.
+   - **D2 evidence:** each record is admitted for its declared use.
+   - **D3 scope:** each use is within the source's qualification.
+   - **D4 reproducibility:** L1–L5 pass for every source.
+   - **D5 conflicts:** no unresolved contradiction, and open questions are stated.
+   - **D6 quality:** Gate 12 PASS, and a distinctiveness review exists.
+   - **D7 risk:** the KO is classified `low_risk_informational`.
+   It is automated evidence verification and is always labelled as such. It is never presented as peer review, and `independently_human_reviewed` reflects only a signed review record.
+2. **Proportionate replacement, only for low-risk content.** Once the policy is ADOPTED by a named owner:
+   - `documentary_verified` can stand in for the signed independent review;
+   - documentary acceptance (L1–L5) can stand in for L6 signatures.
+   L6 is never marked signed. Owner claim activation, owner release authorization and AMD-IG-R03-001 ratification are never replaced.
+3. **Risk classification fails closed.**
+   - It is derived from the claims and rendered statements, not the page title.
+   - The publication candidate must declare the class.
+   - Claim types must be eligible, and safety/medical claims must be excluded.
+   - A scan for higher-risk signals must find nothing.
+   - Anything else is `undetermined` and treated as higher risk.
+4. **Status:** proposed for owner adoption. Until adopted it changes no posture, no URL and no directive (tested).

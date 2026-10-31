@@ -1,0 +1,130 @@
+{
+ "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
+ "policy": "DOCUMENTARY-VERIFICATION@1.0.0",
+ "policy_status": "proposed_for_owner_adoption",
+ "policy_adopted": false,
+ "verification_level": "not_verified",
+ "independently_human_reviewed": false,
+ "label": "not_verified",
+ "risk_class": "undetermined",
+ "claims_assessed": 3,
+ "sources_assessed": 8,
+ "ig_valid_units": 7,
+ "checks": {
+  "D2_evidence": [
+   "bound evidence EVD-MOS2-2H-REF-RSC is not rendered/admitted",
+   "bound evidence EVD-MOS2-LAYERED-HUANG1981 is not rendered/admitted"
+  ],
+  "D3_scope": "pass",
+  "D1_claims": [
+   "CLM-MOS2-FORMULA: status None",
+   "CLM-MOS2-STRUCTURE-2H: status None",
+   "CLM-MOS2-LATTICE-A-2H: status None"
+  ],
+  "D4_reproducible": [
+   "SRC-ACTACRYST-MOS2-1983-EXCERPT: L2, L3 not pass",
+   "SRC-HUANG-THESIS-1981: L2, L3, L4 not pass",
+   "SRC-JACS-MOLYBDENITE-1923-EXCERPT: L2, L3 not pass",
+   "SRC-RSC-MOS2-REVIEW-2015: L2, L3 not pass"
+  ],
+  "D5_conflicts": [
+   "unresolved fields exist but the reference does not state them (open group + not-established)"
+  ],
+  "D6_quality": [
+   "no distinctiveness review recorded in the publication candidate"
+  ],
+  "D7_risk": [
+   "risk class undetermined",
+   "no low_risk_informational declaration with rationale in the publication candidate",
+   "claim type not eligible or missing: ['CLM-MOS2-FORMULA', 'CLM-MOS2-STRUCTURE-2H', 'CLM-MOS2-LATTICE-A-2H']",
+   "KO does not exclude ['chemical_safety', 'medical']"
+  ]
+ },
+ "failures": [
+  "D2_evidence: bound evidence EVD-MOS2-2H-REF-RSC is not rendered/admitted",
+  "D2_evidence: bound evidence EVD-MOS2-LAYERED-HUANG1981 is not rendered/admitted",
+  "D1_claims: CLM-MOS2-FORMULA: status None",
+  "D1_claims: CLM-MOS2-STRUCTURE-2H: status None",
+  "D1_claims: CLM-MOS2-LATTICE-A-2H: status None",
+  "D4_reproducible: SRC-ACTACRYST-MOS2-1983-EXCERPT: L2, L3 not pass",
+  "D4_reproducible: SRC-HUANG-THESIS-1981: L2, L3, L4 not pass",
+  "D4_reproducible: SRC-JACS-MOLYBDENITE-1923-EXCERPT: L2, L3 not pass",
+  "D4_reproducible: SRC-RSC-MOS2-REVIEW-2015: L2, L3 not pass",
+  "D5_conflicts: unresolved fields exist but the reference does not state them (open group + not-established)",
+  "D6_quality: no distinctiveness review recorded in the publication candidate",
+  "D7_risk: risk class undetermined",
+  "D7_risk: no low_risk_informational declaration with rationale in the publication candidate",
+  "D7_risk: claim type not eligible or missing: ['CLM-MOS2-FORMULA', 'CLM-MOS2-STRUCTURE-2H', 'CLM-MOS2-LATTICE-A-2H']",
+  "D7_risk: KO does not exclude ['chemical_safety', 'medical']"
+ ],
+ "claim_outcomes": [
+  {
+   "claim_id": "CLM-MOS2-FORMULA",
+   "evidence_ids": [
+    "EVD-MOS2-FORMULA-PUBCHEM",
+    "EVD-MOS2-FORMULA-NIST"
+   ],
+   "sources": [
+    "SRC-NIST-MOS2",
+    "SRC-PUBCHEM-MOS2"
+   ],
+   "outcome": "not_verified",
+   "reasons": [
+    "CLM-MOS2-FORMULA: status None"
+   ]
+  },
+  {
+   "claim_id": "CLM-MOS2-STRUCTURE-2H",
+   "evidence_ids": [
+    "EVD-MOS2-STRUCTURE-DICKINSON",
+    "EVD-MOS2-STRUCTURE-ACTACRYST",
+    "EVD-MOS2-2H-REF-RSC",
+    "EVD-MOS2-LAYERED-RSC",
+    "EVD-MOS2-POLYTYPES-RSC",
+    "EVD-MOS2-LAYERED-ACTA1983-EXCERPT",
+    "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT",
+    "EVD-MOS2-LAYERED-HUANG1981"
+   ],
+   "sources": [
+    "SRC-ACTACRYST-MOS2-1983-EXCERPT",
+    "SRC-COD-MOS2-ACTACRYST-1983",
+    "SRC-COD-MOS2-DICKINSON-1923",
+    "SRC-HUANG-THESIS-1981",
+    "SRC-JACS-MOLYBDENITE-1923-EXCERPT",
+    "SRC-RSC-MOS2-REVIEW-2015"
+   ],
+   "outcome": "not_verified",
+   "reasons": [
+    "CLM-MOS2-STRUCTURE-2H: status None",
+    "bound evidence EVD-MOS2-2H-REF-RSC is not rendered/admitted",
+    "bound evidence EVD-MOS2-LAYERED-HUANG1981 is not rendered/admitted",
+    "source SRC-ACTACRYST-MOS2-1983-EXCERPT not reproducible",
+    "source SRC-HUANG-THESIS-1981 not reproducible",
+    "source SRC-JACS-MOLYBDENITE-1923-EXCERPT not reproducible",
+    "source SRC-RSC-MOS2-REVIEW-2015 not reproducible"
+   ]
+  },
+  {
+   "claim_id": "CLM-MOS2-LATTICE-A-2H",
+   "evidence_ids": [
+    "EVD-MOS2-LATTICE-A-DICKINSON",
+    "EVD-MOS2-LATTICE-A-ACTACRYST"
+   ],
+   "sources": [
+    "SRC-COD-MOS2-ACTACRYST-1983",
+    "SRC-COD-MOS2-DICKINSON-1923"
+   ],
+   "outcome": "not_verified",
+   "reasons": [
+    "CLM-MOS2-LATTICE-A-2H: status None"
+   ]
+  }
+ ],
+ "never_implied": [
+  "independent human peer review",
+  "L6 human signature",
+  "owner claim activation",
+  "owner release authorization",
+  "AMD-IG-R03-001 ratification"
+ ]
+}

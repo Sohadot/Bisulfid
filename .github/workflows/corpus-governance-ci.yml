@@ -73,6 +73,11 @@ jobs:
       - name: "Release-01 PR-E — Bisulfid/Bisulfide reference precision and evidence navigation"
         run: python scripts/reference_production/test_bisulfid_reference.py
 
+      - name: "Release-01 PR-E — documentary verification pathway (low-risk, fail-closed)"
+        run: |
+          python scripts/release/documentary_verification.py --check
+          python scripts/release/documentary_verification_tests.py
+
       - name: "Recovery — legacy disposition registry invariants"
         run: python scripts/recovery/validate_legacy_disposition.py
 

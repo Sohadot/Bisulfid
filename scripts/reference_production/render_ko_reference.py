@@ -401,8 +401,13 @@ def release_status(r):
     signed = next((x for x in rec.get("reviews", []) if x.get("status") == "signed"), None) if ok else None
     srcs = rc.ko_sources(kid)
     locked = [x for x in srcs if rc.source_lock_ok(x)[0]]
-    return {"validation": (f"independently reviewed by {signed['reviewer']} on {signed['signed_on']}" if signed
-                           else "independent review not yet performed"),
+    dv_p = os.path.join(DATA, "release", "documentary_verification", kid + ".json")
+    dv = json.load(open(dv_p, encoding="utf-8")) if os.path.exists(dv_p) else {}
+    documentary = ("documentary verification passed (automated evidence checks, not independent peer review"
+                   + ("" if dv.get("policy_adopted") else "; verification policy not yet adopted") + "); "
+                   if dv.get("verification_level") == "documentary_verified" else "")
+    return {"validation": documentary + (f"independently reviewed by {signed['reviewer']} on {signed['signed_on']}" if signed
+                                         else "independent review not yet performed"),
             "sources": f"{len(locked)} of {len(srcs)} sources locked",
             "claims": "claims activated by the owner" if rc.claims_active_ok(kid)[0] else "claims not yet activated"}
 

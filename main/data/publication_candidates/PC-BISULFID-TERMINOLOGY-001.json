@@ -133,5 +133,11 @@
       "internal_links": "to /molybdenum-disulfide/ (governed reference using 'disulfide' in a compound name), /methodology/ and /sources/ (how evidence and sources are admitted). No links to the thin variants."
     },
     "no_sibling_pages": "No new route or sibling page is proposed."
+  },
+  "risk_classification": {
+    "class": "low_risk_informational",
+    "declared_on": "2026-10-31",
+    "rationale": "Terminology and nomenclature reference: dictionary senses, IUPAC names, a database synonym list and a German lexicon entry. It states which species words are attached to; it gives no handling, toxicity, exposure, medical, regulatory, industrial-procedure or commercial guidance. Safety, medical and industrial-use claims are excluded by the KO and named as outside the reference.",
+    "verified_by": "scripts/release/documentary_verification.py (declaration must agree with the automated scan of every rendered statement)"
   }
 }
