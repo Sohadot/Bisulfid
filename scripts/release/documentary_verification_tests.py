@@ -82,6 +82,51 @@ ok("04_missing_or_contradictory_evidence_blocks",
    r8["verification_level"] == "not_verified" and r9["verification_level"] == "not_verified"
    and dv.evaluate(MOS2)["verification_level"] == "not_verified")
 
+# 1b D7 covers every author-controlled field (each inserted into a copy of the real spec; full evaluate())
+SPEC = dv._spec_for(TERM)
+
+
+def with_spec(mutate):
+    sp = copy.deepcopy(SPEC)
+    mutate(sp)
+    return dv.evaluate(TERM, {"spec": sp})
+
+
+def risky(r):
+    return r["risk_class"] == "higher_risk" and r["verification_level"] == "not_verified"
+
+
+ok("10_risk_in_summary_cannot_bypass_d7",
+   risky(with_spec(lambda sp: sp.update(summary=sp["summary"] + " Handle with care: the occupational exposure limit is 1 ppm."))))
+ok("11_risk_in_comparison_table_cannot_bypass_d7",
+   risky(with_spec(lambda sp: sp["modules"][0].update(table={"columns": ["Term", "Note"], "evidence_ids": ["EVD-TERM-MW-BISULFIDE"],
+                                                            "rows": [["bisulfide", "Wear protective equipment when handling it"]]}))))
+ok("12_risk_in_concluding_sections_cannot_bypass_d7",
+   risky(with_spec(lambda sp: sp["synthesis"]["groups"][0]["items"].append(
+       {"text": "A dose of 5 mg is tolerated.", "evidence_ids": ["EVD-TERM-MW-BISULFIDE"]})))
+   and risky(with_spec(lambda sp: sp["not_established"].update(
+       text=sp["not_established"]["text"] + " Store below 25 °C and avoid exposure; toxicity is outside this reference."))))
+ok("13_risk_only_in_seo_or_structured_data_cannot_bypass_d7",
+   risky(with_spec(lambda sp: sp["seo"].update(description="Bisulfide toxicity, safe exposure limits and dosage explained by IUPAC sources.")))
+   and risky(with_spec(lambda sp: sp["seo"]["json_ld"]["hasDefinedTerm"][0].update(description="Lethal above the exposure limit.")))
+   and risky(with_spec(lambda sp: sp["seo"].update(title="Bisulfid vs Bisulfide: Handling, Toxicity and Exposure"))))
+ok("14_ordinary_terminology_stays_eligible",
+   with_spec(lambda sp: sp["synthesis"]["groups"][0]["items"].append(
+       {"text": "Sulfide and Sulfid both name salts of hydrogen sulfide in the sources cited.",
+        "evidence_ids": ["EVD-TERM-MW-SULFIDE", "EVD-TERM-DWDS-SULFID"]}))["verification_level"] == "documentary_verified")
+r15 = with_spec(lambda sp: sp["not_established"].update(
+    text=sp["not_established"]["text"] + " Toxicity, exposure limits and handling are outside this reference."))
+ok("15_exclusion_statements_are_not_treated_as_advice",
+   r15["risk_class"] == "low_risk_informational" and r15["verification_level"] == "documentary_verified")
+r16a = with_spec(lambda sp: sp.update(summary=""))
+r16b = with_spec(lambda sp: sp["not_established"].update(text=""))
+r16c = with_spec(lambda sp: sp["seo"].update(description=""))
+ok("16_missing_content_is_never_approved_as_low_risk",
+   all(r["risk_class"] == "undetermined" and r["verification_level"] == "not_verified" for r in (r16a, r16b, r16c)))
+ok("17_evidence_validation_unchanged",
+   all(BASE["checks"][k] == "pass" for k in ("D1_claims", "D2_evidence", "D3_scope", "D4_reproducible", "D5_conflicts", "D6_quality"))
+   and BASE["sources_assessed"] == 11 and BASE["claims_assessed"] == 11 and BASE["ig_valid_units"] >= 3)
+
 # 5 nothing claims independent human review
 page = open(os.path.join(ROOT, "main", "data", "release", "staged", "bisulfid-vs-bisulfide", "index.html"), encoding="utf-8").read()
 ok("05_no_claim_of_independent_review",

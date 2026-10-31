@@ -30,6 +30,19 @@ RISK_PATTERNS = re.compile(
     r"PPE|first aid|antidote|treatment|diagnos\w+|therap\w+|complian(ce|t)|permissible|occupational|operating procedure|"
     r"step \d|guarantee\w*|performance|efficien(cy|t)|yield|price|market share|return on investment|ROI)\b", re.I)
 REQUIRED_EXCLUSIONS = ("chemical_safety", "medical")
+# A sentence that only DECLARES a topic out of scope is not advice ("Toxicity ... are outside this reference")...
+EXCLUSION_STATEMENT = re.compile(r"\b(outside (the scope of )?this reference|not covered (here|by this reference)|"
+                                 r"(this|the) reference (does not|gives no|provides no)|not established here|are excluded)\b", re.I)
+# ...unless it also instructs or quantifies (then the exemption is void: fail-closed).
+INSTRUCTION_OR_QUANTITY = re.compile(r"\b(wear|avoid|apply|mix|heat|store|dilute|keep|pour|inhale|ingest|"
+                                     r"do not (exceed|use|mix|inhale|ingest))\b|\d+(\.\d+)?\s?(mg|g|kg|ml|l|ppm|ppb|%|°C|mol)\b", re.I)
+# Operational guidance needs no risk keyword: an imperative at the start of a sentence or clause, or a
+# dosage/concentration/temperature quantity, is itself a higher-risk signal (never exempted).
+OPERATIONAL = re.compile(r"(^|[.;:]\s*)(store|keep|avoid|wear|mix|heat|dilute|pour|apply|add|use|handle|do not|never)\b|"
+                         r"\b\d+(\.\d+)?\s?(mg|g|kg|ml|mL|l|L|ppm|ppb|%|°C|mol/L)(?![A-Za-z])", re.I)
+# JSON-LD keys that carry identifiers or metadata, not assertions.
+LD_METADATA_KEYS = ("@context", "@type", "url", "sameAs", "inLanguage", "@id")
+_GATE12_CACHE = {}
 
 
 def load(*p):
@@ -72,14 +85,68 @@ def _pc_for(ko_id):
     return None
 
 
-def rendered_statements(r):
-    out = [p["text"] for m in r["modules"] for p in m["paragraphs"]] + [g["value"] for g in r["glance"]]
-    if r.get("synthesis"):
-        out += [i["text"] for g in r["synthesis"]["groups"] for i in g["items"]]
+def reference_fields(r):
+    """Every author-controlled, publicly rendered text field of the reference, taken from the renderer's
+    content model (not scraped from HTML), as (field, text). Navigation, identifiers, URLs and citation
+    metadata (evidence trail, breadcrumbs, source titles) are deliberately not assessed as statements."""
+    s, seo = r["spec"], (r.get("seo") or {})
+    out = [("title", s.get("title")), ("h1", s.get("h1")), ("summary", s.get("summary")),
+           ("seo.title", seo.get("title")), ("seo.description", seo.get("description"))]
+
+    def ld(v, path):
+        if isinstance(v, dict):
+            for k, x in v.items():
+                if k not in LD_METADATA_KEYS:
+                    ld(x, f"{path}.{k}")
+        elif isinstance(v, list):
+            for i, x in enumerate(v):
+                ld(x, f"{path}[{i}]")
+        elif isinstance(v, str):
+            out.append((path, v))
+    ld(seo.get("json_ld") or {}, "json_ld")
+    for x in seo.get("related", []):
+        out += [("related.label", x.get("label")), ("related.relation", x.get("relation"))]
+    for m in r["modules"]:
+        out.append((f"module.{m['module_id']}.heading", m["heading"]))
+        out += [(f"module.{m['module_id']}.paragraph", p["text"]) for p in m["paragraphs"]]
+        if m.get("table"):
+            out += [(f"module.{m['module_id']}.table.column", c) for c in m["table"]["columns"]]
+            out += [(f"module.{m['module_id']}.table.cell", c) for row in m["table"]["rows"] for c in row]
+    for g in r["glance"]:
+        out += [("glance.label", g["label"]), ("glance.value", g["value"])]
+    syn = r.get("synthesis")
+    if syn:
+        out += [("synthesis.heading", syn["heading"]), ("synthesis.intro", syn.get("intro"))]
+        for g in syn["groups"]:
+            out.append((f"synthesis.{g['verdict']}.label", g["label"]))
+            out += [(f"synthesis.{g['verdict']}.item", i["text"]) for i in g["items"]]
+    ne = s.get("not_established") or {}
+    out += [("not_established.heading", ne.get("heading")),
+            ("not_established.text", (ne.get("text") or "").replace(" [SOURCE REQUIRED]", ""))]
     return out
 
 
-def classify_risk(ko, pc, claims, statements, pol):
+REQUIRED_FIELDS = ("title", "h1", "summary", "seo.title", "seo.description", "not_established.text")
+
+
+def risk_hits(field, text):
+    """Higher-risk signals in one field, sentence by sentence. Operational guidance (imperatives, dosage-type
+    quantities) always counts. A risk keyword in a sentence that only declares a topic out of scope is exempt
+    unless that sentence also instructs or quantifies. Keyword signals cannot establish safety or technical
+    correctness; they only route content away from the low-risk pathway (fail-closed)."""
+    hits = []
+    for sent in re.split(r"(?<=[.;!?])\s+", text or ""):
+        hits += [f"{field}: operational '{m.group(0).strip(' .;:')}'" for m in OPERATIONAL.finditer(sent)]
+        found = [m.group(0) for m in RISK_PATTERNS.finditer(sent)]
+        if not found:
+            continue
+        if EXCLUSION_STATEMENT.search(sent) and not INSTRUCTION_OR_QUANTITY.search(sent):
+            continue
+        hits += [f"{field}: {f}" for f in found]
+    return hits
+
+
+def classify_risk(ko, pc, claims, fields, pol):
     """low_risk_informational only if declared, every claim type is eligible, the KO excludes safety and
     medical claims, and no rendered statement carries a higher-risk signal. Otherwise undetermined/higher_risk."""
     reasons = []
@@ -92,10 +159,14 @@ def classify_risk(ko, pc, claims, statements, pol):
     missing = [x for x in REQUIRED_EXCLUSIONS if x not in (ko.get("excluded_claim_classes") or [])]
     if missing:
         reasons.append(f"KO does not exclude {missing}")
-    hits = sorted({m.group(0) for s in statements + [(claims.get(c) or {}).get("statement", "") for c in ko["claim_ids"]]
-                   for m in RISK_PATTERNS.finditer(s or "")})
+    present = {f for f, t in fields if (t or "").strip()}
+    absent = [f for f in REQUIRED_FIELDS if f not in present]
+    if not fields or absent:
+        reasons.append(f"reference content missing or unreadable: {absent or 'no fields'}")
+    claim_fields = [(f"claim.{c}", (claims.get(c) or {}).get("statement", "")) for c in ko["claim_ids"]]
+    hits = sorted({h for f, t in fields + claim_fields for h in risk_hits(f, t)})
     if hits:
-        return "higher_risk", reasons + [f"higher-risk signal(s) in rendered statements: {hits}"]
+        return "higher_risk", reasons + [f"higher-risk signal(s): {hits}"]
     return ("low_risk_informational", []) if not reasons else ("undetermined", reasons)
 
 
@@ -119,7 +190,7 @@ def evaluate(ko_id, overrides=None):
         rendered = {p["evidence_id"] for p in r["provenance"]}
         d2 = [f"bound evidence {e} is not rendered/admitted" for e in sorted(bound - rendered)]
         d3 = [f"{p['evidence_id']}: use {p['intended_use']} not qualified" for p in r["provenance"] if not p.get("qualification_id")]
-        statements = rendered_statements(r)
+        statements = reference_fields(r)
     except Exception as exc:  # noqa: BLE001 — any refusal is a failed check
         r, d2, d3, statements = None, [f"renderer refused: {exc}"], [], []
     checks["D2_evidence"], checks["D3_scope"] = d2, d3
@@ -169,11 +240,14 @@ def evaluate(ko_id, overrides=None):
         import distinctiveness_core as dc
         route = r["route"] if r else None
         md = os.path.join(ROOT, route["content_file"]) if route else None
-        pol12 = dc.load_policy()
-        page = dc.parse_markdown(md, open(md, encoding="utf-8").read(), pol12)
-        u = dc.Universe(dc.load_markdown_pages(pol12), pol12)
-        ctx = dc.IGContext()
-        v = dc.gate12_verdict(page, u, pol12, ctx, unit_index=dc.unit_statement_index(ctx, pol12, u.by_id))
+        md_text = open(md, encoding="utf-8").read()
+        if md_text not in _GATE12_CACHE:  # the verdict depends only on the draft and the corpus on disk
+            pol12 = dc.load_policy()
+            page = dc.parse_markdown(md, md_text, pol12)
+            u = dc.Universe(dc.load_markdown_pages(pol12), pol12)
+            ctx = dc.IGContext()
+            _GATE12_CACHE[md_text] = dc.gate12_verdict(page, u, pol12, ctx, unit_index=dc.unit_statement_index(ctx, pol12, u.by_id))
+        v = _GATE12_CACHE[md_text]
         if v["verdict"] != "PASS":
             d6.append(f"Gate 12 {v['verdict']}: {v['failures']}")
         ig_valid = v["information_gain"]["valid_units"]

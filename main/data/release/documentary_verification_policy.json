@@ -25,7 +25,7 @@
     "higher_risk": "handling instructions, toxicity or exposure guidance, industrial operating procedures, safety-critical engineering, medical or regulatory-compliance advice, performance or commercial claims. Documentary verification never suffices: independent human review and L6 signatures remain required.",
     "undetermined": "anything the evaluator cannot classify with confidence. Treated as higher_risk (fail-closed)."
   },
-  "risk_rule": "Classified from the actual claims and rendered statements, not the page title: the publication candidate must DECLARE low_risk_informational with a rationale, every claim must have an eligible claim_type, the KO must exclude safety and medical claim classes, and an automated scan of every rendered claim statement, module paragraph, at-a-glance value and synthesis item must find no higher-risk signal. Any disagreement or gap yields undetermined.",
+  "risk_rule": "Classified from the actual claims and every author-controlled rendered field, not the page title. The publication candidate must DECLARE low_risk_informational with a rationale; every claim must have an eligible claim_type; the KO must exclude safety and medical claim classes; the required fields (title, h1, summary, SEO title and description, not-established text) must be present; and a sentence-level scan of every field must find no higher-risk signal. Fields assessed (from the renderer's content model, not scraped HTML): title, h1, summary, SEO title and description, JSON-LD string values except identifiers, related-link labels and relations, module headings, paragraphs and table columns/cells, at-a-glance labels and values, synthesis heading, intro, labels and items, the not-established heading and text, and every claim statement. Not assessed as statements: navigation, breadcrumbs, evidence-trail citation metadata, source titles, URLs. Operational guidance (imperatives, dosage/concentration/temperature quantities) is always a signal; a risk keyword in a sentence that only declares a topic out of scope is exempt unless that sentence instructs or quantifies. Keyword signals cannot establish safety or technical correctness: they only route content away from this pathway. Any gap yields undetermined (fail-closed).",
   "eligible_claim_types": [
     "terminology"
   ],
@@ -49,5 +49,6 @@
     "Gate 12 / Gate 12-I vetoes",
     "any requirement for higher_risk or undetermined content",
     "merge and deployment decisions"
-  ]
+  ],
+  "version_note": "1.0.0 (2026-10-31): D7 field coverage completed before adoption; no change to D1-D6 or to what the pathway may replace."
 }
