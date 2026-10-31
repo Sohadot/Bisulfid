@@ -160,23 +160,32 @@ try:
 finally:
     dv.policy = ORIG_POLICY
 
-# 7 nothing previously blocked becomes publishable; 8 legacy URLs and directives unchanged
+# 7 Owner adoption enables documentary evidence acceptance, not release authority.
 import publication_authority as pa  # noqa: E402
 now = pa.Authority()
 p_now, _ = rc.honoured_postures(TERM, claimed)
-ok("07a_unadopted_policy_changes_nothing",
-   dv.policy_adopted() is False and p_now["validation_posture"] == "not_validated"
-   and p_now["evidence_posture"] == "evidence_sufficient")
-dv.policy = adopted()
+ok("07a_adoption_enables_only_documentary_acceptance",
+   dv.policy_adopted() is True
+   and p_now["validation_posture"] == "validated"
+   and p_now["evidence_posture"] == "evidence_locked"
+   and p_now["claim_posture"] == "claim_pending"
+   and p_now["release_authorization"] == "not_authorized"
+   and p_now["information_gain_posture"] == "ig_reviewed_no_new_route")
+# Simulate the previous, unadopted policy without changing the actual owner decision.
+dv.policy = lambda: dict(ORIG_POLICY(), status="proposed_for_owner_adoption", adopted_by=None, adopted_on=None)
 try:
-    later = pa.Authority()
+    prior = pa.Authority()
+    p_prior, _ = rc.honoured_postures(TERM, claimed)
 finally:
     dv.policy = ORIG_POLICY
-ok("07b_no_reference_becomes_publishable_even_if_adopted",
-   all(later.contract_c(x)[0] == now.contract_c(x)[0] == ("not_public", "noindex")
+ok("07b_without_adoption_the_documentary_path_remains_closed",
+   p_prior["validation_posture"] == "not_validated"
+   and p_prior["evidence_posture"] == "evidence_sufficient")
+ok("07c_adoption_does_not_publish_any_reference",
+   all(prior.contract_c(x)[0] == now.contract_c(x)[0] == ("not_public", "noindex")
        for x in ("/molybdenum-disulfide/", "/bisulfid-vs-bisulfide/")))
 ok("08_every_url_resolves_identically",
-   all(now.resolve(x) == later.resolve(x) for x in now.baseline))
+   all(now.resolve(x) == prior.resolve(x) for x in now.baseline))
 
 print("=" * 56)
 print("RESULT: " + ("PASS — documentary pathway is proportionate and fail-closed" if not FAILS else f"FAIL — {FAILS}"))
