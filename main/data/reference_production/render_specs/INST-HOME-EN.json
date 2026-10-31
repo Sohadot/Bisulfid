@@ -1,177 +1,177 @@
 {
- "spec_id": "INST-HOME-EN",
- "version": "1.3.0",
- "status": "preview",
- "page_class": "institutional",
- "institutional_function": "gateway_home",
- "route_id": "home",
- "language": "en",
- "purpose": "Homepage rebuild. Institutional text describes the site and its process; it asserts NO chemistry or terminology fact. Numbers about the site's own governed content are computed from the registries at render time ({{GOV:...}}), never typed in.",
- "seo": {
-  "title": "BISULFID — Sulfur Chemistry Terms and Evidence-Backed Reference",
-  "description": "BISULFID documents sulfur chemistry terms in English and German and builds reference pages only from admitted, cited evidence.",
-  "search_intents": [
-   {
-    "query_class": "navigational / brand",
-    "examples": [
-     "bisulfid",
-     "bisulfid.com"
+  "spec_id": "INST-HOME-EN",
+  "version": "1.4.0",
+  "status": "preview",
+  "page_class": "institutional",
+  "institutional_function": "gateway_home",
+  "route_id": "home",
+  "language": "en",
+  "purpose": "English editorial and evidence-methodology gateway by Sohadot (sohadot.com); no unverified chemical identity claim and no dependence on unreleased governed reference routes.",
+  "seo": {
+    "title": "BISULFID — Sulfur Chemistry Terms & Scientific Sources",
+    "description": "Explore how BISULFID examines sulfur chemistry names, English and German terminology, source authority and the limits of evidence.",
+    "search_intents": [
+      {
+        "query_class": "navigational / brand",
+        "examples": [
+          "bisulfid",
+          "bisulfid.com"
+        ],
+        "intent": "reach the site and understand what it is"
+      },
+      {
+        "query_class": "routing",
+        "examples": [
+          "bisulfid meaning",
+          "bisulfid vs bisulfide"
+        ],
+        "intent": "served by the terminology reference /bisulfid-vs-bisulfide/; the homepage routes there"
+      }
     ],
-    "intent": "reach the site and understand what it is"
-   },
-   {
-    "query_class": "routing",
-    "examples": [
-     "bisulfid meaning",
-     "bisulfid vs bisulfide"
-    ],
-    "intent": "served by the terminology reference /bisulfid-vs-bisulfide/; the homepage routes there"
-   }
-  ],
-  "json_ld": {
-   "@type": "WebSite",
-   "name": "BISULFID",
-   "url": "https://bisulfid.com/",
-   "inLanguage": [
-    "en",
-    "de"
-   ]
+    "json_ld": {
+      "@type": "WebSite",
+      "name": "BISULFID",
+      "url": "https://bisulfid.com/",
+      "inLanguage": [
+        "en",
+        "de"
+      ]
+    },
+    "hreflang": "reciprocal en <-> de with x-default -> /, emitted only because INST-HOME-DE declares the same set (render_institutional_preview.alternates)"
   },
-  "hreflang": "reciprocal en <-> de with x-default -> /, emitted only because INST-HOME-DE declares the same set (render_institutional_preview.alternates)"
- },
- "h1": "BISULFID",
- "lead": "A reference project on the language of sulfur chemistry: German and English terms, the compounds they name, and the evidence behind each statement.",
- "sections": [
-  {
-   "heading": "Start with a governed reference",
-   "paragraphs": [
-    "{{GOV:knowledge_objects}} reference records have been built under the current rules so far. The first covers molybdenum disulfide (MoS2): its formula, its layered bulk structure, the 1T, 2H and 3R polytypes, and two independent determinations of the 2H lattice parameter. It rests on {{GOV:mos2_admitted_evidence}} admitted evidence records, each traced to the study or database that produced it."
-   ],
-   "links": [
+  "h1": "BISULFID",
+  "lead": "An evidence-conscious reference project for sulfur chemistry: chemical names, their possible meanings, and the sources needed to tell a supported definition from an assumption.",
+  "sections": [
     {
-     "path": "/molybdenum-disulfide/",
-     "label": "Molybdenum disulfide (MoS2)"
-    }
-   ]
-  },
-  {
-   "heading": "The question in our name",
-   "paragraphs": [
-    "'Bisulfid' and 'bisulfide' differ by one letter. Whether 'Bisulfid' is simply the German spelling of the English term is itself a terminology claim, and it is handled like any other claim on this site: it will be stated as fact only after its sources are verified and admitted.",
-    "The terminology record sets out, from {{GOV:term_evidence}} admitted evidence records and {{GOV:term_claims_approved}} reviewed claims, which meaning dictionaries, IUPAC and a chemical database attach to each spelling, and where the evidence stops. {{GOV:bisulfid_claims_pending}} related claims remain open."
-   ],
-   "links": [
-    {
-     "path": "/bisulfid-vs-bisulfide/",
-     "label": "Bisulfid and bisulfide: the terminology record"
-    }
-   ]
-  },
-  {
-   "heading": "How a statement reaches a reference page",
-   "paragraphs": [
-    "A source is first identified and checked, then qualified for a specific use. A passage from it is recorded as evidence with its exact location, and a claim is approved only against admitted evidence. Numbers are quoted as their sources print them; when two determinations differ, both are shown rather than averaged. A new reference page is published only if it adds knowledge that no other page on the site already holds; most older pages were published before these rules and are being reviewed or rebuilt."
-   ],
-   "links": [
-    {
-     "path": "/methodology/",
-     "label": "Methodology"
+      "heading": "The question behind our name",
+      "paragraphs": [
+        "Bisulfid and bisulfide differ by one letter. That similarity alone cannot establish a shared chemical meaning or a standard translation. Before treating two terms as equivalent, we ask what entity a source names, what language it covers and whether it is describing usage or recommending nomenclature.",
+        "The BISULFID research method keeps dictionary definitions, database synonyms, standards and technical uses distinct. It records what the cited source actually supports and leaves an unresolved interpretation open instead of filling the gap with a confident-sounding guess."
+      ],
+      "links": [
+        {
+          "path": "/sources/",
+          "label": "Explore source types and provenance"
+        }
+      ]
     },
     {
-     "path": "/sources/",
-     "label": "Sources"
-    }
-   ]
-  },
-  {
-   "heading": "English and German",
-   "paragraphs": [
-    "The site is maintained in English and German. A German page exists when it answers a German-language question, such as which form a German technical text uses, rather than as a copy of an English page."
-   ],
-   "links": [
+      "heading": "Different sources answer different questions",
+      "paragraphs": [
+        "A dictionary documents recorded meanings. A chemical database associates terms and synonyms with an identified record. A nomenclature recommendation supplies naming conventions for specified chemical entities. Primary research can report experimentally measured properties of particular material forms. These sources are not interchangeable.",
+        "A synonym in a database is not necessarily a preferred systematic name. A word missing from a particular dictionary is not proved absent from every technical text. BISULFID is designed to make these distinctions visible where they matter to the reader."
+      ],
+      "links": [
+        {
+          "path": "/methodology/",
+          "label": "Read our reference methodology"
+        }
+      ]
+    },
     {
-     "path": "/de/",
-     "label": "Deutsch"
-    }
-   ]
-  },
-  {
-   "heading": "Who is responsible for this site",
-   "paragraphs": [
-    "BISULFID is a reference project published by the owner of the bisulfid.com domain. References to IUPAC, dictionaries, databases, companies and other third parties identify sources; they do not imply endorsement by those organizations or affiliation with them.",
-    "Each reference page built under these rules names the evidence behind every statement and shows when it was retrieved. No individual expert review is claimed: a page records that it has been independently validated only after such a review has taken place."
-   ],
-   "links": [
+      "heading": "How evidence becomes a reference",
+      "paragraphs": [
+        "A defensible reference links each substantive statement to an identifiable source and an appropriate passage, record field or measured value. It records its provenance and the scope in which it is admissible. Where two measurements arise from different studies, the original conditions and reporting precision remain part of the explanation.",
+        "BISULFID distinguishes documentary verification from independent human peer review, and technical evidence checks from publication authorization. Neither a citation list nor an automated validation badge should be mistaken for proof that an external specialist has signed off on every claim."
+      ],
+      "links": [
+        {
+          "path": "/sources/",
+          "label": "Source discipline"
+        },
+        {
+          "path": "/methodology/",
+          "label": "Verification process"
+        }
+      ]
+    },
     {
-     "path": "/methodology/",
-     "label": "How evidence is admitted"
+      "heading": "Identity, structure and material form",
+      "paragraphs": [
+        "A chemical formula does not describe every structural form and property of a material. A reference to a bulk crystal, a polytype or a single layer can require different supporting data. Reporting a value without its scope makes the claim less useful, even when the number itself was transcribed correctly.",
+        "The atlas develops scientifically focused compound records with this distinction in mind. An internal draft is not represented here as a published, reviewed reference; older public pages may predate the present evidence checks. The project favors improving appropriate existing pages over issuing several lightly rewritten copies."
+      ],
+      "links": []
+    },
+    {
+      "heading": "English and German reference questions",
+      "paragraphs": [
+        "A German technical expression cannot be validated simply by translating a similar English word. German lexicography and usage sometimes require their own evidence and distinctions. The German entry page therefore addresses terminology questions for German-language readers rather than presenting a word-for-word imitation of the English gateway.",
+        "Both languages are organized around the same editorial discipline: identify the question, cite the relevant source, distinguish established information from open interpretation, and avoid inventing chemical equivalence or unnecessary sibling URLs."
+      ],
+      "links": [
+        {
+          "path": "/de/",
+          "label": "Deutschsprachiger Einstieg"
+        }
+      ]
+    },
+    {
+      "heading": "Publisher and limits",
+      "paragraphs": [
+        "BISULFID is a reference initiative of Sohadot (sohadot.com). Naming IUPAC, dictionaries, databases, publishers or research institutions as evidence sources does not imply sponsorship, endorsement or organizational affiliation. The site does not claim an independent expert assessment that has not taken place.",
+        "The atlas offers terminology and research orientation, not chemical handling, exposure-control, medical, regulatory, procurement or investment instructions. Decisions involving safety or regulated uses require the applicable original documents and qualified professionals."
+      ],
+      "links": [
+        {
+          "path": "/methodology/",
+          "label": "Editorial principles"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "heading": "What you will not find here",
-   "paragraphs": [
-    "BISULFID does not give safety, handling, medical, procurement or investment guidance. For those, use the safety data sheet of the specific product and a qualified professional."
-   ],
-   "links": []
-  }
- ],
- "path": "/",
- "nav_label": "Site navigation",
- "nav": [
-  {
-   "path": "/",
-   "label": "BISULFID"
-  },
-  {
-   "path": "/molybdenum-disulfide/",
-   "label": "MoS2"
-  },
-  {
-   "path": "/bisulfid-vs-bisulfide/",
-   "label": "Bisulfid vs bisulfide"
-  },
-  {
-   "path": "/methodology/",
-   "label": "Methodology"
-  },
-  {
-   "path": "/sources/",
-   "label": "Sources"
-  },
-  {
-   "path": "/de/",
-   "label": "Deutsch"
-  }
- ],
- "alternates": {
-  "en": "/",
-  "de": "/de/",
-  "x-default": "/"
- },
- "footer": {
-  "nav": [
-   {
-    "path": "/",
-    "label": "Home"
-   },
-   {
-    "path": "/methodology/",
-    "label": "Methodology"
-   },
-   {
-    "path": "/sources/",
-    "label": "Sources"
-   },
-   {
-    "path": "/glossary/",
-    "label": "Glossary"
-   },
-   {
-    "path": "/de/",
-    "label": "Deutsch"
-   }
   ],
-  "identity": "BISULFID — reference project on the language of sulfur chemistry."
- }
+  "path": "/",
+  "nav_label": "Site navigation",
+  "nav": [
+    {
+      "path": "/",
+      "label": "BISULFID"
+    },
+    {
+      "path": "/sources/",
+      "label": "Sources"
+    },
+    {
+      "path": "/methodology/",
+      "label": "Methodology"
+    },
+    {
+      "path": "/glossary/",
+      "label": "Glossary"
+    },
+    {
+      "path": "/de/",
+      "label": "Deutsch"
+    }
+  ],
+  "alternates": {
+    "en": "/",
+    "de": "/de/",
+    "x-default": "/"
+  },
+  "footer": {
+    "nav": [
+      {
+        "path": "/",
+        "label": "Home"
+      },
+      {
+        "path": "/methodology/",
+        "label": "Methodology"
+      },
+      {
+        "path": "/sources/",
+        "label": "Sources"
+      },
+      {
+        "path": "/glossary/",
+        "label": "Glossary"
+      },
+      {
+        "path": "/de/",
+        "label": "Deutsch"
+      }
+    ],
+    "identity": "BISULFID — a Sohadot reference initiative for sulfur chemistry"
+  }
 }
