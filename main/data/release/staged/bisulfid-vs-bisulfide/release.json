@@ -2,7 +2,7 @@
  "page": "/bisulfid-vs-bisulfide/",
  "kind": "knowledge_reference",
  "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
- "spec": "RSPEC-KO-BISULFID-TERMINOLOGY-001@1.0.0",
+ "spec": "RSPEC-KO-BISULFID-TERMINOLOGY-001@1.1.0",
  "publication_candidate": "PC-BISULFID-TERMINOLOGY-001",
  "postures_recorded": {
   "governance_posture": "reference_draft",

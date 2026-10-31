@@ -13,7 +13,7 @@ title: Bisulfid vs Bisulfide: Meanings, IUPAC Names and German Usage
 page_type_id: PT_DIFFERENCE_COMPARISON
 knowledge_object_id: KO-BISULFID-TERMINOLOGY-001
 publication_candidate_id: PC-BISULFID-TERMINOLOGY-001
-render_spec: RSPEC-KO-BISULFID-TERMINOLOGY-001@1.0.0
+render_spec: RSPEC-KO-BISULFID-TERMINOLOGY-001@1.1.0
 generated: true
 engine: render_ko_reference_v1
 reference_production: preview
@@ -22,95 +22,121 @@ reference_production: preview
 
 **Draft status:** Reference Production preview of the existing canonical route. This page is **non-public**, **not published**, **not indexable**, **not in the sitemap** and **not publication-ready**. Contract C for `KO-BISULFID-TERMINOLOGY-001` derives (not_public, noindex).
 
-The two words look like one term in two spellings. The cited sources do not treat them that way: an English dictionary defines bisulfide as disulfide, a chemical database lists bisulfide as a synonym for the hydrosulfide ion, and the German dictionaries consulted record Sulfid but not Bisulfid.
+The two words look like one term in two spellings. The cited sources do not treat them that way: Merriam-Webster defines bisulfide as disulfide, PubChem lists bisulfide as a synonym for the hydrosulfide ion (HS⁻), and of the German dictionaries consulted, Duden and the DWDS define Sulfid while the DWDS reports that Bisulfid is not among its contemporary lexical sources.
 
 ## At a glance
 
 | Property | Governed value |
 | --- | --- |
-| bisulfide in an English dictionary | defined as “disulfide” (Merriam-Webster) |
-| bisulfide in a chemical database | listed as a synonym of HS⁻ (PubChem CID 5047209) |
-| IUPAC names for HS⁻ | sulfanide or hydridosulfate(1−) |
-| IUPAC name for S₂²⁻ | disulfide(2−) |
-| German Sulfid | “Salz des Schwefelwasserstoffs” (DWDS) |
-| German Bisulfid | not in the DWDS contemporary lexical sources |
-| bisulfite (one letter apart) | “an acid sulfite”; IUPAC: hydrogensulfite, HSO₃⁻ |
+| bisulfide — English dictionary (Merriam-Webster) | cross-reference: “disulfide” |
+| bisulfide — chemical database (PubChem) | listed as a synonym of HS⁻, record title Hydrosulfide (CID 5047209) |
+| HS⁻ (hydrosulfide) — IUPAC 2005 | sulfanide (substitutive) or hydridosulfate(1−) (additive) |
+| disulfide — English dictionary (Merriam-Webster) | “a compound containing two atoms of sulfur combined with an element or radical” |
+| S₂²⁻ — IUPAC 2005 | disulfide(2−) or disulfanediide |
+| Sulfid (German) — Duden, DWDS | “Salz des Schwefelwasserstoffs” (DWDS); “salzartige Verbindung des Schwefelwasserstoffs” (Duden) |
+| Hydrogensulfid (German) — chemistry lexicon (Spektrum) | salts of HS⁻: Hydrogensulfide (MᴵHS) and Sulfide (Mᴵ₂S) |
+| Bisulfid (German) — DWDS | not among the DWDS contemporary lexical sources (one dictionary; not an absence from all German texts) |
+| bisulfite — Merriam-Webster, IUPAC | “an acid sulfite”; IUPAC: hydrogensulfite (HSO₃⁻) |
 
-## English bisulfide: the dictionary sense is disulfide
+## Bisulfide in Merriam-Webster: a cross-reference to disulfide
 
 Merriam-Webster enters bisulfide as a noun whose whole definition is a cross-reference: “disulfide”. The dictionary dates its first known use to 1831.
 
 Read with the disulfide entry below, the dictionary sense of bisulfide is a compound with two sulfur atoms. The entry gives no sense that involves hydrogen.
 
-## Bisulfide as a database synonym for HS⁻
+## Bisulfide in PubChem: a synonym listed for HS⁻
 
 PubChem record CID 5047209 has the formula HS⁻, the computed IUPAC name sulfanide and the title Hydrosulfide, and its synonym list includes “bisulfide”.
 
 The same English spelling therefore points to two different species in two kinds of source: the dictionary maps it to disulfide, two sulfur atoms, while the database attaches it to the hydrosulfide ion, one sulfur and one hydrogen. A synonym list records names that are in use; it is not a naming recommendation.
 
-## What IUPAC calls HS⁻
+## HS⁻ in IUPAC nomenclature: sulfanide or hydridosulfate(1−)
 
 The IUPAC 2005 recommendations on inorganic nomenclature give the anion HS⁻ two names: sulfanide as the substitutive name and hydridosulfate(1−) as the additive name (IR-5.3.3.4 (heteropolyatomic anions), Example 3).
 
 Bisulfide is not one of the names given in that example. Where precision matters, the IUPAC names identify HS⁻ without the ambiguity of the bi- form.
 
-## Disulfide
+## Disulfide in Merriam-Webster
 
 Merriam-Webster gives disulfide two senses: “a compound containing two atoms of sulfur combined with an element or radical” and “an organic compound containing the divalent group SS composed of two sulfur atoms”, with a first known use of 1869.
 
-## What IUPAC calls S₂²⁻
+## S₂²⁻ in IUPAC nomenclature: disulfide(2−)
 
 For the anion S₂²⁻ the same recommendations give disulfide(2−), and disulfanediide on the parent-hydride basis (IR-5.3.3 (homopolyatomic anions), Examples 8 and 12).
 
-## Sulfide
+## Sulfide in Merriam-Webster
 
 Merriam-Webster defines sulfide in two senses: “any of various organic compounds characterized by a sulfur atom attached to two carbon atoms”, and “a binary compound (such as CuS) of sulfur usually with a more electropositive element or group : a salt of hydrogen sulfide”. Its first known use is 1836.
 
-## Bisulfite is a different word
+## Bisulfite: a different word, defined through sulfite
 
 Merriam-Webster defines bisulfite as “an acid sulfite”, first known use 1819.
 
 Bisulfite is one letter away from bisulfide, but the dictionary defines it through sulfite, not sulfide. The two words should not be used interchangeably.
 
-## What IUPAC calls HSO₃⁻
+## HSO₃⁻ in IUPAC nomenclature: hydrogensulfite
 
 For HSO₃⁻ IUPAC accepts the abbreviated name hydrogensulfite; the full hydrogen name is hydrogen(trioxidosulfate)(1−) (IR-8.5 (abbreviated hydrogen names for certain anions)). IUPAC adds: “It is strongly recommended that this list be viewed as limiting”.
 
-## Where a database places bisulfite
+## Bisulfite in PubChem: HSO₃⁻
 
 PubChem record CID 104748, titled Bisulfite, has the formula HSO₃⁻ and the computed IUPAC name hydrogen sulfite.
 
 The database therefore places bisulfite on an oxygen-containing anion, not on any sulfide.
 
-## German Sulfid in the dictionaries
+## Sulfid in Duden and the DWDS
 
 Duden defines Sulfid as “salzartige Verbindung des Schwefelwasserstoffs”. The DWDS entry (source: eWDG (1976) via DWDS) labels the word Chemie and defines it as “Salz des Schwefelwasserstoffs”.
 
-Both German definitions, a salt of hydrogen sulfide, match the second English sense of sulfide given above. For this pair the spellings differ and the meaning is the same.
+Both German definitions are given in terms of hydrogen sulfide, like the second English sense of sulfide above. For this pair the evidence shows a spelling difference with a matching definition; that finding does not carry over to other pairs such as Bisulfid and bisulfide.
 
-## German Hydrogensulfid in technical usage
+## Hydrogensulfid in a German chemistry lexicon
 
-In its entry Schwefelwasserstoff, the Spektrum chemistry lexicon states that hydrogen sulfide forms two series of salts: Hydrogensulfide (MIHS) and Sulfide (MI2S).
+In its entry Schwefelwasserstoff, the Spektrum chemistry lexicon states that hydrogen sulfide forms two series of salts: Hydrogensulfide (MᴵHS) and Sulfide (Mᴵ₂S).
 
 In this German reference work the salts of HS⁻ are called Hydrogensulfide. The passage does not use the word Bisulfid.
 
-## German Bisulfid is not in the dictionary
+## Bisulfid in the DWDS: not among its contemporary lexical sources
 
 For Bisulfid the DWDS answers: “Es tut uns leid, Ihre Anfrage Bisulfid ist nicht in unseren gegenwartssprachlichen lexikalischen Quellen vorhanden.” It shows computer-generated grammatical forms only.
 
 The DWDS gives the same answer for Hydrogensulfid: “Es tut uns leid, Ihre Anfrage Hydrogensulfid ist nicht in unseren gegenwartssprachlichen lexikalischen Quellen vorhanden.”
 
-Missing from a dictionary is not the same as never used. It means that general German lexicography does not record the word, so a German dictionary cannot settle what Bisulfid refers to.
+Missing from one dictionary's contemporary sources is not the same as never used. It shows only that the DWDS does not record the word; it cannot settle what Bisulfid refers to, and it says nothing about other dictionaries or technical texts.
 
-## Why German writes -id where English writes -ide
+## The German -id ending: a naming pattern, not proof of a standard term
 
 A German university teaching text on inorganic nomenclature states the rule: “Das nachgestellte Nichtmetallatom bzw. -ion binärer Verbindungen mit negativer Oxidationszahl endet auf -id.” Its table of monatomic anions lists the sulfide ion as “S2- Sulfid”.
 
 The rule explains the spelling Sulfid. It does not say what Bisulfid refers to, and none of the dictionaries or nomenclature sources cited here defines Bisulfid.
 
+## What the sources support, what stays open, and what not to infer
+
+Each statement below draws only on the evidence cited in brackets. It separates what a dictionary, a nomenclature standard, a database and a technical lexicon each record, because they answer different questions.
+
+### Supported by the cited sources
+
+- In Merriam-Webster, bisulfide is a cross-reference to disulfide, whose first sense is “a compound containing two atoms of sulfur combined with an element or radical”.
+- In PubChem, bisulfide is one of the synonyms listed for HS⁻, the record titled Hydrosulfide with the computed IUPAC name sulfanide.
+- IUPAC's 2005 recommendations name HS⁻ sulfanide or hydridosulfate(1−), and S₂²⁻ disulfide(2−); bisulfide is not among the names given in those examples.
+- German Sulfid and the inorganic sense of English sulfide are both defined in terms of hydrogen sulfide: “Salz des Schwefelwasserstoffs” (DWDS) and “a salt of hydrogen sulfide” (Merriam-Webster).
+- In the German chemistry lexicon consulted, the salts of HS⁻ are called Hydrogensulfide; the passage does not use the word Bisulfid.
+- Bisulfite names an oxygen-containing anion, HSO₃⁻ (hydrogensulfite); PubChem titles that record Bisulfite.
+
+### Open: the cited sources do not settle it
+
+- Which species a given writer means by bisulfide. The sources attach the word to two different species, disulfide (dictionary) and HS⁻ (database synonym), so only the context of a text can decide.
+- Whether Bisulfid is established German usage. The DWDS does not record it in its contemporary sources, and no admissible terminology source for German usage has been found yet.
+
+### Not to be inferred from similar spelling
+
+- That Bisulfid is the standardized German equivalent of bisulfide. The German -id ending is a naming pattern: it explains a spelling, not which species a word denotes.
+- That bisulfide and bisulfite are interchangeable because they differ by one letter. One is defined through disulfide, the other through sulfite.
+- That an absence from the DWDS means an absence from every German dictionary or technical text.
+
 ## What this reference does not establish
 
-BISULFID is the name of this website. The name is not a chemical claim, and this reference does not state that German Bisulfid is the equivalent of English bisulfide. Some German industry pages use Bisulfid for HS⁻, and one was captured verbatim, but an industry page is not an admissible source for terminology here, so that usage is recorded as a boundary and not adopted. The IUPAC Gold Book entry on hydrosulfides could not be retrieved openly when the sources were captured, and a second German teaching handout was unreachable, so neither is cited. The history of the bi- prefix, how often each spelling is used, and the safety or industrial properties of any species named here are outside this reference [SOURCE REQUIRED].
+BISULFID is the name of this website. The name is not a chemical claim, and this reference does not state that German Bisulfid is the equivalent of English bisulfide. Some German industry pages use Bisulfid for HS⁻, and one was captured verbatim, but an industry page is not an admissible source for terminology here, so that usage is recorded as a boundary and not adopted. The IUPAC Gold Book entry on hydrosulfides could not be retrieved openly when the sources were captured, and a second German teaching handout was unreachable, so neither is cited. Other German dictionaries were not examined for Bisulfid. The history of the bi- prefix, how often each spelling is used, and the safety or industrial properties of any species named here are outside this reference [SOURCE REQUIRED].
 
 ## Evidence trail
 
@@ -147,4 +173,4 @@ BISULFID is the name of this website. The name is not a chemical claim, and this
 - governance_posture reference_draft / release_authorization not_authorized — owner release authorization not signed
 - CLM-TERM-BISULFID-001 (German industry usage) stays pending by design; it is shown only as a recorded boundary
 
-*Rendered by render_ko_reference.py from RSPEC-KO-BISULFID-TERMINOLOGY-001@1.0.0 — KO-BISULFID-TERMINOLOGY-001 — route `bisulfid_vs_bisulfide`.*
+*Rendered by render_ko_reference.py from RSPEC-KO-BISULFID-TERMINOLOGY-001@1.1.0 — KO-BISULFID-TERMINOLOGY-001 — route `bisulfid_vs_bisulfide`.*

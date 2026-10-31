@@ -194,7 +194,7 @@
           "unit_id": "IGU-TERM-011",
           "entity_id": "hydrosulfide",
           "dimension": "cross_language_semantic_distinction",
-          "statement": "In its entry Schwefelwasserstoff, the Spektrum chemistry lexicon states that hydrogen sulfide forms two series of salts: Hydrogensulfide (MIHS) and Sulfide (MI2S).",
+          "statement": "In its entry Schwefelwasserstoff, the Spektrum chemistry lexicon states that hydrogen sulfide forms two series of salts: Hydrogensulfide (MᴵHS) and Sulfide (Mᴵ₂S).",
           "evidence_ids": [
             "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE"
           ],

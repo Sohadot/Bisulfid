@@ -1,0 +1,362 @@
+{
+ "capture_id": "R03-TERMINOLOGY-CAPTURES",
+ "generated_by": "scripts/reference_production/capture_terminology_sources.py",
+ "note": "Identity + verbatim capture only. Raw artifacts are not stored; sha256 fixes the retrieved bytes. PDF text is extracted with pdftotext, which drops superscript charge signs (e.g. 'hydridosulfate(1 )' is printed in the source as 'hydridosulfate(1−)').",
+ "captures": {
+  "SRC-MW-BISULFIDE": {
+   "url": "https://www.merriam-webster.com/dictionary/bisulfide",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "text/html",
+   "bytes": 690647,
+   "sha256": "13dc3536499f68576651ee3ae6b780dff8fc6d338b95e059e939edcff1085342",
+   "passages": [
+    {
+     "quote": "bisulfide noun",
+     "found": true
+    },
+    {
+     "quote": ": disulfide",
+     "found": true
+    },
+    {
+     "quote": "First Known Use 1831",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-MW-SULFIDE": {
+   "url": "https://www.merriam-webster.com/dictionary/sulfide",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "text/html",
+   "bytes": 724808,
+   "sha256": "5e1f1b21278eb60a13252350483db2bea2ffa154acc725e53052ed6eb8f55f6a",
+   "passages": [
+    {
+     "quote": "1 : any of various organic compounds characterized by a sulfur atom attached to two carbon atoms",
+     "found": true
+    },
+    {
+     "quote": "2 : a binary compound (such as CuS) of sulfur usually with a more electropositive element or group : a salt of hydrogen sulfide",
+     "found": true
+    },
+    {
+     "quote": "First Known Use 1836",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-MW-BISULFITE": {
+   "url": "https://www.merriam-webster.com/dictionary/bisulfite",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "text/html",
+   "bytes": 703775,
+   "sha256": "d9b8654371f89ac8bf832ab819575199d3dc0eda5ad0e87a1f9888acf9552f19",
+   "passages": [
+    {
+     "quote": "bisulfite noun",
+     "found": true
+    },
+    {
+     "quote": ": an acid sulfite",
+     "found": true
+    },
+    {
+     "quote": "First Known Use 1819",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-MW-DISULFIDE": {
+   "url": "https://www.merriam-webster.com/dictionary/disulfide",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "text/html",
+   "bytes": 720285,
+   "sha256": "725e8638602268f7709b3714778d3f7279818d2ea977b3653af769122c836cef",
+   "passages": [
+    {
+     "quote": "1 : a compound containing two atoms of sulfur combined with an element or radical",
+     "found": true
+    },
+    {
+     "quote": "2 : an organic compound containing the divalent group SS composed of two sulfur atoms",
+     "found": true
+    },
+    {
+     "quote": "First Known Use 1869",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-DUDEN-SULFID": {
+   "url": "https://www.duden.de/rechtschreibung/Sulfid",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "text/html",
+   "bytes": 114478,
+   "sha256": "f9e47e731c4ec6f6491290286eeed8239711200a49466387b8660c4d2c108bde",
+   "passages": [
+    {
+     "quote": "Worttrennung Sul|fid",
+     "found": true
+    },
+    {
+     "quote": "Bedeutung ⓘ salzartige Verbindung des Schwefelwasserstoffs",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-DWDS-SULFID": {
+   "url": "https://www.dwds.de/wb/Sulfid",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "text/html",
+   "bytes": 49992,
+   "sha256": "f9a871db1a5cca1e5693111941e309add48526100c0bce048fe22dd2948b280c",
+   "passages": [
+    {
+     "quote": "Bedeutung eWDG 1976 Chemie Salz des Schwefelwasserstoffs",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-DWDS-BISULFID": {
+   "url": "https://www.dwds.de/wb/Bisulfid",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "text/html",
+   "bytes": 22935,
+   "sha256": "7f517513839651aa57eb9e47e13ec5d534ab21b9651a366d870004507e257696",
+   "passages": [
+    {
+     "quote": "Es tut uns leid, Ihre Anfrage Bisulfid ist nicht in unseren gegenwartssprachlichen lexikalischen Quellen vorhanden.",
+     "found": true
+    },
+    {
+     "quote": "Nominativ Plural: Bisulfide (computergeneriert)",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-DWDS-HYDROGENSULFID": {
+   "url": "https://www.dwds.de/wb/Hydrogensulfid",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "text/html",
+   "bytes": 26369,
+   "sha256": "82b0ca52fd59475a1587dc7d591758cf5304ec99157ef05fd950c3d37c0f76f4",
+   "passages": [
+    {
+     "quote": "Es tut uns leid, Ihre Anfrage Hydrogensulfid ist nicht in unseren gegenwartssprachlichen lexikalischen Quellen vorhanden.",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-SPEKTRUM-SCHWEFELWASSERSTOFF-DE": {
+   "url": "https://www.spektrum.de/lexikon/chemie/schwefelwasserstoff/8309",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "text/html",
+   "bytes": 104470,
+   "sha256": "db5278a0b299d9eca89c1c767b3cd9a88cb2e2fb6e0a2e1215e110b360752e27",
+   "passages": [
+    {
+     "quote": "S. bildet zwei Reihen von Salzen, die Hydrogensulfide M I HS und die Sulfide M I 2 S.",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-IUPAC-RED-BOOK-2005": {
+   "url": "https://iupac.org/wp-content/uploads/2016/07/Red_Book_2005.pdf",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "application/pdf",
+   "bytes": 4335962,
+   "sha256": "3595c86a1b288b82be6d74061315592b89fe3eb17ffa80bb3df3e970e622890f",
+   "passages": [
+    {
+     "quote": "NOMENCLATURE OF INORGANIC CHEMISTRY IUPAC Recommendations 2005",
+     "found": true,
+     "pdf_page": 1
+    },
+    {
+     "quote": "3. HS sulfanide (substitutive), or hydridosulfate(1 ) (additive)",
+     "found": true,
+     "pdf_page": 86
+    },
+    {
+     "quote": "8. S22 disulﬁde(2 )",
+     "found": true,
+     "pdf_page": 86
+    },
+    {
+     "quote": "12. S2 disulfanediide",
+     "found": true,
+     "pdf_page": 86
+    },
+    {
+     "quote": "It is strongly recommended that this list be viewed as limiting due to the ambiguities that may arise in many other cases.",
+     "found": true,
+     "pdf_page": 149
+    },
+    {
+     "quote": "HSO3 hydrogensulﬁte hydrogen(trioxidosulfate)(1 )",
+     "found": true,
+     "pdf_page": 149
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR": {
+   "url": "https://www-backend.fh-muenster.de/ciw/downloads-ciw/personenprofile/juestel/wissenswertes/chemie/Anorganische-Nomenklatur.pdf",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "application/pdf",
+   "bytes": 21912,
+   "sha256": "d4e843543346c590112219943f999dec85e77399a7c1a03b9389bf89c8dab1cd",
+   "passages": [
+    {
+     "quote": "Regeln zur Nomenklatur Anorganischer Verbindungen",
+     "found": true,
+     "pdf_page": 1
+    },
+    {
+     "quote": "Das nachgestellte Nichtmetallatom bzw. -ion binärer Verbindungen mit negativer Oxidationszahl endet auf -id.",
+     "found": true,
+     "pdf_page": 1
+    },
+    {
+     "quote": "a) Einatomige Anionen mit Endung -id",
+     "found": true,
+     "pdf_page": 1
+    },
+    {
+     "quote": "S2- Sulfid",
+     "found": true,
+     "pdf_page": 1
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-PUBCHEM-HYDROSULFIDE": {
+   "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/5047209/property/MolecularFormula,IUPACName,Title,Charge/JSON",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "application/json",
+   "bytes": 218,
+   "sha256": "d5936eaa931503a4fd457b8469a60b04ac00faa735ef1e38d5e44bea8f1de7df",
+   "passages": [
+    {
+     "quote": "\"MolecularFormula\": \"HS-\"",
+     "found": true
+    },
+    {
+     "quote": "\"IUPACName\": \"sulfanide\"",
+     "found": true
+    },
+    {
+     "quote": "\"Title\": \"Hydrosulfide\"",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-PUBCHEM-HYDROSULFIDE#synonyms": {
+   "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/5047209/synonyms/JSON",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "application/json",
+   "bytes": 608,
+   "sha256": "951a1c8caee73a703665b8132db0efa55ba3f67851bdcb59b0d9d6baf513ee10",
+   "passages": [
+    {
+     "quote": "\"bisulfide\"",
+     "found": true
+    },
+    {
+     "quote": "\"sulfanide\"",
+     "found": true
+    },
+    {
+     "quote": "\"hydrosulfide\"",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-PUBCHEM-BISULFITE": {
+   "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/104748/property/MolecularFormula,IUPACName,Title,Charge/JSON",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "application/json",
+   "bytes": 223,
+   "sha256": "068cc7f40c44d40f648d0c1d6ed459c40df803e0a2a7f320c2737b3e8c6b1deb",
+   "passages": [
+    {
+     "quote": "\"MolecularFormula\": \"HO3S-\"",
+     "found": true
+    },
+    {
+     "quote": "\"IUPACName\": \"hydrogen sulfite\"",
+     "found": true
+    },
+    {
+     "quote": "\"Title\": \"Bisulfite\"",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-BADGER-BISULFID-H2S": {
+   "url": "https://www.badgermeter.com/de-de/parameter-zur-uberwachung-der-wasserqualitat/hs-h2s/",
+   "retrieved_on": "2026-10-31",
+   "http_status": 200,
+   "content_type": "text/html",
+   "bytes": 261288,
+   "sha256": "e77a38f20fbf7b3044217e80268bf5c8ed40659570ef95b269ffc9875fbb03ba",
+   "passages": [
+    {
+     "quote": "Bisulfid und Schwefelwasserstoff (HS- / H₂S)",
+     "found": true
+    },
+    {
+     "quote": "Bisulfid hingegen ist seine konjugierte Base",
+     "found": true
+    }
+   ],
+   "verification": "verbatim passages present (C5)"
+  },
+  "SRC-IUPAC-HYDROSULFIDES": {
+   "url": "https://goldbook.iupac.org/terms/view/H02910",
+   "retrieved_on": "2026-10-31",
+   "http_status": 403,
+   "content_type": "text/html",
+   "bytes": 5598,
+   "sha256": "48561555e0e688c1eec0c88b2b222ab0ceef9be0aafcbaabdc8a851cba101efd",
+   "passages": [],
+   "verification": "unreachable (C1 fail); not bypassed (C6)"
+  },
+  "SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN": {
+   "url": "https://www.lkv.uni-rostock.de/storages/uni-rostock/Alle_MNF/Chemie_Koeckerling/Materialdesign_12_Nomenklatur.pdf",
+   "retrieved_on": "2026-10-31",
+   "http_status": 404,
+   "content_type": "text/html",
+   "bytes": 41872,
+   "sha256": "1cbd9c3ba1b09bd19c0bf9e8bb629a170166bad5c7fadbc90545120fc439e1bd",
+   "passages": [],
+   "verification": "unreachable (C1 fail); not bypassed (C6)"
+  }
+ }
+}

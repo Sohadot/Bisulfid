@@ -76,7 +76,13 @@ def _f_angstrom(v):
     return re.sub(r"(\d)\s+A\b", "\\1 Å", str(v))
 
 
-FILTERS = {"hm": _f_hm, "join": _f_join, "review_values": _f_review_values, "angstrom": _f_angstrom}
+def _f_valence(v):
+    """Formulas as extracted from print ('MIHS', 'MI2S') -> 'MᴵHS', 'Mᴵ₂S': M with superscript I is a monovalent
+    metal; a digit after it is a subscript. Display only; the evidence value is unchanged."""
+    return re.sub(r"\bMI(\d?)(?=[A-Z])", lambda m: "Mᴵ" + ("₀₁₂₃₄₅₆₇₈₉"[int(m.group(1))] if m.group(1) else ""), str(v))
+
+
+FILTERS = {"hm": _f_hm, "join": _f_join, "review_values": _f_review_values, "angstrom": _f_angstrom, "valence": _f_valence}
 
 
 # --------------------------------------------------------------------------- governed context
@@ -192,6 +198,47 @@ class Context:
 
 # --------------------------------------------------------------------------- render
 
+SYNTHESIS_VERDICTS = ("supported", "open", "not_inferable")
+
+
+def build_synthesis(spec, ctx):
+    """Optional cross-claim synthesis: what the cited sources support together, what stays open, and what
+    must not be inferred. Every item binds KO evidence (claim bindings or boundary records); its values are
+    placeholders resolved from that evidence, so the synthesis cannot introduce a new fact."""
+    syn = spec.get("synthesis")
+    if not syn:
+        return None
+    groups = []
+    for g in syn["groups"]:
+        if g["verdict"] not in SYNTHESIS_VERDICTS:
+            raise RenderError(f"synthesis verdict {g['verdict']!r} is not one of {SYNTHESIS_VERDICTS}")
+        items = []
+        for it in g["items"]:
+            if not it.get("evidence_ids"):
+                raise RenderError(f"synthesis item without evidence: {it['text'][:60]}")
+            for eid in it["evidence_ids"]:
+                if eid not in ctx.binding_ev_all() and eid not in ctx.boundary_ev:
+                    raise RenderError(f"synthesis item cites {eid}, which is not KO evidence")
+            items.append({"text": ctx.resolve(it["text"], set(it["evidence_ids"])), "evidence_ids": it["evidence_ids"]})
+        groups.append({"verdict": g["verdict"], "label": g["label"], "items": items})
+    return {"heading": syn["heading"], "intro": syn.get("intro", ""), "groups": groups}
+
+
+def reverification(spec, provenance):
+    """Optional: a later dated recapture of the cited sources (source-lock checklist L3). Shown only if every
+    quoted passage of every cited source was found again; otherwise the render is refused."""
+    f = spec.get("reverified_by")
+    if not f:
+        return None
+    cap = load(*f.split("/"))["captures"]
+    cited = {load("main", "data", "evidence", p["evidence_id"] + ".json")["source_id"] for p in provenance}
+    for sid in cited:
+        recs = [v for k, v in cap.items() if k.split("#")[0] == sid]
+        if not recs or any(not x["found"] for v in recs for x in v["passages"]) or any(v["http_status"] != 200 for v in recs):
+            raise RenderError(f"re-verification {f}: {sid} not reproduced")
+    return {"date": min(v["retrieved_on"] for v in cap.values()), "sources": len(cited), "file": f}
+
+
 def build(spec):
     ctx = Context(spec)
     modules, units = [], []
@@ -219,7 +266,8 @@ def build(spec):
             table = {"columns": t["columns"],
                      "rows": [[ctx.resolve(c, set(t["evidence_ids"])) for c in row] for row in t["rows"]]}
         modules.append({"module_id": m["module_id"], "heading": m["heading"], "claim_id": m.get("claim_id"),
-                        "paragraphs": paras, "table": table})
+                        "paragraphs": paras, "table": table,
+                        "evidence": sorted({e for p in paras for e in p["evidence_ids"]})})
     glance = []
     for g in spec["at_a_glance"]:
         for eid in g["evidence_ids"]:
@@ -255,6 +303,7 @@ def build(spec):
     pc_id, cc_inputs, cc, blockers = ctx.contract_c()
     seo = resolve_seo(spec, ctx)
     return {"spec": spec, "ko": ctx.ko, "route": ctx.route, "modules": modules, "glance": glance,
+            "synthesis": build_synthesis(spec, ctx), "reverified": reverification(spec, provenance),
             "provenance": provenance, "units": units, "pc_id": pc_id, "contract_c_inputs": cc_inputs,
             "contract_c": cc, "blockers": blockers, "seo": seo,
             "evidence_as_of": max((p["retrieval_date"] for p in provenance), default=None)}
@@ -322,6 +371,11 @@ def render_markdown(r):
             out += ["| " + " | ".join(m["table"]["columns"]) + " |", "|" + " --- |" * len(m["table"]["columns"])]
             out += ["| " + " | ".join(row) + " |" for row in m["table"]["rows"]]
             out += [""]
+    syn = r.get("synthesis")
+    if syn:
+        out += [f"## {syn['heading']}", ""] + ([syn["intro"], ""] if syn["intro"] else [])
+        for g in syn["groups"]:
+            out += [f"### {g['label']}", ""] + [f"- {it['text']}" for it in g["items"]] + [""]
     out += [f"## {s['not_established']['heading']}", "", s["not_established"]["text"], "",
             "## Evidence trail", "", "| Evidence | Claim | Originating work | Record | Retrieved |", "| --- | --- | --- | --- | --- |"]
     out += [f"| {p['evidence_id']} | {p['claim_id']} | {p['originating_work']} | {p['record']} | {p['retrieval_date']} |"
@@ -381,9 +435,29 @@ def render_html(r, release=False):
             body += f"\n<table class=\"reference-table\"><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table>"
         tag = f"<p class=\"reference-module__claim\">Claim: <code>{e(m['claim_id'])}</code></p>" if m["claim_id"] \
             else "<p class=\"reference-module__claim\">Boundary record (attached to no claim)</p>"
+        if s.get("evidence_links"):
+            tag += ("<p class=\"reference-module__evidence\">Evidence: "
+                    + ", ".join(f"<a href=\"#ev-{e(x)}\">{e(x)}</a>" for x in m["evidence"]) + "</p>")
         mods.append(f"<section class=\"reference-module\" id=\"{e(m['module_id'])}\">\n<h2>{e(m['heading'])}</h2>\n{body}\n{tag}\n</section>")
+    rowid = (lambda p: f" id=\"ev-{e(p['evidence_id'])}\"") if s.get("evidence_links") else (lambda p: "")
+    syn = r.get("synthesis")
+    syn_html = ""
+    if syn:
+        parts = [f"<section class=\"reference-module reference-synthesis\" id=\"what-the-sources-support\">", f"<h2>{e(syn['heading'])}</h2>"]
+        if syn["intro"]:
+            parts.append(f"<p>{e(syn['intro'])}</p>")
+        for g in syn["groups"]:
+            parts.append(f"<h3>{e(g['label'])}</h3>")
+            parts.append("<ul>" + "".join(
+                f"<li>{e(it['text'])} <span class=\"reference-synthesis__evidence\">("
+                + ", ".join((f"<a href=\"#ev-{e(x)}\">{e(x)}</a>" if s.get("evidence_links") else e(x)) for x in it["evidence_ids"])
+                + ")</span></li>" for it in g["items"]) + "</ul>")
+        parts.append("</section>")
+        syn_html = "\n".join(parts) + "\n"
+    rv = r.get("reverified")
+    asof_extra = (f" · every quoted passage re-verified {rv['date']} ({rv['sources']} sources)" if rv else "")
     prov = "\n".join(
-        "<tr>" + f"<td><code>{e(p['evidence_id'])}</code></td><td><code>{e(p['claim_id'])}</code></td>"
+        f"<tr{rowid(p)}>" + f"<td><code>{e(p['evidence_id'])}</code></td><td><code>{e(p['claim_id'])}</code></td>"
         + f"<td>{e(p['originating_work'])}</td>"
         + (f"<td><a href=\"{e(p['source_url'])}\" rel=\"nofollow\">{e(p['record'])}</a></td>" if p["source_url"] else f"<td>{e(p['record'])}</td>")
         + f"<td>{e(p['role'])}</td><td>{e(p['source_lock_status'])}</td><td>{e(p['retrieval_date'])}</td></tr>"
@@ -424,7 +498,7 @@ def render_html(r, release=False):
           <p class="page-kicker">{e(kicker)}</p>
           <h1>{e(s['h1'])}</h1>
           <p class="page-intro">{e(s['summary'])}</p>
-          <p class="reference-object__asof">Evidence retrieved {e(r['evidence_as_of'] or 'n/a')} · {len(r['provenance'])} admitted evidence records · values are quoted, never averaged</p>
+          <p class="reference-object__asof">Evidence retrieved {e(r['evidence_as_of'] or 'n/a')} · {len(r['provenance'])} admitted evidence records · values are quoted, never averaged{e(asof_extra)}</p>
         </header>
         <section class="reference-glance" id="at-a-glance">
           <h2>At a glance</h2>
@@ -433,7 +507,7 @@ def render_html(r, release=False):
           </tbody></table>
         </section>
 {chr(10).join(mods)}
-        <section class="reference-module" id="not-established">
+{syn_html}        <section class="reference-module" id="not-established">
           <h2>{e(s['not_established']['heading'])}</h2>
           <p>{e(s['not_established']['text'].replace(' [SOURCE REQUIRED]', ''))}</p>
         </section>

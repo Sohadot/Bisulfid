@@ -70,6 +70,9 @@ jobs:
       - name: "Release-01 PR-B — /acquire/ correction wording and boundaries"
         run: python scripts/publication/test_acquire_page.py
 
+      - name: "Release-01 PR-E — Bisulfid/Bisulfide reference precision and evidence navigation"
+        run: python scripts/reference_production/test_bisulfid_reference.py
+
       - name: "Recovery — legacy disposition registry invariants"
         run: python scripts/recovery/validate_legacy_disposition.py
 

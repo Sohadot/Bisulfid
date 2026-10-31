@@ -1,6 +1,6 @@
 # Independent review packet — KO-BISULFID-TERMINOLOGY-001
 
-Route: `/bisulfid-vs-bisulfide/` · render spec `RSPEC-KO-BISULFID-TERMINOLOGY-001@1.0.0` · prepared by `claude-code-agent` (automated; **cannot** act as reviewer).
+Route: `/bisulfid-vs-bisulfide/` · render spec `RSPEC-KO-BISULFID-TERMINOLOGY-001@1.1.0` · prepared by `claude-code-agent` (automated; **cannot** act as reviewer).
 
 ## Reviewer requirements
 
@@ -272,7 +272,7 @@ Verdict: ☐ confirmed ☐ confirmed with wording change ☐ rejected ☐ out of
 
 ## Stated as NOT established on the page
 
-BISULFID is the name of this website. The name is not a chemical claim, and this reference does not state that German Bisulfid is the equivalent of English bisulfide. Some German industry pages use Bisulfid for HS⁻, and one was captured verbatim, but an industry page is not an admissible source for terminology here, so that usage is recorded as a boundary and not adopted. The IUPAC Gold Book entry on hydrosulfides could not be retrieved openly when the sources were captured, and a second German teaching handout was unreachable, so neither is cited. The history of the bi- prefix, how often each spelling is used, and the safety or industrial properties of any species named here are outside this reference [SOURCE REQUIRED].
+BISULFID is the name of this website. The name is not a chemical claim, and this reference does not state that German Bisulfid is the equivalent of English bisulfide. Some German industry pages use Bisulfid for HS⁻, and one was captured verbatim, but an industry page is not an admissible source for terminology here, so that usage is recorded as a boundary and not adopted. The IUPAC Gold Book entry on hydrosulfides could not be retrieved openly when the sources were captured, and a second German teaching handout was unreachable, so neither is cited. Other German dictionaries were not examined for Bisulfid. The history of the bi- prefix, how often each spelling is used, and the safety or industrial properties of any species named here are outside this reference [SOURCE REQUIRED].
 
 ## Signature
 

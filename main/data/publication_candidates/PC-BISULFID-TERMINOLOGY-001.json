@@ -66,5 +66,72 @@
     "consolidation_obligations": 4,
     "not_a_localization_of": "/de/bisulfid-vs-bisulfide/ (ungoverned German legacy page; no hreflang emitted)",
     "status": "structure verified (route_realization.check_structure); AMD-IG-R03-001 awaits owner ratification, so the authority treats this posture as ig_reviewed_no_new_route until then"
+  },
+  "distinctiveness_review": {
+    "reviewed_on": "2026-10-31",
+    "method": "IG semantic comparison (task, evidence, claims, sources); 5-gram similarity as a diagnostic only",
+    "reference_task": "Explain, from cited dictionaries, IUPAC nomenclature, a chemical database and a German chemistry lexicon, which species each of bisulfide, Bisulfid, sulfide/Sulfid, disulfide, hydrosulfide/Hydrogensulfid and bisulfite is attached to, and what must not be inferred from similar spelling.",
+    "compared_surfaces": [
+      {
+        "path": "/bisulfid-vs-bisulfide/",
+        "substantive_tokens": 117,
+        "similarity_to_candidate": 0.0
+      },
+      {
+        "path": "/de/bisulfid-vs-bisulfide/",
+        "substantive_tokens": 141,
+        "similarity_to_candidate": 0.0
+      },
+      {
+        "path": "/en/terminology/compare/bisulfid-vs-bisulfide/ai/tech/",
+        "substantive_tokens": 141,
+        "similarity_to_candidate": 0.0
+      },
+      {
+        "path": "/en/terminology/compare/bisulfid-vs-bisulfide/chem/ling/",
+        "substantive_tokens": 145,
+        "similarity_to_candidate": 0.0
+      },
+      {
+        "path": "/en/terminology/compare/bisulfid-vs-bisulfide/res/res/",
+        "substantive_tokens": 139,
+        "similarity_to_candidate": 0.0
+      },
+      {
+        "path": "/en/terminology/compare/bisulfid-vs-bisulfide/stu/edu/",
+        "substantive_tokens": 141,
+        "similarity_to_candidate": 0.0
+      }
+    ],
+    "candidate_substantive_tokens": 1442,
+    "variants_pairwise_similarity": [
+      0.881,
+      0.895,
+      0.896,
+      0.895,
+      0.881,
+      0.895
+    ],
+    "findings": {
+      "legacy_canonical_/bisulfid-vs-bisulfide/": "same task, no governed knowledge (generic atlas boilerplate, no definition, no source). The candidate replaces its body at the same URL (route realization; no new URL).",
+      "four_cohort02_variants": "audience-labelled copies of one template (pairwise S 0.88-0.90, i.e. near-duplicates of each other); no definition, source, claim or evidence. They contribute no knowledge the candidate lacks. They are redundant and stay listed as consolidation obligations (canonical_to the realized route, executable only after it is index-approved and each decision is signed).",
+      "/de/bisulfid-vs-bisulfide/": "German legacy page with no governed content; not a localization of this object, so no hreflang. A German edition would need its own German-language evidence task.",
+      "what_only_the_candidate_contributes": [
+        "the two attested referents of bisulfide (Merriam-Webster: disulfide; PubChem synonym: HS-) side by side",
+        "IUPAC 2005 names for HS-, S2^2- and HSO3- with section locators",
+        "German Sulfid vs English sulfide defined from Duden, DWDS and Merriam-Webster",
+        "Hydrogensulfid usage in a German chemistry lexicon",
+        "the DWDS coverage statement for Bisulfid, explicitly limited to that dictionary",
+        "the -id/-ide pattern stated as a pattern, not as proof of equivalence",
+        "an explicit supported / open / not-inferable synthesis with per-item evidence"
+      ],
+      "distinctions_to_preserve": [
+        "dictionary sense vs database synonym vs IUPAC name vs technical usage vs industry usage",
+        "bisulfide vs bisulfite (one letter, different anion family)",
+        "absence from the DWDS is not absence from German"
+      ],
+      "internal_links": "to /molybdenum-disulfide/ (governed reference using 'disulfide' in a compound name), /methodology/ and /sources/ (how evidence and sources are admitted). No links to the thin variants."
+    },
+    "no_sibling_pages": "No new route or sibling page is proposed."
   }
 }

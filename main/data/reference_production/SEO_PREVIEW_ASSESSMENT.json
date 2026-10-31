@@ -120,7 +120,7 @@
    "measures": {
     "title": "Bisulfid vs Bisulfide: Meanings, IUPAC Names, German Usage",
     "title_chars": 58,
-    "description_chars": 158,
+    "description_chars": 136,
     "headings": [
      [
       1,
@@ -132,55 +132,71 @@
      ],
      [
       2,
-      "English bisulfide: the dictionary sense is disulfide"
+      "Bisulfide in Merriam-Webster: a cross-reference to disulfide"
      ],
      [
       2,
-      "Bisulfide as a database synonym for HS⁻"
+      "Bisulfide in PubChem: a synonym listed for HS⁻"
      ],
      [
       2,
-      "What IUPAC calls HS⁻"
+      "HS⁻ in IUPAC nomenclature: sulfanide or hydridosulfate(1−)"
      ],
      [
       2,
-      "Disulfide"
+      "Disulfide in Merriam-Webster"
      ],
      [
       2,
-      "What IUPAC calls S₂²⁻"
+      "S₂²⁻ in IUPAC nomenclature: disulfide(2−)"
      ],
      [
       2,
-      "Sulfide"
+      "Sulfide in Merriam-Webster"
      ],
      [
       2,
-      "Bisulfite is a different word"
+      "Bisulfite: a different word, defined through sulfite"
      ],
      [
       2,
-      "What IUPAC calls HSO₃⁻"
+      "HSO₃⁻ in IUPAC nomenclature: hydrogensulfite"
      ],
      [
       2,
-      "Where a database places bisulfite"
+      "Bisulfite in PubChem: HSO₃⁻"
      ],
      [
       2,
-      "German Sulfid in the dictionaries"
+      "Sulfid in Duden and the DWDS"
      ],
      [
       2,
-      "German Hydrogensulfid in technical usage"
+      "Hydrogensulfid in a German chemistry lexicon"
      ],
      [
       2,
-      "German Bisulfid is not in the dictionary"
+      "Bisulfid in the DWDS: not among its contemporary lexical sources"
      ],
      [
       2,
-      "Why German writes -id where English writes -ide"
+      "The German -id ending: a naming pattern, not proof of a standard term"
+     ],
+     [
+      2,
+      "What the sources support, what stays open, and what not to infer"
+     ],
+     [
+      3,
+      "Supported by the cited sources"
+     ],
+     [
+      3,
+      "Open: the cited sources do not settle it"
+     ],
+     [
+      3,
+      "Not to be inferred from similar spelling"
      ],
      [
       2,
@@ -199,16 +215,16 @@
       "Governance status"
      ]
     ],
-    "substantive_words": 923,
+    "substantive_words": 1458,
     "nearest_public_page": {
-     "similarity": 0.004,
-     "jaccard": 0.0014,
-     "overlap_coefficient": 0.004,
+     "similarity": 0.0121,
+     "jaccard": 0.0032,
+     "overlap_coefficient": 0.0121,
      "closest_page": "site/public/acquire/index.html"
     },
     "template_sentence_ratio_vs_public": 0.0,
     "skeleton_shared_with_public_pages": 0,
-    "internal_links": 7,
+    "internal_links": 8,
     "external_provenance_links": 15
    },
    "gate12": {

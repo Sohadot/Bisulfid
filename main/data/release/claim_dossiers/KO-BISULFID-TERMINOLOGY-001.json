@@ -1,6 +1,6 @@
 {
  "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
- "render_spec": "RSPEC-KO-BISULFID-TERMINOLOGY-001@1.0.0",
+ "render_spec": "RSPEC-KO-BISULFID-TERMINOLOGY-001@1.1.0",
  "route": "/bisulfid-vs-bisulfide/",
  "preparer": "claude-code-agent",
  "claims": [
@@ -510,7 +510,7 @@
    "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
   }
  ],
- "not_established": "BISULFID is the name of this website. The name is not a chemical claim, and this reference does not state that German Bisulfid is the equivalent of English bisulfide. Some German industry pages use Bisulfid for HS⁻, and one was captured verbatim, but an industry page is not an admissible source for terminology here, so that usage is recorded as a boundary and not adopted. The IUPAC Gold Book entry on hydrosulfides could not be retrieved openly when the sources were captured, and a second German teaching handout was unreachable, so neither is cited. The history of the bi- prefix, how often each spelling is used, and the safety or industrial properties of any species named here are outside this reference [SOURCE REQUIRED].",
+ "not_established": "BISULFID is the name of this website. The name is not a chemical claim, and this reference does not state that German Bisulfid is the equivalent of English bisulfide. Some German industry pages use Bisulfid for HS⁻, and one was captured verbatim, but an industry page is not an admissible source for terminology here, so that usage is recorded as a boundary and not adopted. The IUPAC Gold Book entry on hydrosulfides could not be retrieved openly when the sources were captured, and a second German teaching handout was unreachable, so neither is cited. Other German dictionaries were not examined for Bisulfid. The history of the bi- prefix, how often each spelling is used, and the safety or industrial properties of any species named here are outside this reference [SOURCE REQUIRED].",
  "unresolved_fields": [
   "German 'Bisulfid' as industry usage for HS- (CLM-TERM-BISULFID-001): only an industry_publication source (Badger Meter) was captured; that category is not admissible for SD-TERMINOLOGY, so the claim stays pending with a recorded boundary",
   "IUPAC Gold Book entry 'hydrosulfides' (SRC-IUPAC-HYDROSULFIDES): HTTP 403 at capture; not bypassed, not cited",
