@@ -3,5 +3,5 @@
  "spec": "INST-HOME-EN@1.4.0",
  "kind": "institutional",
  "publication_dependencies": [],
- "dependency_rule": "No unreleased governed scientific references linked. Institutional R11 certification, Gate 12-I and explicit deployment authority remain required."
+ "dependency_rule": "publish only after every listed governed reference is itself public (otherwise the page would point readers at legacy pages it describes as governed)"
 }
