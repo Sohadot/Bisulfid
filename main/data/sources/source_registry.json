@@ -145,6 +145,132 @@
         "target_status_after_guardrail_transition": "verified",
         "source_lock_status_unchanged": "candidate",
         "note": "Identity verified against the uploaded thesis PDF (Jen-Jer Huang, M.S., University of Houston, 1981). Category academic_thesis; supporting provenance only; related to WORK-SCHONFELD-HUANG-MOSS-1983. Lock candidate."
+      },
+      {
+        "source_id": "SRC-MW-DISULFIDE",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-DWDS-SULFID",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-DWDS-BISULFID",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-DWDS-HYDROGENSULFID",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-SPEKTRUM-SCHWEFELWASSERSTOFF-DE",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-IUPAC-RED-BOOK-2005",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-PUBCHEM-BISULFITE",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-MW-BISULFIDE",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-MW-SULFIDE",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-MW-BISULFITE",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-DUDEN-SULFID",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-PUBCHEM-HYDROSULFIDE",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
+      },
+      {
+        "source_id": "SRC-BADGER-BISULFID-H2S",
+        "evidence_sprint": "recovery-03",
+        "identity_verification_checklist": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+        "evidence_sufficient": true,
+        "current_status": "verified",
+        "target_status_after_guardrail_transition": "verified",
+        "source_lock_status_unchanged": "candidate"
       }
     ],
     "next_charter": "Validator policy update sprint to permit verification_limited posture with individual verified rows while publication, claim, and route locks remain LOCKED"
@@ -189,9 +315,9 @@
       "title": "bisulfide",
       "url": "https://www.merriam-webster.com/dictionary/bisulfide",
       "language": "en",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
-      "last_reviewed": "2026-05-15",
+      "last_reviewed": "2026-10-30",
       "use_for": [
         "English lexical entry for bisulfide",
         "cautious terminology and spelling context",
@@ -206,9 +332,11 @@
       ],
       "risk_notes": [
         "Dictionary source only; not a chemical safety, regulatory, industrial, or market authority.",
-        "Do not use to validate handling, procurement, exposure, medical, or market claims."
+        "Do not use to validate handling, procurement, exposure, medical, or market claims.",
+        "Recovery-03: identity verified 2026-10-30 (HTTP 200, sha256 and verbatim passages in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json); source_lock_status stays candidate."
       ],
-      "notes": "Merriam-Webster dictionary entry for 'bisulfide'. Establishes English-language lexical existence of the term."
+      "notes": "Merriam-Webster dictionary entry for 'bisulfide'. Establishes English-language lexical existence of the term.",
+      "identity_revision": "rev-2026-10-30-1"
     },
     {
       "source_id": "SRC-MW-SULFIDE",
@@ -217,9 +345,9 @@
       "title": "sulfide",
       "url": "https://www.merriam-webster.com/dictionary/sulfide",
       "language": "en",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
-      "last_reviewed": "2026-05-15",
+      "last_reviewed": "2026-10-30",
       "use_for": [
         "English lexical entry for sulfide",
         "cautious terminology and spelling context",
@@ -233,9 +361,11 @@
       ],
       "risk_notes": [
         "Dictionary source only; not a chemical safety, regulatory, industrial, or market authority.",
-        "Do not use to validate handling, procurement, exposure, medical, or market claims."
+        "Do not use to validate handling, procurement, exposure, medical, or market claims.",
+        "Recovery-03: identity verified 2026-10-30 (HTTP 200, sha256 and verbatim passages in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json); source_lock_status stays candidate."
       ],
-      "notes": "Merriam-Webster dictionary entry for 'sulfide'. Establishes English-language lexical existence of the parent chemical family term."
+      "notes": "Merriam-Webster dictionary entry for 'sulfide'. Establishes English-language lexical existence of the parent chemical family term.",
+      "identity_revision": "rev-2026-10-30-1"
     },
     {
       "source_id": "SRC-MW-BISULFITE",
@@ -244,9 +374,9 @@
       "title": "bisulfite",
       "url": "https://www.merriam-webster.com/dictionary/bisulfite",
       "language": "en",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
-      "last_reviewed": "2026-05-15",
+      "last_reviewed": "2026-10-30",
       "use_for": [
         "English lexical entry for bisulfite",
         "disambiguation between bisulfite and bisulfide",
@@ -261,9 +391,11 @@
       ],
       "risk_notes": [
         "Use only for disambiguation.",
-        "Must never be used as evidence for bisulfide, hydrosulfide, or sulfide claims."
+        "Must never be used as evidence for bisulfide, hydrosulfide, or sulfide claims.",
+        "Recovery-03: identity verified 2026-10-30 (HTTP 200, sha256 and verbatim passages in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json); source_lock_status stays candidate."
       ],
-      "notes": "Merriam-Webster dictionary entry for 'bisulfite'. Supports disambiguation: bisulfite is a distinct compound from bisulfide. Required for bisulfite_disambiguation term record."
+      "notes": "Merriam-Webster dictionary entry for 'bisulfite'. Supports disambiguation: bisulfite is a distinct compound from bisulfide. Required for bisulfite_disambiguation term record.",
+      "identity_revision": "rev-2026-10-30-1"
     },
     {
       "source_id": "SRC-DUDEN-SULFID",
@@ -272,9 +404,9 @@
       "title": "Sulfid",
       "url": "https://www.duden.de/rechtschreibung/Sulfid",
       "language": "de",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
-      "last_reviewed": "2026-05-15",
+      "last_reviewed": "2026-10-30",
       "use_for": [
         "German spelling confirmation for Sulfid",
         "German-language term identity",
@@ -289,9 +421,11 @@
       ],
       "risk_notes": [
         "German dictionary source only; not a chemical safety, industrial, or market authority.",
-        "Supports linguistic identity, not industrial proof."
+        "Supports linguistic identity, not industrial proof.",
+        "Recovery-03: identity verified 2026-10-30 (HTTP 200, sha256 and verbatim passages in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json); source_lock_status stays candidate."
       ],
-      "notes": "Duden dictionary entry for 'Sulfid'. Establishes German-language lexical existence of the -id suffix form. Supports the sulfid term record and the German-English spelling boundary thesis."
+      "notes": "Duden dictionary entry for 'Sulfid'. Establishes German-language lexical existence of the -id suffix form. Supports the sulfid term record and the German-English spelling boundary thesis.",
+      "identity_revision": "rev-2026-10-30-1"
     },
     {
       "source_id": "SRC-DUDEN-OXID",
@@ -405,7 +539,8 @@
       ],
       "risk_notes": [
         "Nomenclature source only.",
-        "Do not convert nomenclature context into safety, medical, industrial, or market claims."
+        "Do not convert nomenclature context into safety, medical, industrial, or market claims.",
+        "Recovery-03: HTTP 403 (bot challenge) on 2026-10-30; not bypassed (C6). Stays seeded."
       ],
       "notes": "IUPAC Gold Book entry for hydrosulfides. Authoritative chemical nomenclature standard establishing the hydrosulfide term and its relationship to bisulfide chemistry."
     },
@@ -416,9 +551,9 @@
       "title": "Hydrosulfide",
       "url": "https://pubchem.ncbi.nlm.nih.gov/compound/Hydrosulfide",
       "language": "en",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
-      "last_reviewed": "2026-05-15",
+      "last_reviewed": "2026-10-30",
       "use_for": [
         "chemical identity context for hydrosulfide",
         "formula or database identity where directly supported by PubChem",
@@ -433,9 +568,11 @@
       ],
       "risk_notes": [
         "Database identity source; not a substitute for safety guidance or regulatory advice.",
-        "Do not use hazard fields, if present, as prescriptive handling instructions."
+        "Do not use hazard fields, if present, as prescriptive handling instructions.",
+        "Recovery-03: identity verified 2026-10-30 (HTTP 200, sha256 and verbatim passages in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json); source_lock_status stays candidate."
       ],
-      "notes": "PubChem (NIH) compound record for Hydrosulfide. Government scientific database entry supporting chemical identity claim."
+      "notes": "PubChem (NIH) compound record for Hydrosulfide. Government scientific database entry supporting chemical identity claim.",
+      "identity_revision": "rev-2026-10-30-1"
     },
     {
       "source_id": "SRC-PUBCHEM-SODIUM-HYDROSULFIDE",
@@ -499,9 +636,9 @@
       "title": "Messung von Bisulfid und Schwefelwasserstoff im Wasser",
       "url": "https://www.badgermeter.com/de-de/parameter-zur-uberwachung-der-wasserqualitat/hs-h2s/",
       "language": "de",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
-      "last_reviewed": "2026-05-16",
+      "last_reviewed": "2026-10-30",
       "use_for": [
         "candidate German technical usage of the term Bisulfid",
         "candidate support for Bisulfid appearing in a German water-quality / sulfur-monitoring context",
@@ -520,9 +657,12 @@
       "risk_notes": [
         "Commercial technical source only; not a dictionary, IUPAC source, regulatory source, or government scientific database.",
         "Can support observed German technical usage, but not final terminology authority.",
-        "Any safety or monitoring content on the page must not be turned into public safety advice."
+        "Any safety or monitoring content on the page must not be turned into public safety advice.",
+        "Recovery-03: identity verified 2026-10-30 (HTTP 200, sha256 and verbatim passages in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json); source_lock_status stays candidate.",
+        "Recovery-03: industry_publication — identity verified, but NOT qualified for terminology claims (terminology domain admits dictionaries, nomenclature standards and teaching references only). Contextual usage only."
       ],
-      "notes": "Badger Meter German-language technical page on measuring Bisulfid and Schwefelwasserstoff (HS⁻ / H₂S) in water. Supports observed German technical usage of the term Bisulfid in a water-quality monitoring context. Highest-category source available for bisulfid center node at sprint 3B; stronger authoritative source (dictionary, nomenclature standard, regulatory database) still required."
+      "notes": "Badger Meter German-language technical page on measuring Bisulfid and Schwefelwasserstoff (HS⁻ / H₂S) in water. Supports observed German technical usage of the term Bisulfid in a water-quality monitoring context. Highest-category source available for bisulfid center node at sprint 3B; stronger authoritative source (dictionary, nomenclature standard, regulatory database) still required.",
+      "identity_revision": "rev-2026-10-30-1"
     },
     {
       "source_id": "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR",
@@ -531,9 +671,9 @@
       "title": "Anorganische Nomenklatur",
       "url": "https://www-backend.fh-muenster.de/ciw/downloads-ciw/personenprofile/juestel/wissenswertes/chemie/Anorganische-Nomenklatur.pdf",
       "language": "de",
-      "status": "seeded",
+      "status": "verified",
       "source_lock_status": "candidate",
-      "last_reviewed": "2026-05-16",
+      "last_reviewed": "2026-10-30",
       "use_for": [
         "candidate academic teaching support for German inorganic nomenclature context",
         "candidate support for cautious explanation of -id endings where directly stated",
@@ -556,9 +696,11 @@
         "Academic teaching reference only.",
         "Candidate support only; not formal nomenclature authority.",
         "Must be paired with stronger authority before any public formal rule claim.",
-        "Must not be used for market, safety, medical, procurement, or acquisition claims."
+        "Must not be used for market, safety, medical, procurement, or acquisition claims.",
+        "Recovery-03: identity verified 2026-10-30 (HTTP 200, sha256 and verbatim passages in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json); source_lock_status stays candidate."
       ],
-      "notes": "FH Münster German-language teaching/reference PDF for inorganic nomenclature. Candidate academic teaching support only for cautious review of German -id endings where directly stated."
+      "notes": "FH Münster German-language teaching/reference PDF for inorganic nomenclature. Candidate academic teaching support only for cautious review of German -id endings where directly stated.",
+      "identity_revision": "rev-2026-10-30-1"
     },
     {
       "source_id": "SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN",
@@ -592,7 +734,8 @@
         "Academic teaching reference only.",
         "Candidate support only; not formal nomenclature authority.",
         "Must be paired with stronger authority before any public formal rule claim.",
-        "Must not be used for market, safety, medical, procurement, or acquisition claims."
+        "Must not be used for market, safety, medical, procurement, or acquisition claims.",
+        "Recovery-03: HTTP 404 on 2026-10-30: artifact no longer at the declared URL. Stays seeded."
       ],
       "notes": "Universität Rostock German-language teaching PDF for nomenclature. Candidate academic teaching support only for cautious review of German -id anion examples where directly stated."
     },
@@ -1024,6 +1167,195 @@
         "Role secondary_scholarly (supporting). related_work_ids includes WORK-SCHONFELD-HUANG-MOSS-1983 (shared author J. J. Huang, advisor S. C. Moss) -> the independence evaluator treats them as NOT independent."
       ],
       "notes": "Academic M.S. thesis. Category academic_thesis. Supporting scholarly provenance only; never substitutes for peer-reviewed/authoritative evidence. Identity verified, lock candidate; not claim-approved, not published."
+    },
+    {
+      "source_id": "SRC-MW-DISULFIDE",
+      "identity_revision": "rev-2026-10-30-1",
+      "category": "authoritative_dictionary",
+      "publisher": "Merriam-Webster",
+      "title": "disulfide",
+      "author_or_organization": "Merriam-Webster, Incorporated",
+      "url": "https://www.merriam-webster.com/dictionary/disulfide",
+      "language": "en",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-10-30",
+      "use_for": [
+        "English lexical entry and definitions for disulfide"
+      ],
+      "do_not_use_for": [
+        "chemical safety",
+        "market data",
+        "medical claims",
+        "route publication",
+        "source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Recovery-03). Identity verified 2026-10-30: HTTP 200, media type and sha256 recorded in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json; quoted passages verified verbatim (C1–C6). No credentials. verification_limited; source_lock_status candidate."
+      ],
+      "notes": "Recovery-03 terminology identity evidence."
+    },
+    {
+      "source_id": "SRC-DWDS-SULFID",
+      "identity_revision": "rev-2026-10-30-1",
+      "category": "authoritative_dictionary",
+      "publisher": "DWDS — Digitales Wörterbuch der deutschen Sprache (Berlin-Brandenburgische Akademie der Wissenschaften)",
+      "title": "Sulfid",
+      "author_or_organization": "Berlin-Brandenburgische Akademie der Wissenschaften",
+      "url": "https://www.dwds.de/wb/Sulfid",
+      "language": "de",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-10-30",
+      "use_for": [
+        "German lexical entry and eWDG (1976) sense for Sulfid"
+      ],
+      "do_not_use_for": [
+        "chemical safety",
+        "market data",
+        "medical claims",
+        "route publication",
+        "source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Recovery-03). Identity verified 2026-10-30: HTTP 200, media type and sha256 recorded in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json; quoted passages verified verbatim (C1–C6). No credentials. verification_limited; source_lock_status candidate."
+      ],
+      "notes": "Recovery-03 terminology identity evidence."
+    },
+    {
+      "source_id": "SRC-DWDS-BISULFID",
+      "identity_revision": "rev-2026-10-30-1",
+      "category": "authoritative_dictionary",
+      "publisher": "DWDS — Digitales Wörterbuch der deutschen Sprache (Berlin-Brandenburgische Akademie der Wissenschaften)",
+      "title": "Bisulfid (lookup result)",
+      "author_or_organization": "Berlin-Brandenburgische Akademie der Wissenschaften",
+      "url": "https://www.dwds.de/wb/Bisulfid",
+      "language": "de",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-10-30",
+      "use_for": [
+        "DWDS statement on whether Bisulfid is in its contemporary lexical sources"
+      ],
+      "do_not_use_for": [
+        "chemical safety",
+        "market data",
+        "medical claims",
+        "route publication",
+        "source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Recovery-03). Identity verified 2026-10-30: HTTP 200, media type and sha256 recorded in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json; quoted passages verified verbatim (C1–C6). No credentials. verification_limited; source_lock_status candidate."
+      ],
+      "notes": "Recovery-03 terminology identity evidence."
+    },
+    {
+      "source_id": "SRC-DWDS-HYDROGENSULFID",
+      "identity_revision": "rev-2026-10-30-1",
+      "category": "authoritative_dictionary",
+      "publisher": "DWDS — Digitales Wörterbuch der deutschen Sprache (Berlin-Brandenburgische Akademie der Wissenschaften)",
+      "title": "Hydrogensulfid (lookup result)",
+      "author_or_organization": "Berlin-Brandenburgische Akademie der Wissenschaften",
+      "url": "https://www.dwds.de/wb/Hydrogensulfid",
+      "language": "de",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-10-30",
+      "use_for": [
+        "DWDS statement on whether Hydrogensulfid is in its contemporary lexical sources"
+      ],
+      "do_not_use_for": [
+        "chemical safety",
+        "market data",
+        "medical claims",
+        "route publication",
+        "source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Recovery-03). Identity verified 2026-10-30: HTTP 200, media type and sha256 recorded in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json; quoted passages verified verbatim (C1–C6). No credentials. verification_limited; source_lock_status candidate."
+      ],
+      "notes": "Recovery-03 terminology identity evidence."
+    },
+    {
+      "source_id": "SRC-SPEKTRUM-SCHWEFELWASSERSTOFF-DE",
+      "identity_revision": "rev-2026-10-30-1",
+      "category": "authoritative_dictionary",
+      "publisher": "Spektrum Akademischer Verlag, Heidelberg",
+      "title": "Schwefelwasserstoff - Lexikon der Chemie",
+      "author_or_organization": "Spektrum der Wissenschaft Verlagsgesellschaft",
+      "url": "https://www.spektrum.de/lexikon/chemie/schwefelwasserstoff/8309",
+      "language": "de",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-10-30",
+      "use_for": [
+        "German chemistry-lexicon naming of the salt series of hydrogen sulfide (Hydrogensulfide, Sulfide)"
+      ],
+      "do_not_use_for": [
+        "chemical safety",
+        "market data",
+        "medical claims",
+        "route publication",
+        "source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Recovery-03). Identity verified 2026-10-30: HTTP 200, media type and sha256 recorded in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json; quoted passages verified verbatim (C1–C6). No credentials. verification_limited; source_lock_status candidate."
+      ],
+      "notes": "Recovery-03 terminology identity evidence."
+    },
+    {
+      "source_id": "SRC-IUPAC-RED-BOOK-2005",
+      "identity_revision": "rev-2026-10-30-1",
+      "category": "chemical_nomenclature_standard",
+      "publisher": "International Union of Pure and Applied Chemistry / Royal Society of Chemistry",
+      "title": "Nomenclature of Inorganic Chemistry — IUPAC Recommendations 2005 (Red Book), ISBN 0-85404-438-8",
+      "author_or_organization": "IUPAC (N. G. Connelly, T. Damhus, R. M. Hartshorn, A. T. Hutton, eds.)",
+      "url": "https://iupac.org/wp-content/uploads/2016/07/Red_Book_2005.pdf",
+      "language": "en",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-10-30",
+      "use_for": [
+        "IUPAC-recommended names of inorganic anions (HS-, S2 2-, HSO3-)"
+      ],
+      "do_not_use_for": [
+        "chemical safety",
+        "market data",
+        "medical claims",
+        "route publication",
+        "source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Recovery-03). Identity verified 2026-10-30: HTTP 200, media type and sha256 recorded in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json; quoted passages verified verbatim (C1–C6). No credentials. verification_limited; source_lock_status candidate."
+      ],
+      "notes": "Recovery-03 terminology identity evidence."
+    },
+    {
+      "source_id": "SRC-PUBCHEM-BISULFITE",
+      "identity_revision": "rev-2026-10-30-1",
+      "category": "government_scientific_database",
+      "publisher": "PubChem / NIH (National Center for Biotechnology Information)",
+      "title": "Bisulfite (PubChem Compound CID 104748)",
+      "author_or_organization": "PubChem, U.S. National Library of Medicine / NIH",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/compound/104748",
+      "language": "en",
+      "status": "verified",
+      "source_lock_status": "candidate",
+      "last_reviewed": "2026-10-30",
+      "use_for": [
+        "record identity of the bisulfite anion HSO3- (formula, computed IUPAC name)"
+      ],
+      "do_not_use_for": [
+        "chemical safety",
+        "market data",
+        "medical claims",
+        "route publication",
+        "source-locking by itself"
+      ],
+      "risk_notes": [
+        "NEW source (Recovery-03). Identity verified 2026-10-30: HTTP 200, media type and sha256 recorded in main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json; quoted passages verified verbatim (C1–C6). No credentials. verification_limited; source_lock_status candidate."
+      ],
+      "notes": "Recovery-03 terminology identity evidence."
     }
   ]
 }

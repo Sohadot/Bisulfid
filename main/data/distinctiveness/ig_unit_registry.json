@@ -1,0 +1,353 @@
+{
+  "registry_id": "GATE-12-IG-UNITS",
+  "version": "1.0.0",
+  "status": "governed",
+  "site": "bisulfid.com",
+  "sprint": "corpus-distinctiveness-audit",
+  "governed_by": [
+    "main/data/distinctiveness/gate12_policy.json",
+    "scripts/validators/distinctiveness_core.py",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Production-level Information Gain units. A unit is a page-specific, evidence-backed, non-boilerplate, non-substitution knowledge statement that is actually rendered on the page and useful to a governed audience. Units bind to EXISTING governed claims/evidence only; registering a unit never creates, approves, or locks a claim or source, and never changes publication state.",
+  "unit_schema": {
+    "required": [
+      "unit_id",
+      "entity_id",
+      "dimension",
+      "statement",
+      "evidence_ids",
+      "audience_ids"
+    ],
+    "optional": [
+      "claim_id",
+      "claim_component",
+      "notes"
+    ],
+    "rule": "No fact may be invented to reach the minimum. If governed evidence supports fewer than three units, the page is not publication-ready."
+  },
+  "pages": [
+    {
+      "page": "main/content/en/pages/bisulfid-vs-bisulfide.md",
+      "entity_ids": [
+        "hydrosulfide",
+        "disulfide",
+        "sulfide",
+        "hydrogen_sulfite"
+      ],
+      "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
+      "served_url": "/bisulfid-vs-bisulfide/",
+      "publication_candidate_id": "PC-BISULFID-TERMINOLOGY-001",
+      "localization_of": null,
+      "role": "canonical route reconstruction preview (non-public; rendered by render_ko_reference.py)",
+      "units": [
+        {
+          "unit_id": "IGU-TERM-001",
+          "entity_id": "disulfide",
+          "dimension": "terminology_boundary",
+          "statement": "Merriam-Webster enters bisulfide as a noun whose whole definition is a cross-reference: “disulfide”. The dictionary dates its first known use to 1831.",
+          "evidence_ids": [
+            "EVD-TERM-MW-BISULFIDE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-BISULFIDE-EN-SENSE-001"
+        },
+        {
+          "unit_id": "IGU-TERM-002",
+          "entity_id": "hydrosulfide",
+          "dimension": "terminology_boundary",
+          "statement": "PubChem record CID 5047209 has the formula HS⁻, the computed IUPAC name sulfanide and the title Hydrosulfide, and its synonym list includes “bisulfide”.",
+          "evidence_ids": [
+            "EVD-TERM-PUBCHEM-HS-SYNONYMS"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ]
+        },
+        {
+          "unit_id": "IGU-TERM-003",
+          "entity_id": "hydrosulfide",
+          "dimension": "chemical_identity",
+          "statement": "The IUPAC 2005 recommendations on inorganic nomenclature give the anion HS⁻ two names: sulfanide as the substitutive name and hydridosulfate(1−) as the additive name (IR-5.3.3.4 (heteropolyatomic anions), Example 3).",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-HS-NAMES"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-IUPAC-HS-NAMES-001"
+        },
+        {
+          "unit_id": "IGU-TERM-004",
+          "entity_id": "disulfide",
+          "dimension": "conceptual_boundary",
+          "statement": "Merriam-Webster gives disulfide two senses: “a compound containing two atoms of sulfur combined with an element or radical” and “an organic compound containing the divalent group SS composed of two sulfur atoms”, with a first known use of 1869.",
+          "evidence_ids": [
+            "EVD-TERM-MW-DISULFIDE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-DISULFIDE-EN-SENSE-001"
+        },
+        {
+          "unit_id": "IGU-TERM-005",
+          "entity_id": "disulfide",
+          "dimension": "chemical_identity",
+          "statement": "For the anion S₂²⁻ the same recommendations give disulfide(2−), and disulfanediide on the parent-hydride basis (IR-5.3.3 (homopolyatomic anions), Examples 8 and 12).",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-S2-NAMES"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-IUPAC-S2-NAMES-001"
+        },
+        {
+          "unit_id": "IGU-TERM-006",
+          "entity_id": "sulfide",
+          "dimension": "conceptual_boundary",
+          "statement": "Merriam-Webster defines sulfide in two senses: “any of various organic compounds characterized by a sulfur atom attached to two carbon atoms”, and “a binary compound (such as CuS) of sulfur usually with a more electropositive element or group : a salt of hydrogen sulfide”. Its first known use is 1836.",
+          "evidence_ids": [
+            "EVD-TERM-MW-SULFIDE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-SULFIDE-EN-SENSE-001"
+        },
+        {
+          "unit_id": "IGU-TERM-007",
+          "entity_id": "hydrogen_sulfite",
+          "dimension": "terminology_boundary",
+          "statement": "Merriam-Webster defines bisulfite as “an acid sulfite”, first known use 1819.",
+          "evidence_ids": [
+            "EVD-TERM-MW-BISULFITE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-BISULFITE-EN-SENSE-001"
+        },
+        {
+          "unit_id": "IGU-TERM-008",
+          "entity_id": "hydrogen_sulfite",
+          "dimension": "chemical_identity",
+          "statement": "For HSO₃⁻ IUPAC accepts the abbreviated name hydrogensulfite; the full hydrogen name is hydrogen(trioxidosulfate)(1−) (IR-8.5 (abbreviated hydrogen names for certain anions)). IUPAC adds: “It is strongly recommended that this list be viewed as limiting”.",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-HSO3-NAME"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-IUPAC-HSO3-NAME-001"
+        },
+        {
+          "unit_id": "IGU-TERM-009",
+          "entity_id": "hydrogen_sulfite",
+          "dimension": "terminology_boundary",
+          "statement": "PubChem record CID 104748, titled Bisulfite, has the formula HSO₃⁻ and the computed IUPAC name hydrogen sulfite.",
+          "evidence_ids": [
+            "EVD-TERM-PUBCHEM-BISULFITE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ]
+        },
+        {
+          "unit_id": "IGU-TERM-010",
+          "entity_id": "sulfide",
+          "dimension": "cross_language_semantic_distinction",
+          "statement": "Duden defines Sulfid as “salzartige Verbindung des Schwefelwasserstoffs”. The DWDS entry (source: eWDG (1976) via DWDS) labels the word Chemie and defines it as “Salz des Schwefelwasserstoffs”.",
+          "evidence_ids": [
+            "EVD-TERM-DUDEN-SULFID",
+            "EVD-TERM-DWDS-SULFID"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-SULFID-DE-SENSE-001"
+        },
+        {
+          "unit_id": "IGU-TERM-011",
+          "entity_id": "hydrosulfide",
+          "dimension": "cross_language_semantic_distinction",
+          "statement": "In its entry Schwefelwasserstoff, the Spektrum chemistry lexicon states that hydrogen sulfide forms two series of salts: Hydrogensulfide (MᴵHS) and Sulfide (Mᴵ₂S).",
+          "evidence_ids": [
+            "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001"
+        },
+        {
+          "unit_id": "IGU-TERM-012",
+          "entity_id": "hydrosulfide",
+          "dimension": "terminology_boundary",
+          "statement": "For Bisulfid the DWDS answers: “Es tut uns leid, Ihre Anfrage Bisulfid ist nicht in unseren gegenwartssprachlichen lexikalischen Quellen vorhanden.” It shows computer-generated grammatical forms only.",
+          "evidence_ids": [
+            "EVD-TERM-DWDS-BISULFID"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001"
+        },
+        {
+          "unit_id": "IGU-TERM-013",
+          "entity_id": "sulfide",
+          "dimension": "cross_language_semantic_distinction",
+          "statement": "A German university teaching text on inorganic nomenclature states the rule: “Das nachgestellte Nichtmetallatom bzw. -ion binärer Verbindungen mit negativer Oxidationszahl endet auf -id.” Its table of monatomic anions lists the sulfide ion as “S2- Sulfid”.",
+          "evidence_ids": [
+            "EVD-TERM-FHM-ID-RULE"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_STUDENT",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-TERM-GERMAN-ID-RULE-001"
+        }
+      ]
+    },
+    {
+      "page": "main/content/en/pages/molybdenum-disulfide.md",
+      "entity_id": "molybdenum_disulfide",
+      "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
+      "served_url": "/molybdenum-disulfide/",
+      "publication_candidate_id": "PC-MOS2-SCIENTIFIC-001",
+      "localization_of": null,
+      "role": "canonical route reconstruction preview (non-public; rendered by render_ko_reference.py)",
+      "units": [
+        {
+          "unit_id": "IGU-MOS2-001",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "chemical_identity",
+          "statement": "The formula of molybdenum disulfide is MoS2, as recorded independently by the PubChem and NIST chemistry databases.",
+          "evidence_ids": [
+            "EVD-MOS2-FORMULA-PUBCHEM",
+            "EVD-MOS2-FORMULA-NIST"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-MOS2-FORMULA"
+        },
+        {
+          "unit_id": "IGU-MOS2-002",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "chemical_structure",
+          "statement": "Bulk MoS2 is a layered material in which each layer is a three-atom-thick S–Mo–S stack.",
+          "evidence_ids": [
+            "EVD-MOS2-LAYERED-RSC"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-MOS2-STRUCTURE-2H"
+        },
+        {
+          "unit_id": "IGU-MOS2-003",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "polytype_distinction",
+          "statement": "The reviewed literature distinguishes three polytypes of MoS2, labelled 1T, 2H and 3R, which differ in the coordination of molybdenum and in the stacking of the layers: 2H and 3R share trigonal-prismatic coordination of molybdenum but stack differently.",
+          "evidence_ids": [
+            "EVD-MOS2-POLYTYPES-RSC"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-MOS2-STRUCTURE-2H"
+        },
+        {
+          "unit_id": "IGU-MOS2-004",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "chemical_structure",
+          "statement": "In the 2H polytype, bulk MoS2 adopts the hexagonal space group P6₃/mmc (No. 194), with a c-axis repeat of 12.30(7) Å in the 1923 determination and 12.295 Å in the 1983 determination.",
+          "evidence_ids": [
+            "EVD-MOS2-STRUCTURE-DICKINSON",
+            "EVD-MOS2-STRUCTURE-ACTACRYST"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-MOS2-STRUCTURE-2H"
+        },
+        {
+          "unit_id": "IGU-MOS2-005",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "historical_evidence",
+          "statement": "Dickinson and Pauling described molybdenite as hexagonal in 1923 but did not use the label 2H; the explicit 2H and 3R terminology appears in the 1983 study, whose title refers to single crystals of 2H- and 3R-MoS2.",
+          "evidence_ids": [
+            "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT",
+            "EVD-MOS2-LAYERED-ACTA1983-EXCERPT"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-MOS2-STRUCTURE-2H"
+        },
+        {
+          "unit_id": "IGU-MOS2-006",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "quantitative_property",
+          "statement": "Two independent determinations report the in-plane lattice parameter a of bulk 2H-MoS2 as 3.15(2) Å (Dickinson and Pauling, 1923) and 3.161 Å (Schönfeld, Huang and Moss, 1983).",
+          "evidence_ids": [
+            "EVD-MOS2-LATTICE-A-DICKINSON",
+            "EVD-MOS2-LATTICE-A-ACTACRYST"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_RESEARCHER"
+          ],
+          "claim_id": "CLM-MOS2-LATTICE-A-2H"
+        },
+        {
+          "unit_id": "IGU-MOS2-007",
+          "entity_id": "molybdenum_disulfide",
+          "dimension": "polytype_distinction",
+          "statement": "The 3R polytype of MoS2 is a distinct structure with space group R3m, layer stacking AbA BcB CaC, and reviewed lattice parameters a = 3.17 Å and c = 18.38 Å, so its values must not be attributed to the 2H form.",
+          "evidence_ids": [
+            "EVD-MOS2-3R-BOUNDARY-RSC"
+          ],
+          "audience_ids": [
+            "AUD_CHEMIST",
+            "AUD_RESEARCHER"
+          ]
+        }
+      ]
+    }
+  ]
+}

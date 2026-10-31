@@ -24,20 +24,56 @@
   "evidence_support_is_derived": true,
   "derived_view_note": "lexeme -> supporting evidence is computed by scanning main/data/evidence/*.json for records whose lexeme_ids contain this lexeme_id. It is not stored on the lexeme.",
   "lexical_relationship_types": [
-    "preferred", "accepted", "historical", "synonym", "alternative_spelling",
-    "formula_alias", "translated_equivalent", "partial_equivalence", "false_friend",
-    "nomenclature_controlled", "observed_usage", "deprecated"
+    "preferred",
+    "accepted",
+    "historical",
+    "synonym",
+    "alternative_spelling",
+    "formula_alias",
+    "translated_equivalent",
+    "partial_equivalence",
+    "false_friend",
+    "nomenclature_controlled",
+    "observed_usage",
+    "deprecated"
   ],
-  "registration_states": ["registered", "deprecated"],
+  "registration_states": [
+    "registered",
+    "deprecated"
+  ],
   "id_rules": {
     "production_prefix": "LEX-",
     "test_fixture_prefix": "TEST-LEX-",
     "rule": "Production lexeme IDs start 'LEX-'. Test fixtures start 'TEST-LEX-'. A governed lexeme MUST NOT use a TEST- identifier."
   },
   "lexeme_record_schema": {
-    "required_fields": ["lexeme_id", "concept_id", "language", "display_form", "lexical_relationship_type", "registration_state"],
-    "optional_fields": ["script", "locale", "normalized_form", "notes"],
-    "forbidden_fields": ["source_ids", "evidence_ids", "geography", "geo_id", "path", "route", "url", "route_id", "in_sitemap", "indexable", "status"]
+    "required_fields": [
+      "lexeme_id",
+      "concept_id",
+      "language",
+      "display_form",
+      "lexical_relationship_type",
+      "registration_state"
+    ],
+    "optional_fields": [
+      "script",
+      "locale",
+      "normalized_form",
+      "notes"
+    ],
+    "forbidden_fields": [
+      "source_ids",
+      "evidence_ids",
+      "geography",
+      "geo_id",
+      "path",
+      "route",
+      "url",
+      "route_id",
+      "in_sitemap",
+      "indexable",
+      "status"
+    ]
   },
   "lexemes": [
     {
@@ -50,6 +86,149 @@
       "lexical_relationship_type": "observed_usage",
       "registration_state": "registered",
       "notes": "Form observed in a German Lexikon der Chemie (Spektrum.de) dictionary entry for the MoS2 concept. 'observed_usage' — the narrowest supported relationship: the approved claim (CLM-TERM-MOS2-DE-001) establishes only that a dictionary entry exists supporting cautious terminology framing, NOT a general 'accepted' German-form status. Lexeme-level, German-language (not Germany-geography). Public URL NOT authorized. Evidence support is derived from the evidence store, not stored here."
+    },
+    {
+      "lexeme_id": "LEX-EN-BISULFIDE-001",
+      "concept_id": "disulfide",
+      "language": "en",
+      "script": "Latn",
+      "display_form": "bisulfide",
+      "normalized_form": "bisulfide",
+      "lexical_relationship_type": "synonym",
+      "registration_state": "registered",
+      "notes": "Dictionary sense: Merriam-Webster defines 'bisulfide' as 'disulfide' (first known use 1831). 'bisulfide' is polysemous; see LEX-EN-BISULFIDE-002. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-EN-BISULFIDE-002",
+      "concept_id": "hydrosulfide",
+      "language": "en",
+      "script": "Latn",
+      "display_form": "bisulfide",
+      "normalized_form": "bisulfide",
+      "lexical_relationship_type": "synonym",
+      "registration_state": "registered",
+      "notes": "Database-synonym sense: PubChem lists 'bisulfide' among the synonyms of HS- (CID 5047209). Supported only by boundary (database) evidence, not by an admitted lexical authority. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-EN-SULFIDE-001",
+      "concept_id": "sulfide",
+      "language": "en",
+      "script": "Latn",
+      "display_form": "sulfide",
+      "normalized_form": "sulfide",
+      "lexical_relationship_type": "preferred",
+      "registration_state": "registered",
+      "notes": "Merriam-Webster headword. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-EN-DISULFIDE-001",
+      "concept_id": "disulfide",
+      "language": "en",
+      "script": "Latn",
+      "display_form": "disulfide",
+      "normalized_form": "disulfide",
+      "lexical_relationship_type": "preferred",
+      "registration_state": "registered",
+      "notes": "Merriam-Webster headword. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-EN-BISULFITE-001",
+      "concept_id": "hydrogen_sulfite",
+      "language": "en",
+      "script": "Latn",
+      "display_form": "bisulfite",
+      "normalized_form": "bisulfite",
+      "lexical_relationship_type": "synonym",
+      "registration_state": "registered",
+      "notes": "Merriam-Webster: 'an acid sulfite'. Not a sulfide. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-EN-HYDROGENSULFITE-001",
+      "concept_id": "hydrogen_sulfite",
+      "language": "en",
+      "script": "Latn",
+      "display_form": "hydrogensulfite",
+      "normalized_form": "hydrogensulfite",
+      "lexical_relationship_type": "nomenclature_controlled",
+      "registration_state": "registered",
+      "notes": "IUPAC 2005 IR-8.5 accepted abbreviated hydrogen name for HSO3-. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-EN-SULFANIDE-001",
+      "concept_id": "hydrosulfide",
+      "language": "en",
+      "script": "Latn",
+      "display_form": "sulfanide",
+      "normalized_form": "sulfanide",
+      "lexical_relationship_type": "nomenclature_controlled",
+      "registration_state": "registered",
+      "notes": "IUPAC 2005 substitutive name for HS-. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-EN-HYDRIDOSULFATE-001",
+      "concept_id": "hydrosulfide",
+      "language": "en",
+      "script": "Latn",
+      "display_form": "hydridosulfate(1−)",
+      "normalized_form": "hydridosulfate(1−)",
+      "lexical_relationship_type": "nomenclature_controlled",
+      "registration_state": "registered",
+      "notes": "IUPAC 2005 additive name for HS-. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-EN-DISULFIDE-2MINUS-001",
+      "concept_id": "disulfide",
+      "language": "en",
+      "script": "Latn",
+      "display_form": "disulfide(2−)",
+      "normalized_form": "disulfide(2−)",
+      "lexical_relationship_type": "nomenclature_controlled",
+      "registration_state": "registered",
+      "notes": "IUPAC 2005 name for the S2 2- anion. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-EN-DISULFANEDIIDE-001",
+      "concept_id": "disulfide",
+      "language": "en",
+      "script": "Latn",
+      "display_form": "disulfanediide",
+      "normalized_form": "disulfanediide",
+      "lexical_relationship_type": "nomenclature_controlled",
+      "registration_state": "registered",
+      "notes": "IUPAC 2005 name for S2 2- derived from the parent hydride. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-DE-SULFID-001",
+      "concept_id": "sulfide",
+      "language": "de",
+      "script": "Latn",
+      "display_form": "Sulfid",
+      "normalized_form": "sulfid",
+      "lexical_relationship_type": "preferred",
+      "registration_state": "registered",
+      "notes": "Duden and DWDS headword. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-DE-HYDROGENSULFID-001",
+      "concept_id": "hydrosulfide",
+      "language": "de",
+      "script": "Latn",
+      "display_form": "Hydrogensulfid",
+      "normalized_form": "hydrogensulfid",
+      "lexical_relationship_type": "observed_usage",
+      "registration_state": "registered",
+      "notes": "Spektrum Lexikon der Chemie uses 'Hydrogensulfide' for the salts MIHS; DWDS does not list it in its contemporary lexical sources. (Recovery-03)"
+    },
+    {
+      "lexeme_id": "LEX-DE-BISULFID-001",
+      "concept_id": "hydrosulfide",
+      "language": "de",
+      "script": "Latn",
+      "display_form": "Bisulfid",
+      "normalized_form": "bisulfid",
+      "lexical_relationship_type": "observed_usage",
+      "registration_state": "registered",
+      "notes": "Observed in German industry usage for HS- (Badger Meter; contextual, not admitted). DWDS does not list it in its contemporary lexical sources; Duden has no entry. Not a lexicographically established German term. (Recovery-03)"
     }
   ]
 }

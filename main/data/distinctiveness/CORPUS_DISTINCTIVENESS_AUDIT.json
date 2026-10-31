@@ -1,0 +1,2021 @@
+{
+ "report_id": "CORPUS-DISTINCTIVENESS-AUDIT",
+ "gate": 12,
+ "policy_version": "1.1.0",
+ "generated_by": "scripts/validators/validate_distinctiveness.py --audit",
+ "baseline_note": "Audit of the corpus as committed; drafts included; audit does not change publication state.",
+ "markdown_corpus": {
+  "surface": "markdown_corpus",
+  "total_pages_scanned": 14015,
+  "substantive_pages_compared": 14015,
+  "pages_with_empty_substantive_body": 0,
+  "distinct_entity_masked_bodies": 141,
+  "distinct_raw_bodies": 13941,
+  "exact_duplicate_pages_raw_text": 124,
+  "entity_masked_identical_pages": 13937,
+  "candidate_discovery": {
+   "method": "minhash_lsh + exhaustive exact confirmation over distinct bodies",
+   "distinct_bodies": 141,
+   "lsh_candidate_pairs": 898,
+   "lsh_recall_ge_0_55": 0.8876,
+   "lsh_recall_ge_0_7": 1.0,
+   "exhaustive_pairs": 9870
+  },
+  "confirmed_pairs_between_distinct_bodies_ge_0_30": 1252,
+  "page_pairs": {
+   "ge_0_90": 7406140,
+   "ge_0_80": 10136154,
+   "ge_0_70": 11654760,
+   "review_band_0_55_to_0_70": 3466745,
+   "total_possible_pairs": 98203105
+  },
+  "clusters": {
+   "ge_0_9": {
+    "clusters": 51,
+    "pages_in_clusters": 13951,
+    "largest_cluster_size": 1658
+   },
+   "ge_0_8": {
+    "clusters": 21,
+    "pages_in_clusters": 13978,
+    "largest_cluster_size": 3390
+   },
+   "ge_0_7": {
+    "clusters": 18,
+    "pages_in_clusters": 13978,
+    "largest_cluster_size": 5072
+   }
+  },
+  "page_max_similarity_percentiles": {
+   "p10": 1.0,
+   "p25": 1.0,
+   "p50": 1.0,
+   "p75": 1.0,
+   "p90": 1.0,
+   "p99": 1.0,
+   "max": 1.0,
+   "note": "per-page nearest-neighbour S (exact-confirmed over all distinct bodies)"
+  },
+  "page_max_similarity_histogram": {
+   "eq_1_00": 13937,
+   "0_90_to_1_00": 14,
+   "0_80_to_0_90": 27,
+   "0_70_to_0_80": 0,
+   "0_55_to_0_70": 15,
+   "0_30_to_0_55": 2,
+   "below_0_30": 20
+  },
+  "highest_similarity_between_distinct_bodies": 1.0,
+  "pages_ge_0_70_nearest_neighbour": 13978,
+  "pages_in_review_band": 15,
+  "pages_below_0_55": 22,
+  "gate12_verdicts": {
+   "FAIL": 14006,
+   "PASS": 9
+  },
+  "gate12_fail_count": 14006,
+  "failure_components": {
+   "near_duplicate": 13978,
+   "template_prose": 13994,
+   "structural_template": 13995,
+   "information_gain": 13967,
+   "thin_body": 13678,
+   "institutional_duplicate_function": 4
+  },
+  "text_component_status": {
+   "FAIL": 13978,
+   "PASS_TEXT_ONLY": 22,
+   "REVIEW": 15
+  },
+  "pages_failing_without_information_gain_component": 13997,
+  "publication_candidates_in_surface": 0,
+  "publication_candidates_failing": 0,
+  "drafts_audited": 14015,
+  "mean_template_sentence_ratio": 0.9976,
+  "median_substantive_tokens": 31,
+  "families_highest_boilerplate": [
+   {
+    "family": "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_TERM_CANONICAL",
+    "pages": 2420,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_TERM_CANONICAL",
+    "pages": 2177,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_AUDIENCE_EXPLAINER",
+    "pages": 1612,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_AUDIENCE_EXPLAINER",
+    "pages": 1450,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_COMPOUND_ENTITY",
+    "pages": 806,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_CHILD_SAFE_EDU",
+    "pages": 806,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_AI_READABLE",
+    "pages": 806,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_COMPOUND_ENTITY",
+    "pages": 725,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_CHILD_SAFE_EDU",
+    "pages": 725,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_AI_READABLE",
+    "pages": 725,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_TERM_CANONICAL",
+    "pages": 300,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_AUDIENCE_EXPLAINER",
+    "pages": 250,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_03_1500_PIPELINE_EXPANSION|PT_TERM_CANONICAL",
+    "pages": 175,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "de|COHORT_04_7500_PIPELINE_EXPANSION|PT_UNSPECIFIED",
+    "pages": 142,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_COMPOUND_ENTITY",
+    "pages": 128,
+    "mean_template_sentence_ratio": 1.0
+   }
+  ],
+  "top_repeated_substantive_sentences": [
+   {
+    "pages": 5072,
+    "share_of_corpus": 0.3619,
+    "sentence_entity_masked": "factual chemistry lines remain until separately governed"
+   },
+   {
+    "pages": 5072,
+    "share_of_corpus": 0.3619,
+    "sentence_entity_masked": "lexical and nomenclature boundary framing only not operational instruction"
+   },
+   {
+    "pages": 3414,
+    "share_of_corpus": 0.2436,
+    "sentence_entity_masked": "no unsupported simplification of chemical fact"
+   },
+   {
+    "pages": 3414,
+    "share_of_corpus": 0.2436,
+    "sentence_entity_masked": "does not upgrade evidence beyond registry allowance"
+   },
+   {
+    "pages": 1710,
+    "share_of_corpus": 0.122,
+    "sentence_entity_masked": "for all factual compound assertions"
+   },
+   {
+    "pages": 1710,
+    "share_of_corpus": 0.122,
+    "sentence_entity_masked": "compound entity naming record for xentx"
+   },
+   {
+    "pages": 1710,
+    "share_of_corpus": 0.122,
+    "sentence_entity_masked": "operational handling and procurement language excluded"
+   },
+   {
+    "pages": 1710,
+    "share_of_corpus": 0.122,
+    "sentence_entity_masked": "naming and identity boundary not industrial performance claims"
+   },
+   {
+    "pages": 1708,
+    "share_of_corpus": 0.1219,
+    "sentence_entity_masked": "reference layer knowledge reference"
+   },
+   {
+    "pages": 1682,
+    "share_of_corpus": 0.12,
+    "sentence_entity_masked": "structured provenance and excluded claims disclosure"
+   },
+   {
+    "pages": 1682,
+    "share_of_corpus": 0.12,
+    "sentence_entity_masked": "registry backed fields only no inferred facts"
+   },
+   {
+    "pages": 1682,
+    "share_of_corpus": 0.12,
+    "sentence_entity_masked": "not publication ready without source and claim gates"
+   },
+   {
+    "pages": 1680,
+    "share_of_corpus": 0.1199,
+    "sentence_entity_masked": "machine readable governed record for xentx"
+   },
+   {
+    "pages": 1658,
+    "share_of_corpus": 0.1183,
+    "sentence_entity_masked": "not a safety guide or textbook experiment page"
+   },
+   {
+    "pages": 1658,
+    "share_of_corpus": 0.1183,
+    "sentence_entity_masked": "naming curiosity only no experiments hazards or handling"
+   },
+   {
+    "pages": 1658,
+    "share_of_corpus": 0.1183,
+    "sentence_entity_masked": "educational simplification limit enforced"
+   },
+   {
+    "pages": 1658,
+    "share_of_corpus": 0.1183,
+    "sentence_entity_masked": "child safe educational vocabulary framing for xentx"
+   },
+   {
+    "pages": 1632,
+    "share_of_corpus": 0.1164,
+    "sentence_entity_masked": "audience layer explainer for xentx researchers"
+   },
+   {
+    "pages": 1632,
+    "share_of_corpus": 0.1164,
+    "sentence_entity_masked": "vocabulary and claim boundary adapted to researchers without meaning change"
+   },
+   {
+    "pages": 1632,
+    "share_of_corpus": 0.1164,
+    "sentence_entity_masked": "vocabulary and claim boundary adapted to students without meaning change"
+   },
+   {
+    "pages": 1632,
+    "share_of_corpus": 0.1164,
+    "sentence_entity_masked": "audience layer explainer for xentx students"
+   },
+   {
+    "pages": 1632,
+    "share_of_corpus": 0.1164,
+    "sentence_entity_masked": "reference layer academic reference"
+   },
+   {
+    "pages": 1632,
+    "share_of_corpus": 0.1164,
+    "sentence_entity_masked": "reference layer research reference"
+   },
+   {
+    "pages": 957,
+    "share_of_corpus": 0.0683,
+    "sentence_entity_masked": "canonical terminology reference surface for xentx inorganic sulfur language"
+   },
+   {
+    "pages": 918,
+    "share_of_corpus": 0.0655,
+    "sentence_entity_masked": "canonical terminology reference surface for xentx organosulfur language"
+   }
+  ],
+  "by_language": {
+   "en": {
+    "pages": 13744,
+    "near_duplicate_ge_0_70": 13712,
+    "gate12_fail": 13737,
+    "near_duplicate_share": 0.9977
+   },
+   "de": {
+    "pages": 271,
+    "near_duplicate_ge_0_70": 266,
+    "gate12_fail": 269,
+    "near_duplicate_share": 0.9815
+   }
+  },
+  "by_cohort": {
+   "COHORT_05_14000_LAUNCH_FOUNDATION": {
+    "pages": 6500,
+    "near_duplicate_ge_0_70": 6500,
+    "gate12_fail": 6500,
+    "near_duplicate_share": 1.0
+   },
+   "COHORT_04_7500_PIPELINE_EXPANSION": {
+    "pages": 6000,
+    "near_duplicate_ge_0_70": 6000,
+    "gate12_fail": 6000,
+    "near_duplicate_share": 1.0
+   },
+   "COHORT_02_EN_TERMINOLOGY_SPINE": {
+    "pages": 902,
+    "near_duplicate_ge_0_70": 902,
+    "gate12_fail": 902,
+    "near_duplicate_share": 1.0
+   },
+   "COHORT_03_1500_PIPELINE_EXPANSION": {
+    "pages": 522,
+    "near_duplicate_ge_0_70": 522,
+    "gate12_fail": 522,
+    "near_duplicate_share": 1.0
+   },
+   "en/root": {
+    "pages": 43,
+    "near_duplicate_ge_0_70": 26,
+    "gate12_fail": 36,
+    "near_duplicate_share": 0.6047
+   },
+   "COHORT_01_FOUNDATION_GOV": {
+    "pages": 15,
+    "near_duplicate_ge_0_70": 0,
+    "gate12_fail": 15,
+    "near_duplicate_share": 0.0
+   },
+   "de/root": {
+    "pages": 11,
+    "near_duplicate_ge_0_70": 6,
+    "gate12_fail": 9,
+    "near_duplicate_share": 0.5455
+   },
+   "de/terminology": {
+    "pages": 11,
+    "near_duplicate_ge_0_70": 11,
+    "gate12_fail": 11,
+    "near_duplicate_share": 1.0
+   },
+   "en/terminology": {
+    "pages": 6,
+    "near_duplicate_ge_0_70": 6,
+    "gate12_fail": 6,
+    "near_duplicate_share": 1.0
+   },
+   "en/compliance": {
+    "pages": 3,
+    "near_duplicate_ge_0_70": 3,
+    "gate12_fail": 3,
+    "near_duplicate_share": 1.0
+   },
+   "en/industrial": {
+    "pages": 2,
+    "near_duplicate_ge_0_70": 2,
+    "gate12_fail": 2,
+    "near_duplicate_share": 1.0
+   }
+  },
+  "by_knowledge_object_family": {
+   "audience_variant": {
+    "pages": 6754,
+    "near_duplicate_ge_0_70": 6754,
+    "gate12_fail": 6754,
+    "near_duplicate_share": 1.0
+   },
+   "terminology_concept": {
+    "pages": 5072,
+    "near_duplicate_ge_0_70": 5072,
+    "gate12_fail": 5072,
+    "near_duplicate_share": 1.0
+   },
+   "chemical_substance": {
+    "pages": 1711,
+    "near_duplicate_ge_0_70": 1710,
+    "gate12_fail": 1710,
+    "near_duplicate_share": 0.9994
+   },
+   "unclassified": {
+    "pages": 324,
+    "near_duplicate_ge_0_70": 303,
+    "gate12_fail": 316,
+    "near_duplicate_share": 0.9352
+   },
+   "site_foundation": {
+    "pages": 96,
+    "near_duplicate_ge_0_70": 91,
+    "gate12_fail": 96,
+    "near_duplicate_share": 0.9479
+   },
+   "comparison_boundary": {
+    "pages": 48,
+    "near_duplicate_ge_0_70": 48,
+    "gate12_fail": 48,
+    "near_duplicate_share": 1.0
+   },
+   "governance": {
+    "pages": 10,
+    "near_duplicate_ge_0_70": 0,
+    "gate12_fail": 10,
+    "near_duplicate_share": 0.0
+   }
+  },
+  "runtime_seconds": 1.58,
+  "largest_clusters_ge_0_70": [
+   {
+    "cluster_size": 5072,
+    "distinct_entity_masked_bodies": 35,
+    "distinct_entities": 1661,
+    "representative_page": "main/content/en/pages/cohort-04-expansion/cohort04-en-c04-inorg-actinium-hydrosulfide-term-chem-acad.md",
+    "shared_substantive_skeleton": [
+     "page purpose"
+    ],
+    "representative_substantive_body_entity_masked": "canonical terminology reference surface for xentx inorganic sulfur language reference layer academic reference audience posture chemists lexical and nomenclature boundary framing only not operational instruction factual chemistry lines remain until separately governed",
+    "variable_slots_example": {
+     "page_a": "main/content/en/pages/cohort-04-expansion/cohort04-en-c04-inorg-actinium-hydrosulfide-term-chem-acad.md",
+     "page_b": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfid_term_ai_tech.md",
+     "slots": [
+      {
+       "a": "c04 inorg actinium hydrosulfide inorganic sulfur language",
+       "b": "bisulfid"
+      },
+      {
+       "a": "academic",
+       "b": "technical"
+      },
+      {
+       "a": "chemists",
+       "b": "ai systems"
+      },
+      {
+       "a": "",
+       "b": "source verification claim approval public route merge indexation multilingual ex"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.6933
+    },
+    "estimated_repeated_text_ratio": 1.0,
+    "what_genuinely_differs": "entity slots plus 35 template variants (audience/layer bullets); no evidence-backed knowledge units",
+    "languages": {
+     "en": 5072
+    },
+    "families": {
+     "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_TERM_CANONICAL": 2420,
+     "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_TERM_CANONICAL": 2177,
+     "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_TERM_CANONICAL": 300,
+     "en|COHORT_03_1500_PIPELINE_EXPANSION|PT_TERM_CANONICAL": 175
+    },
+    "knowledge_object_families": {
+     "terminology_concept": 5072
+    },
+    "sample_entities": [
+     "Sulfur Dioxide",
+     "Sulfur Trioxide",
+     "Bisulfide",
+     "Bisulfite Disambiguation",
+     "Cadmium Sulfide",
+     "Calcium Sulfide",
+     "Carbon Disulfide",
+     "Carbonyl Sulfide"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 5072,
+    "recommendation": [
+     "consolidate: many audience/layer variants of the same entity -> one Knowledge Object with modules",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 1710,
+    "distinct_entity_masked_bodies": 5,
+    "distinct_entities": 1612,
+    "representative_page": "main/content/en/pages/cohort-03-expansion/cohort03-en-alkyl-sulfides-cmp-chem-acad.md",
+    "shared_substantive_skeleton": [
+     "page purpose"
+    ],
+    "representative_substantive_body_entity_masked": "compound entity naming record for xentx naming and identity boundary not industrial performance claims academic reference operational handling and procurement language excluded for all factual compound assertions",
+    "variable_slots_example": {
+     "page_a": "main/content/en/pages/cohort-03-expansion/cohort03-en-alkyl-sulfides-cmp-chem-acad.md",
+     "page_b": "main/content/en/pages/cohort-02-terminology/cohort02_en_cadmium_sulfide_cmp_ai_tech.md",
+     "slots": [
+      {
+       "a": "alkyl sulfides",
+       "b": "cadmium sulfide"
+      },
+      {
+       "a": "academic",
+       "b": "technical"
+      },
+      {
+       "a": "",
+       "b": "source verification claim approval public route merge indexation multilingual ex"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.7576
+    },
+    "estimated_repeated_text_ratio": 1.0,
+    "what_genuinely_differs": "entity slots plus 5 template variants (audience/layer bullets); no evidence-backed knowledge units",
+    "languages": {
+     "en": 1710
+    },
+    "families": {
+     "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_COMPOUND_ENTITY": 806,
+     "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_COMPOUND_ENTITY": 725,
+     "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_COMPOUND_ENTITY": 128,
+     "en|COHORT_03_1500_PIPELINE_EXPANSION|PT_COMPOUND_ENTITY": 51
+    },
+    "knowledge_object_families": {
+     "chemical_substance": 1710
+    },
+    "sample_entities": [
+     "Sulfur Dioxide",
+     "Sulfur Trioxide",
+     "Cadmium Sulfide",
+     "Calcium Sulfide",
+     "Carbon Disulfide",
+     "Carbonyl Sulfide",
+     "Copper Sulfides",
+     "Dimethyl Sulfide"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 1710,
+    "recommendation": [
+     "rebuild/convert to Knowledge Objects only where governed evidence exists; otherwise remain non-public",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 1682,
+    "distinct_entity_masked_bodies": 5,
+    "distinct_entities": 1631,
+    "representative_page": "main/content/en/pages/cohort-03-expansion/cohort03-en-alkyl-sulfides-aud-ai-tech.md",
+    "shared_substantive_skeleton": [
+     "page purpose"
+    ],
+    "representative_substantive_body_entity_masked": "machine readable governed record for xentx structured provenance and excluded claims disclosure registry backed fields only no inferred facts technical reference not publication ready without source and claim gates",
+    "variable_slots_example": {
+     "page_a": "main/content/en/pages/cohort-03-expansion/cohort03-en-alkyl-sulfides-aud-ai-tech.md",
+     "page_b": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfid_air_ai_tech.md",
+     "slots": [
+      {
+       "a": "alkyl sulfides",
+       "b": "bisulfid"
+      },
+      {
+       "a": "",
+       "b": "source verification claim approval public route merge indexation multilingual ex"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.8116
+    },
+    "estimated_repeated_text_ratio": 0.9998,
+    "what_genuinely_differs": "entity slots plus 5 template variants (audience/layer bullets); no evidence-backed knowledge units",
+    "languages": {
+     "en": 1682
+    },
+    "families": {
+     "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_AI_READABLE": 806,
+     "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_AI_READABLE": 725,
+     "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_AI_READABLE": 100,
+     "en|COHORT_03_1500_PIPELINE_EXPANSION|PT_AI_READABLE": 51
+    },
+    "knowledge_object_families": {
+     "audience_variant": 1682
+    },
+    "sample_entities": [
+     "Sulfur Dioxide",
+     "Sulfur Trioxide",
+     "Bisulfide",
+     "Bisulfite Disambiguation",
+     "Cadmium Sulfide",
+     "Calcium Sulfide",
+     "Carbon Disulfide",
+     "Carbonyl Sulfide"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 1682,
+    "recommendation": [
+     "rebuild/convert to Knowledge Objects only where governed evidence exists; otherwise remain non-public",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 1658,
+    "distinct_entity_masked_bodies": 2,
+    "distinct_entities": 1618,
+    "representative_page": "main/content/en/pages/cohort-03-expansion/cohort03-en-alkyl-sulfides-child-stu-edu.md",
+    "shared_substantive_skeleton": [
+     "page purpose"
+    ],
+    "representative_substantive_body_entity_masked": "child safe educational vocabulary framing for xentx naming curiosity only no experiments hazards or handling educational simplification limit enforced educational reference not a safety guide or textbook experiment page",
+    "variable_slots_example": {
+     "page_a": "main/content/en/pages/cohort-03-expansion/cohort03-en-alkyl-sulfides-child-stu-edu.md",
+     "page_b": "main/content/en/pages/cohort-02-terminology/cohort02_en_cadmium_sulfide_child_child_edu.md",
+     "slots": [
+      {
+       "a": "alkyl sulfides",
+       "b": "cadmium sulfide"
+      },
+      {
+       "a": "",
+       "b": "source verification claim approval public route merge indexation multilingual ex"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.8
+    },
+    "estimated_repeated_text_ratio": 1.0,
+    "what_genuinely_differs": "entity slots plus 2 template variants (audience/layer bullets); no evidence-backed knowledge units",
+    "languages": {
+     "en": 1658
+    },
+    "families": {
+     "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_CHILD_SAFE_EDU": 806,
+     "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_CHILD_SAFE_EDU": 725,
+     "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_CHILD_SAFE_EDU": 76,
+     "en|COHORT_03_1500_PIPELINE_EXPANSION|PT_CHILD_SAFE_EDU": 51
+    },
+    "knowledge_object_families": {
+     "audience_variant": 1658
+    },
+    "sample_entities": [
+     "Sulfur Dioxide",
+     "Sulfur Trioxide",
+     "Cadmium Sulfide",
+     "Calcium Sulfide",
+     "Carbonyl Sulfide",
+     "Cas Registry Language",
+     "Copper Sulfides",
+     "Dimethyl Sulfide"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 1658,
+    "recommendation": [
+     "rebuild/convert to Knowledge Objects only where governed evidence exists; otherwise remain non-public",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 1632,
+    "distinct_entity_masked_bodies": 2,
+    "distinct_entities": 1630,
+    "representative_page": "main/content/en/pages/cohort-03-expansion/cohort03-en-alkyl-sulfides-aud-stu-edu.md",
+    "shared_substantive_skeleton": [
+     "page purpose"
+    ],
+    "representative_substantive_body_entity_masked": "audience layer explainer for xentx students vocabulary and claim boundary adapted to students without meaning change educational reference does not upgrade evidence beyond registry allowance no unsupported simplification of chemical fact",
+    "variable_slots_example": {
+     "page_a": "main/content/en/pages/cohort-03-expansion/cohort03-en-alkyl-sulfides-aud-stu-edu.md",
+     "page_b": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfid_aud_stu_edu.md",
+     "slots": [
+      {
+       "a": "alkyl sulfides",
+       "b": "bisulfid"
+      },
+      {
+       "a": "",
+       "b": "source verification claim approval public route merge indexation multilingual ex"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.8219
+    },
+    "estimated_repeated_text_ratio": 1.0,
+    "what_genuinely_differs": "entity slots plus 2 template variants (audience/layer bullets); no evidence-backed knowledge units",
+    "languages": {
+     "en": 1632
+    },
+    "families": {
+     "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_AUDIENCE_EXPLAINER": 806,
+     "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_AUDIENCE_EXPLAINER": 725,
+     "en|COHORT_03_1500_PIPELINE_EXPANSION|PT_AUDIENCE_EXPLAINER": 51,
+     "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_AUDIENCE_EXPLAINER": 50
+    },
+    "knowledge_object_families": {
+     "audience_variant": 1632
+    },
+    "sample_entities": [
+     "Sulfur Dioxide for Students",
+     "Sulfur Trioxide for Students",
+     "Bisulfid for Students",
+     "Bisulfide for Students",
+     "Bisulfite Disambiguation for Students",
+     "Cadmium Sulfide for Students",
+     "Calcium Sulfide for Students",
+     "Carbon Disulfide for Students"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 1632,
+    "recommendation": [
+     "rebuild/convert to Knowledge Objects only where governed evidence exists; otherwise remain non-public",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 1632,
+    "distinct_entity_masked_bodies": 2,
+    "distinct_entities": 1630,
+    "representative_page": "main/content/en/pages/cohort-03-expansion/cohort03-en-alkyl-sulfides-air-res-res.md",
+    "shared_substantive_skeleton": [
+     "page purpose"
+    ],
+    "representative_substantive_body_entity_masked": "audience layer explainer for xentx researchers vocabulary and claim boundary adapted to researchers without meaning change research reference does not upgrade evidence beyond registry allowance no unsupported simplification of chemical fact",
+    "variable_slots_example": {
+     "page_a": "main/content/en/pages/cohort-03-expansion/cohort03-en-alkyl-sulfides-air-res-res.md",
+     "page_b": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfid_aud_res_res.md",
+     "slots": [
+      {
+       "a": "alkyl sulfides",
+       "b": "bisulfid"
+      },
+      {
+       "a": "",
+       "b": "source verification claim approval public route merge indexation multilingual ex"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.8219
+    },
+    "estimated_repeated_text_ratio": 1.0,
+    "what_genuinely_differs": "entity slots plus 2 template variants (audience/layer bullets); no evidence-backed knowledge units",
+    "languages": {
+     "en": 1632
+    },
+    "families": {
+     "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_AUDIENCE_EXPLAINER": 806,
+     "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_AUDIENCE_EXPLAINER": 725,
+     "en|COHORT_03_1500_PIPELINE_EXPANSION|PT_AUDIENCE_EXPLAINER": 51,
+     "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_AUDIENCE_EXPLAINER": 50
+    },
+    "knowledge_object_families": {
+     "audience_variant": 1632
+    },
+    "sample_entities": [
+     "Sulfur Dioxide for Researchers",
+     "Sulfur Trioxide for Researchers",
+     "Bisulfid for Researchers",
+     "Bisulfide for Researchers",
+     "Bisulfite Disambiguation for Researchers",
+     "Cadmium Sulfide for Researchers",
+     "Calcium Sulfide for Researchers",
+     "Carbon Disulfide for Researchers"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 1632,
+    "recommendation": [
+     "rebuild/convert to Knowledge Objects only where governed evidence exists; otherwise remain non-public",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 249,
+    "distinct_entity_masked_bodies": 1,
+    "distinct_entities": 228,
+    "representative_page": "main/content/de/pages/bisulfid-bisulfit-wall.md",
+    "shared_substantive_skeleton": [
+     "seitenrolle",
+     "terminologie schichten entwurfsprüfung",
+     "abgrenzungen"
+    ],
+    "representative_substantive_body_entity_masked": "kontrollierter terminologie referenz eintrag route id xentx keine lehrbuch blog pilot oder glossar ersatzseite die seite dient der governed corpus expansion innerhalb des festen 14 000 seiten mindestziels nicht einem reduzierten publikationsumfang lexikalische form oberflächenschreibung iupac dokumentsprache und de en grenzfragen under review chemische dokumentform beabsichtigter geltungsbereich und abgrenzung zu nachbarbegriffen claim status keine freigegebenen claims claim registries bleiben inaktiv für massenpublikation referenzschicht nomenklatur und grenzorientiert keine betriebs beschaff",
+    "variable_slots_example": {
+     "page_a": "main/content/de/pages/bisulfid-bisulfit-wall.md",
+     "page_b": "main/content/de/pages/bisulfite-wall.md",
+     "slots": [
+      {
+       "a": "bisulfid",
+       "b": ""
+      },
+      {
+       "a": "",
+       "b": "wall"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.9895
+    },
+    "estimated_repeated_text_ratio": 1.0,
+    "what_genuinely_differs": "only entity-name/variant slots; entity-masked bodies are identical",
+    "languages": {
+     "de": 249
+    },
+    "families": {
+     "de|COHORT_04_7500_PIPELINE_EXPANSION|PT_UNSPECIFIED": 142,
+     "de|COHORT_03_1500_PIPELINE_EXPANSION|PT_UNSPECIFIED": 79,
+     "de|COHORT_05_14000_LAUNCH_FOUNDATION|PT_UNSPECIFIED": 28
+    },
+    "knowledge_object_families": {
+     "unclassified": 249
+    },
+    "sample_entities": [
+     "Blei Sulfid",
+     "Cer Sulfid",
+     "Chrom Sulfid",
+     "Eisen Sulfid",
+     "Hafnium Sulfid",
+     "Kobalt Sulfid",
+     "Kupfer Sulfid",
+     "Lanthan Sulfid"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 249,
+    "recommendation": [
+     "rebuild/convert to Knowledge Objects only where governed evidence exists; otherwise remain non-public",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 100,
+    "distinct_entity_masked_bodies": 2,
+    "distinct_entities": 100,
+    "representative_page": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfid_aud_anl_know.md",
+    "shared_substantive_skeleton": [
+     "page purpose",
+     "unresolved fields"
+    ],
+    "representative_substantive_body_entity_masked": "audience layer explainer for xentx analysts vocabulary and claim boundary adapted to analysts without meaning change knowledge reference does not upgrade evidence beyond registry allowance no unsupported simplification of chemical fact source verification claim approval public route merge indexation multilingual expansion",
+    "variable_slots_example": {
+     "page_a": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfid_aud_anl_know.md",
+     "page_b": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfide_aud_anl_know.md",
+     "slots": [
+      {
+       "a": "bisulfid",
+       "b": "bisulfide"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.9756
+    },
+    "estimated_repeated_text_ratio": 1.0,
+    "what_genuinely_differs": "entity slots plus 2 template variants (audience/layer bullets); no evidence-backed knowledge units",
+    "languages": {
+     "en": 100
+    },
+    "families": {
+     "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_AUDIENCE_EXPLAINER": 100
+    },
+    "knowledge_object_families": {
+     "audience_variant": 100
+    },
+    "sample_entities": [
+     "Bisulfid for Analysts",
+     "Bisulfide for Analysts",
+     "Bisulfite Disambiguation for Analysts",
+     "Cadmium Sulfide for Analysts",
+     "Calcium Sulfide for Analysts",
+     "Carbon Disulfide for Analysts",
+     "Carbonyl Sulfide for Analysts",
+     "Cas Registry Language for Analysts"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 100,
+    "recommendation": [
+     "rebuild/convert to Knowledge Objects only where governed evidence exists; otherwise remain non-public",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 91,
+    "distinct_entity_masked_bodies": 1,
+    "distinct_entities": 81,
+    "representative_page": "main/content/en/pages/cohort-03-expansion/en-dis-alkyl-aryl-sulfide.md",
+    "shared_substantive_skeleton": [
+     "page purpose"
+    ],
+    "representative_substantive_body_entity_masked": "governed non public reference draft for xentx corpus expansion for 14 000 page launch pipeline not a reduced launch knowledge reference for unresolved factual lines no source approval or claim approval implied",
+    "variable_slots_example": {
+     "page_a": "main/content/en/pages/cohort-03-expansion/en-dis-alkyl-aryl-sulfide.md",
+     "page_b": "main/content/en/pages/cohort-03-expansion/en-dis-sulfate-sulfonate.md",
+     "slots": [
+      {
+       "a": "alkyl aryl sulfide",
+       "b": "sulfate sulfonate"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.9296
+    },
+    "estimated_repeated_text_ratio": 1.0,
+    "what_genuinely_differs": "only entity-name/variant slots; entity-masked bodies are identical",
+    "languages": {
+     "en": 91
+    },
+    "families": {
+     "en|COHORT_04_7500_PIPELINE_EXPANSION|PT_FOUNDATION": 56,
+     "en|COHORT_05_14000_LAUNCH_FOUNDATION|PT_FOUNDATION": 22,
+     "en|COHORT_03_1500_PIPELINE_EXPANSION|PT_FOUNDATION": 13
+    },
+    "knowledge_object_families": {
+     "site_foundation": 91
+    },
+    "sample_entities": [
+     "Disulfide Sulfide Boundary",
+     "Polysulfide Sulfide Boundary",
+     "Sulfate Sulfide Boundary",
+     "Sulfate Sulfite Boundary",
+     "Sulfide Sulfite Boundary",
+     "Sulfite Sulfide Boundary",
+     "Sulfone Sulfoxide Boundary",
+     "Sulfoxide Sulfide Boundary"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 91,
+    "recommendation": [
+     "rebuild/convert to Knowledge Objects only where governed evidence exists; otherwise remain non-public",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 50,
+    "distinct_entity_masked_bodies": 1,
+    "distinct_entities": 50,
+    "representative_page": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfid_aud_gov_inst.md",
+    "shared_substantive_skeleton": [
+     "page purpose",
+     "unresolved fields"
+    ],
+    "representative_substantive_body_entity_masked": "audience layer explainer for xentx government vocabulary and claim boundary adapted to government without meaning change institutional reference does not upgrade evidence beyond registry allowance no unsupported simplification of chemical fact source verification claim approval public route merge indexation multilingual expansion",
+    "variable_slots_example": {
+     "page_a": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfid_aud_gov_inst.md",
+     "page_b": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfide_aud_gov_inst.md",
+     "slots": [
+      {
+       "a": "bisulfid",
+       "b": "bisulfide"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.9756
+    },
+    "estimated_repeated_text_ratio": 1.0,
+    "what_genuinely_differs": "only entity-name/variant slots; entity-masked bodies are identical",
+    "languages": {
+     "en": 50
+    },
+    "families": {
+     "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_AUDIENCE_EXPLAINER": 50
+    },
+    "knowledge_object_families": {
+     "audience_variant": 50
+    },
+    "sample_entities": [
+     "Bisulfid for Government",
+     "Bisulfide for Government",
+     "Bisulfite Disambiguation for Government",
+     "Cadmium Sulfide for Government",
+     "Calcium Sulfide for Government",
+     "Carbon Disulfide for Government",
+     "Carbonyl Sulfide for Government",
+     "Cas Registry Language for Government"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 50,
+    "recommendation": [
+     "rebuild/convert to Knowledge Objects only where governed evidence exists; otherwise remain non-public",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 48,
+    "distinct_entity_masked_bodies": 12,
+    "distinct_entities": 12,
+    "representative_page": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfid_vs_bisulfide_ai_tech.md",
+    "shared_substantive_skeleton": [
+     "page purpose",
+     "comparison sides terminology boundary only",
+     "unresolved fields"
+    ],
+    "representative_substantive_body_entity_masked": "comparison intent xentx mode linguistic comparison distinction framing only no unsupported winner claim per side source and claim posture disclosed below unresolved comparison fields marked explicitly side term entity id source posture claim posture a bisulfid source required unresolved claim pending review b bisulfide source required unresolved claim pending review source verification claim approval public route merge indexation multilingual expansion comparison boundary verification",
+    "variable_slots_example": {
+     "page_a": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfid_vs_bisulfide_ai_tech.md",
+     "page_b": "main/content/en/pages/cohort-02-terminology/cohort02_en_bisulfide_vs_hydrosulfide_ai_tech.md",
+     "slots": [
+      {
+       "a": "bisulfid",
+       "b": "bisulfide"
+      },
+      {
+       "a": "bisulfide",
+       "b": "hydrosulfide"
+      },
+      {
+       "a": "linguistic",
+       "b": "technical"
+      },
+      {
+       "a": "bisulfid",
+       "b": "bisulfide"
+      },
+      {
+       "a": "bisulfide",
+       "b": "hydrosulfide"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.9231
+    },
+    "estimated_repeated_text_ratio": 1.0,
+    "what_genuinely_differs": "entity slots plus 12 template variants (audience/layer bullets); no evidence-backed knowledge units",
+    "languages": {
+     "en": 48
+    },
+    "families": {
+     "en|COHORT_02_EN_TERMINOLOGY_SPINE|PT_DIFFERENCE_COMPARISON": 48
+    },
+    "knowledge_object_families": {
+     "comparison_boundary": 48
+    },
+    "sample_entities": [
+     "Bisulfid vs Bisulfide",
+     "Bisulfide vs Hydrosulfide",
+     "Bisulfide vs Sulfide",
+     "Bisulfite Disambiguation vs Bisulfide",
+     "Disulfide vs Sulfide",
+     "Molybdenum Disulfide vs Disulfide",
+     "Sodium Bisulfide vs Sodium Hydrosulfide",
+     "Sulfate vs Sulfide"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 48,
+    "recommendation": [
+     "consolidate: many audience/layer variants of the same entity -> one Knowledge Object with modules",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 13,
+    "distinct_entity_masked_bodies": 4,
+    "distinct_entities": 13,
+    "representative_page": "main/content/de/pages/glossary.md",
+    "shared_substantive_skeleton": [
+     "seitenrolle",
+     "terminologie schichten entwurfsprüfung",
+     "abgrenzungen"
+    ],
+    "representative_substantive_body_entity_masked": "kontrollierter terminologie eintrag route id xentx für xentx keine lehrbuch oder blog seite lexikalische form oberflächenschreibung und dokumentsprache under review chemische dokumentform beabsichtigter geltungsbereich claim status keine freigegebenen claims keine universellen suffix regeln keine normansprüche keine betriebsanleitung stärkere quellenbindung erforderlich",
+    "variable_slots_example": {
+     "page_a": "main/content/de/pages/glossary.md",
+     "page_b": "main/content/de/pages/terminology/cadmium-sulfide.md",
+     "slots": [
+      {
+       "a": "glossary",
+       "b": "core cds"
+      },
+      {
+       "a": "controlled glossary chamber",
+       "b": "cadmium sulfide localized"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.8966
+    },
+    "estimated_repeated_text_ratio": 0.9137,
+    "what_genuinely_differs": "entity slots plus 4 template variants (audience/layer bullets); no evidence-backed knowledge units",
+    "languages": {
+     "de": 13
+    },
+    "families": {
+     "de|de/terminology|PT_UNSPECIFIED": 11,
+     "de|de/root|PT_UNSPECIFIED": 2
+    },
+    "knowledge_object_families": {
+     "unclassified": 13
+    },
+    "sample_entities": [
+     "Controlled glossary chamber",
+     "Cadmium sulfide localized",
+     "CaS naming localized",
+     "Copper sulfides localized",
+     "Iron sulfides localized",
+     "Molten sulfur language non-handling",
+     "MoS2 specialist localized",
+     "K2S naming localized"
+    ],
+    "public_indexable_members": 0,
+    "draft_members": 13,
+    "recommendation": [
+     "rebuild/convert to Knowledge Objects only where governed evidence exists; otherwise remain non-public",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   }
+  ],
+  "parse_seconds": 8.5
+ },
+ "public_html_surface": {
+  "surface": "public_html_surface",
+  "total_pages_scanned": 14041,
+  "substantive_pages_compared": 14041,
+  "pages_with_empty_substantive_body": 0,
+  "distinct_entity_masked_bodies": 424,
+  "distinct_raw_bodies": 13989,
+  "exact_duplicate_pages_raw_text": 104,
+  "entity_masked_identical_pages": 13775,
+  "candidate_discovery": {
+   "method": "minhash_lsh + exhaustive exact confirmation over distinct bodies",
+   "distinct_bodies": 424,
+   "lsh_candidate_pairs": 50010,
+   "lsh_recall_ge_0_55": 0.9815,
+   "lsh_recall_ge_0_7": 1.0,
+   "exhaustive_pairs": 89676
+  },
+  "confirmed_pairs_between_distinct_bodies_ge_0_30": 70181,
+  "page_pairs": {
+   "ge_0_90": 8333301,
+   "ge_0_80": 27071304,
+   "ge_0_70": 55667804,
+   "review_band_0_55_to_0_70": 24681121,
+   "total_possible_pairs": 98567820
+  },
+  "clusters": {
+   "ge_0_9": {
+    "clusters": 62,
+    "pages_in_clusters": 13969,
+    "largest_cluster_size": 2651
+   },
+   "ge_0_8": {
+    "clusters": 9,
+    "pages_in_clusters": 13989,
+    "largest_cluster_size": 11050
+   },
+   "ge_0_7": {
+    "clusters": 2,
+    "pages_in_clusters": 13992,
+    "largest_cluster_size": 13976
+   }
+  },
+  "page_max_similarity_percentiles": {
+   "p10": 1.0,
+   "p25": 1.0,
+   "p50": 1.0,
+   "p75": 1.0,
+   "p90": 1.0,
+   "p99": 1.0,
+   "max": 1.0,
+   "note": "per-page nearest-neighbour S (exact-confirmed over all distinct bodies)"
+  },
+  "page_max_similarity_histogram": {
+   "eq_1_00": 13775,
+   "0_90_to_1_00": 194,
+   "0_80_to_0_90": 20,
+   "0_70_to_0_80": 3,
+   "0_55_to_0_70": 6,
+   "0_30_to_0_55": 8,
+   "below_0_30": 35
+  },
+  "highest_similarity_between_distinct_bodies": 0.971,
+  "pages_ge_0_70_nearest_neighbour": 13992,
+  "pages_in_review_band": 6,
+  "pages_below_0_55": 43,
+  "gate12_verdicts": {
+   "PASS": 8,
+   "FAIL": 14033
+  },
+  "gate12_fail_count": 14033,
+  "failure_components": {
+   "template_prose": 13998,
+   "structural_template": 13998,
+   "information_gain": 13986,
+   "near_duplicate": 13992,
+   "institutional_duplicate_function": 5,
+   "thin_body": 1
+  },
+  "text_component_status": {
+   "PASS_TEXT_ONLY": 43,
+   "REVIEW": 6,
+   "FAIL": 13992
+  },
+  "pages_failing_without_information_gain_component": 14000,
+  "publication_candidates_in_surface": 14039,
+  "publication_candidates_failing": 14032,
+  "drafts_audited": 0,
+  "mean_template_sentence_ratio": 0.9954,
+  "median_substantive_tokens": 141,
+  "families_highest_boilerplate": [
+   {
+    "family": "en|terminology|en/terminology/cohort05",
+    "pages": 4896,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|terminology|en/terminology/cohort04",
+    "pages": 4576,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|industrial|en/terminology/cohort05",
+    "pages": 1256,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|industrial|en/terminology/cohort04",
+    "pages": 1160,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|language|en/terminology/cohort05",
+    "pages": 240,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|material|en/terminology/cohort05",
+    "pages": 56,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|terminology|en/terminology/compare",
+    "pages": 44,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|language|en/terminology/cohort04",
+    "pages": 24,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|terminology|en/terminology/sulfur-trioxide",
+    "pages": 19,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|terminology|en/terminology/sulfur-dioxide",
+    "pages": 19,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|material|en/terminology/molybdenum-disulfide",
+    "pages": 19,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|terminology|en/terminology/zinc-sulfide",
+    "pages": 18,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|terminology|en/terminology/thiosulfate",
+    "pages": 18,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|terminology|en/terminology/sulfurous-acid",
+    "pages": 18,
+    "mean_template_sentence_ratio": 1.0
+   },
+   {
+    "family": "en|terminology|en/terminology/sulfur-hexafluoride",
+    "pages": 18,
+    "mean_template_sentence_ratio": 1.0
+   }
+  ],
+  "top_repeated_substantive_sentences": [
+   {
+    "pages": 13992,
+    "share_of_corpus": 0.9965,
+    "sentence_entity_masked": "structured reference for analysts and journalists"
+   },
+   {
+    "pages": 13992,
+    "share_of_corpus": 0.9965,
+    "sentence_entity_masked": "ai systems indexing atlas relationships"
+   },
+   {
+    "pages": 13992,
+    "share_of_corpus": 0.9965,
+    "sentence_entity_masked": "spelling boundary awareness where relevant"
+   },
+   {
+    "pages": 13992,
+    "share_of_corpus": 0.9965,
+    "sentence_entity_masked": "not a primary source citation"
+   },
+   {
+    "pages": 13992,
+    "share_of_corpus": 0.9965,
+    "sentence_entity_masked": "context framing without operational market or investment advice"
+   },
+   {
+    "pages": 13992,
+    "share_of_corpus": 0.9965,
+    "sentence_entity_masked": "journalists seeking governed reference context"
+   },
+   {
+    "pages": 13977,
+    "share_of_corpus": 0.9954,
+    "sentence_entity_masked": "researchers mapping sulfur terminology structure"
+   },
+   {
+    "pages": 13975,
+    "share_of_corpus": 0.9953,
+    "sentence_entity_masked": "it clarifies how neighbouring atlas routes relate without asserting unsupported chemical facts"
+   },
+   {
+    "pages": 13824,
+    "share_of_corpus": 0.9845,
+    "sentence_entity_masked": "it orients readers across related nodes without unsupported claims"
+   },
+   {
+    "pages": 10904,
+    "share_of_corpus": 0.7766,
+    "sentence_entity_masked": "terminology reference placement within the governed atlas structure"
+   },
+   {
+    "pages": 10903,
+    "share_of_corpus": 0.7765,
+    "sentence_entity_masked": "terminology reference readers across the bisulfid atlas"
+   },
+   {
+    "pages": 4145,
+    "share_of_corpus": 0.2952,
+    "sentence_entity_masked": "terminology reference surface for xentx terminology reference"
+   },
+   {
+    "pages": 3392,
+    "share_of_corpus": 0.2416,
+    "sentence_entity_masked": "readers including students and general readers"
+   },
+   {
+    "pages": 3392,
+    "share_of_corpus": 0.2416,
+    "sentence_entity_masked": "clear framing for students and general readers without unsupported claims"
+   },
+   {
+    "pages": 3354,
+    "share_of_corpus": 0.2389,
+    "sentence_entity_masked": "readers including researchers and journalists"
+   },
+   {
+    "pages": 3354,
+    "share_of_corpus": 0.2389,
+    "sentence_entity_masked": "clear framing for researchers and journalists without unsupported claims"
+   },
+   {
+    "pages": 3242,
+    "share_of_corpus": 0.2309,
+    "sentence_entity_masked": "clear framing for academic and university readers without unsupported claims"
+   },
+   {
+    "pages": 3242,
+    "share_of_corpus": 0.2309,
+    "sentence_entity_masked": "readers including academic and university readers"
+   },
+   {
+    "pages": 2730,
+    "share_of_corpus": 0.1944,
+    "sentence_entity_masked": "terminology reference surface for xentx"
+   },
+   {
+    "pages": 2416,
+    "share_of_corpus": 0.1721,
+    "sentence_entity_masked": "industrial context readers across the bisulfid atlas"
+   },
+   {
+    "pages": 2416,
+    "share_of_corpus": 0.1721,
+    "sentence_entity_masked": "industrial context placement within the governed atlas structure"
+   },
+   {
+    "pages": 1856,
+    "share_of_corpus": 0.1322,
+    "sentence_entity_masked": "this node situates xentx terminology reference within the cohort05 family as a terminology reference entry"
+   },
+   {
+    "pages": 1835,
+    "share_of_corpus": 0.1307,
+    "sentence_entity_masked": "this node situates xentx terminology reference within the cohort04 family as a terminology reference entry"
+   },
+   {
+    "pages": 1827,
+    "share_of_corpus": 0.1301,
+    "sentence_entity_masked": "this dossier maps xentx terminology reference within the bisulfid terminology reference layer for the cohort05 terminology family en"
+   },
+   {
+    "pages": 1745,
+    "share_of_corpus": 0.1243,
+    "sentence_entity_masked": "readers including readers building structured terminology knowledge"
+   }
+  ],
+  "by_language": {
+   "en": {
+    "pages": 13771,
+    "near_duplicate_ge_0_70": 13723,
+    "gate12_fail": 13763,
+    "near_duplicate_share": 0.9965
+   },
+   "de": {
+    "pages": 270,
+    "near_duplicate_ge_0_70": 269,
+    "gate12_fail": 270,
+    "near_duplicate_share": 0.9963
+   }
+  },
+  "by_cohort": {
+   "terminology": {
+    "pages": 10936,
+    "near_duplicate_ge_0_70": 10933,
+    "gate12_fail": 10936,
+    "near_duplicate_share": 0.9997
+   },
+   "industrial": {
+    "pages": 2416,
+    "near_duplicate_ge_0_70": 2416,
+    "gate12_fail": 2416,
+    "near_duplicate_share": 1.0
+   },
+   "language": {
+    "pages": 284,
+    "near_duplicate_ge_0_70": 281,
+    "gate12_fail": 283,
+    "near_duplicate_share": 0.9894
+   },
+   "hub": {
+    "pages": 160,
+    "near_duplicate_ge_0_70": 157,
+    "gate12_fail": 159,
+    "near_duplicate_share": 0.9812
+   },
+   "material": {
+    "pages": 158,
+    "near_duplicate_ge_0_70": 157,
+    "gate12_fail": 157,
+    "near_duplicate_share": 0.9937
+   },
+   "institutional": {
+    "pages": 47,
+    "near_duplicate_ge_0_70": 47,
+    "gate12_fail": 47,
+    "near_duplicate_share": 1.0
+   },
+   "unknown": {
+    "pages": 37,
+    "near_duplicate_ge_0_70": 0,
+    "gate12_fail": 34,
+    "near_duplicate_share": 0.0
+   },
+   "compound": {
+    "pages": 1,
+    "near_duplicate_ge_0_70": 0,
+    "gate12_fail": 0,
+    "near_duplicate_share": 0.0
+   },
+   "methodology": {
+    "pages": 1,
+    "near_duplicate_ge_0_70": 0,
+    "gate12_fail": 0,
+    "near_duplicate_share": 0.0
+   },
+   "economic": {
+    "pages": 1,
+    "near_duplicate_ge_0_70": 1,
+    "gate12_fail": 1,
+    "near_duplicate_share": 1.0
+   }
+  },
+  "by_knowledge_object_family": {
+   "terminology_concept": {
+    "pages": 10936,
+    "near_duplicate_ge_0_70": 10933,
+    "gate12_fail": 10936,
+    "near_duplicate_share": 0.9997
+   },
+   "industrial_process": {
+    "pages": 2416,
+    "near_duplicate_ge_0_70": 2416,
+    "gate12_fail": 2416,
+    "near_duplicate_share": 1.0
+   },
+   "unclassified": {
+    "pages": 528,
+    "near_duplicate_ge_0_70": 486,
+    "gate12_fail": 522,
+    "near_duplicate_share": 0.9205
+   },
+   "site_foundation": {
+    "pages": 160,
+    "near_duplicate_ge_0_70": 157,
+    "gate12_fail": 159,
+    "near_duplicate_share": 0.9812
+   },
+   "chemical_substance": {
+    "pages": 1,
+    "near_duplicate_ge_0_70": 0,
+    "gate12_fail": 0,
+    "near_duplicate_share": 0.0
+   }
+  },
+  "runtime_seconds": 5.45,
+  "largest_clusters_ge_0_70": [
+   {
+    "cluster_size": 13976,
+    "distinct_entity_masked_bodies": 370,
+    "distinct_entities": 5465,
+    "representative_page": "site/public/en/terminology/cohort05/c05-inorg-actinium-hydrosulfide/air/res/res/index.html",
+    "shared_substantive_skeleton": [
+     "role in the bisulfid atlas",
+     "term and topic boundary",
+     "context layers",
+     "reference summary",
+     "technical context",
+     "language layer",
+     "research journalism",
+     "institutional industry",
+     "student public",
+     "who this page helps"
+    ],
+    "representative_substantive_body_entity_masked": "this dossier maps xentx within the bisulfid terminology reference layer for the cohort05 terminology family en it orients readers across related nodes without unsupported claims terminology reference en en terminology source governed reference this node situates xentx within the cohort05 family as a terminology reference entry it clarifies how neighbouring atlas routes relate without asserting unsupported chemical facts terminology reference surface for xentx terminology reference placement within the governed atlas structure language en spelling boundary awareness where relevant structured re",
+    "variable_slots_example": {
+     "page_a": "site/public/en/terminology/cohort05/c05-inorg-actinium-hydrosulfide/air/res/res/index.html",
+     "page_b": "site/public/compliance/customs-sulfur-language/index.html",
+     "slots": [
+      {
+       "a": "c05 inorg actinium hydrosulfide for researchers",
+       "b": "customs sulfur language"
+      },
+      {
+       "a": "terminology",
+       "b": "public"
+      },
+      {
+       "a": "",
+       "b": "dossier"
+      },
+      {
+       "a": "cohort05",
+       "b": "compliance"
+      },
+      {
+       "a": "terminology",
+       "b": "public"
+      },
+      {
+       "a": "",
+       "b": "dossier"
+      },
+      {
+       "a": "en terminology",
+       "b": "compliance customs sulfur language"
+      },
+      {
+       "a": "c05 inorg actinium hydrosulfide for researchers",
+       "b": "customs sulfur language"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.7575
+    },
+    "estimated_repeated_text_ratio": 0.9983,
+    "what_genuinely_differs": "entity slots plus 370 template variants (audience/layer bullets); no evidence-backed knowledge units",
+    "languages": {
+     "en": 13707,
+     "de": 269
+    },
+    "families": {
+     "en|terminology|en/terminology/cohort05": 4896,
+     "en|terminology|en/terminology/cohort04": 4576,
+     "en|industrial|en/terminology/cohort05": 1256,
+     "en|industrial|en/terminology/cohort04": 1160,
+     "en|language|en/terminology/cohort05": 240,
+     "de|terminology|de/terminology/cohort04": 119
+    },
+    "knowledge_object_families": {
+     "terminology_concept": 10918,
+     "industrial_process": 2416,
+     "unclassified": 485,
+     "site_foundation": 157
+    },
+    "sample_entities": [
+     "Sulfate",
+     "Sulfite",
+     "Thiosulfate",
+     "Carbonyl Sulfide",
+     "Copper Sulfides",
+     "Sulfide Anion",
+     "Sulfur Dioxide",
+     "Sulfur Trioxide"
+    ],
+    "public_indexable_members": 13976,
+    "draft_members": 0,
+    "recommendation": [
+     "withdraw from indexation candidates (Gate 12 FAIL on a live indexable surface); rebuild only from Knowledge Objects",
+     "consolidate: many audience/layer variants of the same entity -> one Knowledge Object with modules",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   },
+   {
+    "cluster_size": 16,
+    "distinct_entity_masked_bodies": 5,
+    "distinct_entities": 16,
+    "representative_page": "site/public/bisulfide-hydrosulfide-sulfide/index.html",
+    "shared_substantive_skeleton": [
+     "role in the bisulfid atlas",
+     "term and topic boundary",
+     "context layers",
+     "reference summary",
+     "technical context",
+     "language layer",
+     "research journalism",
+     "institutional industry",
+     "student public",
+     "who this page helps"
+    ],
+    "representative_substantive_body_entity_masked": "this dossier maps xentx within the bisulfid terminology reference layer en it provides structure relationships and cautious context for atlas navigation terminology reference en bisulfid atlas source governed reference this node defines the reference boundary for xentx as a terminology reference page linked routes show spelling compound and context relationships across the atlas terminology reference surface for xentx terminology reference placement within the governed atlas structure language en spelling boundary awareness where relevant structured reference for analysts and journalists not a",
+    "variable_slots_example": {
+     "page_a": "site/public/bisulfide-hydrosulfide-sulfide/index.html",
+     "page_b": "site/public/bisulfid/index.html",
+     "slots": [
+      {
+       "a": "bisulfide hydrosulfide and sulfide",
+       "b": "bisulfid"
+      },
+      {
+       "a": "bisulfide hydrosulfide and sulfide",
+       "b": "bisulfid"
+      },
+      {
+       "a": "bisulfide hydrosulfide and sulfide",
+       "b": "bisulfid"
+      }
+     ],
+     "raw_text_similarity_ratio": 0.9458
+    },
+    "estimated_repeated_text_ratio": 0.9442,
+    "what_genuinely_differs": "entity slots plus 5 template variants (audience/layer bullets); no evidence-backed knowledge units",
+    "languages": {
+     "en": 16
+    },
+    "families": {
+     "en|terminology|bisulfid": 1,
+     "en|terminology|bisulfide-hydrosulfide-sulfide": 1,
+     "en|terminology|disulfide-bonds": 1,
+     "en|terminology|hydrosulfide": 1,
+     "en|terminology|protein-disulfide-structure": 1,
+     "en|terminology|sulfid": 1
+    },
+    "knowledge_object_families": {
+     "terminology_concept": 15,
+     "unclassified": 1
+    },
+    "sample_entities": [
+     "/bisulfid/",
+     "Bisulfide, Hydrosulfide, and Sulfide",
+     "Disulfide Bonds",
+     "Hydrosulfide",
+     "Protein Disulfide Structure",
+     "Sulfid",
+     "Sulfur Compounds",
+     "Sulfur Uses"
+    ],
+    "public_indexable_members": 16,
+    "draft_members": 0,
+    "recommendation": [
+     "withdraw from indexation candidates (Gate 12 FAIL on a live indexable surface); rebuild only from Knowledge Objects",
+     "rebuild/convert to Knowledge Objects only where governed evidence exists; otherwise remain non-public",
+     "remove from publication candidates without deleting the underlying planned entity; no route deletion in this sprint"
+    ]
+   }
+  ],
+  "parse_seconds": 54.73,
+  "indexable_pages": 14039,
+  "indexable_pages_failing_gate12": 14032
+ },
+ "controls": [
+  {
+   "control_page": "main/content/en/pages/molybdenum-disulfide.md",
+   "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
+   "gate12_vs_markdown_corpus": {
+    "page": "main/content/en/pages/molybdenum-disulfide.md",
+    "surface": "markdown",
+    "route_id": "molybdenum_disulfide",
+    "language": "en",
+    "family": "en|en/root|PT_COMPOUND_ENTITY",
+    "ko_family": "chemical_substance",
+    "is_draft": true,
+    "publication_candidate": false,
+    "public_indexable": false,
+    "verdict": "PASS",
+    "failures": [],
+    "reviews": [],
+    "text": {
+     "similarity": 0.0,
+     "jaccard": 0.0,
+     "overlap_coefficient": 0.0,
+     "closest_page": "main/content/de/pages/bisulfid-bisulfit-wall.md",
+     "status": "PASS_TEXT_ONLY"
+    },
+    "entity_substitution_detected": false,
+    "structure": {
+     "skeleton": [
+      "at a glance",
+      "chemical identity",
+      "bulk structure stacked s mo s layers",
+      "three polytypes 1t 2h and 3r",
+      "the 2h polytype",
+      "where the name 2h comes from",
+      "lattice parameter a two coexisting determinations",
+      "boundary 2h is not 3r",
+      "what this reference does not establish"
+     ],
+     "shared_with_pages": 0,
+     "best_sequence_ratio": 0.0,
+     "structural_template": false
+    },
+    "boilerplate": {
+     "template_sentence_ratio": 0.0
+    },
+    "substantive_tokens": 585,
+    "infra_tokens": 620,
+    "information_gain": {
+     "registered_units": 7,
+     "valid_units": 7,
+     "required": 3,
+     "status": "PASS",
+     "units": [
+      {
+       "unit_id": "IGU-MOS2-001",
+       "dimension": "chemical_identity",
+       "valid": true,
+       "reasons": []
+      },
+      {
+       "unit_id": "IGU-MOS2-002",
+       "dimension": "chemical_structure",
+       "valid": true,
+       "reasons": []
+      },
+      {
+       "unit_id": "IGU-MOS2-003",
+       "dimension": "polytype_distinction",
+       "valid": true,
+       "reasons": []
+      },
+      {
+       "unit_id": "IGU-MOS2-004",
+       "dimension": "chemical_structure",
+       "valid": true,
+       "reasons": []
+      },
+      {
+       "unit_id": "IGU-MOS2-005",
+       "dimension": "historical_evidence",
+       "valid": true,
+       "reasons": []
+      },
+      {
+       "unit_id": "IGU-MOS2-006",
+       "dimension": "quantitative_property",
+       "valid": true,
+       "reasons": []
+      },
+      {
+       "unit_id": "IGU-MOS2-007",
+       "dimension": "polytype_distinction",
+       "valid": true,
+       "reasons": []
+      }
+     ],
+     "localization_of": null
+    },
+    "page_class": "knowledge_reference",
+    "gate12_blocks_publication": false
+   },
+   "nearest_in_html_surface": {
+    "similarity": 0.0,
+    "jaccard": 0.0,
+    "overlap_coefficient": 0.0,
+    "closest_page": "site/public/acquire/index.html"
+   },
+   "before_after": {
+    "legacy_markdown_draft@9d944d736d": {
+     "similarity_to_reconstruction": 0.0,
+     "old_page_verdict": "FAIL",
+     "old_page_failures": [
+      "near_duplicate: S=1.000 >= 0.7 vs main/content/en/pages/hydrogen-sulfide-risk.md",
+      "thin_body: 22 substantive tokens < 60",
+      "template_prose: template_sentence_ratio=1.000 >= 0.5",
+      "structural_template: substantive skeleton shared with 7 other page(s) (sequence ratio 1.00) with template prose/similarity",
+      "information_gain: 0 valid unit(s) < 3"
+     ],
+     "old_page_nearest": {
+      "similarity": 1.0,
+      "jaccard": 1.0,
+      "overlap_coefficient": null,
+      "closest_page": "main/content/en/pages/hydrogen-sulfide-risk.md",
+      "status": "FAIL"
+     },
+     "old_page_substantive_tokens": 22,
+     "old_page_template_sentence_ratio": 1.0
+    },
+    "main/content/de/pages/molybdenum-disulfide.md": {
+     "similarity_to_reconstruction": 0.0
+    },
+    "main/content/de/pages/terminology/molybdenum-disulfide.md": {
+     "similarity_to_reconstruction": 0.0
+    },
+    "live_html/molybdenum-disulfide/": {
+     "similarity_to_reconstruction": 0.0,
+     "live_verdict": "FAIL",
+     "live_nearest": {
+      "similarity": 0.7664,
+      "jaccard": 0.6176,
+      "overlap_coefficient": 0.7664,
+      "closest_page": "site/public/en/terminology/molybdenum-disulfide/aud/gov/inst/index.html",
+      "status": "FAIL"
+     },
+     "live_substantive_tokens": 143,
+     "live_template_sentence_ratio": 0.9023
+    }
+   },
+   "html_preview": {
+    "preview": "main/data/reference_production/previews/molybdenum-disulfide/index.html",
+    "robots_noindex": true,
+    "nearest_in_public_html_surface": {
+     "similarity": 0.0,
+     "jaccard": 0.0,
+     "overlap_coefficient": 0.0,
+     "closest_page": "site/public/acquire/index.html"
+    },
+    "template_sentence_ratio_vs_surface": 0.0,
+    "skeleton_shared_with_surface_pages": 0,
+    "substantive_tokens": 591
+   },
+   "combined_publication_eligibility": {
+    "publication_state": "not_public",
+    "indexation_state": "noindex",
+    "contract_c": [
+     "not_public",
+     "noindex"
+    ],
+    "gate12_verdict": "PASS",
+    "eligible": false,
+    "reasons": [
+     "Contract C denies publication (Gate 12 cannot override)"
+    ]
+   },
+   "contract_c_inputs": {
+    "governance": "reference_draft",
+    "evidence": "evidence_sufficient",
+    "claim": "claim_pending",
+    "validation": "not_validated",
+    "ig": "ig_reviewed_no_new_route",
+    "release": "not_authorized"
+   }
+  }
+ ],
+ "representative_examples": {
+  "main/content/de/pages/cohort-04-expansion/de/cohort04-de-actinium-sulfid.md": {
+   "verdict": "FAIL",
+   "failures": [
+    "near_duplicate: S=1.000 >= 0.7 vs main/content/de/pages/bisulfid-bisulfit-wall.md",
+    "template_prose: template_sentence_ratio=1.000 >= 0.5",
+    "structural_template: substantive skeleton shared with 261 other page(s) (sequence ratio 1.00) with template prose/similarity",
+    "information_gain: 0 valid unit(s) < 3"
+   ],
+   "text": {
+    "similarity": 1.0,
+    "jaccard": 1.0,
+    "overlap_coefficient": 1.0,
+    "closest_page": "main/content/de/pages/bisulfid-bisulfit-wall.md",
+    "status": "FAIL"
+   },
+   "boilerplate": {
+    "template_sentence_ratio": 1.0
+   },
+   "structure": {
+    "skeleton": [
+     "seitenrolle",
+     "terminologie schichten entwurfsprüfung",
+     "abgrenzungen"
+    ],
+    "shared_with_pages": 261,
+    "best_sequence_ratio": 1.0,
+    "structural_template": true
+   },
+   "substantive_tokens": 92,
+   "infra_tokens": 131,
+   "entity_substitution_detected": true
+  },
+  "main/content/de/pages/cohort-04-expansion/de/cohort04-de-aluminium-sulfid.md": {
+   "verdict": "FAIL",
+   "failures": [
+    "near_duplicate: S=1.000 >= 0.7 vs main/content/de/pages/bisulfid-bisulfit-wall.md",
+    "template_prose: template_sentence_ratio=1.000 >= 0.5",
+    "structural_template: substantive skeleton shared with 261 other page(s) (sequence ratio 1.00) with template prose/similarity",
+    "information_gain: 0 valid unit(s) < 3"
+   ],
+   "text": {
+    "similarity": 1.0,
+    "jaccard": 1.0,
+    "overlap_coefficient": 1.0,
+    "closest_page": "main/content/de/pages/bisulfid-bisulfit-wall.md",
+    "status": "FAIL"
+   },
+   "boilerplate": {
+    "template_sentence_ratio": 1.0
+   },
+   "structure": {
+    "skeleton": [
+     "seitenrolle",
+     "terminologie schichten entwurfsprüfung",
+     "abgrenzungen"
+    ],
+    "shared_with_pages": 261,
+    "best_sequence_ratio": 1.0,
+    "structural_template": true
+   },
+   "substantive_tokens": 92,
+   "infra_tokens": 131,
+   "entity_substitution_detected": true
+  },
+  "main/content/de/pages/cohort-04-expansion/de/cohort04-de-calcium-sulfid.md": {
+   "verdict": "FAIL",
+   "failures": [
+    "near_duplicate: S=1.000 >= 0.7 vs main/content/de/pages/bisulfid-bisulfit-wall.md",
+    "template_prose: template_sentence_ratio=1.000 >= 0.5",
+    "structural_template: substantive skeleton shared with 261 other page(s) (sequence ratio 1.00) with template prose/similarity",
+    "information_gain: 0 valid unit(s) < 3"
+   ],
+   "text": {
+    "similarity": 1.0,
+    "jaccard": 1.0,
+    "overlap_coefficient": 1.0,
+    "closest_page": "main/content/de/pages/bisulfid-bisulfit-wall.md",
+    "status": "FAIL"
+   },
+   "boilerplate": {
+    "template_sentence_ratio": 1.0
+   },
+   "structure": {
+    "skeleton": [
+     "seitenrolle",
+     "terminologie schichten entwurfsprüfung",
+     "abgrenzungen"
+    ],
+    "shared_with_pages": 261,
+    "best_sequence_ratio": 1.0,
+    "structural_template": true
+   },
+   "substantive_tokens": 92,
+   "infra_tokens": 131,
+   "entity_substitution_detected": true
+  },
+  "main/content/de/pages/molybdenum-disulfide.md": {
+   "verdict": "FAIL",
+   "failures": [
+    "near_duplicate: S=1.000 >= 0.7 vs main/content/de/pages/bisulfid-bisulfit-wall.md",
+    "template_prose: template_sentence_ratio=1.000 >= 0.5",
+    "structural_template: substantive skeleton shared with 261 other page(s) (sequence ratio 1.00) with template prose/similarity",
+    "information_gain: 0 valid unit(s) < 3"
+   ],
+   "text": {
+    "similarity": 1.0,
+    "jaccard": 1.0,
+    "overlap_coefficient": 1.0,
+    "closest_page": "main/content/de/pages/bisulfid-bisulfit-wall.md",
+    "status": "FAIL"
+   },
+   "boilerplate": {
+    "template_sentence_ratio": 1.0
+   },
+   "structure": {
+    "skeleton": [
+     "seitenrolle",
+     "terminologie schichten entwurfsprüfung",
+     "abgrenzungen"
+    ],
+    "shared_with_pages": 261,
+    "best_sequence_ratio": 1.0,
+    "structural_template": true
+   },
+   "substantive_tokens": 92,
+   "infra_tokens": 129,
+   "entity_substitution_detected": true
+  },
+  "main/content/en/pages/molybdenum-disulfide.md": {
+   "verdict": "PASS",
+   "failures": [],
+   "text": {
+    "similarity": 0.0,
+    "jaccard": 0.0,
+    "overlap_coefficient": null,
+    "closest_page": null,
+    "note": "no LSH candidate (below detection floor)",
+    "status": "PASS_TEXT_ONLY"
+   },
+   "boilerplate": {
+    "template_sentence_ratio": 0.0
+   },
+   "structure": {
+    "skeleton": [
+     "at a glance",
+     "chemical identity",
+     "bulk structure stacked s mo s layers",
+     "three polytypes 1t 2h and 3r",
+     "the 2h polytype",
+     "where the name 2h comes from",
+     "lattice parameter a two coexisting determinations",
+     "boundary 2h is not 3r",
+     "what this reference does not establish"
+    ],
+    "shared_with_pages": 0,
+    "best_sequence_ratio": 0.0,
+    "structural_template": false
+   },
+   "substantive_tokens": 585,
+   "infra_tokens": 620,
+   "entity_substitution_detected": false
+  }
+ },
+ "runtime_seconds_total": 70.98
+}

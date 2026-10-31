@@ -1,0 +1,6 @@
+{
+  "registry_id": "SOURCE-LOCK-RECORDS",
+  "version": "1.0.0",
+  "policy": "main/data/release/release_review_policy.json#source_lock_checklist",
+  "records": []
+}

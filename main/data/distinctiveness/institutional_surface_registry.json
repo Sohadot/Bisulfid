@@ -1,0 +1,456 @@
+{
+  "registry_id": "GATE-12-I-INSTITUTIONAL-SURFACES",
+  "version": "1.0.0",
+  "status": "governed",
+  "governed_by": [
+    "main/data/distinctiveness/gate12_policy.json#page_classes",
+    "scripts/validators/distinctiveness_core.py:InstitutionalRegistry",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Closed registry of NON-FACTUAL institutional surfaces evaluated under Gate 12-I. A binding replaces only the Information-Gain unit requirement with a singleton function check; near-duplicate, template-prose, structural-template and thin-body rules still apply, and Contract C R11 still governs indexation. Adding a function is a governance change; a second surface for the same (function, language) fails as a duplicate.",
+  "functions": [
+    {
+      "function_id": "about_introduction",
+      "description": "about introduction"
+    },
+    {
+      "function_id": "about_purpose",
+      "description": "about purpose"
+    },
+    {
+      "function_id": "acquisition",
+      "description": "asset acquisition page"
+    },
+    {
+      "function_id": "gateway_home",
+      "description": "site home / language home"
+    },
+    {
+      "function_id": "gateway_language_home",
+      "description": "language section root"
+    },
+    {
+      "function_id": "glossary_hub",
+      "description": "glossary navigation hub"
+    },
+    {
+      "function_id": "methodology",
+      "description": "corpus methodology"
+    },
+    {
+      "function_id": "nav_atlas_hub",
+      "description": "nav atlas hub"
+    },
+    {
+      "function_id": "nav_compounds_hub",
+      "description": "nav compounds hub"
+    },
+    {
+      "function_id": "nav_corpus_map",
+      "description": "nav corpus map"
+    },
+    {
+      "function_id": "nav_disambiguation_map",
+      "description": "nav disambiguation map"
+    },
+    {
+      "function_id": "nav_internal_reference",
+      "description": "nav internal reference"
+    },
+    {
+      "function_id": "nav_languages_hub",
+      "description": "nav languages hub"
+    },
+    {
+      "function_id": "nav_materials_hub",
+      "description": "nav materials hub"
+    },
+    {
+      "function_id": "nav_minerals_index",
+      "description": "nav minerals index"
+    },
+    {
+      "function_id": "nav_multilingual_map",
+      "description": "nav multilingual map"
+    },
+    {
+      "function_id": "nav_terminology_hub",
+      "description": "nav terminology hub"
+    },
+    {
+      "function_id": "nav_terminology_map",
+      "description": "nav terminology map"
+    },
+    {
+      "function_id": "newsletter",
+      "description": "newsletter sign-up"
+    },
+    {
+      "function_id": "policy_ai_readable",
+      "description": "policy ai readable"
+    },
+    {
+      "function_id": "policy_audience_layers",
+      "description": "policy audience layers"
+    },
+    {
+      "function_id": "policy_chemical_language",
+      "description": "policy chemical language"
+    },
+    {
+      "function_id": "policy_child_safe",
+      "description": "policy child safe"
+    },
+    {
+      "function_id": "policy_citation",
+      "description": "policy citation"
+    },
+    {
+      "function_id": "policy_claim_registry",
+      "description": "policy claim registry"
+    },
+    {
+      "function_id": "policy_claims",
+      "description": "policy claims"
+    },
+    {
+      "function_id": "policy_economic_restrictions",
+      "description": "policy economic restrictions"
+    },
+    {
+      "function_id": "policy_editorial",
+      "description": "policy editorial"
+    },
+    {
+      "function_id": "policy_hreflang",
+      "description": "policy hreflang"
+    },
+    {
+      "function_id": "policy_internal_linking",
+      "description": "policy internal linking"
+    },
+    {
+      "function_id": "policy_multilingual",
+      "description": "policy multilingual"
+    },
+    {
+      "function_id": "policy_nomenclature",
+      "description": "policy nomenclature"
+    },
+    {
+      "function_id": "policy_ontology",
+      "description": "policy ontology"
+    },
+    {
+      "function_id": "policy_reference_layers",
+      "description": "policy reference layers"
+    },
+    {
+      "function_id": "policy_reliability",
+      "description": "policy reliability"
+    },
+    {
+      "function_id": "policy_source_classes",
+      "description": "policy source classes"
+    },
+    {
+      "function_id": "policy_sources",
+      "description": "policy sources"
+    },
+    {
+      "function_id": "quality_gate_explainer",
+      "description": "public explanation of the quality gate"
+    },
+    {
+      "function_id": "sources_registry",
+      "description": "public explanation of the source registry"
+    },
+    {
+      "function_id": "status_corpus",
+      "description": "status corpus"
+    },
+    {
+      "function_id": "translator_playbook",
+      "description": "translator playbook"
+    }
+  ],
+  "bindings": [
+    {
+      "path": "/methodology/",
+      "function_id": "methodology",
+      "language": "en"
+    },
+    {
+      "route_id": "corpus_methodology_overview",
+      "function_id": "methodology",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_methodology",
+      "function_id": "methodology",
+      "language": "en"
+    },
+    {
+      "route_id": "home",
+      "function_id": "gateway_home",
+      "language": "en"
+    },
+    {
+      "route_id": "de_home",
+      "function_id": "gateway_home",
+      "language": "de"
+    },
+    {
+      "path": "/en/",
+      "function_id": "gateway_language_home",
+      "language": "en"
+    },
+    {
+      "route_id": "acquire",
+      "function_id": "acquisition",
+      "language": "en"
+    },
+    {
+      "route_id": "newsletter",
+      "function_id": "newsletter",
+      "language": "en"
+    },
+    {
+      "route_id": "sources",
+      "function_id": "sources_registry",
+      "language": "en"
+    },
+    {
+      "route_id": "glossary",
+      "function_id": "glossary_hub",
+      "language": "en"
+    },
+    {
+      "route_id": "de_glossary",
+      "function_id": "glossary_hub",
+      "language": "de"
+    },
+    {
+      "route_id": "quality_gate_public_explainer",
+      "function_id": "quality_gate_explainer",
+      "language": "en"
+    },
+    {
+      "route_id": "citation_discipline_primer",
+      "function_id": "policy_citation",
+      "language": "en"
+    },
+    {
+      "route_id": "internal_linking_discipline",
+      "function_id": "policy_internal_linking",
+      "language": "en"
+    },
+    {
+      "route_id": "en_gov_hreflang_policy",
+      "function_id": "policy_hreflang",
+      "language": "en"
+    },
+    {
+      "route_id": "en_gov_ontology_governance",
+      "function_id": "policy_ontology",
+      "language": "en"
+    },
+    {
+      "route_id": "ontology_alignment_primer",
+      "function_id": "policy_ontology",
+      "language": "en"
+    },
+    {
+      "route_id": "en_gov_claim_registry_explainer",
+      "function_id": "policy_claim_registry",
+      "language": "en"
+    },
+    {
+      "route_id": "nomenclature_governance_overview",
+      "function_id": "policy_nomenclature",
+      "language": "en"
+    },
+    {
+      "route_id": "de_gov_nomenclature",
+      "function_id": "policy_nomenclature",
+      "language": "de"
+    },
+    {
+      "route_id": "academic_teaching_source_boundary",
+      "function_id": "policy_source_classes",
+      "language": "en"
+    },
+    {
+      "route_id": "de_method_editorial_standards",
+      "function_id": "policy_editorial",
+      "language": "de"
+    },
+    {
+      "route_id": "translator_playbook_bisulfide_family",
+      "function_id": "translator_playbook",
+      "language": "en"
+    },
+    {
+      "route_id": "de_method_translator_playbook",
+      "function_id": "translator_playbook",
+      "language": "de"
+    },
+    {
+      "route_id": "de_gov_claim_boundary",
+      "function_id": "policy_claims",
+      "language": "de"
+    },
+    {
+      "route_id": "de_gov_source_locking",
+      "function_id": "policy_sources",
+      "language": "de"
+    },
+    {
+      "route_id": "en_foundation_sovereign_intro",
+      "function_id": "about_introduction",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_institutional_purpose",
+      "function_id": "about_purpose",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_source_policy",
+      "function_id": "policy_sources",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_claim_policy",
+      "function_id": "policy_claims",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_knowledge_reliability",
+      "function_id": "policy_reliability",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_multilingual_overview",
+      "function_id": "policy_multilingual",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_reference_layers",
+      "function_id": "policy_reference_layers",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_audience_layers",
+      "function_id": "policy_audience_layers",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_chemical_language_governance",
+      "function_id": "policy_chemical_language",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_ai_readable_policy",
+      "function_id": "policy_ai_readable",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_child_safe_policy",
+      "function_id": "policy_child_safe",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_economic_institutional_restrictions",
+      "function_id": "policy_economic_restrictions",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_corpus_status",
+      "function_id": "status_corpus",
+      "language": "en"
+    },
+    {
+      "route_id": "en_foundation_launch_status",
+      "function_id": "status_corpus",
+      "language": "en"
+    },
+    {
+      "route_id": "en_index_terminology_spine",
+      "function_id": "nav_terminology_map",
+      "language": "en"
+    },
+    {
+      "route_id": "de_index_terminology_map",
+      "function_id": "nav_terminology_map",
+      "language": "de"
+    },
+    {
+      "route_id": "en_index_disambiguation_map",
+      "function_id": "nav_disambiguation_map",
+      "language": "en"
+    },
+    {
+      "route_id": "de_index_disambiguation_map",
+      "function_id": "nav_disambiguation_map",
+      "language": "de"
+    },
+    {
+      "route_id": "en_index_multilingual_map",
+      "function_id": "nav_multilingual_map",
+      "language": "en"
+    },
+    {
+      "route_id": "multilingual_corpus_map",
+      "function_id": "nav_corpus_map",
+      "language": "en"
+    },
+    {
+      "route_id": "de_method_corpus_map",
+      "function_id": "nav_corpus_map",
+      "language": "de"
+    },
+    {
+      "route_id": "en_nav_internal_reference",
+      "function_id": "nav_internal_reference",
+      "language": "en"
+    },
+    {
+      "route_id": "en_term_sulfide_minerals_index",
+      "function_id": "nav_minerals_index",
+      "language": "en"
+    },
+    {
+      "path": "/atlas/",
+      "function_id": "nav_atlas_hub",
+      "language": "en"
+    },
+    {
+      "path": "/terminology/",
+      "function_id": "nav_terminology_hub",
+      "language": "en"
+    },
+    {
+      "path": "/terms/",
+      "function_id": "nav_terminology_hub",
+      "language": "en"
+    },
+    {
+      "path": "/languages/",
+      "function_id": "nav_languages_hub",
+      "language": "en"
+    },
+    {
+      "path": "/materials/",
+      "function_id": "nav_materials_hub",
+      "language": "en"
+    },
+    {
+      "path": "/compounds/",
+      "function_id": "nav_compounds_hub",
+      "language": "en"
+    }
+  ],
+  "not_institutional_note": "Pipeline / corpus-status / cohort-index pages (cohort04_*_gov_*, cohort04/05_*_index_*, en_foundation_1500/7500/14000_*, en_gov_rc_pipeline_status, en_gov_batch_render_discipline, en_index_cohort03_spine, en_multilingual_de_expansion_hub) are deliberately NOT institutional functions: they expose internal build state and are classified as redundant presentation surfaces in the legacy disposition registry.",
+  "holder_rule": "The FIRST binding listed for a (function, language) holds it; later bindings are duplicates that must consolidate into the holder."
+}

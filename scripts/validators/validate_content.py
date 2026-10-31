@@ -3,6 +3,9 @@
 
 Currently a placeholder. Full enforcement is not active.
 
+Duplicate, near-duplicate, template and thin content are NOT checked here: they are
+enforced for real by Gate 12 (validate_distinctiveness.py).
+
 Future checks (when build system is active):
 - Zero placeholder content in any published page (Gate 02)
 - All published pages meet minimum content standard (Gate 09)

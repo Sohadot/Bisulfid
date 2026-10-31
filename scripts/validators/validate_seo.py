@@ -3,6 +3,9 @@
 
 Currently a placeholder. Full enforcement is not active.
 
+Duplicate, near-duplicate, template and thin content are NOT checked here: they are
+enforced for real by Gate 12 (validate_distinctiveness.py).
+
 Future checks (when build system is active):
 - Every published page has a unique <title> tag
 - Every published page has a unique <meta name="description"> tag

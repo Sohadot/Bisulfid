@@ -1,0 +1,7 @@
+{
+ "page": "/de/",
+ "spec": "INST-HOME-DE@1.3.0",
+ "kind": "institutional",
+ "publication_dependencies": [],
+ "dependency_rule": "publish only after every listed governed reference is itself public (otherwise the page would point readers at legacy pages it describes as governed)"
+}

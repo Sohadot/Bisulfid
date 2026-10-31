@@ -1,0 +1,130 @@
+{
+  "registry_id": "CONTRACT-C-R11-NONFACTUAL-CERTIFICATIONS",
+  "version": "1.0.0",
+  "governed_by": [
+    "scripts/governance_scaffolding/contract_c_derive.py (rule R11)",
+    "main/data/distinctiveness/institutional_surface_registry.json",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Contract C rule R11 is the ONLY path to indexation for a non-factual institutional page (home, methodology, navigation). A Gate 12-I PASS is necessary but never sufficient. A certification records governance=governed, validation=validated, release=authorized, and that the page asserts no factual claim. Only status 'certified' entries are used. For organizational publishers, certified_by identifies the responsible publisher organization for nonfactual editorial content, not a human scientific peer reviewer. Gate 12-I and publication-authority surface checks remain separate mandatory vetoes.",
+  "entry_schema": [
+    "certification_id",
+    "path",
+    "institutional_function",
+    "governance",
+    "validation",
+    "release",
+    "status",
+    "certified_by",
+    "certified_on",
+    "gate12i_evidence"
+  ],
+  "certifications": [
+    {
+      "certification_id": "R11-HOME-EN-001",
+      "path": "/",
+      "institutional_function": "gateway_home",
+      "governance": "governed",
+      "validation": "validated",
+      "release": "authorized",
+      "status": "certified",
+      "certified_by": "Sohadot (sohadot.com)",
+      "certified_on": "2026-10-31",
+      "gate12i_evidence": {
+        "spec": "main/data/reference_production/render_specs/INST-HOME-EN.json",
+        "preview": "main/data/reference_production/previews/home/index.html",
+        "assessment": "main/data/reference_production/SEO_PREVIEW_ASSESSMENT.json",
+        "result": "Previous preview passed Gate 12-I on 2026-10-30; updated 2026-10-31 candidate still requires fresh execution against exact final tree before merging. No fresh PASS is asserted."
+      },
+      "non_factual_basis": "A publisher gateway explaining what questions the project investigates and how sources are treated; no new species identity, toxicity or material performance claim. Owner-confirmed publisher identity. This certification applies only to the EN/DE institutional homepages.",
+      "owner_actions_required": [],
+      "would_derive_if_certified": "R11 -> (public_indexable, index_approved)",
+      "release_candidate": {
+        "html": "main/data/release/staged/home/index.html",
+        "manifest": "main/data/release/staged/home/release.json",
+        "spec": "main/data/reference_production/render_specs/INST-HOME-EN.json"
+      },
+      "owner_review_checklist": [
+        {
+          "item": "Editorial content, source discipline, exclusion of unsupported chemical equivalence and publisher identity",
+          "status": "Sohadot owner confirmed 2026-10-31; statement-by-statement editorial audit contains 0 unclassified and 0 owner confirmation required",
+          "evidence": "main/data/release/HOMEPAGE_CLAIM_AUDIT.json"
+        },
+        {
+          "item": "Distinct EN/DE language content and reciprocal canonical/hreflang",
+          "status": "verified by current GitHub read-back; requires Gate 12-I executable test on final tree",
+          "evidence": "main/data/reference_production/render_specs/INST-HOME-EN.json"
+        },
+        {
+          "item": "Linked incomplete scientific references",
+          "status": "none; both homepages have zero publication dependencies",
+          "evidence": "main/data/release/staged/home/release.json"
+        },
+        {
+          "item": "Editorial contact",
+          "status": "Sohadot chooses not to introduce an unverified new editorial address; existing institutional source/methodology links remain"
+        },
+        {
+          "item": "Gate 12-I and full public-surface CI",
+          "status": "Required technical veto on the final branch; prior 2026-10-30 gate result does not certify revised 2026-10-31 HTML"
+        }
+      ],
+      "how_to_certify": "Sohadot (sohadot.com) has expressly authorized the two organizational nonfactual institutional pages. The certified_by value is its responsible publisher identity, not a purported person or scientific reviewer. Existing R11 Gate 12-I and publication checks must pass before deployment.",
+      "certification_kind": "organizational_publisher_editorial_approval",
+      "publisher_authorization_basis": "Explicit project-owner direction of 2026-10-31 to finalize both BISULFID homepages, together with prior explicit identification of Sohadot (sohadot.com) as the owner. An organizational editorial approval, not a human expert signature."
+    },
+    {
+      "certification_id": "R11-HOME-DE-001",
+      "path": "/de/",
+      "institutional_function": "gateway_home",
+      "governance": "governed",
+      "validation": "validated",
+      "release": "authorized",
+      "status": "certified",
+      "certified_by": "Sohadot (sohadot.com)",
+      "certified_on": "2026-10-31",
+      "gate12i_evidence": {
+        "spec": "main/data/reference_production/render_specs/INST-HOME-DE.json",
+        "preview": "main/data/reference_production/previews/de/index.html",
+        "assessment": "main/data/reference_production/SEO_PREVIEW_ASSESSMENT.json",
+        "result": "Previous preview passed Gate 12-I on 2026-10-30; updated 2026-10-31 candidate still requires fresh execution against exact final tree before merging. No fresh PASS is asserted."
+      },
+      "non_factual_basis": "A publisher gateway explaining what questions the project investigates and how sources are treated; no new species identity, toxicity or material performance claim. Owner-confirmed publisher identity. This certification applies only to the EN/DE institutional homepages.",
+      "owner_actions_required": [],
+      "would_derive_if_certified": "R11 -> (public_indexable, index_approved)",
+      "release_candidate": {
+        "html": "main/data/release/staged/de/index.html",
+        "manifest": "main/data/release/staged/de/release.json",
+        "spec": "main/data/reference_production/render_specs/INST-HOME-DE.json"
+      },
+      "owner_review_checklist": [
+        {
+          "item": "Editorial content, source discipline, exclusion of unsupported chemical equivalence and publisher identity",
+          "status": "Sohadot owner confirmed 2026-10-31; statement-by-statement editorial audit contains 0 unclassified and 0 owner confirmation required",
+          "evidence": "main/data/release/HOMEPAGE_CLAIM_AUDIT.json"
+        },
+        {
+          "item": "Distinct EN/DE language content and reciprocal canonical/hreflang",
+          "status": "verified by current GitHub read-back; requires Gate 12-I executable test on final tree",
+          "evidence": "main/data/reference_production/render_specs/INST-HOME-DE.json"
+        },
+        {
+          "item": "Linked incomplete scientific references",
+          "status": "none; both homepages have zero publication dependencies",
+          "evidence": "main/data/release/staged/de/release.json"
+        },
+        {
+          "item": "Editorial contact",
+          "status": "Sohadot chooses not to introduce an unverified new editorial address; existing institutional source/methodology links remain"
+        },
+        {
+          "item": "Gate 12-I and full public-surface CI",
+          "status": "Required technical veto on the final branch; prior 2026-10-30 gate result does not certify revised 2026-10-31 HTML"
+        }
+      ],
+      "how_to_certify": "Sohadot (sohadot.com) has expressly authorized the two organizational nonfactual institutional pages. The certified_by value is its responsible publisher identity, not a purported person or scientific reviewer. Existing R11 Gate 12-I and publication checks must pass before deployment.",
+      "certification_kind": "organizational_publisher_editorial_approval",
+      "publisher_authorization_basis": "Explicit project-owner direction of 2026-10-31 to finalize both BISULFID homepages, together with prior explicit identification of Sohadot (sohadot.com) as the owner. An organizational editorial approval, not a human expert signature."
+    }
+  ]
+}

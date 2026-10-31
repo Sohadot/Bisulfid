@@ -1,0 +1,54 @@
+{
+  "policy_id": "DOCUMENTARY-VERIFICATION",
+  "version": "1.0.0",
+  "status": "adopted",
+  "adopted_by": "Sohadot (sohadot.com)",
+  "adopted_on": "2026-10-31",
+  "owner_direction": {
+    "recorded_on": "2026-10-31",
+    "channel": "owner instruction in the Claude Code review session (Release-01, 'Evidence-Based Reference Governance & Publication Readiness')",
+    "content": "Paid external scientific review and professional signatures must not be universal prerequisites for publishing ordinary, low-risk reference content; a proportionate, evidence-based pathway is wanted. This is a direction, not an adoption: the policy takes effect only when a named owner sets status 'adopted' with adopted_by and adopted_on.",
+    "recorded_by": "claude-code-agent (recorder only; not an approver)"
+  },
+  "governed_by": [
+    "scripts/release/documentary_verification.py",
+    "scripts/release/release_checks.py",
+    "main/data/release/release_review_policy.json"
+  ],
+  "verification_levels": {
+    "not_verified": "documentary checks not run or not passed",
+    "documentary_verified": "every documentary check below passed for every claim of the Knowledge Object. Automated evidence verification; NOT peer review and never labelled as such",
+    "independently_human_reviewed": "a signed review by a named human who is not the preparer (release_review_policy.json validation_rule). Unchanged."
+  },
+  "risk_classes": {
+    "low_risk_informational": "terminology, definitions, nomenclature, historical or linguistic comparison, non-operational scientific explanation, evidence-based conceptual comparison. May use documentary verification.",
+    "higher_risk": "handling instructions, toxicity or exposure guidance, industrial operating procedures, safety-critical engineering, medical or regulatory-compliance advice, performance or commercial claims. Documentary verification never suffices: independent human review and L6 signatures remain required.",
+    "undetermined": "anything the evaluator cannot classify with confidence. Treated as higher_risk (fail-closed)."
+  },
+  "risk_rule": "Classified from the actual claims and every author-controlled rendered field, not the page title. The publication candidate must DECLARE low_risk_informational with a rationale; every claim must have an eligible claim_type; the KO must exclude safety and medical claim classes; the required fields (title, h1, summary, SEO title and description, not-established text) must be present; and a sentence-level scan of every field must find no higher-risk signal. Fields assessed (from the renderer's content model, not scraped HTML): title, h1, summary, SEO title and description, JSON-LD string values except identifiers, related-link labels and relations, module headings, paragraphs and table columns/cells, at-a-glance labels and values, synthesis heading, intro, labels and items, the not-established heading and text, and every claim statement. Not assessed as statements: navigation, breadcrumbs, evidence-trail citation metadata, source titles, URLs. Operational guidance (imperatives, dosage/concentration/temperature quantities) is always a signal; a risk keyword in a sentence that only declares a topic out of scope is exempt unless that sentence instructs or quantifies. Keyword signals cannot establish safety or technical correctness: they only route content away from this pathway. Any gap yields undetermined (fail-closed).",
+  "eligible_claim_types": [
+    "terminology"
+  ],
+  "documentary_checks": {
+    "D1_claims": "every claim bound to the KO exists, is approved (narrow) in its registry, has an eligible claim_type, and lists supporting evidence that the KO binds; no pending or rejected claim is bound",
+    "D2_evidence": "every bound evidence record is governed, evidence_verified, and admitted by admissible() for its declared use (renderer admission)",
+    "D3_scope": "each record's intended use is within its source-use qualification and the record's allowed uses (claim within the cited source's scope)",
+    "D4_reproducible": "source-lock checklist L1-L5 pass for every source behind the KO: identity verified, captured with sha256 and verbatim passages, reproduced on a later date, version pinned, quotation scope",
+    "D5_conflicts": "no evidence or claim is flagged as an unresolved material contradiction, and where the KO has unresolved fields the reference states them (an 'open' synthesis group and a 'not established' section)",
+    "D6_quality": "Gate 12 PASS on the canonical draft with at least the minimum valid IG units, and a recorded distinctiveness review",
+    "D7_risk": "risk class low_risk_informational (see risk_rule)"
+  },
+  "what_documentary_verification_replaces": {
+    "validation_posture": "'validated' may be honoured by documentary_verified INSTEAD OF a signed independent review, for low_risk_informational KOs, once this policy is adopted",
+    "evidence_posture": "'evidence_locked' may be honoured by documentary acceptance of every source (L1-L5 pass) INSTEAD OF L6 human signatures, for low_risk_informational KOs, once this policy is adopted. L6 is never marked signed; source_lock_status stays 'candidate'."
+  },
+  "what_it_never_replaces": [
+    "owner claim activation (owner_acts.json)",
+    "owner release authorization (owner_acts.json)",
+    "Information Gain amendment ratification (AMD-IG-R03-001)",
+    "Gate 12 / Gate 12-I vetoes",
+    "any requirement for higher_risk or undetermined content",
+    "merge and deployment decisions"
+  ],
+  "version_note": "1.0.0 (2026-10-31): D7 field coverage completed before adoption; no change to D1-D6 or to what the pathway may replace."
+}

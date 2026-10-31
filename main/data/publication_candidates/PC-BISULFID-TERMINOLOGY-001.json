@@ -1,0 +1,151 @@
+{
+  "version": "0.1.0",
+  "sprint": "recovery-03-terminology",
+  "site": "bisulfid.com",
+  "status": "internal_candidate",
+  "governed_by": [
+    "main/data/knowledge_objects/knowledge_object_registry.json",
+    "main/data/information_gain/calibration_pairs.json",
+    "scripts/governance_scaffolding/contract_c_derive.py",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Non-public candidate for the existing /bisulfid-vs-bisulfide/ canonical route. Owner-adopted DOCUMENTARY-VERIFICATION 1.0.0 accepts eligible terminology evidence without pretending human peer review or L6 signatures; owner claim activation, route-realization ratification and release authority remain separately required. Authorizes NO route/HTML/sitemap/indexation.",
+  "publication_candidate_id": "PC-BISULFID-TERMINOLOGY-001",
+  "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
+  "postures": {
+    "governance_posture": "reference_draft",
+    "evidence_posture": "evidence_locked",
+    "claim_posture": "claim_pending",
+    "validation_posture": "validated",
+    "information_gain_posture": "ig_reviewed_route_realization",
+    "release_authorization": "not_authorized"
+  },
+  "derived_contract_c": {
+    "publication_state": "not_public",
+    "indexation_state": "noindex"
+  },
+  "ig_resolution": {
+    "policy_ref": "main/data/information_gain/ig_governance_policy.json",
+    "policy_version": "1.1.0",
+    "object_informational_validity": "object_valid_governed",
+    "new_route_distinctness": "no_new_route_warranted",
+    "new_route_classification": "near_duplicate",
+    "posture_result": "ig_reviewed_route_realization"
+  },
+  "nearest_legacy_routes": [
+    {
+      "route_id": "bisulfid_vs_bisulfide",
+      "path": "/bisulfid-vs-bisulfide/",
+      "relation": "same terminology task; ungoverned legacy page (Gate 12 FAIL, index,follow in the sealed baseline)"
+    },
+    {
+      "route_id": "de_bisulfid_vs_bisulfide",
+      "path": "/de/bisulfid-vs-bisulfide/",
+      "relation": "German-language legacy page; NOT a governed localization of this object"
+    },
+    {
+      "route_id": "cohort02_en_bisulfid_vs_bisulfide_*",
+      "path": "/en/terminology/compare/bisulfid-vs-bisulfide/*/*/",
+      "relation": "4 thin audience variants (comparison/consolidation candidates only)"
+    }
+  ],
+  "proposed_disposition": "governed_reference_no_new_route",
+  "blockers_before_any_url": [
+    "Documentary evidence validation is accepted under owner-adopted DOCUMENTARY-VERIFICATION 1.0.0 (11/11 claims and 11/11 sources at L1–L5); neither independent human review nor L6 signatures are claimed.",
+    "claim_posture claim_pending — Sohadot has not signed activation of the 11 narrowly approved terminology claims",
+    "information_gain_posture ig_reviewed_route_realization is not honoured until AMD-IG-R03-001 receives a separate Sohadot ratification",
+    "governance_posture reference_draft / release_authorization not_authorized — no owner release authorization exists; merge and deployment not authorized",
+    "CLM-TERM-BISULFID-001 (German industry usage) remains pending and unbound; never promote by association"
+  ],
+  "authorizes": "nothing public — internal candidate only",
+  "route_realization": {
+    "policy": "ig_governance_policy.json 1.1.0 (AMD-IG-R03-001 rev 2)",
+    "verified_by": "scripts/governance_scaffolding/route_realization.py:check",
+    "realizes": "/bisulfid-vs-bisulfide/ (existing route bisulfid_vs_bisulfide; no new URL)",
+    "consolidation_obligations": 4,
+    "not_a_localization_of": "/de/bisulfid-vs-bisulfide/ (ungoverned German legacy page; no hreflang emitted)",
+    "status": "structure verified (route_realization.check_structure); AMD-IG-R03-001 remains unratified, so IG is not honoured. Documentary validation alone cannot release or index the page."
+  },
+  "distinctiveness_review": {
+    "reviewed_on": "2026-10-31",
+    "method": "IG semantic comparison (task, evidence, claims, sources); 5-gram similarity as a diagnostic only",
+    "reference_task": "Explain, from cited dictionaries, IUPAC nomenclature, a chemical database and a German chemistry lexicon, which species each of bisulfide, Bisulfid, sulfide/Sulfid, disulfide, hydrosulfide/Hydrogensulfid and bisulfite is attached to, and what must not be inferred from similar spelling.",
+    "compared_surfaces": [
+      {
+        "path": "/bisulfid-vs-bisulfide/",
+        "substantive_tokens": 117,
+        "similarity_to_candidate": 0
+      },
+      {
+        "path": "/de/bisulfid-vs-bisulfide/",
+        "substantive_tokens": 141,
+        "similarity_to_candidate": 0
+      },
+      {
+        "path": "/en/terminology/compare/bisulfid-vs-bisulfide/ai/tech/",
+        "substantive_tokens": 141,
+        "similarity_to_candidate": 0
+      },
+      {
+        "path": "/en/terminology/compare/bisulfid-vs-bisulfide/chem/ling/",
+        "substantive_tokens": 145,
+        "similarity_to_candidate": 0
+      },
+      {
+        "path": "/en/terminology/compare/bisulfid-vs-bisulfide/res/res/",
+        "substantive_tokens": 139,
+        "similarity_to_candidate": 0
+      },
+      {
+        "path": "/en/terminology/compare/bisulfid-vs-bisulfide/stu/edu/",
+        "substantive_tokens": 141,
+        "similarity_to_candidate": 0
+      }
+    ],
+    "candidate_substantive_tokens": 1442,
+    "variants_pairwise_similarity": [
+      0.881,
+      0.895,
+      0.896,
+      0.895,
+      0.881,
+      0.895
+    ],
+    "findings": {
+      "legacy_canonical_/bisulfid-vs-bisulfide/": "same task, no governed knowledge (generic atlas boilerplate, no definition, no source). The candidate replaces its body at the same URL (route realization; no new URL).",
+      "four_cohort02_variants": "audience-labelled copies of one template (pairwise S 0.88-0.90, i.e. near-duplicates of each other); no definition, source, claim or evidence. They contribute no knowledge the candidate lacks. They are redundant and stay listed as consolidation obligations (canonical_to the realized route, executable only after it is index-approved and each decision is signed).",
+      "/de/bisulfid-vs-bisulfide/": "German legacy page with no governed content; not a localization of this object, so no hreflang. A German edition would need its own German-language evidence task.",
+      "what_only_the_candidate_contributes": [
+        "the two attested referents of bisulfide (Merriam-Webster: disulfide; PubChem synonym: HS-) side by side",
+        "IUPAC 2005 names for HS-, S2^2- and HSO3- with section locators",
+        "German Sulfid vs English sulfide defined from Duden, DWDS and Merriam-Webster",
+        "Hydrogensulfid usage in a German chemistry lexicon",
+        "the DWDS coverage statement for Bisulfid, explicitly limited to that dictionary",
+        "the -id/-ide pattern stated as a pattern, not as proof of equivalence",
+        "an explicit supported / open / not-inferable synthesis with per-item evidence"
+      ],
+      "distinctions_to_preserve": [
+        "dictionary sense vs database synonym vs IUPAC name vs technical usage vs industry usage",
+        "bisulfide vs bisulfite (one letter, different anion family)",
+        "absence from the DWDS is not absence from German"
+      ],
+      "internal_links": "Keep live internal links to /methodology/ and /sources/ for the first terminology release; add /molybdenum-disulfide/ only after its governed scientific reference is separately index-approved and published. Do not present the unready legacy MoS2 route as a completed governed reference. No thin-variant links."
+    },
+    "no_sibling_pages": "No new route or sibling page is proposed."
+  },
+  "risk_classification": {
+    "class": "low_risk_informational",
+    "declared_on": "2026-10-31",
+    "rationale": "Terminology and nomenclature reference: dictionary senses, IUPAC names, a database synonym list and a German lexicon entry. It states which species words are attached to; it gives no handling, toxicity, exposure, medical, regulatory, industrial-procedure or commercial guidance. Safety, medical and industrial-use claims are excluded by the KO and named as outside the reference.",
+    "verified_by": "scripts/release/documentary_verification.py (declaration must agree with the automated scan of every rendered statement)"
+  },
+  "documentary_verification": {
+    "policy": "DOCUMENTARY-VERIFICATION@1.0.0",
+    "status": "owner_adopted_documentary_verified",
+    "verification_record": "main/data/release/documentary_verification/KO-BISULFID-TERMINOLOGY-001.json",
+    "qualification": "low_risk_informational",
+    "basis": "11/11 narrow terminology claims; 11/11 sources pass L1–L5; 15 admitted evidence records; D1–D7; not independent human peer review",
+    "source_lock_clarification": "evidence_locked is an HONOURED DOCUMENTARY POSTURE under the adopted policy, not a representation that any source has an L6 human lock",
+    "grants_no_owner_authority": true
+  }
+}

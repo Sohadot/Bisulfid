@@ -1,0 +1,67 @@
+{
+  "evidence_id": "EVD-TERM-IUPAC-HS-NAMES",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "terminological",
+  "claim_level": "lexeme",
+  "concept_ids": [
+    "hydrosulfide"
+  ],
+  "lexeme_ids": [
+    "LEX-EN-SULFANIDE-001",
+    "LEX-EN-HYDRIDOSULFATE-001"
+  ],
+  "relationship": null,
+  "subject_domain": [
+    "SD-NOMENCLATURE",
+    "SD-TERMINOLOGY"
+  ],
+  "geography": [],
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "claim_scope": "Captured 2026-10-30 from Nomenclature of Inorganic Chemistry — IUPAC Recommendations 2005 (Red Book), ISBN 0-85404-438-8 (International Union of Pure and Applied Chemistry / Royal Society of Chemistry). Quoted passages only; see lexical.",
+  "source_id": "SRC-IUPAC-RED-BOOK-2005",
+  "claim_id": "CLM-TERM-IUPAC-HS-NAMES-001",
+  "publication_date": null,
+  "retrieval_date": "2026-10-30",
+  "temporal_scope": {
+    "as_of": "2026-10-30",
+    "valid_from": null,
+    "valid_to": null
+  },
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "primary_authoritative",
+  "allowed_uses": [
+    "iupac_recommended_name"
+  ],
+  "prohibited_uses": [
+    "chemical_safety",
+    "medical",
+    "market_data",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "lexical": {
+    "anion": "HS⁻",
+    "substitutive_name": "sulfanide",
+    "additive_name": "hydridosulfate(1−)",
+    "section": "IR-5.3.3.4 (heteropolyatomic anions), Example 3"
+  },
+  "locator": {
+    "capture_file": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+    "capture_keys": [
+      "SRC-IUPAC-RED-BOOK-2005"
+    ],
+    "url": "https://iupac.org/wp-content/uploads/2016/07/Red_Book_2005.pdf",
+    "sha256": "3595c86a1b288b82be6d74061315592b89fe3eb17ffa80bb3df3e970e622890f",
+    "retrieval_date": "2026-10-30",
+    "verbatim": [
+      "3. HS sulfanide (substitutive), or hydridosulfate(1 ) (additive)"
+    ],
+    "pdf_pages": [
+      86
+    ]
+  },
+  "governance_note": "Recovery-03 terminology identity evidence. Contract C for any route using it is derived, never implied."
+}

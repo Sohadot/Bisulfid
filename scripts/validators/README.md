@@ -1,14 +1,22 @@
 # Validator Skeleton — scripts/validators/
 
-## Status: Placeholder Only
+## Status: Placeholder Only (except Gate 12)
 
-The validators in this directory are **not yet enforcing** any quality gates.
+The validators in this directory are **not yet enforcing** Gates 01–11.
+
+**Exception — Gate 12 is real, blocking enforcement:** `validate_distinctiveness.py`
+(engine `distinctiveness_core.py`, tests `test_distinctiveness.py`, policy
+`main/data/distinctiveness/gate12_policy.json`). It measures entity-masked text similarity,
+structural/template similarity, boilerplate ratio and governed Information Gain units, and exits
+non-zero when a publication candidate or an indexable page fails. Recovery-01 added Gate 12-I
+(institutional surfaces), the bounded Contract-C-RL legacy hold (`--legacy-hold`, `--check-hold`,
+`--build-legacy-hold`) and `test_legacy_migration.py`.
 They exist to reserve Quality Gate boundaries and document future check requirements.
 
 ## Purpose
 
 These files were created in Sprint 0D to establish the validator skeleton
-aligned with the 11 Quality Gates defined in `doctrine/QUALITY_GATE.md`.
+aligned with the Quality Gates (now 12) defined in `doctrine/QUALITY_GATE.md`.
 
 Full enforcement begins in a later build-system sprint when a build system
 is introduced and validators are wired into the build pipeline.
@@ -38,6 +46,7 @@ is introduced and validators are wired into the build pipeline.
 | validate_translations.py | Gate 11 | Translation integrity checks |
 | validate_language_routes.py | Gate 11 | Language route governance checks |
 | validate_supply_chain.py | Gate 06 + security | Supply chain and dependency checks |
+| validate_distinctiveness.py | **Gate 12 (enforcing)** | Page distinctiveness & Information Gain |
 | validate_all.py | All gates | Orchestrator — runs all validators in gate order |
 
 ## Do Not Treat As Launch Proof

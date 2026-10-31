@@ -5470,3 +5470,174 @@ No public route. No Reference Production 02.
 
 ### Stop
 No public route. No Reference Production 02. IG ratified; nothing published.
+
+---
+
+## Corpus Distinctiveness Audit & Gate 12 (blocking)
+
+**Date:** 2026-10-30
+**Baseline:** commit `37bce9468d`. This sprint measures and enforces. It expands no content: no new public page, no Reference Production rollout, no publication or indexation change, no mass rewrite, no new source, no route deletion.
+
+**Durable decisions:**
+1. **Gate 12 — Page Distinctiveness & Information Gain is added to `doctrine/QUALITY_GATE.md` as a BLOCKING gate.** "A page may not become publication-eligible merely because it is complete, sourced, grammatically different, or has a unique title. It must contain materially distinct knowledge." Gate 12 is a reference-quality and asset-quality gate, not an SEO-only gate.
+2. **Real enforcement.** Policy: `main/data/distinctiveness/gate12_policy.json` (v1.0.0). Engine: `scripts/validators/distinctiveness_core.py`. CLI: `validate_distinctiveness.py`, which supports `--gate`, `--surface DIR`, `--page` and `--audit` and emits JSON. Tests: `test_distinctiveness.py` (23 proofs). The validator is wired into `validate_all.py` as Gate 12, into corpus-governance CI (tests plus the candidate gate), and into the Pages deploy workflow (surface gate on the staged artifact). Gates 01–11 remain placeholders.
+3. **Infrastructure is separated from substance only by registered patterns.** Front matter, draft/status notices, reliability tables, source/claim status, publication blockers, link placeholders, navigation, footers, evidence trails and the shared disclaimers are excluded. Text is never excluded because it recurs; recurrence is what the gate measures.
+4. **Multidimensional measurement.** (A) Entity-masked word 5-gram similarity `S = max(Jaccard, overlap coefficient)`, found through MinHash/LSH and confirmed exactly (every pair of distinct bodies when there are at most 3,000; publication candidates always exhaustively). (B) Substantive heading skeleton. (C) Template-sentence ratio. (D) Information Gain units. Thresholds: FAIL at S ≥ 0.70, REVIEW for 0.55 ≤ S < 0.70 (not eligible), and S < 0.55 passes only the textual component. Structural template, template prose ≥ 0.50, thin body < 60 tokens and fewer than three valid IG units each fail.
+5. **Information Gain unit, production definition.** `main/data/distinctiveness/ig_unit_registry.json`. A unit must be page-specific, bound to governed `evidence_verified` evidence (and to its claim; claim-less only for boundary dimensions), not boilerplate, not an entity substitution, rendered on the page, useful to a governed audience, and distinct by its (claim, evidence) key. A key owned by another page does not count unless the page is a declared localization; localizations are routed to Gate 11 and never PASS independently. Facts are never invented to reach three.
+6. **Publication contract.** Eligibility = Contract C (`contract_c_derive.derive`, unmodified) AND Gate 12 PASS (`combined_publication_eligibility`). Neither overrides the other.
+7. **Relationship to IG Governance 1.0.0.** The ratified IG route-distinctness authority is unchanged and keeps its non-numeric classifications and postures. Gate 12's numeric bounds belong to a separate, block-only corpus-quality gate, adopted on explicit sprint instruction. A low similarity never confers a pass, and Gate 12 never writes an IG classification or posture. The IG policy text says no numeric cutoff may produce a PASS *or a FAIL*. Gate 12 departs from that sentence deliberately and only outside IG route-distinctness, and this entry records the scoping.
+8. **Measured baseline** (`main/data/distinctiveness/CORPUS_DISTINCTIVENESS_AUDIT.{md,json}`, per-page `CORPUS_DISTINCTIVENESS_PAGES.tsv`). After masking, the 14,015 markdown pages reduce to 140 distinct substantive bodies, and 13,979 (99.7%) of them have a neighbour at S ≥ 0.70. Gate 12 fails all 14,015, and 13,997 fail on a non-IG component. The public HTML surface has 14,041 pages, 14,039 of them `index, follow`, reducing to 424 distinct bodies. One cluster covers 13,976 pages, and Gate 12 fails all 14,039 indexable pages. **The corpus is overwhelmingly near-duplicate.** Prior "deepening" did not produce distinct pages.
+9. **Registry/surface mismatch recorded, not changed.** `routes.json` marks all 14,000 routes `planned` / `indexable: false`, while `site/public` serves 14,039 indexable pages. With Gate 12 in the deploy workflow, a redeploy of that surface as indexable is blocked until pages pass or are de-indexed. That decision belongs to the next sprint.
+10. **MoS₂ positive control.** `main/data/distinctiveness/controls/mos2_scientific_control.md` is non-public, not a route and not a publication candidate. It renders only Pilot-03 governed knowledge (`KO-MOS2-SCIENTIFIC-001`). Results: S = 0.000 against all 28,056 pages, 5/5 valid IG units, unshared skeleton, Gate 12 PASS. Combined eligibility stays (not_public, noindex) because Contract C denies, which proves Gate 12 grants nothing. The old MoS₂ pages fail (S = 1.000, 22–92 substantive tokens, 0 IG units).
+
+**Tests:** `test_distinctiveness.py` 23/23 PASS. Contract-C property suite, IG governance, Pilot 01/02/03, reference production, independence and `validate_scaffolding` all pass, as do the wired L0/L1/L2 CI scripts. `validate_distinctiveness.py --gate` PASS (0 markdown publication candidates). `--surface site/public` FAIL (14,039 indexable pages), so `validate_all.py` exits 1 by design.
+
+### Stop
+No corpus rewrite, publication, Pilot 04 or Reference Production rollout. The next sprint uses the measured clusters to decide the reconstruction architecture.
+
+---
+
+## Recovery-01 — Legacy Corpus Recovery & Reference Production (design + one reconstruction)
+
+**Date:** 2026-10-30
+**Baseline:** Gate 12 audit commit `9d944d736d` (unmerged). Changes nothing live: no `site/public`, robots, sitemap, `routes.json`, release-ledger or release-authorization change. Nothing merged, deployed or opened as a PR. Full report: `main/data/recovery/RECOVERY_01_REPORT.md`.
+
+**Durable decisions:**
+1. **Three populations stay distinct.** There are 14,000 legacy routes (all `planned`, not indexable in `routes.json`), 13,998 released dossiers (ledger; `acquire` and `newsletter` blocked), and 14,041 generated public HTML pages (14,039 `index, follow`; 41 with no route record). The live surface contradicts the registry, and in the case of `/acquire/` the ledger as well. `atlas/base.html` hard-codes `index, follow`.
+2. **The Gate 12 legacy path is Contract C RL, not an exemption** (policy 1.1.0 `legacy_migration`). A sealed, shrink-only baseline (`legacy_surface_hold.json`, 14,033 pages, count + sha256) lets a pre-Gate-12 page that fails stay reachable only when its substantive body is unchanged, it is `noindex` and it is absent from sitemaps. New failing pages (indexable or not) and modified failing legacy pages always block. The only deviation is an owner-authorized freeze exception of at most 30 days for an unchanged indexed surface; it is reported every run, it admits nothing new, and it is `not_authorized` by default. The deploy workflow and `validate_all` run hold mode. PR CI checks baseline integrity and the shrink-only ratchet against the base branch.
+3. **Gate 12-I for institutional surfaces.** A closed registry (41 functions, 55 bindings, one surface per function per language) replaces only the IG-unit requirement. The near-duplicate, template, structure and thin-body rules, Gate 04 and Contract C R11 are unchanged. The rendered home page still fails; the hand-written `index.md` passes, so the defect is in the renderer, not in the content.
+4. **Legacy disposition registry** (`main/data/recovery/`, 14,041 records, deterministic, invariant-validated; authorizes nothing). Routes: 1 independent reference candidate (`molybdenum_disulfide` → KO-MOS2); 38 modules of KO-MOS2; 1 language-specific candidate (`de_core_mos2`); 245 evidence-pending canonical concepts; 12,741 redundant surfaces (variants, 79 pipeline-status pages, 5 duplicate institutional functions, 2 German MoS₂ duplicates); 974 unresolved (931 generated entities with unverified identity, 50 institutional surfaces under Gate 12-I review). The 41 non-route pages split 16 redundant and 25 unresolved. The records collapse onto 943 consolidation targets; 4 canonical surfaces have governed evidence today (MoS₂ ×2, sulfur ×2).
+5. **Reference production realizes a KO at its EXISTING canonical route.** `render_ko_reference.py` renders KO-MOS2-SCIENTIFIC-001 from a wording-only spec. Every value comes from an evidence record that `admissible()` admits for its declared use, and the renderer fails closed on anything else. It replaces the legacy draft `main/content/en/pages/molybdenum-disulfide.md` in place (still non-public) and writes a `noindex` HTML preview outside `site/public`. Result: 585 vs 22 substantive tokens, S = 0.000 against all 28,056 pages, 7/7 IG units, Gate 12 PASS, Contract C (not_public, noindex). The stand-alone Gate-12 control page is retired.
+6. **MoS₂ release path recorded, not executed.** derive() stays not_public through claim activation, validation, the governed posture and release authorization. It reaches public_noindex only after an IG route re-review (proposed pair `molybdenum_disulfide` vs `de_core_mos2`; `evaluate()` → `valid_domain_specific_reference`), and index_approved only after the sources lock. No posture was changed.
+7. **Staged plan with rollback** (report §5) and **PR sequence** (§8). PR-1 = this branch (deploy stays closed). PR-2 = the owner-authorized `stage2_legacy_noindex.py` output only (14,032 robots lines + 13,998 sitemap entries; no deletion or redirect), rehearsed on a copy: Gate 12 hold-mode PASS. Then renderer conformance, MoS₂ promotion, per-KO consolidation, and KO waves starting with sulfur.
+
+**Tests:** `test_distinctiveness.py` 23/23 and `test_legacy_migration.py` 17/17 PASS. `validate_legacy_disposition.py` reports 0 violations, and the renderer `--check` is up to date. The Contract-C property, IG governance, Pilot 01/02/03, reference-production, independence and scaffolding suites all pass, as do the L0/L1/L2 CI scripts. In hold mode the live surface fails as designed (14,032 indexed legacy pages), and the Stage-2 rehearsal passes.
+
+### Stop
+Next production action: owner review of PR-1 and authorization of PR-2 (Contract C RL conformance). No further sprint work.
+
+---
+
+## Recovery-02 — SEO-Safe Migration & Reference Authority Foundation
+
+**Date:** 2026-10-30
+**Baseline:** Recovery-01 `1f072f8598`. The live surface `site/public` is unchanged since `b1757cb532`, and a 2026-10-30 fetch of the homepage matches the repository. No live HTML, robots, sitemap, route, release-record or deployment change; no noindex, redirect or deletion. Full report: `main/data/recovery/RECOVERY_02_REPORT.md`.
+
+**Durable decisions:**
+1. **Mass noindex (Recovery-01 Stage 2) is NO-GO.** Of its 14,032 URLs, only 79 (internal pipeline-status pages) are appropriate noindex targets. It would noindex all 8 brand/identity surfaces, including `/`. 453 URLs have a valid canonical destination. Search Console evidence is missing; the exact data requirements are listed in the report (§2.1), and no metric is estimated.
+2. **One directive authority.** `scripts/publication/publication_authority.py` resolves robots, sitemap and canonical, first match wins: Contract C for bound objects (KO via render spec + PC; R11 non-factual certifications), then the sealed legacy status quo, then release-ledger blocks and owner-approved per-URL decisions (both downgrade only), else not authorized. **Gate 12 and Gate 12-I are vetoes, never grants.**
+3. **Deploy gate replaced, deadlock removed.** `validate_publication_authority.py` compares served directives with resolved ones (no escalation; no unauthorized new page; a modified legacy page may not request index; removals need approval; index-approved pages must pass Gate 12). On the live surface: 14,040 LEGACY_STATUS_QUO and 1 blocker. Contract C RL debt (14,032) is printed on every run.
+4. **Freeze exception retired** (policy 1.2.0). It was free-text authorization, renewable, and overrode Contract C.
+5. **Renderer conformance.** `atlas/base.html` uses `{{robots_directive}}`. Both atlas renderers take directives from the authority, skip unauthorized pages and refuse leftover placeholders. A staged full re-render gave 13,998 pages, robots identical to served, 0 escalations.
+6. **Sitemaps** come only from `generate_sitemaps.py`. Approved-only lists 0 URLs today; status quo reproduces exactly the 13,998 listed URLs and never adds one. Nothing is written to `site/public` without `--authorized-publication`.
+7. **Baseline extended.** `legacy_surface_hold.json` holds all 14,041 served pages with body hash plus the robots, sitemap and canonical they were served with. It is sha256-sealed over all of those and shrink-only.
+8. **Authority conflicts named:**
+   - `/acquire/` is ledger-blocked but served index. This is the only deploy blocker and an owner decision.
+   - The 7 indexable institutional pages are indexable only as status quo; 6 of them have no route record.
+   - The 41 non-route pages stay status quo until registered.
+   - `routes.json` is not the directive authority for legacy pages.
+9. **Decision rules** (`main/data/publication/url_decision_rules.json`, proposed): canonical before noindex; never noindex brand surfaces; GitHub Pages cannot serve 301 or 410; never combine noindex with a cross-canonical. Per-URL proposals are in `seo_url_disposition.jsonl` (14,041 records). Approved decisions go only to `url_decisions.json` (empty).
+10. **Reference previews** (non-public):
+    - **MoS₂ (existing canonical route):** SEO head, JSON-LD from evidence, Gate 12 PASS, all automated SEO checks pass.
+    - **Homepage:** institutional, no unapproved claim, figures computed from the registries, Gate 12-I PASS, all checks pass. Indexation only via R11.
+    - **Bisulfid/bisulfide boundary:** BLOCKED_ON_EVIDENCE, 0/5 modules (claims pending review; sources seeded, unqualified, no evidence records). The exact blocker list was produced; no prose was written.
+
+**Tests:** `test_publication_authority.py` 27/27, `test_legacy_migration.py` 17/17, `test_distinctiveness.py` 23/23, plus all governance suites and the L0/L1/L2 scripts pass; the disposition registry has 0 violations.
+
+### Stop
+Next production action: the owner decides `/acquire/` and supplies the Search Console exports. No deploy, merge or mass directive change was made.
+
+---
+
+## Recovery-03 — Reference Authority Activation & Controlled SEO Recovery
+
+**Date:** 2026-10-30
+**Baseline:** Recovery-02 `fb940e6429`. No live HTML, robots, sitemap, route, release-ledger or deployment change. No decision approved. Full report: `main/data/recovery/RECOVERY_03_REPORT.md`.
+
+**Durable decisions:**
+1. **Historical indexability is migration debt, not authorization.** `/acquire/` is corrected by a STAGED one-line `noindex, follow` change (`URL-DEC-R03-ACQUIRE-001`, proposed). Its contact and body are unchanged, and the ledger is not edited. Simulated deploy gate: PASS. Factual review: 5 of the page's statements need correction or evidence.
+2. **Similar spelling never establishes equivalence.**
+   - 16 verbatim-captured terminology evidence records; 11 narrow claims approved in the still-inactive registry.
+   - English *bisulfide*: dictionary sense = disulfide, while PubChem lists it as a synonym for HS⁻.
+   - IUPAC names HS⁻ sulfanide.
+   - DWDS records neither *Bisulfid* nor *Hydrogensulfid*.
+   - "Bisulfid = German bisulfide" is NOT established. The industry-only usage claim stays pending with its boundary recorded.
+3. **KO-BISULFID-TERMINOLOGY-001** is rendered at the existing route: Gate 12 PASS, 13/13 IG units, Contract C (not_public, noindex). Renderer and Gate 12 IG support multi-concept objects, each unit specific to one concept.
+4. **MoS₂:** 13/13 values re-verified live. A structural IG defect was found (reconstructing an object's own route can never pass R7). Amendment `AMD-IG-R03-001` is proposed, not enacted.
+5. **Homepage EN/DE:**
+   - Reciprocal hreflang only when both specs declare it.
+   - Editorial responsibility stated without names or credentials.
+   - R11 certifications proposed.
+   - The dossier renderer no longer wraps institutional routes.
+6. **Generated-identity pages:**
+   - 12,289 pages classified into 11 families.
+   - R-CANON-1 v1.1.0: similarity nominates, never authorizes; 0 of 453 pairs eligible.
+   - Wave 1 = 15 URLs, proposed with checks and rollback.
+   - Gate gap recorded: unapproved robots downgrades pass the deploy gate.
+
+**Tests:** `test_publication_authority.py` 38/38, `test_distinctiveness.py`, `test_legacy_migration.py`, all governance suites, L0/L1/L2 scripts, renderer `--check`, staged-proposal `--check`, SEO preview checks 4/4, hold ratchet vs `origin/main`: PASS. `validate_all.py` fails only on the pre-existing live `/acquire/` block (identical at `fb940e6429`).
+
+### Stop
+Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AMD-IG-R03-001` and the science-claim posture, and a Search Console export for wave 1.
+
+---
+
+## Release-01 — Permanent buyer-access indexing policy for `/acquire/`
+
+**Date:** 2026-10-30
+**Decided by:** the site owner, by instruction in the Claude Code review session. This is recorded, not signed: no `approved_by` or approval timestamp was entered on the owner's behalf.
+
+**Durable decisions:**
+1. **`/acquire/` is a buyer-oriented commercial access page, not a reference page.** It stays `noindex, follow` and out of every XML sitemap indefinitely, until the owner explicitly changes this policy.
+   - It remains publicly accessible by direct URL, with an unchanged canonical and a working buyer contact.
+   - It is not blocked in robots.txt, so crawlers can read the noindex.
+2. **Access, publication and indexing are separate decisions.** A new registry, `main/data/publication/indexing_policies.json`, holds per-URL indexing ceilings (`IDX-POL-ACQUIRE-001`).
+   - The publication authority applies a ceiling last.
+   - A ceiling only ever lowers a directive, to noindex and no sitemap. It never changes access or the canonical.
+   - No release-ledger status, URL decision, Contract C result or R11 certification can lift it.
+3. **Ceilings cannot touch references.**
+   - Only the page class `commercial_access` is accepted.
+   - A ceiling on any URL bound to a Knowledge Object render spec is refused and reported, so scientific and conceptual references keep their independent Contract C rules.
+   - Contract C itself is unchanged.
+4. **URL-DEC-R03-ACQUIRE-001 still needs the owner's formal signature** for the PR-B page change: wording plus the served noindex. Its old "return to index after a ledger release" condition is superseded by the permanent policy.
+
+---
+
+## Release-01 — Documentary verification pathway for low-risk references (proposed; not adopted)
+
+**Date:** 2026-10-31
+**Owner direction (recorded, not signed):** paid external review and professional signatures must not be universal prerequisites for ordinary low-risk reference content.
+
+**Durable decisions:**
+1. **New verification level `documentary_verified`.** `main/data/release/documentary_verification_policy.json` 1.0.0 and `scripts/release/documentary_verification.py` define seven checks, D1–D7:
+   - **D1 claims:** each claim is approved, of an eligible type, and bound to its evidence.
+   - **D2 evidence:** each record is admitted for its declared use.
+   - **D3 scope:** each use is within the source's qualification.
+   - **D4 reproducibility:** L1–L5 pass for every source.
+   - **D5 conflicts:** no unresolved contradiction, and open questions are stated.
+   - **D6 quality:** Gate 12 PASS, and a distinctiveness review exists.
+   - **D7 risk:** the KO is classified `low_risk_informational`.
+   It is automated evidence verification and is always labelled as such. It is never presented as peer review, and `independently_human_reviewed` reflects only a signed review record.
+2. **Proportionate replacement, only for low-risk content.** Once the policy is ADOPTED by a named owner:
+   - `documentary_verified` can stand in for the signed independent review;
+   - documentary acceptance (L1–L5) can stand in for L6 signatures.
+   L6 is never marked signed. Owner claim activation, owner release authorization and AMD-IG-R03-001 ratification are never replaced.
+3. **Risk classification fails closed.**
+   - It is derived from the claims and rendered statements, not the page title.
+   - The publication candidate must declare the class.
+   - Claim types must be eligible, and safety/medical claims must be excluded.
+   - A scan for higher-risk signals must find nothing.
+   - Anything else is `undetermined` and treated as higher risk.
+4. **Status:** proposed for owner adoption. Until adopted it changes no posture, no URL and no directive (tested).
+
+---
+
+## Release-01 — Adoption of DOCUMENTARY-VERIFICATION 1.0.0
+
+**Date:** 2026-10-31  
+**Owner:** Sohadot (sohadot.com), as expressly identified by the project owner in the conversation.  
+**Decision:** Adopt DOCUMENTARY-VERIFICATION@1.0.0 as the governed low-risk documentary evidence pathway. This is an owner policy adoption, not a scientific peer-review signature, human L6 source lock, claim activation, release authorization, or deployment consent.
+
+**Scope and safeguards:** D1–D7 remain required; only eligible low_risk_informational objects can use this path. KO-BISULFID-TERMINOLOGY-001 qualifies as documentary_verified (11 claims, 11 sources meeting L1–L5), with no independent human review asserted. KO-MOS2-SCIENTIFIC-001 remains not_verified; no relaxation of its scientific gates. Existing Contract C / Information Gain / owner-activation controls remain in force.
+
+**Explicitly not authorized:** activating claims, ratifying AMD-IG-R03-001, changing legacy indexation, merging PRs, publishing or deploying. This record confirms an organizational policy decision and must not be represented as an external professional attestation.

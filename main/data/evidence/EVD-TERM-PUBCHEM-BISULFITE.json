@@ -1,0 +1,62 @@
+{
+  "evidence_id": "EVD-TERM-PUBCHEM-BISULFITE",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "scientific",
+  "claim_level": "concept",
+  "concept_ids": [
+    "hydrogen_sulfite"
+  ],
+  "lexeme_ids": [],
+  "relationship": null,
+  "subject_domain": [
+    "SD-INORGANIC-CHEMISTRY"
+  ],
+  "geography": [],
+  "jurisdiction": null,
+  "language_of_evidence": "en",
+  "claim_scope": "Captured 2026-10-30 from Bisulfite (PubChem Compound CID 104748) (PubChem / NIH (National Center for Biotechnology Information)). Quoted passages only; see lexical.",
+  "source_id": "SRC-PUBCHEM-BISULFITE",
+  "claim_id": null,
+  "publication_date": null,
+  "retrieval_date": "2026-10-30",
+  "temporal_scope": {
+    "as_of": "2026-10-30",
+    "valid_from": null,
+    "valid_to": null
+  },
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "primary_authoritative",
+  "allowed_uses": [
+    "database_record_identity_and_synonyms"
+  ],
+  "prohibited_uses": [
+    "chemical_safety",
+    "medical",
+    "market_data",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "lexical": {
+    "cid": "104748",
+    "molecular_formula": "HSO₃⁻",
+    "computed_iupac_name": "hydrogen sulfite",
+    "record_title": "Bisulfite"
+  },
+  "locator": {
+    "capture_file": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+    "capture_keys": [
+      "SRC-PUBCHEM-BISULFITE"
+    ],
+    "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/104748/property/MolecularFormula,IUPACName,Title,Charge/JSON",
+    "sha256": "068cc7f40c44d40f648d0c1d6ed459c40df803e0a2a7f320c2737b3e8c6b1deb",
+    "retrieval_date": "2026-10-30",
+    "verbatim": [
+      "\"MolecularFormula\": \"HO3S-\"",
+      "\"IUPACName\": \"hydrogen sulfite\"",
+      "\"Title\": \"Bisulfite\""
+    ]
+  },
+  "governance_note": "Recovery-03 terminology identity evidence. Claim-less BOUNDARY record (database record fact; not a lexical authority). Contract C for any route using it is derived, never implied."
+}

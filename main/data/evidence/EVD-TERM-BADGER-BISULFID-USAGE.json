@@ -1,0 +1,61 @@
+{
+  "evidence_id": "EVD-TERM-BADGER-BISULFID-USAGE",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "terminological",
+  "claim_level": "lexeme",
+  "concept_ids": [
+    "hydrosulfide"
+  ],
+  "lexeme_ids": [
+    "LEX-DE-BISULFID-001"
+  ],
+  "relationship": null,
+  "subject_domain": [
+    "SD-TERMINOLOGY"
+  ],
+  "geography": [],
+  "jurisdiction": null,
+  "language_of_evidence": "de",
+  "claim_scope": "Captured 2026-10-30 from Messung von Bisulfid und Schwefelwasserstoff im Wasser (Badger Meter). Quoted passages only; see lexical.",
+  "source_id": "SRC-BADGER-BISULFID-H2S",
+  "claim_id": "CLM-TERM-BISULFID-001",
+  "publication_date": null,
+  "retrieval_date": "2026-10-30",
+  "temporal_scope": {
+    "as_of": "2026-10-30",
+    "valid_from": null,
+    "valid_to": null
+  },
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "contextual",
+  "allowed_uses": [
+    "observed_industry_usage_de"
+  ],
+  "prohibited_uses": [
+    "chemical_safety",
+    "medical",
+    "market_data",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "lexical": {
+    "usage_quoted": "Bisulfid und Schwefelwasserstoff (HS- / H₂S)",
+    "usage_quoted_2": "Bisulfid hingegen ist seine konjugierte Base"
+  },
+  "locator": {
+    "capture_file": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+    "capture_keys": [
+      "SRC-BADGER-BISULFID-H2S"
+    ],
+    "url": "https://www.badgermeter.com/de-de/parameter-zur-uberwachung-der-wasserqualitat/hs-h2s/",
+    "sha256": "e77a38f20fbf7b3044217e80268bf5c8ed40659570ef95b269ffc9875fbb03ba",
+    "retrieval_date": "2026-10-30",
+    "verbatim": [
+      "Bisulfid und Schwefelwasserstoff (HS- / H₂S)",
+      "Bisulfid hingegen ist seine konjugierte Base"
+    ]
+  },
+  "governance_note": "Recovery-03 terminology identity evidence. NOT admissible: source has no terminology qualification (industry_publication). Contract C for any route using it is derived, never implied."
+}

@@ -1,0 +1,282 @@
+{
+ "audit_id": "HOMEPAGE-CLAIM-AUDIT-R01",
+ "generated_by": "scripts/release/build_homepage_claim_audit.py",
+ "method": "Explicit section-level editorial classification with complete paragraph listing, live-link restrictions and owner-identity confirmation. This is not an external peer review and does not certify Google rankings or replace Gate 12-I.",
+ "governed_values": {
+  "mos2_admitted_evidence": "11",
+  "bisulfid_claims_pending": "2",
+  "term_evidence": "15",
+  "term_claims_approved": "11",
+  "knowledge_objects": "2"
+ },
+ "items": [
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "lead",
+   "text": "An evidence-conscious reference project for sulfur chemistry: chemical names, their possible meanings, and the sources needed to tell a supported definition from an assumption.",
+   "has_governed_value": false,
+   "claim_class": "intro",
+   "status": "not_a_factual_claim",
+   "basis": "Institutional mission statement, not a chemical or scientific claim."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "The question behind our name",
+   "text": "Bisulfid and bisulfide differ by one letter. That similarity alone cannot establish a shared chemical meaning or a standard translation. Before treating two terms as equivalent, we ask what entity a source names, what language it covers and whether it is describing usage or recommending nomenclature.",
+   "has_governed_value": false,
+   "claim_class": "terminology_boundary",
+   "status": "verified",
+   "basis": "Matches the lexical/evidence separation established by KO-BISULFID-TERMINOLOGY-001 without asserting chemical synonymy."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "The question behind our name",
+   "text": "The BISULFID research method keeps dictionary definitions, database synonyms, standards and technical uses distinct. It records what the cited source actually supports and leaves an unresolved interpretation open instead of filling the gap with a confident-sounding guess.",
+   "has_governed_value": false,
+   "claim_class": "terminology_boundary",
+   "status": "verified",
+   "basis": "Matches the lexical/evidence separation established by KO-BISULFID-TERMINOLOGY-001 without asserting chemical synonymy."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "Different sources answer different questions",
+   "text": "A dictionary documents recorded meanings. A chemical database associates terms and synonyms with an identified record. A nomenclature recommendation supplies naming conventions for specified chemical entities. Primary research can report experimentally measured properties of particular material forms. These sources are not interchangeable.",
+   "has_governed_value": false,
+   "claim_class": "source_method",
+   "status": "verified",
+   "basis": "Distinguishes authoritative dictionary, chemical-database, nomenclature and primary-research uses; no new species claims."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "Different sources answer different questions",
+   "text": "A synonym in a database is not necessarily a preferred systematic name. A word missing from a particular dictionary is not proved absent from every technical text. BISULFID is designed to make these distinctions visible where they matter to the reader.",
+   "has_governed_value": false,
+   "claim_class": "source_method",
+   "status": "verified",
+   "basis": "Distinguishes authoritative dictionary, chemical-database, nomenclature and primary-research uses; no new species claims."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "How evidence becomes a reference",
+   "text": "A defensible reference links each substantive statement to an identifiable source and an appropriate passage, record field or measured value. It records its provenance and the scope in which it is admissible. Where two measurements arise from different studies, the original conditions and reporting precision remain part of the explanation.",
+   "has_governed_value": false,
+   "claim_class": "governed_method",
+   "status": "verified",
+   "basis": "Matches the source/evidence/claim separation and documentary-review disclosure implemented in Release-01."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "How evidence becomes a reference",
+   "text": "BISULFID distinguishes documentary verification from independent human peer review, and technical evidence checks from publication authorization. Neither a citation list nor an automated validation badge should be mistaken for proof that an external specialist has signed off on every claim.",
+   "has_governed_value": false,
+   "claim_class": "governed_method",
+   "status": "verified",
+   "basis": "Matches the source/evidence/claim separation and documentary-review disclosure implemented in Release-01."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "Identity, structure and material form",
+   "text": "A chemical formula does not describe every structural form and property of a material. A reference to a bulk crystal, a polytype or a single layer can require different supporting data. Reporting a value without its scope makes the claim less useful, even when the number itself was transcribed correctly.",
+   "has_governed_value": false,
+   "claim_class": "scientific_scope",
+   "status": "verified",
+   "basis": "Describes material-form limits of the MoS2 research object without presenting its draft as an authorized public reference."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "Identity, structure and material form",
+   "text": "The atlas develops scientifically focused compound records with this distinction in mind. An internal draft is not represented here as a published, reviewed reference; older public pages may predate the present evidence checks. The project favors improving appropriate existing pages over issuing several lightly rewritten copies.",
+   "has_governed_value": false,
+   "claim_class": "scientific_scope",
+   "status": "verified",
+   "basis": "Describes material-form limits of the MoS2 research object without presenting its draft as an authorized public reference."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "English and German reference questions",
+   "text": "A German technical expression cannot be validated simply by translating a similar English word. German lexicography and usage sometimes require their own evidence and distinctions. The German entry page therefore addresses terminology questions for German-language readers rather than presenting a word-for-word imitation of the English gateway.",
+   "has_governed_value": false,
+   "claim_class": "language_scope",
+   "status": "verified",
+   "basis": "EN/DE pages have reciprocal distinct native-language editorial tasks; no fabricated scientific translation."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "English and German reference questions",
+   "text": "Both languages are organized around the same editorial discipline: identify the question, cite the relevant source, distinguish established information from open interpretation, and avoid inventing chemical equivalence or unnecessary sibling URLs.",
+   "has_governed_value": false,
+   "claim_class": "language_scope",
+   "status": "verified",
+   "basis": "EN/DE pages have reciprocal distinct native-language editorial tasks; no fabricated scientific translation."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "Publisher and limits",
+   "text": "BISULFID is a reference initiative of Sohadot (sohadot.com). Naming IUPAC, dictionaries, databases, publishers or research institutions as evidence sources does not imply sponsorship, endorsement or organizational affiliation. The site does not claim an independent expert assessment that has not taken place.",
+   "has_governed_value": false,
+   "claim_class": "publisher_scope",
+   "status": "owner_confirmed",
+   "basis": "Sohadot (sohadot.com) was expressly identified as the project owner and publisher in the owner conversation; no expert signature is represented."
+  },
+  {
+   "spec": "INST-HOME-EN",
+   "version": "1.4.0",
+   "section": "Publisher and limits",
+   "text": "The atlas offers terminology and research orientation, not chemical handling, exposure-control, medical, regulatory, procurement or investment instructions. Decisions involving safety or regulated uses require the applicable original documents and qualified professionals.",
+   "has_governed_value": false,
+   "claim_class": "publisher_scope",
+   "status": "owner_confirmed",
+   "basis": "Sohadot (sohadot.com) was expressly identified as the project owner and publisher in the owner conversation; no expert signature is represented."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "lead",
+   "text": "Fachbegriffe der Schwefelchemie verstehen: Welche Quelle belegt welche Benennung, welche Aussage ist begrenzt und welche Gleichsetzung wäre voreilig?",
+   "has_governed_value": false,
+   "claim_class": "intro",
+   "status": "not_a_factual_claim",
+   "basis": "Institutional mission statement, not a chemical or scientific claim."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Ähnliche Wörter sind keine Stoffdefinition",
+   "text": "„Bisulfid“ und „bisulfide“ sehen beinahe gleich aus. Damit ist noch weder eine chemische Gleichbedeutung noch eine normierte Übersetzung bewiesen. Zuerst ist zu klären, ob ein Beleg einen bestimmten Stoff, eine sprachliche Lesart oder eine systematische Benennung beschreibt.",
+   "has_governed_value": false,
+   "claim_class": "terminology_boundary",
+   "status": "verified",
+   "basis": "Nennt bewusst keine ungeprüfte chemische Gleichsetzung; entspricht den Grenzen des vorhandenen Terminologie-Objekts."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Ähnliche Wörter sind keine Stoffdefinition",
+   "text": "BISULFID prüft deshalb den Zusammenhang einer Bezeichnung: Welche Sprache, welche Quelle, welche chemische Einheit und welcher Verwendungszweck liegen vor? Ein enger Quellenbefund soll nicht als allgemeine Aussage über die gesamte Fachsprache ausgegeben werden.",
+   "has_governed_value": false,
+   "claim_class": "terminology_boundary",
+   "status": "verified",
+   "basis": "Nennt bewusst keine ungeprüfte chemische Gleichsetzung; entspricht den Grenzen des vorhandenen Terminologie-Objekts."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Wörterbücher, Datenbanken und Regeln unterscheiden",
+   "text": "Ein Wörterbuch erschließt Wortbedeutungen, eine Stoffdatenbank führt Identifikatoren und mögliche Synonyme zusammen, und die chemische Nomenklatur ordnet definierte Einheiten nach Benennungsregeln. Jede dieser Quellen hat ihre eigene Aufgabe; eine Aussage aus dem einen Bereich wird nicht automatisch durch den anderen gedeckt.",
+   "has_governed_value": false,
+   "claim_class": "source_method",
+   "status": "verified",
+   "basis": "Unterscheidung von Wörterbuch, Datenbank und Nomenklatur ohne neue Stoffbehauptungen."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Wörterbücher, Datenbanken und Regeln unterscheiden",
+   "text": "Ein Datenbanksynonym ist nicht schon ein normierter Vorzugsname. Wenn ein Stichwort in einem Wörterbuch fehlt, lässt sich daraus nicht ableiten, dass es nie in einem Fachtext verwendet wurde. Eine verlässliche Analyse nennt diese Grenzen ausdrücklich.",
+   "has_governed_value": false,
+   "claim_class": "source_method",
+   "status": "verified",
+   "basis": "Unterscheidung von Wörterbuch, Datenbank und Nomenklatur ohne neue Stoffbehauptungen."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Was einen Fachbeleg brauchbar macht",
+   "text": "Eine Quellenangabe gewinnt an Wert, wenn die Originalveröffentlichung, die betreffende Textstelle oder der Datensatz, das Abrufdatum und die Reichweite der belegten Aussage erkennbar sind. Die bloße Nennung einer bekannten Institution ersetzt diese Zuordnung nicht.",
+   "has_governed_value": false,
+   "claim_class": "governed_method",
+   "status": "verified",
+   "basis": "Entspricht der Quellen- und Nachweiskette; unterscheidet Dokumentationskontrolle und unabhängige Begutachtung."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Was einen Fachbeleg brauchbar macht",
+   "text": "Auch bei wissenschaftlichen Messungen ist Präzision entscheidend: Unterschiedliche Untersuchungen, Kristallformen oder Messbedingungen dürfen nicht unbemerkt zusammengezogen werden. Eine dokumentarische Überprüfung ist zudem etwas anderes als eine fachliche Begutachtung durch eine unabhängige Person.",
+   "has_governed_value": false,
+   "claim_class": "governed_method",
+   "status": "verified",
+   "basis": "Entspricht der Quellen- und Nachweiskette; unterscheidet Dokumentationskontrolle und unabhängige Begutachtung."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Wissenschaftliche Begriffe brauchen Kontext",
+   "text": "Stoffidentität, Kristallstruktur und Materialeigenschaften bilden unterschiedliche Ebenen einer Referenz. Ein Messwert für eine bestimmte Struktur darf nicht ohne weitere Belege auf eine andere Form übertragen werden. Genau deshalb gehört der Geltungsbereich eines Wertes zur wissenschaftlichen Erklärung.",
+   "has_governed_value": false,
+   "claim_class": "scientific_scope",
+   "status": "verified",
+   "basis": "Beschreibt Materialform und Unsicherheit, ohne den unveröffentlichten MoS2-Entwurf als freigegeben auszugeben."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Wissenschaftliche Begriffe brauchen Kontext",
+   "text": "BISULFID arbeitet an solchen vertieften Referenzobjekten. Ältere Seiten der Website erfüllen nicht automatisch die heutigen Anforderungen an Quellen und inhaltliche Eigenständigkeit. Unfertige Forschungsentwürfe werden hier nicht als bereits freigegebene Fachartikel dargestellt.",
+   "has_governed_value": false,
+   "claim_class": "scientific_scope",
+   "status": "verified",
+   "basis": "Beschreibt Materialform und Unsicherheit, ohne den unveröffentlichten MoS2-Entwurf als freigegeben auszugeben."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Deutschsprachige Fragen eigenständig behandeln",
+   "text": "Wer nach einem deutschen Fachbegriff sucht, benötigt häufig mehr als die Übersetzung eines englischen Eintrags. Deutsche Wörterbücher, fachsprachliche Kontexte und Bezeichnungen können eine eigenständige Aufgabe bilden, auch wenn beide Seiten denselben chemischen Themenbereich berühren.",
+   "has_governed_value": false,
+   "claim_class": "language_scope",
+   "status": "verified",
+   "basis": "Ein eigenständiger deutschsprachiger Zugang, nicht automatisch übersetzte chemische Fakten."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Deutschsprachige Fragen eigenständig behandeln",
+   "text": "Die englische Startseite bietet einen Überblick über das Projekt. Diese Seite richtet sich an deutschsprachige Leserinnen und Leser und erläutert die für ihre Fragen wichtigen Belegarten, ohne ein ungeprüftes sprachliches Verhältnis als chemische Tatsache auszugeben.",
+   "has_governed_value": false,
+   "claim_class": "language_scope",
+   "status": "verified",
+   "basis": "Ein eigenständiger deutschsprachiger Zugang, nicht automatisch übersetzte chemische Fakten."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Herausgeber und Grenzen",
+   "text": "BISULFID ist ein Referenzprojekt von Sohadot (sohadot.com). Die Erwähnung von IUPAC, Wörterbüchern, Datenbanken und Fachverlagen dient der Quellenzuordnung, nicht der Behauptung einer Förderung oder institutionellen Verbindung. Eine unabhängige wissenschaftliche Begutachtung wird nur genannt, wenn sie tatsächlich vorliegt.",
+   "has_governed_value": false,
+   "claim_class": "publisher_scope",
+   "status": "owner_confirmed",
+   "basis": "Sohadot (sohadot.com) wurde vom Projekteigentümer ausdrücklich als Inhaber benannt; keine erfundene Begutachtung."
+  },
+  {
+   "spec": "INST-HOME-DE",
+   "version": "1.3.0",
+   "section": "Herausgeber und Grenzen",
+   "text": "Das Projekt dient der fachsprachlichen und wissenschaftlichen Orientierung. Es ersetzt weder Sicherheitsdatenblätter noch medizinische, rechtliche oder industrielle Beratung. Für gefährdungsrelevante Entscheidungen sind die einschlägigen Originalunterlagen und qualifizierte Fachleute maßgeblich.",
+   "has_governed_value": false,
+   "claim_class": "publisher_scope",
+   "status": "owner_confirmed",
+   "basis": "Sohadot (sohadot.com) wurde vom Projekteigentümer ausdrücklich als Inhaber benannt; keine erfundene Begutachtung."
+  }
+ ],
+ "summary": {
+  "items": 26,
+  "verified": 20,
+  "owner_confirmation_required": 0,
+  "owner_confirmed": 4,
+  "not_a_factual_claim": 2,
+  "unclassified": 0
+ }
+}

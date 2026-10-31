@@ -1,0 +1,177 @@
+{
+  "spec_id": "INST-HOME-EN",
+  "version": "1.4.0",
+  "status": "preview",
+  "page_class": "institutional",
+  "institutional_function": "gateway_home",
+  "route_id": "home",
+  "language": "en",
+  "purpose": "English editorial and evidence-methodology gateway by Sohadot (sohadot.com); no unverified chemical identity claim and no dependence on unreleased governed reference routes.",
+  "seo": {
+    "title": "BISULFID — Sulfur Chemistry Terms & Scientific Sources",
+    "description": "Explore how BISULFID examines sulfur chemistry names, English and German terminology, source authority and the limits of evidence.",
+    "search_intents": [
+      {
+        "query_class": "navigational / brand",
+        "examples": [
+          "bisulfid",
+          "bisulfid.com"
+        ],
+        "intent": "reach the site and understand what it is"
+      },
+      {
+        "query_class": "routing",
+        "examples": [
+          "bisulfid meaning",
+          "bisulfid vs bisulfide"
+        ],
+        "intent": "served by the terminology reference /bisulfid-vs-bisulfide/; the homepage routes there"
+      }
+    ],
+    "json_ld": {
+      "@type": "WebSite",
+      "name": "BISULFID",
+      "url": "https://bisulfid.com/",
+      "inLanguage": [
+        "en",
+        "de"
+      ]
+    },
+    "hreflang": "reciprocal en <-> de with x-default -> /, emitted only because INST-HOME-DE declares the same set (render_institutional_preview.alternates)"
+  },
+  "h1": "BISULFID",
+  "lead": "An evidence-conscious reference project for sulfur chemistry: chemical names, their possible meanings, and the sources needed to tell a supported definition from an assumption.",
+  "sections": [
+    {
+      "heading": "The question behind our name",
+      "paragraphs": [
+        "Bisulfid and bisulfide differ by one letter. That similarity alone cannot establish a shared chemical meaning or a standard translation. Before treating two terms as equivalent, we ask what entity a source names, what language it covers and whether it is describing usage or recommending nomenclature.",
+        "The BISULFID research method keeps dictionary definitions, database synonyms, standards and technical uses distinct. It records what the cited source actually supports and leaves an unresolved interpretation open instead of filling the gap with a confident-sounding guess."
+      ],
+      "links": [
+        {
+          "path": "/sources/",
+          "label": "Explore source types and provenance"
+        }
+      ]
+    },
+    {
+      "heading": "Different sources answer different questions",
+      "paragraphs": [
+        "A dictionary documents recorded meanings. A chemical database associates terms and synonyms with an identified record. A nomenclature recommendation supplies naming conventions for specified chemical entities. Primary research can report experimentally measured properties of particular material forms. These sources are not interchangeable.",
+        "A synonym in a database is not necessarily a preferred systematic name. A word missing from a particular dictionary is not proved absent from every technical text. BISULFID is designed to make these distinctions visible where they matter to the reader."
+      ],
+      "links": [
+        {
+          "path": "/methodology/",
+          "label": "Read our reference methodology"
+        }
+      ]
+    },
+    {
+      "heading": "How evidence becomes a reference",
+      "paragraphs": [
+        "A defensible reference links each substantive statement to an identifiable source and an appropriate passage, record field or measured value. It records its provenance and the scope in which it is admissible. Where two measurements arise from different studies, the original conditions and reporting precision remain part of the explanation.",
+        "BISULFID distinguishes documentary verification from independent human peer review, and technical evidence checks from publication authorization. Neither a citation list nor an automated validation badge should be mistaken for proof that an external specialist has signed off on every claim."
+      ],
+      "links": [
+        {
+          "path": "/sources/",
+          "label": "Source discipline"
+        },
+        {
+          "path": "/methodology/",
+          "label": "Verification process"
+        }
+      ]
+    },
+    {
+      "heading": "Identity, structure and material form",
+      "paragraphs": [
+        "A chemical formula does not describe every structural form and property of a material. A reference to a bulk crystal, a polytype or a single layer can require different supporting data. Reporting a value without its scope makes the claim less useful, even when the number itself was transcribed correctly.",
+        "The atlas develops scientifically focused compound records with this distinction in mind. An internal draft is not represented here as a published, reviewed reference; older public pages may predate the present evidence checks. The project favors improving appropriate existing pages over issuing several lightly rewritten copies."
+      ],
+      "links": []
+    },
+    {
+      "heading": "English and German reference questions",
+      "paragraphs": [
+        "A German technical expression cannot be validated simply by translating a similar English word. German lexicography and usage sometimes require their own evidence and distinctions. The German entry page therefore addresses terminology questions for German-language readers rather than presenting a word-for-word imitation of the English gateway.",
+        "Both languages are organized around the same editorial discipline: identify the question, cite the relevant source, distinguish established information from open interpretation, and avoid inventing chemical equivalence or unnecessary sibling URLs."
+      ],
+      "links": [
+        {
+          "path": "/de/",
+          "label": "Deutschsprachiger Einstieg"
+        }
+      ]
+    },
+    {
+      "heading": "Publisher and limits",
+      "paragraphs": [
+        "BISULFID is a reference initiative of Sohadot (sohadot.com). Naming IUPAC, dictionaries, databases, publishers or research institutions as evidence sources does not imply sponsorship, endorsement or organizational affiliation. The site does not claim an independent expert assessment that has not taken place.",
+        "The atlas offers terminology and research orientation, not chemical handling, exposure-control, medical, regulatory, procurement or investment instructions. Decisions involving safety or regulated uses require the applicable original documents and qualified professionals."
+      ],
+      "links": [
+        {
+          "path": "/methodology/",
+          "label": "Editorial principles"
+        }
+      ]
+    }
+  ],
+  "path": "/",
+  "nav_label": "Site navigation",
+  "nav": [
+    {
+      "path": "/",
+      "label": "BISULFID"
+    },
+    {
+      "path": "/sources/",
+      "label": "Sources"
+    },
+    {
+      "path": "/methodology/",
+      "label": "Methodology"
+    },
+    {
+      "path": "/glossary/",
+      "label": "Glossary"
+    },
+    {
+      "path": "/de/",
+      "label": "Deutsch"
+    }
+  ],
+  "alternates": {
+    "en": "/",
+    "de": "/de/",
+    "x-default": "/"
+  },
+  "footer": {
+    "nav": [
+      {
+        "path": "/",
+        "label": "Home"
+      },
+      {
+        "path": "/methodology/",
+        "label": "Methodology"
+      },
+      {
+        "path": "/sources/",
+        "label": "Sources"
+      },
+      {
+        "path": "/glossary/",
+        "label": "Glossary"
+      },
+      {
+        "path": "/de/",
+        "label": "Deutsch"
+      }
+    ],
+    "identity": "BISULFID — a Sohadot reference initiative for sulfur chemistry"
+  }
+}

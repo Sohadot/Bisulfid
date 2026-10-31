@@ -1,0 +1,657 @@
+{
+  "spec_id": "RSPEC-KO-BISULFID-TERMINOLOGY-001",
+  "version": "1.1.0",
+  "status": "preview",
+  "governed_by": [
+    "main/data/knowledge_objects/knowledge_object_registry.json",
+    "main/data/claims/terminology_claims.json",
+    "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+    "scripts/reference_production/render_ko_reference.py",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Presentation spec for rendering KO-BISULFID-TERMINOLOGY-001 as the reconstructed body of the EXISTING route /bisulfid-vs-bisulfide/ (no new URL). Prose restates approved terminology claims; every quoted word, name, formula or date is a placeholder resolved from an admitted evidence record. Similar spelling is never treated as equivalence.",
+  "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
+  "canonical_route_id": "bisulfid_vs_bisulfide",
+  "binding_basis": "IG Governance 1.0.0: PAIR-KO-BISULFID-TERM-vs-LEGACY-TERM-ROUTE = near_duplicate (same terminology task) -> no NEW URL; the KO reconstructs the existing route (PC-BISULFID-TERMINOLOGY-001 disposition governed_reference_no_new_route).",
+  "language": "en",
+  "page_type_id": "PT_DIFFERENCE_COMPARISON",
+  "kicker": "Terminology reference",
+  "atlas_lane": "terminology",
+  "title": "Bisulfid vs Bisulfide: Meanings, IUPAC Names and German Usage",
+  "h1": "Bisulfid vs bisulfide",
+  "summary": "The two words look like one term in two spellings. The cited sources do not treat them that way: Merriam-Webster defines bisulfide as disulfide, PubChem lists bisulfide as a synonym for the hydrosulfide ion (HS⁻), and of the German dictionaries consulted, Duden and the DWDS define Sulfid while the DWDS reports that Bisulfid is not among its contemporary lexical sources.",
+  "reference_task": "What do bisulfide (English) and Bisulfid (German) mean according to authoritative sources, which chemical species is each word attached to, and how do they relate to sulfide, disulfide and bisulfite?",
+  "evidence_uses": {
+    "EVD-TERM-MW-BISULFIDE": "en_lexical_entry_definition",
+    "EVD-TERM-MW-SULFIDE": "en_lexical_entry_definition",
+    "EVD-TERM-MW-DISULFIDE": "en_lexical_entry_definition",
+    "EVD-TERM-MW-BISULFITE": "en_lexical_entry_definition",
+    "EVD-TERM-DUDEN-SULFID": "de_lexical_entry_definition",
+    "EVD-TERM-DWDS-SULFID": "de_lexical_entry_definition",
+    "EVD-TERM-DWDS-BISULFID": "de_lexicographic_coverage_statement",
+    "EVD-TERM-DWDS-HYDROGENSULFID": "de_lexicographic_coverage_statement",
+    "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE": "de_technical_term_usage",
+    "EVD-TERM-IUPAC-HS-NAMES": "iupac_recommended_name",
+    "EVD-TERM-IUPAC-S2-NAMES": "iupac_recommended_name",
+    "EVD-TERM-IUPAC-HSO3-NAME": "iupac_recommended_name",
+    "EVD-TERM-FHM-ID-RULE": "de_nomenclature_teaching_rule",
+    "EVD-TERM-PUBCHEM-HS-SYNONYMS": "database_record_identity_and_synonyms",
+    "EVD-TERM-PUBCHEM-BISULFITE": "database_record_identity_and_synonyms"
+  },
+  "at_a_glance": [
+    {
+      "label": "bisulfide — English dictionary (Merriam-Webster)",
+      "value": "cross-reference: “{{EVD-TERM-MW-BISULFIDE:lexical.definition_quoted}}”",
+      "evidence_ids": [
+        "EVD-TERM-MW-BISULFIDE"
+      ]
+    },
+    {
+      "label": "bisulfide — chemical database (PubChem)",
+      "value": "listed as a synonym of {{EVD-TERM-PUBCHEM-HS-SYNONYMS:lexical.molecular_formula}}, record title {{EVD-TERM-PUBCHEM-HS-SYNONYMS:lexical.record_title}} (CID {{EVD-TERM-PUBCHEM-HS-SYNONYMS:lexical.cid}})",
+      "evidence_ids": [
+        "EVD-TERM-PUBCHEM-HS-SYNONYMS"
+      ]
+    },
+    {
+      "label": "HS⁻ (hydrosulfide) — IUPAC 2005",
+      "value": "{{EVD-TERM-IUPAC-HS-NAMES:lexical.substitutive_name}} (substitutive) or {{EVD-TERM-IUPAC-HS-NAMES:lexical.additive_name}} (additive)",
+      "evidence_ids": [
+        "EVD-TERM-IUPAC-HS-NAMES"
+      ]
+    },
+    {
+      "label": "disulfide — English dictionary (Merriam-Webster)",
+      "value": "“{{EVD-TERM-MW-DISULFIDE:lexical.sense_1_quoted}}”",
+      "evidence_ids": [
+        "EVD-TERM-MW-DISULFIDE"
+      ]
+    },
+    {
+      "label": "S₂²⁻ — IUPAC 2005",
+      "value": "{{EVD-TERM-IUPAC-S2-NAMES:lexical.homopolyatomic_name}} or {{EVD-TERM-IUPAC-S2-NAMES:lexical.parent_hydride_name}}",
+      "evidence_ids": [
+        "EVD-TERM-IUPAC-S2-NAMES"
+      ]
+    },
+    {
+      "label": "Sulfid (German) — Duden, DWDS",
+      "value": "“{{EVD-TERM-DWDS-SULFID:lexical.definition_quoted}}” (DWDS); “{{EVD-TERM-DUDEN-SULFID:lexical.definition_quoted}}” (Duden)",
+      "evidence_ids": [
+        "EVD-TERM-DWDS-SULFID",
+        "EVD-TERM-DUDEN-SULFID"
+      ]
+    },
+    {
+      "label": "Hydrogensulfid (German) — chemistry lexicon (Spektrum)",
+      "value": "salts of HS⁻: {{EVD-TERM-SPEKTRUM-HYDROGENSULFIDE:lexical.salt_series|valence}}",
+      "evidence_ids": [
+        "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE"
+      ]
+    },
+    {
+      "label": "Bisulfid (German) — DWDS",
+      "value": "not among the DWDS contemporary lexical sources (one dictionary; not an absence from all German texts)",
+      "evidence_ids": [
+        "EVD-TERM-DWDS-BISULFID"
+      ]
+    },
+    {
+      "label": "bisulfite — Merriam-Webster, IUPAC",
+      "value": "“{{EVD-TERM-MW-BISULFITE:lexical.definition_quoted}}”; IUPAC: {{EVD-TERM-IUPAC-HSO3-NAME:lexical.accepted_abbreviated_name}} ({{EVD-TERM-IUPAC-HSO3-NAME:lexical.anion}})",
+      "evidence_ids": [
+        "EVD-TERM-MW-BISULFITE",
+        "EVD-TERM-IUPAC-HSO3-NAME"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "module_id": "en_bisulfide",
+      "heading": "Bisulfide in Merriam-Webster: a cross-reference to disulfide",
+      "claim_id": "CLM-TERM-BISULFIDE-EN-SENSE-001",
+      "paragraphs": [
+        {
+          "text": "Merriam-Webster enters {{EVD-TERM-MW-BISULFIDE:lexical.headword}} as a {{EVD-TERM-MW-BISULFIDE:lexical.part_of_speech}} whose whole definition is a cross-reference: “{{EVD-TERM-MW-BISULFIDE:lexical.definition_quoted}}”. The dictionary dates its first known use to {{EVD-TERM-MW-BISULFIDE:lexical.first_known_use}}.",
+          "evidence_ids": [
+            "EVD-TERM-MW-BISULFIDE"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-001",
+            "dimension": "terminology_boundary"
+          }
+        },
+        {
+          "text": "Read with the disulfide entry below, the dictionary sense of bisulfide is a compound with two sulfur atoms. The entry gives no sense that involves hydrogen.",
+          "evidence_ids": [
+            "EVD-TERM-MW-BISULFIDE"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "database_bisulfide",
+      "heading": "Bisulfide in PubChem: a synonym listed for HS⁻",
+      "boundary": true,
+      "paragraphs": [
+        {
+          "text": "PubChem record CID {{EVD-TERM-PUBCHEM-HS-SYNONYMS:lexical.cid}} has the formula {{EVD-TERM-PUBCHEM-HS-SYNONYMS:lexical.molecular_formula}}, the computed IUPAC name {{EVD-TERM-PUBCHEM-HS-SYNONYMS:lexical.computed_iupac_name}} and the title {{EVD-TERM-PUBCHEM-HS-SYNONYMS:lexical.record_title}}, and its synonym list includes “{{EVD-TERM-PUBCHEM-HS-SYNONYMS:lexical.synonym_listed}}”.",
+          "evidence_ids": [
+            "EVD-TERM-PUBCHEM-HS-SYNONYMS"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-002",
+            "dimension": "terminology_boundary"
+          }
+        },
+        {
+          "text": "The same English spelling therefore points to two different species in two kinds of source: the dictionary maps it to disulfide, two sulfur atoms, while the database attaches it to the hydrosulfide ion, one sulfur and one hydrogen. A synonym list records names that are in use; it is not a naming recommendation.",
+          "evidence_ids": [
+            "EVD-TERM-PUBCHEM-HS-SYNONYMS"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "iupac_hs",
+      "heading": "HS⁻ in IUPAC nomenclature: sulfanide or hydridosulfate(1−)",
+      "claim_id": "CLM-TERM-IUPAC-HS-NAMES-001",
+      "paragraphs": [
+        {
+          "text": "The IUPAC 2005 recommendations on inorganic nomenclature give the anion {{EVD-TERM-IUPAC-HS-NAMES:lexical.anion}} two names: {{EVD-TERM-IUPAC-HS-NAMES:lexical.substitutive_name}} as the substitutive name and {{EVD-TERM-IUPAC-HS-NAMES:lexical.additive_name}} as the additive name ({{EVD-TERM-IUPAC-HS-NAMES:lexical.section}}).",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-HS-NAMES"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-003",
+            "dimension": "chemical_identity"
+          }
+        },
+        {
+          "text": "Bisulfide is not one of the names given in that example. Where precision matters, the IUPAC names identify HS⁻ without the ambiguity of the bi- form.",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-HS-NAMES"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "en_disulfide",
+      "heading": "Disulfide in Merriam-Webster",
+      "claim_id": "CLM-TERM-DISULFIDE-EN-SENSE-001",
+      "paragraphs": [
+        {
+          "text": "Merriam-Webster gives {{EVD-TERM-MW-DISULFIDE:lexical.headword}} two senses: “{{EVD-TERM-MW-DISULFIDE:lexical.sense_1_quoted}}” and “{{EVD-TERM-MW-DISULFIDE:lexical.sense_2_quoted}}”, with a first known use of {{EVD-TERM-MW-DISULFIDE:lexical.first_known_use}}.",
+          "evidence_ids": [
+            "EVD-TERM-MW-DISULFIDE"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-004",
+            "dimension": "conceptual_boundary"
+          }
+        }
+      ]
+    },
+    {
+      "module_id": "iupac_s2",
+      "heading": "S₂²⁻ in IUPAC nomenclature: disulfide(2−)",
+      "claim_id": "CLM-TERM-IUPAC-S2-NAMES-001",
+      "paragraphs": [
+        {
+          "text": "For the anion {{EVD-TERM-IUPAC-S2-NAMES:lexical.anion}} the same recommendations give {{EVD-TERM-IUPAC-S2-NAMES:lexical.homopolyatomic_name}}, and {{EVD-TERM-IUPAC-S2-NAMES:lexical.parent_hydride_name}} on the parent-hydride basis ({{EVD-TERM-IUPAC-S2-NAMES:lexical.section}}).",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-S2-NAMES"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-005",
+            "dimension": "chemical_identity"
+          }
+        }
+      ]
+    },
+    {
+      "module_id": "en_sulfide",
+      "heading": "Sulfide in Merriam-Webster",
+      "claim_id": "CLM-TERM-SULFIDE-EN-SENSE-001",
+      "paragraphs": [
+        {
+          "text": "Merriam-Webster defines {{EVD-TERM-MW-SULFIDE:lexical.headword}} in two senses: “{{EVD-TERM-MW-SULFIDE:lexical.sense_1_quoted}}”, and “{{EVD-TERM-MW-SULFIDE:lexical.sense_2_quoted}}”. Its first known use is {{EVD-TERM-MW-SULFIDE:lexical.first_known_use}}.",
+          "evidence_ids": [
+            "EVD-TERM-MW-SULFIDE"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-006",
+            "dimension": "conceptual_boundary"
+          }
+        }
+      ]
+    },
+    {
+      "module_id": "en_bisulfite",
+      "heading": "Bisulfite: a different word, defined through sulfite",
+      "claim_id": "CLM-TERM-BISULFITE-EN-SENSE-001",
+      "paragraphs": [
+        {
+          "text": "Merriam-Webster defines {{EVD-TERM-MW-BISULFITE:lexical.headword}} as “{{EVD-TERM-MW-BISULFITE:lexical.definition_quoted}}”, first known use {{EVD-TERM-MW-BISULFITE:lexical.first_known_use}}.",
+          "evidence_ids": [
+            "EVD-TERM-MW-BISULFITE"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-007",
+            "dimension": "terminology_boundary"
+          }
+        },
+        {
+          "text": "Bisulfite is one letter away from bisulfide, but the dictionary defines it through sulfite, not sulfide. The two words should not be used interchangeably.",
+          "evidence_ids": [
+            "EVD-TERM-MW-BISULFITE"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "iupac_hso3",
+      "heading": "HSO₃⁻ in IUPAC nomenclature: hydrogensulfite",
+      "claim_id": "CLM-TERM-IUPAC-HSO3-NAME-001",
+      "paragraphs": [
+        {
+          "text": "For {{EVD-TERM-IUPAC-HSO3-NAME:lexical.anion}} IUPAC accepts the abbreviated name {{EVD-TERM-IUPAC-HSO3-NAME:lexical.accepted_abbreviated_name}}; the full hydrogen name is {{EVD-TERM-IUPAC-HSO3-NAME:lexical.full_hydrogen_name}} ({{EVD-TERM-IUPAC-HSO3-NAME:lexical.section}}). IUPAC adds: “{{EVD-TERM-IUPAC-HSO3-NAME:lexical.list_status_quoted}}”.",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-HSO3-NAME"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-008",
+            "dimension": "chemical_identity"
+          }
+        }
+      ]
+    },
+    {
+      "module_id": "pubchem_bisulfite",
+      "heading": "Bisulfite in PubChem: HSO₃⁻",
+      "boundary": true,
+      "paragraphs": [
+        {
+          "text": "PubChem record CID {{EVD-TERM-PUBCHEM-BISULFITE:lexical.cid}}, titled {{EVD-TERM-PUBCHEM-BISULFITE:lexical.record_title}}, has the formula {{EVD-TERM-PUBCHEM-BISULFITE:lexical.molecular_formula}} and the computed IUPAC name {{EVD-TERM-PUBCHEM-BISULFITE:lexical.computed_iupac_name}}.",
+          "evidence_ids": [
+            "EVD-TERM-PUBCHEM-BISULFITE"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-009",
+            "dimension": "terminology_boundary"
+          }
+        },
+        {
+          "text": "The database therefore places bisulfite on an oxygen-containing anion, not on any sulfide.",
+          "evidence_ids": [
+            "EVD-TERM-PUBCHEM-BISULFITE"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "de_sulfid",
+      "heading": "Sulfid in Duden and the DWDS",
+      "claim_id": "CLM-TERM-SULFID-DE-SENSE-001",
+      "paragraphs": [
+        {
+          "text": "Duden defines {{EVD-TERM-DUDEN-SULFID:lexical.headword}} as “{{EVD-TERM-DUDEN-SULFID:lexical.definition_quoted}}”. The DWDS entry (source: {{EVD-TERM-DWDS-SULFID:lexical.dictionary}}) labels the word {{EVD-TERM-DWDS-SULFID:lexical.domain_label}} and defines it as “{{EVD-TERM-DWDS-SULFID:lexical.definition_quoted}}”.",
+          "evidence_ids": [
+            "EVD-TERM-DUDEN-SULFID",
+            "EVD-TERM-DWDS-SULFID"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-010",
+            "dimension": "cross_language_semantic_distinction"
+          }
+        },
+        {
+          "text": "Both German definitions are given in terms of hydrogen sulfide, like the second English sense of sulfide above. For this pair the evidence shows a spelling difference with a matching definition; that finding does not carry over to other pairs such as Bisulfid and bisulfide.",
+          "evidence_ids": [
+            "EVD-TERM-DUDEN-SULFID",
+            "EVD-TERM-DWDS-SULFID"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "de_hydrogensulfid",
+      "heading": "Hydrogensulfid in a German chemistry lexicon",
+      "claim_id": "CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001",
+      "paragraphs": [
+        {
+          "text": "In its entry {{EVD-TERM-SPEKTRUM-HYDROGENSULFIDE:lexical.entry}}, the Spektrum chemistry lexicon states that hydrogen sulfide forms two series of salts: {{EVD-TERM-SPEKTRUM-HYDROGENSULFIDE:lexical.salt_series|valence}}.",
+          "evidence_ids": [
+            "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-011",
+            "dimension": "cross_language_semantic_distinction"
+          }
+        },
+        {
+          "text": "In this German reference work the salts of HS⁻ are called Hydrogensulfide. The passage does not use the word Bisulfid.",
+          "evidence_ids": [
+            "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "de_bisulfid",
+      "heading": "Bisulfid in the DWDS: not among its contemporary lexical sources",
+      "claim_id": "CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001",
+      "paragraphs": [
+        {
+          "text": "For {{EVD-TERM-DWDS-BISULFID:lexical.headword}} the DWDS answers: “{{EVD-TERM-DWDS-BISULFID:lexical.coverage_statement_quoted}}” It shows {{EVD-TERM-DWDS-BISULFID:lexical.forms_shown}}.",
+          "evidence_ids": [
+            "EVD-TERM-DWDS-BISULFID"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-012",
+            "dimension": "terminology_boundary"
+          }
+        },
+        {
+          "text": "The DWDS gives the same answer for {{EVD-TERM-DWDS-HYDROGENSULFID:lexical.headword}}: “{{EVD-TERM-DWDS-HYDROGENSULFID:lexical.coverage_statement_quoted}}”",
+          "evidence_ids": [
+            "EVD-TERM-DWDS-HYDROGENSULFID"
+          ]
+        },
+        {
+          "text": "Missing from one dictionary's contemporary sources is not the same as never used. It shows only that the DWDS does not record the word; it cannot settle what Bisulfid refers to, and it says nothing about other dictionaries or technical texts.",
+          "evidence_ids": [
+            "EVD-TERM-DWDS-BISULFID"
+          ]
+        }
+      ]
+    },
+    {
+      "module_id": "german_id_rule",
+      "heading": "The German -id ending: a naming pattern, not proof of a standard term",
+      "claim_id": "CLM-TERM-GERMAN-ID-RULE-001",
+      "paragraphs": [
+        {
+          "text": "A German university teaching text on inorganic nomenclature states the rule: “{{EVD-TERM-FHM-ID-RULE:lexical.rule_quoted}}” Its table of monatomic anions lists the sulfide ion as “{{EVD-TERM-FHM-ID-RULE:lexical.example_row}}”.",
+          "evidence_ids": [
+            "EVD-TERM-FHM-ID-RULE"
+          ],
+          "ig_unit": {
+            "unit_id": "IGU-TERM-013",
+            "dimension": "cross_language_semantic_distinction"
+          }
+        },
+        {
+          "text": "The rule explains the spelling Sulfid. It does not say what Bisulfid refers to, and none of the dictionaries or nomenclature sources cited here defines Bisulfid.",
+          "evidence_ids": [
+            "EVD-TERM-FHM-ID-RULE"
+          ]
+        }
+      ]
+    }
+  ],
+  "not_established": {
+    "heading": "What this reference does not establish",
+    "text": "BISULFID is the name of this website. The name is not a chemical claim, and this reference does not state that German Bisulfid is the equivalent of English bisulfide. One captured industry page uses Bisulfid in connection with HS⁻, but an industry page is not admissible as evidence of standardized German terminology here. This observation is retained as a boundary; it cannot establish general usage or a recommended name. The IUPAC Gold Book entry on hydrosulfides could not be retrieved openly when the sources were captured, and a second German teaching handout was unreachable, so neither is cited. Other German dictionaries were not examined for Bisulfid. The history of the bi- prefix, how often each spelling is used, and the safety or industrial properties of any species named here are outside this reference [SOURCE REQUIRED]."
+  },
+  "ig_audience_ids": [
+    "AUD_CHEMIST",
+    "AUD_STUDENT",
+    "AUD_RESEARCHER"
+  ],
+  "seo": {
+    "title": "Bisulfid vs Bisulfide: Meanings, IUPAC Names, German Usage",
+    "description": "What Merriam-Webster, IUPAC, PubChem, Duden and the DWDS record for bisulfide, Bisulfid, sulfide, disulfide, hydrosulfide and bisulfite.",
+    "search_intents": [
+      {
+        "query_class": "direct comparison",
+        "examples": [
+          "bisulfid vs bisulfide",
+          "bisulfid or bisulfide"
+        ],
+        "served_by": [
+          "at_a_glance",
+          "en_bisulfide",
+          "de_bisulfid",
+          "german_id_rule"
+        ]
+      },
+      {
+        "query_class": "definition",
+        "examples": [
+          "what is bisulfide",
+          "bisulfide meaning",
+          "bisulfide formula"
+        ],
+        "served_by": [
+          "en_bisulfide",
+          "database_bisulfide",
+          "iupac_hs"
+        ]
+      },
+      {
+        "query_class": "neighbour comparison",
+        "examples": [
+          "bisulfide vs sulfide",
+          "bisulfide vs disulfide",
+          "hydrosulfide vs bisulfide"
+        ],
+        "served_by": [
+          "en_sulfide",
+          "en_disulfide",
+          "iupac_s2",
+          "iupac_hs"
+        ]
+      },
+      {
+        "query_class": "confusable",
+        "examples": [
+          "bisulfide vs bisulfite"
+        ],
+        "served_by": [
+          "en_bisulfite",
+          "iupac_hso3",
+          "pubchem_bisulfite"
+        ]
+      },
+      {
+        "query_class": "German term lookup (English-language page)",
+        "examples": [
+          "Bisulfid Bedeutung",
+          "Hydrogensulfid",
+          "Sulfid Definition"
+        ],
+        "served_by": [
+          "de_sulfid",
+          "de_hydrogensulfid",
+          "de_bisulfid"
+        ]
+      },
+      {
+        "query_class": "hydrosulfide naming",
+        "examples": [
+          "hydrosulfide IUPAC name",
+          "sulfanide",
+          "HS- ion name"
+        ],
+        "served_by": [
+          "iupac_hs",
+          "database_bisulfide"
+        ]
+      }
+    ],
+    "unserved_intents_blocked_on_evidence": [
+      "bisulfide safety / toxicity",
+      "bisulfide uses in industry or water treatment",
+      "history of the bi- prefix",
+      "frequency of Bisulfid vs Hydrogensulfid in German texts"
+    ],
+    "json_ld": {
+      "@type": "DefinedTermSet",
+      "name": "Bisulfid and bisulfide: terminology boundary",
+      "inLanguage": "en",
+      "hasDefinedTerm": [
+        {
+          "@type": "DefinedTerm",
+          "name": "{{EVD-TERM-MW-BISULFIDE:lexical.headword}}",
+          "inLanguage": "en",
+          "description": "Dictionary sense: {{EVD-TERM-MW-BISULFIDE:lexical.definition_quoted}} (Merriam-Webster)."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "{{EVD-TERM-IUPAC-HS-NAMES:lexical.substitutive_name}}",
+          "inLanguage": "en",
+          "description": "IUPAC 2005 name for {{EVD-TERM-IUPAC-HS-NAMES:lexical.anion}}."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "{{EVD-TERM-DWDS-SULFID:lexical.headword}}",
+          "inLanguage": "de",
+          "description": "{{EVD-TERM-DWDS-SULFID:lexical.definition_quoted}} (DWDS)"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "{{EVD-TERM-MW-BISULFITE:lexical.headword}}",
+          "inLanguage": "en",
+          "description": "Dictionary sense: {{EVD-TERM-MW-BISULFITE:lexical.definition_quoted}} (Merriam-Webster)."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "{{EVD-TERM-IUPAC-S2-NAMES:lexical.homopolyatomic_name}}",
+          "inLanguage": "en",
+          "description": "IUPAC 2005 name for {{EVD-TERM-IUPAC-S2-NAMES:lexical.anion}}."
+        }
+      ]
+    },
+    "json_ld_evidence_ids": [
+      "EVD-TERM-MW-BISULFIDE",
+      "EVD-TERM-IUPAC-HS-NAMES",
+      "EVD-TERM-DWDS-SULFID",
+      "EVD-TERM-MW-BISULFITE",
+      "EVD-TERM-IUPAC-S2-NAMES"
+    ],
+    "breadcrumbs": [
+      {
+        "label": "BISULFID",
+        "path": "/"
+      },
+      {
+        "label": "Bisulfid vs bisulfide",
+        "path": "/bisulfid-vs-bisulfide/"
+      }
+    ],
+    "related": [
+      {
+        "path": "/methodology/",
+        "label": "How BISULFID admits evidence",
+        "relation": "how sources, captures and claims are reviewed"
+      },
+      {
+        "path": "/sources/",
+        "label": "Source discipline",
+        "relation": "how BISULFID registers and qualifies sources"
+      }
+    ],
+    "hreflang": "none: /de/bisulfid-vs-bisulfide/ is an ungoverned legacy page, not a governed localization of this object"
+  },
+  "evidence_links": true,
+  "reverified_by": "main/data/evidence/captures/TERMINOLOGY_RECAPTURE_2026-10-31.json",
+  "synthesis": {
+    "heading": "What the sources support, what stays open, and what not to infer",
+    "intro": "Each statement below draws only on the evidence cited in brackets. It separates what a dictionary, a nomenclature standard, a database and a technical lexicon each record, because they answer different questions.",
+    "groups": [
+      {
+        "verdict": "supported",
+        "label": "Supported by the cited sources",
+        "items": [
+          {
+            "text": "In Merriam-Webster, bisulfide is a cross-reference to disulfide, whose first sense is “{{EVD-TERM-MW-DISULFIDE:lexical.sense_1_quoted}}”.",
+            "evidence_ids": [
+              "EVD-TERM-MW-BISULFIDE",
+              "EVD-TERM-MW-DISULFIDE"
+            ]
+          },
+          {
+            "text": "In PubChem, bisulfide is one of the synonyms listed for {{EVD-TERM-PUBCHEM-HS-SYNONYMS:lexical.molecular_formula}}, the record titled {{EVD-TERM-PUBCHEM-HS-SYNONYMS:lexical.record_title}} with the computed IUPAC name {{EVD-TERM-PUBCHEM-HS-SYNONYMS:lexical.computed_iupac_name}}.",
+            "evidence_ids": [
+              "EVD-TERM-PUBCHEM-HS-SYNONYMS"
+            ]
+          },
+          {
+            "text": "IUPAC's 2005 recommendations name HS⁻ {{EVD-TERM-IUPAC-HS-NAMES:lexical.substitutive_name}} or {{EVD-TERM-IUPAC-HS-NAMES:lexical.additive_name}}, and S₂²⁻ {{EVD-TERM-IUPAC-S2-NAMES:lexical.homopolyatomic_name}}; bisulfide is not among the names given in those examples.",
+            "evidence_ids": [
+              "EVD-TERM-IUPAC-HS-NAMES",
+              "EVD-TERM-IUPAC-S2-NAMES"
+            ]
+          },
+          {
+            "text": "German Sulfid and the inorganic sense of English sulfide are both defined in terms of hydrogen sulfide: “{{EVD-TERM-DWDS-SULFID:lexical.definition_quoted}}” (DWDS) and “a salt of hydrogen sulfide” (Merriam-Webster).",
+            "evidence_ids": [
+              "EVD-TERM-DWDS-SULFID",
+              "EVD-TERM-DUDEN-SULFID",
+              "EVD-TERM-MW-SULFIDE"
+            ]
+          },
+          {
+            "text": "In the German chemistry lexicon consulted, the salts of HS⁻ are called Hydrogensulfide; the passage does not use the word Bisulfid.",
+            "evidence_ids": [
+              "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE"
+            ]
+          },
+          {
+            "text": "Bisulfite names an oxygen-containing anion, {{EVD-TERM-IUPAC-HSO3-NAME:lexical.anion}} ({{EVD-TERM-IUPAC-HSO3-NAME:lexical.accepted_abbreviated_name}}); PubChem titles that record {{EVD-TERM-PUBCHEM-BISULFITE:lexical.record_title}}.",
+            "evidence_ids": [
+              "EVD-TERM-MW-BISULFITE",
+              "EVD-TERM-IUPAC-HSO3-NAME",
+              "EVD-TERM-PUBCHEM-BISULFITE"
+            ]
+          }
+        ]
+      },
+      {
+        "verdict": "open",
+        "label": "Open: the cited sources do not settle it",
+        "items": [
+          {
+            "text": "Which species a given writer means by bisulfide. The sources attach the word to two different species, disulfide (dictionary) and HS⁻ (database synonym), so only the context of a text can decide.",
+            "evidence_ids": [
+              "EVD-TERM-MW-BISULFIDE",
+              "EVD-TERM-PUBCHEM-HS-SYNONYMS"
+            ]
+          },
+          {
+            "text": "Whether Bisulfid is established German usage. The DWDS does not record it in its contemporary sources, and no admissible terminology source for German usage has been found yet.",
+            "evidence_ids": [
+              "EVD-TERM-DWDS-BISULFID"
+            ]
+          }
+        ]
+      },
+      {
+        "verdict": "not_inferable",
+        "label": "Not to be inferred from similar spelling",
+        "items": [
+          {
+            "text": "That Bisulfid is the standardized German equivalent of bisulfide. The German -id ending is a naming pattern: it explains a spelling, not which species a word denotes.",
+            "evidence_ids": [
+              "EVD-TERM-FHM-ID-RULE"
+            ]
+          },
+          {
+            "text": "That bisulfide and bisulfite are interchangeable because they differ by one letter. One is defined through disulfide, the other through sulfite.",
+            "evidence_ids": [
+              "EVD-TERM-MW-BISULFIDE",
+              "EVD-TERM-MW-BISULFITE"
+            ]
+          },
+          {
+            "text": "That an absence from the DWDS means an absence from every German dictionary or technical text.",
+            "evidence_ids": [
+              "EVD-TERM-DWDS-BISULFID"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,1308 @@
+{
+ "screen_id": "R03-IDENTITY-SCREEN-DE-ELEMENT-SULFID",
+ "run_on": "2026-10-30",
+ "question": "Does PubChem resolve '<element> sulfide' (English) to a compound record?",
+ "interpretation": "not_resolved means identity is not verifiable by name; it is not evidence that no such compound exists.",
+ "summary": {
+  "not_resolved": 36,
+  "resolved": 78
+ },
+ "pages": [
+  {
+   "path": "/de/terminology/cohort04/actinium-sulfid/",
+   "slug": "actinium",
+   "element_en": "actinium",
+   "atomic_number": 89,
+   "query": "actinium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/aluminium-sulfid/",
+   "slug": "aluminium",
+   "element_en": "aluminum",
+   "atomic_number": 13,
+   "query": "aluminum sulfide",
+   "http_status": 200,
+   "cids": [
+    159369
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/americium-sulfid/",
+   "slug": "americium",
+   "element_en": "americium",
+   "atomic_number": 95,
+   "query": "americium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/antimon-sulfid/",
+   "slug": "antimon",
+   "element_en": "antimony",
+   "atomic_number": 51,
+   "query": "antimony sulfide",
+   "http_status": 200,
+   "cids": [
+    6387197
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/barium-sulfid/",
+   "slug": "barium",
+   "element_en": "barium",
+   "atomic_number": 56,
+   "query": "barium sulfide",
+   "http_status": 200,
+   "cids": [
+    6857597
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/berkelium-sulfid/",
+   "slug": "berkelium",
+   "element_en": "berkelium",
+   "atomic_number": 97,
+   "query": "berkelium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/blei-sulfid/",
+   "slug": "blei",
+   "element_en": "lead",
+   "atomic_number": 82,
+   "query": "lead sulfide",
+   "http_status": 200,
+   "cids": [
+    14819
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/bohrium-sulfid/",
+   "slug": "bohrium",
+   "element_en": "bohrium",
+   "atomic_number": 107,
+   "query": "bohrium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/bor-sulfid/",
+   "slug": "bor",
+   "element_en": "boron",
+   "atomic_number": 5,
+   "query": "boron sulfide",
+   "http_status": 200,
+   "cids": [
+    123269
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/cadmiun-sulfid/",
+   "slug": "cadmiun",
+   "element_en": "cadmium",
+   "atomic_number": 48,
+   "query": "cadmium sulfide",
+   "http_status": 200,
+   "cids": [
+    14783
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/caesium-sulfid/",
+   "slug": "caesium",
+   "element_en": "cesium",
+   "atomic_number": 55,
+   "query": "cesium sulfide",
+   "http_status": 200,
+   "cids": [
+    14496896
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/cer-sulfid/",
+   "slug": "cer",
+   "element_en": "cerium",
+   "atomic_number": 58,
+   "query": "cerium sulfide",
+   "http_status": 200,
+   "cids": [
+    159394
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/chrom-sulfid/",
+   "slug": "chrom",
+   "element_en": "chromium",
+   "atomic_number": 24,
+   "query": "chromium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/copernicium-sulfid/",
+   "slug": "copernicium",
+   "element_en": "copernicium",
+   "atomic_number": 112,
+   "query": "copernicium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/curium-sulfid/",
+   "slug": "curium",
+   "element_en": "curium",
+   "atomic_number": 96,
+   "query": "curium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/darmstadtium-sulfid/",
+   "slug": "darmstadtium",
+   "element_en": "darmstadtium",
+   "atomic_number": 110,
+   "query": "darmstadtium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/dubnium-sulfid/",
+   "slug": "dubnium",
+   "element_en": "dubnium",
+   "atomic_number": 105,
+   "query": "dubnium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/dysprosium-sulfid/",
+   "slug": "dysprosium",
+   "element_en": "dysprosium",
+   "atomic_number": 66,
+   "query": "dysprosium sulfide",
+   "http_status": 200,
+   "cids": [
+    166620
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/einsteinium-sulfid/",
+   "slug": "einsteinium",
+   "element_en": "einsteinium",
+   "atomic_number": 99,
+   "query": "einsteinium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/eisen-sulfid/",
+   "slug": "eisen",
+   "element_en": "iron",
+   "atomic_number": 26,
+   "query": "iron sulfide",
+   "http_status": 200,
+   "cids": [
+    160957
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/erbium-sulfid/",
+   "slug": "erbium",
+   "element_en": "erbium",
+   "atomic_number": 68,
+   "query": "erbium sulfide",
+   "http_status": 200,
+   "cids": [
+    166638
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/europium-sulfid/",
+   "slug": "europium",
+   "element_en": "europium",
+   "atomic_number": 63,
+   "query": "europium sulfide",
+   "http_status": 200,
+   "cids": [
+    82809
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/fermium-sulfid/",
+   "slug": "fermium",
+   "element_en": "fermium",
+   "atomic_number": 100,
+   "query": "fermium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/flerovium-sulfid/",
+   "slug": "flerovium",
+   "element_en": "flerovium",
+   "atomic_number": 114,
+   "query": "flerovium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/gadolinium-sulfid/",
+   "slug": "gadolinium",
+   "element_en": "gadolinium",
+   "atomic_number": 64,
+   "query": "gadolinium sulfide",
+   "http_status": 200,
+   "cids": [
+    166622
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/gallium-sulfid/",
+   "slug": "gallium",
+   "element_en": "gallium",
+   "atomic_number": 31,
+   "query": "gallium sulfide",
+   "http_status": 200,
+   "cids": [
+    165983
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/germanium-sulfid/",
+   "slug": "germanium",
+   "element_en": "germanium",
+   "atomic_number": 32,
+   "query": "germanium sulfide",
+   "http_status": 200,
+   "cids": [
+    91865115
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/gold-sulfid/",
+   "slug": "gold",
+   "element_en": "gold",
+   "atomic_number": 79,
+   "query": "gold sulfide",
+   "http_status": 200,
+   "cids": [
+    20977108
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/hafnium-sulfid/",
+   "slug": "hafnium",
+   "element_en": "hafnium",
+   "atomic_number": 72,
+   "query": "hafnium sulfide",
+   "http_status": 200,
+   "cids": [
+    162194476
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/hassium-sulfid/",
+   "slug": "hassium",
+   "element_en": "hassium",
+   "atomic_number": 108,
+   "query": "hassium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/holmium-sulfid/",
+   "slug": "holmium",
+   "element_en": "holmium",
+   "atomic_number": 67,
+   "query": "holmium sulfide",
+   "http_status": 200,
+   "cids": [
+    166640
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/indium-sulfid/",
+   "slug": "indium",
+   "element_en": "indium",
+   "atomic_number": 49,
+   "query": "indium sulfide",
+   "http_status": 200,
+   "cids": [
+    160966
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/iridium-sulfid/",
+   "slug": "iridium",
+   "element_en": "iridium",
+   "atomic_number": 77,
+   "query": "iridium sulfide",
+   "http_status": 200,
+   "cids": [
+    101946405
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/kalifornium-sulfid/",
+   "slug": "kalifornium",
+   "element_en": "californium",
+   "atomic_number": 98,
+   "query": "californium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/kalium-sulfid/",
+   "slug": "kalium",
+   "element_en": "potassium",
+   "atomic_number": 19,
+   "query": "potassium sulfide",
+   "http_status": 200,
+   "cids": [
+    162263
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/kobalt-sulfid/",
+   "slug": "kobalt",
+   "element_en": "cobalt",
+   "atomic_number": 27,
+   "query": "cobalt sulfide",
+   "http_status": 200,
+   "cids": [
+    14832
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/kupfer-sulfid/",
+   "slug": "kupfer",
+   "element_en": "copper",
+   "atomic_number": 29,
+   "query": "copper sulfide",
+   "http_status": 200,
+   "cids": [
+    170997322
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/lanthan-sulfid/",
+   "slug": "lanthan",
+   "element_en": "lanthanum",
+   "atomic_number": 57,
+   "query": "lanthanum sulfide",
+   "http_status": 200,
+   "cids": [
+    165996
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/lawrencium-sulfid/",
+   "slug": "lawrencium",
+   "element_en": "lawrencium",
+   "atomic_number": 103,
+   "query": "lawrencium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/lithium-sulfid/",
+   "slug": "lithium",
+   "element_en": "lithium",
+   "atomic_number": 3,
+   "query": "lithium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/livermorium-sulfid/",
+   "slug": "livermorium",
+   "element_en": "livermorium",
+   "atomic_number": 116,
+   "query": "livermorium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/lutetium-sulfid/",
+   "slug": "lutetium",
+   "element_en": "lutetium",
+   "atomic_number": 71,
+   "query": "lutetium sulfide",
+   "http_status": 200,
+   "cids": [
+    166643
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/magnesium-sulfid/",
+   "slug": "magnesium",
+   "element_en": "magnesium",
+   "atomic_number": 12,
+   "query": "magnesium sulfide",
+   "http_status": 200,
+   "cids": [
+    82824
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/mangan-sulfid/",
+   "slug": "mangan",
+   "element_en": "manganese",
+   "atomic_number": 25,
+   "query": "manganese sulfide",
+   "http_status": 200,
+   "cids": [
+    87809
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/meitnerium-sulfid/",
+   "slug": "meitnerium",
+   "element_en": "meitnerium",
+   "atomic_number": 109,
+   "query": "meitnerium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/mendelevium-sulfid/",
+   "slug": "mendelevium",
+   "element_en": "mendelevium",
+   "atomic_number": 101,
+   "query": "mendelevium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/molybdaen-sulfid/",
+   "slug": "molybdaen",
+   "element_en": "molybdenum",
+   "atomic_number": 42,
+   "query": "molybdenum sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/moscovium-sulfid/",
+   "slug": "moscovium",
+   "element_en": "moscovium",
+   "atomic_number": 115,
+   "query": "moscovium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/natrium-sulfid/",
+   "slug": "natrium",
+   "element_en": "sodium",
+   "atomic_number": 11,
+   "query": "sodium sulfide",
+   "http_status": 200,
+   "cids": [
+    237873
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/neodym-sulfid/",
+   "slug": "neodym",
+   "element_en": "neodymium",
+   "atomic_number": 60,
+   "query": "neodymium sulfide",
+   "http_status": 200,
+   "cids": [
+    166011
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/neptunium-sulfid/",
+   "slug": "neptunium",
+   "element_en": "neptunium",
+   "atomic_number": 93,
+   "query": "neptunium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/nickel-sulfid/",
+   "slug": "nickel",
+   "element_en": "nickel",
+   "atomic_number": 28,
+   "query": "nickel sulfide",
+   "http_status": 200,
+   "cids": [
+    166709
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/nihonium-sulfid/",
+   "slug": "nihonium",
+   "element_en": "nihonium",
+   "atomic_number": 113,
+   "query": "nihonium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/niob-sulfid/",
+   "slug": "niob",
+   "element_en": "niobium",
+   "atomic_number": 41,
+   "query": "niobium sulfide",
+   "http_status": 200,
+   "cids": [
+    25153113
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/nobelium-sulfid/",
+   "slug": "nobelium",
+   "element_en": "nobelium",
+   "atomic_number": 102,
+   "query": "nobelium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/oganesson-sulfid/",
+   "slug": "oganesson",
+   "element_en": "oganesson",
+   "atomic_number": 118,
+   "query": "oganesson sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/osmium-sulfid/",
+   "slug": "osmium",
+   "element_en": "osmium",
+   "atomic_number": 76,
+   "query": "osmium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/palladium-sulfid/",
+   "slug": "palladium",
+   "element_en": "palladium",
+   "atomic_number": 46,
+   "query": "palladium sulfide",
+   "http_status": 200,
+   "cids": [
+    11309549
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/phosphor-sulfid/",
+   "slug": "phosphor",
+   "element_en": "phosphorus",
+   "atomic_number": 15,
+   "query": "phosphorus sulfide",
+   "http_status": 200,
+   "cids": [
+    14817
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/platin-sulfid/",
+   "slug": "platin",
+   "element_en": "platinum",
+   "atomic_number": 78,
+   "query": "platinum sulfide",
+   "http_status": 200,
+   "cids": [
+    82861
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/plutonium-sulfid/",
+   "slug": "plutonium",
+   "element_en": "plutonium",
+   "atomic_number": 94,
+   "query": "plutonium sulfide",
+   "http_status": 200,
+   "cids": [
+    158083383
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/praseodym-sulfid/",
+   "slug": "praseodym",
+   "element_en": "praseodymium",
+   "atomic_number": 59,
+   "query": "praseodymium sulfide",
+   "http_status": 200,
+   "cids": [
+    166019
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/quecksilber-sulfid/",
+   "slug": "quecksilber",
+   "element_en": "mercury",
+   "atomic_number": 80,
+   "query": "mercury sulfide",
+   "http_status": 200,
+   "cids": [
+    10220267
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/rhenium-sulfid/",
+   "slug": "rhenium",
+   "element_en": "rhenium",
+   "atomic_number": 75,
+   "query": "rhenium sulfide",
+   "http_status": 200,
+   "cids": [
+    82864
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/rhodium-sulfid/",
+   "slug": "rhodium",
+   "element_en": "rhodium",
+   "atomic_number": 45,
+   "query": "rhodium sulfide",
+   "http_status": 200,
+   "cids": [
+    13879495
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/roentgenium-sulfid/",
+   "slug": "roentgenium",
+   "element_en": "roentgenium",
+   "atomic_number": 111,
+   "query": "roentgenium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/rubidium-sulfid/",
+   "slug": "rubidium",
+   "element_en": "rubidium",
+   "atomic_number": 37,
+   "query": "rubidium sulfide",
+   "http_status": 200,
+   "cids": [
+    13710577
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/ruthenium-sulfid/",
+   "slug": "ruthenium",
+   "element_en": "ruthenium",
+   "atomic_number": 44,
+   "query": "ruthenium sulfide",
+   "http_status": 200,
+   "cids": [
+    101946416
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/rutherfordium-sulfid/",
+   "slug": "rutherfordium",
+   "element_en": "rutherfordium",
+   "atomic_number": 104,
+   "query": "rutherfordium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/samarium-sulfid/",
+   "slug": "samarium",
+   "element_en": "samarium",
+   "atomic_number": 62,
+   "query": "samarium sulfide",
+   "http_status": 200,
+   "cids": [
+    166593
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/scandium-sulfid/",
+   "slug": "scandium",
+   "element_en": "scandium",
+   "atomic_number": 21,
+   "query": "scandium sulfide",
+   "http_status": 200,
+   "cids": [
+    166646
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/seaborgium-sulfid/",
+   "slug": "seaborgium",
+   "element_en": "seaborgium",
+   "atomic_number": 106,
+   "query": "seaborgium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/selen-sulfid/",
+   "slug": "selen",
+   "element_en": "selenium",
+   "atomic_number": 34,
+   "query": "selenium sulfide",
+   "http_status": 200,
+   "cids": [
+    24011
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/silber-sulfid/",
+   "slug": "silber",
+   "element_en": "silver",
+   "atomic_number": 47,
+   "query": "silver sulfide",
+   "http_status": 200,
+   "cids": [
+    166738
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/silicium-sulfid/",
+   "slug": "silicium",
+   "element_en": "silicon",
+   "atomic_number": 14,
+   "query": "silicon sulfide",
+   "http_status": 200,
+   "cids": [
+    83705
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/strontium-sulfid/",
+   "slug": "strontium",
+   "element_en": "strontium",
+   "atomic_number": 38,
+   "query": "strontium sulfide",
+   "http_status": 200,
+   "cids": [
+    14820
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/tantal-sulfid/",
+   "slug": "tantal",
+   "element_en": "tantalum",
+   "atomic_number": 73,
+   "query": "tantalum sulfide",
+   "http_status": 200,
+   "cids": [
+    82945
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/technetium-sulfid/",
+   "slug": "technetium",
+   "element_en": "technetium",
+   "atomic_number": 43,
+   "query": "technetium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/tellur-sulfid/",
+   "slug": "tellur",
+   "element_en": "tellurium",
+   "atomic_number": 52,
+   "query": "tellurium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/tenness-sulfid/",
+   "slug": "tenness",
+   "element_en": "tennessine",
+   "atomic_number": 117,
+   "query": "tennessine sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/terbium-sulfid/",
+   "slug": "terbium",
+   "element_en": "terbium",
+   "atomic_number": 65,
+   "query": "terbium sulfide",
+   "http_status": 200,
+   "cids": [
+    166626
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/thallium-sulfid/",
+   "slug": "thallium",
+   "element_en": "thallium",
+   "atomic_number": 81,
+   "query": "thallium sulfide",
+   "http_status": 200,
+   "cids": [
+    159376
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/thorium-sulfid/",
+   "slug": "thorium",
+   "element_en": "thorium",
+   "atomic_number": 90,
+   "query": "thorium sulfide",
+   "http_status": 200,
+   "cids": [
+    82937
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/thulium-sulfid/",
+   "slug": "thulium",
+   "element_en": "thulium",
+   "atomic_number": 69,
+   "query": "thulium sulfide",
+   "http_status": 200,
+   "cids": [
+    166647
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/titan-sulfid/",
+   "slug": "titan",
+   "element_en": "titanium",
+   "atomic_number": 22,
+   "query": "titanium sulfide",
+   "http_status": 200,
+   "cids": [
+    160974
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/uran-sulfid/",
+   "slug": "uran",
+   "element_en": "uranium",
+   "atomic_number": 92,
+   "query": "uranium sulfide",
+   "http_status": 200,
+   "cids": [
+    82866
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/vanadium-sulfid/",
+   "slug": "vanadium",
+   "element_en": "vanadium",
+   "atomic_number": 23,
+   "query": "vanadium sulfide",
+   "http_status": 200,
+   "cids": [
+    164809
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/wismut-sulfid/",
+   "slug": "wismut",
+   "element_en": "bismuth",
+   "atomic_number": 83,
+   "query": "bismuth sulfide",
+   "http_status": 200,
+   "cids": [
+    160976
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/wolfram-sulfid/",
+   "slug": "wolfram",
+   "element_en": "tungsten",
+   "atomic_number": 74,
+   "query": "tungsten sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/ytterbium-sulfid/",
+   "slug": "ytterbium",
+   "element_en": "ytterbium",
+   "atomic_number": 70,
+   "query": "ytterbium sulfide",
+   "http_status": 200,
+   "cids": [
+    166022
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/yttrium-sulfid/",
+   "slug": "yttrium",
+   "element_en": "yttrium",
+   "atomic_number": 39,
+   "query": "yttrium sulfide",
+   "http_status": 200,
+   "cids": [
+    166021
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/zink-sulfid/",
+   "slug": "zink",
+   "element_en": "zinc",
+   "atomic_number": 30,
+   "query": "zinc sulfide",
+   "http_status": 200,
+   "cids": [
+    9833931
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/zinn-sulfid/",
+   "slug": "zinn",
+   "element_en": "tin",
+   "atomic_number": 50,
+   "query": "tin sulfide",
+   "http_status": 200,
+   "cids": [
+    20977370
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort04/zirkonium-sulfid/",
+   "slug": "zirkonium",
+   "element_en": "zirconium",
+   "atomic_number": 40,
+   "query": "zirconium sulfide",
+   "http_status": 200,
+   "cids": [
+    82867
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/blei-sulfid/",
+   "slug": "blei",
+   "element_en": "lead",
+   "atomic_number": 82,
+   "query": "lead sulfide",
+   "http_status": 200,
+   "cids": [
+    14819
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/cer-sulfid/",
+   "slug": "cer",
+   "element_en": "cerium",
+   "atomic_number": 58,
+   "query": "cerium sulfide",
+   "http_status": 200,
+   "cids": [
+    159394
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/chrom-sulfid/",
+   "slug": "chrom",
+   "element_en": "chromium",
+   "atomic_number": 24,
+   "query": "chromium sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/eisen-sulfid/",
+   "slug": "eisen",
+   "element_en": "iron",
+   "atomic_number": 26,
+   "query": "iron sulfide",
+   "http_status": 200,
+   "cids": [
+    160957
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/hafnium-sulfid/",
+   "slug": "hafnium",
+   "element_en": "hafnium",
+   "atomic_number": 72,
+   "query": "hafnium sulfide",
+   "http_status": 200,
+   "cids": [
+    162194476
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/kobalt-sulfid/",
+   "slug": "kobalt",
+   "element_en": "cobalt",
+   "atomic_number": 27,
+   "query": "cobalt sulfide",
+   "http_status": 200,
+   "cids": [
+    14832
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/kupfer-sulfid/",
+   "slug": "kupfer",
+   "element_en": "copper",
+   "atomic_number": 29,
+   "query": "copper sulfide",
+   "http_status": 200,
+   "cids": [
+    170997322
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/lanthan-sulfid/",
+   "slug": "lanthan",
+   "element_en": "lanthanum",
+   "atomic_number": 57,
+   "query": "lanthanum sulfide",
+   "http_status": 200,
+   "cids": [
+    165996
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/mangan-sulfid/",
+   "slug": "mangan",
+   "element_en": "manganese",
+   "atomic_number": 25,
+   "query": "manganese sulfide",
+   "http_status": 200,
+   "cids": [
+    87809
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/molybdaen-sulfid/",
+   "slug": "molybdaen",
+   "element_en": "molybdenum",
+   "atomic_number": 42,
+   "query": "molybdenum sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/nickel-sulfid/",
+   "slug": "nickel",
+   "element_en": "nickel",
+   "atomic_number": 28,
+   "query": "nickel sulfide",
+   "http_status": 200,
+   "cids": [
+    166709
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/niob-sulfid/",
+   "slug": "niob",
+   "element_en": "niobium",
+   "atomic_number": 41,
+   "query": "niobium sulfide",
+   "http_status": 200,
+   "cids": [
+    25153113
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/scandium-sulfid/",
+   "slug": "scandium",
+   "element_en": "scandium",
+   "atomic_number": 21,
+   "query": "scandium sulfide",
+   "http_status": 200,
+   "cids": [
+    166646
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/tantal-sulfid/",
+   "slug": "tantal",
+   "element_en": "tantalum",
+   "atomic_number": 73,
+   "query": "tantalum sulfide",
+   "http_status": 200,
+   "cids": [
+    82945
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/titan-sulfid/",
+   "slug": "titan",
+   "element_en": "titanium",
+   "atomic_number": 22,
+   "query": "titanium sulfide",
+   "http_status": 200,
+   "cids": [
+    160974
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/vanadium-sulfid/",
+   "slug": "vanadium",
+   "element_en": "vanadium",
+   "atomic_number": 23,
+   "query": "vanadium sulfide",
+   "http_status": 200,
+   "cids": [
+    164809
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/wolfram-sulfid/",
+   "slug": "wolfram",
+   "element_en": "tungsten",
+   "atomic_number": 74,
+   "query": "tungsten sulfide",
+   "http_status": 404,
+   "cids": [],
+   "screen": "not_resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/yttrium-sulfid/",
+   "slug": "yttrium",
+   "element_en": "yttrium",
+   "atomic_number": 39,
+   "query": "yttrium sulfide",
+   "http_status": 200,
+   "cids": [
+    166021
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/zink-sulfid/",
+   "slug": "zink",
+   "element_en": "zinc",
+   "atomic_number": 30,
+   "query": "zinc sulfide",
+   "http_status": 200,
+   "cids": [
+    9833931
+   ],
+   "screen": "resolved"
+  },
+  {
+   "path": "/de/terminology/cohort05/zirkonium-sulfid/",
+   "slug": "zirkonium",
+   "element_en": "zirconium",
+   "atomic_number": 40,
+   "query": "zirconium sulfide",
+   "http_status": 200,
+   "cids": [
+    82867
+   ],
+   "screen": "resolved"
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "registry_id": "RECOVERY-02-SEO-URL-DISPOSITION",
+ "version": "1.0.0",
+ "generated_by": "scripts/recovery/build_seo_disposition.py",
+ "authorizes": "nothing — proposals only; approved decisions live in main/data/publication/url_decisions.json",
+ "canonical_min_raw_similarity": 0.8,
+ "urls": 14041,
+ "by_seo_class": {
+  "institutional_navigation": 55,
+  "duplicate_without_valid_canonical": 900,
+  "unmatched_non_route": 18,
+  "needs_reconstruction": 245,
+  "true_duplicate_valid_canonical": 453,
+  "generated_unverified_identity": 12289,
+  "internal_pipeline_status": 79,
+  "independent_reference_potential": 2
+ },
+ "stage2_noindex_by_seo_class": {
+  "duplicate_without_valid_canonical": 900,
+  "unmatched_non_route": 18,
+  "institutional_navigation": 46,
+  "needs_reconstruction": 245,
+  "true_duplicate_valid_canonical": 453,
+  "generated_unverified_identity": 12289,
+  "internal_pipeline_status": 79,
+  "independent_reference_potential": 2
+ },
+ "stage2_noindex_judged_appropriate": 79,
+ "stage2_noindex_judged_inappropriate_or_premature": 13953,
+ "brand_surfaces_stage2_would_noindex": [
+  "/",
+  "/bisulfid-vs-bisulfide/",
+  "/bisulfid/",
+  "/de/",
+  "/de/bisulfid-vs-bisulfide/",
+  "/de/what-is-bisulfid/",
+  "/en/terminology/bisulfid/term/chem/acad/",
+  "/what-is-bisulfid/"
+ ],
+ "canonical_check_failures": {
+  "raw_similarity_ok": 900
+ },
+ "raw_similarity_variant_to_destination": {
+  "n": 1353,
+  "min": 0.0,
+  "median": 0.7698,
+  "share_ge_0_80": 0.3348
+ },
+ "concepts_with_shorter_existing_url": [
+  "cohort02_en_bisulfide_term_chem_acad",
+  "cohort02_en_disulfide_term_chem_acad",
+  "cohort02_en_galena_term_chem_acad",
+  "cohort02_en_hydrogen_sulfide_term_chem_acad",
+  "cohort02_en_pyrite_term_chem_acad",
+  "cohort02_en_sodium_sulfide_term_chem_acad",
+  "cohort02_en_sphalerite_term_chem_acad",
+  "cohort02_en_sulfide_term_chem_acad",
+  "cohort02_en_sulfite_term_chem_acad",
+  "cohort02_en_thiol_term_chem_acad",
+  "cohort02_en_thiosulfate_term_chem_acad",
+  "cohort02_en_zinc_sulfide_term_chem_acad",
+  "cohort03_en_sulfuric_acid_air_res_res",
+  "polysulfide_terminology",
+  "sulfur_element_term_record"
+ ],
+ "actions": {
+  "true_duplicate_valid_canonical": "rel_canonical_to_target (head-only; keeps the URL reachable; no noindex)",
+  "duplicate_without_valid_canonical": "status_quo until the destination is rebuilt or a valid destination exists",
+  "needs_reconstruction": "status_quo, then rebuild in place from a Knowledge Object (priority = governed evidence)",
+  "independent_reference_potential": "rebuild in place; promote only via Contract C (preview exists for MoS2)",
+  "institutional_navigation": "re-render (Gate 12-I) and certify via Contract C R11; duplicates canonicalize to the holder",
+  "internal_pipeline_status": "targeted noindex candidate (internal build state; no search intent)",
+  "generated_unverified_identity": "identity review first; then rebuild (entity exists) or retire with its variants (it does not)",
+  "unmatched_non_route": "register as a route (if it is the better URL for a concept) or retire after link review"
+ },
+ "stage2_appropriate_by_class": {
+  "true_duplicate_valid_canonical": "no: use rel=canonical (consolidates signals; noindex discards them)",
+  "duplicate_without_valid_canonical": "no: wait for a valid destination",
+  "needs_reconstruction": "no: canonical concept surface; rebuild instead",
+  "independent_reference_potential": "no",
+  "institutional_navigation": "no for holders; canonical for duplicates",
+  "internal_pipeline_status": "yes (targeted, after review)",
+  "generated_unverified_identity": "only after identity review shows the entity does not exist",
+  "unmatched_non_route": "no: decide register vs retire first"
+ },
+ "record_fields": "path, route_id (joins routes.json and legacy_disposition_registry.jsonl), seo_class (recommended action = actions[seo_class] unless recommended_action is set), canonical_destination, raw_similarity_to_destination, failed_canonical_checks, shorter_existing_url_for_concept, risk, stage2_would_noindex"
+}

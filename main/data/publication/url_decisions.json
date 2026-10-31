@@ -1,0 +1,306 @@
+{
+  "registry_id": "URL-MIGRATION-DECISIONS",
+  "version": "1.0.0",
+  "governed_by": [
+    "scripts/publication/publication_authority.py",
+    "main/data/publication/url_decision_rules.json",
+    "DECISION_LOG.md"
+  ],
+  "purpose": "Owner-approved, per-URL migration decisions. Only entries with status 'approved' are applied by the resolver, and every decision type can only DOWNGRADE what a legacy URL was served with. Proposals live in main/data/recovery/seo_url_disposition.jsonl and are never applied from there.",
+  "decision_types": {
+    "noindex": "robots -> noindex, follow; removed from sitemaps",
+    "canonical_to": "rel=canonical -> target (the target must resolve to an indexable self-canonical page; otherwise ignored)",
+    "redirect_to": "the page is replaced by a redirect to target (GitHub Pages cannot send HTTP 301; see url_decision_rules.json)",
+    "retire": "the page is removed (served 404 by GitHub Pages)"
+  },
+  "entry_schema": [
+    "decision_id",
+    "path",
+    "decision",
+    "target",
+    "status",
+    "approved_by",
+    "approved_on",
+    "evidence"
+  ],
+  "decisions": [
+    {
+      "decision_id": "URL-DEC-R03-ACQUIRE-001",
+      "path": "/acquire/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "evidence": {
+        "release_ledger": "main/data/release_ledger.json route 'acquire': release_status blocked, release_mode blocked_high_risk (UNCHANGED by this proposal)",
+        "authority_gate": "validate_publication_authority.py --surface site/public: BLOCK_DIRECTIVE_ESCALATION (served index,follow; governed noindex,follow)",
+        "factual_claim_review": "main/data/recovery/ACQUIRE_FACTUAL_CLAIM_REVIEW.json",
+        "staged_artifacts": [
+          "applied in Release-01 PR-B (site/public/acquire/index.html)"
+        ],
+        "simulated_result": "with the staged file in place the deploy gate reports LEGACY_STATUS_QUO 14041, PASS; Gate 12 surface counts unchanged"
+      },
+      "keeps": [
+        "public accessibility (HTTP 200, same URL)",
+        "self-canonical",
+        "body text",
+        "acquisition contact (mailto link)",
+        "all outgoing links (follow)"
+      ],
+      "changes": [
+        "robots meta: 'index, follow' -> 'noindex, follow'",
+        "AQ-1..AQ-5 statements replaced (ACQUIRE_FACTUAL_CLAIM_REVIEW.json)",
+        "two link labels that repeated AQ-1 reworded; link targets unchanged",
+        "revision 2 (owner editorial review): dictionary statement narrowed to the sources examined; -id/-ide described as a naming pattern only; no implication that the terminology reference is published (ACQUIRE_FACTUAL_CLAIM_REVIEW.json revision_2)"
+      ],
+      "rollback": "revert the single robots line (git revert of the applying commit); no other file depends on it",
+      "requires": "owner approval; apply to site/public in a dedicated PR",
+      "gate_basis": "release-ledger enforcement exception (route 'acquire' is blocked). The ledger is NOT changed and authorizes nothing new; the owner still approves this record and the PR.",
+      "pr": "Release-01 PR-B",
+      "superseded_lift_condition": "Return to 'index, follow' only when /acquire/ has a release-ledger entry other than blocked AND every factual statement listed in ACQUIRE_FACTUAL_CLAIM_REVIEW.json is either evidence-backed or removed.",
+      "indexing_policy": "IDX-POL-ACQUIRE-001 (main/data/publication/indexing_policies.json): noindex, follow is the PERMANENT indexing policy for this buyer-access page, decided by the owner on 2026-10-30. It no longer depends on the release ledger: no ledger change, release or URL decision makes /acquire/ indexable; only an explicit owner policy change can.",
+      "what_signing_this_record_approves": "The PR-B page change: the corrected wording (AQ-1..AQ-5, revision 2), the served 'noindex, follow' meta, and its deployment once separately authorized. It does not create or change the indexing policy."
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-001",
+      "path": "/de/terminology/cohort04/bohrium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'bohrium sulfide' not resolved (HTTP 404); Z=107",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-002",
+      "path": "/de/terminology/cohort04/copernicium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'copernicium sulfide' not resolved (HTTP 404); Z=112",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-003",
+      "path": "/de/terminology/cohort04/darmstadtium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'darmstadtium sulfide' not resolved (HTTP 404); Z=110",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-004",
+      "path": "/de/terminology/cohort04/dubnium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'dubnium sulfide' not resolved (HTTP 404); Z=105",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-005",
+      "path": "/de/terminology/cohort04/flerovium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'flerovium sulfide' not resolved (HTTP 404); Z=114",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-006",
+      "path": "/de/terminology/cohort04/hassium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'hassium sulfide' not resolved (HTTP 404); Z=108",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-007",
+      "path": "/de/terminology/cohort04/livermorium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'livermorium sulfide' not resolved (HTTP 404); Z=116",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-008",
+      "path": "/de/terminology/cohort04/meitnerium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'meitnerium sulfide' not resolved (HTTP 404); Z=109",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-009",
+      "path": "/de/terminology/cohort04/moscovium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'moscovium sulfide' not resolved (HTTP 404); Z=115",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-010",
+      "path": "/de/terminology/cohort04/nihonium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'nihonium sulfide' not resolved (HTTP 404); Z=113",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-011",
+      "path": "/de/terminology/cohort04/oganesson-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'oganesson sulfide' not resolved (HTTP 404); Z=118",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-012",
+      "path": "/de/terminology/cohort04/roentgenium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'roentgenium sulfide' not resolved (HTTP 404); Z=111",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-013",
+      "path": "/de/terminology/cohort04/rutherfordium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'rutherfordium sulfide' not resolved (HTTP 404); Z=104",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-014",
+      "path": "/de/terminology/cohort04/seaborgium-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'seaborgium sulfide' not resolved (HTTP 404); Z=106",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    },
+    {
+      "decision_id": "URL-DEC-R03-W1-015",
+      "path": "/de/terminology/cohort04/tenness-sulfid/",
+      "decision": "noindex",
+      "target": null,
+      "status": "proposed",
+      "approved_by": null,
+      "approved_on": null,
+      "wave": "R03-W1",
+      "evidence": {
+        "identity_screen": "PubChem name 'tennessine sulfide' not resolved (HTTP 404); Z=117",
+        "gate12": "FAIL (sealed hold)",
+        "plan": "main/data/recovery/R03_INDEXATION_REDUCTION_PLAN.json"
+      },
+      "rollback": "revert the wave commit"
+    }
+  ]
+}

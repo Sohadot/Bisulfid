@@ -1,0 +1,127 @@
+{
+ "plan_id": "PLAN-BISULFID-BISULFIDE-BOUNDARY",
+ "canonical_route_id": "bisulfid_vs_bisulfide",
+ "renderable_modules": 6,
+ "modules": [
+  {
+   "module_id": "en_definition",
+   "heading": "What 'bisulfide' denotes",
+   "renderable": true,
+   "claims": {
+    "CLM-TERM-BISULFIDE-EN-SENSE-001": {
+     "status": "approved",
+     "blockers": []
+    },
+    "CLM-TERM-IUPAC-HS-NAMES-001": {
+     "status": "approved",
+     "blockers": []
+    }
+   }
+  },
+  {
+   "module_id": "de_usage",
+   "heading": "'Bisulfid' in German technical usage",
+   "renderable": false,
+   "claims": {
+    "CLM-TERM-BISULFID-001": {
+     "status": "pending_review",
+     "blockers": [
+      {
+       "step": 2,
+       "blocker": "claim status is 'pending_review', not approved/approved_narrow",
+       "required": "claim review against admitted evidence (owner: claim registry)"
+      },
+      {
+       "step": 4,
+       "source_id": "SRC-BADGER-BISULFID-H2S",
+       "blocker": "no source-use qualification",
+       "required": "qualification record with allowed_uses for this claim (source use_for: ['candidate German technical usage of the term Bisulfid', 'candidate support for Bisulfid appearing in a German water-quality / sulfur-monitoring context', 'candidate context connecting Bisulfid with HS- / H₂S terminology where directly stated by the source'])"
+      },
+      {
+       "step": 6,
+       "evidence_id": "EVD-TERM-BADGER-BISULFID-USAGE",
+       "blocker": "not admitted by admissible()"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "module_id": "de_lexicography",
+   "heading": "'Bisulfid' in German dictionaries",
+   "renderable": true,
+   "claims": {
+    "CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001": {
+     "status": "approved",
+     "blockers": []
+    },
+    "CLM-TERM-SULFID-DE-SENSE-001": {
+     "status": "approved",
+     "blockers": []
+    }
+   }
+  },
+  {
+   "module_id": "suffix_pattern",
+   "heading": "The German -id / English -ide pattern",
+   "renderable": true,
+   "claims": {
+    "CLM-TERM-GERMAN-ID-RULE-001": {
+     "status": "approved",
+     "blockers": []
+    },
+    "CLM-TERM-SULFIDE-EN-SENSE-001": {
+     "status": "approved",
+     "blockers": []
+    }
+   }
+  },
+  {
+   "module_id": "not_bisulfite",
+   "heading": "Not bisulfite",
+   "renderable": true,
+   "claims": {
+    "CLM-TERM-BISULFITE-EN-SENSE-001": {
+     "status": "approved",
+     "blockers": []
+    },
+    "CLM-TERM-IUPAC-HSO3-NAME-001": {
+     "status": "approved",
+     "blockers": []
+    }
+   }
+  },
+  {
+   "module_id": "disulfide_relation",
+   "heading": "Bisulfide and disulfide",
+   "renderable": true,
+   "claims": {
+    "CLM-TERM-DISULFIDE-EN-SENSE-001": {
+     "status": "approved",
+     "blockers": []
+    },
+    "CLM-TERM-IUPAC-S2-NAMES-001": {
+     "status": "approved",
+     "blockers": []
+    }
+   }
+  },
+  {
+   "module_id": "hydrosulfide_relation",
+   "heading": "Bisulfide, hydrosulfide and Hydrogensulfid",
+   "renderable": true,
+   "claims": {
+    "CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001": {
+     "status": "approved",
+     "blockers": []
+    },
+    "CLM-TERM-IUPAC-HS-NAMES-001": {
+     "status": "approved",
+     "blockers": []
+    }
+   }
+  }
+ ],
+ "verdict": "RENDERABLE",
+ "note": "A preview is produced only when >= 3 modules are renderable; no prose is written around missing evidence."
+}

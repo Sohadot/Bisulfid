@@ -1,0 +1,394 @@
+{
+ "note": "Automated checks only; search intent, competitors and accuracy review are in RECOVERY_02_REPORT.md. No ranking, traffic or Google verdict is claimed.",
+ "results": [
+  {
+   "name": "MoS2 canonical reference",
+   "preview": "main/data/reference_production/previews/molybdenum-disulfide/index.html",
+   "intended_path": "/molybdenum-disulfide/",
+   "checks": {
+    "title_30_65": true,
+    "description_70_160": true,
+    "one_canonical_absolute_intended": true,
+    "robots_present_noindex_preview": true,
+    "html_lang": true,
+    "json_ld_valid": true,
+    "exactly_one_h1": true,
+    "no_skipped_heading_level": true,
+    "no_source_required_or_placeholder_leak": true,
+    "internal_links_resolve": true,
+    "declared_intents_served": true,
+    "gate12_pass": true,
+    "distinct_from_public_surface": true
+   },
+   "measures": {
+    "title": "Molybdenum Disulfide (MoS2): Structure, Polytypes, Lattice",
+    "title_chars": 58,
+    "description_chars": 149,
+    "headings": [
+     [
+      1,
+      "Molybdenum Disulfide (MoS2)"
+     ],
+     [
+      2,
+      "At a glance"
+     ],
+     [
+      2,
+      "Chemical identity"
+     ],
+     [
+      2,
+      "Bulk structure: stacked S–Mo–S layers"
+     ],
+     [
+      2,
+      "Three polytypes: 1T, 2H and 3R"
+     ],
+     [
+      2,
+      "The 2H polytype"
+     ],
+     [
+      2,
+      "Where the name 2H comes from"
+     ],
+     [
+      2,
+      "Lattice parameter a: two coexisting determinations"
+     ],
+     [
+      2,
+      "Boundary: 2H is not 3R"
+     ],
+     [
+      2,
+      "What this reference does not establish"
+     ],
+     [
+      2,
+      "Evidence trail"
+     ],
+     [
+      2,
+      "Related records"
+     ],
+     [
+      2,
+      "Governance status"
+     ]
+    ],
+    "substantive_words": 591,
+    "nearest_public_page": {
+     "similarity": 0.0,
+     "jaccard": 0.0,
+     "overlap_coefficient": 0.0,
+     "closest_page": "site/public/acquire/index.html"
+    },
+    "template_sentence_ratio_vs_public": 0.0,
+    "skeleton_shared_with_public_pages": 0,
+    "internal_links": 7,
+    "external_provenance_links": 11
+   },
+   "gate12": {
+    "class": "Gate 12 (knowledge reference; IG from the canonical draft)",
+    "verdict": "PASS",
+    "failures": [],
+    "ig_valid_units": 7
+   },
+   "pass": true
+  },
+  {
+   "name": "Bisulfid / bisulfide terminology reference",
+   "preview": "main/data/reference_production/previews/bisulfid-vs-bisulfide/index.html",
+   "intended_path": "/bisulfid-vs-bisulfide/",
+   "checks": {
+    "title_30_65": true,
+    "description_70_160": true,
+    "one_canonical_absolute_intended": true,
+    "robots_present_noindex_preview": true,
+    "html_lang": true,
+    "json_ld_valid": true,
+    "exactly_one_h1": true,
+    "no_skipped_heading_level": true,
+    "no_source_required_or_placeholder_leak": true,
+    "internal_links_resolve": true,
+    "declared_intents_served": true,
+    "gate12_pass": true,
+    "distinct_from_public_surface": true
+   },
+   "measures": {
+    "title": "Bisulfid vs Bisulfide: Meanings, IUPAC Names, German Usage",
+    "title_chars": 58,
+    "description_chars": 136,
+    "headings": [
+     [
+      1,
+      "Bisulfid vs bisulfide"
+     ],
+     [
+      2,
+      "At a glance"
+     ],
+     [
+      2,
+      "Bisulfide in Merriam-Webster: a cross-reference to disulfide"
+     ],
+     [
+      2,
+      "Bisulfide in PubChem: a synonym listed for HS⁻"
+     ],
+     [
+      2,
+      "HS⁻ in IUPAC nomenclature: sulfanide or hydridosulfate(1−)"
+     ],
+     [
+      2,
+      "Disulfide in Merriam-Webster"
+     ],
+     [
+      2,
+      "S₂²⁻ in IUPAC nomenclature: disulfide(2−)"
+     ],
+     [
+      2,
+      "Sulfide in Merriam-Webster"
+     ],
+     [
+      2,
+      "Bisulfite: a different word, defined through sulfite"
+     ],
+     [
+      2,
+      "HSO₃⁻ in IUPAC nomenclature: hydrogensulfite"
+     ],
+     [
+      2,
+      "Bisulfite in PubChem: HSO₃⁻"
+     ],
+     [
+      2,
+      "Sulfid in Duden and the DWDS"
+     ],
+     [
+      2,
+      "Hydrogensulfid in a German chemistry lexicon"
+     ],
+     [
+      2,
+      "Bisulfid in the DWDS: not among its contemporary lexical sources"
+     ],
+     [
+      2,
+      "The German -id ending: a naming pattern, not proof of a standard term"
+     ],
+     [
+      2,
+      "What the sources support, what stays open, and what not to infer"
+     ],
+     [
+      3,
+      "Supported by the cited sources"
+     ],
+     [
+      3,
+      "Open: the cited sources do not settle it"
+     ],
+     [
+      3,
+      "Not to be inferred from similar spelling"
+     ],
+     [
+      2,
+      "What this reference does not establish"
+     ],
+     [
+      2,
+      "Evidence trail"
+     ],
+     [
+      2,
+      "Related records"
+     ],
+     [
+      2,
+      "Governance status"
+     ]
+    ],
+    "substantive_words": 1458,
+    "nearest_public_page": {
+     "similarity": 0.0121,
+     "jaccard": 0.0032,
+     "overlap_coefficient": 0.0121,
+     "closest_page": "site/public/acquire/index.html"
+    },
+    "template_sentence_ratio_vs_public": 0.0,
+    "skeleton_shared_with_public_pages": 0,
+    "internal_links": 8,
+    "external_provenance_links": 15
+   },
+   "gate12": {
+    "class": "Gate 12 (knowledge reference; IG from the canonical draft)",
+    "verdict": "PASS",
+    "failures": [],
+    "ig_valid_units": 13
+   },
+   "pass": true,
+   "plan_blockers": {
+    "verdict": "RENDERABLE",
+    "renderable_modules": 6,
+    "modules": 7,
+    "still_blocked": [
+     "de_usage"
+    ],
+    "file": "main/data/reference_production/blockers/PLAN-BISULFID-BISULFIDE-BOUNDARY_BLOCKERS.json"
+   }
+  },
+  {
+   "name": "Homepage",
+   "preview": "main/data/reference_production/previews/home/index.html",
+   "intended_path": "/",
+   "checks": {
+    "title_30_65": true,
+    "description_70_160": true,
+    "one_canonical_absolute_intended": true,
+    "robots_present_noindex_preview": true,
+    "html_lang": true,
+    "json_ld_valid": true,
+    "exactly_one_h1": true,
+    "no_skipped_heading_level": true,
+    "no_source_required_or_placeholder_leak": true,
+    "internal_links_resolve": true,
+    "declared_intents_served": true,
+    "gate12_pass": true,
+    "distinct_from_public_surface": true
+   },
+   "measures": {
+    "title": "BISULFID — Sulfur Chemistry Terms and Evidence-Backed Reference",
+    "title_chars": 63,
+    "description_chars": 126,
+    "headings": [
+     [
+      1,
+      "BISULFID"
+     ],
+     [
+      2,
+      "Start with a governed reference"
+     ],
+     [
+      2,
+      "The question in our name"
+     ],
+     [
+      2,
+      "How a statement reaches a reference page"
+     ],
+     [
+      2,
+      "English and German"
+     ],
+     [
+      2,
+      "Who is responsible for this site"
+     ],
+     [
+      2,
+      "What you will not find here"
+     ]
+    ],
+    "substantive_words": 385,
+    "nearest_public_page": {
+     "similarity": 0.0026,
+     "jaccard": 0.0011,
+     "overlap_coefficient": 0.0026,
+     "closest_page": "site/public/acquire/index.html"
+    },
+    "template_sentence_ratio_vs_public": 0.0,
+    "skeleton_shared_with_public_pages": 0,
+    "internal_links": 12,
+    "external_provenance_links": 0
+   },
+   "gate12": {
+    "class": "Gate 12-I",
+    "function": "gateway_home",
+    "verdict": "PASS",
+    "failures": []
+   },
+   "pass": true
+  },
+  {
+   "name": "Homepage (DE)",
+   "preview": "main/data/reference_production/previews/de/index.html",
+   "intended_path": "/de/",
+   "checks": {
+    "title_30_65": true,
+    "description_70_160": true,
+    "one_canonical_absolute_intended": true,
+    "robots_present_noindex_preview": true,
+    "html_lang": true,
+    "json_ld_valid": true,
+    "exactly_one_h1": true,
+    "no_skipped_heading_level": true,
+    "no_source_required_or_placeholder_leak": true,
+    "internal_links_resolve": true,
+    "declared_intents_served": true,
+    "gate12_pass": true,
+    "distinct_from_public_surface": true
+   },
+   "measures": {
+    "title": "BISULFID — Begriffe der Schwefelchemie mit geprüften Belegen",
+    "title_chars": 60,
+    "description_chars": 140,
+    "headings": [
+     [
+      1,
+      "BISULFID"
+     ],
+     [
+      2,
+      "Erste geprüfte Referenzen"
+     ],
+     [
+      2,
+      "Die Frage im Namen"
+     ],
+     [
+      2,
+      "Wie eine Aussage auf eine Referenzseite gelangt"
+     ],
+     [
+      2,
+      "Deutsch und Englisch"
+     ],
+     [
+      2,
+      "Verantwortung für diese Website"
+     ],
+     [
+      2,
+      "Was Sie hier nicht finden"
+     ]
+    ],
+    "substantive_words": 318,
+    "nearest_public_page": {
+     "similarity": 0.0,
+     "jaccard": 0.0,
+     "overlap_coefficient": 0.0,
+     "closest_page": "site/public/acquire/index.html"
+    },
+    "template_sentence_ratio_vs_public": 0.0,
+    "skeleton_shared_with_public_pages": 0,
+    "internal_links": 9,
+    "external_provenance_links": 0
+   },
+   "gate12": {
+    "class": "Gate 12-I",
+    "function": "gateway_home",
+    "verdict": "PASS",
+    "failures": []
+   },
+   "pass": true
+  }
+ ]
+}

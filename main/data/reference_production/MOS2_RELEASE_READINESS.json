@@ -1,0 +1,141 @@
+{
+ "readiness_id": "MOS2-RELEASE-READINESS-R03",
+ "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
+ "route": "/molybdenum-disulfide/",
+ "assessed_on": "2026-10-30",
+ "verdict": "NOT RELEASE-ELIGIBLE — content is accurate and Gate 12/SEO checks pass, but 6 Contract C inputs are below the R10 indexable path and 5 of them need an owner or independent decision.",
+ "contract_c_now": [
+  "not_public",
+  "noindex"
+ ],
+ "inputs_now": {
+  "governance": "reference_draft",
+  "evidence": "evidence_sufficient",
+  "claim": "claim_pending",
+  "validation": "not_validated",
+  "ig": "ig_reviewed_no_new_route",
+  "release": "not_authorized"
+ },
+ "inputs_required_for_index": {
+  "governance": "governed",
+  "evidence": "evidence_locked",
+  "claim": "claim_approved_narrow",
+  "validation": "validated",
+  "ig": "ig_reviewed_pass",
+  "release": "authorized"
+ },
+ "ladder_if_resolved_in_order": [
+  {
+   "after_setting": "release=authorized",
+   "contract_c": [
+    "not_public",
+    "noindex"
+   ]
+  },
+  {
+   "after_setting": "validation=validated",
+   "contract_c": [
+    "not_public",
+    "noindex"
+   ]
+  },
+  {
+   "after_setting": "claim=claim_approved_narrow",
+   "contract_c": [
+    "not_public",
+    "noindex"
+   ]
+  },
+  {
+   "after_setting": "governance=governed",
+   "contract_c": [
+    "not_public",
+    "noindex"
+   ]
+  },
+  {
+   "after_setting": "ig=ig_reviewed_pass",
+   "contract_c": [
+    "public_noindex",
+    "noindex"
+   ]
+  },
+  {
+   "after_setting": "evidence=evidence_locked",
+   "contract_c": [
+    "public_indexable",
+    "index_approved"
+   ]
+  }
+ ],
+ "gates": [
+  {
+   "gate": "accuracy",
+   "status": "pass",
+   "basis": "R03 live recapture: 13/13 stored fields equal the live COD CIFs (1010993, 9007660), PubChem CID 14823 and NIST WebBook (main/data/evidence/captures/R03_MOS2_RECAPTURE.json). 3.161 Å lies within 3.15(2) Å; values shown separately, never averaged."
+  },
+  {
+   "gate": "admissibility",
+   "status": "pass",
+   "basis": "11/11 rendered evidence records admitted by source_admissibility for their declared use (render_ko_reference.py fails closed otherwise)."
+  },
+  {
+   "gate": "claim_operationalization",
+   "status": "blocked",
+   "owner": "claim registry owner",
+   "basis": "The 3 claims are pilot_non_operational. main/data/claims has no science claim type that can be approved (approval validators accept claim_type terminology only). Requires a policy decision adding a science approval posture; not taken here."
+  },
+  {
+   "gate": "information_gain",
+   "status": "structural_blocker",
+   "owner": "IG policy owner",
+   "basis": "ig_reviewed_no_new_route normalizes to ig_failed, so R7 denies even the reconstruction of the EXISTING route. Proposed amendment AMD-IG-R03-001 (status proposed) in main/data/information_gain/ig_amendment_proposals.json."
+  },
+  {
+   "gate": "validation",
+   "status": "blocked",
+   "owner": "independent reviewer (not the author)",
+   "basis": "validation_posture not_validated; no independent scientific review recorded."
+  },
+  {
+   "gate": "source_locking",
+   "status": "blocked",
+   "owner": "source registry owner",
+   "basis": "All sources are lock 'candidate'. Recapture shows the retrieved values are stable; locking still needs the checklist sign-off and is never implied by capture (prohibited use source_locking_by_itself)."
+  },
+  {
+   "gate": "release",
+   "status": "blocked",
+   "owner": "site owner",
+   "basis": "release_authorization not_authorized; ledger route molybdenum_disulfide unchanged."
+  },
+  {
+   "gate": "gate12",
+   "status": "pass",
+   "basis": "Canonical draft Gate 12 PASS, 7/7 IG units; preview SEO checks pass (SEO_PREVIEW_ASSESSMENT.json)."
+  }
+ ],
+ "safe_steps_done_r03": [
+  "live re-verification of every displayed value (no drift)",
+  "release ladder computed from contract_c_derive (above)",
+  "IG route-realization amendment proposed, not enacted",
+  "competitor reassessment recorded (no new evidence acquired, so no section was expanded)"
+ ],
+ "competitor_reassessment": {
+  "observed": "2026-10-30, third-party web search (not Google; no rank or traffic data)",
+  "findings": [
+   "Wikipedia covers formula, structure, 2H/3R lattice constants (a = 0.3161 nm 2H), polytype electronic character, uses and band gap — broader than this object.",
+   "Review articles and supplier/aggregator pages mix experimental and DFT lattice values (e.g. DFT a ≈ 3.18 Å) without separating method; one aggregator misdescribes 1T as tetragonal."
+  ],
+  "bisulfid_information_gain": "Primary-study attribution (1923 vs 1983) behind each value, method-separated determinations with stated uncertainty, explicit polytype scoping and an evidence trail. Not broader coverage.",
+  "not_strengthened": "Band gap, density, 3R lattice values as primary facts, uses and safety stay out: no governed evidence was acquired for them, so expanding those sections would be unsupported."
+ },
+ "sequence_to_release": [
+  "owner: approve AMD-IG-R03-001 (or reject: then the page stays non-indexable by design)",
+  "owner: add science claim approval posture; review the 3 pilot claims into main/data/claims",
+  "independent review -> validation_posture validated",
+  "source checklist sign-off -> evidence_locked",
+  "owner: release authorization + ledger entry",
+  "then: live HTML change in its own PR, deploy gate must pass"
+ ]
+}

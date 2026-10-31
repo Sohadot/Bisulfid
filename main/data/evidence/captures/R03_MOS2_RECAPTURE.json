@@ -1,0 +1,121 @@
+{
+ "capture_id": "R03-MOS2-RECAPTURE",
+ "generated_by": "scripts/reference_production/recapture_mos2_values.py",
+ "note": "Live re-verification of stored evidence values. A match confirms the stored value still equals the source; it does not lock the source (source_lock_status stays candidate).",
+ "captures": {
+  "EVD-MOS2-STRUCTURE-DICKINSON": {
+   "url": "https://www.crystallography.net/cod/1010993.cif",
+   "http_status": 200,
+   "sha256": "75029015f57c789ecad38e92397662034fbc725c4a86474c2d22b53f7a9da48b",
+   "bytes": 2427,
+   "retrieved_on": "2026-10-30",
+   "fields": [
+    {
+     "field": "_symmetry_space_group_name_H-M",
+     "stored": "P 63/m m c",
+     "live": "P 63/m m c",
+     "match": true
+    },
+    {
+     "field": "_space_group_IT_number",
+     "stored": "194",
+     "live": "194",
+     "match": true
+    },
+    {
+     "field": "_cell_length_a",
+     "stored": "3.15(2)",
+     "live": "3.15(2)",
+     "match": true
+    },
+    {
+     "field": "_cell_length_c",
+     "stored": "12.30(7)",
+     "live": "12.30(7)",
+     "match": true
+    },
+    {
+     "field": "_chemical_name_mineral",
+     "stored": "Molybdenite",
+     "live": "Molybdenite",
+     "match": true
+    }
+   ]
+  },
+  "EVD-MOS2-STRUCTURE-ACTACRYST": {
+   "url": "https://www.crystallography.net/cod/9007660.cif",
+   "http_status": 200,
+   "sha256": "abdada2a8ea377f34af0d7eb634186808e6489bda58cf5b357f5cf879e476d9a",
+   "bytes": 2503,
+   "retrieved_on": "2026-10-30",
+   "fields": [
+    {
+     "field": "_symmetry_space_group_name_H-M",
+     "stored": "P 63/m m c",
+     "live": "P 63/m m c",
+     "match": true
+    },
+    {
+     "field": "_cell_length_a",
+     "stored": "3.161",
+     "live": "3.161",
+     "match": true
+    },
+    {
+     "field": "_cell_length_c",
+     "stored": "12.295",
+     "live": "12.295",
+     "match": true
+    },
+    {
+     "field": "_chemical_name_mineral",
+     "stored": "Molybdenite",
+     "live": "Molybdenite",
+     "match": true
+    }
+   ]
+  },
+  "EVD-MOS2-FORMULA-PUBCHEM": {
+   "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/14823/property/MolecularFormula,MolecularWeight,Title/JSON",
+   "http_status": 200,
+   "sha256": "e29c339082d71ffe384bcbf170c347bc05edbac71127e50dfcf124ef45332eb4",
+   "bytes": 205,
+   "retrieved_on": "2026-10-30",
+   "fields": [
+    {
+     "field": "MolecularFormula",
+     "stored": "MoS2",
+     "live": "MoS2",
+     "match": true
+    },
+    {
+     "field": "MolecularWeight",
+     "stored": "160.1",
+     "live": "160.1",
+     "match": true
+    }
+   ]
+  },
+  "EVD-MOS2-FORMULA-NIST": {
+   "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=1317-33-5",
+   "http_status": 200,
+   "sha256": "76f3ccb5a9cd820ea67ec831144893eec6c7166241daf947fa10953984b23da0",
+   "bytes": 15303,
+   "retrieved_on": "2026-10-30",
+   "fields": [
+    {
+     "field": "Formula",
+     "stored": "MoS2",
+     "live": "MoS2",
+     "match": true
+    },
+    {
+     "field": "molecularWeight",
+     "stored": "160.09",
+     "live": "160.09",
+     "match": true
+    }
+   ]
+  }
+ }
+}

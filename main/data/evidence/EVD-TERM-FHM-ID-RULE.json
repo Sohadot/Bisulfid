@@ -1,0 +1,64 @@
+{
+  "evidence_id": "EVD-TERM-FHM-ID-RULE",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "terminological",
+  "claim_level": "lexeme",
+  "concept_ids": [
+    "sulfide"
+  ],
+  "lexeme_ids": [
+    "LEX-DE-SULFID-001"
+  ],
+  "relationship": null,
+  "subject_domain": [
+    "SD-NOMENCLATURE"
+  ],
+  "geography": [],
+  "jurisdiction": null,
+  "language_of_evidence": "de",
+  "claim_scope": "Captured 2026-10-30 from Anorganische Nomenklatur (FH Münster). Quoted passages only; see lexical.",
+  "source_id": "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR",
+  "claim_id": "CLM-TERM-GERMAN-ID-RULE-001",
+  "publication_date": null,
+  "retrieval_date": "2026-10-30",
+  "temporal_scope": {
+    "as_of": "2026-10-30",
+    "valid_from": null,
+    "valid_to": null
+  },
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "secondary_scholarly",
+  "allowed_uses": [
+    "de_nomenclature_teaching_rule"
+  ],
+  "prohibited_uses": [
+    "chemical_safety",
+    "medical",
+    "market_data",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "lexical": {
+    "rule_quoted": "Das nachgestellte Nichtmetallatom bzw. -ion binärer Verbindungen mit negativer Oxidationszahl endet auf -id.",
+    "example_row": "S2- Sulfid"
+  },
+  "locator": {
+    "capture_file": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+    "capture_keys": [
+      "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR"
+    ],
+    "url": "https://www-backend.fh-muenster.de/ciw/downloads-ciw/personenprofile/juestel/wissenswertes/chemie/Anorganische-Nomenklatur.pdf",
+    "sha256": "d4e843543346c590112219943f999dec85e77399a7c1a03b9389bf89c8dab1cd",
+    "retrieval_date": "2026-10-30",
+    "verbatim": [
+      "Das nachgestellte Nichtmetallatom bzw. -ion binärer Verbindungen mit negativer Oxidationszahl endet auf -id.",
+      "S2- Sulfid"
+    ],
+    "pdf_pages": [
+      1
+    ]
+  },
+  "governance_note": "Recovery-03 terminology identity evidence. Contract C for any route using it is derived, never implied."
+}

@@ -1,0 +1,529 @@
+{
+ "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
+ "render_spec": "RSPEC-KO-BISULFID-TERMINOLOGY-001@1.1.0",
+ "route": "/bisulfid-vs-bisulfide/",
+ "preparer": "claude-code-agent",
+ "claims": [
+  {
+   "claim_id": "CLM-TERM-BISULFIDE-EN-SENSE-001",
+   "component": "en_bisulfide_dictionary_sense",
+   "claim_file": "main/data/claims/terminology_claims.json",
+   "status_in_store": "approved",
+   "statement": "Merriam-Webster defines the English noun 'bisulfide' as 'disulfide' and dates its first known use to 1831.",
+   "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfit",
+   "evidence": [
+    {
+     "evidence_id": "EVD-TERM-MW-BISULFIDE",
+     "source_id": "SRC-MW-BISULFIDE",
+     "source_title": "bisulfide",
+     "publisher": "Merriam-Webster",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://www.merriam-webster.com/dictionary/bisulfide",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "en_lexical_entry_definition",
+     "qualification_id": "QUAL-MW-BISULFIDE-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "bisulfide noun",
+      ": disulfide",
+      "First Known Use 1831"
+     ],
+     "record": "entry “bisulfide”",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    }
+   ],
+   "preparer_assessment": "every bound record is evidence_verified and admitted for its declared use; the statement does not exceed the quoted passages/values",
+   "reviewer_questions": [
+    "Does each quoted passage/value appear in the cited source as recorded?",
+    "Does the statement say no more than the evidence supports (scope, form, polytype, language)?",
+    "Is the source an appropriate authority for this kind of claim?",
+    "Is the rendered wording on the page faithful to the claim?"
+   ]
+  },
+  {
+   "claim_id": "CLM-TERM-SULFIDE-EN-SENSE-001",
+   "component": "en_sulfide_dictionary_sense",
+   "claim_file": "main/data/claims/terminology_claims.json",
+   "status_in_store": "approved",
+   "statement": "Merriam-Webster defines 'sulfide' as (1) any of various organic compounds characterized by a sulfur atom attached to two carbon atoms, and (2) a binary compound of sulfur usually with a more electropositive element or group: a salt of hydrogen sulfide.",
+   "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfit",
+   "evidence": [
+    {
+     "evidence_id": "EVD-TERM-MW-SULFIDE",
+     "source_id": "SRC-MW-SULFIDE",
+     "source_title": "sulfide",
+     "publisher": "Merriam-Webster",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://www.merriam-webster.com/dictionary/sulfide",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "en_lexical_entry_definition",
+     "qualification_id": "QUAL-MW-SULFIDE-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "1 : any of various organic compounds characterized by a sulfur atom attached to two carbon atoms",
+      "2 : a binary compound (such as CuS) of sulfur usually with a more electropositive element or group : a salt of hydrogen sulfide"
+     ],
+     "record": "entry “sulfide”",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    }
+   ],
+   "preparer_assessment": "every bound record is evidence_verified and admitted for its declared use; the statement does not exceed the quoted passages/values",
+   "reviewer_questions": [
+    "Does each quoted passage/value appear in the cited source as recorded?",
+    "Does the statement say no more than the evidence supports (scope, form, polytype, language)?",
+    "Is the source an appropriate authority for this kind of claim?",
+    "Is the rendered wording on the page faithful to the claim?"
+   ]
+  },
+  {
+   "claim_id": "CLM-TERM-DISULFIDE-EN-SENSE-001",
+   "component": "en_disulfide_dictionary_sense",
+   "claim_file": "main/data/claims/terminology_claims.json",
+   "status_in_store": "approved",
+   "statement": "Merriam-Webster defines 'disulfide' as (1) a compound containing two atoms of sulfur combined with an element or radical, and (2) an organic compound containing the divalent group SS; first known use 1869.",
+   "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfit",
+   "evidence": [
+    {
+     "evidence_id": "EVD-TERM-MW-DISULFIDE",
+     "source_id": "SRC-MW-DISULFIDE",
+     "source_title": "disulfide",
+     "publisher": "Merriam-Webster",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://www.merriam-webster.com/dictionary/disulfide",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "en_lexical_entry_definition",
+     "qualification_id": "QUAL-MW-DISULFIDE-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "1 : a compound containing two atoms of sulfur combined with an element or radical",
+      "2 : an organic compound containing the divalent group SS composed of two sulfur atoms",
+      "First Known Use 1869"
+     ],
+     "record": "entry “disulfide”",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    }
+   ],
+   "preparer_assessment": "every bound record is evidence_verified and admitted for its declared use; the statement does not exceed the quoted passages/values",
+   "reviewer_questions": [
+    "Does each quoted passage/value appear in the cited source as recorded?",
+    "Does the statement say no more than the evidence supports (scope, form, polytype, language)?",
+    "Is the source an appropriate authority for this kind of claim?",
+    "Is the rendered wording on the page faithful to the claim?"
+   ]
+  },
+  {
+   "claim_id": "CLM-TERM-BISULFITE-EN-SENSE-001",
+   "component": "en_bisulfite_dictionary_sense",
+   "claim_file": "main/data/claims/terminology_claims.json",
+   "status_in_store": "approved",
+   "statement": "Merriam-Webster defines 'bisulfite' as 'an acid sulfite' (first known use 1819), a different entry from 'bisulfide'.",
+   "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfit",
+   "evidence": [
+    {
+     "evidence_id": "EVD-TERM-MW-BISULFITE",
+     "source_id": "SRC-MW-BISULFITE",
+     "source_title": "bisulfite",
+     "publisher": "Merriam-Webster",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://www.merriam-webster.com/dictionary/bisulfite",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "en_lexical_entry_definition",
+     "qualification_id": "QUAL-MW-BISULFITE-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "bisulfite noun",
+      ": an acid sulfite",
+      "First Known Use 1819"
+     ],
+     "record": "entry “bisulfite”",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    }
+   ],
+   "preparer_assessment": "every bound record is evidence_verified and admitted for its declared use; the statement does not exceed the quoted passages/values",
+   "reviewer_questions": [
+    "Does each quoted passage/value appear in the cited source as recorded?",
+    "Does the statement say no more than the evidence supports (scope, form, polytype, language)?",
+    "Is the source an appropriate authority for this kind of claim?",
+    "Is the rendered wording on the page faithful to the claim?"
+   ]
+  },
+  {
+   "claim_id": "CLM-TERM-SULFID-DE-SENSE-001",
+   "component": "de_sulfid_dictionary_sense",
+   "claim_file": "main/data/claims/terminology_claims.json",
+   "status_in_store": "approved",
+   "statement": "Duden defines the German noun 'Sulfid' as 'salzartige Verbindung des Schwefelwasserstoffs'; the DWDS (eWDG 1976) sense is 'Salz des Schwefelwasserstoffs'.",
+   "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfit",
+   "evidence": [
+    {
+     "evidence_id": "EVD-TERM-DUDEN-SULFID",
+     "source_id": "SRC-DUDEN-SULFID",
+     "source_title": "Sulfid",
+     "publisher": "Duden",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://www.duden.de/rechtschreibung/Sulfid",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "de_lexical_entry_definition",
+     "qualification_id": "QUAL-DUDEN-SULFID-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "Worttrennung Sul|fid",
+      "Bedeutung ⓘ salzartige Verbindung des Schwefelwasserstoffs"
+     ],
+     "record": "entry “Sulfid”",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    },
+    {
+     "evidence_id": "EVD-TERM-DWDS-SULFID",
+     "source_id": "SRC-DWDS-SULFID",
+     "source_title": "Sulfid",
+     "publisher": "DWDS — Digitales Wörterbuch der deutschen Sprache (Berlin-Brandenburgische Akademie der Wissenschaften)",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://www.dwds.de/wb/Sulfid",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "de_lexical_entry_definition",
+     "qualification_id": "QUAL-DWDS-SULFID-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "Bedeutung eWDG 1976 Chemie Salz des Schwefelwasserstoffs"
+     ],
+     "record": "entry “Sulfid”",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    }
+   ],
+   "preparer_assessment": "every bound record is evidence_verified and admitted for its declared use; the statement does not exceed the quoted passages/values",
+   "reviewer_questions": [
+    "Does each quoted passage/value appear in the cited source as recorded?",
+    "Does the statement say no more than the evidence supports (scope, form, polytype, language)?",
+    "Is the source an appropriate authority for this kind of claim?",
+    "Is the rendered wording on the page faithful to the claim?"
+   ]
+  },
+  {
+   "claim_id": "CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001",
+   "component": "de_bisulfid_lexicographic_coverage",
+   "claim_file": "main/data/claims/terminology_claims.json",
+   "status_in_store": "approved",
+   "statement": "DWDS states that neither 'Bisulfid' nor 'Hydrogensulfid' is in its contemporary lexical sources; it shows only computer-generated grammatical forms for them.",
+   "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfit",
+   "evidence": [
+    {
+     "evidence_id": "EVD-TERM-DWDS-BISULFID",
+     "source_id": "SRC-DWDS-BISULFID",
+     "source_title": "Bisulfid (lookup result)",
+     "publisher": "DWDS — Digitales Wörterbuch der deutschen Sprache (Berlin-Brandenburgische Akademie der Wissenschaften)",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://www.dwds.de/wb/Bisulfid",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "de_lexicographic_coverage_statement",
+     "qualification_id": "QUAL-DWDS-BISULFID-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "Es tut uns leid, Ihre Anfrage Bisulfid ist nicht in unseren gegenwartssprachlichen lexikalischen Quellen vorhanden.",
+      "Nominativ Plural: Bisulfide (computergeneriert)"
+     ],
+     "record": "entry “Bisulfid”",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    },
+    {
+     "evidence_id": "EVD-TERM-DWDS-HYDROGENSULFID",
+     "source_id": "SRC-DWDS-HYDROGENSULFID",
+     "source_title": "Hydrogensulfid (lookup result)",
+     "publisher": "DWDS — Digitales Wörterbuch der deutschen Sprache (Berlin-Brandenburgische Akademie der Wissenschaften)",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://www.dwds.de/wb/Hydrogensulfid",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "de_lexicographic_coverage_statement",
+     "qualification_id": "QUAL-DWDS-HYDROGENSULFID-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "Es tut uns leid, Ihre Anfrage Hydrogensulfid ist nicht in unseren gegenwartssprachlichen lexikalischen Quellen vorhanden."
+     ],
+     "record": "entry “Hydrogensulfid”",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    }
+   ],
+   "preparer_assessment": "every bound record is evidence_verified and admitted for its declared use; the statement does not exceed the quoted passages/values",
+   "reviewer_questions": [
+    "Does each quoted passage/value appear in the cited source as recorded?",
+    "Does the statement say no more than the evidence supports (scope, form, polytype, language)?",
+    "Is the source an appropriate authority for this kind of claim?",
+    "Is the rendered wording on the page faithful to the claim?"
+   ]
+  },
+  {
+   "claim_id": "CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001",
+   "component": "de_hydrogensulfid_technical_usage",
+   "claim_file": "main/data/claims/terminology_claims.json",
+   "status_in_store": "approved",
+   "statement": "The Spektrum Lexikon der Chemie entry 'Schwefelwasserstoff' names the two series of salts of hydrogen sulfide 'Hydrogensulfide' (MIHS) and 'Sulfide' (MI2S).",
+   "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfit",
+   "evidence": [
+    {
+     "evidence_id": "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE",
+     "source_id": "SRC-SPEKTRUM-SCHWEFELWASSERSTOFF-DE",
+     "source_title": "Schwefelwasserstoff - Lexikon der Chemie",
+     "publisher": "Spektrum Akademischer Verlag, Heidelberg",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://www.spektrum.de/lexikon/chemie/schwefelwasserstoff/8309",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "de_technical_term_usage",
+     "qualification_id": "QUAL-SPEKTRUM-SCHWEFELWASSERSTOFF-DE-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "S. bildet zwei Reihen von Salzen, die Hydrogensulfide M I HS und die Sulfide M I 2 S."
+     ],
+     "record": "entry “Schwefelwasserstoff”",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    }
+   ],
+   "preparer_assessment": "every bound record is evidence_verified and admitted for its declared use; the statement does not exceed the quoted passages/values",
+   "reviewer_questions": [
+    "Does each quoted passage/value appear in the cited source as recorded?",
+    "Does the statement say no more than the evidence supports (scope, form, polytype, language)?",
+    "Is the source an appropriate authority for this kind of claim?",
+    "Is the rendered wording on the page faithful to the claim?"
+   ]
+  },
+  {
+   "claim_id": "CLM-TERM-IUPAC-HS-NAMES-001",
+   "component": "iupac_names_hs",
+   "claim_file": "main/data/claims/terminology_claims.json",
+   "status_in_store": "approved",
+   "statement": "The IUPAC 2005 recommendations name the anion HS⁻ 'sulfanide' (substitutive) or 'hydridosulfate(1−)' (additive).",
+   "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfit",
+   "evidence": [
+    {
+     "evidence_id": "EVD-TERM-IUPAC-HS-NAMES",
+     "source_id": "SRC-IUPAC-RED-BOOK-2005",
+     "source_title": "Nomenclature of Inorganic Chemistry — IUPAC Recommendations 2005 (Red Book), ISBN 0-85404-438-8",
+     "publisher": "International Union of Pure and Applied Chemistry / Royal Society of Chemistry",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://iupac.org/wp-content/uploads/2016/07/Red_Book_2005.pdf",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "iupac_recommended_name",
+     "qualification_id": "QUAL-IUPAC-RED-BOOK-2005-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "3. HS sulfanide (substitutive), or hydridosulfate(1 ) (additive)"
+     ],
+     "record": "IR-5.3.3.4 (heteropolyatomic anions), Example 3, PDF p. 86",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    }
+   ],
+   "preparer_assessment": "every bound record is evidence_verified and admitted for its declared use; the statement does not exceed the quoted passages/values",
+   "reviewer_questions": [
+    "Does each quoted passage/value appear in the cited source as recorded?",
+    "Does the statement say no more than the evidence supports (scope, form, polytype, language)?",
+    "Is the source an appropriate authority for this kind of claim?",
+    "Is the rendered wording on the page faithful to the claim?"
+   ]
+  },
+  {
+   "claim_id": "CLM-TERM-IUPAC-S2-NAMES-001",
+   "component": "iupac_names_s2",
+   "claim_file": "main/data/claims/terminology_claims.json",
+   "status_in_store": "approved",
+   "statement": "The IUPAC 2005 recommendations name the anion S₂²⁻ 'disulfide(2−)' or, as derived from its parent hydride, 'disulfanediide'.",
+   "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfit",
+   "evidence": [
+    {
+     "evidence_id": "EVD-TERM-IUPAC-S2-NAMES",
+     "source_id": "SRC-IUPAC-RED-BOOK-2005",
+     "source_title": "Nomenclature of Inorganic Chemistry — IUPAC Recommendations 2005 (Red Book), ISBN 0-85404-438-8",
+     "publisher": "International Union of Pure and Applied Chemistry / Royal Society of Chemistry",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://iupac.org/wp-content/uploads/2016/07/Red_Book_2005.pdf",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "iupac_recommended_name",
+     "qualification_id": "QUAL-IUPAC-RED-BOOK-2005-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "8. S22 disulﬁde(2 )",
+      "12. S2 disulfanediide"
+     ],
+     "record": "IR-5.3.3 (homopolyatomic anions), Examples 8 and 12, PDF p. 86",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    }
+   ],
+   "preparer_assessment": "every bound record is evidence_verified and admitted for its declared use; the statement does not exceed the quoted passages/values",
+   "reviewer_questions": [
+    "Does each quoted passage/value appear in the cited source as recorded?",
+    "Does the statement say no more than the evidence supports (scope, form, polytype, language)?",
+    "Is the source an appropriate authority for this kind of claim?",
+    "Is the rendered wording on the page faithful to the claim?"
+   ]
+  },
+  {
+   "claim_id": "CLM-TERM-IUPAC-HSO3-NAME-001",
+   "component": "iupac_name_hso3",
+   "claim_file": "main/data/claims/terminology_claims.json",
+   "status_in_store": "approved",
+   "statement": "The IUPAC 2005 recommendations accept 'hydrogensulfite' as an abbreviated hydrogen name for HSO₃⁻, in a list IUPAC asks to be viewed as limiting.",
+   "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfit",
+   "evidence": [
+    {
+     "evidence_id": "EVD-TERM-IUPAC-HSO3-NAME",
+     "source_id": "SRC-IUPAC-RED-BOOK-2005",
+     "source_title": "Nomenclature of Inorganic Chemistry — IUPAC Recommendations 2005 (Red Book), ISBN 0-85404-438-8",
+     "publisher": "International Union of Pure and Applied Chemistry / Royal Society of Chemistry",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://iupac.org/wp-content/uploads/2016/07/Red_Book_2005.pdf",
+     "evidence_role": "primary_authoritative",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "iupac_recommended_name",
+     "qualification_id": "QUAL-IUPAC-RED-BOOK-2005-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "HSO3 hydrogensulﬁte hydrogen(trioxidosulfate)(1 )",
+      "It is strongly recommended that this list be viewed as limiting due to the ambiguities that may arise in many other cases."
+     ],
+     "record": "IR-8.5 (abbreviated hydrogen names for certain anions), PDF p. 149",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    }
+   ],
+   "preparer_assessment": "every bound record is evidence_verified and admitted for its declared use; the statement does not exceed the quoted passages/values",
+   "reviewer_questions": [
+    "Does each quoted passage/value appear in the cited source as recorded?",
+    "Does the statement say no more than the evidence supports (scope, form, polytype, language)?",
+    "Is the source an appropriate authority for this kind of claim?",
+    "Is the rendered wording on the page faithful to the claim?"
+   ]
+  },
+  {
+   "claim_id": "CLM-TERM-GERMAN-ID-RULE-001",
+   "component": "de_id_suffix_teaching_rule",
+   "claim_file": "main/data/claims/terminology_claims.json",
+   "status_in_store": "approved",
+   "statement": "A German university nomenclature sheet (FH Münster) states that the anion name of a binary compound with negative oxidation number ends in '-id', listing 'Sulfid' for S²⁻.",
+   "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfit",
+   "evidence": [
+    {
+     "evidence_id": "EVD-TERM-FHM-ID-RULE",
+     "source_id": "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR",
+     "source_title": "Anorganische Nomenklatur",
+     "publisher": "FH Münster",
+     "source_status": "verified",
+     "source_lock_status": "candidate",
+     "url": "https://www-backend.fh-muenster.de/ciw/downloads-ciw/personenprofile/juestel/wissenswertes/chemie/Anorganische-Nomenklatur.pdf",
+     "evidence_role": "secondary_scholarly",
+     "review_posture": "evidence_verified",
+     "retrieval_date": "2026-10-30",
+     "admitted_for": "de_nomenclature_teaching_rule",
+     "qualification_id": "QUAL-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR-R03-001",
+     "rendered_on_page": true,
+     "verbatim_or_fields": [
+      "Das nachgestellte Nichtmetallatom bzw. -ion binärer Verbindungen mit negativer Oxidationszahl endet auf -id.",
+      "S2- Sulfid"
+     ],
+     "record": "Anorganische Nomenklatur",
+     "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+    }
+   ],
+   "preparer_assessment": "every bound record is evidence_verified and admitted for its declared use; the statement does not exceed the quoted passages/values",
+   "reviewer_questions": [
+    "Does each quoted passage/value appear in the cited source as recorded?",
+    "Does the statement say no more than the evidence supports (scope, form, polytype, language)?",
+    "Is the source an appropriate authority for this kind of claim?",
+    "Is the rendered wording on the page faithful to the claim?"
+   ]
+  }
+ ],
+ "boundary_evidence": [
+  {
+   "evidence_id": "EVD-TERM-PUBCHEM-HS-SYNONYMS",
+   "source_id": "SRC-PUBCHEM-HYDROSULFIDE",
+   "source_title": "Hydrosulfide",
+   "publisher": "PubChem / NIH",
+   "source_status": "verified",
+   "source_lock_status": "candidate",
+   "url": "https://pubchem.ncbi.nlm.nih.gov/compound/Hydrosulfide",
+   "evidence_role": "primary_authoritative",
+   "review_posture": "evidence_verified",
+   "retrieval_date": "2026-10-30",
+   "admitted_for": "database_record_identity_and_synonyms",
+   "qualification_id": "QUAL-PUBCHEM-HYDROSULFIDE-R03-001",
+   "rendered_on_page": true,
+   "verbatim_or_fields": [
+    "\"MolecularFormula\": \"HS-\"",
+    "\"IUPACName\": \"sulfanide\"",
+    "\"bisulfide\""
+   ],
+   "record": "PubChem CID 5047209",
+   "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+  },
+  {
+   "evidence_id": "EVD-TERM-PUBCHEM-BISULFITE",
+   "source_id": "SRC-PUBCHEM-BISULFITE",
+   "source_title": "Bisulfite (PubChem Compound CID 104748)",
+   "publisher": "PubChem / NIH (National Center for Biotechnology Information)",
+   "source_status": "verified",
+   "source_lock_status": "candidate",
+   "url": "https://pubchem.ncbi.nlm.nih.gov/compound/104748",
+   "evidence_role": "primary_authoritative",
+   "review_posture": "evidence_verified",
+   "retrieval_date": "2026-10-30",
+   "admitted_for": "database_record_identity_and_synonyms",
+   "qualification_id": "QUAL-PUBCHEM-BISULFITE-R03-001",
+   "rendered_on_page": true,
+   "verbatim_or_fields": [
+    "\"MolecularFormula\": \"HO3S-\"",
+    "\"IUPACName\": \"hydrogen sulfite\"",
+    "\"Title\": \"Bisulfite\""
+   ],
+   "record": "PubChem CID 104748",
+   "capture": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
+  }
+ ],
+ "not_established": "BISULFID is the name of this website. The name is not a chemical claim, and this reference does not state that German Bisulfid is the equivalent of English bisulfide. Some German industry pages use Bisulfid for HS⁻, and one was captured verbatim, but an industry page is not an admissible source for terminology here, so that usage is recorded as a boundary and not adopted. The IUPAC Gold Book entry on hydrosulfides could not be retrieved openly when the sources were captured, and a second German teaching handout was unreachable, so neither is cited. Other German dictionaries were not examined for Bisulfid. The history of the bi- prefix, how often each spelling is used, and the safety or industrial properties of any species named here are outside this reference [SOURCE REQUIRED].",
+ "unresolved_fields": [
+  "German 'Bisulfid' as industry usage for HS- (CLM-TERM-BISULFID-001): only an industry_publication source (Badger Meter) was captured; that category is not admissible for SD-TERMINOLOGY, so the claim stays pending with a recorded boundary",
+  "IUPAC Gold Book entry 'hydrosulfides' (SRC-IUPAC-HYDROSULFIDES): HTTP 403 at capture; not bypassed, not cited",
+  "Uni Rostock nomenclature handout (SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN): HTTP 404 at capture; not cited",
+  "history of the bi- prefix and of IUPAC discouraging it: no governed evidence acquired",
+  "usage frequency of any spelling: no governed corpus evidence"
+ ],
+ "excluded_claim_classes": [
+  "chemical_safety",
+  "medical",
+  "market",
+  "industrial_use",
+  "brand_meaning_as_chemistry",
+  "equivalence_by_spelling"
+ ]
+}

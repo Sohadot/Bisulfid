@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """validate_all.py — Quality Gate orchestrator.
 
-Currently a placeholder. Full enforcement is not active.
+Gates 01-11 are still placeholders. Gate 12 (Page Distinctiveness & Information Gain)
+is REAL, BLOCKING enforcement: validate_distinctiveness.py checks markdown publication
+candidates and every indexable page of the site/public surface, and exits non-zero on failure.
 
-Runs all placeholder validators in Quality Gate order.
-Prints a non-enforcement warning before and after running.
+Runs all validators in Quality Gate order.
+Prints a non-enforcement warning for the placeholder gates before and after running.
 
 This file uses subprocess to run local validator files safely.
 No network calls. No file writes. No external dependencies.
@@ -15,7 +17,7 @@ import subprocess
 import sys
 
 # TODO: When validators are fully implemented, this orchestrator should:
-# TODO: Run validators in strict Quality Gate order (Gate 01 through Gate 11)
+# TODO: Run validators in strict Quality Gate order (Gate 01 through Gate 12)
 # TODO: Collect exit codes and emit a structured per-gate pass/fail report
 # TODO: Exit non-zero immediately if any validator reports a real failure
 # TODO: Produce a machine-readable summary (JSON) for CI integration
@@ -51,38 +53,55 @@ VALIDATORS = [
     "validate_language_routes.py",
     # Supply chain security
     "validate_supply_chain.py",
+    # Gate 12 — page distinctiveness & information gain (REAL, BLOCKING)
+    ("validate_distinctiveness.py", "--gate"),
+    # Deploy authority (Recovery-02): served directives must equal governance-resolved directives.
+    ("../publication/validate_publication_authority.py", "--surface", "site/public"),
 ]
+
+# Validators that perform real enforcement (their exit 0 is meaningful).
+ENFORCING = {"validate_distinctiveness.py", "../publication/validate_publication_authority.py"}
 
 
 def main():
     print("=" * 60)
-    print("Validator skeleton exists. Full enforcement is not active yet.")
+    print("Gates 01-11: validator skeleton only. Full enforcement is not active yet.")
     print("Placeholder validators do not confirm production readiness.")
+    print("Gate 12 (distinctiveness & information gain) is REAL, BLOCKING enforcement.")
     print("=" * 60)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.abspath(os.path.join(script_dir, "..", ".."))
     all_passed = True
+    enforcing_failed = []
 
-    for validator in VALIDATORS:
+    for entry in VALIDATORS:
+        validator, args = (entry, ()) if isinstance(entry, str) else (entry[0], entry[1:])
         path = os.path.join(script_dir, validator)
         if not os.path.isfile(path):
             print(f"  MISSING: {validator}")
             all_passed = False
             continue
         result = subprocess.run(
-            [sys.executable, path],
+            [sys.executable, path, *args],
             capture_output=False,
+            cwd=repo_root,
         )
         if result.returncode != 0:
-            print(f"  FAILED:  {validator} exited {result.returncode}")
+            label = " ".join((validator,) + tuple(args))
+            print(f"  FAILED:  {label} exited {result.returncode}")
             all_passed = False
+            if validator in ENFORCING:
+                enforcing_failed.append(label)
 
     print("=" * 60)
     if all_passed:
-        print("All placeholder validators exited 0.")
-        print("NOTE: This does not mean any Quality Gate has passed.")
+        print("All validators exited 0.")
+        print("NOTE: Gates 01-11 are placeholders; only Gate 12's pass is enforced.")
     else:
         print("One or more validators are missing or exited non-zero.")
+        for label in enforcing_failed:
+            print(f"  BLOCKING (real enforcement): {label}")
     print("=" * 60)
 
     return 0 if all_passed else 1

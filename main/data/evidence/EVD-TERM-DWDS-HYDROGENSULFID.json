@@ -1,0 +1,61 @@
+{
+  "evidence_id": "EVD-TERM-DWDS-HYDROGENSULFID",
+  "governed": true,
+  "test_fixture": false,
+  "evidence_kind": "terminological",
+  "claim_level": "lexeme",
+  "concept_ids": [
+    "hydrosulfide"
+  ],
+  "lexeme_ids": [
+    "LEX-DE-HYDROGENSULFID-001"
+  ],
+  "relationship": null,
+  "subject_domain": [
+    "SD-TERMINOLOGY",
+    "SD-LINGUISTICS"
+  ],
+  "geography": [],
+  "jurisdiction": null,
+  "language_of_evidence": "de",
+  "claim_scope": "Captured 2026-10-30 from Hydrogensulfid (lookup result) (DWDS — Digitales Wörterbuch der deutschen Sprache (Berlin-Brandenburgische Akademie der Wissenschaften)). Quoted passages only; see lexical.",
+  "source_id": "SRC-DWDS-HYDROGENSULFID",
+  "claim_id": "CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001",
+  "publication_date": null,
+  "retrieval_date": "2026-10-30",
+  "temporal_scope": {
+    "as_of": "2026-10-30",
+    "valid_from": null,
+    "valid_to": null
+  },
+  "evidence_review_posture": "evidence_verified",
+  "evidence_role": "primary_authoritative",
+  "allowed_uses": [
+    "de_lexicographic_coverage_statement"
+  ],
+  "prohibited_uses": [
+    "chemical_safety",
+    "medical",
+    "market_data",
+    "route_publication",
+    "source_locking_by_itself",
+    "claim_approval_by_itself"
+  ],
+  "lexical": {
+    "headword": "Hydrogensulfid",
+    "coverage_statement_quoted": "Es tut uns leid, Ihre Anfrage Hydrogensulfid ist nicht in unseren gegenwartssprachlichen lexikalischen Quellen vorhanden."
+  },
+  "locator": {
+    "capture_file": "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json",
+    "capture_keys": [
+      "SRC-DWDS-HYDROGENSULFID"
+    ],
+    "url": "https://www.dwds.de/wb/Hydrogensulfid",
+    "sha256": "82b0ca52fd59475a1587dc7d591758cf5304ec99157ef05fd950c3d37c0f76f4",
+    "retrieval_date": "2026-10-30",
+    "verbatim": [
+      "Es tut uns leid, Ihre Anfrage Hydrogensulfid ist nicht in unseren gegenwartssprachlichen lexikalischen Quellen vorhanden."
+    ]
+  },
+  "governance_note": "Recovery-03 terminology identity evidence. Contract C for any route using it is derived, never implied."
+}

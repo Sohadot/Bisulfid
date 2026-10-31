@@ -13,6 +13,25 @@ ROOT = Path(__file__).resolve().parents[1]
 LEDGER_PATH = ROOT / "main/data/release_ledger.json"
 ROUTES_PATH = ROOT / "main/data/routes.json"
 PUBLIC_DIR = ROOT / "site/public"
+
+
+# Recovery-02: robots/canonical come from the publication authority, never from the template.
+sys.path.insert(0, str(ROOT / "scripts" / "publication"))
+from publication_authority import Authority  # noqa: E402
+
+
+def _out_dir(argv: list[str]) -> Path:
+    """--out DIR renders to a staging directory; the default remains site/public."""
+    if "--out" in argv:
+        return Path(argv[argv.index("--out") + 1]).resolve()
+    return PUBLIC_DIR
+
+
+def _finalize(page: str, rid: str, errors: list[str]) -> str | None:
+    if "{{" in page:
+        errors.append(f"{rid}: unresolved template placeholder")
+        return None
+    return page
 TEMPLATES = ROOT / "main/templates/atlas"
 REPORT_PATH = ROOT / "main/data/PUBLIC_ATLAS_PRODUCTION_REPORT.md"
 
@@ -200,6 +219,9 @@ def main() -> int:
     print("=" * 60)
     print("Sprint 98 — Atlas Public Release Render")
     print("=" * 60)
+    authority = Authority()
+    out_dir = _out_dir(sys.argv)
+    skipped: list[str] = []
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     routes = json.loads(ROUTES_PATH.read_text(encoding="utf-8"))["routes"]
     routes_by_id = {r["route_id"]: r for r in routes}
@@ -221,6 +243,11 @@ def main() -> int:
         if not route:
             errors.append(f"missing route: {rec['route_id']}")
             continue
+        try:
+            robots_directive, canonical_url = authority.render_directives(route.get("path", "/"))
+        except PermissionError as exc:
+            skipped.append(str(exc))
+            continue
         content_path = ROOT / route.get("content_file", "")
         if not content_path.is_file():
             errors.append(f"missing content: {rec['route_id']}")
@@ -233,7 +260,8 @@ def main() -> int:
             "route_id": route["route_id"],
             "page_title": route.get("title", route["route_id"]).replace("planned route; non-public", "").strip(),
             "meta_description": html.escape(clean_description(route.get("description", ""))),
-            "canonical_url": f"https://bisulfid.com{route.get('path', '/')}",
+            "canonical_url": canonical_url,
+            "robots_directive": robots_directive,
             "page_h1": route.get("h1", route["route_id"]),
             "atlas_role": f"Atlas hub · {rec.get('production_lane', 'HUB')}",
             "reference_summary": clean_description(route.get("description", "")),
@@ -251,12 +279,14 @@ def main() -> int:
         hub_html = substitute(hub_tpl, ctx)
         ctx["content"] = hub_html
         ctx["breadcrumbs"] = substitute(breadcrumb_tpl, ctx)
-        page = substitute(base_tpl, ctx)
+        page = _finalize(substitute(base_tpl, ctx), rec["route_id"], errors)
+        if page is None:
+            continue
         raw_path = route.get("path", "/").strip("/")
-        out_path = PUBLIC_DIR / ("index.html" if not raw_path else f"{raw_path}/index.html")
+        out_path = out_dir / ("index.html" if not raw_path else f"{raw_path}/index.html")
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(page, encoding="utf-8")
-        written.append(str(out_path.relative_to(ROOT)).replace("\\", "/"))
+        written.append(str(out_path).replace("\\", "/"))
     lines = [
         "# Public Atlas Production Report",
         "",
@@ -281,7 +311,8 @@ def main() -> int:
         "- 13,971+ terminology routes remain blocked (source required)",
         "- Full 14,000-page atlas not claimed live",
     ])
-    REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    if out_dir == PUBLIC_DIR:
+        REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"Rendered: {len(written)}")
     if errors:
         for e in errors:

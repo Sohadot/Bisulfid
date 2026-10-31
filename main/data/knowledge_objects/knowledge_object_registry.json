@@ -3,52 +3,151 @@
   "sprint": "reference-production-01-mos2",
   "site": "bisulfid.com",
   "status": "scaffolding_active",
-  "governed_by": ["main/data/pilots/MOS2_SCIENTIFIC_REFERENCE_PILOT_03.md", "main/data/reference_production/REFERENCE_PRODUCTION_01_MOS2.md", "scripts/governance_scaffolding/contract_c_derive.py", "DECISION_LOG.md"],
+  "governed_by": [
+    "main/data/pilots/MOS2_SCIENTIFIC_REFERENCE_PILOT_03.md",
+    "main/data/reference_production/REFERENCE_PRODUCTION_01_MOS2.md",
+    "scripts/governance_scaffolding/contract_c_derive.py",
+    "DECISION_LOG.md"
+  ],
   "purpose": "First governed Knowledge Object registry. A Knowledge Object AGGREGATES governed claims/evidence into one coherent reference object; it does NOT re-own atomic facts. Knowledge-Object-Before-URL is absolute: a KO is an internal governed object and authorizes no route/HTML/sitemap/indexation.",
   "one_fact_one_owner": "Evidence owns source literals/measurements/locators/uncertainty/scope. Claims own governed propositions/boundaries. A Knowledge Object owns ONLY: which claims belong together, which evidence supports them, conceptual organization, scope boundaries, unresolved/excluded areas, and reference role. No numeric value is copied into a KO as a second editable truth; display values are DERIVED from evidence.",
   "record_schema": {
-    "required_fields": ["knowledge_object_id", "entity_ids", "subject_domains", "knowledge_role", "claim_bindings", "claim_ids", "evidence_ids", "scope", "language_neutral", "claim_source", "postures", "derived_contract_c"],
-    "optional_fields": ["boundary_evidence_ids", "unresolved_fields", "excluded_claim_classes", "temporal_scope", "distinct_from", "ig_resolution", "notes"],
-    "forbidden_fields": ["route", "path", "url", "url_route", "in_sitemap", "indexable", "html", "source_literal", "normalized_value"],
-    "posture_fields": ["governance_posture", "evidence_posture", "claim_posture", "validation_posture", "information_gain_posture", "release_authorization"],
+    "required_fields": [
+      "knowledge_object_id",
+      "entity_ids",
+      "subject_domains",
+      "knowledge_role",
+      "claim_bindings",
+      "claim_ids",
+      "evidence_ids",
+      "scope",
+      "language_neutral",
+      "claim_source",
+      "postures",
+      "derived_contract_c"
+    ],
+    "optional_fields": [
+      "boundary_evidence_ids",
+      "unresolved_fields",
+      "excluded_claim_classes",
+      "temporal_scope",
+      "distinct_from",
+      "ig_resolution",
+      "notes"
+    ],
+    "forbidden_fields": [
+      "route",
+      "path",
+      "url",
+      "url_route",
+      "in_sitemap",
+      "indexable",
+      "html",
+      "source_literal",
+      "normalized_value"
+    ],
+    "posture_fields": [
+      "governance_posture",
+      "evidence_posture",
+      "claim_posture",
+      "validation_posture",
+      "information_gain_posture",
+      "release_authorization"
+    ],
     "note": "derived_contract_c is a DERIVED projection of postures via contract_c_derive.derive(); it is documentation only and must equal the recomputed value (validated by tests). It is never a manual authorization."
   },
   "knowledge_objects": [
     {
       "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
-      "entity_ids": ["molybdenum_disulfide"],
-      "subject_domains": ["SD-INORGANIC-CHEMISTRY", "SD-MATERIALS-SCIENCE"],
+      "entity_ids": [
+        "molybdenum_disulfide"
+      ],
+      "subject_domains": [
+        "SD-INORGANIC-CHEMISTRY",
+        "SD-MATERIALS-SCIENCE"
+      ],
       "knowledge_role": "scientific_reference",
       "scope": "The scientifically established chemical identity and BULK structural facts BISULFID can currently support for molybdenum disulfide: the formula MoS2; that bulk MoS2 is layered; the 2H polytype hexagonal P6_3/mmc (No. 194) structure; and the 2H-bulk in-plane lattice parameter a. ONE coherent scientific reference object. It is NOT a complete MoS2 article, a band-gap page, a safety/market/industrial-use page, a German-terminology page, or a monolayer guide.",
       "language_neutral": true,
       "claim_source": "pilot_non_operational",
-      "claim_ids": ["CLM-MOS2-FORMULA", "CLM-MOS2-STRUCTURE-2H", "CLM-MOS2-LATTICE-A-2H"],
+      "claim_ids": [
+        "CLM-MOS2-FORMULA",
+        "CLM-MOS2-STRUCTURE-2H",
+        "CLM-MOS2-LATTICE-A-2H"
+      ],
       "claim_bindings": [
         {
           "claim_id": "CLM-MOS2-FORMULA",
           "component": "chemical_identity_formula",
           "claim_source": "pilot_non_operational",
-          "evidence_ids": ["EVD-MOS2-FORMULA-PUBCHEM", "EVD-MOS2-FORMULA-NIST"]
+          "evidence_ids": [
+            "EVD-MOS2-FORMULA-PUBCHEM",
+            "EVD-MOS2-FORMULA-NIST"
+          ]
         },
         {
           "claim_id": "CLM-MOS2-STRUCTURE-2H",
           "component": "structure_2h_layered",
           "claim_source": "pilot_non_operational",
-          "evidence_ids": ["EVD-MOS2-STRUCTURE-DICKINSON", "EVD-MOS2-STRUCTURE-ACTACRYST", "EVD-MOS2-2H-REF-RSC", "EVD-MOS2-LAYERED-RSC", "EVD-MOS2-POLYTYPES-RSC", "EVD-MOS2-LAYERED-ACTA1983-EXCERPT", "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT", "EVD-MOS2-LAYERED-HUANG1981"]
+          "evidence_ids": [
+            "EVD-MOS2-STRUCTURE-DICKINSON",
+            "EVD-MOS2-STRUCTURE-ACTACRYST",
+            "EVD-MOS2-2H-REF-RSC",
+            "EVD-MOS2-LAYERED-RSC",
+            "EVD-MOS2-POLYTYPES-RSC",
+            "EVD-MOS2-LAYERED-ACTA1983-EXCERPT",
+            "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT",
+            "EVD-MOS2-LAYERED-HUANG1981"
+          ]
         },
         {
           "claim_id": "CLM-MOS2-LATTICE-A-2H",
           "component": "lattice_parameter_a_2h_bulk",
           "claim_source": "pilot_non_operational",
-          "evidence_ids": ["EVD-MOS2-LATTICE-A-DICKINSON", "EVD-MOS2-LATTICE-A-ACTACRYST"]
+          "evidence_ids": [
+            "EVD-MOS2-LATTICE-A-DICKINSON",
+            "EVD-MOS2-LATTICE-A-ACTACRYST"
+          ]
         }
       ],
-      "evidence_ids": ["EVD-MOS2-FORMULA-PUBCHEM", "EVD-MOS2-FORMULA-NIST", "EVD-MOS2-STRUCTURE-DICKINSON", "EVD-MOS2-STRUCTURE-ACTACRYST", "EVD-MOS2-2H-REF-RSC", "EVD-MOS2-LAYERED-RSC", "EVD-MOS2-POLYTYPES-RSC", "EVD-MOS2-LAYERED-ACTA1983-EXCERPT", "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT", "EVD-MOS2-LAYERED-HUANG1981", "EVD-MOS2-LATTICE-A-DICKINSON", "EVD-MOS2-LATTICE-A-ACTACRYST"],
-      "boundary_evidence_ids": ["EVD-MOS2-3R-BOUNDARY-RSC"],
+      "evidence_ids": [
+        "EVD-MOS2-FORMULA-PUBCHEM",
+        "EVD-MOS2-FORMULA-NIST",
+        "EVD-MOS2-STRUCTURE-DICKINSON",
+        "EVD-MOS2-STRUCTURE-ACTACRYST",
+        "EVD-MOS2-2H-REF-RSC",
+        "EVD-MOS2-LAYERED-RSC",
+        "EVD-MOS2-POLYTYPES-RSC",
+        "EVD-MOS2-LAYERED-ACTA1983-EXCERPT",
+        "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT",
+        "EVD-MOS2-LAYERED-HUANG1981",
+        "EVD-MOS2-LATTICE-A-DICKINSON",
+        "EVD-MOS2-LATTICE-A-ACTACRYST"
+      ],
+      "boundary_evidence_ids": [
+        "EVD-MOS2-3R-BOUNDARY-RSC"
+      ],
       "boundary_note": "EVD-MOS2-3R-BOUNDARY-RSC documents the DISTINCT 3R polytype (R3m) as boundary/context. It is NOT part of the 2H claim and is bound here only as a polytype boundary, never as 2H structural support.",
-      "temporal_scope": {"as_of": null, "valid_from": null, "valid_to": null},
-      "unresolved_fields": ["band gap (form-dependent: bulk 2H indirect vs monolayer direct) — not acquired; future work", "other physical/material properties (density, optical, lubricant) — not in scope this object", "3R-polytype lattice parameters as primary facts (held only as boundary/context)"],
-      "excluded_claim_classes": ["band_gap", "electronic_or_optical_property", "density", "monolayer_or_few_layer_property", "market", "safety", "industrial_use", "german_terminology_or_lexeme"],
+      "temporal_scope": {
+        "as_of": null,
+        "valid_from": null,
+        "valid_to": null
+      },
+      "unresolved_fields": [
+        "band gap (form-dependent: bulk 2H indirect vs monolayer direct) — not acquired; future work",
+        "other physical/material properties (density, optical, lubricant) — not in scope this object",
+        "3R-polytype lattice parameters as primary facts (held only as boundary/context)"
+      ],
+      "excluded_claim_classes": [
+        "band_gap",
+        "electronic_or_optical_property",
+        "density",
+        "monolayer_or_few_layer_property",
+        "market",
+        "safety",
+        "industrial_use",
+        "german_terminology_or_lexeme"
+      ],
       "distinct_from": {
         "german_lexical_object": {
           "claim_id": "CLM-TERM-MOS2-DE-001",
@@ -59,7 +158,7 @@
       },
       "ig_resolution": {
         "policy_ref": "main/data/information_gain/ig_governance_policy.json",
-        "policy_version": "1.0.0",
+        "policy_version": "1.1.0",
         "evaluated_by": "scripts/governance_scaffolding/information_gain_gate.py:evaluate",
         "object_informational_validity": "object_valid_governed",
         "object_validity_basis": "PAIR-KO-MOS2-SCI-vs-DE-LEXICAL",
@@ -78,16 +177,220 @@
         "evidence_posture": "evidence_sufficient",
         "claim_posture": "claim_pending",
         "validation_posture": "not_validated",
-        "information_gain_posture": "ig_reviewed_no_new_route",
+        "information_gain_posture": "ig_reviewed_route_realization",
         "release_authorization": "not_authorized"
       },
       "posture_notes": {
         "evidence_posture": "DERIVED via the admission engine over the bound evidence (A/B/C each evidence_sufficient; aggregate = evidence_sufficient). Source locks remain candidate, so NO evidence_locked.",
         "claim_posture": "claim_pending — the bound claims are pilot_non_operational and are NOT promoted into an active canonical claim registry by this sprint.",
-        "information_gain_posture": "ig_reviewed_no_new_route — under the ratified IG authority (ig_governance_policy.json v1.0.0) the gate classifies new-route distinctness as near_duplicate versus the legacy same-task route, so no NEW independent URL is warranted. The object is nonetheless informationally valid (see ig_resolution.object_informational_validity). This posture is NOT ig_reviewed_pass. contract_c_derive.py normalizes it to the canonical ig_failed route-gate input."
+        "information_gain_posture": "ig_reviewed_route_realization (IG policy 1.1.0): the KO replaces the body of its own existing route /molybdenum-disulfide/; no new URL; 38 same-task duplicates carry consolidation obligations. Honoured only after AMD-IG-R03-001 is ratified by a named owner; until then the authority uses ig_reviewed_no_new_route."
       },
-      "derived_contract_c": {"publication_state": "not_public", "indexation_state": "noindex", "derived_by": "scripts/governance_scaffolding/contract_c_derive.py derive(reference_draft, evidence_sufficient, claim_pending, not_validated, ig_reviewed_no_new_route, not_authorized)"},
+      "derived_contract_c": {
+        "publication_state": "not_public",
+        "indexation_state": "noindex",
+        "derived_by": "scripts/governance_scaffolding/contract_c_derive.py derive(reference_draft, evidence_sufficient, claim_pending, not_validated, ig_reviewed_route_realization, not_authorized)"
+      },
       "notes": "First production Knowledge Object (Reference Production 01). Aggregates Pilot-03 governed scientific claims/evidence without re-owning facts. Authorizes NO route/HTML/sitemap/indexation; Knowledge-Object-Before-URL is absolute."
+    },
+    {
+      "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
+      "entity_ids": [
+        "hydrosulfide",
+        "disulfide",
+        "sulfide",
+        "hydrogen_sulfite"
+      ],
+      "subject_domains": [
+        "SD-TERMINOLOGY",
+        "SD-LINGUISTICS",
+        "SD-NOMENCLATURE"
+      ],
+      "knowledge_role": "terminology_reference",
+      "scope": "What authoritative dictionaries, the IUPAC 2005 inorganic nomenclature recommendations, a German teaching text and a chemical database record about the words bisulfide, sulfide, disulfide and bisulfite (English) and Sulfid, Hydrogensulfid and Bisulfid (German), and which chemical species each word is attached to. ONE terminology reference object at lexeme level. It is NOT a chemistry, safety, industrial or market page, does NOT assert that Bisulfid and bisulfide are equivalent, and does NOT give the site name BISULFID any chemical meaning.",
+      "language_neutral": false,
+      "claim_source": "registry_approved_inactive",
+      "claim_ids": [
+        "CLM-TERM-BISULFIDE-EN-SENSE-001",
+        "CLM-TERM-SULFIDE-EN-SENSE-001",
+        "CLM-TERM-DISULFIDE-EN-SENSE-001",
+        "CLM-TERM-BISULFITE-EN-SENSE-001",
+        "CLM-TERM-SULFID-DE-SENSE-001",
+        "CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001",
+        "CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001",
+        "CLM-TERM-IUPAC-HS-NAMES-001",
+        "CLM-TERM-IUPAC-S2-NAMES-001",
+        "CLM-TERM-IUPAC-HSO3-NAME-001",
+        "CLM-TERM-GERMAN-ID-RULE-001"
+      ],
+      "claim_bindings": [
+        {
+          "claim_id": "CLM-TERM-BISULFIDE-EN-SENSE-001",
+          "component": "en_bisulfide_dictionary_sense",
+          "claim_source": "registry_approved_inactive",
+          "evidence_ids": [
+            "EVD-TERM-MW-BISULFIDE"
+          ]
+        },
+        {
+          "claim_id": "CLM-TERM-SULFIDE-EN-SENSE-001",
+          "component": "en_sulfide_dictionary_sense",
+          "claim_source": "registry_approved_inactive",
+          "evidence_ids": [
+            "EVD-TERM-MW-SULFIDE"
+          ]
+        },
+        {
+          "claim_id": "CLM-TERM-DISULFIDE-EN-SENSE-001",
+          "component": "en_disulfide_dictionary_sense",
+          "claim_source": "registry_approved_inactive",
+          "evidence_ids": [
+            "EVD-TERM-MW-DISULFIDE"
+          ]
+        },
+        {
+          "claim_id": "CLM-TERM-BISULFITE-EN-SENSE-001",
+          "component": "en_bisulfite_dictionary_sense",
+          "claim_source": "registry_approved_inactive",
+          "evidence_ids": [
+            "EVD-TERM-MW-BISULFITE"
+          ]
+        },
+        {
+          "claim_id": "CLM-TERM-SULFID-DE-SENSE-001",
+          "component": "de_sulfid_dictionary_sense",
+          "claim_source": "registry_approved_inactive",
+          "evidence_ids": [
+            "EVD-TERM-DUDEN-SULFID",
+            "EVD-TERM-DWDS-SULFID"
+          ]
+        },
+        {
+          "claim_id": "CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001",
+          "component": "de_bisulfid_lexicographic_coverage",
+          "claim_source": "registry_approved_inactive",
+          "evidence_ids": [
+            "EVD-TERM-DWDS-BISULFID",
+            "EVD-TERM-DWDS-HYDROGENSULFID"
+          ]
+        },
+        {
+          "claim_id": "CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001",
+          "component": "de_hydrogensulfid_technical_usage",
+          "claim_source": "registry_approved_inactive",
+          "evidence_ids": [
+            "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE"
+          ]
+        },
+        {
+          "claim_id": "CLM-TERM-IUPAC-HS-NAMES-001",
+          "component": "iupac_names_hs",
+          "claim_source": "registry_approved_inactive",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-HS-NAMES"
+          ]
+        },
+        {
+          "claim_id": "CLM-TERM-IUPAC-S2-NAMES-001",
+          "component": "iupac_names_s2",
+          "claim_source": "registry_approved_inactive",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-S2-NAMES"
+          ]
+        },
+        {
+          "claim_id": "CLM-TERM-IUPAC-HSO3-NAME-001",
+          "component": "iupac_name_hso3",
+          "claim_source": "registry_approved_inactive",
+          "evidence_ids": [
+            "EVD-TERM-IUPAC-HSO3-NAME"
+          ]
+        },
+        {
+          "claim_id": "CLM-TERM-GERMAN-ID-RULE-001",
+          "component": "de_id_suffix_teaching_rule",
+          "claim_source": "registry_approved_inactive",
+          "evidence_ids": [
+            "EVD-TERM-FHM-ID-RULE"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "EVD-TERM-MW-BISULFIDE",
+        "EVD-TERM-MW-SULFIDE",
+        "EVD-TERM-MW-DISULFIDE",
+        "EVD-TERM-MW-BISULFITE",
+        "EVD-TERM-DUDEN-SULFID",
+        "EVD-TERM-DWDS-SULFID",
+        "EVD-TERM-DWDS-BISULFID",
+        "EVD-TERM-DWDS-HYDROGENSULFID",
+        "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE",
+        "EVD-TERM-IUPAC-HS-NAMES",
+        "EVD-TERM-IUPAC-S2-NAMES",
+        "EVD-TERM-IUPAC-HSO3-NAME",
+        "EVD-TERM-FHM-ID-RULE"
+      ],
+      "boundary_evidence_ids": [
+        "EVD-TERM-PUBCHEM-HS-SYNONYMS",
+        "EVD-TERM-PUBCHEM-BISULFITE"
+      ],
+      "boundary_note": "The two PubChem records are claim-less boundary evidence: they show which species a database attaches the names 'bisulfide' (HS-) and 'bisulfite' (HSO3-) to. A database synonym is not a naming recommendation and supports no claim here.",
+      "temporal_scope": {
+        "as_of": "2026-10-30",
+        "valid_from": null,
+        "valid_to": null
+      },
+      "unresolved_fields": [
+        "German 'Bisulfid' as industry usage for HS- (CLM-TERM-BISULFID-001): only an industry_publication source (Badger Meter) was captured; that category is not admissible for SD-TERMINOLOGY, so the claim stays pending with a recorded boundary",
+        "IUPAC Gold Book entry 'hydrosulfides' (SRC-IUPAC-HYDROSULFIDES): HTTP 403 at capture; not bypassed, not cited",
+        "Uni Rostock nomenclature handout (SRC-UNI-ROSTOCK-NOMENKLATUR-ID-ANIONEN): HTTP 404 at capture; not cited",
+        "history of the bi- prefix and of IUPAC discouraging it: no governed evidence acquired",
+        "usage frequency of any spelling: no governed corpus evidence"
+      ],
+      "excluded_claim_classes": [
+        "chemical_safety",
+        "medical",
+        "market",
+        "industrial_use",
+        "brand_meaning_as_chemistry",
+        "equivalence_by_spelling"
+      ],
+      "distinct_from": {
+        "scientific_mos2_object": {
+          "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
+          "reason": "Scientific identity/structure of one compound; different role, domain, evidence and task."
+        }
+      },
+      "ig_resolution": {
+        "policy_ref": "main/data/information_gain/ig_governance_policy.json",
+        "policy_version": "1.1.0",
+        "evaluated_by": "scripts/governance_scaffolding/information_gain_gate.py:evaluate",
+        "object_informational_validity": "object_valid_governed",
+        "object_validity_basis": "Recovery-03 review: 16 governed terminology evidence records with captured verbatim locators; no other governed object holds them.",
+        "new_route_distinctness": "no_new_route_warranted",
+        "new_route_classification": "near_duplicate",
+        "new_route_governing_comparison": "PAIR-KO-BISULFID-TERM-vs-LEGACY-TERM-ROUTE",
+        "new_route_reason": "Same reference task as the existing route /bisulfid-vs-bisulfide/; the object is realized by reconstructing that route, never by a new URL.",
+        "separation_note": "Object validity and new-route distinctness are distinct questions."
+      },
+      "postures": {
+        "governance_posture": "reference_draft",
+        "evidence_posture": "evidence_sufficient",
+        "claim_posture": "claim_pending",
+        "validation_posture": "not_validated",
+        "information_gain_posture": "ig_reviewed_route_realization",
+        "release_authorization": "not_authorized"
+      },
+      "posture_notes": {
+        "claim_posture": "claim_pending — the 11 claims are narrowly approved in terminology_claims.json, but that registry file is INACTIVE; approval is not activation.",
+        "evidence_posture": "Every bound record is evidence_verified and admitted for its declared use; all sources stay lock 'candidate', so evidence is NOT evidence_locked.",
+        "information_gain_posture": "ig_reviewed_route_realization (IG policy 1.1.0): replaces the body of its own existing route /bisulfid-vs-bisulfide/; no new URL; 4 same-task duplicates carry consolidation obligations. Honoured only after AMD-IG-R03-001 is ratified by a named owner; until then the authority uses ig_reviewed_no_new_route."
+      },
+      "derived_contract_c": {
+        "publication_state": "not_public",
+        "indexation_state": "noindex",
+        "derived_by": "scripts/governance_scaffolding/contract_c_derive.py derive(reference_draft, evidence_sufficient, claim_pending, not_validated, ig_reviewed_route_realization, not_authorized)"
+      },
+      "notes": "Recovery-03 terminology Knowledge Object. Authorizes no route/HTML/sitemap/indexation."
     }
   ]
 }

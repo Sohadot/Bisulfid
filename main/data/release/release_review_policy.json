@@ -1,0 +1,37 @@
+{
+  "policy_id": "RELEASE-REVIEW-POLICY",
+  "version": "1.0.0",
+  "status": "proposed_for_owner_adoption",
+  "governed_by": [
+    "scripts/release/release_checks.py",
+    "scripts/publication/publication_authority.py",
+    "DECISION_LOG.md"
+  ],
+  "roles": {
+    "preparer": "Whoever assembled the evidence, claims and render spec. For KO-MOS2-SCIENTIFIC-001 and KO-BISULFID-TERMINOLOGY-001 this is the Claude Code agent working in this repository. A preparer can never be recorded as the independent reviewer.",
+    "independent_reviewer": "A named human with relevant subject competence (chemistry/materials for scientific claims; chemical nomenclature or lexicography for terminology claims) who did not prepare the object, declares conflicts, checks every claim against the cited source passage, and signs.",
+    "source_lock_signer": "A named human responsible for the source registry, not the preparer, who signs the L1–L6 lock checklist.",
+    "owner": "Activates claims, authorizes release, approves URL decisions and R11 certifications."
+  },
+  "validation_rule": "validation_posture 'validated' is honoured only when a review record for the Knowledge Object has status 'signed', reviewer_kind 'human', reviewer != preparer and not an automated agent, independence declared, every claim of the KO reviewed with verdict 'confirmed', and no open finding. Otherwise the authority treats the object as not_validated (fail-closed).",
+  "claim_verdicts": [
+    "confirmed",
+    "confirmed_with_wording_change",
+    "rejected",
+    "out_of_competence"
+  ],
+  "source_lock_checklist": {
+    "L1": "Identity verified: C1–C8 of SOURCE_IDENTITY_VERIFICATION_CHECKLIST.md pass and source status is 'verified'.",
+    "L2": "Captured artifact fixed: a capture record holds URL, retrieval date, HTTP 200, media type and sha256 of the retrieved bytes, and every quoted passage/value is present verbatim.",
+    "L3": "Reproduced: a later independent re-fetch (different date) reproduces every quoted passage or value used by an admitted evidence record.",
+    "L4": "Version pinned: the edition/record version is identified (ISBN/edition, database record id, CIF id) or, for a continuously edited online entry, the capture sha256 + date is declared the pinned version.",
+    "L5": "Quotation scope: only short attributed quotations/values are reproduced; no full-text copying.",
+    "L6": "Human sign-off by the source_lock_signer (not the preparer)."
+  },
+  "lock_rule": "source_lock_status 'locked' is honoured only with a signed lock record for that source in main/data/sources/source_lock_records.json where L1–L6 are all 'pass' and signed_by is a human other than the preparer. evidence_posture 'evidence_locked' is honoured only if every source behind the KO's bound evidence is honoured as locked; otherwise the authority treats it as evidence_sufficient (fail-closed).",
+  "automated_preparer_ids": [
+    "claude-code-agent"
+  ],
+  "status_note": "Restrictive only: this policy adds fail-closed checks and grants no authority to anyone. Opening or merging a pull request does not adopt it; owner adoption is a separate decision. While unadopted, the checks still only ever DOWNGRADE postures.",
+  "documentary_alternative": "For KOs classified low_risk_informational, documentary_verification_policy.json (once ADOPTED by a named owner) lets documentary_verified stand in for the signed independent review (validation_rule) and documentary acceptance (L1-L5 for every source) stand in for L6 signatures (lock_rule). Neither is ever recorded as a human review or a signature, and both rules above remain unchanged and required for higher_risk or undetermined content."
+}

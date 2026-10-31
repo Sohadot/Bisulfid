@@ -1,0 +1,209 @@
+{
+ "plan_id": "R03-INDEXATION-REDUCTION-PLAN",
+ "created_on": "2026-10-30",
+ "status": "proposed — nothing executed",
+ "scope": "the 12,289 public pages classified generated_unverified_identity (main/data/recovery/seo_url_disposition.jsonl)",
+ "rules": [
+  "No mass noindex; no deletion; no redirect in this plan.",
+  "Similarity >= 0.80 nominates canonical candidates only (R-CANON-1 v1.1.0).",
+  "Every wave is reversible by reverting one commit, and is sized so its effect is measurable in isolation.",
+  "No traffic, indexation or backlink figure is asserted: none is held in this repository."
+ ],
+ "families": [
+  {
+   "family_id": "EN-SYNTHETIC-INORG-VARIANTS",
+   "pages": 2504,
+   "entities": 313,
+   "gate12": "FAIL (all)",
+   "identity": "unverified (no governed evidence)",
+   "content": "generated template body; no governed claims",
+   "search_console": "not available in this repository (unknown)",
+   "disposition": "temporary_noindex_later_wave",
+   "basis": "Combinatorial names (e.g. <element>-hydrosulfide) with only audience/module variant pages and no base page; no canonical destination exists, so consolidation is not available."
+  },
+  {
+   "family_id": "EN-SYNTHETIC-ORGANO-VARIANTS",
+   "pages": 2448,
+   "entities": 306,
+   "gate12": "FAIL (all)",
+   "identity": "unverified (no governed evidence)",
+   "content": "generated template body; no governed claims",
+   "search_console": "not available in this repository (unknown)",
+   "disposition": "temporary_noindex_later_wave",
+   "basis": "Combinatorial functional-group names (e.g. dithio-ketone, mercapto-amide) that are not specific substances; variants only."
+  },
+  {
+   "family_id": "EN-SYNTHETIC-IND-VARIANTS",
+   "pages": 2416,
+   "entities": 302,
+   "gate12": "FAIL (all)",
+   "identity": "unverified (no governed evidence)",
+   "content": "generated template body; no governed claims",
+   "search_console": "not available in this repository (unknown)",
+   "disposition": "temporary_noindex_later_wave",
+   "basis": "Generic industrial nouns attached to sulfur (assay, batch, conveying); variants only, no governed task."
+  },
+  {
+   "family_id": "EN-SYNTHETIC-MIN-VARIANTS",
+   "pages": 2400,
+   "entities": 300,
+   "gate12": "FAIL (all)",
+   "identity": "unverified (no governed evidence)",
+   "content": "generated template body; no governed claims",
+   "search_console": "not available in this repository (unknown)",
+   "disposition": "rebuild_candidate_then_consolidate",
+   "basis": "Named sulfide minerals (acanthite, pyrite...) are real identities; rebuild via KO on one canonical mineral route, then consolidate the variants to it."
+  },
+  {
+   "family_id": "EN-SYNTHETIC-METAL-VARIANTS",
+   "pages": 2144,
+   "entities": 268,
+   "gate12": "FAIL (all)",
+   "identity": "unverified (no governed evidence)",
+   "content": "generated template body; no governed claims",
+   "search_console": "not available in this repository (unknown)",
+   "disposition": "consolidation_after_rebuild",
+   "basis": "Mix of element names and mineral names; overlaps the MIN family; consolidate once a governed destination exists."
+  },
+  {
+   "family_id": "EN-SYNTHETIC-DIS-VARIANTS",
+   "pages": 224,
+   "entities": 28,
+   "gate12": "FAIL (all)",
+   "identity": "unverified (no governed evidence)",
+   "content": "generated template body; no governed claims",
+   "search_console": "not available in this repository (unknown)",
+   "disposition": "preserve_rebuild",
+   "basis": "Boundary topics (disulfide vs sulfide, sulfate vs sulfite) match governed terminology tasks; rebuild as KO modules, do not noindex first."
+  },
+  {
+   "family_id": "DE-ELEMENT-SULFID-RESOLVED",
+   "pages": 78,
+   "entities": 61,
+   "gate12": "FAIL (all)",
+   "identity": "PubChem name screen: resolved",
+   "content": "generated template body; no governed claims",
+   "search_console": "not available in this repository (unknown)",
+   "disposition": "preserve_status_quo_then_rebuild",
+   "basis": "PubChem resolves the English name; identity is checkable, content is not. Keep status quo until Search Console data and a rebuild decision."
+  },
+  {
+   "family_id": "DE-NAMED-SUBSTANCE-OR-TERM",
+   "pages": 25,
+   "entities": 25,
+   "gate12": "FAIL (all)",
+   "identity": "unverified (no governed evidence)",
+   "content": "generated template body; no governed claims",
+   "search_console": "not available in this repository (unknown)",
+   "disposition": "preserve_rebuild",
+   "basis": "Real German substance/term names (Schwefelsäure, Schwefelwasserstoff); highest German search value; rebuild candidates."
+  },
+  {
+   "family_id": "DE-ELEMENT-SULFID-UNRESOLVED-LOWER-Z",
+   "pages": 21,
+   "entities": 18,
+   "gate12": "FAIL (all)",
+   "identity": "PubChem name screen: not resolved",
+   "content": "generated template body; no governed claims",
+   "search_console": "not available in this repository (unknown)",
+   "disposition": "preserve_status_quo",
+   "basis": "Screen inconclusive: common compounds (e.g. lithium sulfide) also miss on exact-name lookup, so a miss is not a quality signal here."
+  },
+  {
+   "family_id": "DE-ELEMENT-SULFID-TRANSACTINIDE-UNRESOLVED",
+   "pages": 15,
+   "entities": 15,
+   "gate12": "FAIL (all)",
+   "identity": "PubChem name screen: not resolved",
+   "content": "generated template body; no governed claims",
+   "search_console": "not available in this repository (unknown)",
+   "disposition": "wave_1_temporary_noindex",
+   "basis": "Z >= 104 AND not resolvable by name AND Gate 12 FAIL AND no inbound internal link: identity cannot be verified and the page cannot be rebuilt from evidence."
+  },
+  {
+   "family_id": "PIPELINE-OR-REFERENCE-OTHER",
+   "pages": 14,
+   "entities": 14,
+   "gate12": "FAIL (all)",
+   "identity": "unverified (no governed evidence)",
+   "content": "generated template body; no governed claims",
+   "search_console": "not available in this repository (unknown)",
+   "disposition": "eventual_retirement_candidate",
+   "basis": "Pipeline-expansion and stray reference pages; retire only after Search Console shows no traffic or links, and only with a 404/redirect decision."
+  }
+ ],
+ "disposition_totals": {
+  "temporary_noindex_later_wave": 7368,
+  "rebuild_candidate_then_consolidate": 2400,
+  "consolidation_after_rebuild": 2144,
+  "preserve_rebuild": 249,
+  "preserve_status_quo_then_rebuild": 78,
+  "preserve_status_quo": 21,
+  "wave_1_temporary_noindex": 15,
+  "eventual_retirement_candidate": 14
+ },
+ "canonical_consolidation": {
+  "similarity_nominated_pairs": 453,
+  "distinct_destinations": 106,
+  "destinations_passing_gate12": 0,
+  "destinations_bound_to_a_KO": 0,
+  "eligible_under_R_CANON_1_v1_1": 0,
+  "conclusion": "No canonical change is safe today: pointing duplicates at a destination that itself fails Gate 12 consolidates signals onto a thin page. Rebuild a destination first (KO), then consolidate."
+ },
+ "wave_1": {
+  "family": "DE-ELEMENT-SULFID-TRANSACTINIDE-UNRESOLVED",
+  "pages": [
+   "/de/terminology/cohort04/bohrium-sulfid/",
+   "/de/terminology/cohort04/copernicium-sulfid/",
+   "/de/terminology/cohort04/darmstadtium-sulfid/",
+   "/de/terminology/cohort04/dubnium-sulfid/",
+   "/de/terminology/cohort04/flerovium-sulfid/",
+   "/de/terminology/cohort04/hassium-sulfid/",
+   "/de/terminology/cohort04/livermorium-sulfid/",
+   "/de/terminology/cohort04/meitnerium-sulfid/",
+   "/de/terminology/cohort04/moscovium-sulfid/",
+   "/de/terminology/cohort04/nihonium-sulfid/",
+   "/de/terminology/cohort04/oganesson-sulfid/",
+   "/de/terminology/cohort04/roentgenium-sulfid/",
+   "/de/terminology/cohort04/rutherfordium-sulfid/",
+   "/de/terminology/cohort04/seaborgium-sulfid/",
+   "/de/terminology/cohort04/tenness-sulfid/"
+  ],
+  "size": 15,
+  "share_of_scope": "0.12%",
+  "change": "robots 'index, follow' -> 'noindex, follow'; remove the 15 URLs from sitemap-terms-*.xml; body, canonical and links unchanged; pages stay reachable (HTTP 200)",
+  "why_this_family": "Objective, reviewable criteria (atomic number >= 104; PubChem exact-name miss; Gate 12 FAIL; no inbound internal links found in site/public). Identity cannot be verified, so there is nothing to rebuild from evidence.",
+  "decisions": "URL-DEC-R03-W1-001..015 in main/data/publication/url_decisions.json, status 'proposed'",
+  "simulated_gate": "With the 15 robots changes applied to a copy of site/public, validate_publication_authority reports only the pre-existing /acquire/ block; RL debt drops 14032 -> 14017.",
+  "preconditions": [
+   "owner approval of the 15 decisions",
+   "Search Console export for the 15 URLs (Page indexing + Performance, last 16 months). Any URL with clicks > 0, or reported as linked externally, is removed from the wave and re-reviewed",
+   "/acquire/ decision applied or approved first (otherwise the deploy gate stays red)"
+  ],
+  "checks": {
+   "quality": [
+    "only the robots line and sitemap entries change (diff review)",
+    "authority gate PASS; Gate 12 surface counts unchanged except RL debt -15"
+   ],
+   "indexation": [
+    "Search Console 'Excluded by noindex' rises by at most 15 within 4–8 weeks",
+    "no change in indexing status of non-wave URLs"
+   ],
+   "traffic": [
+    "site-level clicks/impressions compared 28 days before vs after; wave URLs' clicks expected near zero"
+   ],
+   "abort_if": [
+    "any non-wave URL drops out of the index without cause",
+    "owner or Search Console shows the wave URLs carried traffic"
+   ]
+  },
+  "rollback": "git revert of the wave commit (restores robots + sitemap lines), redeploy, request recrawl in Search Console; no data lost because no page is removed",
+  "governance_gap": "The deploy gate allows any robots DOWNGRADE without an approved decision (verified by simulation). Approval of a wave is therefore enforced by review, not by the gate. Proposed follow-up: the gate should require an approved url_decision for every legacy downgrade (except ledger-derived ones). CLOSED in Release-01 PR-A: the gate now blocks any discretionary downgrade or sitemap removal without an approved, signed url_decision (BLOCK_UNAPPROVED_DOWNGRADE / BLOCK_UNAPPROVED_SITEMAP_REMOVAL)."
+ },
+ "later_waves": [
+  "W2: EN-SYNTHETIC-IND variants (no governed task) after W1 shows no collateral effect",
+  "W3: EN-SYNTHETIC-ORGANO and -INORG variants, in slices of <= 500",
+  "Consolidation of MIN/METAL only after a governed mineral destination exists",
+  "Retirement of PIPELINE-OR-REFERENCE-OTHER only with Search Console evidence and a 404 decision"
+ ]
+}

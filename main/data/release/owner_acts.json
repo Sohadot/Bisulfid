@@ -1,0 +1,8 @@
+{
+  "registry_id": "OWNER-ACTS",
+  "version": "1.0.0",
+  "policy": "main/data/release/release_review_policy.json",
+  "purpose": "Signed owner acts that the publication authority honours: claim activation and release authorization per Knowledge Object. Only status 'signed' with a named human signer counts. Nothing is signed by this branch.",
+  "claim_activations": [],
+  "release_authorizations": []
+}

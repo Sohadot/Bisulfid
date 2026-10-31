@@ -1,0 +1,157 @@
+{
+ "knowledge_object_id": "KO-BISULFID-TERMINOLOGY-001",
+ "policy": "DOCUMENTARY-VERIFICATION@1.0.0",
+ "policy_status": "adopted",
+ "policy_adopted": true,
+ "verification_level": "documentary_verified",
+ "independently_human_reviewed": false,
+ "label": "documentary_verified: automated evidence checks; not independent peer review",
+ "risk_class": "low_risk_informational",
+ "claims_assessed": 11,
+ "sources_assessed": 11,
+ "ig_valid_units": 13,
+ "checks": {
+  "D2_evidence": "pass",
+  "D3_scope": "pass",
+  "D1_claims": "pass",
+  "D4_reproducible": "pass",
+  "D5_conflicts": "pass",
+  "D6_quality": "pass",
+  "D7_risk": "pass"
+ },
+ "failures": [],
+ "claim_outcomes": [
+  {
+   "claim_id": "CLM-TERM-BISULFIDE-EN-SENSE-001",
+   "evidence_ids": [
+    "EVD-TERM-MW-BISULFIDE"
+   ],
+   "sources": [
+    "SRC-MW-BISULFIDE"
+   ],
+   "outcome": "documentary_verified",
+   "reasons": []
+  },
+  {
+   "claim_id": "CLM-TERM-SULFIDE-EN-SENSE-001",
+   "evidence_ids": [
+    "EVD-TERM-MW-SULFIDE"
+   ],
+   "sources": [
+    "SRC-MW-SULFIDE"
+   ],
+   "outcome": "documentary_verified",
+   "reasons": []
+  },
+  {
+   "claim_id": "CLM-TERM-DISULFIDE-EN-SENSE-001",
+   "evidence_ids": [
+    "EVD-TERM-MW-DISULFIDE"
+   ],
+   "sources": [
+    "SRC-MW-DISULFIDE"
+   ],
+   "outcome": "documentary_verified",
+   "reasons": []
+  },
+  {
+   "claim_id": "CLM-TERM-BISULFITE-EN-SENSE-001",
+   "evidence_ids": [
+    "EVD-TERM-MW-BISULFITE"
+   ],
+   "sources": [
+    "SRC-MW-BISULFITE"
+   ],
+   "outcome": "documentary_verified",
+   "reasons": []
+  },
+  {
+   "claim_id": "CLM-TERM-SULFID-DE-SENSE-001",
+   "evidence_ids": [
+    "EVD-TERM-DUDEN-SULFID",
+    "EVD-TERM-DWDS-SULFID"
+   ],
+   "sources": [
+    "SRC-DUDEN-SULFID",
+    "SRC-DWDS-SULFID"
+   ],
+   "outcome": "documentary_verified",
+   "reasons": []
+  },
+  {
+   "claim_id": "CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001",
+   "evidence_ids": [
+    "EVD-TERM-DWDS-BISULFID",
+    "EVD-TERM-DWDS-HYDROGENSULFID"
+   ],
+   "sources": [
+    "SRC-DWDS-BISULFID",
+    "SRC-DWDS-HYDROGENSULFID"
+   ],
+   "outcome": "documentary_verified",
+   "reasons": []
+  },
+  {
+   "claim_id": "CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001",
+   "evidence_ids": [
+    "EVD-TERM-SPEKTRUM-HYDROGENSULFIDE"
+   ],
+   "sources": [
+    "SRC-SPEKTRUM-SCHWEFELWASSERSTOFF-DE"
+   ],
+   "outcome": "documentary_verified",
+   "reasons": []
+  },
+  {
+   "claim_id": "CLM-TERM-IUPAC-HS-NAMES-001",
+   "evidence_ids": [
+    "EVD-TERM-IUPAC-HS-NAMES"
+   ],
+   "sources": [
+    "SRC-IUPAC-RED-BOOK-2005"
+   ],
+   "outcome": "documentary_verified",
+   "reasons": []
+  },
+  {
+   "claim_id": "CLM-TERM-IUPAC-S2-NAMES-001",
+   "evidence_ids": [
+    "EVD-TERM-IUPAC-S2-NAMES"
+   ],
+   "sources": [
+    "SRC-IUPAC-RED-BOOK-2005"
+   ],
+   "outcome": "documentary_verified",
+   "reasons": []
+  },
+  {
+   "claim_id": "CLM-TERM-IUPAC-HSO3-NAME-001",
+   "evidence_ids": [
+    "EVD-TERM-IUPAC-HSO3-NAME"
+   ],
+   "sources": [
+    "SRC-IUPAC-RED-BOOK-2005"
+   ],
+   "outcome": "documentary_verified",
+   "reasons": []
+  },
+  {
+   "claim_id": "CLM-TERM-GERMAN-ID-RULE-001",
+   "evidence_ids": [
+    "EVD-TERM-FHM-ID-RULE"
+   ],
+   "sources": [
+    "SRC-FH-MUENSTER-ANORGANISCHE-NOMENKLATUR"
+   ],
+   "outcome": "documentary_verified",
+   "reasons": []
+  }
+ ],
+ "never_implied": [
+  "independent human peer review",
+  "L6 human signature",
+  "owner claim activation",
+  "owner release authorization",
+  "AMD-IG-R03-001 ratification"
+ ]
+}
