@@ -1,8 +1,8 @@
 {
  "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
  "policy": "DOCUMENTARY-VERIFICATION@1.0.0",
- "policy_status": "proposed_for_owner_adoption",
- "policy_adopted": false,
+ "policy_status": "adopted",
+ "policy_adopted": true,
  "verification_level": "not_verified",
  "independently_human_reviewed": false,
  "label": "not_verified",
