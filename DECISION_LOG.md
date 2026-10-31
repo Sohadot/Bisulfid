@@ -5622,5 +5622,11 @@ Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AM
     - It is enforced by an indexing ceiling, `IDX-POL-ACQUIRE-001` in `main/data/publication/indexing_policies.json`. The ceiling separates indexing from access and publication: no release-ledger status, URL decision, Contract C result or R11 certification can lift it, and it is refused for any reference route.
     - Added to PR-B as `84d55e3dab` and forward-merged into C `b3ca343578`, D `24d9762c1f` and E `8e14d1e500` with no conflicts. All four heads verified in isolation with 0 FAIL.
     - URL-DEC-R03-ACQUIRE-001 remains proposed and unsigned.
+12. **PR-E reference depth (2026-10-31, `9f9488c478`):**
+    - L3 is satisfied for all 11 terminology sources by a dated re-fetch, a technical recapture rather than a scientific re-review. L6 stays pending.
+    - The reference's headings and summary are narrowed to their sources.
+    - A supported / open / not-inferable synthesis is added, each item bound to KO evidence.
+    - The four cohort02 variants are near-duplicate templates with no knowledge, and stay listed as consolidation obligations.
+    - No human review exists for this object; independent validation stays pending.
 
 **Not done by design:** independent reviews, source locks (L6), claim activation, release authorization, R11 certification, the wave-1 noindex (no Search Console export). Ratification of AMD-IG-R03-001 is likewise not done.

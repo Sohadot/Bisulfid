@@ -77,7 +77,7 @@ Qualified: 19/19. Locked: 0/19. L3 reproduced on a later date: 4/19. L6 (human s
 | B — /acquire/ correction | `release-01/pr-b` @ `84d55e3dab` (base `release-01/pr-a`) | 14 files changed, 362 insertions(+), 258 deletions(-) | site/public/acquire/index.html | 30 PASS, 2 NOT_APPLICABLE | Merge only after the owner signs URL-DEC-R03-ACQUIRE-001. The gate passes through the release-ledger exception, but the signature is the owner's approval. |
 | C — English and German homepage release readiness | `release-01/pr-c` @ `b3ca343578` (base `release-01/pr-b`) | 14 files changed, 646 insertions(+), 39 deletions(-) | none | 31 PASS, 1 NOT_APPLICABLE | Can merge after review (staged files only). Merging does not certify or publish. |
 | D — MoS2 reference release readiness | `release-01/pr-d` @ `24d9762c1f` (base `release-01/pr-c`) | 27 files changed, 2494 insertions(+), 51 deletions(-) | none | 32 PASS | Can merge after review (staged files only). Merging does not validate, lock, activate or publish. |
-| E — Bisulfid/Bisulfide terminology reference release readiness | `release-01/pr-e` @ `8e14d1e500` (base `release-01/pr-d`) | 4 files changed, 31 insertions(+), 19 deletions(-) | none | 32 PASS | Can merge after review (staged files only). |
+| E — Bisulfid/Bisulfide terminology reference release readiness | `release-01/pr-e` @ `9f9488c478` (base `release-01/pr-d`) | 17 files changed, 1431 insertions(+), 309 deletions(-) | none | 33 PASS | Can merge after review (staged files only). |
 
 Stack: `main` ← PR-0 ← A ← B ← C ← D ← E (each a draft PR; each diff is exactly its own range).
 

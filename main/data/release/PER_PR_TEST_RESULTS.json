@@ -969,7 +969,7 @@
  },
  "PR-E": {
   "branch": "release-01/pr-e",
-  "sha": "8e14d1e500e30082591763b80dd9a9c43ee6336b",
+  "sha": "9f9488c478f213dce7f6611c17a4a012d9fb048e",
   "results": [
    {
     "area": "Contract C",
@@ -1146,6 +1146,12 @@
     "detail": "OK"
    },
    {
+    "area": "Bisulfid/Bisulfide reference precision, synthesis, evidence navigation",
+    "command": "scripts/reference_production/test_bisulfid_reference.py",
+    "status": "PASS",
+    "detail": "OK"
+   },
+   {
     "area": "Deploy gate on site/public",
     "command": "scripts/publication/validate_publication_authority.py --surface site/public",
     "status": "PASS",
@@ -1187,5 +1193,10 @@
   ],
   "conflicts": "none",
   "re_measurement": "SEO preview assessment and renderer outputs unchanged on C, D and E"
+ },
+ "pr_e_reference_depth": {
+  "date": "2026-10-31",
+  "commit": "9f9488c478",
+  "summary": "L3 re-fetch (11 sources reproduced); headings and summary narrowed to their sources; term map; supported/open/not-inferable synthesis; evidence links; distinctiveness review; gap report; 10 new tests"
  }
 }
