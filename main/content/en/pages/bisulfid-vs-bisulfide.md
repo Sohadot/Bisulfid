@@ -162,7 +162,7 @@ BISULFID is the name of this website. The name is not a chemical claim, and this
 
 - Claims: narrowly approved in an INACTIVE claim registry (CLM-TERM-BISULFIDE-EN-SENSE-001, CLM-TERM-SULFIDE-EN-SENSE-001, CLM-TERM-DISULFIDE-EN-SENSE-001, CLM-TERM-BISULFITE-EN-SENSE-001, CLM-TERM-SULFID-DE-SENSE-001, CLM-TERM-BISULFID-DE-LEXICOGRAPHY-001, CLM-TERM-HYDROGENSULFID-DE-SPEKTRUM-001, CLM-TERM-IUPAC-HS-NAMES-001, CLM-TERM-IUPAC-S2-NAMES-001, CLM-TERM-IUPAC-HSO3-NAME-001, CLM-TERM-GERMAN-ID-RULE-001); approval is not activation or publication.
 - Sources: every source lock is `candidate`; no source is locked.
-- Contract C inputs: {"governance":"reference_draft","evidence":"evidence_locked","claim":"claim_pending","validation":"validated","ig":"ig_reviewed_route_realization","release":"not_authorized"}.
+- Contract C inputs: {"governance": "reference_draft", "evidence": "evidence_locked", "claim": "claim_pending", "validation": "validated", "ig": "ig_reviewed_route_realization", "release": "not_authorized"}.
 
 ## Publication blockers
 
