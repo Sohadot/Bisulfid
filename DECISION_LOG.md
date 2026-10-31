@@ -5629,3 +5629,15 @@ Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AM
    - A scan for higher-risk signals must find nothing.
    - Anything else is `undetermined` and treated as higher risk.
 4. **Status:** proposed for owner adoption. Until adopted it changes no posture, no URL and no directive (tested).
+
+---
+
+## Release-01 — Adoption of DOCUMENTARY-VERIFICATION 1.0.0
+
+**Date:** 2026-10-31  
+**Owner:** Sohadot (sohadot.com), as expressly identified by the project owner in the conversation.  
+**Decision:** Adopt DOCUMENTARY-VERIFICATION@1.0.0 as the governed low-risk documentary evidence pathway. This is an owner policy adoption, not a scientific peer-review signature, human L6 source lock, claim activation, release authorization, or deployment consent.
+
+**Scope and safeguards:** D1–D7 remain required; only eligible low_risk_informational objects can use this path. KO-BISULFID-TERMINOLOGY-001 qualifies as documentary_verified (11 claims, 11 sources meeting L1–L5), with no independent human review asserted. KO-MOS2-SCIENTIFIC-001 remains not_verified; no relaxation of its scientific gates. Existing Contract C / Information Gain / owner-activation controls remain in force.
+
+**Explicitly not authorized:** activating claims, ratifying AMD-IG-R03-001, changing legacy indexation, merging PRs, publishing or deploying. This record confirms an organizational policy decision and must not be represented as an external professional attestation.
