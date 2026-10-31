@@ -78,6 +78,11 @@ jobs:
           python scripts/release/documentary_verification.py --check
           python scripts/release/documentary_verification_tests.py
 
+      - name: "Reference Exchange v1 — portable evidence and rights safeguards"
+        run: |
+          python scripts/interoperability/export_reference_v1.py --check
+          python scripts/interoperability/test_export_reference_v1.py
+
       - name: "Recovery — legacy disposition registry invariants"
         run: python scripts/recovery/validate_legacy_disposition.py
 
