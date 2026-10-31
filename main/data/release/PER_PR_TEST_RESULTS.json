@@ -969,7 +969,7 @@
  },
  "PR-E": {
   "branch": "release-01/pr-e",
-  "sha": "f4272aad263a67588f4fcde077358f1bbb1faf41",
+  "sha": "b28a1c2ba9e6c760cc57074f7ce98fa3be140b88",
   "results": [
    {
     "area": "Contract C",
@@ -1217,5 +1217,10 @@
   "policy": "DOCUMENTARY-VERIFICATION 1.0.0 (proposed, not adopted)",
   "KO-BISULFID-TERMINOLOGY-001": "documentary_verified (11/11 claims)",
   "KO-MOS2-SCIENTIFIC-001": "not_verified (undetermined risk; fails closed)"
+ },
+ "pr_e_d7_coverage": {
+  "date": "2026-10-31",
+  "commit": "b28a1c2ba9",
+  "summary": "D7 assesses all 94 author-controlled fields; operational guidance is a signal in its own right; 19 documentary-pathway proofs"
  }
 }

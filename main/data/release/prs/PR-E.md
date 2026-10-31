@@ -4,27 +4,24 @@
 
 ## 1. Purpose and exact scope
 
-Owner direction (recorded, not signed): paid external review and signatures must not be universal
-prerequisites for ordinary low-risk reference content.
-
-- documentary_verification_policy.json 1.0.0 (status proposed_for_owner_adoption; adopted_by null):
-  levels not_verified / documentary_verified / independently_human_reviewed; risk classes
-  low_risk_informational / higher_risk / undetermined (fail-closed); checks D1-D7
-- documentary_verification.py: evaluates D1-D7 by reusing completed work (renderer admission,
-  L1-L5 lock checklist, Gate 12); never records or implies human review; per-claim outcomes
-- release_checks: validation and evidence lock may be honoured by documentary verification only for
-  low_risk_informational KOs AND only once a named owner adopts the policy (recomputed live).
-  Claim activation, release authorization and AMD-IG-R03-001 ratification are never replaced;
-  L6 is never marked signed
-- PC-BISULFID risk declaration; staged page states the verification level truthfully
-- Result: KO-BISULFID-TERMINOLOGY-001 documentary_verified (11/11 claims, 11 sources, 13 IG units);
-  KO-MOS2-SCIENTIFIC-001 not_verified (undetermined risk, pilot claims, 4 sources lack L2/L3)
-- 11 regression proofs (scripts/release/documentary_verification_tests.py), wired into CI.
-  Unadopted policy changes no posture, URL or directive; adoption alone publishes nothing
+- D7 now assesses every author-controlled rendered field from the renderer's content model (94 fields
+  on the terminology reference): title, h1, summary, SEO title/description, JSON-LD string values
+  (identifiers excluded), related-link text, module headings/paragraphs/table columns and cells,
+  at-a-glance labels/values, synthesis heading/intro/labels/items, not-established heading/text, and
+  claim statements. Navigation, breadcrumbs, citation metadata, source titles and URLs are not
+  treated as statements
+- Operational guidance (imperatives, dosage/concentration/temperature quantities) is a signal in its own
+  right; exclusion-only sentences are exempt unless they instruct or quantify; missing required
+  fields yield 'undetermined' (fail-closed)
+- Gate 12 verdict cached per draft inside the evaluator (performance only)
+- 8 new regression proofs (summary, table, concluding sections, SEO/JSON-LD-only, ordinary terminology,
+  exclusion statements, missing content, unchanged evidence validation); policy risk_rule synchronized
+- Result unchanged: terminology reference documentary_verified; MoS2 not_verified. Policy stays
+  proposed_for_owner_adoption with adopted_by/adopted_on null
 
 ## 2. Verified commit SHA
 
-`f4272aad263a67588f4fcde077358f1bbb1faf41` — the exact head pushed and tested in isolation (35 PASS).
+`b28a1c2ba9e6c760cc57074f7ce98fa3be140b88` — the exact head pushed and tested in isolation (35 PASS).
 
 ## 3. Dependency
 
@@ -34,7 +31,7 @@ prerequisites for ordinary low-risk reference content.
 
 ## 4. Files changed
 
-`git diff 24d9762c1f..f4272aad26` — 25 files changed, 2231 insertions(+), 314 deletions(-)
+`git diff 24d9762c1f..b28a1c2ba9` — 25 files changed, 2351 insertions(+), 314 deletions(-)
 
 <details><summary>File list</summary>
 
@@ -89,7 +86,7 @@ No public file changes; candidate staged.
 
 ## 6. Isolated test results
 
-Head `f4272aad26` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
+Head `b28a1c2ba9` checked out ALONE in a clean worktree (not a cumulative run). ⏸️ BLOCKED_BY_KNOWN_DEPENDENCY = red only because of the pre-existing /acquire/ conflict that PR-B resolves.
 
 | Status | Area | Command | Detail |
 |---|---|---|---|

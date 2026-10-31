@@ -5632,5 +5632,10 @@ Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AM
     - KO-BISULFID-TERMINOLOGY-001 is `documentary_verified`: 11/11 claims, 11 sources at L1–L5, risk class `low_risk_informational`.
     - KO-MOS2-SCIENTIFIC-001 is `not_verified`: its risk is undetermined and it fails closed.
     - The pathway takes effect only when a named owner adopts the policy. Even then, publication still requires owner claim activation, owner release authorization and AMD-IG-R03-001 ratification.
+14. **D7 risk-coverage gap closed (PR-E `b28a1c2ba9`, 2026-10-31):**
+    - The risk check now reads every author-controlled rendered field (94 on the terminology reference), not just four.
+    - Operational guidance counts as a risk signal even without a risk keyword.
+    - Missing content fails closed.
+    - The terminology reference stays `documentary_verified` and MoS₂ stays `not_verified`. The policy remains proposed and unadopted.
 
 **Not done by design:** independent reviews, source locks (L6), claim activation, release authorization, R11 certification, the wave-1 noindex (no Search Console export). Ratification of AMD-IG-R03-001 is likewise not done.
