@@ -12,6 +12,14 @@ name: Pages public deploy
 
 on:
   workflow_dispatch:
+  # One-time owner-authorized homepages release on the exact tagged main merge.
+  # No routine main push may deploy the public corpus automatically.
+  push:
+    branches:
+      - main
+    paths:
+      - 'site/public/index.html'
+      - 'site/public/de/index.html'
 
 permissions:
   contents: read
@@ -24,6 +32,9 @@ concurrency:
 
 jobs:
   deploy-public-foundation:
+    # Existing manual workflow stays available. Automatic release occurs ONLY for
+    # the 2026-10-31 Sohadot owner-authorized homepages merge marker, not future edits.
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[SOHADOT-HOMEPAGE-RELEASE-2026-10-31]')) }}
     name: Deploy site/public foundation to GitHub Pages
     runs-on: ubuntu-latest
     environment:
