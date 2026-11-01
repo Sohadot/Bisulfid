@@ -1,0 +1,119 @@
+{
+  "review_id": "MOS2-SCIENTIFIC-ACCESS-2026-11-01",
+  "review_date": "2026-11-01",
+  "prepared_for": "Sohadot (sohadot.com)",
+  "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
+  "review_scope": "Source identity, directly accessible scientific content, source-role separation and obstacles to reproducible source-lock proofs",
+  "status": "scientific_source_access_review_only",
+  "limitations": {
+    "raw_bytes_downloaded": false,
+    "content_sha256_recorded": false,
+    "capture_hashes_generated": false,
+    "automated_web_sources_are_not_version_pinned_captures": true,
+    "human_peer_review_of_bisulfid_reference": false,
+    "source_lock_L2_L3_changed": false,
+    "KO_documentary_verification_unchanged": "not_verified",
+    "publication_authorization": false
+  },
+  "sources": [
+    {
+      "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+      "work": "Song, I.; Park, C.; Choi, H. C. Synthesis and properties of molybdenum disulphide: from bulk to atomic layers.",
+      "publisher": "Royal Society of Chemistry",
+      "publication": "RSC Advances 2015, volume 5, pages 7495–7514",
+      "doi": "10.1039/C4RA11852A",
+      "source_url": "https://pubs.rsc.org/en/content/articlehtml/2015/ra/c4ra11852a",
+      "access": "full_html_open_access_visible",
+      "license_noted_by_publisher": "CC BY 3.0 Unported (attribution required)",
+      "role": "peer-reviewed secondary review; no new independent primary determination",
+      "verified_locations": [
+        {
+          "section": "Abstract and 2.1 Polytypes and crystallography",
+          "claim": "Bulk MoS2 comprises S–Mo–S structural layers; review distinguishes polytypes 1T, 2H and 3R by coordination and stacking"
+        },
+        {
+          "section": "Section 2.1, Table 1",
+          "claim": "For bulk 2H-MoS2 the review summarizes hexagonal space group P 6_3/mmc, stacking AbA BaB and lattice parameters a = 3.15 Å, c = 12.30 Å",
+          "qualifier": "Review-reported approximate values from referenced study (ref. 35), not a novel experiment by Song et al."
+        },
+        {
+          "section": "Section 2.1 following Table 1",
+          "claim": "2H and 3R share trigonal-prismatic Mo coordination yet differ in stacking; 1T has octahedral coordination"
+        }
+      ],
+      "existing_evidence_ids": [
+        "EVD-MOS2-2H-REF-RSC",
+        "EVD-MOS2-LAYERED-RSC",
+        "EVD-MOS2-POLYTYPES-RSC",
+        "EVD-MOS2-3R-BOUNDARY-RSC"
+      ],
+      "recovery_assessment": "Scientific passage and Table 1 content were checked on publisher-hosted open HTML. Does not meet L2 raw-capture hashing or L3 later-date authenticated re-fetch."
+    },
+    {
+      "source_id": "SRC-JACS-MOLYBDENITE-1923-EXCERPT",
+      "work": "Dickinson, R. G.; Pauling, L. The Crystal Structure of Molybdenite.",
+      "publisher": "American Chemical Society / Caltech archival reproduction",
+      "publication": "Journal of the American Chemical Society 1923, volume 45, issue 6, pages 1466–1471",
+      "doi": "10.1021/ja01659a020",
+      "source_url": "https://pubs.acs.org/doi/10.1021/ja01659a020",
+      "accessible_archival_reproduction": "https://thesis.caltech.edu/1791/3/Pauling_L_1925.pdf",
+      "access": "publisher_bibliographic_page_paywalled; Caltech-hosted 1925 Pauling PhD thesis contains a scanned reprint of the Dickinson–Pauling 1923 article",
+      "role": "originating 1923 primary study; Caltech reprint is another manifestation of the SAME work, not a third independent experiment",
+      "verified_locations": [
+        {
+          "section": "Caltech PDF opening pages, reproduced 1923 article, 'The Unit of Structure'",
+          "claim": "Original historical article identifies molybdenite as MoS2 and discusses a hexagonal structural unit with c-axis repeat approximately 12.30 Å and two MoS2 formula units per unit cell",
+          "qualifier": "Textual PDF extract only; page-image screenshot service did not return a preview. Not a completed visual audit or raw file capture."
+        }
+      ],
+      "existing_evidence_ids": [
+        "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT"
+      ],
+      "recovery_assessment": "A free institutional archival version exists, avoiding mandatory purchase for review. The page cannot be treated as hash-captured or proof of a fresh original article scan until independently downloaded, visually inspected and hashed."
+    },
+    {
+      "source_id": "SRC-ACTACRYST-MOS2-1983-EXCERPT",
+      "work": "Schönfeld, B.; Huang, J. J.; Moss, S. C. Anisotropic mean-square displacements (MSD) in single-crystals of 2H- and 3R-MoS2.",
+      "publisher": "International Union of Crystallography",
+      "publication": "Acta Crystallographica Section B 1983, volume 39, pages 404–407",
+      "doi": "10.1107/S0108768183002645",
+      "source_url": "https://journals.iucr.org/b/issues/1983/04/00/",
+      "access": "bibliographic issue contents accessible; full publisher article subject to subscription",
+      "role": "1983 primary crystallographic publication; identical originating work to COD 9007660, not additional independent evidence",
+      "verified_locations": [
+        {
+          "section": "IUCr 1983, volume 39 part 4 issue contents",
+          "claim": "Confirms author names, 1983 issue, 2H and 3R subject and bibliographic DOI; does not expose all crystallographic values from the paper"
+        }
+      ],
+      "existing_evidence_ids": [
+        "EVD-MOS2-LAYERED-ACTA1983-EXCERPT"
+      ],
+      "recovery_assessment": "Bibliographic identity independently corroborated; scientific excerpt remains prior uploaded scope only. No L2 or L3 passed."
+    },
+    {
+      "source_id": "SRC-HUANG-THESIS-1981",
+      "work": "J. J. Huang, M.S. thesis, University of Houston (1981)",
+      "access": "existing project excerpt says thesis was uploaded; no independently accessible institutional thesis full-text URL established in this review",
+      "role": "academic supporting source; related researcher lineage to 1983 Schönfeld/Huang/Moss work, not independent primary corroboration",
+      "verified_locations": [],
+      "existing_evidence_ids": [
+        "EVD-MOS2-LAYERED-HUANG1981"
+      ],
+      "recovery_assessment": "L2/L3/L4 remain pending. Do not present 1981 thesis as peer reviewed or count it separately from the 1983 originating work."
+    }
+  ],
+  "scientific_conclusions": [
+    "MoS2 formula is not enough to infer 1T/2H/3R structure.",
+    "For bulk 2H, the review reports P 6_3/mmc and approximate a 3.15 Å, c 12.30 Å; individual primary determinations from COD must remain differentiated.",
+    "c-axis unit-cell repetition is not the same as the thickness of an isolated S–Mo–S sandwich.",
+    "RSC review, a journal excerpt, its COD record and a researcher's thesis may be manifestations of related evidence and must not be counted as independent experiments solely because URLs differ."
+  ],
+  "next_capture_requirements": [
+    "Retrieve exact RSC publisher HTML bytes into the repository's authenticated capture pipeline, record HTTP status, final URL, retrieval timestamp, SHA-256 and source-use fields, then perform a later independent re-fetch for L3.",
+    "Retrieve Caltech-hosted archival reprint if permitted, inspect visually and hash exact bytes; cite 1923 original work and the repository manifestation separately without double counting.",
+    "Maintain ACTA 1983 excerpt-scoped evidence and the existing COD 9007660 original-lineage identity; no invented paid-article access.",
+    "Find an authoritative, legally accessible Huang thesis copy or leave its evidence bound-but-pending; do not fabricate qualification or independent replication.",
+    "Only after all D1–D7 criteria truly pass should the KO be reconsidered for documentary verification and later owner release acts."
+  ]
+}
