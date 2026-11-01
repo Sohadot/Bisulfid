@@ -6,7 +6,7 @@
   "review_scope": "Independent checks of publisher-hosted source information plus direct inspection of owner-provided original PDF source files for RSC 2015 and Huang 1981",
   "status": "scientific_source_access_review_only",
   "limitations": {
-    "raw_bytes_downloaded": true,
+    "raw_bytes_downloaded": false,
     "content_sha256_recorded": true,
     "capture_hashes_generated": true,
     "automated_web_sources_are_not_version_pinned_captures": true,
@@ -14,7 +14,9 @@
     "source_lock_L2_L3_changed": false,
     "KO_documentary_verification_unchanged": "not_verified",
     "publication_authorization": false,
-    "raw_bytes_origin": "Previously uploaded owner-held Library PDFs, not fresh publisher HTTP responses; do not imply a publisher-certified current PDF or a later independent re-fetch."
+    "raw_bytes_origin": "Previously uploaded owner-held Library PDFs, not fresh publisher HTTP responses; do not imply a publisher-certified current PDF or a later independent re-fetch.",
+    "original_files_inspected_and_hashed_from_owner_library": true,
+    "publisher_http_pdf_downloads_completed": false
   },
   "sources": [
     {
