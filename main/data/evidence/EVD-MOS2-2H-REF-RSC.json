@@ -58,8 +58,15 @@
       "a_angstrom": "3.15",
       "c_angstrom": "12.30"
     },
-    "reproducibility": "Publisher-rendered text inspected, but no stored exact HTTP response bytes, no SHA-256, and no independent later re-fetch; L2/L3 must remain pending",
+    "reproducibility": "Original uploaded PDF SHA-256 recorded with visual Table 1 check; fresh publisher HTTP response and later-date independent recapture remain unverified. Do not automatically award checklist L2/L3.",
     "admission_status": "Existing narrow structural use admitted; RSC Table 1 evidence is still not part of rendered KO provenance until deliberately rendered and regenerated",
-    "source_access_is_not_publication_or_claim_activation": true
+    "source_access_is_not_publication_or_claim_activation": true,
+    "source_pdf": {
+      "owner_file": "c4ra11852a_copie.pdf",
+      "sha256": "42863a58455a8c87ad46531db64a7da09aac3f120cb36ec96f49269815a93116",
+      "bytes": 3771620,
+      "pdf_page": 4,
+      "source_journal_page": 7498
+    }
   }
 }
