@@ -47,5 +47,15 @@
     "source_locking_by_itself",
     "claim_approval_by_itself"
   ],
-  "governance_note": "ADMITTED (primary_scientific) via QUAL-JACS-MOLYBDENITE-1923-EXCERPT-001. Excerpt-scoped; the 1923 first page does NOT use '2H'. Same originating work (WORK-DICKINSON-PAULING-1923) as the COD 1010993 record -> NOT independent of it. Contract-C=(not_public,noindex)."
+  "governance_note": "ADMITTED (primary_scientific) via QUAL-JACS-MOLYBDENITE-1923-EXCERPT-001. Excerpt-scoped; the 1923 first page does NOT use '2H'. Same originating work (WORK-DICKINSON-PAULING-1923) as the COD 1010993 record -> NOT independent of it. Contract-C=(not_public,noindex).",
+  "source_access_observation": {
+    "access_review": "main/data/evidence/captures/MOS2_SCIENTIFIC_ACCESS_REVIEW_2026-11-01.json",
+    "original_publisher_doi_url": "https://pubs.acs.org/doi/10.1021/ja01659a020",
+    "archival_manifestation_url": "https://thesis.caltech.edu/1791/3/Pauling_L_1925.pdf",
+    "accessed_on": "2026-11-01",
+    "source_classification": "The 1925 Caltech dissertation contains a printed reprint of the original 1923 Dickinson–Pauling study; same originating work, not a new independent crystallographic experiment.",
+    "verified_scope": "Original paper reproduced in Caltech thesis discusses MoS2 as molybdenite with hexagonal 2-formula-unit cell and c repeat of approximately 12.30 Å; historical terminology cannot be silently relabeled as modern 2H usage in the 1923 text",
+    "reproducibility": "Source existence and text-level extract located, but PDF screenshot service did not return a page view and raw PDF bytes were not retrievable in execution environment. No raw SHA-256 capture, L2/L3 remain pending.",
+    "source_access_is_not_publication_or_claim_activation": true
+  }
 }
