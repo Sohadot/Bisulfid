@@ -3,17 +3,18 @@
   "review_date": "2026-11-01",
   "prepared_for": "Sohadot (sohadot.com)",
   "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
-  "review_scope": "Source identity, directly accessible scientific content, source-role separation and obstacles to reproducible source-lock proofs",
+  "review_scope": "Independent checks of publisher-hosted source information plus direct inspection of owner-provided original PDF source files for RSC 2015 and Huang 1981",
   "status": "scientific_source_access_review_only",
   "limitations": {
-    "raw_bytes_downloaded": false,
-    "content_sha256_recorded": false,
-    "capture_hashes_generated": false,
+    "raw_bytes_downloaded": true,
+    "content_sha256_recorded": true,
+    "capture_hashes_generated": true,
     "automated_web_sources_are_not_version_pinned_captures": true,
     "human_peer_review_of_bisulfid_reference": false,
     "source_lock_L2_L3_changed": false,
     "KO_documentary_verification_unchanged": "not_verified",
-    "publication_authorization": false
+    "publication_authorization": false,
+    "raw_bytes_origin": "Previously uploaded owner-held Library PDFs, not fresh publisher HTTP responses; do not imply a publisher-certified current PDF or a later independent re-fetch."
   },
   "sources": [
     {
@@ -23,7 +24,7 @@
       "publication": "RSC Advances 2015, volume 5, pages 7495–7514",
       "doi": "10.1039/C4RA11852A",
       "source_url": "https://pubs.rsc.org/en/content/articlehtml/2015/ra/c4ra11852a",
-      "access": "full_html_open_access_visible",
+      "access": "full_html_open_access_visible_and_owner_held_full_pdf_hash_inspected",
       "license_noted_by_publisher": "CC BY 3.0 Unported (attribution required)",
       "role": "peer-reviewed secondary review; no new independent primary determination",
       "verified_locations": [
@@ -47,7 +48,7 @@
         "EVD-MOS2-POLYTYPES-RSC",
         "EVD-MOS2-3R-BOUNDARY-RSC"
       ],
-      "recovery_assessment": "Scientific passage and Table 1 content were checked on publisher-hosted open HTML. Does not meet L2 raw-capture hashing or L3 later-date authenticated re-fetch."
+      "recovery_assessment": "Full RSC PDF in owner Library was directly inspected (p. 4, journal p. 7498) and hashed, with publisher-hosted open HTML confirming the same Table 1 scope. The upload is not a fresh publisher HTTP download; L3 independent later re-fetch remains pending. L2 applicability must be assessed under existing capture policy before marking pass."
     },
     {
       "source_id": "SRC-JACS-MOLYBDENITE-1923-EXCERPT",
@@ -94,13 +95,22 @@
     {
       "source_id": "SRC-HUANG-THESIS-1981",
       "work": "J. J. Huang, M.S. thesis, University of Houston (1981)",
-      "access": "existing project excerpt says thesis was uploaded; no independently accessible institutional thesis full-text URL established in this review",
+      "access": "owner_held_original_full_pdf_hash_inspected; no verified public institutional PDF URL",
       "role": "academic supporting source; related researcher lineage to 1983 Schönfeld/Huang/Moss work, not independent primary corroboration",
-      "verified_locations": [],
+      "verified_locations": [
+        {
+          "section": "Title page, PDF p.1",
+          "claim": "Jen-Jer Huang, X-Ray Study of Anisotropic Vibrations in MoS2, Master's thesis in Physics, University of Houston, August 1981"
+        },
+        {
+          "section": "PDF p.13 / printed thesis p.14",
+          "claim": "2H-MoS2 hexagonal layered material, A-B-A stacking, Mo trigonal-prismatic coordination; background a = 3.15 Å and c = 12.30 Å attributed to earlier work, not a separate new Huang lattice determination"
+        }
+      ],
       "existing_evidence_ids": [
         "EVD-MOS2-LAYERED-HUANG1981"
       ],
-      "recovery_assessment": "L2/L3/L4 remain pending. Do not present 1981 thesis as peer reviewed or count it separately from the 1983 originating work."
+      "recovery_assessment": "Owner-held 56-page full thesis PDF visually inspected and hashed; supports its narrowly qualified secondary/background provenance. University-hosted independent retrieval and L3 later re-fetch not established; do not claim peer review or a separate 2H lattice experiment."
     }
   ],
   "scientific_conclusions": [
@@ -110,10 +120,50 @@
     "RSC review, a journal excerpt, its COD record and a researcher's thesis may be manifestations of related evidence and must not be counted as independent experiments solely because URLs differ."
   ],
   "next_capture_requirements": [
-    "Retrieve exact RSC publisher HTML bytes into the repository's authenticated capture pipeline, record HTTP status, final URL, retrieval timestamp, SHA-256 and source-use fields, then perform a later independent re-fetch for L3.",
+    "Preserve the owner-held RSC PDF capture identified by SHA-256; retrieve exact RSC publisher HTTP bytes and independently re-fetch on a later date before claiming full L2/L3 under the governed lock policy.",
     "Retrieve Caltech-hosted archival reprint if permitted, inspect visually and hash exact bytes; cite 1923 original work and the repository manifestation separately without double counting.",
     "Maintain ACTA 1983 excerpt-scoped evidence and the existing COD 9007660 original-lineage identity; no invented paid-article access.",
-    "Find an authoritative, legally accessible Huang thesis copy or leave its evidence bound-but-pending; do not fabricate qualification or independent replication.",
+    "The owner's full 1981 Huang thesis PDF has been located, visually inspected and hashed. Find an independently accessible university-hosted or otherwise authenticated thesis copy for L3 and source-origin verification; L4 must follow the policy, without fabricating peer review or independence.",
     "Only after all D1–D7 criteria truly pass should the KO be reconsidered for documentary verification and later owner release acts."
+  ],
+  "library_source_captures": [
+    {
+      "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+      "file_name": "c4ra11852a_copie.pdf",
+      "bytes": 3771620,
+      "sha256": "42863a58455a8c87ad46531db64a7da09aac3f120cb36ec96f49269815a93116",
+      "pages": 20,
+      "checked_pdf_pages": [
+        4
+      ],
+      "printed_journal_page_for_table": 7498,
+      "content_checks": [
+        "Section 2.1 Table 1: 2H P6_3/mmc, stacking AbA BaB, reviewed lattice values a=3.15 Å, c=12.30 Å",
+        "The table specifies reference 35 for the 2H lattice values",
+        "The review describes 1T/2H/3R and coordination/stacking distinctions"
+      ],
+      "status": "owner-held uploaded source PDF; exact bytes hashed and targeted page visually inspected; fresh HTTP re-fetch not performed",
+      "license": "RSC publisher identifies the article as CC BY 3.0 with attribution; no copying into public output was performed"
+    },
+    {
+      "source_id": "SRC-HUANG-THESIS-1981",
+      "file_name": "Huang_1981_8070589_copie.pdf",
+      "bytes": 1483899,
+      "sha256": "b402abd0fc8503ce780bc3e093790cb4169f916e097e6a19fe89c289aef0f9c1",
+      "pages": 56,
+      "checked_pdf_pages": [
+        1,
+        8,
+        13
+      ],
+      "printed_thesis_page_for_structure": 14,
+      "content_checks": [
+        "Title page: Jen-Jer Huang, University of Houston, Master of Science in Physics, August 1981; X-Ray Study of Anisotropic Vibrations in MoS2",
+        "Printed page 14: 2H-MoS2 is hexagonal with A-B-A S–Mo–S stacking and trigonal-prismatic Mo coordination",
+        "Printed page 14: a = 3.15 Å and c = 12.30 Å reported in background discussion, tracing Dickinson and Pauling rather than claiming Huang independently measured these values"
+      ],
+      "status": "owner-held uploaded thesis PDF; exact bytes hashed and targeted pages visually inspected; no accessible university-hosted original re-fetch URL established",
+      "rights": "No public redistribution rights assumed; do not upload the PDF into site/public"
+    }
   ]
 }
