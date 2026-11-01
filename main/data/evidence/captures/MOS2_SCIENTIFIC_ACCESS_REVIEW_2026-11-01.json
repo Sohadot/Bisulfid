@@ -1,0 +1,171 @@
+{
+  "review_id": "MOS2-SCIENTIFIC-ACCESS-2026-11-01",
+  "review_date": "2026-11-01",
+  "prepared_for": "Sohadot (sohadot.com)",
+  "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
+  "review_scope": "Independent checks of publisher-hosted source information plus direct inspection of owner-provided original PDF source files for RSC 2015 and Huang 1981",
+  "status": "scientific_source_access_review_only",
+  "limitations": {
+    "raw_bytes_downloaded": false,
+    "content_sha256_recorded": true,
+    "capture_hashes_generated": true,
+    "automated_web_sources_are_not_version_pinned_captures": true,
+    "human_peer_review_of_bisulfid_reference": false,
+    "source_lock_L2_L3_changed": false,
+    "KO_documentary_verification_unchanged": "not_verified",
+    "publication_authorization": false,
+    "raw_bytes_origin": "Previously uploaded owner-held Library PDFs, not fresh publisher HTTP responses; do not imply a publisher-certified current PDF or a later independent re-fetch.",
+    "original_files_inspected_and_hashed_from_owner_library": true,
+    "publisher_http_pdf_downloads_completed": false
+  },
+  "sources": [
+    {
+      "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+      "work": "Song, I.; Park, C.; Choi, H. C. Synthesis and properties of molybdenum disulphide: from bulk to atomic layers.",
+      "publisher": "Royal Society of Chemistry",
+      "publication": "RSC Advances 2015, volume 5, pages 7495–7514",
+      "doi": "10.1039/C4RA11852A",
+      "source_url": "https://pubs.rsc.org/en/content/articlehtml/2015/ra/c4ra11852a",
+      "access": "full_html_open_access_visible_and_owner_held_full_pdf_hash_inspected",
+      "license_noted_by_publisher": "CC BY 3.0 Unported (attribution required)",
+      "role": "peer-reviewed secondary review; no new independent primary determination",
+      "verified_locations": [
+        {
+          "section": "Abstract and 2.1 Polytypes and crystallography",
+          "claim": "Bulk MoS2 comprises S–Mo–S structural layers; review distinguishes polytypes 1T, 2H and 3R by coordination and stacking"
+        },
+        {
+          "section": "Section 2.1, Table 1",
+          "claim": "For bulk 2H-MoS2 the review summarizes hexagonal space group P 6_3/mmc, stacking AbA BaB and lattice parameters a = 3.15 Å, c = 12.30 Å",
+          "qualifier": "Review-reported approximate values from referenced study (ref. 35), not a novel experiment by Song et al."
+        },
+        {
+          "section": "Section 2.1 following Table 1",
+          "claim": "2H and 3R share trigonal-prismatic Mo coordination yet differ in stacking; 1T has octahedral coordination"
+        }
+      ],
+      "existing_evidence_ids": [
+        "EVD-MOS2-2H-REF-RSC",
+        "EVD-MOS2-LAYERED-RSC",
+        "EVD-MOS2-POLYTYPES-RSC",
+        "EVD-MOS2-3R-BOUNDARY-RSC"
+      ],
+      "recovery_assessment": "Full RSC PDF in owner Library was directly inspected (p. 4, journal p. 7498) and hashed, with publisher-hosted open HTML confirming the same Table 1 scope. The upload is not a fresh publisher HTTP download; L3 independent later re-fetch remains pending. L2 applicability must be assessed under existing capture policy before marking pass."
+    },
+    {
+      "source_id": "SRC-JACS-MOLYBDENITE-1923-EXCERPT",
+      "work": "Dickinson, R. G.; Pauling, L. The Crystal Structure of Molybdenite.",
+      "publisher": "American Chemical Society / Caltech archival reproduction",
+      "publication": "Journal of the American Chemical Society 1923, volume 45, issue 6, pages 1466–1471",
+      "doi": "10.1021/ja01659a020",
+      "source_url": "https://pubs.acs.org/doi/10.1021/ja01659a020",
+      "accessible_archival_reproduction": "https://thesis.caltech.edu/1791/3/Pauling_L_1925.pdf",
+      "access": "publisher_bibliographic_page_paywalled; Caltech-hosted 1925 Pauling PhD thesis contains a scanned reprint of the Dickinson–Pauling 1923 article",
+      "role": "originating 1923 primary study; Caltech reprint is another manifestation of the SAME work, not a third independent experiment",
+      "verified_locations": [
+        {
+          "section": "Caltech PDF opening pages, reproduced 1923 article, 'The Unit of Structure'",
+          "claim": "Original historical article identifies molybdenite as MoS2 and discusses a hexagonal structural unit with c-axis repeat approximately 12.30 Å and two MoS2 formula units per unit cell",
+          "qualifier": "Textual PDF extract only; page-image screenshot service did not return a preview. Not a completed visual audit or raw file capture."
+        }
+      ],
+      "existing_evidence_ids": [
+        "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT"
+      ],
+      "recovery_assessment": "A free institutional archival version exists, avoiding mandatory purchase for review. The page cannot be treated as hash-captured or proof of a fresh original article scan until independently downloaded, visually inspected and hashed."
+    },
+    {
+      "source_id": "SRC-ACTACRYST-MOS2-1983-EXCERPT",
+      "work": "Schönfeld, B.; Huang, J. J.; Moss, S. C. Anisotropic mean-square displacements (MSD) in single-crystals of 2H- and 3R-MoS2.",
+      "publisher": "International Union of Crystallography",
+      "publication": "Acta Crystallographica Section B 1983, volume 39, pages 404–407",
+      "doi": "10.1107/S0108768183002645",
+      "source_url": "https://journals.iucr.org/b/issues/1983/04/00/",
+      "access": "bibliographic issue contents accessible; full publisher article subject to subscription",
+      "role": "1983 primary crystallographic publication; identical originating work to COD 9007660, not additional independent evidence",
+      "verified_locations": [
+        {
+          "section": "IUCr 1983, volume 39 part 4 issue contents",
+          "claim": "Confirms author names, 1983 issue, 2H and 3R subject and bibliographic DOI; does not expose all crystallographic values from the paper"
+        }
+      ],
+      "existing_evidence_ids": [
+        "EVD-MOS2-LAYERED-ACTA1983-EXCERPT"
+      ],
+      "recovery_assessment": "Bibliographic identity independently corroborated; scientific excerpt remains prior uploaded scope only. No L2 or L3 passed."
+    },
+    {
+      "source_id": "SRC-HUANG-THESIS-1981",
+      "work": "J. J. Huang, M.S. thesis, University of Houston (1981)",
+      "access": "owner_held_original_full_pdf_hash_inspected; no verified public institutional PDF URL",
+      "role": "academic supporting source; related researcher lineage to 1983 Schönfeld/Huang/Moss work, not independent primary corroboration",
+      "verified_locations": [
+        {
+          "section": "Title page, PDF p.1",
+          "claim": "Jen-Jer Huang, X-Ray Study of Anisotropic Vibrations in MoS2, Master's thesis in Physics, University of Houston, August 1981"
+        },
+        {
+          "section": "PDF p.13 / printed thesis p.14",
+          "claim": "2H-MoS2 hexagonal layered material, A-B-A stacking, Mo trigonal-prismatic coordination; background a = 3.15 Å and c = 12.30 Å attributed to earlier work, not a separate new Huang lattice determination"
+        }
+      ],
+      "existing_evidence_ids": [
+        "EVD-MOS2-LAYERED-HUANG1981"
+      ],
+      "recovery_assessment": "Owner-held 56-page full thesis PDF visually inspected and hashed; supports its narrowly qualified secondary/background provenance. University-hosted independent retrieval and L3 later re-fetch not established; do not claim peer review or a separate 2H lattice experiment."
+    }
+  ],
+  "scientific_conclusions": [
+    "MoS2 formula is not enough to infer 1T/2H/3R structure.",
+    "For bulk 2H, the review reports P 6_3/mmc and approximate a 3.15 Å, c 12.30 Å; individual primary determinations from COD must remain differentiated.",
+    "c-axis unit-cell repetition is not the same as the thickness of an isolated S–Mo–S sandwich.",
+    "RSC review, a journal excerpt, its COD record and a researcher's thesis may be manifestations of related evidence and must not be counted as independent experiments solely because URLs differ."
+  ],
+  "next_capture_requirements": [
+    "Preserve the owner-held RSC PDF capture identified by SHA-256; retrieve exact RSC publisher HTTP bytes and independently re-fetch on a later date before claiming full L2/L3 under the governed lock policy.",
+    "Retrieve Caltech-hosted archival reprint if permitted, inspect visually and hash exact bytes; cite 1923 original work and the repository manifestation separately without double counting.",
+    "Maintain ACTA 1983 excerpt-scoped evidence and the existing COD 9007660 original-lineage identity; no invented paid-article access.",
+    "The owner's full 1981 Huang thesis PDF has been located, visually inspected and hashed. Find an independently accessible university-hosted or otherwise authenticated thesis copy for L3 and source-origin verification; L4 must follow the policy, without fabricating peer review or independence.",
+    "Only after all D1–D7 criteria truly pass should the KO be reconsidered for documentary verification and later owner release acts."
+  ],
+  "library_source_captures": [
+    {
+      "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+      "file_name": "c4ra11852a_copie.pdf",
+      "bytes": 3771620,
+      "sha256": "42863a58455a8c87ad46531db64a7da09aac3f120cb36ec96f49269815a93116",
+      "pages": 20,
+      "checked_pdf_pages": [
+        4
+      ],
+      "printed_journal_page_for_table": 7498,
+      "content_checks": [
+        "Section 2.1 Table 1: 2H P6_3/mmc, stacking AbA BaB, reviewed lattice values a=3.15 Å, c=12.30 Å",
+        "The table specifies reference 35 for the 2H lattice values",
+        "The review describes 1T/2H/3R and coordination/stacking distinctions"
+      ],
+      "status": "owner-held uploaded source PDF; exact bytes hashed and targeted page visually inspected; fresh HTTP re-fetch not performed",
+      "license": "RSC publisher identifies the article as CC BY 3.0 with attribution; no copying into public output was performed"
+    },
+    {
+      "source_id": "SRC-HUANG-THESIS-1981",
+      "file_name": "Huang_1981_8070589_copie.pdf",
+      "bytes": 1483899,
+      "sha256": "b402abd0fc8503ce780bc3e093790cb4169f916e097e6a19fe89c289aef0f9c1",
+      "pages": 56,
+      "checked_pdf_pages": [
+        1,
+        8,
+        13
+      ],
+      "printed_thesis_page_for_structure": 14,
+      "content_checks": [
+        "Title page: Jen-Jer Huang, University of Houston, Master of Science in Physics, August 1981; X-Ray Study of Anisotropic Vibrations in MoS2",
+        "Printed page 14: 2H-MoS2 is hexagonal with A-B-A S–Mo–S stacking and trigonal-prismatic Mo coordination",
+        "Printed page 14: a = 3.15 Å and c = 12.30 Å reported in background discussion, tracing Dickinson and Pauling rather than claiming Huang independently measured these values"
+      ],
+      "status": "owner-held uploaded thesis PDF; exact bytes hashed and targeted pages visually inspected; no accessible university-hosted original re-fetch URL established",
+      "rights": "No public redistribution rights assumed; do not upload the PDF into site/public"
+    }
+  ]
+}
