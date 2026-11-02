@@ -46,5 +46,18 @@
     "source_locking_by_itself",
     "claim_approval_by_itself"
   ],
-  "governance_note": "ADMITTED (secondary_scholarly, supporting) via QUAL-HUANG-THESIS-1981-001. Academic thesis: supporting provenance only; never substitutes for peer-reviewed/authoritative evidence; related lineage (WORK-HUANG-1981 <-> WORK-SCHONFELD-HUANG-MOSS-1983) -> not independent of the 1983 work. Contract-C=(not_public,noindex)."
+  "governance_note": "ADMITTED (secondary_scholarly, supporting) via QUAL-HUANG-THESIS-1981-001. Academic thesis: supporting provenance only; never substitutes for peer-reviewed/authoritative evidence; related lineage (WORK-HUANG-1981 <-> WORK-SCHONFELD-HUANG-MOSS-1983) -> not independent of the 1983 work. Contract-C=(not_public,noindex).",
+  "source_access_observation": {
+    "access_review": "main/data/evidence/captures/MOS2_SCIENTIFIC_ACCESS_REVIEW_2026-11-01.json",
+    "source_pdf": {
+      "owner_file": "Huang_1981_8070589_copie.pdf",
+      "sha256": "b402abd0fc8503ce780bc3e093790cb4169f916e097e6a19fe89c289aef0f9c1",
+      "bytes": 1483899,
+      "pages": 56,
+      "visual_check_pdf_page": 13,
+      "printed_page": 14
+    },
+    "readable_findings": "The thesis confirms historical 2H hexagonal layered A-B-A stacking and reports a=3.15 Å, c=12.30 Å in the contextual discussion following Dickinson–Pauling; it does NOT constitute an independent experiment for these lattice parameters.",
+    "reproducibility": "Owner-held original PDF bytes hashed and inspected, but no independent university-hosted retrieval or later-date re-fetch; L2/L3/L4 remain pending and it remains non-peer-reviewed supporting provenance."
+  }
 }
