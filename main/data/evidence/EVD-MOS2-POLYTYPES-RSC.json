@@ -19,7 +19,7 @@
   "source_id": "SRC-RSC-MOS2-REVIEW-2015",
   "claim_id": "CLM-MOS2-STRUCTURE-2H",
   "evidence_role": "secondary_scholarly",
-  "claim_scope": "RSC Advances 2015 review states MoS2 has three known polytypes - 1T, 2H, and 3R - distinguished by the coordination of Mo and by layer stacking (2H and 3R: trigonal-prismatic; 1T: octahedral). Secondary-scholarly framework establishing the polytype distinction.",
+  "claim_scope": "RSC Advances 2015 review states MoS2 has three known polytypes - 1T, 2H, and 3R - distinguished by the coordination of Mo and by layer stacking (2H and 3R: trigonal-prismatic; 1T: octahedral). Secondary-scholarly framework establishing the polytype distinction. Section 2.1 of the publisher-hosted article also explicitly explains the polytype naming convention: the numeral is the count of S–Mo–S layers per crystallographic unit cell and T/H/R indicate trigonal/hexagonal/rhombohedral structure; this is a secondary descriptive convention, not an additional primary determination.",
   "scientific_scope": {
     "component": "polytype_framework",
     "polytypes": [
@@ -31,12 +31,32 @@
       "Mo coordination",
       "layer stacking"
     ],
-    "source_type": "peer-reviewed review (secondary)"
+    "source_type": "peer-reviewed review (secondary)",
+    "polytype_label_convention": {
+      "numeral": "number of S–Mo–S layers within a crystallographic unit cell",
+      "letter": {
+        "T": "trigonal",
+        "H": "hexagonal",
+        "R": "rhombohedral"
+      },
+      "origin": "Song, Park and Choi (2015), section 2.1, published review"
+    }
   },
   "locator": {
     "system": "RSC Advances 2015 (uploaded PDF)",
     "doi": "10.1039/C4RA11852A",
-    "verbatim": "three known polytypes - namely 1T, 2H, and 3R - of MoS2 ... 2H and 3R commonly have trigonal prismatic coordination (D3h) of molybdenum atoms, but they have different stacking order."
+    "verbatim": "three known polytypes - namely 1T, 2H, and 3R - of MoS2 ... 2H and 3R commonly have trigonal prismatic coordination (D3h) of molybdenum atoms, but they have different stacking order.",
+    "publisher_html_index_observation": {
+      "article_url": "https://pubs.rsc.org/en/content/articlehtml/2015/ra/c4ra11852a",
+      "section": "2.1 Polytypes and crystallography",
+      "observed_on": "2026-11-02",
+      "access_method": "publisher-hosted HTML as returned by indexed web retrieval; not a fresh network capture from the repository execution environment",
+      "exact_excerpt_fragments": [
+        "number denotes the number of layers within a single crystallographic unit cell",
+        "T stands for trigonal, H for hexagonal, and R for rhombohedral"
+      ],
+      "verification_boundary": "These short fragments substantiate the polytype-label convention only. This indexed-page observation is not an archived raw capture, SHA-256 hash, version pin, later-date publisher re-fetch, or L2/L3/L4 source-lock pass."
+    }
   },
   "allowed_uses": [
     "mos2_polytype_framework"
@@ -49,5 +69,5 @@
     "source_locking_by_itself",
     "claim_approval_by_itself"
   ],
-  "governance_note": "ADMITTED (secondary_scholarly) via QUAL-RSC-MOS2-REVIEW-001 for 'mos2_polytype_framework'. Establishes the 1T/2H/3R distinction (Claim B polytype scope). Separate atomic record from the layered evidence. Contract-C=(not_public,noindex)."
+  "governance_note": "ADMITTED (secondary_scholarly) via QUAL-RSC-MOS2-REVIEW-001 for 'mos2_polytype_framework'. Establishes the 1T/2H/3R distinction (Claim B polytype scope). Separate atomic record from the layered evidence. Contract-C=(not_public,noindex). The indexed publisher-HTML observation on 2026-11-02 substantiates label-convention wording only; it is explicitly non-locking and does not change D4, D1, D7, review, release or publication authority."
 }
