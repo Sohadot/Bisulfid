@@ -208,6 +208,36 @@ ok("19_source_lock_reporting_does_not_imitate_human_signatures",
    "11 of 11 sources accepted documentarily via L1–L5 (0 independently signed source locks)" in page
    and not rc.validation_ok(TERM)[0])
 
+# 10 MoS2 D2/D5: closing evidence and transparency gaps never promotes the KO on its own.
+MSPEC = dv._spec_for(MOS2)
+MBASE = dv.evaluate(MOS2)
+ok("20_mos2_d2_d5_pass_but_ko_stays_not_verified",
+   MBASE["checks"]["D2_evidence"] == "pass" and MBASE["checks"]["D5_conflicts"] == "pass"
+   and MBASE["verification_level"] == "not_verified"
+   and any(f.startswith("D1_claims") for f in MBASE["failures"])
+   and any(f.startswith("D4_reproducible") for f in MBASE["failures"]))
+
+
+def mos2_without(mutate):
+    sp = copy.deepcopy(MSPEC)
+    mutate(sp)
+    return dv.evaluate(MOS2, {"spec": sp})
+
+
+def drop_paragraphs_citing(eid):
+    def m(sp):
+        for mod in sp["modules"]:
+            mod["paragraphs"] = [p for p in mod["paragraphs"] if eid not in p["evidence_ids"]]
+    return m
+
+
+ok("21_unrendered_bound_evidence_fails_d2",
+   all(f"bound evidence {e} is not rendered/admitted" in mos2_without(drop_paragraphs_citing(e))["checks"]["D2_evidence"]
+       for e in ("EVD-MOS2-2H-REF-RSC", "EVD-MOS2-LAYERED-HUANG1981")))
+ok("22_missing_open_synthesis_group_fails_d5",
+   mos2_without(lambda sp: sp["synthesis"].update(groups=[g for g in sp["synthesis"]["groups"] if g["verdict"] != "open"]))
+   ["checks"]["D5_conflicts"] == ["unresolved fields exist but the reference does not state them (open group + not-established)"])
+
 print("=" * 56)
 print("RESULT: " + ("PASS — documentary pathway is proportionate and fail-closed" if not FAILS else f"FAIL — {FAILS}"))
 sys.exit(1 if FAILS else 0)

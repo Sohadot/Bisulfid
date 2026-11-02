@@ -1,6 +1,6 @@
 {
   "spec_id": "RSPEC-KO-MOS2-SCIENTIFIC-001",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "preview",
   "governed_by": [
     "main/data/knowledge_objects/knowledge_object_registry.json",
@@ -27,7 +27,9 @@
     "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT": "molybdenite_mos2_hexagonal_identity",
     "EVD-MOS2-LATTICE-A-DICKINSON": "lattice_parameter_2h",
     "EVD-MOS2-LATTICE-A-ACTACRYST": "lattice_parameter_2h",
-    "EVD-MOS2-3R-BOUNDARY-RSC": "polytype_3r_reference"
+    "EVD-MOS2-3R-BOUNDARY-RSC": "polytype_3r_reference",
+    "EVD-MOS2-2H-REF-RSC": "crystal_structure_identity_2h",
+    "EVD-MOS2-LAYERED-HUANG1981": "mos2_2h_terminology_supporting"
   },
   "at_a_glance": [
     {
@@ -189,6 +191,12 @@
           ]
         },
         {
+          "text": "The 2015 RSC Advances review by Song, Park and Choi summarises the same 2H structure in its Table 1: the same hexagonal space group, the layer stacking sequence {{EVD-MOS2-2H-REF-RSC:scientific_scope.stacking}}, and rounded lattice values {{EVD-MOS2-2H-REF-RSC:scientific_scope.reviewed_lattice_text|review_values|angstrom}}, which the review takes from earlier literature (its reference 35). A review table is a literature summary, not a further measurement: it supports the structural description but is not counted as a third determination alongside the 1923 and 1983 studies.",
+          "evidence_ids": [
+            "EVD-MOS2-2H-REF-RSC"
+          ]
+        },
+        {
           "text": "The c-axis values 12.30(7) Å and 12.295 Å describe the repeat of the bulk 2H crystallographic unit cell along c. They should not be quoted as measurements of the thickness of one S–Mo–S sandwich: a lattice repeat and an individual structural layer are different quantities.",
           "evidence_ids": [
             "EVD-MOS2-STRUCTURE-DICKINSON",
@@ -212,6 +220,12 @@
             "unit_id": "IGU-MOS2-005",
             "dimension": "historical_evidence"
           }
+        },
+        {
+          "text": "The label was already in use two years earlier within the same research lineage. J. J. Huang's 1981 master's thesis at the University of Houston refers to molybdenite as 2H-MoS2, describes it as hexagonal with A-B-A stacking of MoS2 layers, and credits Dickinson and Pauling with the first investigation of the structure. Huang is a co-author of the 1983 study, and a thesis is not peer-reviewed, so the thesis documents how the label was used; it is not an independent confirmation of the 1983 results. Neither source is presented here as the first use of the 2H label.",
+          "evidence_ids": [
+            "EVD-MOS2-LAYERED-HUANG1981"
+          ]
         }
       ]
     },
@@ -292,6 +306,92 @@
       ]
     }
   ],
+  "synthesis": {
+    "heading": "What the sources support together, what stays open, and what not to infer",
+    "intro": "Each statement below draws only on the evidence cited in brackets. It separates the primary crystallographic records, the review that summarises them and the supporting thesis, because they carry different weight.",
+    "groups": [
+      {
+        "verdict": "supported",
+        "label": "Supported by the cited sources",
+        "items": [
+          {
+            "text": "Bulk 2H-MoS2 is hexagonal: the 1923 and 1983 determinations both record space group {{EVD-MOS2-STRUCTURE-DICKINSON:scientific_scope.space_group|hm}}, and the 2015 review lists the same structure in its literature summary.",
+            "evidence_ids": [
+              "EVD-MOS2-STRUCTURE-DICKINSON",
+              "EVD-MOS2-STRUCTURE-ACTACRYST",
+              "EVD-MOS2-2H-REF-RSC"
+            ]
+          },
+          {
+            "text": "The 1923 and 1983 values of the in-plane lattice parameter a agree within the uncertainty stated for the 1923 value.",
+            "evidence_ids": [
+              "EVD-MOS2-LATTICE-A-DICKINSON",
+              "EVD-MOS2-LATTICE-A-ACTACRYST"
+            ]
+          }
+        ]
+      },
+      {
+        "verdict": "open",
+        "label": "Open: the governed evidence does not settle it",
+        "items": [
+          {
+            "text": "The band gap and the electronic and optical behaviour of any form of MoS2. No cited record is admitted for them, and the review used here is admitted for structure only, so this reference gives no value or character for them.",
+            "evidence_ids": [
+              "EVD-MOS2-POLYTYPES-RSC",
+              "EVD-MOS2-2H-REF-RSC"
+            ]
+          },
+          {
+            "text": "Density, lubricant behaviour and other material properties. They lie outside the scope of every record cited here.",
+            "evidence_ids": [
+              "EVD-MOS2-LAYERED-RSC"
+            ]
+          },
+          {
+            "text": "The properties of single layers and few-layer MoS2. The structure described here is that of bulk crystals, and none of the cited records is admitted for monolayer measurements.",
+            "evidence_ids": [
+              "EVD-MOS2-LAYERED-RSC"
+            ]
+          },
+          {
+            "text": "The lattice parameters of the 3R polytype as primary facts. The review's 3R values are held only as a boundary; no primary 3R determination has been acquired.",
+            "evidence_ids": [
+              "EVD-MOS2-3R-BOUNDARY-RSC"
+            ]
+          }
+        ]
+      },
+      {
+        "verdict": "not_inferable",
+        "label": "Not to be inferred from the cited records",
+        "items": [
+          {
+            "text": "That the review table and the thesis are further measurements of the 2H lattice. Both report values from earlier work, and the thesis shares an author with the 1983 study.",
+            "evidence_ids": [
+              "EVD-MOS2-2H-REF-RSC",
+              "EVD-MOS2-LAYERED-HUANG1981"
+            ]
+          },
+          {
+            "text": "That the 2H values apply to the 3R or 1T polytypes, or to single layers. Each value here belongs to bulk 2H.",
+            "evidence_ids": [
+              "EVD-MOS2-STRUCTURE-DICKINSON",
+              "EVD-MOS2-POLYTYPES-RSC",
+              "EVD-MOS2-3R-BOUNDARY-RSC"
+            ]
+          },
+          {
+            "text": "That the c-axis repeat is the thickness of one S–Mo–S layer. It is the repeat of the bulk 2H unit cell.",
+            "evidence_ids": [
+              "EVD-MOS2-STRUCTURE-DICKINSON",
+              "EVD-MOS2-STRUCTURE-ACTACRYST"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "not_established": {
     "heading": "What this reference does not establish",
     "text": "Band gap, electronic and optical behaviour, density, the properties of single layers, industrial and lubricant uses, market data, safety handling, and German terminology are outside the governed evidence for this object. They are open questions here, not implied facts. Any statement on them needs governed evidence first [SOURCE REQUIRED]."

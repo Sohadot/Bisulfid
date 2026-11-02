@@ -11,10 +11,7 @@
  "sources_assessed": 8,
  "ig_valid_units": 7,
  "checks": {
-  "D2_evidence": [
-   "bound evidence EVD-MOS2-2H-REF-RSC is not rendered/admitted",
-   "bound evidence EVD-MOS2-LAYERED-HUANG1981 is not rendered/admitted"
-  ],
+  "D2_evidence": "pass",
   "D3_scope": "pass",
   "D1_claims": [
    "CLM-MOS2-FORMULA: status None",
@@ -27,9 +24,7 @@
    "SRC-JACS-MOLYBDENITE-1923-EXCERPT: L2, L3 not pass",
    "SRC-RSC-MOS2-REVIEW-2015: L2, L3 not pass"
   ],
-  "D5_conflicts": [
-   "unresolved fields exist but the reference does not state them (open group + not-established)"
-  ],
+  "D5_conflicts": "pass",
   "D6_quality": "pass",
   "D7_risk": [
    "risk class undetermined",
@@ -38,8 +33,6 @@
   ]
  },
  "failures": [
-  "D2_evidence: bound evidence EVD-MOS2-2H-REF-RSC is not rendered/admitted",
-  "D2_evidence: bound evidence EVD-MOS2-LAYERED-HUANG1981 is not rendered/admitted",
   "D1_claims: CLM-MOS2-FORMULA: status None",
   "D1_claims: CLM-MOS2-STRUCTURE-2H: status None",
   "D1_claims: CLM-MOS2-LATTICE-A-2H: status None",
@@ -47,7 +40,6 @@
   "D4_reproducible: SRC-HUANG-THESIS-1981: L2, L3, L4 not pass",
   "D4_reproducible: SRC-JACS-MOLYBDENITE-1923-EXCERPT: L2, L3 not pass",
   "D4_reproducible: SRC-RSC-MOS2-REVIEW-2015: L2, L3 not pass",
-  "D5_conflicts: unresolved fields exist but the reference does not state them (open group + not-established)",
   "D7_risk: risk class undetermined",
   "D7_risk: claim type not eligible or missing: ['CLM-MOS2-FORMULA', 'CLM-MOS2-STRUCTURE-2H', 'CLM-MOS2-LATTICE-A-2H']",
   "D7_risk: KO does not exclude ['chemical_safety', 'medical']"
@@ -91,8 +83,6 @@
    "outcome": "not_verified",
    "reasons": [
     "CLM-MOS2-STRUCTURE-2H: status None",
-    "bound evidence EVD-MOS2-2H-REF-RSC is not rendered/admitted",
-    "bound evidence EVD-MOS2-LAYERED-HUANG1981 is not rendered/admitted",
     "source SRC-ACTACRYST-MOS2-1983-EXCERPT not reproducible",
     "source SRC-HUANG-THESIS-1981 not reproducible",
     "source SRC-JACS-MOLYBDENITE-1923-EXCERPT not reproducible",

@@ -2,7 +2,7 @@
  "page": "/molybdenum-disulfide/",
  "kind": "knowledge_reference",
  "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
- "spec": "RSPEC-KO-MOS2-SCIENTIFIC-001@1.1.0",
+ "spec": "RSPEC-KO-MOS2-SCIENTIFIC-001@1.2.0",
  "publication_candidate": "PC-MOS2-SCIENTIFIC-001",
  "postures_recorded": {
   "governance_posture": "reference_draft",
