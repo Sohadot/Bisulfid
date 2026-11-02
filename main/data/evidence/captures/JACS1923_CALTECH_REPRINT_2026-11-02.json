@@ -1,0 +1,30 @@
+{
+ "capture_id": "JACS1923-CALTECH-REPRINT-2026-11-02",
+ "generated_by": "scripts/reference_production/capture_jacs1923_reprint.py",
+ "note": "Append-only capture of an archival reprint. It does not lock the source and is not an independent experiment; COD 1010993 and this reprint are manifestations of the same 1923 work.",
+ "captures": {
+  "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT": {
+   "url": "https://thesis.caltech.edu/1791/3/Pauling_L_1925.pdf",
+   "http_status": 200,
+   "retrieved_at_utc": "2026-11-02T15:59:59Z",
+   "retrieved_on": "2026-11-02",
+   "media_type": "application/pdf",
+   "bytes": 2069295,
+   "last_modified": "Wed, 24 Dec 2025 11:52:14 GMT",
+   "etag": "\"37e18cf6ac3c2d8b6b88bf9e522f32ca\"",
+   "manifestation": "Caltech thesis repository reprint (Pauling 1925 PhD thesis) of J. Am. Chem. Soc. 45, 1466-1471 (1923); same originating work as COD 1010993, not an independent experiment",
+   "content_verified": true,
+   "passages": [
+    {
+     "evidence_id": "EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT",
+     "quote": "The mineral molybdenite, MoS2, is described as occurring in hexagonal crystals with a very complete basal cleavage. A study of its crystal structure has been carried out using X-ray spectral photographs and Laue photographs treated as previously described.",
+     "found": true,
+     "method": "normalised PDF text layer (OCR); confirm visually on the page image"
+    }
+   ],
+   "content_check": "PDF; reprinted article title found on PDF page 2",
+   "sha256": "c648d9fb44436101b5be2752ab1e8c6a54b9e40fe6d3d9d4f23f5aa215bab60b",
+   "identical_bytes_to_earlier_captures": []
+  }
+ }
+}

@@ -33,7 +33,13 @@
   "locator": {
     "system": "J. Am. Chem. Soc. 45, 1466-1471 (1923), first-page excerpt image",
     "doi": "10.1021/ja01659a020",
-    "verbatim": "The mineral molybdenite, MoS2, is described as occurring in hexagonal crystals with a very complete basal cleavage. A study of its crystal structure has been carried out using X-ray spectral photographs and Laue photographs."
+    "verbatim": "The mineral molybdenite, MoS2, is described as occurring in hexagonal crystals with a very complete basal cleavage. A study of its crystal structure has been carried out using X-ray spectral photographs and Laue photographs treated as previously described.",
+    "verbatim_correction": {
+      "corrected_on": "2026-11-02",
+      "previous_text": "The mineral molybdenite, MoS2, is described as occurring in hexagonal crystals with a very complete basal cleavage. A study of its crystal structure has been carried out using X-ray spectral photographs and Laue photographs.",
+      "reason": "The previous quotation ended the second sentence early ('... Laue photographs.'); the source sentence continues 'treated as previously described.' Footnote markers 2 and 3 of the original are omitted.",
+      "verified_against": "J. Am. Chem. Soc. 45, p. 1466 as reprinted in L. Pauling, PhD thesis, Caltech (1925), PDF page 2 (https://thesis.caltech.edu/1791/3/Pauling_L_1925.pdf), visually inspected 2026-11-02"
+    }
   },
   "allowed_uses": [
     "molybdenite_mos2_hexagonal_identity"
@@ -57,5 +63,17 @@
     "verified_scope": "Original paper reproduced in Caltech thesis discusses MoS2 as molybdenite with hexagonal 2-formula-unit cell and c repeat of approximately 12.30 Å; historical terminology cannot be silently relabeled as modern 2H usage in the 1923 text",
     "reproducibility": "Source existence and text-level extract located, but PDF screenshot service did not return a page view and raw PDF bytes were not retrievable in execution environment. No raw SHA-256 capture, L2/L3 remain pending.",
     "source_access_is_not_publication_or_claim_activation": true
+  },
+  "reprint_verification": {
+    "capture": "main/data/evidence/captures/JACS1923_CALTECH_REPRINT_2026-11-02.json",
+    "manifestation": "Caltech thesis repository reprint in L. Pauling, PhD thesis (1925); same originating work (WORK-DICKINSON-PAULING-1923) as COD 1010993, not an independent determination",
+    "visually_inspected_on": "2026-11-02",
+    "observations_full_article_pp_1466_1471": [
+      "p. 1466 (PDF p. 2): quotation above present; density 4.92 g/cc (the OCR text layer misreads it as 1.02); d0001 = 6.15 Å for the smaller trial unit, axial ratio 1.95",
+      "p. 1467 (PDF p. 3): adopted unit d0001 = 12.30 Å, axial ratio 3.90, containing 2 MoS2",
+      "p. 1470 (PDF p. 6): each Mo surrounded by six S at the corners of a triangular prism, altitude 3.17 ± 0.10, edge 3.15 ± 0.02; Mo–S 2.41 ± 0.06 Å; Fig. 2 labels the cell 3.15 Å by 12.30 Å",
+      "the label '2H' does not occur in the article"
+    ],
+    "scope_note": "Observations only. The admitted use of this evidence record is unchanged (first-page excerpt scope); extending it to facts from later pages needs a qualification decision."
   }
 }

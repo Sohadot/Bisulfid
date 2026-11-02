@@ -102,5 +102,50 @@
     "realizes": "/molybdenum-disulfide/ (existing route molybdenum_disulfide; no new URL)",
     "consolidation_obligations": 38,
     "status": "structure verified (route_realization.check_structure); AMD-IG-R03-001 awaits owner ratification, so the authority treats this posture as ig_reviewed_no_new_route until then"
+  },
+  "distinctiveness_review": {
+    "reviewed_on": "2026-10-31",
+    "status": "documented_editorial_comparison_not_independent_peer_review",
+    "method": "Reuse of the existing semantic IG review and route-realization records; compare the reference task, provenance, evidence/claim boundaries and legacy route functions. No claimed numeric similarity score.",
+    "reference_task": "Explain MoS2 chemical identity and bulk 2H crystal structure, distinguish 1T/2H/3R scope, interpret source-specific 1923 and 1983 crystallographic determinations and their uncertainty.",
+    "compared_surfaces": [
+      {
+        "path": "/molybdenum-disulfide/",
+        "relation": "same scientific-reference task; ungoverned legacy page"
+      },
+      {
+        "path": "/de/terminology/molybdenum-disulfide/",
+        "relation": "German lexical surface (the lexical chain's route scope); different task/domain"
+      },
+      {
+        "path": "/de/molybdenum-disulfide/",
+        "relation": "German vocabulary variant"
+      },
+      {
+        "path": "/en/terminology/molybdenum-disulfide/cmp/chem/acad/",
+        "relation": "one of ~150 cohort02 thin audience/module variants (comparison candidates only)"
+      }
+    ],
+    "findings": {
+      "same_task_canonical": "The governed draft replaces the scientific body at /molybdenum-disulfide/; no additional URL is justified. The old route has not received a new scientific publication or canonical directive.",
+      "scientific_information_gain": [
+        "Source-linked separation of MoS2 formula, layered S–Mo–S motif and polytype-specific crystal structure.",
+        "Explicit distinction between 1T/2H/3R labels and why unchanged stoichiometry does not fix the stacking order.",
+        "Primary-lineage comparison of 1923 versus 1983 2H crystallographic determinations retrieved through COD.",
+        "Interpretation of 3.15(2) Å as ±0.02 Å and comparison with 3.161 Å without averaging or claiming a universal constant.",
+        "Separation of 2H unit-cell c-axis repeat from the thickness of an individual S–Mo–S structural layer."
+      ],
+      "distinct_other_tasks": "German MoS2 terminology is a separate lexical task; it is not treated as a translation of this English scientific reference.",
+      "legacy_variants": "38 same-task consolidation obligations remain unexecuted. No mass redirect, canonical change or noindex has been authorized.",
+      "constraints": "This documents semantic contribution, not evidence locking, claim approval, indexation eligibility, signed review, or search-ranking outcomes."
+    },
+    "owner_posture": "informational comparison only; AMD-IG-R03-001 has not been ratified and no release action is authorized"
+  },
+  "risk_classification": {
+    "class": "low_risk_informational",
+    "declared_on": "2026-10-31",
+    "status": "candidate_declaration_only_not_documentary_verified",
+    "rationale": "This reference currently contains descriptive MoS2 identity, crystallographic/polytype interpretation and source-specific bulk lattice observations; it excludes chemical handling, exposure, toxicity advice, medical uses, operating procedures, market and product-performance recommendations.",
+    "qualification_note": "DOCUMENTARY-VERIFICATION@1.0.0 currently admits only claim_type=terminology. The three MoS2 pilot claims have no operational approval status or eligible scientific claim type; this declaration does not change D1 or D7 eligibility, and no policy amendment is adopted."
   }
 }

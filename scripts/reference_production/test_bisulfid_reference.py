@@ -107,11 +107,14 @@ class EvidenceNavigation(unittest.TestCase):
 
 class Isolation(unittest.TestCase):
 
-    def test_mos2_reference_is_unaffected(self):
+    def test_mos2_reference_features_are_opt_in(self):
+        """Synthesis, evidence links and re-verification appear on the MoS2 page only if its own spec declares them."""
         t = open(MOS2, encoding="utf-8").read()
-        self.assertNotIn("what-the-sources-support", t)
-        self.assertNotIn('href="#ev-', t)
-        self.assertNotIn("re-verified", t)
+        mspec = json.load(open(os.path.join(ROOT, "main", "data", "reference_production", "render_specs",
+                                            "KO-MOS2-SCIENTIFIC-001.json"), encoding="utf-8"))
+        self.assertEqual("what-the-sources-support" in t, bool(mspec.get("synthesis")))
+        self.assertEqual('href="#ev-' in t, bool(mspec.get("evidence_links")))
+        self.assertEqual("re-verified" in t, bool(mspec.get("reverified_by")))
 
     def test_route_and_canonical_unchanged(self):
         t, _ = page_text()

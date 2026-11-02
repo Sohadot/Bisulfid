@@ -126,27 +126,34 @@ def _captures():
     return out
 
 
-def lock_checklist(source_id, evidence_ids):
+def lock_checklist(source_id, evidence_ids, captures=None):
+    """captures (tests only): [(file, capture record)] replacing the capture files on disk."""
     src = {s["source_id"]: s for s in _load("sources", "source_registry.json")["sources"]}.get(source_id, {})
-    caps = _captures().get(source_id, [])
+    caps = _captures().get(source_id, []) if captures is None else captures
     evs = [json.load(open(os.path.join(DATA, "evidence", e + ".json"), encoding="utf-8")) for e in evidence_ids]
     dates = {e.get("retrieval_date") for e in evs} | {c.get("retrieved_on") for _, c in caps}
     dates.discard(None)
-    ok_caps = [c for _, c in caps if c.get("http_status") == 200 and c.get("sha256")]
-    passages_ok = all(p.get("found") for _, c in caps for p in c.get("passages", [])) and \
-        all(x.get("match") for _, c in caps for x in c.get("fields", []))
+    ok_caps = [c for _, c in caps if c.get("http_status") == 200 and c.get("sha256") and c.get("content_verified", True) is not False]
+    # Passages and fields are compared on verified retrievals only: a failed or unverified response proves
+    # nothing either way, while a genuine response whose value differs from the stored one blocks L2/L3.
+    passages_ok = all(p.get("found") for c in ok_caps for p in c.get("passages", [])) and \
+        all(x.get("match") for c in ok_caps for x in c.get("fields", []))
+    # L3 counts only documented retrieval events: a capture record with HTTP 200, a SHA-256 of the bytes
+    # and its own retrieval date. An evidence record's retrieval_date is metadata, not a second retrieval.
+    capture_dates = sorted({c["retrieved_on"] for c in ok_caps if c.get("retrieved_on")})
     ident = any(src.get(k) for k in ("isbn", "edition")) or any(
         (e.get("locator") or {}).get(k) for e in evs for k in ("record_id", "cod_file", "cas", "doi")) or \
         any(lx in json.dumps(e.get("lexical", {})) for e in evs for lx in ("cid",))
     res = {
         "L1": "pass" if src.get("status") == "verified" else "fail",
         "L2": "pass" if ok_caps and passages_ok else "pending",
-        "L3": "pass" if len(dates) >= 2 and ok_caps and passages_ok else "pending (needs a re-fetch on a later date)",
+        "L3": "pass" if len(capture_dates) >= 2 and passages_ok else "pending (needs a re-fetch on a later date)",
         "L4": "pass" if ident or ok_caps else "pending",
         "L5": "pass (short attributed quotations/values only)",
         "L6": "pending (human signature required)",
     }
-    return {"source_id": source_id, "checklist": res, "captures": [f for f, _ in caps], "dates_seen": sorted(dates)}
+    return {"source_id": source_id, "checklist": res, "captures": [f for f, _ in caps], "dates_seen": sorted(dates),
+            "capture_dates": capture_dates}
 
 
 # --- owner acts: claim activation and release authorization ----------------------------------------
