@@ -1,6 +1,6 @@
 {
  "knowledge_object_id": "KO-MOS2-SCIENTIFIC-001",
- "render_spec": "RSPEC-KO-MOS2-SCIENTIFIC-001@1.1.0",
+ "render_spec": "RSPEC-KO-MOS2-SCIENTIFIC-001@1.2.0",
  "route": "/molybdenum-disulfide/",
  "preparer": "claude-code-agent",
  "claims": [
@@ -131,11 +131,11 @@
      "evidence_role": "secondary_scholarly",
      "review_posture": "evidence_verified",
      "retrieval_date": "2026-09-20",
-     "admitted_for": null,
-     "qualification_id": null,
-     "rendered_on_page": false,
+     "admitted_for": "crystal_structure_identity_2h",
+     "qualification_id": "QUAL-RSC-MOS2-REVIEW-001",
+     "rendered_on_page": true,
      "verbatim_or_fields": "2H ... P63/mmc ... AbA BaB ... a = 3.15 A and c = 12.30 A (ref. 35)",
-     "record": null,
+     "record": "doi:10.1039/C4RA11852A",
      "capture": "RSC Advances 2015, Table 1 (uploaded PDF)"
     },
     {
@@ -221,11 +221,11 @@
      "evidence_role": "secondary_scholarly",
      "review_posture": "evidence_verified",
      "retrieval_date": "2026-09-20",
-     "admitted_for": null,
-     "qualification_id": null,
-     "rendered_on_page": false,
+     "admitted_for": "mos2_2h_terminology_supporting",
+     "qualification_id": "QUAL-HUANG-THESIS-1981-001",
+     "rendered_on_page": true,
      "verbatim_or_fields": "Molybdenite, 2H-MoS2, whose structure was first investigated by Dickinson and Pauling. The 2H-MoS2 is hexagonal and the structure is characterized by MoS2 layers with A-B-A stacking ... c = 12.30 A and a = 3.15 A ... sandwich-like layer stacking.",
-     "record": null,
+     "record": "X-ray Study of Anisotropic Vibrations in MoS2",
      "capture": "J. J. Huang, M.S. thesis, University of Houston (1981), uploaded PDF"
     }
    ],

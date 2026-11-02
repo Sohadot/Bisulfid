@@ -1,6 +1,6 @@
 # Independent review packet — KO-MOS2-SCIENTIFIC-001
 
-Route: `/molybdenum-disulfide/` · render spec `RSPEC-KO-MOS2-SCIENTIFIC-001@1.1.0` · prepared by `claude-code-agent` (automated; **cannot** act as reviewer).
+Route: `/molybdenum-disulfide/` · render spec `RSPEC-KO-MOS2-SCIENTIFIC-001@1.2.0` · prepared by `claude-code-agent` (automated; **cannot** act as reviewer).
 
 ## Reviewer requirements
 
@@ -43,12 +43,12 @@ Verdict: ☐ confirmed ☐ confirmed with wording change ☐ rejected ☐ out of
 |---|---|---|---|---|---|
 | `EVD-MOS2-STRUCTURE-DICKINSON` | Crystallography Open Database (COD) — public-domain crystallographic data repository: COD entry 1010993 — 2H-MoS2 (molybdenite) crystallographic data (structured record of Dickinson & Pauling 1923) | verified / candidate | crystal_structure_identity_2h | COD 1010993 | 2026-09-20 |
 | `EVD-MOS2-STRUCTURE-ACTACRYST` | Crystallography Open Database (COD) — public-domain crystallographic data repository: COD entry 9007660 — 2H-MoS2 crystallographic data (structured record of Schonfeld, Huang & Moss 1983) | verified / candidate | crystal_structure_identity_2h | COD 9007660 | 2026-09-20 |
-| `EVD-MOS2-2H-REF-RSC` | RSC Advances (Royal Society of Chemistry): Synthesis and properties of molybdenum disulphide: from bulk to atomic layers | verified / candidate | not rendered |  | 2026-09-20 |
+| `EVD-MOS2-2H-REF-RSC` | RSC Advances (Royal Society of Chemistry): Synthesis and properties of molybdenum disulphide: from bulk to atomic layers | verified / candidate | crystal_structure_identity_2h | doi:10.1039/C4RA11852A | 2026-09-20 |
 | `EVD-MOS2-LAYERED-RSC` | RSC Advances (Royal Society of Chemistry): Synthesis and properties of molybdenum disulphide: from bulk to atomic layers | verified / candidate | layered_structure_mos2 | doi:10.1039/C4RA11852A | 2026-09-20 |
 | `EVD-MOS2-POLYTYPES-RSC` | RSC Advances (Royal Society of Chemistry): Synthesis and properties of molybdenum disulphide: from bulk to atomic layers | verified / candidate | mos2_polytype_framework | doi:10.1039/C4RA11852A | 2026-09-20 |
 | `EVD-MOS2-LAYERED-ACTA1983-EXCERPT` | Acta Crystallographica Section B (International Union of Crystallography): Anisotropic Mean-Square Displacements (MSD) in Single Crystals of 2H- and 3R-MoS2 (page-404 excerpt) | verified / candidate | mos2_2h_3r_terminology | doi:10.1107/S0108768183002645 | 2026-09-20 |
 | `EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT` | Journal of the American Chemical Society (American Chemical Society): The Crystal Structure of Molybdenite (first-page excerpt, p.1466) | verified / candidate | molybdenite_mos2_hexagonal_identity | doi:10.1021/ja01659a020 | 2026-09-20 |
-| `EVD-MOS2-LAYERED-HUANG1981` | University of Houston, Department of Physics (M.S. thesis): X-ray Study of Anisotropic Vibrations in MoS2 | verified / candidate | not rendered |  | 2026-09-20 |
+| `EVD-MOS2-LAYERED-HUANG1981` | University of Houston, Department of Physics (M.S. thesis): X-ray Study of Anisotropic Vibrations in MoS2 | verified / candidate | mos2_2h_terminology_supporting | X-ray Study of Anisotropic Vibrations in MoS2 | 2026-09-20 |
 
 Quoted passages / values:
 
