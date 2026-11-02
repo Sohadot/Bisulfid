@@ -67,6 +67,31 @@ ok("18_self_declared_green_postures_are_all_downgraded_today",
    == ("not_validated", "evidence_sufficient", "claim_pending", "not_authorized") and p["governance_posture"] == "reference_draft"
    and p["information_gain_posture"] == "ig_reviewed_no_new_route" and len(notes) == 6)
 
+# L3 needs two documented retrieval events (capture records: HTTP 200 + SHA-256 + own date) on different dates.
+L3_SRC, L3_EVS = "SRC-COD-MOS2-DICKINSON-1923", ["EVD-MOS2-STRUCTURE-DICKINSON"]  # evidence retrieval_date 2026-09-20
+
+
+def cap(day, status=200, sha="ab" * 32):
+    return ("fixture.json", {"url": "https://example.org/x", "http_status": status, "sha256": sha, "retrieved_on": day,
+                             "fields": [{"field": "f", "stored": "v", "live": "v", "match": True}]})
+
+
+def l3(caps):
+    return rc.lock_checklist(L3_SRC, L3_EVS, captures=caps)["checklist"]["L3"]
+
+
+ok("19_one_capture_plus_older_evidence_date_is_not_L3", not l3([cap("2026-10-30")]).startswith("pass"))
+ok("20_two_captures_on_the_same_date_are_not_L3", not l3([cap("2026-10-30"), cap("2026-10-30")]).startswith("pass"))
+ok("21_failed_or_unhashed_retrieval_does_not_count",
+   not l3([cap("2026-10-30"), cap("2026-10-31", status=403)]).startswith("pass")
+   and not l3([cap("2026-10-30"), cap("2026-10-31", sha=None)]).startswith("pass"))
+ok("22_two_documented_captures_on_different_dates_pass_L3", l3([cap("2026-10-30"), cap("2026-10-31")]) == "pass")
+ok("23_mismatch_on_the_later_capture_blocks_L3",
+   not l3([cap("2026-10-30"), ("fixture.json", dict(cap("2026-10-31")[1], fields=[{"field": "f", "match": False}]))]).startswith("pass"))
+ok("24_real_mos2_cod_source_has_one_capture_so_no_L3",
+   rc.lock_checklist(L3_SRC, L3_EVS)["capture_dates"] == ["2026-10-30"]
+   and not rc.lock_checklist(L3_SRC, L3_EVS)["checklist"]["L3"].startswith("pass"))
+
 print("=" * 56)
 print("RESULT: " + ("PASS — release gates cannot be self-granted" if not FAILS else f"FAIL — {FAILS}"))
 sys.exit(1 if FAILS else 0)

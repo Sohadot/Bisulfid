@@ -1,0 +1,33 @@
+{
+  "record_type": "source_access_attempt",
+  "is_capture": false,
+  "source_id": "SRC-RSC-MOS2-REVIEW-2015",
+  "doi": "10.1039/C4RA11852A",
+  "attempted_on": "2026-11-02",
+  "attempted_by": "claude-code-agent (automated preparer; not a reviewer or lock signer)",
+  "environment": "cloud execution container; outbound HTTPS through the environment proxy; standard fetch tool, no header or bot-check workarounds",
+  "attempts": [
+    {"url": "https://pubs.rsc.org/en/content/articlehtml/2015/ra/c4ra11852a", "result": "HTTP 403", "bytes_retained": false},
+    {"url": "https://pubs.rsc.org/en/content/articlelanding/2015/ra/c4ra11852a", "result": "HTTP 403 (earlier attempt in this session)", "bytes_retained": false},
+    {"url": "https://pubs.rsc.org/en/content/articlepdf/2015/RA/C4RA11852A", "result": "HTTP 403", "bytes_retained": false, "note": "publisher PDF link as listed in Crossref metadata"}
+  ],
+  "bibliographic_metadata_verified": {
+    "via": "https://api.crossref.org/works/10.1039/C4RA11852A (Crossref public metadata API, read 2026-11-02; response bytes not hashed or retained)",
+    "title": "Synthesis and properties of molybdenum disulphide: from bulk to atomic layers",
+    "authors": ["Intek Song", "Chibeom Park", "Hee Cheul Choi"],
+    "container": "RSC Advances",
+    "volume": "5",
+    "issue": "10",
+    "pages": "7495-7514",
+    "version_of_record_published": "2015-01-02",
+    "license": "http://creativecommons.org/licenses/by/3.0/"
+  },
+  "status": {
+    "article_text_retrieved": false,
+    "sha256_recorded": false,
+    "L2_effect": "none: no source-matched capture of the article was made",
+    "L3_effect": "none: no retrieval event exists, so no later-date re-fetch can be claimed",
+    "metadata_is_not_a_capture": "Crossref metadata confirms identity, version-of-record date and licence only; it does not reproduce the quoted passages."
+  },
+  "next_requirement": "Retrieve the article (HTML or PDF) from an environment the publisher serves, retain the bytes with SHA-256, URL, timestamp and the quoted passages; repeat on a later date for L3."
+}

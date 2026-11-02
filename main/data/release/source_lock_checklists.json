@@ -15,6 +15,7 @@
    "dates_seen": [
     "2026-09-20"
    ],
+   "capture_dates": [],
    "used_by": [
     "KO-MOS2-SCIENTIFIC-001"
    ],
@@ -25,7 +26,7 @@
    "checklist": {
     "L1": "pass",
     "L2": "pass",
-    "L3": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
     "L4": "pass",
     "L5": "pass (short attributed quotations/values only)",
     "L6": "pending (human signature required)"
@@ -35,6 +36,9 @@
    ],
    "dates_seen": [
     "2026-09-20",
+    "2026-10-30"
+   ],
+   "capture_dates": [
     "2026-10-30"
    ],
    "used_by": [
@@ -47,7 +51,7 @@
    "checklist": {
     "L1": "pass",
     "L2": "pass",
-    "L3": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
     "L4": "pass",
     "L5": "pass (short attributed quotations/values only)",
     "L6": "pending (human signature required)"
@@ -57,6 +61,9 @@
    ],
    "dates_seen": [
     "2026-09-20",
+    "2026-10-30"
+   ],
+   "capture_dates": [
     "2026-10-30"
    ],
    "used_by": [
@@ -79,6 +86,10 @@
     "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
    ],
    "dates_seen": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
+   "capture_dates": [
     "2026-10-30",
     "2026-10-31"
    ],
@@ -105,6 +116,10 @@
     "2026-10-30",
     "2026-10-31"
    ],
+   "capture_dates": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
    "used_by": [
     "KO-BISULFID-TERMINOLOGY-001"
    ],
@@ -125,6 +140,10 @@
     "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
    ],
    "dates_seen": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
+   "capture_dates": [
     "2026-10-30",
     "2026-10-31"
    ],
@@ -151,6 +170,10 @@
     "2026-10-30",
     "2026-10-31"
    ],
+   "capture_dates": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
    "used_by": [
     "KO-BISULFID-TERMINOLOGY-001"
    ],
@@ -174,6 +197,10 @@
     "2026-10-30",
     "2026-10-31"
    ],
+   "capture_dates": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
    "used_by": [
     "KO-BISULFID-TERMINOLOGY-001"
    ],
@@ -193,6 +220,7 @@
    "dates_seen": [
     "2026-09-20"
    ],
+   "capture_dates": [],
    "used_by": [
     "KO-MOS2-SCIENTIFIC-001"
    ],
@@ -216,6 +244,10 @@
     "2026-10-30",
     "2026-10-31"
    ],
+   "capture_dates": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
    "used_by": [
     "KO-BISULFID-TERMINOLOGY-001"
    ],
@@ -235,6 +267,7 @@
    "dates_seen": [
     "2026-09-20"
    ],
+   "capture_dates": [],
    "used_by": [
     "KO-MOS2-SCIENTIFIC-001"
    ],
@@ -255,6 +288,10 @@
     "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
    ],
    "dates_seen": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
+   "capture_dates": [
     "2026-10-30",
     "2026-10-31"
    ],
@@ -281,6 +318,10 @@
     "2026-10-30",
     "2026-10-31"
    ],
+   "capture_dates": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
    "used_by": [
     "KO-BISULFID-TERMINOLOGY-001"
    ],
@@ -301,6 +342,10 @@
     "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
    ],
    "dates_seen": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
+   "capture_dates": [
     "2026-10-30",
     "2026-10-31"
    ],
@@ -327,6 +372,10 @@
     "2026-10-30",
     "2026-10-31"
    ],
+   "capture_dates": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
    "used_by": [
     "KO-BISULFID-TERMINOLOGY-001"
    ],
@@ -337,7 +386,7 @@
    "checklist": {
     "L1": "pass",
     "L2": "pass",
-    "L3": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
     "L4": "pass",
     "L5": "pass (short attributed quotations/values only)",
     "L6": "pending (human signature required)"
@@ -347,6 +396,9 @@
    ],
    "dates_seen": [
     "2026-09-20",
+    "2026-10-30"
+   ],
+   "capture_dates": [
     "2026-10-30"
    ],
    "used_by": [
@@ -359,7 +411,7 @@
    "checklist": {
     "L1": "pass",
     "L2": "pass",
-    "L3": "pass",
+    "L3": "pending (needs a re-fetch on a later date)",
     "L4": "pass",
     "L5": "pass (short attributed quotations/values only)",
     "L6": "pending (human signature required)"
@@ -369,6 +421,9 @@
    ],
    "dates_seen": [
     "2026-09-20",
+    "2026-10-30"
+   ],
+   "capture_dates": [
     "2026-10-30"
    ],
    "used_by": [
@@ -390,6 +445,7 @@
    "dates_seen": [
     "2026-09-20"
    ],
+   "capture_dates": [],
    "used_by": [
     "KO-MOS2-SCIENTIFIC-001"
    ],
@@ -410,6 +466,10 @@
     "main/data/evidence/captures/R03_TERMINOLOGY_CAPTURES.json"
    ],
    "dates_seen": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
+   "capture_dates": [
     "2026-10-30",
     "2026-10-31"
    ],

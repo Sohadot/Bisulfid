@@ -20,8 +20,12 @@
   ],
   "D4_reproducible": [
    "SRC-ACTACRYST-MOS2-1983-EXCERPT: L2, L3 not pass",
+   "SRC-COD-MOS2-ACTACRYST-1983: L3 not pass",
+   "SRC-COD-MOS2-DICKINSON-1923: L3 not pass",
    "SRC-HUANG-THESIS-1981: L2, L3, L4 not pass",
    "SRC-JACS-MOLYBDENITE-1923-EXCERPT: L2, L3 not pass",
+   "SRC-NIST-MOS2: L3 not pass",
+   "SRC-PUBCHEM-MOS2: L3 not pass",
    "SRC-RSC-MOS2-REVIEW-2015: L2, L3 not pass"
   ],
   "D5_conflicts": "pass",
@@ -37,8 +41,12 @@
   "D1_claims: CLM-MOS2-STRUCTURE-2H: status None",
   "D1_claims: CLM-MOS2-LATTICE-A-2H: status None",
   "D4_reproducible: SRC-ACTACRYST-MOS2-1983-EXCERPT: L2, L3 not pass",
+  "D4_reproducible: SRC-COD-MOS2-ACTACRYST-1983: L3 not pass",
+  "D4_reproducible: SRC-COD-MOS2-DICKINSON-1923: L3 not pass",
   "D4_reproducible: SRC-HUANG-THESIS-1981: L2, L3, L4 not pass",
   "D4_reproducible: SRC-JACS-MOLYBDENITE-1923-EXCERPT: L2, L3 not pass",
+  "D4_reproducible: SRC-NIST-MOS2: L3 not pass",
+  "D4_reproducible: SRC-PUBCHEM-MOS2: L3 not pass",
   "D4_reproducible: SRC-RSC-MOS2-REVIEW-2015: L2, L3 not pass",
   "D7_risk: risk class undetermined",
   "D7_risk: claim type not eligible or missing: ['CLM-MOS2-FORMULA', 'CLM-MOS2-STRUCTURE-2H', 'CLM-MOS2-LATTICE-A-2H']",
@@ -57,7 +65,9 @@
    ],
    "outcome": "not_verified",
    "reasons": [
-    "CLM-MOS2-FORMULA: status None"
+    "CLM-MOS2-FORMULA: status None",
+    "source SRC-NIST-MOS2 not reproducible",
+    "source SRC-PUBCHEM-MOS2 not reproducible"
    ]
   },
   {
@@ -84,6 +94,8 @@
    "reasons": [
     "CLM-MOS2-STRUCTURE-2H: status None",
     "source SRC-ACTACRYST-MOS2-1983-EXCERPT not reproducible",
+    "source SRC-COD-MOS2-ACTACRYST-1983 not reproducible",
+    "source SRC-COD-MOS2-DICKINSON-1923 not reproducible",
     "source SRC-HUANG-THESIS-1981 not reproducible",
     "source SRC-JACS-MOLYBDENITE-1923-EXCERPT not reproducible",
     "source SRC-RSC-MOS2-REVIEW-2015 not reproducible"
@@ -101,7 +113,9 @@
    ],
    "outcome": "not_verified",
    "reasons": [
-    "CLM-MOS2-LATTICE-A-2H: status None"
+    "CLM-MOS2-LATTICE-A-2H: status None",
+    "source SRC-COD-MOS2-ACTACRYST-1983 not reproducible",
+    "source SRC-COD-MOS2-DICKINSON-1923 not reproducible"
    ]
   }
  ],
