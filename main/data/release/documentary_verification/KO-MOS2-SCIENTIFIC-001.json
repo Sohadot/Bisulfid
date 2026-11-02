@@ -30,12 +30,9 @@
   "D5_conflicts": [
    "unresolved fields exist but the reference does not state them (open group + not-established)"
   ],
-  "D6_quality": [
-   "no distinctiveness review recorded in the publication candidate"
-  ],
+  "D6_quality": "pass",
   "D7_risk": [
    "risk class undetermined",
-   "no low_risk_informational declaration with rationale in the publication candidate",
    "claim type not eligible or missing: ['CLM-MOS2-FORMULA', 'CLM-MOS2-STRUCTURE-2H', 'CLM-MOS2-LATTICE-A-2H']",
    "KO does not exclude ['chemical_safety', 'medical']"
   ]
@@ -51,9 +48,7 @@
   "D4_reproducible: SRC-JACS-MOLYBDENITE-1923-EXCERPT: L2, L3 not pass",
   "D4_reproducible: SRC-RSC-MOS2-REVIEW-2015: L2, L3 not pass",
   "D5_conflicts: unresolved fields exist but the reference does not state them (open group + not-established)",
-  "D6_quality: no distinctiveness review recorded in the publication candidate",
   "D7_risk: risk class undetermined",
-  "D7_risk: no low_risk_informational declaration with rationale in the publication candidate",
   "D7_risk: claim type not eligible or missing: ['CLM-MOS2-FORMULA', 'CLM-MOS2-STRUCTURE-2H', 'CLM-MOS2-LATTICE-A-2H']",
   "D7_risk: KO does not exclude ['chemical_safety', 'medical']"
  ],
