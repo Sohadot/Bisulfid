@@ -26,20 +26,23 @@
    "checklist": {
     "L1": "pass",
     "L2": "pass",
-    "L3": "pending (needs a re-fetch on a later date)",
+    "L3": "pass",
     "L4": "pass",
     "L5": "pass (short attributed quotations/values only)",
     "L6": "pending (human signature required)"
    },
    "captures": [
-    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json"
+    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json",
+    "main/data/evidence/captures/MOS2_RECAPTURE_2026-11-02.json"
    ],
    "dates_seen": [
     "2026-09-20",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-02"
    ],
    "capture_dates": [
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-02"
    ],
    "used_by": [
     "KO-MOS2-SCIENTIFIC-001"
@@ -51,20 +54,23 @@
    "checklist": {
     "L1": "pass",
     "L2": "pass",
-    "L3": "pending (needs a re-fetch on a later date)",
+    "L3": "pass",
     "L4": "pass",
     "L5": "pass (short attributed quotations/values only)",
     "L6": "pending (human signature required)"
    },
    "captures": [
-    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json"
+    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json",
+    "main/data/evidence/captures/MOS2_RECAPTURE_2026-11-02.json"
    ],
    "dates_seen": [
     "2026-09-20",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-02"
    ],
    "capture_dates": [
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-02"
    ],
    "used_by": [
     "KO-MOS2-SCIENTIFIC-001"
@@ -392,11 +398,13 @@
     "L6": "pending (human signature required)"
    },
    "captures": [
-    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json"
+    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json",
+    "main/data/evidence/captures/MOS2_RECAPTURE_2026-11-02.json"
    ],
    "dates_seen": [
     "2026-09-20",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-02"
    ],
    "capture_dates": [
     "2026-10-30"
@@ -411,20 +419,23 @@
    "checklist": {
     "L1": "pass",
     "L2": "pass",
-    "L3": "pending (needs a re-fetch on a later date)",
+    "L3": "pass",
     "L4": "pass",
     "L5": "pass (short attributed quotations/values only)",
     "L6": "pending (human signature required)"
    },
    "captures": [
-    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json"
+    "main/data/evidence/captures/R03_MOS2_RECAPTURE.json",
+    "main/data/evidence/captures/MOS2_RECAPTURE_2026-11-02.json"
    ],
    "dates_seen": [
     "2026-09-20",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-02"
    ],
    "capture_dates": [
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-02"
    ],
    "used_by": [
     "KO-MOS2-SCIENTIFIC-001"

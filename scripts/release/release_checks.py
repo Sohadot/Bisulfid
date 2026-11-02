@@ -133,9 +133,11 @@ def lock_checklist(source_id, evidence_ids, captures=None):
     evs = [json.load(open(os.path.join(DATA, "evidence", e + ".json"), encoding="utf-8")) for e in evidence_ids]
     dates = {e.get("retrieval_date") for e in evs} | {c.get("retrieved_on") for _, c in caps}
     dates.discard(None)
-    ok_caps = [c for _, c in caps if c.get("http_status") == 200 and c.get("sha256")]
-    passages_ok = all(p.get("found") for _, c in caps for p in c.get("passages", [])) and \
-        all(x.get("match") for _, c in caps for x in c.get("fields", []))
+    ok_caps = [c for _, c in caps if c.get("http_status") == 200 and c.get("sha256") and c.get("content_verified", True) is not False]
+    # Passages and fields are compared on verified retrievals only: a failed or unverified response proves
+    # nothing either way, while a genuine response whose value differs from the stored one blocks L2/L3.
+    passages_ok = all(p.get("found") for c in ok_caps for p in c.get("passages", [])) and \
+        all(x.get("match") for c in ok_caps for x in c.get("fields", []))
     # L3 counts only documented retrieval events: a capture record with HTTP 200, a SHA-256 of the bytes
     # and its own retrieval date. An evidence record's retrieval_date is metadata, not a second retrieval.
     capture_dates = sorted({c["retrieved_on"] for c in ok_caps if c.get("retrieved_on")})

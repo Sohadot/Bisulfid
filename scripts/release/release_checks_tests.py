@@ -88,9 +88,90 @@ ok("21_failed_or_unhashed_retrieval_does_not_count",
 ok("22_two_documented_captures_on_different_dates_pass_L3", l3([cap("2026-10-30"), cap("2026-10-31")]) == "pass")
 ok("23_mismatch_on_the_later_capture_blocks_L3",
    not l3([cap("2026-10-30"), ("fixture.json", dict(cap("2026-10-31")[1], fields=[{"field": "f", "match": False}]))]).startswith("pass"))
-ok("24_real_mos2_cod_source_has_one_capture_so_no_L3",
-   rc.lock_checklist(L3_SRC, L3_EVS)["capture_dates"] == ["2026-10-30"]
-   and not rc.lock_checklist(L3_SRC, L3_EVS)["checklist"]["L3"].startswith("pass"))
+_R03 = [(f, c) for f, c in rc._captures().get(L3_SRC, []) if f.endswith("R03_MOS2_RECAPTURE.json")]
+ok("24_real_2026_10_30_capture_alone_plus_evidence_date_is_not_L3",
+   len(_R03) == 1 and rc.lock_checklist(L3_SRC, L3_EVS, captures=_R03)["capture_dates"] == ["2026-10-30"]
+   and not rc.lock_checklist(L3_SRC, L3_EVS, captures=_R03)["checklist"]["L3"].startswith("pass"))
+
+# Append-only recapture (scripts/reference_production/recapture_mos2_values.py), run offline with a fake fetcher.
+import datetime  # noqa: E402
+import glob  # noqa: E402
+import hashlib  # noqa: E402
+import tempfile  # noqa: E402
+sys.path.insert(0, os.path.join(HERE, "..", "reference_production"))
+import recapture_mos2_values as rm  # noqa: E402
+
+GOOD_BODY = {  # minimal genuine-looking responses carrying the stored values
+    "cif": lambda f: ("data_x\n" + "\n".join(f"{k} '{v}'" for k, v in f.items()) + "\n").encode(),
+}
+
+
+def fake_ok(url):
+    eid = next(k for k, v in rm.CHECKS.items() if v[0] == url)
+    _, kind, fields, _ = rm.CHECKS[eid]
+    ev = json.load(open(os.path.join(rm.EV, eid + ".json"), encoding="utf-8"))
+    q = ev["locator"]["fields_quoted"]
+    if kind == "cif":
+        return 200, GOOD_BODY["cif"]({k: q[k] for k in fields})
+    if kind == "pubchem":
+        return 200, json.dumps({"PropertyTable": {"Properties": [{"CID": 14823, **{k: q[k] for k in fields}}]}}).encode()
+    return 200, (f"<html><title>molybdenum disulphide</title> CAS 1317-33-5 Formula: {q['Formula']} "
+                 f"Molecular weight: {q['molecularWeight'].split()[0]}</html>").encode()
+
+
+def fake_blocked(url):
+    return 200, b"<html><title>Just a moment...</title>Checking your browser</html>"
+
+
+def fake_503(url):
+    return 503, b"Service Unavailable"
+
+
+import json  # noqa: E402
+
+with tempfile.TemporaryDirectory() as tmp:
+    capd, rawd = os.path.join(tmp, "captures"), os.path.join(tmp, "raw")
+    os.makedirs(capd)
+    earlier = os.path.join(capd, "R03_MOS2_RECAPTURE.json")
+    real = os.path.join(rm.CAPTURES, "R03_MOS2_RECAPTURE.json")
+    open(earlier, "wb").write(open(real, "rb").read())
+    before = hashlib.sha256(open(earlier, "rb").read()).hexdigest()
+    d1 = datetime.datetime(2026, 11, 3, 9, 30, tzinfo=datetime.timezone.utc)
+    rc1, p1 = rm.run(now=d1, fetcher=fake_ok, captures_dir=capd, raw_root=rawd)
+    ok("25_recapture_writes_a_new_dated_file_and_keeps_earlier_captures",
+       rc1 == 0 and p1.endswith("MOS2_RECAPTURE_2026-11-03.json")
+       and hashlib.sha256(open(earlier, "rb").read()).hexdigest() == before
+       and sorted(os.path.basename(x) for x in glob.glob(os.path.join(capd, "*.json")))
+       == ["MOS2_RECAPTURE_2026-11-03.json", "R03_MOS2_RECAPTURE.json"])
+    first = open(p1, "rb").read()
+    rc2, p2 = rm.run(now=d1.replace(hour=15), fetcher=fake_503, captures_dir=capd, raw_root=rawd)
+    ok("26_same_day_recapture_is_refused_and_nothing_is_replaced", rc2 == 2 and p2 is None and open(p1, "rb").read() == first)
+    doc = json.load(open(p1, encoding="utf-8"))["captures"]
+    cif = doc["EVD-MOS2-STRUCTURE-DICKINSON"]
+    nist = doc["EVD-MOS2-FORMULA-NIST"]
+    ok("27_capture_records_utc_time_hash_bytes_and_raw_artifact_policy",
+       cif["retrieved_at_utc"] == "2026-11-03T09:30:00Z" and len(cif["sha256"]) == 64 and cif["bytes"] > 0
+       and hashlib.sha256(open(os.path.join(rm.ROOT, cif["raw_artifact"]), "rb").read()).hexdigest() == cif["sha256"]
+       and nist["raw_artifact"] is None and len(nist["sha256"]) == 64)
+    rc3, p3 = rm.run(now=d1 + datetime.timedelta(days=1), fetcher=fake_503, captures_dir=capd, raw_root=rawd)
+    rc4, p4 = rm.run(now=d1 + datetime.timedelta(days=2), fetcher=fake_blocked, captures_dir=capd, raw_root=rawd)
+    bad503 = json.load(open(p3, encoding="utf-8"))["captures"]["EVD-MOS2-STRUCTURE-DICKINSON"]
+    badbot = json.load(open(p4, encoding="utf-8"))["captures"]["EVD-MOS2-STRUCTURE-DICKINSON"]
+    ok("28_failed_or_anti_bot_responses_get_no_hash_and_exit_nonzero",
+       rc3 == 1 and rc4 == 1 and "sha256" not in bad503 and "sha256" not in badbot
+       and badbot["content_verified"] is False and bad503["content_verified"] is False)
+    real_first = ("R03", json.load(open(real, encoding="utf-8"))["captures"]["EVD-MOS2-STRUCTURE-DICKINSON"])
+    ok("29_failed_or_anti_bot_recapture_cannot_pass_L2_or_L3",
+       not l3([real_first, ("x", bad503)]).startswith("pass") and not l3([real_first, ("x", badbot)]).startswith("pass")
+       and rc.lock_checklist(L3_SRC, L3_EVS, captures=[("x", badbot)])["checklist"]["L2"] != "pass")
+    drift = dict(cif, fields=[dict(x, live="9.99", match=False) for x in cif["fields"]])
+    ok("29b_genuine_response_with_a_changed_value_blocks_L2_and_L3",
+       rc.lock_checklist(L3_SRC, L3_EVS, captures=[real_first, ("new", drift)])["checklist"]["L2"] != "pass"
+       and not l3([real_first, ("new", drift)]).startswith("pass"))
+    ok("29c_failed_recapture_neither_passes_nor_erases_earlier_L2",
+       rc.lock_checklist(L3_SRC, L3_EVS, captures=[real_first, ("x", bad503)])["checklist"]["L2"] == "pass")
+    ok("30_two_valid_dated_captures_pass_L3_one_does_not",
+       l3([real_first, ("new", cif)]) == "pass" and not l3([("new", cif)]).startswith("pass"))
 
 print("=" * 56)
 print("RESULT: " + ("PASS — release gates cannot be self-granted" if not FAILS else f"FAIL — {FAILS}"))

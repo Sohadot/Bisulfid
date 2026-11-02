@@ -1,0 +1,11 @@
+{
+  "record_type": "capture_erratum",
+  "is_capture": false,
+  "concerns": "main/data/evidence/captures/MOS2_RECAPTURE_2026-11-02.json",
+  "evidence_id": "EVD-MOS2-FORMULA-NIST",
+  "recorded_on": "2026-11-02",
+  "recorded_by": "claude-code-agent (automated preparer; not a reviewer or lock signer)",
+  "finding": "The capture file is kept exactly as the run wrote it. Its NIST entry ('content_verified': false, 'not the WebBook record for CAS 1317-33-5') is a false negative of the script's content check, which required the exact string 'Molybdenum disulfide' while the WebBook page title reads 'molybdenum disulphide'. A diagnostic re-request the same day (not retained in the repository, not a capture) returned HTTP 200, 15303 bytes, Formula MoS2, molecular weight 160.09, CAS 1317-33-5.",
+  "correction": "scripts/reference_production/recapture_mos2_values.py now accepts either spelling, case-insensitively, together with the CAS number.",
+  "effect": "None on the source-lock checklist: the 2026-11-02 NIST entry has no SHA-256 and does not count as a retrieval event, so NIST L3 still needs a verified recapture on a later date. No stored scientific value was changed."
+}
