@@ -173,6 +173,52 @@ with tempfile.TemporaryDirectory() as tmp:
     ok("30_two_valid_dated_captures_pass_L3_one_does_not",
        l3([real_first, ("new", cif)]) == "pass" and not l3([("new", cif)]).startswith("pass"))
 
+# Caltech reprint of Dickinson & Pauling (1923): append-only capture, offline fixtures.
+import capture_jacs1923_reprint as cj  # noqa: E402
+
+JQ = json.load(open(os.path.join(cj.EV, cj.EID + ".json"), encoding="utf-8"))["locator"]["verbatim"]
+J_SRC, J_EVS = "SRC-JACS-MOLYBDENITE-1923-EXCERPT", [cj.EID]  # evidence retrieval_date 2026-09-20
+FAKE_PDF = b"%PDF-1.6 fixture bytes"
+
+
+def fake_pages(raw):
+    return ["thesis title page", "[Reprinted from JACS] THE CRYSTAL STRUCTURE OF MOLYBDENITE\n"
+            + JQ.replace("described as", "described 2 as").replace("struc", "struc-\n")]
+
+
+def j_ok(url):
+    return 200, {"Content-Type": "application/pdf"}, FAKE_PDF
+
+
+def j_403(url):
+    return 403, {}, b"Forbidden"
+
+
+with tempfile.TemporaryDirectory() as tmp:
+    j1 = datetime.datetime(2026, 11, 2, 16, 0, tzinfo=datetime.timezone.utc)
+    r1, f1 = cj.run(now=j1, fetcher=j_ok, captures_dir=tmp, pages_of=fake_pages)
+    c1 = json.load(open(f1, encoding="utf-8"))["captures"][cj.EID]
+    r1b, f1b = cj.run(now=j1.replace(hour=18), fetcher=j_ok, captures_dir=tmp, pages_of=fake_pages)
+    ok("31_reprint_capture_finds_quote_through_ocr_artefacts_and_refuses_same_day_rerun",
+       r1 == 0 and c1["passages"][0]["found"] and len(c1["sha256"]) == 64 and r1b == 2 and f1b is None)
+    one = [("JACS1923_CALTECH_REPRINT_2026-11-02.json", c1)]
+    ok("32_single_reprint_capture_gives_L2_but_never_L3",
+       rc.lock_checklist(J_SRC, J_EVS, captures=one)["checklist"]["L2"] == "pass"
+       and not rc.lock_checklist(J_SRC, J_EVS, captures=one)["checklist"]["L3"].startswith("pass"))
+    r2, f2 = cj.run(now=j1 + datetime.timedelta(days=1), fetcher=j_403, captures_dir=tmp, pages_of=fake_pages)
+    c2 = json.load(open(f2, encoding="utf-8"))["captures"][cj.EID]
+    ok("33_blocked_reprint_refetch_has_no_hash_and_cannot_give_L3",
+       r2 == 1 and "sha256" not in c2 and not rc.lock_checklist(J_SRC, J_EVS, captures=one + [("b", c2)])["checklist"]["L3"].startswith("pass"))
+    r3, f3 = cj.run(now=j1 + datetime.timedelta(days=2), fetcher=j_ok, captures_dir=tmp, pages_of=fake_pages)
+    c3 = json.load(open(f3, encoding="utf-8"))["captures"][cj.EID]
+    ok("34_later_identical_reprint_bytes_reproduce_the_passage_and_give_L3",
+       r3 == 0 and c3["identical_bytes_to_earlier_captures"] == [{"file": os.path.basename(f1), "retrieved_on": "2026-11-02"}]
+       and rc.lock_checklist(J_SRC, J_EVS, captures=one + [("c", c3)])["checklist"]["L3"] == "pass")
+    wrong = lambda raw: ["THE CRYSTAL STRUCTURE OF MOLYBDENITE Reprinted ... Laue photographs."]  # noqa: E731
+    r4, f4 = cj.run(now=j1 + datetime.timedelta(days=3), fetcher=j_ok, captures_dir=tmp, pages_of=wrong)
+    ok("35_reprint_without_the_quoted_passage_cannot_pass_L2",
+       r4 == 1 and rc.lock_checklist(J_SRC, J_EVS, captures=[("d", json.load(open(f4))["captures"][cj.EID])])["checklist"]["L2"] != "pass")
+
 print("=" * 56)
 print("RESULT: " + ("PASS — release gates cannot be self-granted" if not FAILS else f"FAIL — {FAILS}"))
 sys.exit(1 if FAILS else 0)

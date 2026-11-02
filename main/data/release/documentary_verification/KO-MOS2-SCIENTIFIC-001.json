@@ -21,7 +21,7 @@
   "D4_reproducible": [
    "SRC-ACTACRYST-MOS2-1983-EXCERPT: L2, L3 not pass",
    "SRC-HUANG-THESIS-1981: L2, L3, L4 not pass",
-   "SRC-JACS-MOLYBDENITE-1923-EXCERPT: L2, L3 not pass",
+   "SRC-JACS-MOLYBDENITE-1923-EXCERPT: L3 not pass",
    "SRC-NIST-MOS2: L3 not pass",
    "SRC-RSC-MOS2-REVIEW-2015: L2, L3 not pass"
   ],
@@ -39,7 +39,7 @@
   "D1_claims: CLM-MOS2-LATTICE-A-2H: status None",
   "D4_reproducible: SRC-ACTACRYST-MOS2-1983-EXCERPT: L2, L3 not pass",
   "D4_reproducible: SRC-HUANG-THESIS-1981: L2, L3, L4 not pass",
-  "D4_reproducible: SRC-JACS-MOLYBDENITE-1923-EXCERPT: L2, L3 not pass",
+  "D4_reproducible: SRC-JACS-MOLYBDENITE-1923-EXCERPT: L3 not pass",
   "D4_reproducible: SRC-NIST-MOS2: L3 not pass",
   "D4_reproducible: SRC-RSC-MOS2-REVIEW-2015: L2, L3 not pass",
   "D7_risk: risk class undetermined",

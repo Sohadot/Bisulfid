@@ -58,7 +58,7 @@ Quoted passages / values:
 - `EVD-MOS2-LAYERED-RSC`: "MoS2, like graphite, is a layered material, where each layer of MoS2 is composed of three-atom-thick S-Mo-S stacks."
 - `EVD-MOS2-POLYTYPES-RSC`: "three known polytypes - namely 1T, 2H, and 3R - of MoS2 ... 2H and 3R commonly have trigonal prismatic coordination (D3h) of molybdenum atoms, but they have different stacking order."
 - `EVD-MOS2-LAYERED-ACTA1983-EXCERPT`: "title: 'Anisotropic Mean-Square Displacements (MSD) in Single Crystals of 2H- and 3R-MoS2'; intro: 'MoS2 belongs to the layered dichalcogenides of transition metals ...'"
-- `EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT`: "The mineral molybdenite, MoS2, is described as occurring in hexagonal crystals with a very complete basal cleavage. A study of its crystal structure has been carried out using X-ray spectral photographs and Laue photographs."
+- `EVD-MOS2-MOLYBDENITE-JACS1923-EXCERPT`: "The mineral molybdenite, MoS2, is described as occurring in hexagonal crystals with a very complete basal cleavage. A study of its crystal structure has been carried out using X-ray spectral photographs and Laue photographs treated as previously described."
 - `EVD-MOS2-LAYERED-HUANG1981`: "Molybdenite, 2H-MoS2, whose structure was first investigated by Dickinson and Pauling. The 2H-MoS2 is hexagonal and the structure is characterized by MoS2 layers with A-B-A stacking ... c = 12.30 A and a = 3.15 A ... sandwich-like layer stacking."
 
 Reviewer checklist:
