@@ -4,8 +4,8 @@
   "route_count": 7,
   "expected_route_count": 7,
   "visual_proof_iteration": 3,
-  "visual_review_status": "pending_review",
-  "visual_review_note": "Human visual review required before full 14,000-page refresh. Set visual_review_status to 'approved' after proof passes eye review.",
+  "visual_review_status": "approved",
+  "visual_review_note": "The project owner reported on 2026-11-17 that the Sprint 6N-D iteration-3 seven-route human visual review had passed. This records an owner attestation, not an independent visual audit or a route-level evidence inventory. The 14,000-page refresh, public deployment, indexation, sitemap and navigation remain separate decisions.",
   "visual_palette": "carbon-sulfur-molybdenum",
   "proof_routes": [
     "home",
@@ -94,5 +94,16 @@
       "bs_control_room_hero": "no",
       "bs_gov_chip": "yes"
     }
-  ]
+  ],
+  "visual_review_attestation": {
+    "date": "2026-11-17",
+    "attested_by": "Sohadot project owner",
+    "basis": "owner-reported completed human visual review in project conversation",
+    "route_count": 7,
+    "proof_iteration": 3,
+    "independent_visual_verification_claimed": false,
+    "route_level_evidence_recorded": false,
+    "authorizes_full_refresh_execution": false,
+    "authorizes_public_deployment": false
+  }
 }
