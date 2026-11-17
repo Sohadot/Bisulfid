@@ -5641,3 +5641,21 @@ Next production action: owner decision on `URL-DEC-R03-ACQUIRE-001`, then on `AM
 **Scope and safeguards:** D1–D7 remain required; only eligible low_risk_informational objects can use this path. KO-BISULFID-TERMINOLOGY-001 qualifies as documentary_verified (11 claims, 11 sources meeting L1–L5), with no independent human review asserted. KO-MOS2-SCIENTIFIC-001 remains not_verified; no relaxation of its scientific gates. Existing Contract C / Information Gain / owner-activation controls remain in force.
 
 **Explicitly not authorized:** activating claims, ratifying AMD-IG-R03-001, changing legacy indexation, merging PRs, publishing or deploying. This record confirms an organizational policy decision and must not be represented as an external professional attestation.
+
+---
+
+## Sprint 6N-D — Owner-reported human visual review approval
+
+**Date:** 2026-11-17  
+**Sprint / Phase:** 6N-D, visual proof iteration 3 (seven-route sample)  
+**Decision authority:** Sohadot project owner, as stated in the project conversation; recorded as an owner attestation, not a third-party sign-off.  
+**Decision:** The owner reported that the human visual review was completed successfully. Record `visual_review_status: approved` in the official GitHub visual proof manifest. The private Sites review workspace is not a required authorization system and does not supersede GitHub as the project source of truth.
+
+**Rationale and evidence boundary:** The decision rests on the owner's express human-review statement. The seven manifest-listed routes form the review scope. No separate per-route grading, screenshot provenance for each rendered route, accessibility certification, independent audit, or scientific-content verification is claimed by this decision. Previous screenshots of the Sites planning dashboard must not be misrepresented as visual proof for all seven routes.
+
+**Gates and restrictions:** Keep `full_refresh_allowed: false`, `indexation_gate: closed`, `sitemap_gate: closed`, `navigation_gate: closed`, and `replaces_public_foundation: false` in the manifest. This GitHub PR records the visual decision only: no 14,000-page regeneration, merge, public deployment, indexing change, claim activation, or scientific/terminological ratification is authorized by the record. A separate explicit owner decision is required before executing the large refresh. The build script's technical status check should not be mistaken for release authorization.
+
+**Operational caution:** `python scripts/build.py --render-visual-proof-sample` regenerates the proof manifest with `pending_review`; do not rerender the visual sample after this attestation without capturing and governing a new visual review decision.
+
+**Doctrine references:** GitHub source-of-truth governance; Sprint 6N-D `main/data/SOVEREIGN_VISUAL_INTERFACE_NEXT_ACTIONS.md`; existing independent release, claim, and publication gates.  
+**Files affected:** `site/public/_visual_proof_sample/visual_proof_manifest.json`, `DECISION_LOG.md`.
